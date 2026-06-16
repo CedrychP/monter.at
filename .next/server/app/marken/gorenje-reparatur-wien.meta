@@ -1,0 +1,16 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/marken/layout,_N_T_/marken/[slug]/layout,_N_T_/marken/[slug]/page,_N_T_/marken/gorenje-reparatur-wien"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/marken/$d$slug/__PAGE__",
+    "/marken/$d$slug",
+    "/marken",
+    "/_index",
+    "/_head"
+  ]
+}

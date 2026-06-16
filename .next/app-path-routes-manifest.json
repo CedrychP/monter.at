@@ -1,0 +1,23 @@
+{
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/agb/page": "/agb",
+  "/api/contact/route": "/api/contact",
+  "/apple-icon.png/route": "/apple-icon.png",
+  "/barrierefreiheit/page": "/barrierefreiheit",
+  "/blog/[slug]/page": "/blog/[slug]",
+  "/blog/page": "/blog",
+  "/dsgvo/page": "/dsgvo",
+  "/icon.png/route": "/icon.png",
+  "/impressum/page": "/impressum",
+  "/kontakt/page": "/kontakt",
+  "/leistungen/[slug]/page": "/leistungen/[slug]",
+  "/marken/[slug]/[geraet]/page": "/marken/[slug]/[geraet]",
+  "/marken/[slug]/page": "/marken/[slug]",
+  "/nutzungsbedingungen/page": "/nutzungsbedingungen",
+  "/page": "/",
+  "/preise/page": "/preise",
+  "/robots.txt/route": "/robots.txt",
+  "/sitemap.xml/route": "/sitemap.xml",
+  "/ueber-uns/page": "/ueber-uns"
+}

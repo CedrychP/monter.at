@@ -102,8 +102,8 @@ const contentLinks: NavLink[] = [
 ];
 
 const dropdownSpecialLinks: NavLink[] = [
-  { label: "Über MONTER", href: "/ueber-uns" },
-  { label: "MONTER CLUB", href: "/kontakt" },
+  { label: "Über Monter", href: "/ueber-uns" },
+  { label: "Monter Club", href: "/kontakt" },
   { label: "Aktionskatalog", href: "/kontakt" },
   { label: "Geräte-Retter-Prämie", href: "/#kontakt" },
   { label: "Kaufberatung", href: "/kontakt" }
@@ -837,15 +837,15 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
                 onMouseEnter={() => showMegaMenu(menu.id)}
                 aria-hidden={activeMenu !== menu.id}
               >
-                <div className="mx-auto flex w-full max-w-[88rem] flex-col px-5 py-10 sm:px-8 lg:flex-row lg:py-12">
-                  <div className="nav-dropdown-column shrink-0 border-b border-[color:var(--nav-divider)] pb-8 lg:w-[14rem] lg:border-b-0 lg:border-r lg:pb-0 lg:pr-10 xl:w-[15rem] xl:pr-12">
+                <div className="nav-dropdown-inner">
+                  <div className="nav-dropdown-column nav-dropdown-column--special">
                     <div className="nav-dropdown-special-list">
                       {dropdownSpecialLinks.map((item) => (
                         <Link
                           key={`special-${item.label}`}
                           href={item.href}
                           onClick={closeAllOverlays}
-                          className="nav-dropdown-eyebrow nav-dropdown-special-link"
+                          className="nav-dropdown-special-link"
                         >
                           {item.label}
                         </Link>
@@ -853,56 +853,57 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
                     </div>
                   </div>
 
-                  {menu.columns.map((column, index) => (
-                    <div
-                      key={column.eyebrow}
-                      className={`nav-dropdown-column min-w-0 flex-1 border-b border-[color:var(--nav-divider)] py-8 last:border-b-0 lg:border-b-0 lg:py-0 ${
-                        index === 0 ? "lg:pl-10 xl:pl-12" : "lg:border-l lg:pl-10 xl:pl-12"
-                      }`}
-                    >
-                      <p className="nav-dropdown-eyebrow">{column.eyebrow}</p>
-                      <div className="nav-dropdown-list">
-                        {column.items.map((item) => (
-                          <Link
-                            key={`${menu.id}-${item.label}`}
-                            href={item.href}
-                            onClick={closeAllOverlays}
-                            className="nav-dropdown-link"
-                          >
-                            {item.label}
-                          </Link>
-                        ))}
+                  {menu.columns.map((column) => (
+                    <div key={column.eyebrow} className="nav-dropdown-column-group">
+                      <div className="nav-dropdown-separator" aria-hidden="true" />
+                      <div className="nav-dropdown-column">
+                        <p className="nav-dropdown-eyebrow">{column.eyebrow}</p>
+                        <div className="nav-dropdown-list">
+                          {column.items.map((item) => (
+                            <Link
+                              key={`${menu.id}-${item.label}`}
+                              href={item.href}
+                              onClick={closeAllOverlays}
+                              className="nav-dropdown-link"
+                            >
+                              {item.label}
+                            </Link>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   ))}
 
-                  <aside className="nav-dropdown-column w-full shrink-0 border-t border-[color:var(--nav-divider)] pt-8 lg:w-[18rem] lg:border-l lg:border-t-0 lg:pl-10 lg:pt-0 xl:pl-12">
-                    <p className="nav-dropdown-eyebrow">{menu.feature.eyebrow}</p>
-                    <p className="nav-dropdown-title mt-0 normal-case">
-                      {menu.feature.title}
-                    </p>
-                    <p className="nav-dropdown-body mt-4">
-                      {menu.feature.text}
-                    </p>
-                    <div className="mt-8 flex flex-col gap-1">
-                      <a
-                        href={menu.feature.primaryHref}
-                        onClick={closeAllOverlays}
-                        className="nav-dropdown-link py-2"
-                      >
-                        {menu.feature.primaryLabel}
-                      </a>
-                      {menu.feature.secondaryLabel && menu.feature.secondaryHref ? (
+                  <div className="nav-dropdown-column-group">
+                    <div className="nav-dropdown-separator" aria-hidden="true" />
+                    <aside className="nav-dropdown-column nav-dropdown-column--feature">
+                      <p className="nav-dropdown-eyebrow">{menu.feature.eyebrow}</p>
+                      <p className="nav-dropdown-title mt-0 normal-case">
+                        {menu.feature.title}
+                      </p>
+                      <p className="nav-dropdown-body mt-3">
+                        {menu.feature.text}
+                      </p>
+                      <div className="mt-5 flex flex-col gap-1">
                         <a
-                          href={menu.feature.secondaryHref}
+                          href={menu.feature.primaryHref}
                           onClick={closeAllOverlays}
                           className="nav-dropdown-link py-2"
                         >
-                          {menu.feature.secondaryLabel}
+                          {menu.feature.primaryLabel}
                         </a>
-                      ) : null}
-                    </div>
-                  </aside>
+                        {menu.feature.secondaryLabel && menu.feature.secondaryHref ? (
+                          <a
+                            href={menu.feature.secondaryHref}
+                            onClick={closeAllOverlays}
+                            className="nav-dropdown-link py-2"
+                          >
+                            {menu.feature.secondaryLabel}
+                          </a>
+                        ) : null}
+                      </div>
+                    </aside>
+                  </div>
                 </div>
               </div>
             ))}
@@ -1171,7 +1172,7 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
                             key={`m-special-${item.label}`}
                             href={item.href}
                             onClick={() => setMobileMenuOpen(false)}
-                            className="nav-dropdown-eyebrow nav-dropdown-special-link !text-[color:var(--ink)]"
+                            className="nav-dropdown-special-link nav-dropdown-special-link--light"
                           >
                             {item.label}
                           </Link>
