@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import ContactForm from "./ContactForm";
 import ReviewsCarousel from "./ReviewsCarousel";
 import { servicePages } from "./leistungen/services";
-import { brandPages } from "./marken/brands";
+import { brandPages, brandOverview } from "./marken/brands";
 
 const heroStockImage =
   "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=2400&q=85";
@@ -166,18 +166,6 @@ const featuredBrands = [
   "Elektra Bregenz",
   "NEFF",
   "Küppersbusch"
-];
-
-const brandOverview = [
-  "AEG", "AIDA", "AIRFORCE", "ALTUS", "AMICA", "ARISTON", "BALAY", "BAUKNECHT",
-  "BEKO", "BLAUPUNKT", "BOMANN", "BOSCH", "BULTHAUP", "CANDY", "CATA", "CONSTRUCTA",
-  "DAEWOO", "DOMETIC", "DUNAVOX", "ELEKTRA BREGENZ", "ELICA", "EUDORA", "EXQUISIT",
-  "FABER", "FALCON", "FALMEC", "FRANKE", "GAGGENAU", "GORENJE", "GUTMANN", "HAIER",
-  "HANSEATIC", "HISENSE", "HOOVER", "HOTPOINT", "IGNIS", "IKEA", "INDESIT", "JACUZZI",
-  "KÜPPERSBUSCH", "KOENIC", "LA CORNUE", "LIEBHERR", "MEDION", "MIELE", "NABO",
-  "NEFF", "NORDFROST", "NOVY", "PKM", "PRIVILEG", "RESPEKTA", "SAMSUNG",
-  "SCHAUB LORENZ", "SCHOLTES", "SHARP", "SIEMENS", "SMEG", "TEKA", "VIVAX",
-  "VESTFROST", "WHIRLPOOL", "ZANUSSI"
 ];
 
 const brandPageByName = new Map(brandPages.map((brand) => [brand.brand.toUpperCase(), brand.slug]));
@@ -819,7 +807,7 @@ export default function Home() {
         <div className="mx-auto max-w-[88rem] px-5 sm:px-8">
           <div className="reveal grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
             <div>
-              <p className="cap-line tracking-eyebrow">Anfahrtsgebiete</p>
+              <p className="cap-line tracking-eyebrow">Einsatzgebiete</p>
               <h2 className="font-display mt-8 text-balance text-4xl font-light leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
                 Wir kommen zu Ihnen.
               </h2>

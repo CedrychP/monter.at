@@ -16,5 +16,9 @@ export const siteConfig = {
     instagram: "https://www.instagram.com/",
     facebook: "https://www.facebook.com/",
     tiktok: "https://www.tiktok.com/"
-  }
+  },
+  googleReviewsUrl:
+    "https://www.google.com/maps/search/?api=1&query=Tech+Craft+Consulting+GmbH+Rappgasse+1%2F6+1210+Wien",
+  googleReviewWriteUrl:
+    "https://www.google.com/maps/search/?api=1&query=Tech+Craft+Consulting+GmbH+Rappgasse+1%2F6+1210+Wien"
 };

@@ -13,6 +13,8 @@ import {
   useState
 } from "react";
 import { blogPosts } from "./blog/posts";
+import NavMonterAccount from "./NavMonterAccount";
+import NavNewsletterSignup from "./NavNewsletterSignup";
 import { brandPages } from "./marken/brands";
 import { servicePages } from "./leistungen/services";
 import { siteConfig } from "./siteConfig";
@@ -20,18 +22,25 @@ import { siteConfig } from "./siteConfig";
 const emergencyPhoneDisplay = siteConfig.phoneDisplay;
 const emergencyPhoneHref = siteConfig.phoneHref;
 
-type NavLink = { label: string; href: string; menuId?: string };
+type NavLink = {
+  label: string;
+  href: string;
+  menuId?: string;
+  gold?: boolean;
+  external?: boolean;
+};
 
 type MegaMenuColumn = {
   eyebrow: string;
   items: NavLink[];
+  note?: string;
 };
 
 type MegaMenuConfig = {
   id: string;
   label: string;
   columns: MegaMenuColumn[];
-  feature: {
+  feature?: {
     eyebrow: string;
     title: string;
     text: string;
@@ -40,15 +49,29 @@ type MegaMenuConfig = {
     secondaryLabel?: string;
     secondaryHref?: string;
   };
+  newsletter?: boolean;
+  account?: boolean;
+  showSpecialLinks?: boolean;
 };
 
-const repairDevices: NavLink[] = [
+const householdSanitaerLinks: NavLink[] = [
   { label: "Waschmaschine", href: "/leistungen/waschmaschine-reparatur-wien" },
   { label: "Geschirrspüler", href: "/leistungen/geschirrspueler-reparatur-wien" },
-  { label: "Backofen & Herd", href: "/leistungen/backofen-herd-reparatur-wien" },
   { label: "Trockner", href: "/leistungen/trockner-reparatur-wien" },
+  { label: "Waschtrockner", href: "/kontakt" }
+];
+
+const householdKuecheLinks: NavLink[] = [
   { label: "Kühlschrank", href: "/leistungen/kuehlschrank-reparatur-wien" },
-  { label: "Tiefkühlgerät", href: "/leistungen/tiefkuehl-reparatur-wien" }
+  { label: "Gefrierschrank", href: "/leistungen/tiefkuehl-reparatur-wien" },
+  { label: "Herd", href: "/leistungen/backofen-herd-reparatur-wien" },
+  { label: "Backofen", href: "/leistungen/backofen-herd-reparatur-wien" },
+  { label: "Ceranfeld", href: "/leistungen/backofen-herd-reparatur-wien" }
+];
+
+const repairDevices: NavLink[] = [
+  ...householdSanitaerLinks,
+  ...householdKuecheLinks
 ];
 
 const repairBrandsNav: NavLink[] = [
@@ -56,15 +79,78 @@ const repairBrandsNav: NavLink[] = [
   { label: "Miele", href: "/marken/miele-reparatur-wien" },
   { label: "Siemens", href: "/marken/siemens-reparatur-wien" },
   { label: "AEG", href: "/marken/aeg-reparatur-wien" },
-  { label: "Gorenje", href: "/marken/gorenje-reparatur-wien" },
-  { label: "Beko", href: "/marken/beko-reparatur-wien" }
+  { label: "Gorenje", href: "/marken/gorenje-reparatur-wien" }
+];
+
+const weitereMarkenAlphabetLinks: NavLink[] = [
+  { label: "A – D", href: "/#marken" },
+  { label: "E – H", href: "/#marken" },
+  { label: "I – L", href: "/#marken" },
+  { label: "M – P", href: "/#marken" },
+  { label: "Q – Z", href: "/#marken" }
 ];
 
 const additionalServiceLinks: NavLink[] = [
   { label: "Preise & Pauschalen", href: "/preise" },
-  { label: "Anfahrtsgebiete", href: "/#anfahrt" },
-  { label: "Geräte-Retter-Prämie", href: "/#kontakt" },
+  { label: "Einsatzgebiete", href: "/#anfahrt" },
+  { label: "Ersatzteil gesucht?", href: "/kontakt" },
   { label: "Firmenkunden", href: "/#geschaeftskunden" }
+];
+
+const serviceNavLinks: NavLink[] = [
+  { label: "Reparatur buchen", href: "/kontakt" },
+  { label: "Ersatzteil gesucht?", href: "/kontakt" },
+  { label: "Wartungsservice", href: "/kontakt" },
+  { label: "Lieferung & Montage", href: "/kontakt" }
+];
+
+const serviceInfoLinks: NavLink[] = [
+  { label: "Preise & Pauschalen", href: "/preise" },
+  { label: "Einsatzgebiete", href: "/#anfahrt" },
+  { label: "Firmenkunden", href: "/#geschaeftskunden" }
+];
+
+const geraetekaufExtraLinks: NavLink[] = [
+  { label: "Lieferpreise", href: "/preise" },
+  { label: "Montage & Installation", href: "/kontakt" },
+  { label: "Garantieverlängerung", href: "/kontakt" },
+  { label: "Altgeräteentsorgung", href: "/kontakt" }
+];
+
+const customerVoiceLinks: NavLink[] = [
+  {
+    label: "Google Rezensionen ansehen",
+    href: siteConfig.googleReviewsUrl,
+    external: true
+  },
+  { label: "Kundenerfahrungen", href: "/#bewertungen" },
+  {
+    label: "Bewertung schreiben",
+    href: siteConfig.googleReviewWriteUrl,
+    external: true
+  }
+];
+
+const customerNewsLinks: NavLink[] = [
+  { label: "Blog & Ratgeber", href: "/blog" },
+  { label: "FAQ", href: "/#faq" },
+  { label: "Kurse", href: "/kontakt" },
+  { label: "Veranstaltungen", href: "/kontakt" }
+];
+
+const garageDoorAndServiceLinks: NavLink[] = [
+  { label: "Sektionaltor", href: "/garagentor-reparatur-wien" },
+  { label: "Rolltor", href: "/garagentor-reparatur-wien" },
+  { label: "Wartung & Service", href: "/garagentor-reparatur-wien" },
+  { label: "Sicherheitsüberprüfung", href: "/garagentor-reparatur-wien" }
+];
+
+const garageDriveLinks: NavLink[] = [
+  { label: "Garagentorantrieb", href: "/garagentor-reparatur-wien" },
+  { label: "Motor", href: "/garagentor-reparatur-wien" },
+  { label: "Federbruch", href: "/garagentor-reparatur-wien" },
+  { label: "Federwechsel", href: "/garagentor-reparatur-wien" },
+  { label: "Rollentausch", href: "/garagentor-reparatur-wien" }
 ];
 
 const geraetepflegeLinks: NavLink[] = [
@@ -76,17 +162,20 @@ const geraetepflegeLinks: NavLink[] = [
 
 // Hauptnavigation — Dropdowns über menuId an megaMenus gekoppelt
 const primaryNavGroup: NavLink[] = [
-  { label: "Garagentore", href: "/garagentor-reparatur-wien" },
+  { label: "Garagentore", href: "/garagentor-reparatur-wien", menuId: "garage" },
   { label: "Haushaltsgeräte", href: "/#leistungen", menuId: "service" },
-  { label: "Marken", href: "/#marken", menuId: "marken" },
-  { label: "Gerätereinigung", href: "/kontakt", menuId: "pflege" }
+  { label: "Marken", href: "/#marken", menuId: "marken" }
 ];
 
-const customerNavLink: NavLink = { label: "Unsere Kunden", href: "/#bewertungen" };
+const customerNavLink: NavLink = {
+  label: "Unsere Kunden",
+  href: "/#bewertungen",
+  menuId: "kunden"
+};
 
 const secondaryNavGroup: NavLink[] = [
-  { label: "Service", href: "/kontakt" },
-  { label: "Gerätekauf", href: "/kontakt" }
+  { label: "Service", href: "/kontakt", menuId: "nav-service" },
+  { label: "Gerätekauf", href: "/kontakt", menuId: "geraetekauf" }
 ];
 
 const companyLinks: NavLink[] = [
@@ -103,28 +192,97 @@ const contentLinks: NavLink[] = [
 
 const dropdownSpecialLinks: NavLink[] = [
   { label: "Über Monter", href: "/ueber-uns" },
-  { label: "Monter Club", href: "/kontakt" },
+  { label: "MONTER GOLD", href: "/kontakt", gold: true },
   { label: "Aktionskatalog", href: "/kontakt" },
   { label: "Geräte-Retter-Prämie", href: "/#kontakt" },
-  { label: "Kaufberatung", href: "/kontakt" }
+  { label: "Kaufberatung", href: "/kontakt" },
+  { label: "Bewertungen", href: "/#bewertungen" }
 ];
 
+function getDropdownSpecialLinkClassName(item: NavLink, light = false): string {
+  const classes = ["nav-dropdown-special-link"];
+  if (light) classes.push("nav-dropdown-special-link--light");
+  if (item.gold) classes.push("nav-dropdown-special-link--gold");
+  return classes.join(" ");
+}
+
+function isExternalNavLink(item: NavLink) {
+  return item.external || item.href.startsWith("http");
+}
+
+function NavDropdownLink({
+  item,
+  className,
+  onClick
+}: {
+  item: NavLink;
+  className: string;
+  onClick?: () => void;
+}) {
+  if (isExternalNavLink(item)) {
+    return (
+      <a
+        href={item.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={onClick}
+        className={className}
+      >
+        {item.label}
+      </a>
+    );
+  }
+
+  return (
+    <Link href={item.href} onClick={onClick} className={className}>
+      {item.label}
+    </Link>
+  );
+}
+
+function getFeatureLinkLabel(label: string, href: string): string {
+  if (href.startsWith("tel:") && label === emergencyPhoneDisplay) {
+    return `Telefon: ${label}`;
+  }
+  return label;
+}
+
 const megaMenus: MegaMenuConfig[] = [
+  {
+    id: "garage",
+    label: "Garagentore",
+    columns: [
+      { eyebrow: "Tore & Wartung", items: garageDoorAndServiceLinks },
+      { eyebrow: "Antrieb & Reparatur", items: garageDriveLinks },
+      { eyebrow: "Mehr Service", items: additionalServiceLinks }
+    ],
+    feature: {
+      eyebrow: "Garagentor Reparaturdienst",
+      title: "Garagentor klemmt in Wien?",
+      text:
+        "Telefon ist der schnellste Weg zu einer Einschätzung. Wir prüfen Fehlerbild, Termin und Aufwand direkt im Gespräch.",
+      primaryLabel: "Jetzt anrufen",
+      primaryHref: `tel:${emergencyPhoneHref}`,
+      secondaryLabel: "Termin buchen",
+      secondaryHref: "/kontakt"
+    }
+  },
   {
     id: "service",
     label: "Geräte",
     columns: [
-      { eyebrow: "Geräte", items: repairDevices },
+      { eyebrow: "Sanitärgeräte", items: householdSanitaerLinks },
+      { eyebrow: "Küchengeräte", items: householdKuecheLinks },
       { eyebrow: "Mehr Service", items: additionalServiceLinks }
     ],
     feature: {
-      eyebrow: "Notdienst",
+      eyebrow: "Haushaltsgeräte Reparaturdienst",
       title: "Geräteausfall in Wien?",
       text:
         "Telefon ist der schnellste Weg zu einer Einschätzung. Wir prüfen Fehlerbild, Termin und Aufwand direkt im Gespräch.",
-      primaryLabel: emergencyPhoneDisplay,
+      primaryLabel: "Jetzt anrufen",
       primaryHref: `tel:${emergencyPhoneHref}`,
-      secondaryLabel: "Anfrage stellen",
+      secondaryLabel: "Termin buchen",
       secondaryHref: "/kontakt"
     }
   },
@@ -137,35 +295,67 @@ const megaMenus: MegaMenuConfig[] = [
         items: repairBrandsNav
       },
       {
-        eyebrow: "Weitere häufige Marken",
-        items: [
-          { label: "Elektra Bregenz", href: "/#marken" },
-          { label: "Whirlpool", href: "/#marken" },
-          { label: "Bauknecht", href: "/#marken" },
-          { label: "Liebherr", href: "/#marken" },
-          { label: "Samsung", href: "/#marken" },
-          { label: "NEFF", href: "/#marken" }
-        ]
+        eyebrow: "Weitere Marken",
+        items: weitereMarkenAlphabetLinks
       },
       {
-        eyebrow: "Service",
-        items: [
-          { label: "Komplette Markenliste", href: "/#marken" },
-          { label: "Marke nicht gefunden?", href: "/kontakt" },
-          { label: "Ersatzteile prüfen", href: "/kontakt" }
-        ]
+        eyebrow: "Mehr Service",
+        items: additionalServiceLinks
       }
     ],
     feature: {
-      eyebrow: "Markenoffen",
+      eyebrow: "Markenoffene Reparatur",
       title: "Wir reparieren über 60 Marken.",
       text:
         "Bosch, Siemens, Miele, AEG, Gorenje, Elektra Bregenz und viele mehr — markenoffen, mit ehrlicher Diagnose.",
-      primaryLabel: "Alle Marken ansehen",
-      primaryHref: "/#marken",
-      secondaryLabel: "Anfrage stellen",
+      primaryLabel: "Jetzt anrufen",
+      primaryHref: `tel:${emergencyPhoneHref}`,
+      secondaryLabel: "Termin buchen",
       secondaryHref: "/kontakt"
     }
+  },
+  {
+    id: "kunden",
+    label: "Unsere Kunden",
+    columns: [
+      { eyebrow: "Kundenstimmen", items: customerVoiceLinks },
+      { eyebrow: "Monter News", items: customerNewsLinks },
+      { eyebrow: "Mehr Service", items: additionalServiceLinks }
+    ],
+    feature: {
+      eyebrow: "Reparaturdienst",
+      title: "Gerät defekt in Wien?",
+      text:
+        "Telefon ist der schnellste Weg zu einer Einschätzung. Wir prüfen Fehlerbild, Termin und Aufwand direkt im Gespräch.",
+      primaryLabel: "Jetzt anrufen",
+      primaryHref: `tel:${emergencyPhoneHref}`,
+      secondaryLabel: "Termin buchen",
+      secondaryHref: "/kontakt"
+    }
+  },
+  {
+    id: "nav-service",
+    label: "Service",
+    columns: [
+      { eyebrow: "Service", items: serviceNavLinks },
+      { eyebrow: "Informationen", items: serviceInfoLinks }
+    ],
+    account: true,
+    newsletter: true
+  },
+  {
+    id: "geraetekauf",
+    label: "Gerätekauf",
+    columns: [
+      {
+        eyebrow: "Neugerätekauf",
+        items: [],
+        note: "Der Neugerätekauf ist bei uns derzeit noch nicht verfügbar."
+      },
+      { eyebrow: "Zusatz", items: geraetekaufExtraLinks }
+    ],
+    account: true,
+    newsletter: true
   },
   {
     id: "pflege",
@@ -485,6 +675,21 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
     setActiveMenu(null);
   };
 
+  const renderNavItemWithMenu = (link: NavLink) => (
+    <Link
+      key={link.label}
+      href={link.href}
+      className={`nav-item py-1 ${activeMenu === link.menuId ? "nav-item--active" : ""}`}
+      onMouseEnter={() => showMegaMenu(link.menuId!)}
+      onFocus={() => showMegaMenu(link.menuId!)}
+      onClick={closeAllOverlays}
+      aria-expanded={activeMenu === link.menuId}
+      aria-controls={`mega-${link.menuId}`}
+    >
+      {link.label}
+    </Link>
+  );
+
   const headerBarSolid =
     isAtTop ||
     Boolean(activeMenu) ||
@@ -779,17 +984,7 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
             >
               {primaryNavGroup.map((link) =>
                 link.menuId ? (
-                  <button
-                    key={link.label}
-                    type="button"
-                    className={`nav-item py-1 ${activeMenu === link.menuId ? "nav-item--active" : ""}`}
-                    onMouseEnter={() => showMegaMenu(link.menuId!)}
-                    onFocus={() => showMegaMenu(link.menuId!)}
-                    aria-expanded={activeMenu === link.menuId}
-                    aria-controls={`mega-${link.menuId}`}
-                  >
-                    {link.label}
-                  </button>
+                  renderNavItemWithMenu(link)
                 ) : (
                   <Link
                     key={link.label}
@@ -802,29 +997,26 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
                   </Link>
                 )
               )}
-              <Link
-                href={customerNavLink.href}
-                className="nav-item py-1"
-                onMouseEnter={closeMegaMenu}
-                onClick={closeAllOverlays}
-              >
-                {customerNavLink.label}
-              </Link>
+              {renderNavItemWithMenu(customerNavLink)}
               <span
                 className="hidden h-4 w-px self-center bg-white/20 lg:block"
                 aria-hidden="true"
               />
-              {secondaryNavGroup.map((link) => (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  className="nav-item py-1"
-                  onMouseEnter={closeMegaMenu}
-                  onClick={closeAllOverlays}
-                >
-                  {link.label}
-                </Link>
-              ))}
+              {secondaryNavGroup.map((link) =>
+                link.menuId ? (
+                  renderNavItemWithMenu(link)
+                ) : (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    className="nav-item py-1"
+                    onMouseEnter={closeMegaMenu}
+                    onClick={closeAllOverlays}
+                  >
+                    {link.label}
+                  </Link>
+                )
+              )}
             </nav>
 
             {activeMenu ? <div className="nav-divider" aria-hidden="true" /> : null}
@@ -838,6 +1030,24 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
                 aria-hidden={activeMenu !== menu.id}
               >
                 <div className="nav-dropdown-inner">
+                  {menu.columns.length === 0 && !menu.feature && !menu.account && !menu.newsletter ? (
+                    <div className="nav-dropdown-column nav-dropdown-column--special-only">
+                      <div className="nav-dropdown-special-list">
+                        {dropdownSpecialLinks.map((item) => (
+                          <Link
+                            key={`special-${menu.id}-${item.label}`}
+                            href={item.href}
+                            onClick={closeAllOverlays}
+                            className={getDropdownSpecialLinkClassName(item)}
+                          >
+                            {item.label}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  ) : (
+                    <>
+                  {menu.showSpecialLinks !== false ? (
                   <div className="nav-dropdown-column nav-dropdown-column--special">
                     <div className="nav-dropdown-special-list">
                       {dropdownSpecialLinks.map((item) => (
@@ -845,35 +1055,40 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
                           key={`special-${item.label}`}
                           href={item.href}
                           onClick={closeAllOverlays}
-                          className="nav-dropdown-special-link"
+                          className={getDropdownSpecialLinkClassName(item)}
                         >
                           {item.label}
                         </Link>
                       ))}
                     </div>
                   </div>
+                  ) : null}
 
                   {menu.columns.map((column) => (
                     <div key={column.eyebrow} className="nav-dropdown-column-group">
                       <div className="nav-dropdown-separator" aria-hidden="true" />
                       <div className="nav-dropdown-column">
                         <p className="nav-dropdown-eyebrow">{column.eyebrow}</p>
+                        {column.note ? (
+                          <p className="nav-dropdown-note">{column.note}</p>
+                        ) : null}
+                        {column.items.length > 0 ? (
                         <div className="nav-dropdown-list">
                           {column.items.map((item) => (
-                            <Link
+                            <NavDropdownLink
                               key={`${menu.id}-${item.label}`}
-                              href={item.href}
+                              item={item}
                               onClick={closeAllOverlays}
                               className="nav-dropdown-link"
-                            >
-                              {item.label}
-                            </Link>
+                            />
                           ))}
                         </div>
+                        ) : null}
                       </div>
                     </div>
                   ))}
 
+                  {menu.feature ? (
                   <div className="nav-dropdown-column-group">
                     <div className="nav-dropdown-separator" aria-hidden="true" />
                     <aside className="nav-dropdown-column nav-dropdown-column--feature">
@@ -890,7 +1105,7 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
                           onClick={closeAllOverlays}
                           className="nav-dropdown-link py-2"
                         >
-                          {menu.feature.primaryLabel}
+                          {getFeatureLinkLabel(menu.feature.primaryLabel, menu.feature.primaryHref)}
                         </a>
                         {menu.feature.secondaryLabel && menu.feature.secondaryHref ? (
                           <a
@@ -898,12 +1113,36 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
                             onClick={closeAllOverlays}
                             className="nav-dropdown-link py-2"
                           >
-                            {menu.feature.secondaryLabel}
+                            {getFeatureLinkLabel(
+                              menu.feature.secondaryLabel,
+                              menu.feature.secondaryHref
+                            )}
                           </a>
                         ) : null}
                       </div>
                     </aside>
                   </div>
+                  ) : null}
+
+                  {menu.account ? (
+                  <div className="nav-dropdown-column-group">
+                    <div className="nav-dropdown-separator" aria-hidden="true" />
+                    <aside className="nav-dropdown-column nav-dropdown-column--account">
+                      <NavMonterAccount variant="dark" onNavigate={closeAllOverlays} />
+                    </aside>
+                  </div>
+                  ) : null}
+
+                  {menu.newsletter ? (
+                  <div className="nav-dropdown-column-group">
+                    <div className="nav-dropdown-separator" aria-hidden="true" />
+                    <aside className="nav-dropdown-column nav-dropdown-column--newsletter">
+                      <NavNewsletterSignup variant="dark" />
+                    </aside>
+                  </div>
+                  ) : null}
+                    </>
+                  )}
                 </div>
               </div>
             ))}
@@ -1172,7 +1411,7 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
                             key={`m-special-${item.label}`}
                             href={item.href}
                             onClick={() => setMobileMenuOpen(false)}
-                            className="nav-dropdown-special-link nav-dropdown-special-link--light"
+                            className={getDropdownSpecialLinkClassName(item, true)}
                           >
                             {item.label}
                           </Link>
@@ -1184,6 +1423,12 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
                         <p className="text-[0.65rem] font-medium uppercase tracking-[0.16em] text-[color:var(--accent)]">
                           {column.eyebrow}
                         </p>
+                        {column.note ? (
+                          <p className="mt-2 text-sm font-light leading-relaxed text-[color:var(--muted)]">
+                            {column.note}
+                          </p>
+                        ) : null}
+                        {column.items.length > 0 ? (
                         <div className="mt-2 grid gap-1">
                           {column.items.map((item) => (
                             <Link
@@ -1196,32 +1441,176 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
                             </Link>
                           ))}
                         </div>
+                        ) : null}
                       </div>
                     ))}
                   </div>
                 </details>
               );
             })}
-            <Link
-              href={customerNavLink.href}
-              onClick={() => setMobileMenuOpen(false)}
-              className="block border-b border-[color:var(--border)] py-4 text-[1.05rem] font-semibold tracking-tight"
-            >
-              {customerNavLink.label}
-            </Link>
+            <details className="group border-b border-[color:var(--border)] py-4">
+              <summary className="cursor-pointer list-none text-[1.05rem] font-semibold tracking-tight">
+                {customerNavLink.label}
+              </summary>
+              <div className="mt-4 grid gap-5 border-b border-[color:var(--border)] pb-5">
+                <div>
+                  <div className="nav-dropdown-special-list">
+                    {dropdownSpecialLinks.map((item) => (
+                      <Link
+                        key={`m-kunden-${item.label}`}
+                        href={item.href}
+                        onClick={() => setMobileMenuOpen(false)}
+                        className={getDropdownSpecialLinkClassName(item, true)}
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+                {megaMenus
+                  .find((menu) => menu.id === customerNavLink.menuId)
+                  ?.columns.map((column) => (
+                    <div key={column.eyebrow}>
+                      <p className="text-[0.65rem] font-medium uppercase tracking-[0.16em] text-[color:var(--accent)]">
+                        {column.eyebrow}
+                      </p>
+                      {column.note ? (
+                        <p className="mt-2 text-sm font-light leading-relaxed text-[color:var(--muted)]">
+                          {column.note}
+                        </p>
+                      ) : null}
+                      {column.items.length > 0 ? (
+                        <div className="mt-2 grid gap-1">
+                          {column.items.map((item) => (
+                            <NavDropdownLink
+                              key={`m-kunden-${column.eyebrow}-${item.label}`}
+                              item={item}
+                              onClick={() => setMobileMenuOpen(false)}
+                              className="block py-2 text-sm font-medium tracking-tight text-[color:var(--muted)] transition hover:text-[color:var(--ink)]"
+                            />
+                          ))}
+                        </div>
+                      ) : null}
+                    </div>
+                  ))}
+                {(() => {
+                  const feature = megaMenus.find(
+                    (menu) => menu.id === customerNavLink.menuId
+                  )?.feature;
+                  if (!feature) return null;
+
+                  return (
+                    <div className="border-t border-[color:var(--border)] pt-5">
+                      <p className="text-[0.65rem] font-medium uppercase tracking-[0.16em] text-[color:var(--accent)]">
+                        {feature.eyebrow}
+                      </p>
+                      <p className="mt-2 text-sm font-semibold tracking-tight text-[color:var(--ink)]">
+                        {feature.title}
+                      </p>
+                      <p className="mt-2 text-sm font-light leading-relaxed text-[color:var(--muted)]">
+                        {feature.text}
+                      </p>
+                      <div className="mt-4 grid gap-2">
+                        <a
+                          href={feature.primaryHref}
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="btn-primary justify-center"
+                        >
+                          {getFeatureLinkLabel(feature.primaryLabel, feature.primaryHref)}
+                        </a>
+                        {feature.secondaryLabel && feature.secondaryHref ? (
+                          <Link
+                            href={feature.secondaryHref}
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="btn-ghost justify-center"
+                          >
+                            {getFeatureLinkLabel(feature.secondaryLabel, feature.secondaryHref)}
+                          </Link>
+                        ) : null}
+                      </div>
+                    </div>
+                  );
+                })()}
+              </div>
+            </details>
 
             <div className="my-2 h-px bg-[color:var(--border)]" aria-hidden="true" />
 
-            {secondaryNavGroup.map((link) => (
-              <Link
-                key={`m-${link.label}`}
-                href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="block border-b border-[color:var(--border)] py-4 text-[1.05rem] font-semibold tracking-tight"
-              >
-                {link.label}
-              </Link>
-            ))}
+            {secondaryNavGroup.map((link) =>
+              link.menuId ? (
+                <details key={`m-${link.label}`} className="group border-b border-[color:var(--border)] py-4">
+                  <summary className="cursor-pointer list-none text-[1.05rem] font-semibold tracking-tight">
+                    {link.label}
+                  </summary>
+                  <div className="mt-4 grid gap-5 border-b border-[color:var(--border)] pb-5">
+                    <div>
+                      <div className="nav-dropdown-special-list">
+                        {dropdownSpecialLinks.map((item) => (
+                          <Link
+                            key={`m-${link.menuId}-${item.label}`}
+                            href={item.href}
+                            onClick={() => setMobileMenuOpen(false)}
+                            className={getDropdownSpecialLinkClassName(item, true)}
+                          >
+                            {item.label}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                    {megaMenus
+                      .find((menu) => menu.id === link.menuId)
+                      ?.columns.map((column) => (
+                        <div key={column.eyebrow}>
+                          <p className="text-[0.65rem] font-medium uppercase tracking-[0.16em] text-[color:var(--accent)]">
+                            {column.eyebrow}
+                          </p>
+                          {column.note ? (
+                            <p className="mt-2 text-sm font-light leading-relaxed text-[color:var(--muted)]">
+                              {column.note}
+                            </p>
+                          ) : null}
+                          {column.items.length > 0 ? (
+                          <div className="mt-2 grid gap-1">
+                            {column.items.map((item) => (
+                              <Link
+                                key={`m-${link.menuId}-${column.eyebrow}-${item.label}`}
+                                href={item.href}
+                                onClick={() => setMobileMenuOpen(false)}
+                                className="block py-2 text-sm font-medium tracking-tight text-[color:var(--muted)] transition hover:text-[color:var(--ink)]"
+                              >
+                                {item.label}
+                              </Link>
+                            ))}
+                          </div>
+                          ) : null}
+                        </div>
+                      ))}
+                    {megaMenus.find((menu) => menu.id === link.menuId)?.account ? (
+                      <div className="border-t border-[color:var(--border)] pt-5">
+                        <NavMonterAccount
+                          variant="light"
+                          onNavigate={() => setMobileMenuOpen(false)}
+                        />
+                      </div>
+                    ) : null}
+                    {megaMenus.find((menu) => menu.id === link.menuId)?.newsletter ? (
+                      <div className="border-t border-[color:var(--border)] pt-5">
+                        <NavNewsletterSignup variant="light" />
+                      </div>
+                    ) : null}
+                  </div>
+                </details>
+              ) : (
+                <Link
+                  key={`m-${link.label}`}
+                  href={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block border-b border-[color:var(--border)] py-4 text-[1.05rem] font-semibold tracking-tight"
+                >
+                  {link.label}
+                </Link>
+              )
+            )}
 
             <details className="group border-b border-[color:var(--border)] py-4">
               <summary className="cursor-pointer list-none text-[1.05rem] font-semibold tracking-tight">
