@@ -1108,7 +1108,7 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
             mobileMenuOpen ? "max-h-[90vh] opacity-100" : "max-h-0 opacity-0"
           }`}
         >
-          <div className="relative max-h-[88vh] overflow-y-auto bg-[radial-gradient(120%_60%_at_100%_0%,rgba(168,17,42,0.22),transparent_58%),linear-gradient(180deg,#17171c_0%,#101013_55%,#0a0a0c_100%)] px-5 pb-6 pt-5 text-white sm:px-8">
+          <div className="relative max-h-[88vh] overflow-y-auto bg-[color:var(--ink)] px-5 pb-6 pt-5 text-white sm:px-8">
             {/* Standard-Links — immer sichtbar, nicht in den Untermenüs wiederholt */}
             <div className="grid grid-cols-2 gap-x-4 gap-y-2.5 border-b border-white/10 pb-5">
               {dropdownSpecialLinks.map((item) => (
@@ -1204,7 +1204,7 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
               </p>
             </details>
 
-            <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-[linear-gradient(135deg,rgba(168,17,42,0.28)_0%,rgba(168,17,42,0.06)_45%,rgba(255,255,255,0.04)_100%)] p-5">
+            <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] p-5">
               <div className="flex items-center gap-3">
                 <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-white/10 text-white">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
