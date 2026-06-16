@@ -1,15 +1,35 @@
 import Image from "next/image";
 import Link from "next/link";
 import CookieSettingsButton from "./CookieSettingsButton";
+import NavNewsletterSignup from "./NavNewsletterSignup";
 import { siteConfig } from "./siteConfig";
 
-const emergencyPhoneDisplay = "+43 1 4171346";
-const emergencyPhoneHref = "+4314171346";
+const emergencyPhoneDisplay = siteConfig.phoneDisplay;
+const emergencyPhoneHref = siteConfig.phoneHref;
 
 const footerHeadingClass =
   "text-[0.8rem] font-medium uppercase tracking-[0.2em] text-white/75";
 
-const serviceLinks = [
+const brandQuickLinks = [
+  { label: "Blog & News", href: "/blog" },
+  { label: "Warum Monter?", href: "/ueber-uns" },
+  { label: "FAQ", href: "/#faq" },
+  { label: "Bewertungen", href: "/#bewertungen" }
+];
+
+const garageLinks = [
+  { label: "Garagentor Reparatur", href: "/garagentor-reparatur-wien" },
+  { label: "Antrieb & Motor", href: "/garagentor-reparatur-wien" },
+  { label: "Federwechsel", href: "/garagentor-reparatur-wien" },
+  { label: "Wartung & Service", href: "/garagentor-reparatur-wien" }
+];
+
+const regionLinks = [
+  { label: "Wien", href: "/#anfahrt" },
+  { label: "Niederösterreich", href: "/#anfahrt" }
+];
+
+const applianceLinks = [
   { label: "Waschmaschine", href: "/leistungen/waschmaschine-reparatur-wien" },
   { label: "Geschirrspüler", href: "/leistungen/geschirrspueler-reparatur-wien" },
   { label: "Backofen & Herd", href: "/leistungen/backofen-herd-reparatur-wien" },
@@ -17,12 +37,14 @@ const serviceLinks = [
   { label: "Kühlschrank", href: "/leistungen/kuehlschrank-reparatur-wien" }
 ];
 
-const companyLinks = [
-  { label: "Über Uns", href: "/ueber-uns" },
-  { label: "Preise", href: "/preise" },
-  { label: "Bewertungen", href: "/#bewertungen" },
-  { label: "Marken", href: "/#marken" },
-  { label: "Blog", href: "/blog" }
+const brandLinks = [
+  { label: "Bosch", href: "/marken/bosch-reparatur-wien" },
+  { label: "Miele", href: "/marken/miele-reparatur-wien" },
+  { label: "Siemens", href: "/marken/siemens-reparatur-wien" },
+  { label: "AEG", href: "/marken/aeg-reparatur-wien" },
+  { label: "Beko", href: "/marken/beko-reparatur-wien" },
+  { label: "Gorenje", href: "/marken/gorenje-reparatur-wien" },
+  { label: "Alle Marken", href: "/#marken" }
 ];
 
 const bottomBarLinks = [
@@ -59,6 +81,33 @@ const socialLinks = [
         <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.74-.01-9.47.02-14.21z" />
       </svg>
     )
+  },
+  {
+    label: "YouTube",
+    href: siteConfig.social.youtube,
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.546 15.568V8.432L15.818 12l-6.272 3.568z" />
+      </svg>
+    )
+  },
+  {
+    label: "X",
+    href: siteConfig.social.x,
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.66l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+      </svg>
+    )
+  },
+  {
+    label: "LinkedIn",
+    href: siteConfig.social.linkedin,
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z" />
+      </svg>
+    )
   }
 ] as const;
 
@@ -70,7 +119,7 @@ export default function SiteFooter({ logoSrc }: SiteFooterProps) {
   return (
     <footer className="bg-[color:var(--ink)] text-white">
       <div className="mx-auto max-w-[88rem] px-5 py-20 sm:px-8 lg:py-24">
-        <div className="grid gap-14 lg:grid-cols-[1.3fr_0.7fr_0.7fr_1fr]">
+        <div className="grid gap-14 lg:grid-cols-[1.25fr_2fr]">
           <div>
             <Link href="/" aria-label="MONTER Reparatur & Service Startseite" className="inline-block">
               <Image
@@ -82,73 +131,114 @@ export default function SiteFooter({ logoSrc }: SiteFooterProps) {
                 className="h-11 w-auto sm:h-12"
               />
             </Link>
-            <p className="mt-7 max-w-md text-base font-normal leading-relaxed text-white/85">
-              Haushaltsgeräte-Reparatur mit technischem Anspruch. Für Privathaushalte,
-              Hausverwaltungen und Betriebe in Wien und Umgebung.
-            </p>
-            <div className="mt-8 space-y-1.5 text-base font-normal text-white/80">
-              <p>{siteConfig.address.street}</p>
-              <p>
-                {siteConfig.address.postalCode} {siteConfig.address.city}
-              </p>
-              <p className="pt-2">
-                <a
-                  href={`mailto:${siteConfig.email}`}
-                  className="transition hover:text-white"
-                >
-                  {siteConfig.email}
-                </a>
-              </p>
-            </div>
-          </div>
 
-          <div>
-            <p className={footerHeadingClass}>Leistungen</p>
-            <div className="mt-7 grid gap-3.5 text-base font-normal text-white/90">
-              {serviceLinks.map((item) => (
+            <p className="mt-7 max-w-md text-base font-normal leading-relaxed text-white/80">
+              Haushaltsgeräte- und Garagentor-Reparatur mit technischem Anspruch. Für
+              Privathaushalte, Hausverwaltungen und Betriebe in Wien und Niederösterreich —
+              ehrliche Einschätzung, faire Preise, saubere Arbeit.
+            </p>
+
+            <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-3 text-base font-normal text-white/90">
+              {brandQuickLinks.map((item) => (
                 <Link
-                  key={item.href}
-                  className="w-fit border-b border-transparent transition hover:border-white hover:text-white"
+                  key={"quick" + item.label}
                   href={item.href}
+                  className="border-b border-transparent transition hover:border-white hover:text-white"
                 >
                   {item.label}
                 </Link>
               ))}
             </div>
-          </div>
 
-          <div>
-            <p className={footerHeadingClass}>Unternehmen</p>
-            <div className="mt-7 grid gap-3.5 text-base font-normal text-white/90">
-              {companyLinks.map((item) => (
-                <Link
-                  key={item.href}
-                  className="w-fit border-b border-transparent transition hover:border-white hover:text-white"
-                  href={item.href}
-                >
-                  {item.label}
-                </Link>
-              ))}
+            <div className="mt-10 max-w-md">
+              <NavNewsletterSignup variant="dark" compact />
             </div>
           </div>
 
-          <div>
-            <p className={footerHeadingClass}>Kontakt</p>
-            <a
-              href={`tel:${emergencyPhoneHref}`}
-              className="mt-7 block text-[2rem] font-medium tracking-tight text-white sm:text-[2.5rem]"
-            >
-              {emergencyPhoneDisplay}
-            </a>
-            <p className="mt-5 max-w-sm text-base font-normal leading-relaxed text-white/80">
-              Für dringende Geräteausfälle erreichen Sie uns am schnellsten telefonisch.
-            </p>
-            <Link
-              href="/kontakt"
-              className="mt-7 inline-flex border-b border-white py-1.5 text-sm font-medium uppercase tracking-[0.16em] text-white transition hover:border-[color:var(--accent)] hover:text-[color:var(--accent)]"
-            >
-              Anfrage stellen
-            </Link>
+          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="flex flex-col gap-10">
+              <div>
+                <p className={footerHeadingClass}>Garagentore</p>
+                <div className="mt-7 grid gap-3.5 text-base font-normal text-white/90">
+                  {garageLinks.map((item) => (
+                    <Link
+                      key={"garage" + item.label}
+                      className="w-fit border-b border-transparent transition hover:border-white hover:text-white"
+                      href={item.href}
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <p className={footerHeadingClass}>Einsatzgebiete</p>
+                <div className="mt-7 grid gap-3.5 text-base font-normal text-white/90">
+                  {regionLinks.map((item) => (
+                    <Link
+                      key={"region" + item.label}
+                      className="w-fit border-b border-transparent transition hover:border-white hover:text-white"
+                      href={item.href}
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <p className={footerHeadingClass}>Haushaltsgeräte</p>
+              <div className="mt-7 grid gap-3.5 text-base font-normal text-white/90">
+                {applianceLinks.map((item) => (
+                  <Link
+                    key={"appliance" + item.label}
+                    className="w-fit border-b border-transparent transition hover:border-white hover:text-white"
+                    href={item.href}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <p className={footerHeadingClass}>Marken</p>
+              <div className="mt-7 grid gap-3.5 text-base font-normal text-white/90">
+                {brandLinks.map((item) => (
+                  <Link
+                    key={"brand" + item.label}
+                    className="w-fit border-b border-transparent transition hover:border-white hover:text-white"
+                    href={item.href}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <p className={footerHeadingClass}>Direkt klären</p>
+              <a
+                href={`tel:${emergencyPhoneHref}`}
+                className="mt-7 block text-xl font-medium tracking-tight text-white transition hover:text-[color:var(--accent)]"
+              >
+                {emergencyPhoneDisplay}
+              </a>
+              <p className="mt-3.5 text-sm font-normal leading-relaxed text-white/65">
+                Bei dringenden Ausfällen ist der Anruf der schnellste Weg.
+              </p>
+              <Link
+                href="/kontakt"
+                className="mt-5 inline-flex w-fit items-center gap-2 border-b border-white pb-1 text-sm font-medium uppercase tracking-[0.16em] text-white transition hover:border-[color:var(--accent)] hover:text-[color:var(--accent)]"
+              >
+                Reparatur buchen
+                <svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true">
+                  <path d="M1 8h13M9 3l5 5-5 5" stroke="currentColor" strokeWidth="1.4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </Link>
+            </div>
           </div>
         </div>
 
@@ -168,6 +258,9 @@ export default function SiteFooter({ logoSrc }: SiteFooterProps) {
               <Link href="/barrierefreiheit" className="transition hover:text-white">
                 Barrierefreiheit
               </Link>
+              <a href="/sitemap.xml" className="transition hover:text-white">
+                Sitemap
+              </a>
             </div>
 
             <div className="flex shrink-0 items-center gap-4 self-end sm:justify-end">

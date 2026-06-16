@@ -15,7 +15,10 @@ export const siteConfig = {
   social: {
     instagram: "https://www.instagram.com/",
     facebook: "https://www.facebook.com/",
-    tiktok: "https://www.tiktok.com/"
+    tiktok: "https://www.tiktok.com/",
+    youtube: "https://www.youtube.com/",
+    x: "https://x.com/",
+    linkedin: "https://www.linkedin.com/"
   },
   googleReviewsUrl:
     "https://www.google.com/maps/search/?api=1&query=Tech+Craft+Consulting+GmbH+Rappgasse+1%2F6+1210+Wien",

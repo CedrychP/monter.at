@@ -6,6 +6,7 @@ import { FormEvent, useState } from "react";
 type NavNewsletterSignupProps = {
   variant?: "dark" | "light";
   className?: string;
+  compact?: boolean;
 };
 
 type SubmitState = {
@@ -15,7 +16,8 @@ type SubmitState = {
 
 export default function NavNewsletterSignup({
   variant = "dark",
-  className = ""
+  className = "",
+  compact = false
 }: NavNewsletterSignupProps) {
   const [submitState, setSubmitState] = useState<SubmitState>({ status: "idle", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -61,6 +63,55 @@ export default function NavNewsletterSignup({
       setIsSubmitting(false);
     }
   };
+
+  if (compact) {
+    return (
+      <form className={className} onSubmit={handleSubmit}>
+        <p className="text-[0.8rem] font-medium uppercase tracking-[0.2em] text-white/75">Newsletter</p>
+
+        <input className="hidden" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" />
+
+        <div className="mt-5 flex items-center gap-2 border-b border-white/35 pb-2 transition focus-within:border-white/85">
+          <label className="sr-only" htmlFor="newsletter-email-footer">
+            E-Mail-Adresse
+          </label>
+          <input
+            id="newsletter-email-footer"
+            className="min-w-0 flex-1 bg-transparent py-1 text-base font-normal text-white outline-none placeholder:text-white/55"
+            name="email"
+            type="email"
+            inputMode="email"
+            autoComplete="email"
+            placeholder="Ihre E-Mail-Adresse"
+            required
+          />
+          <button
+            type="submit"
+            aria-label="Newsletter abonnieren"
+            disabled={isSubmitting}
+            className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-white text-[color:var(--ink)] transition hover:bg-[color:var(--accent)] hover:text-white disabled:cursor-wait disabled:opacity-65"
+          >
+            <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M1 8h12M8 3l5 5-5 5" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
+        </div>
+
+        {submitState.message ? (
+          <p
+            className={`nav-newsletter-status nav-newsletter-status--dark ${
+              submitState.status === "success"
+                ? "nav-newsletter-status--success"
+                : "nav-newsletter-status--error"
+            }`}
+            role="status"
+          >
+            {submitState.message}
+          </p>
+        ) : null}
+      </form>
+    );
+  }
 
   return (
     <form className={className} onSubmit={handleSubmit}>

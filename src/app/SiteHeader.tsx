@@ -131,7 +131,7 @@ const customerVoiceLinks: NavLink[] = [
 ];
 
 const customerNewsLinks: NavLink[] = [
-  { label: "Blog & Ratgeber", href: "/blog" },
+  { label: "Blog & News", href: "/blog" },
   { label: "FAQ", href: "/#faq" },
   { label: "Kurse", href: "/kontakt" },
   { label: "Veranstaltungen", href: "/kontakt" }
@@ -184,7 +184,7 @@ const companyLinks: NavLink[] = [
 ];
 
 const contentLinks: NavLink[] = [
-  { label: "Blog & Ratgeber", href: "/blog" },
+  { label: "Blog & News", href: "/blog" },
   { label: "FAQ", href: "/#faq" },
   { label: "Impressum", href: "/impressum" }
 ];
@@ -408,7 +408,7 @@ const megaMenus: MegaMenuConfig[] = [
 const staticSegmentLabels: Record<string, string> = {
   leistungen: "Leistungen",
   marken: "Marken",
-  blog: "Blog & Ratgeber",
+  blog: "Blog & News",
   preise: "Preise",
   kontakt: "Kontakt",
   suche: "Suche",
