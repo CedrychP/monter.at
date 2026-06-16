@@ -140,6 +140,31 @@
   transform: scale(1.06);
 }
 
+.nav-dropdown-column {
+  min-height: 100%;
+}
+
+.nav-dropdown-special-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.nav-dropdown-special-list .nav-dropdown-eyebrow {
+  margin-bottom: 0;
+}
+
+a.nav-dropdown-special-link {
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 200ms ease;
+}
+
+a.nav-dropdown-special-link:hover,
+a.nav-dropdown-special-link:focus-visible {
+  color: var(--nav-text-hover);
+}
+
 * {
   box-sizing: border-box;
 }

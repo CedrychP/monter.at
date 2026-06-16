@@ -20,7 +20,7 @@ import { siteConfig } from "./siteConfig";
 const emergencyPhoneDisplay = siteConfig.phoneDisplay;
 const emergencyPhoneHref = siteConfig.phoneHref;
 
-type NavLink = { label: string; href: string };
+type NavLink = { label: string; href: string; menuId?: string };
 
 type MegaMenuColumn = {
   eyebrow: string;
@@ -74,20 +74,19 @@ const geraetepflegeLinks: NavLink[] = [
   { label: "Pflegeprodukte & Zubehör", href: "/kontakt" }
 ];
 
-// Hauptnavigation — Unterpunkte folgen noch
+// Hauptnavigation — Dropdowns über menuId an megaMenus gekoppelt
 const primaryNavGroup: NavLink[] = [
   { label: "Garagentore", href: "/garagentor-reparatur-wien" },
-  { label: "Haushaltsgeräte", href: "/#leistungen" },
-  { label: "Marken", href: "/#marken" },
-  { label: "Gerätereinigung", href: "/kontakt" }
+  { label: "Haushaltsgeräte", href: "/#leistungen", menuId: "service" },
+  { label: "Marken", href: "/#marken", menuId: "marken" },
+  { label: "Gerätereinigung", href: "/kontakt", menuId: "pflege" }
 ];
 
 const customerNavLink: NavLink = { label: "Unsere Kunden", href: "/#bewertungen" };
 
 const secondaryNavGroup: NavLink[] = [
   { label: "Service", href: "/kontakt" },
-  { label: "Gerätekauf", href: "/kontakt" },
-  { label: "Ersatzteile", href: "/kontakt" }
+  { label: "Gerätekauf", href: "/kontakt" }
 ];
 
 const companyLinks: NavLink[] = [
@@ -100,6 +99,14 @@ const contentLinks: NavLink[] = [
   { label: "Blog & Ratgeber", href: "/blog" },
   { label: "FAQ", href: "/#faq" },
   { label: "Impressum", href: "/impressum" }
+];
+
+const dropdownSpecialLinks: NavLink[] = [
+  { label: "Über MONTER", href: "/ueber-uns" },
+  { label: "MONTER CLUB", href: "/kontakt" },
+  { label: "Aktionskatalog", href: "/kontakt" },
+  { label: "Geräte-Retter-Prämie", href: "/#kontakt" },
+  { label: "Kaufberatung", href: "/kontakt" }
 ];
 
 const megaMenus: MegaMenuConfig[] = [
@@ -770,19 +777,35 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
               className="mx-auto flex w-full max-w-[88rem] flex-wrap items-center justify-center gap-x-10 gap-y-1.5 px-5 pb-3 pt-3 sm:gap-x-12 sm:px-8"
               aria-label="Hauptnavigation"
             >
-              {primaryNavGroup.map((link) => (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  className="nav-item py-1"
-                  onClick={closeAllOverlays}
-                >
-                  {link.label}
-                </Link>
-              ))}
+              {primaryNavGroup.map((link) =>
+                link.menuId ? (
+                  <button
+                    key={link.label}
+                    type="button"
+                    className={`nav-item py-1 ${activeMenu === link.menuId ? "nav-item--active" : ""}`}
+                    onMouseEnter={() => showMegaMenu(link.menuId!)}
+                    onFocus={() => showMegaMenu(link.menuId!)}
+                    aria-expanded={activeMenu === link.menuId}
+                    aria-controls={`mega-${link.menuId}`}
+                  >
+                    {link.label}
+                  </button>
+                ) : (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    className="nav-item py-1"
+                    onMouseEnter={closeMegaMenu}
+                    onClick={closeAllOverlays}
+                  >
+                    {link.label}
+                  </Link>
+                )
+              )}
               <Link
                 href={customerNavLink.href}
                 className="nav-item py-1"
+                onMouseEnter={closeMegaMenu}
                 onClick={closeAllOverlays}
               >
                 {customerNavLink.label}
@@ -796,6 +819,7 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
                   key={link.label}
                   href={link.href}
                   className="nav-item py-1"
+                  onMouseEnter={closeMegaMenu}
                   onClick={closeAllOverlays}
                 >
                   {link.label}
@@ -813,34 +837,46 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
                 onMouseEnter={() => showMegaMenu(menu.id)}
                 aria-hidden={activeMenu !== menu.id}
               >
-                <div className="mx-auto grid w-full max-w-[88rem] gap-12 px-5 py-10 sm:px-8 lg:grid-cols-[1fr_18rem] lg:gap-16 lg:py-12">
-                  <div
-                    className={`grid gap-10 ${
-                      menu.columns.length === 2
-                        ? "sm:grid-cols-2"
-                        : "sm:grid-cols-2 lg:grid-cols-3"
-                    }`}
-                  >
-                    {menu.columns.map((column) => (
-                      <div key={column.eyebrow}>
-                        <p className="nav-dropdown-eyebrow">{column.eyebrow}</p>
-                        <div className="nav-dropdown-list">
-                          {column.items.map((item) => (
-                            <Link
-                              key={`${menu.id}-${item.label}`}
-                              href={item.href}
-                              onClick={closeAllOverlays}
-                              className="nav-dropdown-link"
-                            >
-                              {item.label}
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
-                    ))}
+                <div className="mx-auto flex w-full max-w-[88rem] flex-col px-5 py-10 sm:px-8 lg:flex-row lg:py-12">
+                  <div className="nav-dropdown-column shrink-0 border-b border-[color:var(--nav-divider)] pb-8 lg:w-[14rem] lg:border-b-0 lg:border-r lg:pb-0 lg:pr-10 xl:w-[15rem] xl:pr-12">
+                    <div className="nav-dropdown-special-list">
+                      {dropdownSpecialLinks.map((item) => (
+                        <Link
+                          key={`special-${item.label}`}
+                          href={item.href}
+                          onClick={closeAllOverlays}
+                          className="nav-dropdown-eyebrow nav-dropdown-special-link"
+                        >
+                          {item.label}
+                        </Link>
+                      ))}
+                    </div>
                   </div>
 
-                  <aside className="border-l border-[color:var(--nav-divider)] pl-10">
+                  {menu.columns.map((column, index) => (
+                    <div
+                      key={column.eyebrow}
+                      className={`nav-dropdown-column min-w-0 flex-1 border-b border-[color:var(--nav-divider)] py-8 last:border-b-0 lg:border-b-0 lg:py-0 ${
+                        index === 0 ? "lg:pl-10 xl:pl-12" : "lg:border-l lg:pl-10 xl:pl-12"
+                      }`}
+                    >
+                      <p className="nav-dropdown-eyebrow">{column.eyebrow}</p>
+                      <div className="nav-dropdown-list">
+                        {column.items.map((item) => (
+                          <Link
+                            key={`${menu.id}-${item.label}`}
+                            href={item.href}
+                            onClick={closeAllOverlays}
+                            className="nav-dropdown-link"
+                          >
+                            {item.label}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+
+                  <aside className="nav-dropdown-column w-full shrink-0 border-t border-[color:var(--nav-divider)] pt-8 lg:w-[18rem] lg:border-l lg:border-t-0 lg:pl-10 lg:pt-0 xl:pl-12">
                     <p className="nav-dropdown-eyebrow">{menu.feature.eyebrow}</p>
                     <p className="nav-dropdown-title mt-0 normal-case">
                       {menu.feature.title}
@@ -1102,16 +1138,69 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
               ) : null}
             </form>
 
-            {primaryNavGroup.map((link) => (
-              <Link
-                key={`m-${link.label}`}
-                href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="block border-b border-[color:var(--border)] py-4 text-[1.05rem] font-semibold tracking-tight"
-              >
-                {link.label}
-              </Link>
-            ))}
+            {primaryNavGroup.map((link) => {
+              if (!link.menuId) {
+                return (
+                  <Link
+                    key={`m-${link.label}`}
+                    href={link.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block border-b border-[color:var(--border)] py-4 text-[1.05rem] font-semibold tracking-tight"
+                  >
+                    {link.label}
+                  </Link>
+                );
+              }
+
+              const menu = megaMenus.find((entry) => entry.id === link.menuId);
+              if (!menu) return null;
+
+              return (
+                <details
+                  key={`m-${link.label}`}
+                  className="group border-b border-[color:var(--border)] py-4"
+                >
+                  <summary className="cursor-pointer list-none text-[1.05rem] font-semibold tracking-tight">
+                    {link.label}
+                  </summary>
+                  <div className="mt-4 grid gap-5">
+                    <div className="border-b border-[color:var(--border)] pb-5">
+                      <div className="nav-dropdown-special-list">
+                        {dropdownSpecialLinks.map((item) => (
+                          <Link
+                            key={`m-special-${item.label}`}
+                            href={item.href}
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="nav-dropdown-eyebrow nav-dropdown-special-link !text-[color:var(--ink)]"
+                          >
+                            {item.label}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                    {menu.columns.map((column) => (
+                      <div key={column.eyebrow}>
+                        <p className="text-[0.65rem] font-medium uppercase tracking-[0.16em] text-[color:var(--accent)]">
+                          {column.eyebrow}
+                        </p>
+                        <div className="mt-2 grid gap-1">
+                          {column.items.map((item) => (
+                            <Link
+                              key={`m-${menu.id}-${item.label}`}
+                              href={item.href}
+                              onClick={() => setMobileMenuOpen(false)}
+                              className="block py-2 text-sm font-medium tracking-tight text-[color:var(--muted)] transition hover:text-[color:var(--ink)]"
+                            >
+                              {item.label}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </details>
+              );
+            })}
             <Link
               href={customerNavLink.href}
               onClick={() => setMobileMenuOpen(false)}

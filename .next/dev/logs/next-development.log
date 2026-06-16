@@ -7,3 +7,20 @@
 {"timestamp":"00:38:01.610","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
 {"timestamp":"04:16:28.124","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
 {"timestamp":"04:24:08.000","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"23:31:34.228","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"23:36:12.667","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"23:48:21.348","source":"Server","level":"LOG","message":"✓ Compiled in 25ms"}
+{"timestamp":"23:48:21.688","source":"Server","level":"LOG","message":"✓ Compiled in 20ms"}
+{"timestamp":"23:48:23.649","source":"Server","level":"LOG","message":"✓ Compiled in 25ms"}
+{"timestamp":"23:48:25.413","source":"Server","level":"LOG","message":"✓ Compiled in 18ms"}
+{"timestamp":"23:48:25.908","source":"Server","level":"LOG","message":"✓ Compiled in 17ms"}
+{"timestamp":"23:50:20.471","source":"Server","level":"LOG","message":"✓ Compiled in 31ms"}
+{"timestamp":"23:50:59.433","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"23:52:42.992","source":"Server","level":"LOG","message":"✓ Compiled in 22ms"}
+{"timestamp":"23:52:45.398","source":"Server","level":"LOG","message":"✓ Compiled in 45ms"}
+{"timestamp":"23:52:46.030","source":"Server","level":"LOG","message":"✓ Compiled in 102ms"}
+{"timestamp":"23:52:46.567","source":"Server","level":"LOG","message":"✓ Compiled in 66ms"}
+{"timestamp":"23:54:43.959","source":"Server","level":"LOG","message":"✓ Compiled in 25ms"}
+{"timestamp":"23:54:44.674","source":"Server","level":"LOG","message":"✓ Compiled in 33ms"}
+{"timestamp":"23:54:45.962","source":"Server","level":"LOG","message":"✓ Compiled in 33ms"}
+{"timestamp":"23:54:46.386","source":"Server","level":"LOG","message":"✓ Compiled in 43ms"}
