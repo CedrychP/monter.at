@@ -6,13 +6,11 @@ import { usePathname } from "next/navigation";
 import {
   useCallback,
   useEffect,
-  useMemo,
   useRef,
   useState
 } from "react";
 import NavMonterAccount from "./NavMonterAccount";
 import NavNewsletterSignup from "./NavNewsletterSignup";
-import { buildSearchIndex, filterSearchResults } from "./searchIndex";
 import { siteConfig } from "./siteConfig";
 
 const emergencyPhoneDisplay = siteConfig.phoneDisplay;
@@ -412,7 +410,6 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
   const [accountOpen, setAccountOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
   const [isAtTop, setIsAtTop] = useState(true);
   const [navHidden, setNavHidden] = useState(false);
   const [headerHovered, setHeaderHovered] = useState(false);
@@ -519,12 +516,6 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
     return () => window.removeEventListener("mousedown", onClick);
   }, [cartOpen]);
 
-  const searchIndex = useMemo(() => buildSearchIndex(), []);
-  const searchResults = useMemo(
-    () => filterSearchResults(searchIndex, searchQuery, 5),
-    [searchIndex, searchQuery]
-  );
-
   const showMegaMenu = (id: string) => {
     setAccountOpen(false);
     setActiveMenu(id);
@@ -547,6 +538,70 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
     >
       {link.label}
     </Link>
+  );
+
+  const renderMobileSubmenu = (menu: MegaMenuConfig) => (
+    <div className="mt-4 grid gap-5">
+      {menu.columns.map((column) => (
+        <div key={`m-${menu.id}-${column.eyebrow}`}>
+          <p className="text-[0.65rem] font-medium uppercase tracking-[0.16em] text-[color:var(--accent-on-dark)]">
+            {column.eyebrow}
+          </p>
+          {column.note ? (
+            <p className="mt-2 text-sm font-light leading-relaxed text-white/70">{column.note}</p>
+          ) : null}
+          {column.items.length > 0 ? (
+            <div className="mt-2 grid gap-1">
+              {column.items.map((item) => (
+                <NavDropdownLink
+                  key={`m-${menu.id}-${column.eyebrow}-${item.label}`}
+                  item={item}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block py-2 text-sm font-medium tracking-tight text-white/90 transition hover:text-white"
+                />
+              ))}
+            </div>
+          ) : null}
+        </div>
+      ))}
+      {menu.account ? (
+        <div className="border-t border-white/10 pt-5">
+          <NavMonterAccount variant="dark" onNavigate={() => setMobileMenuOpen(false)} />
+        </div>
+      ) : null}
+      {menu.newsletter ? (
+        <div className="border-t border-white/10 pt-5">
+          <NavNewsletterSignup variant="dark" />
+        </div>
+      ) : null}
+      {menu.feature ? (
+        <div className="border-t border-white/10 pt-5">
+          <p className="text-[0.65rem] font-medium uppercase tracking-[0.16em] text-[color:var(--accent-on-dark)]">
+            {menu.feature.eyebrow}
+          </p>
+          <p className="mt-2 text-sm font-semibold tracking-tight text-white">{menu.feature.title}</p>
+          <p className="mt-2 text-sm font-light leading-relaxed text-white/80">{menu.feature.text}</p>
+          <div className="mt-4 grid gap-2">
+            <a
+              href={menu.feature.primaryHref}
+              onClick={() => setMobileMenuOpen(false)}
+              className="btn-on-dark justify-center"
+            >
+              {getFeatureLinkLabel(menu.feature.primaryLabel, menu.feature.primaryHref)}
+            </a>
+            {menu.feature.secondaryLabel && menu.feature.secondaryHref ? (
+              <Link
+                href={menu.feature.secondaryHref}
+                onClick={() => setMobileMenuOpen(false)}
+                className="btn-on-dark-ghost justify-center"
+              >
+                {getFeatureLinkLabel(menu.feature.secondaryLabel, menu.feature.secondaryHref)}
+              </Link>
+            ) : null}
+          </div>
+        </div>
+      ) : null}
+    </div>
   );
 
   const headerBarSolid =
@@ -583,18 +638,18 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
           <div
             aria-hidden="true"
             className={`pointer-events-none absolute inset-x-0 top-0 z-0 transition-[height,background-color,backdrop-filter] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${headerBarBg} ${
-              navVisible ? "h-[calc(100%+3.5rem)]" : "h-full"
+              navVisible ? "h-full lg:h-[calc(100%+3.5rem)]" : "h-full"
             }`}
           />
 
           {/* Top row: Logo + Telefonnummer + Icons — Hover löst Nav aus */}
           <div
-            className="relative z-40 mx-auto grid w-full max-w-[88rem] grid-cols-[1fr_auto_1fr] items-center gap-3 px-5 py-2.5 sm:px-8 lg:py-3"
+            className="relative z-40 mx-auto flex w-full max-w-[88rem] items-center justify-between gap-3 px-5 py-2.5 sm:px-8 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:py-3"
             onMouseEnter={() => setHeaderHovered(true)}
           >
             <a
               href={`tel:${emergencyPhoneHref}`}
-              className="col-start-1 row-start-1 flex min-w-0 max-w-[42vw] flex-col justify-self-start self-center sm:max-w-none"
+              className="order-2 col-start-1 row-start-1 hidden min-w-0 flex-col justify-self-start self-center sm:flex sm:max-w-none lg:order-none"
               aria-label={`Reparatur-Hotline ${emergencyPhoneDisplay}`}
             >
               <span className="text-[0.6rem] font-medium uppercase tracking-[0.14em] text-white/70 sm:text-[0.65rem] sm:tracking-[0.18em]">
@@ -607,7 +662,7 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
 
             <Link
               href="/"
-              className="col-start-1 col-end-[-1] row-start-1 flex shrink-0 items-center justify-self-center lg:col-auto lg:col-start-2"
+              className="order-1 flex shrink-0 items-center lg:order-none lg:col-auto lg:col-start-2 lg:justify-self-center"
               aria-label="MONTER Reparatur & Service Startseite"
               onClick={closeAllOverlays}
             >
@@ -622,7 +677,16 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
               />
             </Link>
 
-            <div className="relative z-10 col-start-3 flex shrink-0 items-center justify-self-end gap-1 sm:gap-2">
+            <div className="relative z-10 order-3 col-start-3 flex shrink-0 items-center justify-self-end gap-1 sm:gap-2 lg:order-none">
+              <a
+                href={`tel:${emergencyPhoneHref}`}
+                aria-label={`Anrufen ${emergencyPhoneDisplay}`}
+                className="grid h-10 w-10 place-items-center text-[color:var(--nav-text)] transition hover:text-[color:var(--nav-text-hover)] sm:hidden"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z" />
+                </svg>
+              </a>
               <Link
                 href="/suche"
                 onClick={() => {
@@ -643,7 +707,7 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
                 </svg>
               </Link>
 
-              <div className="relative">
+              <div className="relative" ref={accountPanelRef}>
                 <button
                   type="button"
                   onClick={() => {
@@ -673,7 +737,6 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
 
                 {accountOpen ? (
                   <div
-                    ref={accountPanelRef}
                     className="fixed inset-x-3 top-[4.5rem] z-[110] mx-auto w-auto max-w-[24rem] overflow-hidden rounded-2xl border border-white/10 bg-[color:var(--ink)] text-white shadow-[0_28px_70px_-20px_rgba(0,0,0,0.65)] sm:absolute sm:inset-x-auto sm:right-0 sm:top-full sm:mx-0 sm:mt-3 sm:w-[22rem] sm:max-w-[calc(100vw-2rem)] sm:rounded-xl"
                   >
                     <div className="flex items-start gap-4 border-b border-white/10 px-6 py-5">
@@ -690,7 +753,7 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
                         </svg>
                       </span>
                       <div className="min-w-0">
-                        <p className="tracking-eyebrow text-[color:var(--accent)]">Mein Monter</p>
+                        <p className="tracking-eyebrow text-[color:var(--accent-on-dark)]">Mein Monter</p>
                         <p className="mt-1.5 font-display text-lg font-normal leading-tight tracking-tight text-white">
                           Ihr Kundenbereich
                         </p>
@@ -724,7 +787,7 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
                 ) : null}
               </div>
 
-              <div className="relative">
+              <div className="relative" ref={cartPanelRef}>
                 <button
                   type="button"
                   onClick={() => {
@@ -759,7 +822,6 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
 
                 {cartOpen ? (
                   <div
-                    ref={cartPanelRef}
                     className="fixed inset-x-3 top-[4.5rem] z-[110] mx-auto w-auto max-w-[24rem] overflow-hidden rounded-2xl border border-white/10 bg-[color:var(--ink)] text-white shadow-[0_28px_70px_-20px_rgba(0,0,0,0.65)] sm:absolute sm:inset-x-auto sm:right-0 sm:top-full sm:mx-0 sm:mt-3 sm:w-[22rem] sm:max-w-[calc(100vw-2rem)] sm:rounded-xl"
                   >
                     <div className="flex items-start gap-4 border-b border-white/10 px-6 py-5">
@@ -781,7 +843,7 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
                         </svg>
                       </span>
                       <div className="min-w-0">
-                        <p className="tracking-eyebrow text-[color:var(--accent)]">Warenkorb</p>
+                        <p className="tracking-eyebrow text-[color:var(--accent-on-dark)]">Warenkorb</p>
                         <p className="mt-1.5 font-display text-lg font-normal leading-tight tracking-tight text-white">
                           Bestellung &amp; Angebot
                         </p>
@@ -1046,57 +1108,20 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
             mobileMenuOpen ? "max-h-[90vh] opacity-100" : "max-h-0 opacity-0"
           }`}
         >
-          <div className="max-h-[85vh] overflow-y-auto bg-white px-5 pb-8 pt-6 text-[color:var(--ink)] sm:px-8">
-            <form
-              onSubmit={(event) => {
-                event.preventDefault();
-                if (searchResults.length > 0) {
-                  window.location.href = searchResults[0].href;
-                }
-              }}
-              className="mb-7"
-            >
-              <div className="flex items-center gap-3 border-b border-[color:var(--ink)] pb-2">
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 20 20"
-                  aria-hidden="true"
-                  className="shrink-0 text-[color:var(--muted)]"
+          <div className="relative max-h-[88vh] overflow-y-auto bg-[radial-gradient(120%_60%_at_100%_0%,rgba(168,17,42,0.22),transparent_58%),linear-gradient(180deg,#17171c_0%,#101013_55%,#0a0a0c_100%)] px-5 pb-6 pt-5 text-white sm:px-8">
+            {/* Standard-Links — immer sichtbar, nicht in den Untermenüs wiederholt */}
+            <div className="grid grid-cols-2 gap-x-4 gap-y-2.5 border-b border-white/10 pb-5">
+              {dropdownSpecialLinks.map((item) => (
+                <Link
+                  key={`m-special-${item.label}`}
+                  href={item.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={getDropdownSpecialLinkClassName(item)}
                 >
-                  <circle cx="9" cy="9" r="6" stroke="currentColor" strokeWidth="1.4" fill="none" />
-                  <path d="m13.5 13.5 4 4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
-                </svg>
-                <input
-                  type="search"
-                  value={searchQuery}
-                  onChange={(event) => setSearchQuery(event.target.value)}
-                  placeholder="Suche · Was möchten Sie reparieren?"
-                  className="flex-1 bg-transparent py-2 text-base font-medium tracking-tight text-[color:var(--ink)] outline-none placeholder:text-[color:var(--muted-soft)]"
-                />
-              </div>
-              {searchQuery.trim() && searchResults.length > 0 ? (
-                <div className="mt-4 grid gap-0">
-                  {searchResults.slice(0, 5).map((result) => (
-                    <Link
-                      key={`m-${result.href}-${result.title}`}
-                      href={result.href}
-                      onClick={() => {
-                        setMobileMenuOpen(false);
-                      }}
-                      className="block border-b border-[color:var(--border)] py-3"
-                    >
-                      <p className="text-[0.65rem] font-medium uppercase tracking-[0.16em] text-[color:var(--accent)]">
-                        {result.category}
-                      </p>
-                      <p className="mt-1 truncate text-sm font-medium tracking-tight">
-                        {result.title}
-                      </p>
-                    </Link>
-                  ))}
-                </div>
-              ) : null}
-            </form>
+                  {item.label}
+                </Link>
+              ))}
+            </div>
 
             {primaryNavGroup.map((link) => {
               if (!link.menuId) {
@@ -1105,7 +1130,7 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
                     key={`m-${link.label}`}
                     href={link.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className="block border-b border-[color:var(--border)] py-4 text-[1.05rem] font-semibold tracking-tight"
+                    className="block border-b border-white/10 py-3 text-[1.05rem] font-semibold tracking-tight"
                   >
                     {link.label}
                   </Link>
@@ -1116,240 +1141,79 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
               if (!menu) return null;
 
               return (
-                <details
-                  key={`m-${link.label}`}
-                  className="group border-b border-[color:var(--border)] py-4"
-                >
-                  <summary className="cursor-pointer list-none text-[1.05rem] font-semibold tracking-tight">
+                <details key={`m-${link.label}`} className="group border-b border-white/10 py-3">
+                  <summary className="flex cursor-pointer list-none items-center justify-between text-[1.05rem] font-semibold tracking-tight">
                     {link.label}
+                    <svg className="ml-3 shrink-0 text-white/50 transition-transform group-open:rotate-180" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
+                      <path d="M3 6l5 5 5-5" stroke="currentColor" strokeWidth="1.4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
                   </summary>
-                  <div className="mt-4 grid gap-5">
-                    <div className="border-b border-[color:var(--border)] pb-5">
-                      <div className="nav-dropdown-special-list">
-                        {dropdownSpecialLinks.map((item) => (
-                          <Link
-                            key={`m-special-${item.label}`}
-                            href={item.href}
-                            onClick={() => setMobileMenuOpen(false)}
-                            className={getDropdownSpecialLinkClassName(item, true)}
-                          >
-                            {item.label}
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                    {menu.columns.map((column) => (
-                      <div key={column.eyebrow}>
-                        <p className="text-[0.65rem] font-medium uppercase tracking-[0.16em] text-[color:var(--accent)]">
-                          {column.eyebrow}
-                        </p>
-                        {column.note ? (
-                          <p className="mt-2 text-sm font-light leading-relaxed text-[color:var(--muted)]">
-                            {column.note}
-                          </p>
-                        ) : null}
-                        {column.items.length > 0 ? (
-                        <div className="mt-2 grid gap-1">
-                          {column.items.map((item) => (
-                            <Link
-                              key={`m-${menu.id}-${item.label}`}
-                              href={item.href}
-                              onClick={() => setMobileMenuOpen(false)}
-                              className="block py-2 text-sm font-medium tracking-tight text-[color:var(--muted)] transition hover:text-[color:var(--ink)]"
-                            >
-                              {item.label}
-                            </Link>
-                          ))}
-                        </div>
-                        ) : null}
-                      </div>
-                    ))}
-                  </div>
+                  {renderMobileSubmenu(menu)}
                 </details>
               );
             })}
-            <details className="group border-b border-[color:var(--border)] py-4">
-              <summary className="cursor-pointer list-none text-[1.05rem] font-semibold tracking-tight">
+            <details className="group border-b border-white/10 py-3">
+              <summary className="flex cursor-pointer list-none items-center justify-between text-[1.05rem] font-semibold tracking-tight">
                 {customerNavLink.label}
+                <svg className="ml-3 shrink-0 text-white/50 transition-transform group-open:rotate-180" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
+                  <path d="M3 6l5 5 5-5" stroke="currentColor" strokeWidth="1.4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
               </summary>
-              <div className="mt-4 grid gap-5 border-b border-[color:var(--border)] pb-5">
-                <div>
-                  <div className="nav-dropdown-special-list">
-                    {dropdownSpecialLinks.map((item) => (
-                      <Link
-                        key={`m-kunden-${item.label}`}
-                        href={item.href}
-                        onClick={() => setMobileMenuOpen(false)}
-                        className={getDropdownSpecialLinkClassName(item, true)}
-                      >
-                        {item.label}
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-                {megaMenus
-                  .find((menu) => menu.id === customerNavLink.menuId)
-                  ?.columns.map((column) => (
-                    <div key={column.eyebrow}>
-                      <p className="text-[0.65rem] font-medium uppercase tracking-[0.16em] text-[color:var(--accent)]">
-                        {column.eyebrow}
-                      </p>
-                      {column.note ? (
-                        <p className="mt-2 text-sm font-light leading-relaxed text-[color:var(--muted)]">
-                          {column.note}
-                        </p>
-                      ) : null}
-                      {column.items.length > 0 ? (
-                        <div className="mt-2 grid gap-1">
-                          {column.items.map((item) => (
-                            <NavDropdownLink
-                              key={`m-kunden-${column.eyebrow}-${item.label}`}
-                              item={item}
-                              onClick={() => setMobileMenuOpen(false)}
-                              className="block py-2 text-sm font-medium tracking-tight text-[color:var(--muted)] transition hover:text-[color:var(--ink)]"
-                            />
-                          ))}
-                        </div>
-                      ) : null}
-                    </div>
-                  ))}
-                {(() => {
-                  const feature = megaMenus.find(
-                    (menu) => menu.id === customerNavLink.menuId
-                  )?.feature;
-                  if (!feature) return null;
-
-                  return (
-                    <div className="border-t border-[color:var(--border)] pt-5">
-                      <p className="text-[0.65rem] font-medium uppercase tracking-[0.16em] text-[color:var(--accent)]">
-                        {feature.eyebrow}
-                      </p>
-                      <p className="mt-2 text-sm font-semibold tracking-tight text-[color:var(--ink)]">
-                        {feature.title}
-                      </p>
-                      <p className="mt-2 text-sm font-light leading-relaxed text-[color:var(--muted)]">
-                        {feature.text}
-                      </p>
-                      <div className="mt-4 grid gap-2">
-                        <a
-                          href={feature.primaryHref}
-                          onClick={() => setMobileMenuOpen(false)}
-                          className="btn-primary justify-center"
-                        >
-                          {getFeatureLinkLabel(feature.primaryLabel, feature.primaryHref)}
-                        </a>
-                        {feature.secondaryLabel && feature.secondaryHref ? (
-                          <Link
-                            href={feature.secondaryHref}
-                            onClick={() => setMobileMenuOpen(false)}
-                            className="btn-ghost justify-center"
-                          >
-                            {getFeatureLinkLabel(feature.secondaryLabel, feature.secondaryHref)}
-                          </Link>
-                        ) : null}
-                      </div>
-                    </div>
-                  );
-                })()}
-              </div>
+              {(() => {
+                const menu = megaMenus.find((entry) => entry.id === customerNavLink.menuId);
+                return menu ? renderMobileSubmenu(menu) : null;
+              })()}
             </details>
 
-            <div className="my-2 h-px bg-[color:var(--border)]" aria-hidden="true" />
+            <div className="my-2 h-px bg-white/10" aria-hidden="true" />
 
             {secondaryNavGroup.map((link) =>
               link.menuId ? (
-                <details key={`m-${link.label}`} className="group border-b border-[color:var(--border)] py-4">
-                  <summary className="cursor-pointer list-none text-[1.05rem] font-semibold tracking-tight">
+                <details key={`m-${link.label}`} className="group border-b border-white/10 py-3">
+                  <summary className="flex cursor-pointer list-none items-center justify-between text-[1.05rem] font-semibold tracking-tight">
                     {link.label}
+                    <svg className="ml-3 shrink-0 text-white/50 transition-transform group-open:rotate-180" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
+                      <path d="M3 6l5 5 5-5" stroke="currentColor" strokeWidth="1.4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
                   </summary>
-                  <div className="mt-4 grid gap-5 border-b border-[color:var(--border)] pb-5">
-                    <div>
-                      <div className="nav-dropdown-special-list">
-                        {dropdownSpecialLinks.map((item) => (
-                          <Link
-                            key={`m-${link.menuId}-${item.label}`}
-                            href={item.href}
-                            onClick={() => setMobileMenuOpen(false)}
-                            className={getDropdownSpecialLinkClassName(item, true)}
-                          >
-                            {item.label}
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                    {megaMenus
-                      .find((menu) => menu.id === link.menuId)
-                      ?.columns.map((column) => (
-                        <div key={column.eyebrow}>
-                          <p className="text-[0.65rem] font-medium uppercase tracking-[0.16em] text-[color:var(--accent)]">
-                            {column.eyebrow}
-                          </p>
-                          {column.note ? (
-                            <p className="mt-2 text-sm font-light leading-relaxed text-[color:var(--muted)]">
-                              {column.note}
-                            </p>
-                          ) : null}
-                          {column.items.length > 0 ? (
-                          <div className="mt-2 grid gap-1">
-                            {column.items.map((item) => (
-                              <Link
-                                key={`m-${link.menuId}-${column.eyebrow}-${item.label}`}
-                                href={item.href}
-                                onClick={() => setMobileMenuOpen(false)}
-                                className="block py-2 text-sm font-medium tracking-tight text-[color:var(--muted)] transition hover:text-[color:var(--ink)]"
-                              >
-                                {item.label}
-                              </Link>
-                            ))}
-                          </div>
-                          ) : null}
-                        </div>
-                      ))}
-                    {megaMenus.find((menu) => menu.id === link.menuId)?.account ? (
-                      <div className="border-t border-[color:var(--border)] pt-5">
-                        <NavMonterAccount
-                          variant="light"
-                          onNavigate={() => setMobileMenuOpen(false)}
-                        />
-                      </div>
-                    ) : null}
-                    {megaMenus.find((menu) => menu.id === link.menuId)?.newsletter ? (
-                      <div className="border-t border-[color:var(--border)] pt-5">
-                        <NavNewsletterSignup variant="light" />
-                      </div>
-                    ) : null}
-                  </div>
+                  {(() => {
+                    const menu = megaMenus.find((entry) => entry.id === link.menuId);
+                    return menu ? renderMobileSubmenu(menu) : null;
+                  })()}
                 </details>
               ) : (
                 <Link
                   key={`m-${link.label}`}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="block border-b border-[color:var(--border)] py-4 text-[1.05rem] font-semibold tracking-tight"
+                  className="block border-b border-white/10 py-3 text-[1.05rem] font-semibold tracking-tight"
                 >
                   {link.label}
                 </Link>
               )
             )}
 
-            <details className="group border-b border-[color:var(--border)] py-4">
-              <summary className="cursor-pointer list-none text-[1.05rem] font-semibold tracking-tight">
+            <details className="group border-b border-white/10 py-3">
+              <summary className="flex cursor-pointer list-none items-center justify-between text-[1.05rem] font-semibold tracking-tight">
                 Mein MONTER
+                <svg className="ml-3 shrink-0 text-white/50 transition-transform group-open:rotate-180" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
+                  <path d="M3 6l5 5 5-5" stroke="currentColor" strokeWidth="1.4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
               </summary>
-              <p className="mt-4 text-sm font-light leading-relaxed text-[color:var(--muted)]">
+              <p className="mt-4 text-sm font-light leading-relaxed text-white/80">
                 Der Kundenbereich ist noch nicht verfügbar. Bitte melden Sie sich vorerst
                 telefonisch oder über das Anfrageformular.
               </p>
             </details>
 
-            <div className="mt-7 grid gap-3">
-              <a href={`tel:${emergencyPhoneHref}`} className="btn-primary justify-center">
+            <div className="mt-6 grid gap-2.5">
+              <a href={`tel:${emergencyPhoneHref}`} className="btn-on-dark justify-center">
                 {emergencyPhoneDisplay}
               </a>
               <Link
                 href="/kontakt"
                 onClick={() => setMobileMenuOpen(false)}
-                className="btn-ghost justify-center"
+                className="btn-on-dark-ghost justify-center"
               >
                 Kontakt
               </Link>
