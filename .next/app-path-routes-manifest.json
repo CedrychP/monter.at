@@ -3,6 +3,7 @@
   "/_not-found/page": "/_not-found",
   "/agb/page": "/agb",
   "/api/contact/route": "/api/contact",
+  "/api/newsletter/route": "/api/newsletter",
   "/apple-icon.png/route": "/apple-icon.png",
   "/barrierefreiheit/page": "/barrierefreiheit",
   "/blog/[slug]/page": "/blog/[slug]",

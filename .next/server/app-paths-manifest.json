@@ -3,6 +3,7 @@
   "/_not-found/page": "app/_not-found/page.js",
   "/agb/page": "app/agb/page.js",
   "/api/contact/route": "app/api/contact/route.js",
+  "/api/newsletter/route": "app/api/newsletter/route.js",
   "/apple-icon.png/route": "app/apple-icon.png/route.js",
   "/barrierefreiheit/page": "app/barrierefreiheit/page.js",
   "/blog/[slug]/page": "app/blog/[slug]/page.js",

@@ -583,6 +583,8 @@ function getBlogPost(slug) {
 "use strict";
 
 __turbopack_context__.s([
+    "brandOverview",
+    ()=>brandOverview,
     "brandPages",
     ()=>brandPages,
     "getBrandPage",
@@ -602,6 +604,71 @@ const brandPages = [
     makeBrand("Beko", "beko-reparatur-wien"),
     makeBrand("Gorenje", "gorenje-reparatur-wien"),
     makeBrand("AEG", "aeg-reparatur-wien")
+];
+const brandOverview = [
+    "AEG",
+    "AIDA",
+    "AIRFORCE",
+    "ALTUS",
+    "AMICA",
+    "ARISTON",
+    "BALAY",
+    "BAUKNECHT",
+    "BEKO",
+    "BLAUPUNKT",
+    "BOMANN",
+    "BOSCH",
+    "BULTHAUP",
+    "CANDY",
+    "CATA",
+    "CONSTRUCTA",
+    "DAEWOO",
+    "DOMETIC",
+    "DUNAVOX",
+    "ELEKTRA BREGENZ",
+    "ELICA",
+    "EUDORA",
+    "EXQUISIT",
+    "FABER",
+    "FALCON",
+    "FALMEC",
+    "FRANKE",
+    "GAGGENAU",
+    "GORENJE",
+    "GUTMANN",
+    "HAIER",
+    "HANSEATIC",
+    "HISENSE",
+    "HOOVER",
+    "HOTPOINT",
+    "IGNIS",
+    "IKEA",
+    "INDESIT",
+    "JACUZZI",
+    "KÜPPERSBUSCH",
+    "KOENIC",
+    "LA CORNUE",
+    "LIEBHERR",
+    "MEDION",
+    "MIELE",
+    "NABO",
+    "NEFF",
+    "NORDFROST",
+    "NOVY",
+    "PKM",
+    "PRIVILEG",
+    "RESPEKTA",
+    "SAMSUNG",
+    "SCHAUB LORENZ",
+    "SCHOLTES",
+    "SHARP",
+    "SIEMENS",
+    "SMEG",
+    "TEKA",
+    "VIVAX",
+    "VESTFROST",
+    "WHIRLPOOL",
+    "ZANUSSI"
 ];
 function getBrandPage(slug) {
     return brandPages.find((brand)=>brand.slug === slug);
@@ -858,7 +925,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$siteConfig$2e$
 ;
 const emergencyPhoneDisplay = __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$siteConfig$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["siteConfig"].phoneDisplay;
 const emergencyPhoneHref = __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$siteConfig$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["siteConfig"].phoneHref;
-const repairDevices = [
+const householdSanitaerLinks = [
     {
         label: "Waschmaschine",
         href: "/leistungen/waschmaschine-reparatur-wien"
@@ -868,21 +935,39 @@ const repairDevices = [
         href: "/leistungen/geschirrspueler-reparatur-wien"
     },
     {
-        label: "Backofen & Herd",
-        href: "/leistungen/backofen-herd-reparatur-wien"
-    },
-    {
         label: "Trockner",
         href: "/leistungen/trockner-reparatur-wien"
     },
+    {
+        label: "Waschtrockner",
+        href: "/kontakt"
+    }
+];
+const householdKuecheLinks = [
     {
         label: "Kühlschrank",
         href: "/leistungen/kuehlschrank-reparatur-wien"
     },
     {
-        label: "Tiefkühlgerät",
+        label: "Gefrierschrank",
         href: "/leistungen/tiefkuehl-reparatur-wien"
+    },
+    {
+        label: "Herd",
+        href: "/leistungen/backofen-herd-reparatur-wien"
+    },
+    {
+        label: "Backofen",
+        href: "/leistungen/backofen-herd-reparatur-wien"
+    },
+    {
+        label: "Ceranfeld",
+        href: "/leistungen/backofen-herd-reparatur-wien"
     }
+];
+const repairDevices = [
+    ...householdSanitaerLinks,
+    ...householdKuecheLinks
 ];
 const repairBrandsNav = [
     {
@@ -904,10 +989,28 @@ const repairBrandsNav = [
     {
         label: "Gorenje",
         href: "/marken/gorenje-reparatur-wien"
+    }
+];
+const weitereMarkenAlphabetLinks = [
+    {
+        label: "A – D",
+        href: "/#marken"
     },
     {
-        label: "Beko",
-        href: "/marken/beko-reparatur-wien"
+        label: "E – H",
+        href: "/#marken"
+    },
+    {
+        label: "I – L",
+        href: "/#marken"
+    },
+    {
+        label: "M – P",
+        href: "/#marken"
+    },
+    {
+        label: "Q – Z",
+        href: "/#marken"
     }
 ];
 const additionalServiceLinks = [
@@ -920,12 +1023,70 @@ const additionalServiceLinks = [
         href: "/#anfahrt"
     },
     {
-        label: "Geräte-Retter-Prämie",
-        href: "/#kontakt"
+        label: "Ersatzteile",
+        href: "/kontakt"
     },
     {
         label: "Firmenkunden",
         href: "/#geschaeftskunden"
+    }
+];
+const serviceNavLinks = [
+    {
+        label: "Reparatur buchen",
+        href: "/kontakt"
+    },
+    {
+        label: "Ersatzteile",
+        href: "/kontakt"
+    },
+    {
+        label: "Wartungsservice",
+        href: "/kontakt"
+    },
+    {
+        label: "Lieferung & Montage",
+        href: "/kontakt"
+    }
+];
+const garageDoorAndServiceLinks = [
+    {
+        label: "Sektionaltor",
+        href: "/garagentor-reparatur-wien"
+    },
+    {
+        label: "Rolltor",
+        href: "/garagentor-reparatur-wien"
+    },
+    {
+        label: "Wartung & Service",
+        href: "/garagentor-reparatur-wien"
+    },
+    {
+        label: "Sicherheitsüberprüfung",
+        href: "/garagentor-reparatur-wien"
+    }
+];
+const garageDriveLinks = [
+    {
+        label: "Garagentorantrieb",
+        href: "/garagentor-reparatur-wien"
+    },
+    {
+        label: "Motor",
+        href: "/garagentor-reparatur-wien"
+    },
+    {
+        label: "Federbruch",
+        href: "/garagentor-reparatur-wien"
+    },
+    {
+        label: "Federwechsel",
+        href: "/garagentor-reparatur-wien"
+    },
+    {
+        label: "Rollentausch",
+        href: "/garagentor-reparatur-wien"
     }
 ];
 const geraetepflegeLinks = [
@@ -950,7 +1111,8 @@ const geraetepflegeLinks = [
 const primaryNavGroup = [
     {
         label: "Garagentore",
-        href: "/garagentor-reparatur-wien"
+        href: "/garagentor-reparatur-wien",
+        menuId: "garage"
     },
     {
         label: "Haushaltsgeräte",
@@ -961,25 +1123,23 @@ const primaryNavGroup = [
         label: "Marken",
         href: "/#marken",
         menuId: "marken"
-    },
-    {
-        label: "Gerätereinigung",
-        href: "/kontakt",
-        menuId: "pflege"
     }
 ];
 const customerNavLink = {
     label: "Unsere Kunden",
-    href: "/#bewertungen"
+    href: "/#bewertungen",
+    menuId: "kunden"
 };
 const secondaryNavGroup = [
     {
         label: "Service",
-        href: "/kontakt"
+        href: "/kontakt",
+        menuId: "nav-service"
     },
     {
         label: "Gerätekauf",
-        href: "/kontakt"
+        href: "/kontakt",
+        menuId: "geraetekauf"
     }
 ];
 const companyLinks = [
@@ -1016,8 +1176,9 @@ const dropdownSpecialLinks = [
         href: "/ueber-uns"
     },
     {
-        label: "Monter Club",
-        href: "/kontakt"
+        label: "MONTER GOLD",
+        href: "/kontakt",
+        gold: true
     },
     {
         label: "Aktionskatalog",
@@ -1030,16 +1191,38 @@ const dropdownSpecialLinks = [
     {
         label: "Kaufberatung",
         href: "/kontakt"
+    },
+    {
+        label: "Bewertungen",
+        href: "/#bewertungen"
     }
 ];
+function getDropdownSpecialLinkClassName(item, light = false) {
+    const classes = [
+        "nav-dropdown-special-link"
+    ];
+    if (light) classes.push("nav-dropdown-special-link--light");
+    if (item.gold) classes.push("nav-dropdown-special-link--gold");
+    return classes.join(" ");
+}
+function getFeatureLinkLabel(label, href) {
+    if (href.startsWith("tel:") && label === emergencyPhoneDisplay) {
+        return `Telefon: ${label}`;
+    }
+    return label;
+}
 const megaMenus = [
     {
-        id: "service",
-        label: "Geräte",
+        id: "garage",
+        label: "Garagentore",
         columns: [
             {
-                eyebrow: "Geräte",
-                items: repairDevices
+                eyebrow: "Tore & Wartung",
+                items: garageDoorAndServiceLinks
+            },
+            {
+                eyebrow: "Antrieb & Reparatur",
+                items: garageDriveLinks
             },
             {
                 eyebrow: "Mehr Service",
@@ -1047,12 +1230,39 @@ const megaMenus = [
             }
         ],
         feature: {
-            eyebrow: "Notdienst",
+            eyebrow: "Garagentor Reparaturdienst",
+            title: "Garagentor klemmt in Wien?",
+            text: "Telefon ist der schnellste Weg zu einer Einschätzung. Wir prüfen Fehlerbild, Termin und Aufwand direkt im Gespräch.",
+            primaryLabel: "Jetzt anrufen",
+            primaryHref: `tel:${emergencyPhoneHref}`,
+            secondaryLabel: "Termin buchen",
+            secondaryHref: "/kontakt"
+        }
+    },
+    {
+        id: "service",
+        label: "Geräte",
+        columns: [
+            {
+                eyebrow: "Sanitärgeräte",
+                items: householdSanitaerLinks
+            },
+            {
+                eyebrow: "Küchengeräte",
+                items: householdKuecheLinks
+            },
+            {
+                eyebrow: "Mehr Service",
+                items: additionalServiceLinks
+            }
+        ],
+        feature: {
+            eyebrow: "Haushaltsgeräte Reparaturdienst",
             title: "Geräteausfall in Wien?",
             text: "Telefon ist der schnellste Weg zu einer Einschätzung. Wir prüfen Fehlerbild, Termin und Aufwand direkt im Gespräch.",
-            primaryLabel: emergencyPhoneDisplay,
+            primaryLabel: "Jetzt anrufen",
             primaryHref: `tel:${emergencyPhoneHref}`,
-            secondaryLabel: "Anfrage stellen",
+            secondaryLabel: "Termin buchen",
             secondaryHref: "/kontakt"
         }
     },
@@ -1065,61 +1275,44 @@ const megaMenus = [
                 items: repairBrandsNav
             },
             {
-                eyebrow: "Weitere häufige Marken",
-                items: [
-                    {
-                        label: "Elektra Bregenz",
-                        href: "/#marken"
-                    },
-                    {
-                        label: "Whirlpool",
-                        href: "/#marken"
-                    },
-                    {
-                        label: "Bauknecht",
-                        href: "/#marken"
-                    },
-                    {
-                        label: "Liebherr",
-                        href: "/#marken"
-                    },
-                    {
-                        label: "Samsung",
-                        href: "/#marken"
-                    },
-                    {
-                        label: "NEFF",
-                        href: "/#marken"
-                    }
-                ]
+                eyebrow: "Weitere Marken",
+                items: weitereMarkenAlphabetLinks
             },
             {
-                eyebrow: "Service",
-                items: [
-                    {
-                        label: "Komplette Markenliste",
-                        href: "/#marken"
-                    },
-                    {
-                        label: "Marke nicht gefunden?",
-                        href: "/kontakt"
-                    },
-                    {
-                        label: "Ersatzteile prüfen",
-                        href: "/kontakt"
-                    }
-                ]
+                eyebrow: "Mehr Service",
+                items: additionalServiceLinks
             }
         ],
         feature: {
-            eyebrow: "Markenoffen",
+            eyebrow: "Markenoffene Reparatur",
             title: "Wir reparieren über 60 Marken.",
             text: "Bosch, Siemens, Miele, AEG, Gorenje, Elektra Bregenz und viele mehr — markenoffen, mit ehrlicher Diagnose.",
-            primaryLabel: "Alle Marken ansehen",
-            primaryHref: "/#marken",
-            secondaryLabel: "Anfrage stellen",
+            primaryLabel: "Jetzt anrufen",
+            primaryHref: `tel:${emergencyPhoneHref}`,
+            secondaryLabel: "Termin buchen",
             secondaryHref: "/kontakt"
         }
+    },
+    {
+        id: "kunden",
+        label: "Unsere Kunden",
+        columns: []
+    },
+    {
+        id: "nav-service",
+        label: "Service",
+        columns: [
+            {
+                eyebrow: "Service",
+                items: serviceNavLinks
+            }
+        ],
+        newsletter: true
+    },
+    {
+        id: "geraetekauf",
+        label: "Gerätekauf",
+        columns: []
     },
     {
         id: "pflege",
@@ -1447,6 +1640,20 @@ function SiteHeader({ logoSrc }) {
     const closeMegaMenu = ()=>{
         setActiveMenu(null);
     };
+    const renderNavItemWithMenu = (link)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
+            href: link.href,
+            className: `nav-item py-1 ${activeMenu === link.menuId ? "nav-item--active" : ""}`,
+            onMouseEnter: ()=>showMegaMenu(link.menuId),
+            onFocus: ()=>showMegaMenu(link.menuId),
+            onClick: closeAllOverlays,
+            "aria-expanded": activeMenu === link.menuId,
+            "aria-controls": `mega-${link.menuId}`,
+            children: link.label
+        }, link.label, false, {
+            fileName: "[project]/src/app/SiteHeader.tsx",
+            lineNumber: 574,
+            columnNumber: 5
+        }, this);
     const headerBarSolid = isAtTop || Boolean(activeMenu) || searchOpen || mobileMenuOpen || !navHidden;
     const headerBarBg = headerBarSolid ? "bg-[color:var(--ink)]" : "bg-[rgba(10,10,10,0.55)] backdrop-blur-md backdrop-saturate-150";
     const navVisible = !navHidden || headerHovered || Boolean(activeMenu) || searchOpen || mobileMenuOpen;
@@ -1470,7 +1677,7 @@ function SiteHeader({ logoSrc }) {
                                 className: `pointer-events-none absolute inset-x-0 top-0 z-0 transition-[height,background-color,backdrop-filter] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${headerBarBg} ${navVisible ? "h-[calc(100%+3.5rem)]" : "h-full"}`
                             }, void 0, false, {
                                 fileName: "[project]/src/app/SiteHeader.tsx",
-                                lineNumber: 521,
+                                lineNumber: 621,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1487,7 +1694,7 @@ function SiteHeader({ logoSrc }) {
                                                 children: "Reparatur"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/SiteHeader.tsx",
-                                                lineNumber: 538,
+                                                lineNumber: 638,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1495,13 +1702,13 @@ function SiteHeader({ logoSrc }) {
                                                 children: emergencyPhoneDisplay
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/SiteHeader.tsx",
-                                                lineNumber: 541,
+                                                lineNumber: 641,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/SiteHeader.tsx",
-                                        lineNumber: 533,
+                                        lineNumber: 633,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -1519,12 +1726,12 @@ function SiteHeader({ logoSrc }) {
                                             className: "h-8 w-auto sm:h-9"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/SiteHeader.tsx",
-                                            lineNumber: 552,
+                                            lineNumber: 652,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/SiteHeader.tsx",
-                                        lineNumber: 546,
+                                        lineNumber: 646,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1553,12 +1760,12 @@ function SiteHeader({ logoSrc }) {
                                                         strokeLinecap: "round"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/SiteHeader.tsx",
-                                                        lineNumber: 582,
+                                                        lineNumber: 682,
                                                         columnNumber: 21
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/SiteHeader.tsx",
-                                                    lineNumber: 581,
+                                                    lineNumber: 681,
                                                     columnNumber: 19
                                                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
                                                     width: "22",
@@ -1575,7 +1782,7 @@ function SiteHeader({ logoSrc }) {
                                                             fill: "none"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/SiteHeader.tsx",
-                                                            lineNumber: 591,
+                                                            lineNumber: 691,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -1585,18 +1792,18 @@ function SiteHeader({ logoSrc }) {
                                                             strokeLinecap: "round"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/SiteHeader.tsx",
-                                                            lineNumber: 592,
+                                                            lineNumber: 692,
                                                             columnNumber: 21
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/app/SiteHeader.tsx",
-                                                    lineNumber: 590,
+                                                    lineNumber: 690,
                                                     columnNumber: 19
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/SiteHeader.tsx",
-                                                lineNumber: 564,
+                                                lineNumber: 664,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1628,7 +1835,7 @@ function SiteHeader({ logoSrc }) {
                                                                     fill: "none"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/app/SiteHeader.tsx",
-                                                                    lineNumber: 615,
+                                                                    lineNumber: 715,
                                                                     columnNumber: 21
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -1639,18 +1846,18 @@ function SiteHeader({ logoSrc }) {
                                                                     strokeLinecap: "round"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/app/SiteHeader.tsx",
-                                                                    lineNumber: 616,
+                                                                    lineNumber: 716,
                                                                     columnNumber: 21
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/src/app/SiteHeader.tsx",
-                                                            lineNumber: 614,
+                                                            lineNumber: 714,
                                                             columnNumber: 19
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/SiteHeader.tsx",
-                                                        lineNumber: 598,
+                                                        lineNumber: 698,
                                                         columnNumber: 17
                                                     }, this),
                                                     accountOpen ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1662,7 +1869,7 @@ function SiteHeader({ logoSrc }) {
                                                                 children: "Mein MONTER"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/SiteHeader.tsx",
-                                                                lineNumber: 631,
+                                                                lineNumber: 731,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
@@ -1670,7 +1877,7 @@ function SiteHeader({ logoSrc }) {
                                                                 children: "Noch nicht verfügbar"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/SiteHeader.tsx",
-                                                                lineNumber: 632,
+                                                                lineNumber: 732,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1678,7 +1885,7 @@ function SiteHeader({ logoSrc }) {
                                                                 children: "Der Kundenbereich für Verlauf, Rechnungen und Termine ist aktuell in Vorbereitung. Bitte melden Sie sich vorerst telefonisch oder über das Anfrageformular."
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/SiteHeader.tsx",
-                                                                lineNumber: 635,
+                                                                lineNumber: 735,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1690,7 +1897,7 @@ function SiteHeader({ logoSrc }) {
                                                                         children: emergencyPhoneDisplay
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/SiteHeader.tsx",
-                                                                        lineNumber: 642,
+                                                                        lineNumber: 742,
                                                                         columnNumber: 23
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -1700,25 +1907,25 @@ function SiteHeader({ logoSrc }) {
                                                                         children: "Anfrage stellen"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/SiteHeader.tsx",
-                                                                        lineNumber: 645,
+                                                                        lineNumber: 745,
                                                                         columnNumber: 23
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/src/app/SiteHeader.tsx",
-                                                                lineNumber: 641,
+                                                                lineNumber: 741,
                                                                 columnNumber: 21
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/app/SiteHeader.tsx",
-                                                        lineNumber: 627,
+                                                        lineNumber: 727,
                                                         columnNumber: 19
                                                     }, this) : null
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/SiteHeader.tsx",
-                                                lineNumber: 597,
+                                                lineNumber: 697,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1752,7 +1959,7 @@ function SiteHeader({ logoSrc }) {
                                                                     r: "1"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/app/SiteHeader.tsx",
-                                                                    lineNumber: 685,
+                                                                    lineNumber: 785,
                                                                     columnNumber: 21
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
@@ -1761,25 +1968,25 @@ function SiteHeader({ logoSrc }) {
                                                                     r: "1"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/app/SiteHeader.tsx",
-                                                                    lineNumber: 686,
+                                                                    lineNumber: 786,
                                                                     columnNumber: 21
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                                                                     d: "M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/app/SiteHeader.tsx",
-                                                                    lineNumber: 687,
+                                                                    lineNumber: 787,
                                                                     columnNumber: 21
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/src/app/SiteHeader.tsx",
-                                                            lineNumber: 674,
+                                                            lineNumber: 774,
                                                             columnNumber: 19
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/SiteHeader.tsx",
-                                                        lineNumber: 658,
+                                                        lineNumber: 758,
                                                         columnNumber: 17
                                                     }, this),
                                                     cartOpen ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1791,7 +1998,7 @@ function SiteHeader({ logoSrc }) {
                                                                 children: "Warenkorb"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/SiteHeader.tsx",
-                                                                lineNumber: 696,
+                                                                lineNumber: 796,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -1799,7 +2006,7 @@ function SiteHeader({ logoSrc }) {
                                                                 children: "Noch nicht verfügbar"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/SiteHeader.tsx",
-                                                                lineNumber: 699,
+                                                                lineNumber: 799,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1807,7 +2014,7 @@ function SiteHeader({ logoSrc }) {
                                                                 children: "Die Bestellfunktion ist aktuell in Vorbereitung. Für Leistungen und Ersatzteile erstellen wir Ihnen gerne ein individuelles Angebot — telefonisch oder über das Anfrageformular."
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/SiteHeader.tsx",
-                                                                lineNumber: 702,
+                                                                lineNumber: 802,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1819,7 +2026,7 @@ function SiteHeader({ logoSrc }) {
                                                                         children: emergencyPhoneDisplay
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/SiteHeader.tsx",
-                                                                        lineNumber: 709,
+                                                                        lineNumber: 809,
                                                                         columnNumber: 23
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -1829,25 +2036,25 @@ function SiteHeader({ logoSrc }) {
                                                                         children: "Anfrage stellen"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/SiteHeader.tsx",
-                                                                        lineNumber: 712,
+                                                                        lineNumber: 812,
                                                                         columnNumber: 23
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/src/app/SiteHeader.tsx",
-                                                                lineNumber: 708,
+                                                                lineNumber: 808,
                                                                 columnNumber: 21
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/app/SiteHeader.tsx",
-                                                        lineNumber: 692,
+                                                        lineNumber: 792,
                                                         columnNumber: 19
                                                     }, this) : null
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/SiteHeader.tsx",
-                                                lineNumber: 657,
+                                                lineNumber: 757,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1863,7 +2070,7 @@ function SiteHeader({ logoSrc }) {
                                                         children: mobileMenuOpen ? "Menü schließen" : "Menü öffnen"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/SiteHeader.tsx",
-                                                        lineNumber: 732,
+                                                        lineNumber: 832,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1874,45 +2081,45 @@ function SiteHeader({ logoSrc }) {
                                                                 className: `h-px rounded-full bg-current transition ${mobileMenuOpen ? "translate-y-2 rotate-45" : ""}`
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/SiteHeader.tsx",
-                                                                lineNumber: 734,
+                                                                lineNumber: 834,
                                                                 columnNumber: 19
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                 className: `h-px rounded-full bg-current transition ${mobileMenuOpen ? "opacity-0" : ""}`
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/SiteHeader.tsx",
-                                                                lineNumber: 739,
+                                                                lineNumber: 839,
                                                                 columnNumber: 19
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                 className: `h-px rounded-full bg-current transition ${mobileMenuOpen ? "-translate-y-2 -rotate-45" : ""}`
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/SiteHeader.tsx",
-                                                                lineNumber: 744,
+                                                                lineNumber: 844,
                                                                 columnNumber: 19
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/app/SiteHeader.tsx",
-                                                        lineNumber: 733,
+                                                        lineNumber: 833,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/SiteHeader.tsx",
-                                                lineNumber: 724,
+                                                lineNumber: 824,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/SiteHeader.tsx",
-                                        lineNumber: 563,
+                                        lineNumber: 663,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/SiteHeader.tsx",
-                                lineNumber: 529,
+                                lineNumber: 629,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1927,19 +2134,7 @@ function SiteHeader({ logoSrc }) {
                                             className: "mx-auto flex w-full max-w-[88rem] flex-wrap items-center justify-center gap-x-10 gap-y-1.5 px-5 pb-3 pt-3 sm:gap-x-12 sm:px-8",
                                             "aria-label": "Hauptnavigation",
                                             children: [
-                                                primaryNavGroup.map((link)=>link.menuId ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                        type: "button",
-                                                        className: `nav-item py-1 ${activeMenu === link.menuId ? "nav-item--active" : ""}`,
-                                                        onMouseEnter: ()=>showMegaMenu(link.menuId),
-                                                        onFocus: ()=>showMegaMenu(link.menuId),
-                                                        "aria-expanded": activeMenu === link.menuId,
-                                                        "aria-controls": `mega-${link.menuId}`,
-                                                        children: link.label
-                                                    }, link.label, false, {
-                                                        fileName: "[project]/src/app/SiteHeader.tsx",
-                                                        lineNumber: 782,
-                                                        columnNumber: 19
-                                                    }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                                primaryNavGroup.map((link)=>link.menuId ? renderNavItemWithMenu(link) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
                                                         href: link.href,
                                                         className: "nav-item py-1",
                                                         onMouseEnter: closeMegaMenu,
@@ -1947,29 +2142,19 @@ function SiteHeader({ logoSrc }) {
                                                         children: link.label
                                                     }, link.label, false, {
                                                         fileName: "[project]/src/app/SiteHeader.tsx",
-                                                        lineNumber: 794,
+                                                        lineNumber: 884,
                                                         columnNumber: 19
                                                     }, this)),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
-                                                    href: customerNavLink.href,
-                                                    className: "nav-item py-1",
-                                                    onMouseEnter: closeMegaMenu,
-                                                    onClick: closeAllOverlays,
-                                                    children: customerNavLink.label
-                                                }, void 0, false, {
-                                                    fileName: "[project]/src/app/SiteHeader.tsx",
-                                                    lineNumber: 805,
-                                                    columnNumber: 15
-                                                }, this),
+                                                renderNavItemWithMenu(customerNavLink),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                     className: "hidden h-4 w-px self-center bg-white/20 lg:block",
                                                     "aria-hidden": "true"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/SiteHeader.tsx",
-                                                    lineNumber: 813,
+                                                    lineNumber: 896,
                                                     columnNumber: 15
                                                 }, this),
-                                                secondaryNavGroup.map((link)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                                secondaryNavGroup.map((link)=>link.menuId ? renderNavItemWithMenu(link) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
                                                         href: link.href,
                                                         className: "nav-item py-1",
                                                         onMouseEnter: closeMegaMenu,
@@ -1977,13 +2162,13 @@ function SiteHeader({ logoSrc }) {
                                                         children: link.label
                                                     }, link.label, false, {
                                                         fileName: "[project]/src/app/SiteHeader.tsx",
-                                                        lineNumber: 818,
-                                                        columnNumber: 17
+                                                        lineNumber: 904,
+                                                        columnNumber: 19
                                                     }, this))
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/SiteHeader.tsx",
-                                            lineNumber: 776,
+                                            lineNumber: 876,
                                             columnNumber: 13
                                         }, this),
                                         activeMenu ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1991,7 +2176,7 @@ function SiteHeader({ logoSrc }) {
                                             "aria-hidden": "true"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/SiteHeader.tsx",
-                                            lineNumber: 830,
+                                            lineNumber: 917,
                                             columnNumber: 27
                                         }, this) : null,
                                         megaMenus.map((menu)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2001,32 +2186,107 @@ function SiteHeader({ logoSrc }) {
                                                 "aria-hidden": activeMenu !== menu.id,
                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                     className: "nav-dropdown-inner",
-                                                    children: [
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                            className: "nav-dropdown-column nav-dropdown-column--special",
-                                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                className: "nav-dropdown-special-list",
-                                                                children: dropdownSpecialLinks.map((item)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
-                                                                        href: item.href,
-                                                                        onClick: closeAllOverlays,
-                                                                        className: "nav-dropdown-special-link",
-                                                                        children: item.label
-                                                                    }, `special-${item.label}`, false, {
-                                                                        fileName: "[project]/src/app/SiteHeader.tsx",
-                                                                        lineNumber: 844,
-                                                                        columnNumber: 25
-                                                                    }, this))
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/src/app/SiteHeader.tsx",
-                                                                lineNumber: 842,
-                                                                columnNumber: 21
-                                                            }, this)
+                                                    children: menu.columns.length === 0 && !menu.feature ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        className: "nav-dropdown-column nav-dropdown-column--special-only",
+                                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            className: "nav-dropdown-special-list",
+                                                            children: dropdownSpecialLinks.map((item)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                                                    href: item.href,
+                                                                    onClick: closeAllOverlays,
+                                                                    className: getDropdownSpecialLinkClassName(item),
+                                                                    children: item.label
+                                                                }, `special-${menu.id}-${item.label}`, false, {
+                                                                    fileName: "[project]/src/app/SiteHeader.tsx",
+                                                                    lineNumber: 932,
+                                                                    columnNumber: 27
+                                                                }, this))
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/SiteHeader.tsx",
-                                                            lineNumber: 841,
-                                                            columnNumber: 19
-                                                        }, this),
-                                                        menu.columns.map((column)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            lineNumber: 930,
+                                                            columnNumber: 23
+                                                        }, this)
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/app/SiteHeader.tsx",
+                                                        lineNumber: 929,
+                                                        columnNumber: 21
+                                                    }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
+                                                        children: [
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                className: "nav-dropdown-column nav-dropdown-column--special",
+                                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                    className: "nav-dropdown-special-list",
+                                                                    children: dropdownSpecialLinks.map((item)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                                                            href: item.href,
+                                                                            onClick: closeAllOverlays,
+                                                                            className: getDropdownSpecialLinkClassName(item),
+                                                                            children: item.label
+                                                                        }, `special-${item.label}`, false, {
+                                                                            fileName: "[project]/src/app/SiteHeader.tsx",
+                                                                            lineNumber: 948,
+                                                                            columnNumber: 25
+                                                                        }, this))
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/src/app/SiteHeader.tsx",
+                                                                    lineNumber: 946,
+                                                                    columnNumber: 21
+                                                                }, this)
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/src/app/SiteHeader.tsx",
+                                                                lineNumber: 945,
+                                                                columnNumber: 19
+                                                            }, this),
+                                                            menu.columns.map((column)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                    className: "nav-dropdown-column-group",
+                                                                    children: [
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                            className: "nav-dropdown-separator",
+                                                                            "aria-hidden": "true"
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/src/app/SiteHeader.tsx",
+                                                                            lineNumber: 962,
+                                                                            columnNumber: 23
+                                                                        }, this),
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                            className: "nav-dropdown-column",
+                                                                            children: [
+                                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                                                    className: "nav-dropdown-eyebrow",
+                                                                                    children: column.eyebrow
+                                                                                }, void 0, false, {
+                                                                                    fileName: "[project]/src/app/SiteHeader.tsx",
+                                                                                    lineNumber: 964,
+                                                                                    columnNumber: 25
+                                                                                }, this),
+                                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                                    className: "nav-dropdown-list",
+                                                                                    children: column.items.map((item)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                                                                            href: item.href,
+                                                                                            onClick: closeAllOverlays,
+                                                                                            className: "nav-dropdown-link",
+                                                                                            children: item.label
+                                                                                        }, `${menu.id}-${item.label}`, false, {
+                                                                                            fileName: "[project]/src/app/SiteHeader.tsx",
+                                                                                            lineNumber: 967,
+                                                                                            columnNumber: 29
+                                                                                        }, this))
+                                                                                }, void 0, false, {
+                                                                                    fileName: "[project]/src/app/SiteHeader.tsx",
+                                                                                    lineNumber: 965,
+                                                                                    columnNumber: 25
+                                                                                }, this)
+                                                                            ]
+                                                                        }, void 0, true, {
+                                                                            fileName: "[project]/src/app/SiteHeader.tsx",
+                                                                            lineNumber: 963,
+                                                                            columnNumber: 23
+                                                                        }, this)
+                                                                    ]
+                                                                }, column.eyebrow, true, {
+                                                                    fileName: "[project]/src/app/SiteHeader.tsx",
+                                                                    lineNumber: 961,
+                                                                    columnNumber: 21
+                                                                }, this)),
+                                                            menu.feature ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                                 className: "nav-dropdown-column-group",
                                                                 children: [
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2034,148 +2294,98 @@ function SiteHeader({ logoSrc }) {
                                                                         "aria-hidden": "true"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/SiteHeader.tsx",
-                                                                        lineNumber: 858,
-                                                                        columnNumber: 23
+                                                                        lineNumber: 983,
+                                                                        columnNumber: 21
                                                                     }, this),
-                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                        className: "nav-dropdown-column",
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("aside", {
+                                                                        className: "nav-dropdown-column nav-dropdown-column--feature",
                                                                         children: [
                                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                                                 className: "nav-dropdown-eyebrow",
-                                                                                children: column.eyebrow
+                                                                                children: menu.feature.eyebrow
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/src/app/SiteHeader.tsx",
-                                                                                lineNumber: 860,
-                                                                                columnNumber: 25
+                                                                                lineNumber: 985,
+                                                                                columnNumber: 23
+                                                                            }, this),
+                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                                                className: "nav-dropdown-title mt-0 normal-case",
+                                                                                children: menu.feature.title
+                                                                            }, void 0, false, {
+                                                                                fileName: "[project]/src/app/SiteHeader.tsx",
+                                                                                lineNumber: 986,
+                                                                                columnNumber: 23
+                                                                            }, this),
+                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                                                className: "nav-dropdown-body mt-3",
+                                                                                children: menu.feature.text
+                                                                            }, void 0, false, {
+                                                                                fileName: "[project]/src/app/SiteHeader.tsx",
+                                                                                lineNumber: 989,
+                                                                                columnNumber: 23
                                                                             }, this),
                                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                                className: "nav-dropdown-list",
-                                                                                children: column.items.map((item)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
-                                                                                        href: item.href,
+                                                                                className: "mt-5 flex flex-col gap-1",
+                                                                                children: [
+                                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                                                                                        href: menu.feature.primaryHref,
                                                                                         onClick: closeAllOverlays,
-                                                                                        className: "nav-dropdown-link",
-                                                                                        children: item.label
-                                                                                    }, `${menu.id}-${item.label}`, false, {
+                                                                                        className: "nav-dropdown-link py-2",
+                                                                                        children: getFeatureLinkLabel(menu.feature.primaryLabel, menu.feature.primaryHref)
+                                                                                    }, void 0, false, {
                                                                                         fileName: "[project]/src/app/SiteHeader.tsx",
-                                                                                        lineNumber: 863,
-                                                                                        columnNumber: 29
-                                                                                    }, this))
-                                                                            }, void 0, false, {
+                                                                                        lineNumber: 993,
+                                                                                        columnNumber: 25
+                                                                                    }, this),
+                                                                                    menu.feature.secondaryLabel && menu.feature.secondaryHref ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                                                                                        href: menu.feature.secondaryHref,
+                                                                                        onClick: closeAllOverlays,
+                                                                                        className: "nav-dropdown-link py-2",
+                                                                                        children: getFeatureLinkLabel(menu.feature.secondaryLabel, menu.feature.secondaryHref)
+                                                                                    }, void 0, false, {
+                                                                                        fileName: "[project]/src/app/SiteHeader.tsx",
+                                                                                        lineNumber: 1001,
+                                                                                        columnNumber: 27
+                                                                                    }, this) : null
+                                                                                ]
+                                                                            }, void 0, true, {
                                                                                 fileName: "[project]/src/app/SiteHeader.tsx",
-                                                                                lineNumber: 861,
-                                                                                columnNumber: 25
+                                                                                lineNumber: 992,
+                                                                                columnNumber: 23
                                                                             }, this)
                                                                         ]
                                                                     }, void 0, true, {
                                                                         fileName: "[project]/src/app/SiteHeader.tsx",
-                                                                        lineNumber: 859,
-                                                                        columnNumber: 23
+                                                                        lineNumber: 984,
+                                                                        columnNumber: 21
                                                                     }, this)
                                                                 ]
-                                                            }, column.eyebrow, true, {
+                                                            }, void 0, true, {
                                                                 fileName: "[project]/src/app/SiteHeader.tsx",
-                                                                lineNumber: 857,
-                                                                columnNumber: 21
-                                                            }, this)),
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                            className: "nav-dropdown-column-group",
-                                                            children: [
-                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                    className: "nav-dropdown-separator",
-                                                                    "aria-hidden": "true"
-                                                                }, void 0, false, {
-                                                                    fileName: "[project]/src/app/SiteHeader.tsx",
-                                                                    lineNumber: 878,
-                                                                    columnNumber: 21
-                                                                }, this),
-                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("aside", {
-                                                                    className: "nav-dropdown-column nav-dropdown-column--feature",
-                                                                    children: [
-                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                                            className: "nav-dropdown-eyebrow",
-                                                                            children: menu.feature.eyebrow
-                                                                        }, void 0, false, {
-                                                                            fileName: "[project]/src/app/SiteHeader.tsx",
-                                                                            lineNumber: 880,
-                                                                            columnNumber: 23
-                                                                        }, this),
-                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                                            className: "nav-dropdown-title mt-0 normal-case",
-                                                                            children: menu.feature.title
-                                                                        }, void 0, false, {
-                                                                            fileName: "[project]/src/app/SiteHeader.tsx",
-                                                                            lineNumber: 881,
-                                                                            columnNumber: 23
-                                                                        }, this),
-                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                                            className: "nav-dropdown-body mt-3",
-                                                                            children: menu.feature.text
-                                                                        }, void 0, false, {
-                                                                            fileName: "[project]/src/app/SiteHeader.tsx",
-                                                                            lineNumber: 884,
-                                                                            columnNumber: 23
-                                                                        }, this),
-                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                            className: "mt-5 flex flex-col gap-1",
-                                                                            children: [
-                                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
-                                                                                    href: menu.feature.primaryHref,
-                                                                                    onClick: closeAllOverlays,
-                                                                                    className: "nav-dropdown-link py-2",
-                                                                                    children: menu.feature.primaryLabel
-                                                                                }, void 0, false, {
-                                                                                    fileName: "[project]/src/app/SiteHeader.tsx",
-                                                                                    lineNumber: 888,
-                                                                                    columnNumber: 25
-                                                                                }, this),
-                                                                                menu.feature.secondaryLabel && menu.feature.secondaryHref ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
-                                                                                    href: menu.feature.secondaryHref,
-                                                                                    onClick: closeAllOverlays,
-                                                                                    className: "nav-dropdown-link py-2",
-                                                                                    children: menu.feature.secondaryLabel
-                                                                                }, void 0, false, {
-                                                                                    fileName: "[project]/src/app/SiteHeader.tsx",
-                                                                                    lineNumber: 896,
-                                                                                    columnNumber: 27
-                                                                                }, this) : null
-                                                                            ]
-                                                                        }, void 0, true, {
-                                                                            fileName: "[project]/src/app/SiteHeader.tsx",
-                                                                            lineNumber: 887,
-                                                                            columnNumber: 23
-                                                                        }, this)
-                                                                    ]
-                                                                }, void 0, true, {
-                                                                    fileName: "[project]/src/app/SiteHeader.tsx",
-                                                                    lineNumber: 879,
-                                                                    columnNumber: 21
-                                                                }, this)
-                                                            ]
-                                                        }, void 0, true, {
-                                                            fileName: "[project]/src/app/SiteHeader.tsx",
-                                                            lineNumber: 877,
-                                                            columnNumber: 19
-                                                        }, this)
-                                                    ]
-                                                }, void 0, true, {
+                                                                lineNumber: 982,
+                                                                columnNumber: 19
+                                                            }, this) : null
+                                                        ]
+                                                    }, void 0, true)
+                                                }, void 0, false, {
                                                     fileName: "[project]/src/app/SiteHeader.tsx",
-                                                    lineNumber: 840,
+                                                    lineNumber: 927,
                                                     columnNumber: 17
                                                 }, this)
                                             }, menu.id, false, {
                                                 fileName: "[project]/src/app/SiteHeader.tsx",
-                                                lineNumber: 833,
+                                                lineNumber: 920,
                                                 columnNumber: 15
                                             }, this))
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/SiteHeader.tsx",
-                                    lineNumber: 769,
+                                    lineNumber: 869,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/app/SiteHeader.tsx",
-                                lineNumber: 755,
+                                lineNumber: 855,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2194,7 +2404,7 @@ function SiteHeader({ logoSrc }) {
                                                         children: "Suche"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/SiteHeader.tsx",
-                                                        lineNumber: 923,
+                                                        lineNumber: 1034,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2216,7 +2426,7 @@ function SiteHeader({ logoSrc }) {
                                                                         fill: "none"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/SiteHeader.tsx",
-                                                                        lineNumber: 932,
+                                                                        lineNumber: 1043,
                                                                         columnNumber: 23
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -2226,13 +2436,13 @@ function SiteHeader({ logoSrc }) {
                                                                         strokeLinecap: "round"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/SiteHeader.tsx",
-                                                                        lineNumber: 933,
+                                                                        lineNumber: 1044,
                                                                         columnNumber: 23
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/src/app/SiteHeader.tsx",
-                                                                lineNumber: 925,
+                                                                lineNumber: 1036,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -2245,7 +2455,7 @@ function SiteHeader({ logoSrc }) {
                                                                 className: "font-display flex-1 bg-transparent text-2xl font-light tracking-tight text-[color:var(--ink)] outline-none placeholder:text-[color:var(--muted-soft)] sm:text-4xl"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/SiteHeader.tsx",
-                                                                lineNumber: 935,
+                                                                lineNumber: 1046,
                                                                 columnNumber: 21
                                                             }, this),
                                                             searchQuery ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2255,24 +2465,24 @@ function SiteHeader({ logoSrc }) {
                                                                 children: "Zurücksetzen"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/SiteHeader.tsx",
-                                                                lineNumber: 945,
+                                                                lineNumber: 1056,
                                                                 columnNumber: 23
                                                             }, this) : null
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/app/SiteHeader.tsx",
-                                                        lineNumber: 924,
+                                                        lineNumber: 1035,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/SiteHeader.tsx",
-                                                lineNumber: 922,
+                                                lineNumber: 1033,
                                                 columnNumber: 17
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/SiteHeader.tsx",
-                                            lineNumber: 921,
+                                            lineNumber: 1032,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2289,7 +2499,7 @@ function SiteHeader({ logoSrc }) {
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/src/app/SiteHeader.tsx",
-                                                                lineNumber: 962,
+                                                                lineNumber: 1073,
                                                                 columnNumber: 25
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2306,7 +2516,7 @@ function SiteHeader({ logoSrc }) {
                                                                                     children: result.category
                                                                                 }, void 0, false, {
                                                                                     fileName: "[project]/src/app/SiteHeader.tsx",
-                                                                                    lineNumber: 974,
+                                                                                    lineNumber: 1085,
                                                                                     columnNumber: 33
                                                                                 }, this),
                                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
@@ -2314,7 +2524,7 @@ function SiteHeader({ logoSrc }) {
                                                                                     children: result.title
                                                                                 }, void 0, false, {
                                                                                     fileName: "[project]/src/app/SiteHeader.tsx",
-                                                                                    lineNumber: 977,
+                                                                                    lineNumber: 1088,
                                                                                     columnNumber: 33
                                                                                 }, this),
                                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2322,29 +2532,29 @@ function SiteHeader({ logoSrc }) {
                                                                                     children: result.description
                                                                                 }, void 0, false, {
                                                                                     fileName: "[project]/src/app/SiteHeader.tsx",
-                                                                                    lineNumber: 980,
+                                                                                    lineNumber: 1091,
                                                                                     columnNumber: 33
                                                                                 }, this)
                                                                             ]
                                                                         }, void 0, true, {
                                                                             fileName: "[project]/src/app/SiteHeader.tsx",
-                                                                            lineNumber: 973,
+                                                                            lineNumber: 1084,
                                                                             columnNumber: 31
                                                                         }, this)
                                                                     }, `${result.href}-${result.title}`, false, {
                                                                         fileName: "[project]/src/app/SiteHeader.tsx",
-                                                                        lineNumber: 967,
+                                                                        lineNumber: 1078,
                                                                         columnNumber: 29
                                                                     }, this))
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/SiteHeader.tsx",
-                                                                lineNumber: 965,
+                                                                lineNumber: 1076,
                                                                 columnNumber: 25
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/app/SiteHeader.tsx",
-                                                        lineNumber: 961,
+                                                        lineNumber: 1072,
                                                         columnNumber: 23
                                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                         className: "border border-[color:var(--border)] bg-[color:var(--bg-muted)] p-8",
@@ -2358,7 +2568,7 @@ function SiteHeader({ logoSrc }) {
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/src/app/SiteHeader.tsx",
-                                                                lineNumber: 990,
+                                                                lineNumber: 1101,
                                                                 columnNumber: 25
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2366,7 +2576,7 @@ function SiteHeader({ logoSrc }) {
                                                                 children: "Rufen Sie uns kurz an — wir prüfen, ob die Reparatur möglich ist."
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/SiteHeader.tsx",
-                                                                lineNumber: 993,
+                                                                lineNumber: 1104,
                                                                 columnNumber: 25
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
@@ -2375,13 +2585,13 @@ function SiteHeader({ logoSrc }) {
                                                                 children: emergencyPhoneDisplay
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/SiteHeader.tsx",
-                                                                lineNumber: 996,
+                                                                lineNumber: 1107,
                                                                 columnNumber: 25
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/app/SiteHeader.tsx",
-                                                        lineNumber: 989,
+                                                        lineNumber: 1100,
                                                         columnNumber: 23
                                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                         children: [
@@ -2390,7 +2600,7 @@ function SiteHeader({ logoSrc }) {
                                                                 children: "Häufig gesucht"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/SiteHeader.tsx",
-                                                                lineNumber: 1003,
+                                                                lineNumber: 1114,
                                                                 columnNumber: 23
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2402,23 +2612,23 @@ function SiteHeader({ logoSrc }) {
                                                                         children: term
                                                                     }, term, false, {
                                                                         fileName: "[project]/src/app/SiteHeader.tsx",
-                                                                        lineNumber: 1006,
+                                                                        lineNumber: 1117,
                                                                         columnNumber: 27
                                                                     }, this))
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/SiteHeader.tsx",
-                                                                lineNumber: 1004,
+                                                                lineNumber: 1115,
                                                                 columnNumber: 23
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/app/SiteHeader.tsx",
-                                                        lineNumber: 1002,
+                                                        lineNumber: 1113,
                                                         columnNumber: 21
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/SiteHeader.tsx",
-                                                    lineNumber: 958,
+                                                    lineNumber: 1069,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("aside", {
@@ -2429,7 +2639,7 @@ function SiteHeader({ logoSrc }) {
                                                             children: "Direkt klären"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/SiteHeader.tsx",
-                                                            lineNumber: 1021,
+                                                            lineNumber: 1132,
                                                             columnNumber: 19
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -2437,7 +2647,7 @@ function SiteHeader({ logoSrc }) {
                                                             children: "Schneller per Anruf."
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/SiteHeader.tsx",
-                                                            lineNumber: 1022,
+                                                            lineNumber: 1133,
                                                             columnNumber: 19
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2445,7 +2655,7 @@ function SiteHeader({ logoSrc }) {
                                                             children: "Bei dringenden Ausfällen oder unklarem Fehlerbild ist das Telefon der schnellste Weg."
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/SiteHeader.tsx",
-                                                            lineNumber: 1025,
+                                                            lineNumber: 1136,
                                                             columnNumber: 19
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
@@ -2454,7 +2664,7 @@ function SiteHeader({ logoSrc }) {
                                                             children: emergencyPhoneDisplay
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/SiteHeader.tsx",
-                                                            lineNumber: 1029,
+                                                            lineNumber: 1140,
                                                             columnNumber: 19
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -2475,47 +2685,47 @@ function SiteHeader({ logoSrc }) {
                                                                         fill: "none"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/SiteHeader.tsx",
-                                                                        lineNumber: 1038,
+                                                                        lineNumber: 1149,
                                                                         columnNumber: 23
                                                                     }, this)
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/app/SiteHeader.tsx",
-                                                                    lineNumber: 1037,
+                                                                    lineNumber: 1148,
                                                                     columnNumber: 21
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/src/app/SiteHeader.tsx",
-                                                            lineNumber: 1035,
+                                                            lineNumber: 1146,
                                                             columnNumber: 19
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/app/SiteHeader.tsx",
-                                                    lineNumber: 1020,
+                                                    lineNumber: 1131,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/SiteHeader.tsx",
-                                            lineNumber: 957,
+                                            lineNumber: 1068,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/SiteHeader.tsx",
-                                    lineNumber: 920,
+                                    lineNumber: 1031,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/app/SiteHeader.tsx",
-                                lineNumber: 914,
+                                lineNumber: 1025,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/SiteHeader.tsx",
-                        lineNumber: 516,
+                        lineNumber: 616,
                         columnNumber: 9
                     }, this),
                     breadcrumbs.length > 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2538,7 +2748,7 @@ function SiteHeader({ logoSrc }) {
                                                     children: "/"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/SiteHeader.tsx",
-                                                    lineNumber: 1058,
+                                                    lineNumber: 1169,
                                                     columnNumber: 27
                                                 }, this) : null,
                                                 isLast ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2547,7 +2757,7 @@ function SiteHeader({ logoSrc }) {
                                                     children: crumb.label
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/SiteHeader.tsx",
-                                                    lineNumber: 1063,
+                                                    lineNumber: 1174,
                                                     columnNumber: 27
                                                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
                                                     href: crumb.href,
@@ -2555,34 +2765,34 @@ function SiteHeader({ logoSrc }) {
                                                     children: crumb.label
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/SiteHeader.tsx",
-                                                    lineNumber: 1067,
+                                                    lineNumber: 1178,
                                                     columnNumber: 27
                                                 }, this)
                                             ]
                                         }, `${crumb.href}-${index}`, true, {
                                             fileName: "[project]/src/app/SiteHeader.tsx",
-                                            lineNumber: 1056,
+                                            lineNumber: 1167,
                                             columnNumber: 23
                                         }, this);
                                     })
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/SiteHeader.tsx",
-                                    lineNumber: 1052,
+                                    lineNumber: 1163,
                                     columnNumber: 17
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/app/SiteHeader.tsx",
-                                lineNumber: 1051,
+                                lineNumber: 1162,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/app/SiteHeader.tsx",
-                            lineNumber: 1050,
+                            lineNumber: 1161,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/app/SiteHeader.tsx",
-                        lineNumber: 1049,
+                        lineNumber: 1160,
                         columnNumber: 11
                     }, this) : null,
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2619,7 +2829,7 @@ function SiteHeader({ logoSrc }) {
                                                             fill: "none"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/SiteHeader.tsx",
-                                                            lineNumber: 1108,
+                                                            lineNumber: 1219,
                                                             columnNumber: 19
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -2629,13 +2839,13 @@ function SiteHeader({ logoSrc }) {
                                                             strokeLinecap: "round"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/SiteHeader.tsx",
-                                                            lineNumber: 1109,
+                                                            lineNumber: 1220,
                                                             columnNumber: 19
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/app/SiteHeader.tsx",
-                                                    lineNumber: 1101,
+                                                    lineNumber: 1212,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -2646,13 +2856,13 @@ function SiteHeader({ logoSrc }) {
                                                     className: "flex-1 bg-transparent py-2 text-base font-medium tracking-tight text-[color:var(--ink)] outline-none placeholder:text-[color:var(--muted-soft)]"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/SiteHeader.tsx",
-                                                    lineNumber: 1111,
+                                                    lineNumber: 1222,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/SiteHeader.tsx",
-                                            lineNumber: 1100,
+                                            lineNumber: 1211,
                                             columnNumber: 15
                                         }, this),
                                         searchQuery.trim() && searchResults.length > 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2669,7 +2879,7 @@ function SiteHeader({ logoSrc }) {
                                                             children: result.category
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/SiteHeader.tsx",
-                                                            lineNumber: 1130,
+                                                            lineNumber: 1241,
                                                             columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2677,24 +2887,24 @@ function SiteHeader({ logoSrc }) {
                                                             children: result.title
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/SiteHeader.tsx",
-                                                            lineNumber: 1133,
+                                                            lineNumber: 1244,
                                                             columnNumber: 23
                                                         }, this)
                                                     ]
                                                 }, `m-${result.href}-${result.title}`, true, {
                                                     fileName: "[project]/src/app/SiteHeader.tsx",
-                                                    lineNumber: 1122,
+                                                    lineNumber: 1233,
                                                     columnNumber: 21
                                                 }, this))
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/SiteHeader.tsx",
-                                            lineNumber: 1120,
+                                            lineNumber: 1231,
                                             columnNumber: 17
                                         }, this) : null
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/SiteHeader.tsx",
-                                    lineNumber: 1091,
+                                    lineNumber: 1202,
                                     columnNumber: 13
                                 }, this),
                                 primaryNavGroup.map((link)=>{
@@ -2706,7 +2916,7 @@ function SiteHeader({ logoSrc }) {
                                             children: link.label
                                         }, `m-${link.label}`, false, {
                                             fileName: "[project]/src/app/SiteHeader.tsx",
-                                            lineNumber: 1145,
+                                            lineNumber: 1256,
                                             columnNumber: 19
                                         }, this);
                                     }
@@ -2720,7 +2930,7 @@ function SiteHeader({ logoSrc }) {
                                                 children: link.label
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/SiteHeader.tsx",
-                                                lineNumber: 1164,
+                                                lineNumber: 1275,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2733,21 +2943,21 @@ function SiteHeader({ logoSrc }) {
                                                             children: dropdownSpecialLinks.map((item)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
                                                                     href: item.href,
                                                                     onClick: ()=>setMobileMenuOpen(false),
-                                                                    className: "nav-dropdown-special-link nav-dropdown-special-link--light",
+                                                                    className: getDropdownSpecialLinkClassName(item, true),
                                                                     children: item.label
                                                                 }, `m-special-${item.label}`, false, {
                                                                     fileName: "[project]/src/app/SiteHeader.tsx",
-                                                                    lineNumber: 1171,
+                                                                    lineNumber: 1282,
                                                                     columnNumber: 27
                                                                 }, this))
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/SiteHeader.tsx",
-                                                            lineNumber: 1169,
+                                                            lineNumber: 1280,
                                                             columnNumber: 23
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/SiteHeader.tsx",
-                                                        lineNumber: 1168,
+                                                        lineNumber: 1279,
                                                         columnNumber: 21
                                                     }, this),
                                                     menu.columns.map((column)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2757,7 +2967,7 @@ function SiteHeader({ logoSrc }) {
                                                                     children: column.eyebrow
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/app/SiteHeader.tsx",
-                                                                    lineNumber: 1184,
+                                                                    lineNumber: 1295,
                                                                     columnNumber: 25
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2769,41 +2979,72 @@ function SiteHeader({ logoSrc }) {
                                                                             children: item.label
                                                                         }, `m-${menu.id}-${item.label}`, false, {
                                                                             fileName: "[project]/src/app/SiteHeader.tsx",
-                                                                            lineNumber: 1189,
+                                                                            lineNumber: 1300,
                                                                             columnNumber: 29
                                                                         }, this))
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/app/SiteHeader.tsx",
-                                                                    lineNumber: 1187,
+                                                                    lineNumber: 1298,
                                                                     columnNumber: 25
                                                                 }, this)
                                                             ]
                                                         }, column.eyebrow, true, {
                                                             fileName: "[project]/src/app/SiteHeader.tsx",
-                                                            lineNumber: 1183,
+                                                            lineNumber: 1294,
                                                             columnNumber: 23
                                                         }, this))
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/SiteHeader.tsx",
-                                                lineNumber: 1167,
+                                                lineNumber: 1278,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, `m-${link.label}`, true, {
                                         fileName: "[project]/src/app/SiteHeader.tsx",
-                                        lineNumber: 1160,
+                                        lineNumber: 1271,
                                         columnNumber: 17
                                     }, this);
                                 }),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
-                                    href: customerNavLink.href,
-                                    onClick: ()=>setMobileMenuOpen(false),
-                                    className: "block border-b border-[color:var(--border)] py-4 text-[1.05rem] font-semibold tracking-tight",
-                                    children: customerNavLink.label
-                                }, void 0, false, {
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("details", {
+                                    className: "group border-b border-[color:var(--border)] py-4",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("summary", {
+                                            className: "cursor-pointer list-none text-[1.05rem] font-semibold tracking-tight",
+                                            children: customerNavLink.label
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/SiteHeader.tsx",
+                                            lineNumber: 1317,
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "mt-4 border-b border-[color:var(--border)] pb-5",
+                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "nav-dropdown-special-list",
+                                                children: dropdownSpecialLinks.map((item)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                                        href: item.href,
+                                                        onClick: ()=>setMobileMenuOpen(false),
+                                                        className: getDropdownSpecialLinkClassName(item, true),
+                                                        children: item.label
+                                                    }, `m-kunden-${item.label}`, false, {
+                                                        fileName: "[project]/src/app/SiteHeader.tsx",
+                                                        lineNumber: 1323,
+                                                        columnNumber: 21
+                                                    }, this))
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/app/SiteHeader.tsx",
+                                                lineNumber: 1321,
+                                                columnNumber: 17
+                                            }, this)
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/SiteHeader.tsx",
+                                            lineNumber: 1320,
+                                            columnNumber: 15
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
                                     fileName: "[project]/src/app/SiteHeader.tsx",
-                                    lineNumber: 1205,
+                                    lineNumber: 1316,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2811,18 +3052,99 @@ function SiteHeader({ logoSrc }) {
                                     "aria-hidden": "true"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/SiteHeader.tsx",
-                                    lineNumber: 1213,
+                                    lineNumber: 1336,
                                     columnNumber: 13
                                 }, this),
-                                secondaryNavGroup.map((link)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                secondaryNavGroup.map((link)=>link.menuId ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("details", {
+                                        className: "group border-b border-[color:var(--border)] py-4",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("summary", {
+                                                className: "cursor-pointer list-none text-[1.05rem] font-semibold tracking-tight",
+                                                children: link.label
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/app/SiteHeader.tsx",
+                                                lineNumber: 1341,
+                                                columnNumber: 19
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "mt-4 grid gap-5 border-b border-[color:var(--border)] pb-5",
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            className: "nav-dropdown-special-list",
+                                                            children: dropdownSpecialLinks.map((item)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                                                    href: item.href,
+                                                                    onClick: ()=>setMobileMenuOpen(false),
+                                                                    className: getDropdownSpecialLinkClassName(item, true),
+                                                                    children: item.label
+                                                                }, `m-${link.menuId}-${item.label}`, false, {
+                                                                    fileName: "[project]/src/app/SiteHeader.tsx",
+                                                                    lineNumber: 1348,
+                                                                    columnNumber: 27
+                                                                }, this))
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/src/app/SiteHeader.tsx",
+                                                            lineNumber: 1346,
+                                                            columnNumber: 23
+                                                        }, this)
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/app/SiteHeader.tsx",
+                                                        lineNumber: 1345,
+                                                        columnNumber: 21
+                                                    }, this),
+                                                    megaMenus.find((menu)=>menu.id === link.menuId)?.columns.map((column)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            children: [
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                                    className: "text-[0.65rem] font-medium uppercase tracking-[0.16em] text-[color:var(--accent)]",
+                                                                    children: column.eyebrow
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/src/app/SiteHeader.tsx",
+                                                                    lineNumber: 1363,
+                                                                    columnNumber: 27
+                                                                }, this),
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                    className: "mt-2 grid gap-1",
+                                                                    children: column.items.map((item)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                                                            href: item.href,
+                                                                            onClick: ()=>setMobileMenuOpen(false),
+                                                                            className: "block py-2 text-sm font-medium tracking-tight text-[color:var(--muted)] transition hover:text-[color:var(--ink)]",
+                                                                            children: item.label
+                                                                        }, `m-${link.menuId}-${column.eyebrow}-${item.label}`, false, {
+                                                                            fileName: "[project]/src/app/SiteHeader.tsx",
+                                                                            lineNumber: 1368,
+                                                                            columnNumber: 31
+                                                                        }, this))
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/src/app/SiteHeader.tsx",
+                                                                    lineNumber: 1366,
+                                                                    columnNumber: 27
+                                                                }, this)
+                                                            ]
+                                                        }, column.eyebrow, true, {
+                                                            fileName: "[project]/src/app/SiteHeader.tsx",
+                                                            lineNumber: 1362,
+                                                            columnNumber: 25
+                                                        }, this))
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/src/app/SiteHeader.tsx",
+                                                lineNumber: 1344,
+                                                columnNumber: 19
+                                            }, this)
+                                        ]
+                                    }, `m-${link.label}`, true, {
+                                        fileName: "[project]/src/app/SiteHeader.tsx",
+                                        lineNumber: 1340,
+                                        columnNumber: 17
+                                    }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
                                         href: link.href,
                                         onClick: ()=>setMobileMenuOpen(false),
                                         className: "block border-b border-[color:var(--border)] py-4 text-[1.05rem] font-semibold tracking-tight",
                                         children: link.label
                                     }, `m-${link.label}`, false, {
                                         fileName: "[project]/src/app/SiteHeader.tsx",
-                                        lineNumber: 1216,
-                                        columnNumber: 15
+                                        lineNumber: 1383,
+                                        columnNumber: 17
                                     }, this)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("details", {
                                     className: "group border-b border-[color:var(--border)] py-4",
@@ -2832,7 +3154,7 @@ function SiteHeader({ logoSrc }) {
                                             children: "Mein MONTER"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/SiteHeader.tsx",
-                                            lineNumber: 1227,
+                                            lineNumber: 1395,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2840,13 +3162,13 @@ function SiteHeader({ logoSrc }) {
                                             children: "Der Kundenbereich ist noch nicht verfügbar. Bitte melden Sie sich vorerst telefonisch oder über das Anfrageformular."
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/SiteHeader.tsx",
-                                            lineNumber: 1230,
+                                            lineNumber: 1398,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/SiteHeader.tsx",
-                                    lineNumber: 1226,
+                                    lineNumber: 1394,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2858,7 +3180,7 @@ function SiteHeader({ logoSrc }) {
                                             children: emergencyPhoneDisplay
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/SiteHeader.tsx",
-                                            lineNumber: 1237,
+                                            lineNumber: 1405,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -2868,30 +3190,30 @@ function SiteHeader({ logoSrc }) {
                                             children: "Kontakt"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/SiteHeader.tsx",
-                                            lineNumber: 1240,
+                                            lineNumber: 1408,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/SiteHeader.tsx",
-                                    lineNumber: 1236,
+                                    lineNumber: 1404,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/SiteHeader.tsx",
-                            lineNumber: 1090,
+                            lineNumber: 1201,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/app/SiteHeader.tsx",
-                        lineNumber: 1084,
+                        lineNumber: 1195,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/SiteHeader.tsx",
-                lineNumber: 515,
+                lineNumber: 615,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2900,7 +3222,7 @@ function SiteHeader({ logoSrc }) {
                 onClick: closeAllOverlays
             }, void 0, false, {
                 fileName: "[project]/src/app/SiteHeader.tsx",
-                lineNumber: 1253,
+                lineNumber: 1421,
                 columnNumber: 7
             }, this)
         ]

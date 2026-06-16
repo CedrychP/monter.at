@@ -1,11 +1,1 @@
-{
-  "version": 4,
-  "routes": {},
-  "dynamicRoutes": {},
-  "notFoundRoutes": [],
-  "preview": {
-    "previewModeId": "dae9b4cba88590e407bdf96122d5b437",
-    "previewModeSigningKey": "74c975ba0418bb53f32f732a54a84991cfb890b6ba25ef262f5496d325f14ef9",
-    "previewModeEncryptionKey": "59b6702da5a0eef76538a331ad41956b3480f26b4c2ab3ddde54a106cd289cae"
-  }
-}
+{"version":4,"routes":{"/leistungen/waschmaschine-reparatur-wien":{},"/leistungen/geschirrspueler-reparatur-wien":{},"/leistungen/backofen-herd-reparatur-wien":{},"/leistungen/trockner-reparatur-wien":{},"/leistungen/kuehlschrank-reparatur-wien":{},"/leistungen/tiefkuehl-reparatur-wien":{}},"dynamicRoutes":{"/leistungen/[slug]":{"dataRoute":null,"dataRouteRegex":null,"fallback":null,"fallbackRevalidate":false,"fallbackSourceRoute":"/leistungen/[slug]","routeRegex":"^\\/leistungen\\/([^/]+?)(?:\\/)?$","allowHeader":[]}},"notFoundRoutes":[],"preview":{"previewModeId":"dae9b4cba88590e407bdf96122d5b437","previewModeSigningKey":"74c975ba0418bb53f32f732a54a84991cfb890b6ba25ef262f5496d325f14ef9","previewModeEncryptionKey":"59b6702da5a0eef76538a331ad41956b3480f26b4c2ab3ddde54a106cd289cae"}}
