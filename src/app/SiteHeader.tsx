@@ -1165,8 +1165,6 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
               })()}
             </details>
 
-            <div className="my-2 h-px bg-white/10" aria-hidden="true" />
-
             {secondaryNavGroup.map((link) =>
               link.menuId ? (
                 <details key={`m-${link.label}`} className="group border-b border-white/10 py-3">
@@ -1206,17 +1204,38 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
               </p>
             </details>
 
-            <div className="mt-6 grid gap-2.5">
-              <a href={`tel:${emergencyPhoneHref}`} className="btn-on-dark justify-center">
-                {emergencyPhoneDisplay}
-              </a>
-              <Link
-                href="/kontakt"
-                onClick={() => setMobileMenuOpen(false)}
-                className="btn-on-dark-ghost justify-center"
-              >
-                Kontakt
-              </Link>
+            <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-[linear-gradient(135deg,rgba(168,17,42,0.28)_0%,rgba(168,17,42,0.06)_45%,rgba(255,255,255,0.04)_100%)] p-5">
+              <div className="flex items-center gap-3">
+                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-white/10 text-white">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z" />
+                  </svg>
+                </span>
+                <div className="min-w-0">
+                  <p className="text-[0.62rem] font-medium uppercase tracking-[0.18em] text-white/60">
+                    Direkt erreichbar
+                  </p>
+                  <a
+                    href={`tel:${emergencyPhoneHref}`}
+                    className="block truncate text-lg font-semibold tracking-tight text-white transition hover:text-[color:var(--accent-on-dark)]"
+                  >
+                    {emergencyPhoneDisplay}
+                  </a>
+                </div>
+              </div>
+
+              <div className="mt-4 grid grid-cols-2 gap-2.5">
+                <a href={`tel:${emergencyPhoneHref}`} className="btn-on-dark justify-center">
+                  Anrufen
+                </a>
+                <Link
+                  href="/kontakt"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="btn-on-dark-ghost justify-center"
+                >
+                  Kontakt
+                </Link>
+              </div>
             </div>
           </div>
         </div>
