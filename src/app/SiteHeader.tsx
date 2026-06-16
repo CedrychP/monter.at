@@ -64,9 +64,9 @@ const householdSanitaerLinks: NavLink[] = [
 const householdKuecheLinks: NavLink[] = [
   { label: "Kühlschrank", href: "/leistungen/kuehlschrank-reparatur-wien" },
   { label: "Gefrierschrank", href: "/leistungen/tiefkuehl-reparatur-wien" },
-  { label: "Herd", href: "/leistungen/backofen-herd-reparatur-wien" },
+  { label: "Herd & Ceranfeld", href: "/leistungen/backofen-herd-reparatur-wien" },
   { label: "Backofen", href: "/leistungen/backofen-herd-reparatur-wien" },
-  { label: "Ceranfeld", href: "/leistungen/backofen-herd-reparatur-wien" }
+  { label: "Dunstabzug", href: "/kontakt" }
 ];
 
 const repairDevices: NavLink[] = [
@@ -831,29 +831,51 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
                 {accountOpen ? (
                   <div
                     ref={accountPanelRef}
-                    className="absolute right-0 top-full z-[110] mt-3 w-[22rem] max-w-[calc(100vw-2rem)] border border-[color:var(--border)] bg-white p-7 text-[color:var(--ink)] shadow-[0_28px_70px_-20px_rgba(0,0,0,0.45)]"
+                    className="fixed inset-x-3 top-[4.5rem] z-[110] mx-auto w-auto max-w-[24rem] overflow-hidden rounded-2xl border border-[color:var(--border)] bg-white text-[color:var(--ink)] shadow-[0_28px_70px_-20px_rgba(0,0,0,0.45)] sm:absolute sm:inset-x-auto sm:right-0 sm:top-full sm:mx-0 sm:mt-3 sm:w-[22rem] sm:max-w-[calc(100vw-2rem)] sm:rounded-xl"
                   >
-                    <p className="tracking-eyebrow text-[color:var(--accent)]">Mein MONTER</p>
-                    <h2 className="font-display mt-5 text-2xl font-normal leading-tight tracking-tight">
-                      Noch nicht verfügbar
-                    </h2>
-                    <p className="mt-3 text-sm font-light leading-relaxed text-[color:var(--muted)]">
-                      Der Kundenbereich für Verlauf, Rechnungen und Termine ist aktuell in
-                      Vorbereitung. Bitte melden Sie sich vorerst telefonisch oder über das
-                      Anfrageformular.
-                    </p>
+                    <div className="flex items-start gap-4 border-b border-[color:var(--border)] bg-[color:var(--bg-muted)] px-6 py-5">
+                      <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[color:var(--ink)] text-white">
+                        <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true">
+                          <circle cx="10" cy="7" r="3.2" stroke="currentColor" strokeWidth="1.3" fill="none" />
+                          <path
+                            d="M3 17c.8-3.4 3.6-5.2 7-5.2s6.2 1.8 7 5.2"
+                            stroke="currentColor"
+                            strokeWidth="1.3"
+                            fill="none"
+                            strokeLinecap="round"
+                          />
+                        </svg>
+                      </span>
+                      <div className="min-w-0">
+                        <p className="tracking-eyebrow text-[color:var(--accent)]">Mein Monter</p>
+                        <p className="mt-1.5 font-display text-lg font-normal leading-tight tracking-tight">
+                          Ihr Kundenbereich
+                        </p>
+                      </div>
+                    </div>
 
-                    <div className="mt-7 flex flex-col gap-3">
-                      <a href={`tel:${emergencyPhoneHref}`} className="btn-primary w-full text-center">
-                        {emergencyPhoneDisplay}
-                      </a>
-                      <Link
-                        href="/kontakt"
-                        onClick={() => setAccountOpen(false)}
-                        className="inline-flex w-full items-center justify-center border-b border-[color:var(--ink)] py-2 text-[0.75rem] font-medium uppercase tracking-[0.16em] text-[color:var(--ink)] transition hover:border-[color:var(--accent)] hover:text-[color:var(--accent)]"
-                      >
-                        Anfrage stellen
-                      </Link>
+                    <div className="px-6 py-6">
+                      <span className="inline-flex items-center gap-2 rounded-full border border-[color:var(--border-strong)] bg-white px-3 py-1 text-[0.65rem] font-medium uppercase tracking-[0.16em] text-[color:var(--muted)]">
+                        <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--accent)]" aria-hidden="true" />
+                        Bald verfügbar
+                      </span>
+                      <p className="mt-4 text-sm font-light leading-relaxed text-[color:var(--muted)]">
+                        Verlauf, Rechnungen und Termine an einem Ort — der Kundenbereich ist gerade in
+                        Vorbereitung. Bis dahin erreichen Sie uns direkt:
+                      </p>
+
+                      <div className="mt-6 flex flex-col gap-3">
+                        <a href={`tel:${emergencyPhoneHref}`} className="btn-primary w-full justify-center text-center">
+                          {emergencyPhoneDisplay}
+                        </a>
+                        <Link
+                          href="/kontakt"
+                          onClick={() => setAccountOpen(false)}
+                          className="inline-flex w-full items-center justify-center rounded-lg border border-[color:var(--border-strong)] py-2.5 text-[0.75rem] font-medium uppercase tracking-[0.16em] text-[color:var(--ink)] transition hover:border-[color:var(--accent)] hover:text-[color:var(--accent)]"
+                        >
+                          Anfrage stellen
+                        </Link>
+                      </div>
                     </div>
                   </div>
                 ) : null}
@@ -896,31 +918,56 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
                 {cartOpen ? (
                   <div
                     ref={cartPanelRef}
-                    className="absolute right-0 top-full z-[110] mt-3 w-[22rem] max-w-[calc(100vw-2rem)] border border-[color:var(--border)] bg-white p-7 text-[color:var(--ink)] shadow-[0_28px_70px_-20px_rgba(0,0,0,0.45)]"
+                    className="fixed inset-x-3 top-[4.5rem] z-[110] mx-auto w-auto max-w-[24rem] overflow-hidden rounded-2xl border border-[color:var(--border)] bg-white text-[color:var(--ink)] shadow-[0_28px_70px_-20px_rgba(0,0,0,0.45)] sm:absolute sm:inset-x-auto sm:right-0 sm:top-full sm:mx-0 sm:mt-3 sm:w-[22rem] sm:max-w-[calc(100vw-2rem)] sm:rounded-xl"
                   >
-                    <p className="text-[0.65rem] uppercase tracking-[0.22em] text-[color:var(--muted)]">
-                      Warenkorb
-                    </p>
-                    <h3 className="mt-2 text-[1.35rem] font-medium leading-tight tracking-[-0.01em]">
-                      Noch nicht verfügbar
-                    </h3>
-                    <p className="mt-3 text-sm font-light leading-relaxed text-[color:var(--muted)]">
-                      Die Bestellfunktion ist aktuell in Vorbereitung. Für Leistungen und
-                      Ersatzteile erstellen wir Ihnen gerne ein individuelles Angebot — telefonisch
-                      oder über das Anfrageformular.
-                    </p>
+                    <div className="flex items-start gap-4 border-b border-[color:var(--border)] bg-[color:var(--bg-muted)] px-6 py-5">
+                      <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[color:var(--ink)] text-white">
+                        <svg
+                          width="20"
+                          height="20"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="1.6"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          aria-hidden="true"
+                        >
+                          <circle cx="9" cy="21" r="1" />
+                          <circle cx="20" cy="21" r="1" />
+                          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+                        </svg>
+                      </span>
+                      <div className="min-w-0">
+                        <p className="tracking-eyebrow text-[color:var(--accent)]">Warenkorb</p>
+                        <p className="mt-1.5 font-display text-lg font-normal leading-tight tracking-tight">
+                          Bestellung &amp; Angebot
+                        </p>
+                      </div>
+                    </div>
 
-                    <div className="mt-6 flex flex-col gap-3">
-                      <a href={`tel:${emergencyPhoneHref}`} className="btn-primary w-full text-center">
-                        {emergencyPhoneDisplay}
-                      </a>
-                      <Link
-                        href="/kontakt"
-                        onClick={() => setCartOpen(false)}
-                        className="inline-flex w-full items-center justify-center border-b border-[color:var(--ink)] py-2 text-[0.75rem] font-medium uppercase tracking-[0.16em] text-[color:var(--ink)] transition hover:border-[color:var(--accent)] hover:text-[color:var(--accent)]"
-                      >
-                        Anfrage stellen
-                      </Link>
+                    <div className="px-6 py-6">
+                      <span className="inline-flex items-center gap-2 rounded-full border border-[color:var(--border-strong)] bg-white px-3 py-1 text-[0.65rem] font-medium uppercase tracking-[0.16em] text-[color:var(--muted)]">
+                        <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--accent)]" aria-hidden="true" />
+                        Bald verfügbar
+                      </span>
+                      <p className="mt-4 text-sm font-light leading-relaxed text-[color:var(--muted)]">
+                        Die Bestellfunktion ist gerade in Vorbereitung. Für Leistungen und Ersatzteile
+                        erstellen wir Ihnen gerne ein individuelles Angebot:
+                      </p>
+
+                      <div className="mt-6 flex flex-col gap-3">
+                        <a href={`tel:${emergencyPhoneHref}`} className="btn-primary w-full justify-center text-center">
+                          {emergencyPhoneDisplay}
+                        </a>
+                        <Link
+                          href="/kontakt"
+                          onClick={() => setCartOpen(false)}
+                          className="inline-flex w-full items-center justify-center rounded-lg border border-[color:var(--border-strong)] py-2.5 text-[0.75rem] font-medium uppercase tracking-[0.16em] text-[color:var(--ink)] transition hover:border-[color:var(--accent)] hover:text-[color:var(--accent)]"
+                        >
+                          Anfrage stellen
+                        </Link>
+                      </div>
                     </div>
                   </div>
                 ) : null}

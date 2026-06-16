@@ -1,2 +1,0 @@
-:HL["/_next/static/chunks/0cg-cq7xj~-f7.css","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"dsgvo","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"X5ydXql9h_32-duVgQr9l"}
