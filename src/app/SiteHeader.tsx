@@ -1099,11 +1099,11 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
                       <p className="nav-dropdown-body mt-3">
                         {menu.feature.text}
                       </p>
-                      <div className="mt-5 flex flex-col gap-1">
+                      <div className="nav-dropdown-cta-list">
                         <a
                           href={menu.feature.primaryHref}
                           onClick={closeAllOverlays}
-                          className="nav-dropdown-link py-2"
+                          className="nav-dropdown-cta nav-dropdown-cta--primary"
                         >
                           {getFeatureLinkLabel(menu.feature.primaryLabel, menu.feature.primaryHref)}
                         </a>
@@ -1111,7 +1111,7 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
                           <a
                             href={menu.feature.secondaryHref}
                             onClick={closeAllOverlays}
-                            className="nav-dropdown-link py-2"
+                            className="nav-dropdown-cta nav-dropdown-cta--secondary"
                           >
                             {getFeatureLinkLabel(
                               menu.feature.secondaryLabel,
