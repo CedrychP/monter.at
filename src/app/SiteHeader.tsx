@@ -4,8 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
-  FormEvent,
-  KeyboardEvent,
   useCallback,
   useEffect,
   useMemo,
@@ -17,6 +15,7 @@ import NavMonterAccount from "./NavMonterAccount";
 import NavNewsletterSignup from "./NavNewsletterSignup";
 import { brandPages } from "./marken/brands";
 import { servicePages } from "./leistungen/services";
+import { buildSearchIndex, filterSearchResults } from "./searchIndex";
 import { siteConfig } from "./siteConfig";
 
 const emergencyPhoneDisplay = siteConfig.phoneDisplay;
@@ -406,29 +405,13 @@ const megaMenus: MegaMenuConfig[] = [
   }
 ];
 
-type SearchEntry = {
-  title: string;
-  description: string;
-  href: string;
-  category: string;
-  keywords: string;
-};
-
-const popularSearches = [
-  "Waschmaschine",
-  "Geschirrspüler",
-  "Bosch Reparatur",
-  "Notdienst",
-  "Preise",
-  "Geräte-Retter-Prämie"
-];
-
 const staticSegmentLabels: Record<string, string> = {
   leistungen: "Leistungen",
   marken: "Marken",
   blog: "Blog & Ratgeber",
   preise: "Preise",
   kontakt: "Kontakt",
+  suche: "Suche",
   "ueber-uns": "Über Uns",
   impressum: "Impressum",
   agb: "AGB",
@@ -463,7 +446,6 @@ type SiteHeaderProps = {
 export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
   const pathname = usePathname();
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
-  const [searchOpen, setSearchOpen] = useState(false);
   const [accountOpen, setAccountOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -471,7 +453,6 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
   const [isAtTop, setIsAtTop] = useState(true);
   const [navHidden, setNavHidden] = useState(false);
   const [headerHovered, setHeaderHovered] = useState(false);
-  const searchInputRef = useRef<HTMLInputElement | null>(null);
   const accountPanelRef = useRef<HTMLDivElement | null>(null);
   const cartPanelRef = useRef<HTMLDivElement | null>(null);
   const lastScrollYRef = useRef(0);
@@ -512,7 +493,6 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
 
   const closeAllOverlays = useCallback(() => {
     setActiveMenu(null);
-    setSearchOpen(false);
     setAccountOpen(false);
     setCartOpen(false);
   }, []);
@@ -542,10 +522,13 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
   }, [closeAllOverlays]);
 
   useEffect(() => {
-    if (searchOpen) {
-      window.requestAnimationFrame(() => searchInputRef.current?.focus());
-    }
-  }, [searchOpen]);
+    const overlayOpen = Boolean(activeMenu) || mobileMenuOpen;
+    if (typeof document === "undefined") return;
+    document.body.style.overflow = overlayOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [activeMenu, mobileMenuOpen]);
 
   useEffect(() => {
     if (!accountOpen) return;
@@ -575,98 +558,13 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
     return () => window.removeEventListener("mousedown", onClick);
   }, [cartOpen]);
 
-  useEffect(() => {
-    const overlayOpen = Boolean(activeMenu) || searchOpen || mobileMenuOpen;
-    if (typeof document === "undefined") return;
-    document.body.style.overflow = overlayOpen ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [activeMenu, searchOpen, mobileMenuOpen]);
-
-  const searchIndex = useMemo<SearchEntry[]>(() => {
-    const fromServices: SearchEntry[] = servicePages.map((service) => ({
-      title: service.title,
-      description: service.description,
-      href: `/leistungen/${service.slug}`,
-      category: "Leistung",
-      keywords: `${service.title} ${service.description} ${service.category} reparatur`
-    }));
-    const fromBrands: SearchEntry[] = brandPages.map((brand) => ({
-      title: `${brand.brand} Reparatur Wien`,
-      description: brand.description,
-      href: `/marken/${brand.slug}`,
-      category: "Marke",
-      keywords: `${brand.brand} marke reparatur ${brand.description}`
-    }));
-    const fromBlog: SearchEntry[] = blogPosts.map((post) => ({
-      title: post.title,
-      description: post.description,
-      href: `/blog/${post.slug}`,
-      category: "Blog",
-      keywords: `${post.title} ${post.description} ${post.category}`
-    }));
-    const fromStatic: SearchEntry[] = [
-      {
-        title: "Preise & Pauschalen",
-        description: "Anfahrt, Diagnose, Arbeitspauschale und Material — transparent.",
-        href: "/preise",
-        category: "Service",
-        keywords: "preise pauschale anfahrt diagnose kosten"
-      },
-      {
-        title: "Kontakt & Anfrage",
-        description: "Telefonisch oder per Anfrageformular Termin abstimmen.",
-        href: "/kontakt",
-        category: "Service",
-        keywords: "kontakt anfrage termin notdienst telefon"
-      },
-      {
-        title: "Über MONTER Reparatur & Service",
-        description: "Service-Auftritt der Tech Craft Consulting GmbH in Wien.",
-        href: "/ueber-uns",
-        category: "Unternehmen",
-        keywords: "über uns unternehmen tcc tech craft"
-      }
-    ];
-    return [...fromServices, ...fromBrands, ...fromBlog, ...fromStatic];
-  }, []);
-
-  const searchResults = useMemo<SearchEntry[]>(() => {
-    const query = searchQuery.trim().toLowerCase();
-    if (!query) return [];
-    const tokens = query.split(/\s+/).filter(Boolean);
-    return searchIndex
-      .map((entry) => {
-        const haystack = `${entry.title} ${entry.keywords}`.toLowerCase();
-        let score = 0;
-        tokens.forEach((token) => {
-          if (haystack.includes(token)) score += 1;
-          if (entry.title.toLowerCase().includes(token)) score += 2;
-        });
-        return { entry, score };
-      })
-      .filter(({ score }) => score > 0)
-      .sort((a, b) => b.score - a.score)
-      .slice(0, 8)
-      .map(({ entry }) => entry);
-  }, [searchQuery, searchIndex]);
-
-  const onSearchSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (searchResults.length > 0) {
-      window.location.href = searchResults[0].href;
-    }
-  };
-
-  const onSearchKey = (event: KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "Escape") {
-      setSearchOpen(false);
-    }
-  };
+  const searchIndex = useMemo(() => buildSearchIndex(), []);
+  const searchResults = useMemo(
+    () => filterSearchResults(searchIndex, searchQuery, 5),
+    [searchIndex, searchQuery]
+  );
 
   const showMegaMenu = (id: string) => {
-    setSearchOpen(false);
     setAccountOpen(false);
     setActiveMenu(id);
   };
@@ -693,7 +591,6 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
   const headerBarSolid =
     isAtTop ||
     Boolean(activeMenu) ||
-    searchOpen ||
     mobileMenuOpen ||
     !navHidden;
 
@@ -705,7 +602,6 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
     !navHidden ||
     headerHovered ||
     Boolean(activeMenu) ||
-    searchOpen ||
     mobileMenuOpen;
 
   const onHeaderZoneLeave = () => {
@@ -766,45 +662,31 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
             </Link>
 
             <div className="relative z-10 col-start-3 flex shrink-0 items-center justify-self-end gap-1 sm:gap-2">
-              <button
-                type="button"
+              <Link
+                href="/suche"
                 onClick={() => {
                   setActiveMenu(null);
                   setAccountOpen(false);
                   setCartOpen(false);
-                  setSearchOpen((current) => !current);
                 }}
-                aria-label={searchOpen ? "Suche schließen" : "Suche öffnen"}
-                aria-expanded={searchOpen}
+                aria-label="Suche"
                 className={`grid h-10 w-10 place-items-center transition ${
-                  searchOpen
+                  pathname === "/suche"
                     ? "text-[color:var(--nav-text-hover)]"
                     : "text-[color:var(--nav-text)] hover:text-[color:var(--nav-text-hover)]"
                 }`}
               >
-                {searchOpen ? (
-                  <svg width="20" height="20" viewBox="0 0 16 16" aria-hidden="true">
-                    <path
-                      d="M2 2l12 12M14 2L2 14"
-                      stroke="currentColor"
-                      strokeWidth="1.3"
-                      strokeLinecap="round"
-                    />
-                  </svg>
-                ) : (
-                  <svg width="22" height="22" viewBox="0 0 20 20" aria-hidden="true">
-                    <circle cx="9" cy="9" r="6" stroke="currentColor" strokeWidth="1.3" fill="none" />
-                    <path d="m13.5 13.5 4 4" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
-                  </svg>
-                )}
-              </button>
+                <svg width="22" height="22" viewBox="0 0 20 20" aria-hidden="true">
+                  <circle cx="9" cy="9" r="6" stroke="currentColor" strokeWidth="1.3" fill="none" />
+                  <path d="m13.5 13.5 4 4" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+                </svg>
+              </Link>
 
               <div className="relative">
                 <button
                   type="button"
                   onClick={() => {
                     setActiveMenu(null);
-                    setSearchOpen(false);
                     setCartOpen(false);
                     setAccountOpen((current) => !current);
                   }}
@@ -831,10 +713,10 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
                 {accountOpen ? (
                   <div
                     ref={accountPanelRef}
-                    className="fixed inset-x-3 top-[4.5rem] z-[110] mx-auto w-auto max-w-[24rem] overflow-hidden rounded-2xl border border-[color:var(--border)] bg-white text-[color:var(--ink)] shadow-[0_28px_70px_-20px_rgba(0,0,0,0.45)] sm:absolute sm:inset-x-auto sm:right-0 sm:top-full sm:mx-0 sm:mt-3 sm:w-[22rem] sm:max-w-[calc(100vw-2rem)] sm:rounded-xl"
+                    className="fixed inset-x-3 top-[4.5rem] z-[110] mx-auto w-auto max-w-[24rem] overflow-hidden rounded-2xl border border-white/10 bg-[color:var(--ink)] text-white shadow-[0_28px_70px_-20px_rgba(0,0,0,0.65)] sm:absolute sm:inset-x-auto sm:right-0 sm:top-full sm:mx-0 sm:mt-3 sm:w-[22rem] sm:max-w-[calc(100vw-2rem)] sm:rounded-xl"
                   >
-                    <div className="flex items-start gap-4 border-b border-[color:var(--border)] bg-[color:var(--bg-muted)] px-6 py-5">
-                      <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[color:var(--ink)] text-white">
+                    <div className="flex items-start gap-4 border-b border-white/10 px-6 py-5">
+                      <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-white/15 bg-white/5 text-white">
                         <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true">
                           <circle cx="10" cy="7" r="3.2" stroke="currentColor" strokeWidth="1.3" fill="none" />
                           <path
@@ -848,30 +730,30 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
                       </span>
                       <div className="min-w-0">
                         <p className="tracking-eyebrow text-[color:var(--accent)]">Mein Monter</p>
-                        <p className="mt-1.5 font-display text-lg font-normal leading-tight tracking-tight">
+                        <p className="mt-1.5 font-display text-lg font-normal leading-tight tracking-tight text-white">
                           Ihr Kundenbereich
                         </p>
                       </div>
                     </div>
 
                     <div className="px-6 py-6">
-                      <span className="inline-flex items-center gap-2 rounded-full border border-[color:var(--border-strong)] bg-white px-3 py-1 text-[0.65rem] font-medium uppercase tracking-[0.16em] text-[color:var(--muted)]">
+                      <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-[0.65rem] font-medium uppercase tracking-[0.16em] text-white/70">
                         <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--accent)]" aria-hidden="true" />
                         Bald verfügbar
                       </span>
-                      <p className="mt-4 text-sm font-light leading-relaxed text-[color:var(--muted)]">
+                      <p className="mt-4 text-sm font-light leading-relaxed text-white/65">
                         Verlauf, Rechnungen und Termine an einem Ort — der Kundenbereich ist gerade in
                         Vorbereitung. Bis dahin erreichen Sie uns direkt:
                       </p>
 
-                      <div className="mt-6 flex flex-col gap-3">
-                        <a href={`tel:${emergencyPhoneHref}`} className="btn-primary w-full justify-center text-center">
+                      <div className="header-panel-cta-list">
+                        <a href={`tel:${emergencyPhoneHref}`} className="header-panel-cta header-panel-cta--primary">
                           {emergencyPhoneDisplay}
                         </a>
                         <Link
                           href="/kontakt"
                           onClick={() => setAccountOpen(false)}
-                          className="inline-flex w-full items-center justify-center rounded-lg border border-[color:var(--border-strong)] py-2.5 text-[0.75rem] font-medium uppercase tracking-[0.16em] text-[color:var(--ink)] transition hover:border-[color:var(--accent)] hover:text-[color:var(--accent)]"
+                          className="header-panel-cta header-panel-cta--secondary"
                         >
                           Anfrage stellen
                         </Link>
@@ -886,7 +768,6 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
                   type="button"
                   onClick={() => {
                     setActiveMenu(null);
-                    setSearchOpen(false);
                     setAccountOpen(false);
                     setCartOpen((current) => !current);
                   }}
@@ -918,10 +799,10 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
                 {cartOpen ? (
                   <div
                     ref={cartPanelRef}
-                    className="fixed inset-x-3 top-[4.5rem] z-[110] mx-auto w-auto max-w-[24rem] overflow-hidden rounded-2xl border border-[color:var(--border)] bg-white text-[color:var(--ink)] shadow-[0_28px_70px_-20px_rgba(0,0,0,0.45)] sm:absolute sm:inset-x-auto sm:right-0 sm:top-full sm:mx-0 sm:mt-3 sm:w-[22rem] sm:max-w-[calc(100vw-2rem)] sm:rounded-xl"
+                    className="fixed inset-x-3 top-[4.5rem] z-[110] mx-auto w-auto max-w-[24rem] overflow-hidden rounded-2xl border border-white/10 bg-[color:var(--ink)] text-white shadow-[0_28px_70px_-20px_rgba(0,0,0,0.65)] sm:absolute sm:inset-x-auto sm:right-0 sm:top-full sm:mx-0 sm:mt-3 sm:w-[22rem] sm:max-w-[calc(100vw-2rem)] sm:rounded-xl"
                   >
-                    <div className="flex items-start gap-4 border-b border-[color:var(--border)] bg-[color:var(--bg-muted)] px-6 py-5">
-                      <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[color:var(--ink)] text-white">
+                    <div className="flex items-start gap-4 border-b border-white/10 px-6 py-5">
+                      <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-white/15 bg-white/5 text-white">
                         <svg
                           width="20"
                           height="20"
@@ -940,30 +821,30 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
                       </span>
                       <div className="min-w-0">
                         <p className="tracking-eyebrow text-[color:var(--accent)]">Warenkorb</p>
-                        <p className="mt-1.5 font-display text-lg font-normal leading-tight tracking-tight">
+                        <p className="mt-1.5 font-display text-lg font-normal leading-tight tracking-tight text-white">
                           Bestellung &amp; Angebot
                         </p>
                       </div>
                     </div>
 
                     <div className="px-6 py-6">
-                      <span className="inline-flex items-center gap-2 rounded-full border border-[color:var(--border-strong)] bg-white px-3 py-1 text-[0.65rem] font-medium uppercase tracking-[0.16em] text-[color:var(--muted)]">
+                      <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-[0.65rem] font-medium uppercase tracking-[0.16em] text-white/70">
                         <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--accent)]" aria-hidden="true" />
                         Bald verfügbar
                       </span>
-                      <p className="mt-4 text-sm font-light leading-relaxed text-[color:var(--muted)]">
+                      <p className="mt-4 text-sm font-light leading-relaxed text-white/65">
                         Die Bestellfunktion ist gerade in Vorbereitung. Für Leistungen und Ersatzteile
                         erstellen wir Ihnen gerne ein individuelles Angebot:
                       </p>
 
-                      <div className="mt-6 flex flex-col gap-3">
-                        <a href={`tel:${emergencyPhoneHref}`} className="btn-primary w-full justify-center text-center">
+                      <div className="header-panel-cta-list">
+                        <a href={`tel:${emergencyPhoneHref}`} className="header-panel-cta header-panel-cta--primary">
                           {emergencyPhoneDisplay}
                         </a>
                         <Link
                           href="/kontakt"
                           onClick={() => setCartOpen(false)}
-                          className="inline-flex w-full items-center justify-center rounded-lg border border-[color:var(--border-strong)] py-2.5 text-[0.75rem] font-medium uppercase tracking-[0.16em] text-[color:var(--ink)] transition hover:border-[color:var(--accent)] hover:text-[color:var(--accent)]"
+                          className="header-panel-cta header-panel-cta--secondary"
                         >
                           Anfrage stellen
                         </Link>
@@ -1193,139 +1074,6 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
                 </div>
               </div>
             ))}
-            </div>
-          </div>
-
-          {/* Search overlay */}
-          <div
-            className={`absolute inset-x-0 top-full z-[95] border-b border-[color:var(--border)] bg-white text-[color:var(--ink)] shadow-[0_32px_60px_-30px_rgba(0,0,0,0.45)] ${
-              searchOpen ? "block" : "hidden"
-            }`}
-            aria-hidden={!searchOpen}
-          >
-            <div className="mx-auto w-full max-w-[88rem] px-5 py-12 sm:px-8 lg:py-16">
-              <form onSubmit={onSearchSubmit}>
-                <label className="block">
-                  <span className="cap-line tracking-eyebrow text-[color:var(--accent)]">Suche</span>
-                  <div className="mt-6 flex items-center gap-4 border-b-2 border-[color:var(--ink)] pb-3">
-                    <svg
-                      width="22"
-                      height="22"
-                      viewBox="0 0 20 20"
-                      aria-hidden="true"
-                      className="shrink-0 text-[color:var(--muted)]"
-                    >
-                      <circle cx="9" cy="9" r="6" stroke="currentColor" strokeWidth="1.4" fill="none" />
-                      <path d="m13.5 13.5 4 4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
-                    </svg>
-                    <input
-                      ref={searchInputRef}
-                      type="search"
-                      value={searchQuery}
-                      onChange={(event) => setSearchQuery(event.target.value)}
-                      onKeyDown={onSearchKey}
-                      placeholder="Was möchten Sie reparieren?"
-                      className="font-display flex-1 bg-transparent text-2xl font-light tracking-tight text-[color:var(--ink)] outline-none placeholder:text-[color:var(--muted-soft)] sm:text-4xl"
-                    />
-                    {searchQuery ? (
-                      <button
-                        type="button"
-                        onClick={() => setSearchQuery("")}
-                        className="text-xs font-medium uppercase tracking-[0.16em] text-[color:var(--muted)] transition hover:text-[color:var(--accent)]"
-                      >
-                        Zurücksetzen
-                      </button>
-                    ) : null}
-                  </div>
-                </label>
-              </form>
-
-              <div className="mt-10 grid gap-12 lg:grid-cols-[1fr_22rem]">
-                <div>
-                  {searchQuery.trim() ? (
-                    searchResults.length > 0 ? (
-                      <div>
-                        <p className="tracking-eyebrow text-[color:var(--muted)]">
-                          {searchResults.length} Treffer
-                        </p>
-                        <div className="mt-6 grid gap-0">
-                          {searchResults.map((result) => (
-                            <Link
-                              key={`${result.href}-${result.title}`}
-                              href={result.href}
-                              onClick={closeAllOverlays}
-                              className="block border-b border-[color:var(--border)] py-5 transition hover:bg-[color:var(--bg-muted)]"
-                            >
-                              <div className="min-w-0">
-                                <p className="text-[0.7rem] font-medium uppercase tracking-[0.16em] text-[color:var(--accent)]">
-                                  {result.category}
-                                </p>
-                                <h4 className="font-display mt-2 truncate text-xl font-normal tracking-tight text-[color:var(--ink)] sm:text-2xl">
-                                  {result.title}
-                                </h4>
-                                <p className="mt-2 line-clamp-1 text-sm font-light text-[color:var(--muted)]">
-                                  {result.description}
-                                </p>
-                              </div>
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
-                    ) : (
-                      <div className="border border-[color:var(--border)] bg-[color:var(--bg-muted)] p-8">
-                        <p className="font-display text-2xl font-light tracking-tight">
-                          Keine Treffer für &bdquo;{searchQuery}&ldquo;.
-                        </p>
-                        <p className="mt-3 text-sm font-light leading-relaxed text-[color:var(--muted)]">
-                          Rufen Sie uns kurz an — wir prüfen, ob die Reparatur möglich ist.
-                        </p>
-                        <a href={`tel:${emergencyPhoneHref}`} className="btn-primary mt-6">
-                          {emergencyPhoneDisplay}
-                        </a>
-                      </div>
-                    )
-                  ) : (
-                    <div>
-                      <p className="tracking-eyebrow text-[color:var(--muted)]">Häufig gesucht</p>
-                      <div className="mt-6 flex flex-wrap gap-2">
-                        {popularSearches.map((term) => (
-                          <button
-                            key={term}
-                            type="button"
-                            onClick={() => setSearchQuery(term)}
-                            className="border border-[color:var(--border)] bg-white px-4 py-2.5 text-sm font-medium tracking-tight transition hover:border-[color:var(--ink)] hover:bg-[color:var(--ink)] hover:text-white"
-                          >
-                            {term}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
-
-                <aside className="bg-[color:var(--bg-muted)] p-8">
-                  <p className="cap-line tracking-eyebrow text-[color:var(--accent)]">Direkt klären</p>
-                  <h3 className="font-display mt-7 text-2xl font-light leading-tight tracking-tight">
-                    Schneller per Anruf.
-                  </h3>
-                  <p className="mt-4 text-sm font-light leading-relaxed text-[color:var(--muted)]">
-                    Bei dringenden Ausfällen oder unklarem Fehlerbild ist das Telefon der
-                    schnellste Weg.
-                  </p>
-                  <a
-                    href={`tel:${emergencyPhoneHref}`}
-                    className="font-display mt-6 block text-3xl font-light tracking-tight text-[color:var(--accent)]"
-                  >
-                    {emergencyPhoneDisplay}
-                  </a>
-                  <Link href="/kontakt" onClick={closeAllOverlays} className="link-arrow mt-6">
-                    Anfrageformular
-                    <svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true">
-                      <path d="M1 8h13M9 3l5 5-5 5" stroke="currentColor" strokeWidth="1.2" fill="none" />
-                    </svg>
-                  </Link>
-                </aside>
-              </div>
             </div>
           </div>
         </div>
@@ -1688,7 +1436,7 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
       {/* Backdrop while menus open */}
       <div
         className={`fixed inset-0 z-[70] bg-black/40 backdrop-blur-[2px] transition-opacity duration-300 ${
-          activeMenu || searchOpen ? "opacity-100" : "pointer-events-none opacity-0"
+          activeMenu ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
         aria-hidden="true"
         onClick={closeAllOverlays}
