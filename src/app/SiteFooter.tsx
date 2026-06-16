@@ -118,8 +118,8 @@ type SiteFooterProps = {
 export default function SiteFooter({ logoSrc }: SiteFooterProps) {
   return (
     <footer className="bg-[color:var(--ink)] text-white">
-      <div className="mx-auto max-w-[88rem] px-5 py-20 sm:px-8 lg:py-24">
-        <div className="grid gap-14 lg:grid-cols-[1.25fr_2fr]">
+      <div className="mx-auto max-w-[88rem] px-5 py-16 sm:px-8 sm:py-20 lg:py-24">
+        <div className="grid gap-12 sm:gap-14 lg:grid-cols-[1.25fr_2fr]">
           <div>
             <Link href="/" aria-label="MONTER Reparatur & Service Startseite" className="inline-block">
               <Image
@@ -150,12 +150,12 @@ export default function SiteFooter({ logoSrc }: SiteFooterProps) {
               ))}
             </div>
 
-            <div className="mt-10 max-w-md">
+            <div className="mt-10 max-w-md sm:max-w-sm">
               <NavNewsletterSignup variant="dark" compact />
             </div>
           </div>
 
-          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:gap-8 lg:grid-cols-4 lg:gap-10">
             <div className="flex flex-col gap-10">
               <div>
                 <p className={footerHeadingClass}>Garagentore</p>
@@ -242,9 +242,9 @@ export default function SiteFooter({ logoSrc }: SiteFooterProps) {
           </div>
         </div>
 
-        <div className="mt-16 border-t border-white/15 pt-10">
-          <div className="flex flex-col gap-8 sm:flex-row sm:items-center sm:justify-between">
-            <div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm font-normal text-white/75">
+        <div className="mt-14 border-t border-white/15 pt-8 sm:mt-16 sm:pt-10">
+          <div className="flex flex-col gap-7 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex flex-wrap items-center gap-x-5 gap-y-2.5 text-sm font-normal text-white/75">
               {bottomBarLinks.map((link) => (
                 <Link
                   key={link.href}
@@ -263,7 +263,7 @@ export default function SiteFooter({ logoSrc }: SiteFooterProps) {
               </a>
             </div>
 
-            <div className="flex shrink-0 items-center gap-4 self-end sm:justify-end">
+            <div className="flex shrink-0 flex-wrap items-center gap-1.5 self-start sm:gap-3 sm:self-auto sm:justify-end">
               {socialLinks.map((item) => (
                 <a
                   key={item.label}
@@ -271,7 +271,7 @@ export default function SiteFooter({ logoSrc }: SiteFooterProps) {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={item.label}
-                  className="grid h-9 w-9 place-items-center rounded-full text-white/70 transition hover:bg-white/10 hover:text-white"
+                  className="grid h-9 w-9 shrink-0 place-items-center rounded-full text-white/70 transition hover:bg-white/10 hover:text-white"
                 >
                   {item.icon}
                 </a>

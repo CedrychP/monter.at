@@ -10,11 +10,8 @@ import {
   useRef,
   useState
 } from "react";
-import { blogPosts } from "./blog/posts";
 import NavMonterAccount from "./NavMonterAccount";
 import NavNewsletterSignup from "./NavNewsletterSignup";
-import { brandPages } from "./marken/brands";
-import { servicePages } from "./leistungen/services";
 import { buildSearchIndex, filterSearchResults } from "./searchIndex";
 import { siteConfig } from "./siteConfig";
 
@@ -405,40 +402,6 @@ const megaMenus: MegaMenuConfig[] = [
   }
 ];
 
-const staticSegmentLabels: Record<string, string> = {
-  leistungen: "Leistungen",
-  marken: "Marken",
-  blog: "Blog & News",
-  preise: "Preise",
-  kontakt: "Kontakt",
-  suche: "Suche",
-  "ueber-uns": "Über Uns",
-  impressum: "Impressum",
-  agb: "AGB",
-  dsgvo: "Datenschutz"
-};
-
-function buildBreadcrumbs(pathname: string): NavLink[] {
-  if (!pathname || pathname === "/") return [];
-  const segments = pathname.split("/").filter(Boolean);
-  if (segments.length === 0) return [];
-
-  const crumbs: NavLink[] = [{ label: "Start", href: "/" }];
-  let path = "";
-  segments.forEach((segment) => {
-    path += `/${segment}`;
-    let label = staticSegmentLabels[segment];
-    if (!label) {
-      const service = servicePages.find((s) => s.slug === segment);
-      const brand = brandPages.find((b) => b.slug === segment);
-      const post = blogPosts.find((p) => p.slug === segment);
-      label = service?.title || (brand ? `${brand.brand} Reparatur` : undefined) || post?.title || segment;
-    }
-    crumbs.push({ label, href: path });
-  });
-  return crumbs;
-}
-
 type SiteHeaderProps = {
   logoSrc: string;
 };
@@ -458,8 +421,6 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
   const lastScrollYRef = useRef(0);
   const scrollAccumRef = useRef(0);
   const scrollTickingRef = useRef(false);
-
-  const breadcrumbs = useMemo(() => buildBreadcrumbs(pathname || "/"), [pathname]);
 
   const updateScrollState = useCallback(() => {
     if (scrollTickingRef.current) return;
@@ -1077,42 +1038,6 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
             </div>
           </div>
         </div>
-
-        {/* Breadcrumbs (Unterseiten) */}
-        {breadcrumbs.length > 0 ? (
-          <div className="border-b border-[color:var(--border)] bg-white">
-            <div className="mx-auto w-full max-w-[88rem] px-5 sm:px-8">
-              <nav aria-label="Breadcrumbs" className="py-3">
-                <ol className="flex min-w-0 flex-wrap items-center gap-y-1 text-[0.7rem] font-medium uppercase tracking-[0.16em] text-[color:var(--muted)]">
-                  {breadcrumbs.map((crumb, index) => {
-                    const isLast = index === breadcrumbs.length - 1;
-                    return (
-                      <li key={`${crumb.href}-${index}`} className="flex min-w-0 items-center">
-                        {index > 0 ? (
-                          <span aria-hidden="true" className="mx-3 text-[color:var(--border-strong)]">
-                            /
-                          </span>
-                        ) : null}
-                        {isLast ? (
-                          <span className="truncate normal-case tracking-tight text-[color:var(--ink)]" aria-current="page">
-                            {crumb.label}
-                          </span>
-                        ) : (
-                          <Link
-                            href={crumb.href}
-                            className="truncate transition hover:text-[color:var(--accent)]"
-                          >
-                            {crumb.label}
-                          </Link>
-                        )}
-                      </li>
-                    );
-                  })}
-                </ol>
-              </nav>
-            </div>
-          </div>
-        ) : null}
 
         {/* Mobile navigation */}
         <div
