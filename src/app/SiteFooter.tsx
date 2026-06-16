@@ -119,43 +119,45 @@ export default function SiteFooter({ logoSrc }: SiteFooterProps) {
   return (
     <footer className="bg-[color:var(--ink)] text-white">
       <div className="mx-auto max-w-[88rem] px-5 py-16 sm:px-8 sm:py-20 lg:py-24">
-        <div className="grid gap-12 sm:gap-14 lg:grid-cols-[1.25fr_2fr]">
-          <div>
-            <Link href="/" aria-label="MONTER Reparatur & Service Startseite" className="inline-block">
-              <Image
-                src={logoSrc}
-                alt="MONTER Reparatur & Service"
-                width={300}
-                height={80}
-                unoptimized
-                className="h-11 w-auto sm:h-12"
-              />
-            </Link>
+        <div className="grid gap-12 sm:gap-14 xl:grid-cols-[1.25fr_2fr]">
+          <div className="md:flex md:items-start md:justify-between md:gap-12 xl:block">
+            <div className="md:max-w-md xl:max-w-none">
+              <Link href="/" aria-label="MONTER Reparatur & Service Startseite" className="inline-block">
+                <Image
+                  src={logoSrc}
+                  alt="MONTER Reparatur & Service"
+                  width={300}
+                  height={80}
+                  unoptimized
+                  className="h-11 w-auto sm:h-12"
+                />
+              </Link>
 
-            <p className="mt-7 max-w-md text-base font-normal leading-relaxed text-white/80">
-              Haushaltsgeräte- und Garagentor-Reparatur mit technischem Anspruch. Für
-              Privathaushalte, Hausverwaltungen und Betriebe in Wien und Niederösterreich —
-              ehrliche Einschätzung, faire Preise, saubere Arbeit.
-            </p>
+              <p className="mt-7 max-w-md text-base font-normal leading-relaxed text-white/80">
+                Haushaltsgeräte- und Garagentor-Reparatur mit technischem Anspruch. Für
+                Privathaushalte, Hausverwaltungen und Betriebe in Wien und Niederösterreich —
+                ehrliche Einschätzung, faire Preise, saubere Arbeit.
+              </p>
 
-            <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-3 text-base font-normal text-white/90">
-              {brandQuickLinks.map((item) => (
-                <Link
-                  key={"quick" + item.label}
-                  href={item.href}
-                  className="border-b border-transparent transition hover:border-white hover:text-white"
-                >
-                  {item.label}
-                </Link>
-              ))}
+              <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-3 text-base font-normal text-white/90">
+                {brandQuickLinks.map((item) => (
+                  <Link
+                    key={"quick" + item.label}
+                    href={item.href}
+                    className="border-b border-transparent transition hover:border-white hover:text-white"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
             </div>
 
-            <div className="mt-10 max-w-md sm:max-w-sm">
+            <div className="mt-10 w-full max-w-md shrink-0 sm:max-w-sm md:mt-1 md:w-72 xl:mt-10 xl:w-auto xl:max-w-md">
               <NavNewsletterSignup variant="dark" compact />
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:gap-8 lg:grid-cols-4 lg:gap-10">
+          <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:gap-x-8 md:grid-cols-4 md:gap-x-8 lg:gap-10">
             <div className="flex flex-col gap-10">
               <div>
                 <p className={footerHeadingClass}>Garagentore</p>
