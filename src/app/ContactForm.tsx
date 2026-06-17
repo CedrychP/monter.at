@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { trackConversion } from "./analytics";
 
 type ContactFormProps = {
   title?: string;
@@ -51,6 +52,7 @@ export default function ContactForm({
       }
 
       form.reset();
+      trackConversion("form", { source: "contact_form" });
       setSubmitState({
         status: "success",
         message: result.message || "Danke, Ihre Anfrage wurde gesendet. Wir melden uns schnellstmöglich."
@@ -140,7 +142,11 @@ export default function ContactForm({
           anrufen.
         </p>
         <div className="flex flex-col gap-3 sm:flex-row">
-          <a href={`tel:${phoneHref}`} className="btn-ghost">
+          <a
+            href={`tel:${phoneHref}`}
+            onClick={() => trackConversion("call", { source: "contact_form" })}
+            className="btn-ghost"
+          >
             Lieber anrufen
           </a>
           <button type="submit" className="btn-primary" disabled={isSubmitting}>

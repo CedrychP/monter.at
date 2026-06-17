@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import CookieBanner from "./CookieBanner";
 import { getLogoSrc } from "./logoAsset";
+import MobileActionBar from "./MobileActionBar";
 import SiteFooter from "./SiteFooter";
 import SiteHeader from "./SiteHeader";
+import WhatsAppWidget from "./WhatsAppWidget";
 import { siteConfig } from "./siteConfig";
 import "./globals.css";
 
@@ -122,6 +124,10 @@ export default function RootLayout({
         <SiteHeader logoSrc={logoSrc} />
         {children}
         <SiteFooter logoSrc={logoSrc} />
+        {/* Abstandshalter, damit die fixe Mobile-CTA-Leiste nichts verdeckt */}
+        <div aria-hidden="true" className="h-[3.25rem] lg:hidden" />
+        <WhatsAppWidget />
+        <MobileActionBar />
         <CookieBanner />
       </body>
     </html>

@@ -3,19 +3,20 @@
 :root {
   /* Edles, ruhiges Premium-Farbsystem (Miele-inspiriert) */
   --bg: #ffffff;
-  --bg-muted: #f5f3ee;
-  --bg-strong: #ebe7df;
-  --border: #e2ddd2;
-  --border-strong: #cfc8b8;
+  --bg-muted: #f4f4f5;
+  --bg-strong: #e9e9ec;
+  --border: #e4e4e7;
+  --border-strong: #d3d3d8;
   --ink: #0a0a0a;
   --ink-strong: #000000;
-  --muted: #5e5b54;
-  --muted-soft: #8a8579;
+  --muted: #52525b;
+  --muted-soft: #8a8a93;
   --accent: #a8112a;
   --accent-hover: #7d0d1e;
   --accent-soft: #f5e4e6;
   --accent-on-dark: #ff6073;
   --gold: #b08a3e;
+  --gold-on-dark: #e3c071;
   --nav-text: rgb(188, 188, 188);
   --nav-text-soft: rgb(204, 204, 204);
   --nav-heading: rgb(222, 222, 222);
@@ -645,14 +646,52 @@ canvas {
 /* Typografie-Hilfen */
 .font-display {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   letter-spacing: -0.02em;
 }
 
 .font-display-italic {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-style: italic;
-  font-weight: 300;
+  font-weight: 500;
+}
+
+/* Hervorgehobenes Wort in den Hero-Slides: klar in Weiß, ohne Rahmen/Markierung */
+.hero-highlight {
+  color: #ffffff;
+}
+
+/* Gold-Schimmer für den Hero (wie die MONTER-GOLD-Animation in der Navigation,
+   hier dauerhaft animiert, da es im Hero keinen Hover gibt) */
+.text-gold-shimmer {
+  font-weight: 700;
+  background: linear-gradient(
+    120deg,
+    #ffffff 0%,
+    #f8efd8 28%,
+    #e8c872 52%,
+    #ffffff 78%,
+    #d4af57 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 14px rgba(255, 236, 179, 0.28));
+  animation: gold-shimmer 5s linear infinite;
+}
+
+@keyframes gold-shimmer {
+  to {
+    background-position: 200% center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .text-gold-shimmer {
+    animation: none;
+  }
 }
 
 .tracking-eyebrow {
@@ -872,6 +911,21 @@ canvas {
   width: 2.5rem;
   height: 1px;
   background: #fff;
+}
+
+.cap-line-gold {
+  position: relative;
+  padding-top: 1.25rem;
+}
+
+.cap-line-gold::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2.5rem;
+  height: 1px;
+  background: var(--gold-on-dark);
 }
 
 /* Sanfter Scroll-Reveal (nur einmalig) */

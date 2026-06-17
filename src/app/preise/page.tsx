@@ -1,4 +1,4 @@
-const phoneDisplay = "+43 1 4171346";
+const phoneDisplay = "01 4171346";
 const phoneHref = "+4314171346";
 
 type PriceItem = {

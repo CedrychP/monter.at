@@ -9,8 +9,12 @@ export const siteConfig = {
     country: "AT"
   },
   email: "office@tccreparatur.at",
-  phoneDisplay: "+43 1 4171346",
+  phoneDisplay: "01 4171346",
   phoneHref: "+4314171346",
+  // WhatsApp-fähige Nummer im internationalen Format ohne "+", Leerzeichen oder Bindestriche.
+  // TODO: Durch echte WhatsApp-Business-Nummer ersetzen (aktuell Platzhalter = Festnetz).
+  whatsappNumber: "4314171346",
+  whatsappDisplay: "01 4171346",
   vatId: "ATU82408379",
   social: {
     instagram: "https://www.instagram.com/",
