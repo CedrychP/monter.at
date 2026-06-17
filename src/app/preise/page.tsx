@@ -14,26 +14,32 @@ const householdPriceItems: PriceItem[] = [
     number: "01",
     service: "Anfahrt Wien",
     price: "80 €",
-    note: "Anfahrt innerhalb von Wien zu Ihrer Adresse. Pauschale für die Fahrt zum Einsatzort."
+    note: "Anfahrt innerhalb von Wien. Wird ab einer Fahrzeit von über 40 Minuten verrechnet."
   },
   {
     number: "02",
     service: "Anfahrt Niederösterreich",
     price: "100 €",
-    note: "Anfahrt nach Niederösterreich. Pauschale für An- und Abfahrt zum Einsatzort."
+    note: "Anfahrt nach Niederösterreich. Wird ab einer Fahrzeit von über 40 Minuten verrechnet (An- und Abfahrt)."
   },
   {
     number: "03",
     service: "Nur Diagnose",
-    price: "100 €",
-    note: "Prüfung des Geräts vor Ort mit Fehlerdiagnose und transparenter Einschätzung der nächsten Schritte."
+    price: "120 €",
+    note: "Prüfung des Geräts vor Ort mit Fehlerdiagnose. Die erste Arbeitseinheit (30 Minuten) ist inklusive."
   },
   {
     number: "04",
-    service: "Arbeitspauschale & Diagnose",
-    price: "120 €",
-    note: "Diagnose und Arbeitsleistung vor Ort als Pauschale, wenn die Reparatur direkt durchgeführt wird.",
+    service: "Reparatur & Diagnose",
+    price: "150 €",
+    note: "Diagnose und Reparatur vor Ort. Die erste Arbeitseinheit (30 Minuten) ist inklusive.",
     highlight: true
+  },
+  {
+    number: "05",
+    service: "Zusätzliche Arbeitseinheit",
+    price: "+50 €",
+    note: "Eine Arbeitseinheit entspricht 30 Minuten. Jede weitere Einheit nach der ersten wird mit 50 € verrechnet."
   }
 ];
 
@@ -196,8 +202,13 @@ export default function PreisePage() {
           <div className="reveal">
             <p className="cap-line tracking-eyebrow text-[color:var(--accent)]">Haushaltsgeräte</p>
             <h2 className="font-display mt-6 text-3xl font-light tracking-tight sm:text-4xl">
-              Anfahrt &amp; Diagnose
+              Anfahrt, Diagnose &amp; Reparatur
             </h2>
+            <p className="mt-4 max-w-2xl text-sm font-light leading-relaxed text-[color:var(--muted)]">
+              Anfahrtspauschalen gelten ab einer Fahrzeit von über 40 Minuten. Die erste
+              Arbeitseinheit (30 Minuten) ist in Diagnose und Reparatur inklusive — jede weitere
+              Einheit wird mit 50 € verrechnet.
+            </p>
           </div>
           <div className="mt-10">
             <PriceGrid items={householdPriceItems} />
@@ -237,9 +248,10 @@ export default function PreisePage() {
                 Keine versteckten Posten.
               </h2>
               <p className="mt-8 text-[1.05rem] font-light leading-relaxed text-[color:var(--muted)]">
-                Haushaltsgeräte: Anfahrt Wien 80 €, Niederösterreich 100 €. Nur Diagnose 100 €,
-                Arbeitspauschale &amp; Diagnose 120 €. Garagenreparatur: Anfahrt Wien 110 €,
-                Niederösterreich 150 €, mehr als 1 Std. Fahrt 200 €.
+                Haushaltsgeräte: Anfahrt ab 40+ Minuten Fahrzeit (80 € Wien, 100 € NÖ). Nur
+                Diagnose 120 €, Reparatur &amp; Diagnose 150 € — jeweils inklusive der ersten
+                30-Minuten-Arbeitseinheit, jede weitere Einheit 50 €. Garagenreparatur: Anfahrt
+                Wien 110 €, Niederösterreich 150 €, mehr als 1 Std. Fahrt 200 €.
               </p>
               <p className="mt-4 text-[1.05rem] font-light leading-relaxed text-[color:var(--muted)]">
                 Material und Ersatzteile werden nur dann verrechnet, wenn sie tatsächlich

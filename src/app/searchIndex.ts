@@ -44,7 +44,7 @@ export function buildSearchIndex(): SearchEntry[] {
   const fromStatic: SearchEntry[] = [
     {
       title: "Preise & Pauschalen",
-      description: "Anfahrt, Diagnose, Arbeitspauschale und Material — transparent.",
+      description: "Anfahrt, Diagnose, Reparatur und Material — transparent.",
       href: "/preise",
       category: "Service",
       keywords: "preise pauschale anfahrt diagnose kosten"

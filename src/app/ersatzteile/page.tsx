@@ -1,6 +1,6 @@
-import Link from "next/link";
 import type { Metadata } from "next";
 import { siteConfig } from "../siteConfig";
+import ContactForm from "../ContactForm";
 
 const phoneDisplay = siteConfig.phoneDisplay;
 const phoneHref = siteConfig.phoneHref;
@@ -124,9 +124,9 @@ export default function ErsatzteilePage() {
                 es fachgerecht ein. Markenoffen in Wien und Niederösterreich.
               </p>
               <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-                <Link href="/kontakt" className="btn-primary">
+                <a href="#ersatzteil-anfrage" className="btn-primary">
                   Ersatzteil anfragen
-                </Link>
+                </a>
                 <a href={`tel:${phoneHref}`} className="btn-ghost">
                   Jetzt anrufen
                 </a>
@@ -193,9 +193,9 @@ export default function ErsatzteilePage() {
                 garantiert und funktioniert auf Anhieb. Material wird nur dann verrechnet, wenn es
                 tatsächlich benötigt wird.
               </p>
-              <Link href="/kontakt" className="btn-primary mt-10">
+              <a href="#ersatzteil-anfrage" className="btn-primary mt-10">
                 Ersatzteil anfragen
-              </Link>
+              </a>
             </div>
 
             <div className="reveal">
@@ -220,6 +220,55 @@ export default function ErsatzteilePage() {
                 ))}
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="ersatzteil-anfrage" className="border-t border-[color:var(--border)] bg-[color:var(--bg-muted)] py-20 sm:py-24 lg:py-28">
+        <div className="mx-auto grid max-w-[88rem] gap-16 px-5 sm:px-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-24">
+          <div className="reveal space-y-8">
+            <div>
+              <p className="cap-line tracking-eyebrow text-[color:var(--accent)]">Ersatzteil anfragen</p>
+              <h2 className="font-display mt-8 text-balance text-4xl font-light leading-[1.05] tracking-tight sm:text-5xl">
+                Teil anfragen, Termin sichern.
+              </h2>
+              <p className="mt-6 text-[1.05rem] font-light leading-relaxed text-[color:var(--muted)]">
+                Nennen Sie uns Gerät, Marke, Modell und das benötigte Teil oder Fehlerbild. Wir
+                identifizieren das passende Originalteil, prüfen Verfügbarkeit und Preis und melden
+                uns zur Abstimmung.
+              </p>
+            </div>
+
+            <a
+              href={`tel:${phoneHref}`}
+              className="group flex items-center gap-4 rounded-sm border border-[color:var(--border)] bg-white p-5 transition hover:border-[color:var(--ink)]"
+            >
+              <span className="grid h-12 w-12 flex-none place-items-center rounded-full bg-[color:var(--accent-soft)] text-[color:var(--accent)]">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M5 4h3l1.6 4-2 1.3a11 11 0 0 0 5 5l1.3-2 4 1.6v3a2 2 0 0 1-2.1 2A15 15 0 0 1 3 6.1 2 2 0 0 1 5 4Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+                </svg>
+              </span>
+              <span>
+                <span className="block text-xs font-normal tracking-eyebrow text-[color:var(--muted)]">
+                  Schnellster Weg
+                </span>
+                <span className="font-display block text-2xl font-normal tracking-tight text-[color:var(--ink)] sm:text-3xl">
+                  {phoneDisplay}
+                </span>
+              </span>
+            </a>
+          </div>
+
+          <div className="reveal rounded-sm border border-[color:var(--border)] bg-white p-6 sm:p-10">
+            <ContactForm
+              eyebrow="Ersatzteil-Anfrage"
+              title="Ersatzteil anfragen"
+              defaultRequestType="ersatzteile"
+              lockRequestType
+              includeCustomerType={false}
+              includeModel
+              phoneHref={phoneHref}
+            />
           </div>
         </div>
       </section>

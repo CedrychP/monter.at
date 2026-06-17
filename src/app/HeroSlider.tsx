@@ -55,8 +55,8 @@ const slides: Slide[] = [
     ),
     text: "Waschmaschine, Geschirrspüler, Kühl- und Gefriergeräte, Backofen, Herd und Trockner — markenoffen instand gesetzt mit klarer Diagnose und fairen Pauschalen.",
     actions: [
-      { label: "Geräte ansehen", href: "/#leistungen", variant: "primary" },
-      { label: "Jetzt anrufen", href: `tel:${phoneHref}`, variant: "ghost" }
+      { label: "Jetzt anrufen", href: `tel:${phoneHref}`, variant: "primary" },
+      { label: "Geräte ansehen", href: "/#leistungen", variant: "ghost" }
     ]
   },
   {
@@ -74,8 +74,8 @@ const slides: Slide[] = [
     ),
     text: "Federwechsel, Antriebsreparatur, Laufrollen und Wartung — für sichere, leise und zuverlässige Tore. Schnell vor Ort in Wien und Niederösterreich.",
     actions: [
-      { label: "Garagenservice ansehen", href: "/#garage", variant: "primary" },
-      { label: "Jetzt anrufen", href: `tel:${phoneHref}`, variant: "ghost" }
+      { label: "Jetzt anrufen", href: `tel:${phoneHref}`, variant: "primary" },
+      { label: "Garagenservice ansehen", href: "/#garage", variant: "ghost" }
     ]
   },
   {

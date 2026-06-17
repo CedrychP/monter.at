@@ -242,7 +242,7 @@ const faqs = [
   {
     question: "Was kostet eine Waschmaschine Reparatur in Wien?",
     answer:
-      "Die Anfahrt in Wien beträgt 80 €. Eine reine Diagnose vor Ort liegt bei 100 €, bei direkter Reparatur entfällt die Diagnosegebühr und es wird die Arbeitspauschale von 120 € verrechnet. Material wie Heizstab, Pumpe oder Stoßdämpfer kommt nur bei tatsächlichem Bedarf dazu und wird vor dem Einbau transparent abgestimmt."
+      "Eine reine Diagnose vor Ort liegt bei 120 €, Reparatur & Diagnose bei 150 € — jeweils inklusive der ersten 30-Minuten-Arbeitseinheit, jede weitere Einheit kostet 50 €. Die Anfahrt (80 € in Wien, 100 € in NÖ) wird ab einer Fahrzeit von über 40 Minuten verrechnet. Material wie Heizstab, Pumpe oder Stoßdämpfer kommt nur bei tatsächlichem Bedarf dazu und wird vor dem Einbau transparent abgestimmt."
   },
   {
     question: "Wie schnell ist eine Geschirrspüler Reparatur möglich?",
@@ -268,6 +268,41 @@ const faqs = [
     question: "Wann lohnt sich eine Reparatur und wann eher ein Tausch?",
     answer:
       "Das hängt von Alter, Ersatzteilpreis, Sicherheitszustand und Ausfallrisiko ab. Bei sehr alten Geräten, mehrfachen Defekten oder Sicherheitsmängeln geben wir eine ehrliche Empfehlung zum Geräte-Tausch — statt eine teure Reparatur durchzuführen, die wirtschaftlich keinen Sinn ergibt."
+  },
+  {
+    question: "Welche Geräte reparieren Sie?",
+    answer:
+      "Wir reparieren Waschmaschinen, Trockner, Geschirrspüler, Kühl- und Gefriergeräte sowie Backöfen, Herde und Kochfelder. Dazu kommen Garagentore und -antriebe. Ob sich eine Reparatur lohnt, klären wir vorab transparent mit Ihnen ab."
+  },
+  {
+    question: "Wie läuft ein Reparaturtermin ab?",
+    answer:
+      "Sie rufen an oder senden eine Anfrage. Wir melden uns telefonisch, nehmen Gerät, Modell und Fehlerbild auf und vereinbaren einen Termin — meist schon binnen 1–2 Tagen. Der Techniker kommt zum vereinbarten Zeitfenster, diagnostiziert und repariert nach Möglichkeit direkt vor Ort."
+  },
+  {
+    question: "Bekomme ich vorab einen Kostenvoranschlag?",
+    answer:
+      "Ja. Auf Wunsch erstellen wir einen Kostenvoranschlag. Arbeitsaufwand über die erste Arbeitseinheit hinaus oder benötigtes Material stimmen wir grundsätzlich vor dem Einbau mit Ihnen ab — Sie zahlen nie etwas, dem Sie nicht zugestimmt haben."
+  },
+  {
+    question: "Gibt es Gewährleistung auf die Reparatur?",
+    answer:
+      "Ja. Auf unsere Arbeitsleistung und die fachgerecht verbauten Ersatzteile besteht die gesetzliche Gewährleistung. Sollte nach der Reparatur am selben Fehlerbild etwas auftreten, finden wir gemeinsam eine faire Lösung."
+  },
+  {
+    question: "Verwenden Sie Originalersatzteile?",
+    answer:
+      "Wir verbauen Original- oder qualitativ gleichwertige, passgenaue Ersatzteile namhafter Hersteller. Welches Teil zum Einsatz kommt und was es kostet, besprechen wir vor dem Einbau."
+  },
+  {
+    question: "Welche Zahlungsmöglichkeiten gibt es?",
+    answer:
+      "Sie können bequem in bar, per Karte oder auf Rechnung per Überweisung bezahlen. Sie erhalten in jedem Fall eine ordentliche Rechnung mit ausgewiesener Mehrwertsteuer."
+  },
+  {
+    question: "Kann ich die Geräte-Retter-Prämie nutzen?",
+    answer:
+      "Ja. Mit der Geräte-Retter-Prämie (Nachfolger des Reparaturbonus) werden 50 % der förderfähigen Reparaturkosten gefördert — bis zu 130 € pro Reparatur, plus bis zu 30 € für einen Kostenvoranschlag. Wir unterstützen Sie bei der Abwicklung."
   }
 ];
 
@@ -923,37 +958,74 @@ export default function Home() {
       </section>
 
       {/* MARKEN */}
-      <section id="marken" className="border-t border-[color:var(--border)] bg-[color:var(--bg-muted)] py-24 sm:py-32">
-        <div className="mx-auto max-w-[88rem] px-5 sm:px-8">
+      <section id="marken" className="relative isolate overflow-hidden border-t border-[color:var(--border)] bg-[color:var(--bg-muted)] py-16 sm:py-20">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+          <div
+            className="absolute -right-44 top-1/4 h-[34rem] w-[34rem] rounded-full blur-[120px]"
+            style={{ backgroundColor: "rgba(168, 17, 42, 0.08)" }}
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              maskImage: "radial-gradient(110% 80% at 90% 8%, #000 0%, transparent 60%)",
+              WebkitMaskImage: "radial-gradient(110% 80% at 90% 8%, #000 0%, transparent 60%)",
+              backgroundImage:
+                "radial-gradient(rgba(168,17,42,0.16) 1.1px, transparent 1.4px)",
+              backgroundSize: "22px 22px"
+            }}
+          />
+        </div>
+
+        <div className="relative mx-auto max-w-[88rem] px-5 sm:px-8">
           <div className="reveal max-w-3xl">
             <p className="cap-line tracking-eyebrow">Markenübersicht</p>
-            <h2 className="font-display mt-8 text-balance text-4xl font-normal leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
+            <h2 className="font-display mt-6 text-balance text-4xl font-normal leading-[1.05] tracking-tight sm:text-5xl">
               Reparatur für viele bekannte Hersteller.
             </h2>
-            <p className="mt-8 max-w-2xl text-[1.05rem] font-normal leading-relaxed text-[color:var(--muted)]">
+            <p className="mt-5 max-w-2xl text-[1.02rem] font-normal leading-relaxed text-[color:var(--muted)]">
               MONTER ist markenoffen. Ist Ihre Marke nicht dabei, rufen Sie uns trotzdem kurz an.
             </p>
           </div>
 
-          <div className="reveal mt-16 grid gap-px bg-[color:var(--border)] sm:grid-cols-2 md:grid-cols-4">
+          {/* Trust-Signale */}
+          <div className="reveal mt-7 flex flex-wrap gap-x-8 gap-y-3">
+            {[
+              "60+ Marken im Service",
+              "Original- & passgenaue Ersatzteile",
+              "Herstellerübergreifend & unabhängig"
+            ].map((item) => (
+              <span key={item} className="flex items-center gap-2.5 text-sm font-medium text-[color:var(--ink)]">
+                <span className="grid h-5 w-5 flex-none place-items-center rounded-full bg-[color:var(--accent-soft)] text-[color:var(--accent)]">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M5 12.5l4 4 10-10" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </span>
+                {item}
+              </span>
+            ))}
+          </div>
+
+          <div className="reveal mt-9 grid grid-cols-2 gap-px overflow-hidden rounded-sm bg-[color:var(--border)] sm:grid-cols-3 md:grid-cols-4">
             {featuredBrands.map((brand) => (
               <div
                 key={brand}
-                className="grid min-h-[8rem] place-items-center bg-white p-8"
+                className="group grid min-h-[6rem] place-items-center bg-white p-6 transition-colors duration-300 hover:bg-[color:var(--ink)]"
               >
-                <span className="font-display text-2xl font-normal tracking-tight">{brand}</span>
+                <span className="font-display text-xl font-normal tracking-tight text-[color:var(--ink)] transition-colors duration-300 group-hover:text-white sm:text-2xl">
+                  {brand}
+                </span>
               </div>
             ))}
           </div>
 
-          <div className="reveal mt-12 border-t border-[color:var(--border)] pt-10">
+          <div className="reveal mt-9">
             <p className="tracking-eyebrow text-[color:var(--muted)]">Vollständige Markenliste</p>
-            <div className="mt-7 grid gap-x-8 gap-y-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+            <div className="mt-5 flex flex-wrap gap-2.5">
               {brandOverview.map((brand) => (
                 <Link
                   key={brand}
                   href={brandPageByName.has(brand) ? `/marken/${brandPageByName.get(brand)}` : "/kontakt"}
-                  className="border-b border-[color:var(--border)] py-2 text-sm font-normal text-[color:var(--muted)] transition hover:border-[color:var(--ink)] hover:text-[color:var(--ink)]"
+                  className="rounded-full border border-[color:var(--border)] bg-white px-4 py-2 text-sm font-normal text-[color:var(--muted)] transition-colors duration-200 hover:border-[color:var(--ink)] hover:bg-white hover:text-[color:var(--ink)]"
                 >
                   {brand}
                 </Link>
@@ -964,26 +1036,81 @@ export default function Home() {
       </section>
 
       {/* ANFAHRTSGEBIETE */}
-      <section id="anfahrt" className="bg-white py-24 sm:py-32">
+      <section id="anfahrt" className="bg-white py-16 sm:py-20">
         <div className="mx-auto max-w-[88rem] px-5 sm:px-8">
-          <div className="reveal grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+          <div className="reveal grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
             <div>
               <p className="cap-line tracking-eyebrow">Einsatzgebiete</p>
-              <h2 className="font-display mt-8 text-balance text-4xl font-normal leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
+              <h2 className="font-display mt-6 text-balance text-4xl font-normal leading-[1.05] tracking-tight sm:text-5xl">
                 Wir kommen zu Ihnen.
               </h2>
             </div>
-            <p className="max-w-xl text-[1.05rem] font-normal leading-relaxed text-[color:var(--muted)]">
-              Reparaturen in Wien und im Wiener Umland. Anfahrt Wien 80 €,
-              Niederösterreich 100 € (An- und Abfahrt). Material wird nur bei tatsächlichem
-              Bedarf verrechnet.
+            <p className="max-w-xl text-[1.02rem] font-normal leading-relaxed text-[color:var(--muted)]">
+              Reparaturen in Wien und im Wiener Umland — schnell, planbar und mit transparenter
+              Anfahrt. Material wird nur bei tatsächlichem Bedarf verrechnet, bei längeren
+              Wegstrecken können Aufpreise anfallen.
             </p>
           </div>
 
-          <div className="mt-16 grid gap-px bg-[color:var(--border)] lg:grid-cols-[1.7fr_1fr]">
-            <div className="bg-white p-8 sm:p-12">
+          {/* Trust-Badges */}
+          <div className="reveal mt-9 grid gap-px overflow-hidden rounded-sm border border-[color:var(--border)] bg-[color:var(--border)] sm:grid-cols-3">
+            {[
+              {
+                title: "Schnell vor Ort",
+                text: "Termine oft schon binnen 1–2 Tagen.",
+                icon: (
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <circle cx="12" cy="12" r="8.5" stroke="currentColor" strokeWidth="1.5" />
+                    <path d="M12 7.5V12l3 2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                )
+              },
+              {
+                title: "Transparente Anfahrt",
+                text: "Wien 80 €, NÖ 100 €. Längere Wegstrecken mit Aufpreis.",
+                icon: (
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+                    <circle cx="12" cy="10" r="2.5" stroke="currentColor" strokeWidth="1.5" />
+                  </svg>
+                )
+              },
+              {
+                title: "Faire Abrechnung",
+                text: "Material nur bei tatsächlichem Bedarf.",
+                icon: (
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M5 12.5l4 4 10-10" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                )
+              }
+            ].map((badge) => (
+              <div key={badge.title} className="bg-white p-6">
+                <span className="text-[color:var(--accent)]" aria-hidden="true">
+                  {badge.icon}
+                </span>
+                <h3 className="font-display mt-3.5 text-lg font-normal tracking-tight sm:text-xl">
+                  {badge.title}
+                </h3>
+                <p className="mt-1.5 text-sm font-normal leading-relaxed text-[color:var(--muted)]">
+                  {badge.text}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-6 grid gap-px overflow-hidden rounded-sm border border-[color:var(--border)] bg-[color:var(--border)] lg:grid-cols-[1.7fr_1fr]">
+            <div className="bg-white p-6 sm:p-8">
               <div className="flex items-baseline justify-between border-b border-[color:var(--border)] pb-5">
-                <h3 className="font-display text-2xl font-normal tracking-tight">Wien</h3>
+                <h3 className="flex items-center gap-2.5 font-display text-2xl font-normal tracking-tight">
+                  <span className="text-[color:var(--accent)]" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                      <path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+                      <circle cx="12" cy="10" r="2.5" stroke="currentColor" strokeWidth="1.5" />
+                    </svg>
+                  </span>
+                  Wien
+                </h3>
                 <span className="font-display text-2xl font-normal text-[color:var(--accent)]">
                   ab 80 €
                 </span>
@@ -1001,9 +1128,17 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="bg-white p-8 sm:p-12">
+            <div className="bg-white p-6 sm:p-8">
               <div className="flex items-baseline justify-between border-b border-[color:var(--border)] pb-5">
-                <h3 className="font-display text-2xl font-normal tracking-tight">Niederösterreich</h3>
+                <h3 className="flex items-center gap-2.5 font-display text-2xl font-normal tracking-tight">
+                  <span className="text-[color:var(--accent)]" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                      <path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+                      <circle cx="12" cy="10" r="2.5" stroke="currentColor" strokeWidth="1.5" />
+                    </svg>
+                  </span>
+                  Niederösterreich
+                </h3>
                 <span className="font-display text-2xl font-normal text-[color:var(--accent)]">
                   ab 100 €
                 </span>
@@ -1018,15 +1153,20 @@ export default function Home() {
                     <span className="font-normal text-[color:var(--muted)]">{area.name}</span>
                   </div>
                 ))}
-                <p className="mt-6 text-sm font-normal leading-relaxed text-[color:var(--muted)]">
-                  Ihre Region nicht dabei? Rufen Sie kurz an — wir prüfen Termine in der Nähe.
-                </p>
-                <a
-                  href={`tel:${emergencyPhoneHref}`}
-                  className="mt-4 inline-flex w-fit border-b border-[color:var(--ink)] py-1 text-[0.78rem] font-medium uppercase tracking-[0.16em] transition hover:border-[color:var(--accent)] hover:text-[color:var(--accent)]"
-                >
-                  {emergencyPhoneDisplay}
-                </a>
+                <div className="mt-6 rounded-sm bg-[color:var(--bg-muted)] p-5">
+                  <p className="text-sm font-normal leading-relaxed text-[color:var(--muted)]">
+                    Ihre Region nicht dabei? Rufen Sie kurz an — wir prüfen Termine in der Nähe.
+                  </p>
+                  <a
+                    href={`tel:${emergencyPhoneHref}`}
+                    className="mt-3 inline-flex w-fit items-center gap-2 font-display text-lg font-normal tracking-tight text-[color:var(--ink)] transition hover:text-[color:var(--accent)]"
+                  >
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path d="M5 4h3l1.6 4-2 1.3a11 11 0 0 0 5 5l1.3-2 4 1.6v3a2 2 0 0 1-2.1 2A15 15 0 0 1 3 6.1 2 2 0 0 1 5 4Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+                    </svg>
+                    {emergencyPhoneDisplay}
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -1060,32 +1200,35 @@ export default function Home() {
       </section>
 
       {/* FIRMENKUNDEN */}
-      <section id="geschaeftskunden" className="bg-white py-24 sm:py-32">
+      <section id="geschaeftskunden" className="bg-white py-16 sm:py-20">
         <div className="mx-auto max-w-[88rem] px-5 sm:px-8">
-          <div className="grid gap-16 lg:grid-cols-[1.1fr_0.9fr] lg:gap-24">
+          <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-16">
             <div className="reveal">
               <p className="cap-line tracking-eyebrow">Firmenkunden</p>
-              <h2 className="font-display mt-8 text-balance text-4xl font-normal leading-[1.05] tracking-tight sm:text-5xl lg:text-[3.75rem]">
+              <h2 className="font-display mt-6 text-balance text-4xl font-normal leading-[1.05] tracking-tight sm:text-5xl">
                 Geräteservice für Betriebe, Hausverwaltungen und Vermieter.
               </h2>
-              <p className="mt-10 max-w-xl text-[1.05rem] font-normal leading-relaxed text-[color:var(--muted)]">
+              <p className="mt-6 max-w-xl text-[1.02rem] font-normal leading-relaxed text-[color:var(--muted)]">
                 Wenn Geräte im Objekt ausfallen, zählt mehr als nur die Reparatur:
                 Terminlogistik, Dokumentation, Kostenklarheit und kurze Ausfallzeiten —
                 genau dafür ist der Firmenkundenbereich ausgelegt.
               </p>
-              <Link href="/kontakt" className="mt-12 inline-flex">
+              <Link href="/kontakt" className="mt-8 inline-flex">
                 <span className="btn-primary">Anfrage für Ihr Objekt</span>
               </Link>
             </div>
 
-            <div className="reveal grid gap-px bg-[color:var(--border)] sm:grid-cols-2">
+            <div className="reveal grid gap-px overflow-hidden rounded-sm bg-[color:var(--border)] sm:grid-cols-2">
               {businessBenefits.map((benefit, index) => (
-                <div key={benefit.title} className="bg-white p-8 lg:p-10">
+                <div
+                  key={benefit.title}
+                  className="bg-white p-6 transition-colors duration-300 hover:bg-[color:var(--bg-muted)] lg:p-7"
+                >
                   <span className="numeral text-[color:var(--accent)]">0{index + 1}</span>
-                  <h3 className="font-display mt-6 text-xl font-normal tracking-tight">
+                  <h3 className="font-display mt-5 text-lg font-normal tracking-tight sm:text-xl">
                     {benefit.title}
                   </h3>
-                  <p className="mt-4 text-sm font-normal leading-relaxed text-[color:var(--muted)]">
+                  <p className="mt-3 text-sm font-normal leading-relaxed text-[color:var(--muted)]">
                     {benefit.text}
                   </p>
                 </div>
@@ -1093,7 +1236,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="relative mt-20 overflow-hidden">
+          <div className="relative mt-12 overflow-hidden rounded-sm">
             <div className="relative aspect-[21/9] w-full">
               <Image
                 src={businessImage}
@@ -1102,19 +1245,31 @@ export default function Home() {
                 sizes="100vw"
                 className="object-cover"
               />
-              <div className="absolute inset-0 bg-black/45" />
-              <div className="absolute inset-0 flex items-center px-8 sm:px-16">
+              <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/45 to-transparent" />
+              <div className="absolute inset-0 flex items-center px-8 sm:px-14">
                 <div className="max-w-2xl text-white">
                   <p className="cap-line-light tracking-eyebrow text-white/70">Direktkontakt</p>
-                  <p className="font-display mt-6 text-3xl font-normal leading-tight tracking-tight sm:text-5xl">
+                  <p className="font-display mt-5 text-3xl font-normal leading-tight tracking-tight sm:text-[2.75rem]">
                     Mehrere Geräte im Objekt? <span className="font-display-italic">Wir koordinieren das.</span>
                   </p>
-                  <a
-                    href={`tel:${emergencyPhoneHref}`}
-                    className="mt-8 inline-flex items-center border-b border-white/60 py-1 text-[0.85rem] font-medium uppercase tracking-[0.16em] transition hover:border-[color:var(--accent)] hover:text-[color:var(--accent)]"
-                  >
-                    {emergencyPhoneDisplay}
-                  </a>
+                  <div className="mt-7 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+                    <a
+                      href={`tel:${emergencyPhoneHref}`}
+                      className="inline-flex items-center gap-2 font-display text-xl font-normal tracking-tight text-white transition hover:text-[color:var(--accent-on-dark)]"
+                    >
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M5 4h3l1.6 4-2 1.3a11 11 0 0 0 5 5l1.3-2 4 1.6v3a2 2 0 0 1-2.1 2A15 15 0 0 1 3 6.1 2 2 0 0 1 5 4Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+                      </svg>
+                      {emergencyPhoneDisplay}
+                    </a>
+                    <Link href="/#kontakt" className="btn-on-dark inline-flex items-center gap-2">
+                      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <rect x="3" y="5" width="18" height="14" rx="1.6" stroke="currentColor" strokeWidth="1.6" />
+                        <path d="M4 6.5l8 6 8-6" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
+                      </svg>
+                      Anfrage senden
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1123,84 +1278,139 @@ export default function Home() {
       </section>
 
       {/* FAQ */}
-      <section id="faq" className="border-y border-[color:var(--border)] bg-[color:var(--bg-muted)] py-24 sm:py-32">
-        <div className="mx-auto max-w-[88rem] px-5 sm:px-8">
-          <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
-            <div className="reveal lg:sticky lg:top-28 lg:self-start">
+      <section id="faq" className="relative isolate overflow-hidden border-y border-[color:var(--border)] bg-[color:var(--bg-muted)] py-20 sm:py-28">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+          <div
+            className="absolute -left-44 top-0 h-[30rem] w-[30rem] rounded-full blur-[120px]"
+            style={{ backgroundColor: "rgba(168, 17, 42, 0.07)" }}
+          />
+        </div>
+
+        <div className="relative mx-auto max-w-[88rem] px-5 sm:px-8">
+          <div className="reveal flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+            <div className="max-w-2xl">
               <p className="cap-line tracking-eyebrow">Häufige Fragen</p>
-              <h2 className="font-display mt-8 text-balance text-4xl font-normal leading-[1.05] tracking-tight sm:text-5xl">
+              <h2 className="font-display mt-6 text-balance text-4xl font-normal leading-[1.05] tracking-tight sm:text-5xl">
                 Kurz geklärt. <span className="font-display-italic">Schneller entschieden.</span>
               </h2>
-              <p className="mt-8 max-w-md text-[1.05rem] font-normal leading-relaxed text-[color:var(--muted)]">
-                Die wichtigsten Antworten vor der Reparatur. Bei einem akuten Ausfall ist der
-                direkte Anruf der schnellste Weg.
-              </p>
-              <a
-                href={`tel:${emergencyPhoneHref}`}
-                className="mt-10 inline-flex w-fit"
-              >
-                <span className="btn-primary">{emergencyPhoneDisplay}</span>
-              </a>
             </div>
+            <a
+              href={`tel:${emergencyPhoneHref}`}
+              className="inline-flex w-fit shrink-0 items-center gap-3 rounded-sm border border-[color:var(--border)] bg-white px-5 py-3 transition hover:border-[color:var(--ink)]"
+            >
+              <span className="grid h-9 w-9 flex-none place-items-center rounded-full bg-[color:var(--accent-soft)] text-[color:var(--accent)]">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M5 4h3l1.6 4-2 1.3a11 11 0 0 0 5 5l1.3-2 4 1.6v3a2 2 0 0 1-2.1 2A15 15 0 0 1 3 6.1 2 2 0 0 1 5 4Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+                </svg>
+              </span>
+              <span className="text-left">
+                <span className="block text-xs font-normal text-[color:var(--muted)]">Frage nicht dabei?</span>
+                <span className="block font-display text-lg font-normal tracking-tight text-[color:var(--ink)]">
+                  {emergencyPhoneDisplay}
+                </span>
+              </span>
+            </a>
+          </div>
 
-            <div className="reveal">
-              {faqs.map((faq) => (
-                <details key={faq.question} className="accordion-item">
-                  <summary>
-                    <span className="font-display pr-6 text-xl font-normal tracking-tight text-[color:var(--ink)] sm:text-2xl">
-                      {faq.question}
-                    </span>
-                    <span className="accordion-icon" aria-hidden="true" />
-                  </summary>
-                  <p className="pb-6 text-[0.98rem] font-normal leading-relaxed text-[color:var(--muted)]">
-                    {faq.answer}
-                  </p>
-                </details>
-              ))}
-            </div>
+          <div className="reveal mt-10 grid gap-x-10 md:grid-cols-2">
+            {[
+              faqs.slice(0, Math.ceil(faqs.length / 2)),
+              faqs.slice(Math.ceil(faqs.length / 2))
+            ].map((group, groupIndex) => (
+              <div
+                key={groupIndex}
+                className="border-t border-[color:var(--border)] [&>details:last-child]:border-b-0 md:[&>details:last-child]:border-b"
+              >
+                {group.map((faq) => (
+                  <details key={faq.question} className="accordion-item">
+                    <summary>
+                      <span className="font-display pr-5 text-base font-normal tracking-tight text-[color:var(--ink)] sm:text-lg">
+                        {faq.question}
+                      </span>
+                      <span className="accordion-icon" aria-hidden="true" />
+                    </summary>
+                    <p className="pb-6 text-[0.95rem] font-normal leading-relaxed text-[color:var(--muted)]">
+                      {faq.answer}
+                    </p>
+                  </details>
+                ))}
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* KONTAKT */}
-      <section id="kontakt" className="bg-white py-24 sm:py-32">
-        <div className="mx-auto max-w-[88rem] px-5 sm:px-8">
-          <div className="grid gap-16 lg:grid-cols-[0.85fr_1.15fr] lg:gap-24">
+      <section id="kontakt" className="relative isolate overflow-hidden bg-white py-20 sm:py-28">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+          <div
+            className="absolute -right-40 top-10 h-[28rem] w-[28rem] rounded-full blur-[120px]"
+            style={{ backgroundColor: "rgba(168, 17, 42, 0.06)" }}
+          />
+        </div>
+
+        <div className="relative mx-auto max-w-[88rem] px-5 sm:px-8">
+          <div className="grid gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:gap-20">
             <div className="reveal">
-              <p className="cap-line tracking-eyebrow">Kontakt</p>
-              <h2 className="font-display mt-8 text-balance text-4xl font-normal leading-[1.05] tracking-tight sm:text-5xl lg:text-[3.75rem]">
-                Schnelle Hilfe beginnt mit einem Anruf.
+              <p className="cap-line tracking-eyebrow text-[color:var(--accent)]">Terminbuchung</p>
+              <h2 className="font-display mt-6 text-balance text-4xl font-normal leading-[1.05] tracking-tight sm:text-5xl lg:text-[3.5rem]">
+                Reparaturtermin <span className="font-display-italic">buchen.</span>
               </h2>
-              <p className="mt-8 text-[1.05rem] font-normal leading-relaxed text-[color:var(--muted)]">
-                Am schnellsten klären wir Gerät, Fehlerbild, Standort und Termin direkt am
-                Telefon. Das Formular ist ideal, wenn Sie Daten vorab sammeln möchten.
+              <p className="mt-7 max-w-md text-[1.05rem] font-normal leading-relaxed text-[color:var(--muted)]">
+                Gerät, Fehlerbild und Wunschtermin angeben — wir melden uns zur Abstimmung. Bei
+                dringenden Ausfällen ist der direkte Anruf der schnellste Weg.
               </p>
 
-              <div className="mt-12 border-t border-[color:var(--border)] pt-10">
-                <p className="tracking-eyebrow text-[color:var(--muted)]">Direkt anrufen</p>
-                <a
-                  href={`tel:${emergencyPhoneHref}`}
-                  className="font-display mt-4 block text-4xl font-normal tracking-tight text-[color:var(--accent)] sm:text-5xl"
-                >
-                  {emergencyPhoneDisplay}
-                </a>
-                <p className="mt-5 max-w-md text-sm font-normal leading-relaxed text-[color:var(--muted)]">
-                  Bevorzugter Kontaktweg für dringende Reparaturen, Terminabstimmung und erste
-                  Einschätzung.
-                </p>
-              </div>
+              <a
+                href={`tel:${emergencyPhoneHref}`}
+                className="group mt-10 flex items-center gap-4 rounded-sm border border-[color:var(--border)] bg-white p-5 transition hover:border-[color:var(--ink)]"
+              >
+                <span className="grid h-12 w-12 flex-none place-items-center rounded-full bg-[color:var(--accent-soft)] text-[color:var(--accent)]">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M5 4h3l1.6 4-2 1.3a11 11 0 0 0 5 5l1.3-2 4 1.6v3a2 2 0 0 1-2.1 2A15 15 0 0 1 3 6.1 2 2 0 0 1 5 4Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+                  </svg>
+                </span>
+                <span>
+                  <span className="block text-xs font-normal tracking-eyebrow text-[color:var(--muted)]">
+                    Direkt anrufen
+                  </span>
+                  <span className="font-display block text-2xl font-normal tracking-tight text-[color:var(--ink)] sm:text-3xl">
+                    {emergencyPhoneDisplay}
+                  </span>
+                </span>
+              </a>
 
-              <div className="mt-10 grid gap-px bg-[color:var(--border)] sm:grid-cols-3">
-                {["Schnelle Einschätzung", "Privat & Gewerbe", "Klare Schritte"].map((item) => (
-                  <div key={item} className="bg-white py-5">
+              <div className="mt-8 grid gap-px overflow-hidden rounded-sm bg-[color:var(--border)] sm:grid-cols-2">
+                {[
+                  "Termin meist binnen 1–2 Tagen",
+                  "Privat & Gewerbe",
+                  "Transparente Anfahrt & Preise",
+                  "Markenoffen in Wien & NÖ"
+                ].map((item) => (
+                  <div key={item} className="flex items-center gap-2.5 bg-white px-4 py-4">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" className="flex-none text-[color:var(--accent)]" aria-hidden="true">
+                      <path d="M5 12.5l4.5 4.5L19 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
                     <p className="text-sm font-normal text-[color:var(--ink)]">{item}</p>
                   </div>
                 ))}
               </div>
+
+              <p className="mt-6 text-sm font-normal leading-relaxed text-[color:var(--muted)]">
+                Ersatzteile bestellen?{" "}
+                <Link href="/ersatzteile" className="font-medium text-[color:var(--accent)] underline-offset-4 hover:underline">
+                  Hier geht es zur Ersatzteile-Seite
+                </Link>
+                .
+              </p>
             </div>
 
-            <div className="reveal">
-              <ContactForm phoneHref={emergencyPhoneHref} />
+            <div className="reveal rounded-sm border border-[color:var(--border)] bg-white p-6 sm:p-10">
+              <ContactForm
+                phoneHref={emergencyPhoneHref}
+                eyebrow="Anfrageformular"
+                title="Anfrage senden"
+              />
             </div>
           </div>
         </div>
