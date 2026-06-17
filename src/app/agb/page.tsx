@@ -3,7 +3,7 @@ const serviceName = "MONTER Reparatur & Service";
 const address = "Rappgasse 1/6, 1210 Wien";
 const email = "office@tccreparatur.at";
 const vatId = "ATU82408379";
-const phone = "+4314171346";
+const phone = "01 4171346";
 const phoneHref = "+4314171346";
 
 export const metadata = {

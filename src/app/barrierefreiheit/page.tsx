@@ -1,6 +1,6 @@
 const serviceName = "MONTER Reparatur & Service";
 const email = "office@tccreparatur.at";
-const phone = "+43 1 4171346";
+const phone = "01 4171346";
 const phoneHref = "+4314171346";
 
 export const metadata = {
