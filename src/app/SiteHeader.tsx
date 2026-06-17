@@ -88,7 +88,7 @@ const additionalServiceLinks: NavLink[] = [
   { label: "Preise & Pauschalen", href: "/preise" },
   { label: "Einsatzgebiete", href: "/#anfahrt" },
   { label: "Ersatzteil gesucht?", href: "/ersatzteile" },
-  { label: "Firmenkunden", href: "/#geschaeftskunden" }
+  { label: "Firmenkunden", href: "/firmenkunden" }
 ];
 
 const serviceNavLinks: NavLink[] = [
@@ -101,7 +101,7 @@ const serviceNavLinks: NavLink[] = [
 const serviceInfoLinks: NavLink[] = [
   { label: "Preise & Pauschalen", href: "/preise" },
   { label: "Einsatzgebiete", href: "/#anfahrt" },
-  { label: "Firmenkunden", href: "/#geschaeftskunden" }
+  { label: "Firmenkunden", href: "/firmenkunden" }
 ];
 
 const geraetekaufExtraLinks: NavLink[] = [
@@ -258,7 +258,7 @@ const megaMenus: MegaMenuConfig[] = [
       primaryLabel: "Jetzt anrufen",
       primaryHref: `tel:${emergencyPhoneHref}`,
       secondaryLabel: "Termin buchen",
-      secondaryHref: "/kontakt"
+      secondaryHref: "/reparatur-buchen"
     }
   },
   {
@@ -277,7 +277,7 @@ const megaMenus: MegaMenuConfig[] = [
       primaryLabel: "Jetzt anrufen",
       primaryHref: `tel:${emergencyPhoneHref}`,
       secondaryLabel: "Termin buchen",
-      secondaryHref: "/kontakt"
+      secondaryHref: "/reparatur-buchen"
     }
   },
   {
@@ -305,7 +305,7 @@ const megaMenus: MegaMenuConfig[] = [
       primaryLabel: "Jetzt anrufen",
       primaryHref: `tel:${emergencyPhoneHref}`,
       secondaryLabel: "Termin buchen",
-      secondaryHref: "/kontakt"
+      secondaryHref: "/reparatur-buchen"
     }
   },
   {
@@ -324,7 +324,7 @@ const megaMenus: MegaMenuConfig[] = [
       primaryLabel: "Jetzt anrufen",
       primaryHref: `tel:${emergencyPhoneHref}`,
       secondaryLabel: "Termin buchen",
-      secondaryHref: "/kontakt"
+      secondaryHref: "/reparatur-buchen"
     }
   },
   {

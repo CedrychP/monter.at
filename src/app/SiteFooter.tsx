@@ -14,6 +14,8 @@ const brandQuickLinks = [
   { label: "Blog & News", href: "/blog" },
   { label: "Warum Monter?", href: "/ueber-uns" },
   { label: "FAQ", href: "/#faq" },
+  { label: "Firmenkunden", href: "/firmenkunden" },
+  { label: "Karriere", href: "/karriere" },
   { label: "Bewertungen", href: "/#bewertungen" }
 ];
 
@@ -232,7 +234,7 @@ export default function SiteFooter({ logoSrc }: SiteFooterProps) {
                 Bei dringenden Ausfällen ist der Anruf der schnellste Weg.
               </p>
               <Link
-                href="/kontakt"
+                href="/reparatur-buchen"
                 className="mt-5 inline-flex w-fit items-center gap-2 border-b border-white pb-1 text-sm font-medium uppercase tracking-[0.16em] text-white transition hover:border-[color:var(--accent)] hover:text-[color:var(--accent)]"
               >
                 Reparatur buchen

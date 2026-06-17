@@ -1,11 +1,13 @@
 import { NextResponse } from "next/server";
-import nodemailer from "nodemailer";
+import { graphRequiredEnvVars, sendMail } from "../../../lib/graphMailer";
 
 type ContactPayload = {
   name?: unknown;
   phone?: unknown;
   email?: unknown;
   customerType?: unknown;
+  company?: unknown;
+  position?: unknown;
   street?: unknown;
   city?: unknown;
   device?: unknown;
@@ -17,26 +19,32 @@ type ContactPayload = {
   website?: unknown;
 };
 
-type RequestType = "reparatur" | "anliegen" | "ersatzteile";
+type RequestType = "reparatur" | "anliegen" | "ersatzteile" | "firmenkunden" | "karriere";
 
-const requiredEnvVars = ["SMTP_HOST", "SMTP_PORT", "SMTP_USER", "SMTP_PASS"] as const;
+const requiredEnvVars = graphRequiredEnvVars;
 
 const recipientByType: Record<RequestType, string> = {
   reparatur: process.env.CONTACT_TO_SERVICE || "service@monter.at",
   anliegen: process.env.CONTACT_TO_INFO || "info@monter.at",
-  ersatzteile: process.env.CONTACT_TO_PARTS || "ersatzteile@monter.at"
+  ersatzteile: process.env.CONTACT_TO_PARTS || "ersatzteile@monter.at",
+  firmenkunden: process.env.CONTACT_TO_SALES || "sales@monter.at",
+  karriere: process.env.CONTACT_TO_KARRIERE || "karriere@monter.at"
 };
 
 const labelByType: Record<RequestType, string> = {
   reparatur: "Reparaturtermin",
   anliegen: "Allgemeines Anliegen",
-  ersatzteile: "Ersatzteil-Anfrage"
+  ersatzteile: "Ersatzteil-Anfrage",
+  firmenkunden: "Firmenkunden-Anfrage",
+  karriere: "Bewerbung"
 };
 
 const subjectByType: Record<RequestType, (name: string) => string> = {
   reparatur: (name) => `Neue Reparaturanfrage von ${name}`,
   anliegen: (name) => `Neues Anliegen von ${name}`,
-  ersatzteile: (name) => `Neue Ersatzteil-Anfrage von ${name}`
+  ersatzteile: (name) => `Neue Ersatzteil-Anfrage von ${name}`,
+  firmenkunden: (name) => `Neue Firmenkunden-Anfrage von ${name}`,
+  karriere: (name) => `Neue Bewerbung von ${name}`
 };
 
 const sanitize = (value: unknown) => {
@@ -49,7 +57,12 @@ const sanitize = (value: unknown) => {
 
 const resolveRequestType = (value: unknown): RequestType => {
   const normalized = sanitize(value).toLowerCase();
-  if (normalized === "anliegen" || normalized === "ersatzteile") {
+  if (
+    normalized === "anliegen" ||
+    normalized === "ersatzteile" ||
+    normalized === "firmenkunden" ||
+    normalized === "karriere"
+  ) {
     return normalized;
   }
   return "reparatur";
@@ -83,6 +96,8 @@ export async function POST(request: Request) {
   const phone = sanitize(payload.phone);
   const email = sanitize(payload.email);
   const customerType = sanitize(payload.customerType) || "Nicht angegeben";
+  const company = sanitize(payload.company);
+  const position = sanitize(payload.position);
   const street = sanitize(payload.street);
   const city = sanitize(payload.city);
   const device = sanitize(payload.device);
@@ -91,7 +106,7 @@ export async function POST(request: Request) {
   const preferredTime = sanitize(payload.preferredTime) || "Nicht angegeben";
   const message = sanitize(payload.message);
 
-  const deviceRequired = requestType !== "anliegen";
+  const deviceRequired = requestType === "reparatur" || requestType === "ersatzteile";
 
   if (!name || !phone || !email) {
     return NextResponse.json(
@@ -105,22 +120,11 @@ export async function POST(request: Request) {
       {
         message: deviceRequired
           ? "Bitte Gerät, Adresse und Beschreibung ausfüllen."
-          : "Bitte Ihr Anliegen ausfüllen."
+          : "Bitte Ihre Nachricht ausfüllen."
       },
       { status: 400 }
     );
   }
-
-  const smtpPort = Number(process.env.SMTP_PORT);
-  const transporter = nodemailer.createTransport({
-    host: process.env.SMTP_HOST,
-    port: Number.isFinite(smtpPort) ? smtpPort : 465,
-    secure: process.env.SMTP_SECURE !== "false",
-    auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS
-    }
-  });
 
   const recipient = recipientByType[requestType] || process.env.CONTACT_TO || recipientByType.reparatur;
   const subject = subjectByType[requestType](name);
@@ -128,11 +132,14 @@ export async function POST(request: Request) {
   const lines = [
     `Neue Anfrage über die Website — ${labelByType[requestType]}:`,
     "",
-    `Name / Firma: ${name}`,
+    `Name: ${name}`,
     `Telefon: ${phone}`,
-    `E-Mail: ${email}`,
-    `Kundentyp: ${customerType}`
+    `E-Mail: ${email}`
   ];
+
+  if (company) lines.push(`Firma: ${company}`);
+  if (position) lines.push(`Position / Stelle: ${position}`);
+  if (requestType !== "karriere") lines.push(`Kundentyp: ${customerType}`);
 
   if (deviceRequired) {
     lines.push(`Adresse: ${street}, ${city}`, `Gerät: ${device}`, `Marke / Modell: ${model}`);
@@ -142,15 +149,21 @@ export async function POST(request: Request) {
     lines.push(`Dringlichkeit: ${urgency}`, `Wunschtermin: ${preferredTime}`);
   }
 
-  lines.push("", requestType === "anliegen" ? "Anliegen:" : "Beschreibung:", message);
+  const messageLabel =
+    requestType === "anliegen"
+      ? "Anliegen:"
+      : requestType === "karriere"
+        ? "Anschreiben / Nachricht:"
+        : "Beschreibung:";
+
+  lines.push("", messageLabel, message);
 
   const text = lines.join("\n");
 
   try {
-    await transporter.sendMail({
-      from: `"MONTER Website" <${process.env.SMTP_USER}>`,
+    await sendMail({
       to: recipient,
-      replyTo: email || process.env.CONTACT_REPLY_TO || process.env.SMTP_USER,
+      replyTo: email,
       subject,
       text
     });

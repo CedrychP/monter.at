@@ -1,12 +1,15 @@
 import { NextResponse } from "next/server";
-import nodemailer from "nodemailer";
+import { graphRequiredEnvVars, sendMail } from "../../../lib/graphMailer";
 
 type NewsletterPayload = {
   email?: unknown;
   website?: unknown;
 };
 
-const requiredEnvVars = ["SMTP_HOST", "SMTP_PORT", "SMTP_USER", "SMTP_PASS", "CONTACT_TO"] as const;
+const requiredEnvVars = graphRequiredEnvVars;
+
+// Eigenes Postfach für Newsletter-Anmeldungen, mit Fallback auf CONTACT_TO.
+const newsletterRecipient = process.env.CONTACT_TO_NEWSLETTER || process.env.CONTACT_TO;
 
 const sanitize = (value: unknown) => {
   if (typeof value !== "string") {
@@ -44,32 +47,22 @@ export async function POST(request: Request) {
 
   const missingEnvVars = requiredEnvVars.filter((key) => !process.env[key]);
 
-  if (missingEnvVars.length > 0) {
-    console.error(`Missing mail configuration: ${missingEnvVars.join(", ")}`);
+  if (missingEnvVars.length > 0 || !newsletterRecipient) {
+    const missing = [...missingEnvVars];
+    if (!newsletterRecipient) missing.push("CONTACT_TO_NEWSLETTER (oder CONTACT_TO)");
+    console.error(`Missing mail configuration: ${missing.join(", ")}`);
     return NextResponse.json(
       { message: "Der Mailversand ist noch nicht konfiguriert. Bitte versuchen Sie es später erneut." },
       { status: 500 }
     );
   }
 
-  const smtpPort = Number(process.env.SMTP_PORT);
-  const transporter = nodemailer.createTransport({
-    host: process.env.SMTP_HOST,
-    port: Number.isFinite(smtpPort) ? smtpPort : 465,
-    secure: process.env.SMTP_SECURE !== "false",
-    auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS
-    }
-  });
-
   const subject = "Neue Newsletter-Anmeldung";
   const text = ["Neue Newsletter-Anmeldung über die Website:", "", `E-Mail: ${email}`].join("\n");
 
   try {
-    await transporter.sendMail({
-      from: `"MONTER Website" <${process.env.SMTP_USER}>`,
-      to: process.env.CONTACT_TO,
+    await sendMail({
+      to: newsletterRecipient,
       replyTo: email,
       subject,
       text

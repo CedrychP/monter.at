@@ -1,8 +1,9 @@
+import Link from "next/link";
 import ContactForm from "../ContactForm";
 
 const phoneDisplay = "01 4171346";
 const phoneHref = "+4314171346";
-const email = "office@tccreparatur.at";
+const email = "info@monter.at";
 const address = "Rappgasse 1/6, 1210 Wien";
 const mapsQuery = encodeURIComponent(address);
 
@@ -10,32 +11,41 @@ const contactCards = [
   {
     eyebrow: "Anrufen",
     title: phoneDisplay,
-    text: "Für dringende Geräteausfälle, Terminabstimmung und schnelle Ersteinschätzung.",
+    text: "Am schnellsten klären wir Fragen und Anliegen direkt am Telefon.",
     href: `tel:${phoneHref}`,
     cta: "Jetzt anrufen"
   },
   {
     eyebrow: "E-Mail",
     title: email,
-    text: "Ideal für Fotos vom Typenschild, Fehlercodes oder Objektinformationen.",
+    text: "Für Fragen, Anliegen, Beschwerden oder Feedback aller Art.",
     href: `mailto:${email}`,
     cta: "E-Mail schreiben"
   }
 ];
 
-const requestChecklist = [
-  "Gerätetyp und Marke",
-  "Modellnummer oder Typenschild",
-  "Fehlercode oder Symptom",
-  "Standort des Geräts",
-  "Gewünschtes Zeitfenster",
-  "Privatkunde, Firma oder Hausverwaltung"
+const otherRequests = [
+  {
+    title: "Reparatur buchen",
+    text: "Gerät defekt? Termin direkt online anfragen.",
+    href: "/reparatur-buchen"
+  },
+  {
+    title: "Ersatzteile",
+    text: "Passendes Originalteil anfragen.",
+    href: "/ersatzteile"
+  },
+  {
+    title: "Firmenkunden",
+    text: "Service für Betriebe & Hausverwaltungen.",
+    href: "/firmenkunden"
+  }
 ];
 
 export const metadata = {
-  title: "Reparaturanfrage Wien | MONTER Service",
+  title: "Kontakt & Anliegen | MONTER Reparatur & Service Wien",
   description:
-    "Reparaturanfrage in Wien: MONTER Reparatur & Service telefonisch kontaktieren, Gerätedaten vorbereiten und Standort auf Google Maps ansehen.",
+    "Kontakt zu MONTER Reparatur & Service in Wien: Fragen, Anliegen, Beschwerden oder Feedback telefonisch, per E-Mail an info@monter.at oder über das Kontaktformular.",
   alternates: {
     canonical: "/kontakt"
   }
@@ -45,23 +55,24 @@ export default function KontaktPage() {
   return (
     <main className="min-h-screen bg-white text-[color:var(--ink)]">
       <section className="border-b border-[color:var(--border)] bg-white">
-        <div className="mx-auto max-w-[88rem] px-5 pb-20 pt-12 sm:px-8 sm:pb-24 sm:pt-16 lg:pb-32 lg:pt-20">
+        <div className="mx-auto max-w-[88rem] px-5 pb-20 pt-12 sm:px-8 sm:pb-24 sm:pt-16 lg:pb-28 lg:pt-20">
           <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-end lg:gap-20">
             <div className="reveal">
               <p className="cap-line tracking-eyebrow text-[color:var(--accent)]">Kontakt</p>
-              <h1 className="font-display mt-8 text-balance text-5xl font-light leading-[1.02] tracking-tight sm:text-6xl lg:text-[4.75rem]">
-                Schnell klären. <span className="font-display-italic">Besser planen.</span>
+              <h1 className="font-display mt-8 text-balance text-5xl font-light leading-[1.02] tracking-tight sm:text-6xl lg:text-[4.5rem]">
+                Frage, Anliegen <span className="font-display-italic">oder Feedback?</span>
               </h1>
               <p className="mt-8 max-w-2xl text-[1.05rem] font-light leading-relaxed text-[color:var(--muted)]">
-                Für Reparaturen ist der direkte Anruf meistens der schnellste Weg. Wenn Sie schon
-                Informationen gesammelt haben, hilft das Formular als saubere Vorbereitung.
+                Sie haben eine allgemeine Frage, ein Anliegen, eine Beschwerde oder möchten uns
+                Feedback geben? Schreiben Sie uns über das Formular oder melden Sie sich direkt —
+                wir kümmern uns darum.
               </p>
               <div className="mt-10 flex flex-col gap-3 sm:flex-row">
                 <a href={`tel:${phoneHref}`} className="btn-primary">
                   Jetzt anrufen
                 </a>
-                <a href="#anfrageformular" className="btn-ghost">
-                  Formular ansehen
+                <a href="#anliegen" className="btn-ghost">
+                  Zum Formular
                 </a>
               </div>
             </div>
@@ -69,9 +80,7 @@ export default function KontaktPage() {
             <div className="reveal grid gap-px bg-[color:var(--border)]">
               {contactCards.map((card) => (
                 <article key={card.eyebrow} className="bg-[color:var(--bg-muted)] p-8 lg:p-10">
-                  <p className="cap-line tracking-eyebrow text-[color:var(--accent)]">
-                    {card.eyebrow}
-                  </p>
+                  <p className="cap-line tracking-eyebrow text-[color:var(--accent)]">{card.eyebrow}</p>
                   <a
                     href={card.href}
                     className="font-display mt-6 block break-words text-2xl font-normal leading-tight tracking-tight text-[color:var(--ink)] sm:text-3xl"
@@ -94,27 +103,38 @@ export default function KontaktPage() {
         </div>
       </section>
 
-      <section id="anfrageformular" className="bg-white py-20 sm:py-24 lg:py-28">
+      <section id="anliegen" className="bg-white py-20 sm:py-24 lg:py-28">
         <div className="mx-auto grid max-w-[88rem] gap-16 px-5 sm:px-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-24">
-          <div className="reveal space-y-12">
+          <div className="reveal space-y-10">
             <div>
-              <p className="cap-line tracking-eyebrow">Vorbereitung</p>
+              <p className="cap-line tracking-eyebrow">Anderes Anliegen?</p>
               <h2 className="font-display mt-8 text-balance text-3xl font-light leading-tight tracking-tight sm:text-4xl">
-                Diese Angaben helfen uns.
+                Direkt zum richtigen Weg.
               </h2>
               <p className="mt-5 text-[1rem] font-light leading-relaxed text-[color:var(--muted)]">
-                Je genauer Gerät und Fehler beschrieben sind, desto besser können wir Termin,
-                Ersatzteilbedarf und Wirtschaftlichkeit einschätzen.
+                Für Reparatur, Ersatzteile oder Firmenkunden gibt es eigene, schnellere Formulare:
               </p>
-              <div className="mt-8 border-t border-[color:var(--border)]">
-                {requestChecklist.map((item, index) => (
-                  <div
-                    key={item}
-                    className="flex items-center justify-between border-b border-[color:var(--border)] py-4"
+              <div className="mt-6 grid gap-2.5">
+                {otherRequests.map((item) => (
+                  <Link
+                    key={item.title}
+                    href={item.href}
+                    className="group flex items-center gap-4 rounded-xl border border-[color:var(--border)] bg-white p-4 transition hover:border-[color:var(--ink)]"
                   >
-                    <span className="numeral text-[color:var(--accent)]">0{index + 1}</span>
-                    <p className="text-sm font-light text-[color:var(--ink)]">{item}</p>
-                  </div>
+                    <span className="flex-1">
+                      <span className="block text-sm font-semibold text-[color:var(--ink)]">
+                        {item.title}
+                      </span>
+                      <span className="block text-xs font-normal leading-relaxed text-[color:var(--muted)]">
+                        {item.text}
+                      </span>
+                    </span>
+                    <span className="flex-none text-[color:var(--muted-soft)] transition-transform group-hover:translate-x-0.5 group-hover:text-[color:var(--ink)]">
+                      <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                        <path d="M1 8h13M9 3l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </span>
+                  </Link>
                 ))}
               </div>
             </div>
@@ -130,14 +150,16 @@ export default function KontaktPage() {
             </div>
           </div>
 
-          <ContactForm
-            eyebrow="Anfrageformular"
-            title="Reparaturdaten vorbereiten"
-            includeCustomerType={false}
-            includeModel
-            phoneHref={phoneHref}
-            className="reveal"
-          />
+          <div className="reveal rounded-sm border border-[color:var(--border)] bg-white p-6 sm:p-10">
+            <ContactForm
+              eyebrow="Anliegen"
+              title="Anliegen senden"
+              defaultRequestType="anliegen"
+              lockRequestType
+              includeCustomerType
+              phoneHref={phoneHref}
+            />
+          </div>
         </div>
       </section>
 

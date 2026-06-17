@@ -38,7 +38,7 @@ const kontaktLinks = [
   {
     title: "Firmenkunden",
     text: "Service für Betriebe, Hausverwaltungen und Vermieter.",
-    href: "#geschaeftskunden",
+    href: "/firmenkunden",
     icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <path d="M4 21V5l8-2v18M12 21V9l8 2v10M4 21h16M8 8h0M8 12h0M8 16h0M16 14h0M16 17h0" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
@@ -1247,7 +1247,7 @@ export default function Home() {
                 Terminlogistik, Dokumentation, Kostenklarheit und kurze Ausfallzeiten —
                 genau dafür ist der Firmenkundenbereich ausgelegt.
               </p>
-              <Link href="/kontakt" className="mt-8 inline-flex">
+              <Link href="/firmenkunden" className="mt-8 inline-flex">
                 <span className="btn-primary">Anfrage für Ihr Objekt</span>
               </Link>
             </div>
@@ -1296,7 +1296,7 @@ export default function Home() {
                       </svg>
                       {emergencyPhoneDisplay}
                     </a>
-                    <Link href="/#kontakt" className="btn-on-dark inline-flex items-center gap-2">
+                    <Link href="/firmenkunden" className="btn-on-dark inline-flex items-center gap-2">
                       <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                         <rect x="3" y="5" width="18" height="14" rx="1.6" stroke="currentColor" strokeWidth="1.6" />
                         <path d="M4 6.5l8 6 8-6" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
