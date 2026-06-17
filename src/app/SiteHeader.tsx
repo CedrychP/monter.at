@@ -52,7 +52,7 @@ const householdSanitaerLinks: NavLink[] = [
   { label: "Waschmaschine", href: "/leistungen/waschmaschine-reparatur-wien" },
   { label: "Geschirrspüler", href: "/leistungen/geschirrspueler-reparatur-wien" },
   { label: "Trockner", href: "/leistungen/trockner-reparatur-wien" },
-  { label: "Waschtrockner", href: "/kontakt" }
+  { label: "Waschtrockner", href: "/leistungen/waschtrockner-reparatur-wien" }
 ];
 
 const householdKuecheLinks: NavLink[] = [
@@ -60,7 +60,7 @@ const householdKuecheLinks: NavLink[] = [
   { label: "Gefrierschrank", href: "/leistungen/tiefkuehl-reparatur-wien" },
   { label: "Herd & Ceranfeld", href: "/leistungen/backofen-herd-reparatur-wien" },
   { label: "Backofen", href: "/leistungen/backofen-herd-reparatur-wien" },
-  { label: "Dunstabzug", href: "/kontakt" }
+  { label: "Dunstabzug", href: "/leistungen/dunstabzug-reparatur-wien" }
 ];
 
 const repairDevices: NavLink[] = [
@@ -87,15 +87,15 @@ const weitereMarkenAlphabetLinks: NavLink[] = [
 const additionalServiceLinks: NavLink[] = [
   { label: "Preise & Pauschalen", href: "/preise" },
   { label: "Einsatzgebiete", href: "/#anfahrt" },
-  { label: "Ersatzteil gesucht?", href: "/kontakt" },
+  { label: "Ersatzteil gesucht?", href: "/ersatzteile" },
   { label: "Firmenkunden", href: "/#geschaeftskunden" }
 ];
 
 const serviceNavLinks: NavLink[] = [
-  { label: "Reparatur buchen", href: "/kontakt" },
-  { label: "Ersatzteil gesucht?", href: "/kontakt" },
-  { label: "Wartungsservice", href: "/kontakt" },
-  { label: "Lieferung & Montage", href: "/kontakt" }
+  { label: "Reparatur buchen", href: "/#kontakt" },
+  { label: "Ersatzteil gesucht?", href: "/ersatzteile" },
+  { label: "Wartungsservice", href: "/wartungsservice" },
+  { label: "Lieferung & Montage", href: "/lieferung-montage" }
 ];
 
 const serviceInfoLinks: NavLink[] = [
@@ -106,9 +106,9 @@ const serviceInfoLinks: NavLink[] = [
 
 const geraetekaufExtraLinks: NavLink[] = [
   { label: "Lieferpreise", href: "/preise" },
-  { label: "Montage & Installation", href: "/kontakt" },
-  { label: "Garantieverlängerung", href: "/kontakt" },
-  { label: "Altgeräteentsorgung", href: "/kontakt" }
+  { label: "Montage & Installation", href: "/lieferung-montage" },
+  { label: "Garantieverlängerung", href: "/garantieverlaengerung" },
+  { label: "Altgeräteentsorgung", href: "/altgeraeteentsorgung" }
 ];
 
 const customerVoiceLinks: NavLink[] = [
@@ -128,8 +128,8 @@ const customerVoiceLinks: NavLink[] = [
 const customerNewsLinks: NavLink[] = [
   { label: "Blog & News", href: "/blog" },
   { label: "FAQ", href: "/#faq" },
-  { label: "Kurse", href: "/kontakt" },
-  { label: "Veranstaltungen", href: "/kontakt" }
+  { label: "Kurse", href: "/kurse" },
+  { label: "Veranstaltungen", href: "/veranstaltungen" }
 ];
 
 const garageDoorAndServiceLinks: NavLink[] = [
@@ -148,10 +148,10 @@ const garageDriveLinks: NavLink[] = [
 ];
 
 const geraetepflegeLinks: NavLink[] = [
-  { label: "Gerätepflege & Reinigung", href: "/kontakt" },
-  { label: "Geräte-Retter-Prämie", href: "/#kontakt" },
-  { label: "Wartungsempfehlung", href: "/kontakt" },
-  { label: "Pflegeprodukte & Zubehör", href: "/kontakt" }
+  { label: "Gerätepflege & Reinigung", href: "/wartungsservice" },
+  { label: "Geräte-Retter-Prämie", href: "/geraete-retter-praemie" },
+  { label: "Wartungsempfehlung", href: "/wartungsservice" },
+  { label: "Pflegeprodukte & Zubehör", href: "/ersatzteile" }
 ];
 
 // Hauptnavigation — Dropdowns über menuId an megaMenus gekoppelt
@@ -168,8 +168,8 @@ const customerNavLink: NavLink = {
 };
 
 const secondaryNavGroup: NavLink[] = [
-  { label: "Service", href: "/kontakt", menuId: "nav-service" },
-  { label: "Gerätekauf", href: "/kontakt", menuId: "geraetekauf" }
+  { label: "Service", href: "/wartungsservice", menuId: "nav-service" },
+  { label: "Gerätekauf", href: "/geraetekauf", menuId: "geraetekauf" }
 ];
 
 const companyLinks: NavLink[] = [
@@ -186,10 +186,10 @@ const contentLinks: NavLink[] = [
 
 const dropdownSpecialLinks: NavLink[] = [
   { label: "Über Monter", href: "/ueber-uns" },
-  { label: "MONTER GOLD", href: "/kontakt", gold: true },
-  { label: "Aktionskatalog", href: "/kontakt" },
-  { label: "Geräte-Retter-Prämie", href: "/#kontakt" },
-  { label: "Kaufberatung", href: "/kontakt" },
+  { label: "MONTER GOLD", href: "/monter-gold", gold: true },
+  { label: "Aktionskatalog", href: "/aktionskatalog" },
+  { label: "Geräte-Retter-Prämie", href: "/geraete-retter-praemie" },
+  { label: "Kaufberatung", href: "/kaufberatung" },
   { label: "Bewertungen", href: "/#bewertungen" }
 ];
 

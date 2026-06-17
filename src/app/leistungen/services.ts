@@ -187,6 +187,64 @@ export const servicePages: ServicePage[] = [
       }
     ],
     checklist: ["Temperatur prüfen", "Alarm notieren", "Dichtung ansehen", "Gerätealter schätzen", "Sofort anrufen"]
+  },
+  {
+    slug: "waschtrockner-reparatur-wien",
+    title: "Waschtrockner Reparatur Wien",
+    metaTitle: "Waschtrockner Reparatur Wien | MONTER Service",
+    description:
+      "Waschtrockner Reparatur in Wien: Hilfe bei feuchter Wäsche, Pumpenproblemen, Heizung und Elektronik. Jetzt Reparaturanfrage vorbereiten.",
+    h1: "Waschtrockner Reparatur in Wien",
+    category: "Waschtrockner",
+    intro:
+      "Ein Waschtrockner vereint zwei Geräte in einem — und damit auch mögliche Fehlerquellen aus beiden Bereichen. Ob beim Waschen oder Trocknen ein Problem auftritt: Eine klare Diagnose hilft, gezielt zu reparieren.",
+    sections: [
+      {
+        title: "Wasch- und Trockenfunktion getrennt prüfen",
+        body:
+          "Pumpt das Gerät nicht ab, schleudert es nicht oder bleibt die Wäsche nach dem Trocknen feucht? Wir grenzen ein, ob Pumpe, Heizung, Sensorik oder Elektronik betroffen ist."
+      },
+      {
+        title: "Kondensation und Luftwege",
+        body:
+          "Beim Trocknen entstehen Feuchtigkeit und Wärme. Verstopfte Luftwege, Kondensatorprobleme oder eine schwache Heizung führen zu schlechtem Trockenergebnis."
+      },
+      {
+        title: "Vorbereitung für den Termin",
+        body:
+          "Marke, Modellnummer, Fehlercode und Fotos vom Typenschild helfen bei der Einschätzung. Bei dringenden Ausfällen ist der telefonische Kontakt am schnellsten."
+      }
+    ],
+    checklist: ["Fehlercode notieren", "Typenschild fotografieren", "Sieb & Filter prüfen", "Programm notieren", "Telefonisch Termin klären"]
+  },
+  {
+    slug: "dunstabzug-reparatur-wien",
+    title: "Dunstabzug Reparatur Wien",
+    metaTitle: "Dunstabzug Reparatur Wien | MONTER Service",
+    description:
+      "Dunstabzug Reparatur in Wien: Hilfe bei schwacher Saugleistung, Beleuchtung, Schaltern und Motor. Jetzt Kontakt aufnehmen.",
+    h1: "Dunstabzug Reparatur in Wien",
+    category: "Dunstabzug",
+    intro:
+      "Wenn die Dunstabzugshaube kaum noch Saugleistung bringt, laut wird oder Beleuchtung und Bedienung ausfallen, lohnt sich eine gezielte Prüfung von Motor, Filter und Elektronik.",
+    sections: [
+      {
+        title: "Saugleistung und Filter",
+        body:
+          "Fett- und Aktivkohlefilter setzen sich mit der Zeit zu. Bleibt die Leistung trotz Filterwechsel schwach, kann der Motor oder die Steuerung betroffen sein."
+      },
+      {
+        title: "Beleuchtung und Bedienung",
+        body:
+          "Defekte Leuchten, Schalter oder Touch-Bedienfelder lassen sich oft gezielt instand setzen, ohne die ganze Haube zu tauschen."
+      },
+      {
+        title: "Ab- und Umluftbetrieb",
+        body:
+          "Je nach Anschluss (Abluft oder Umluft) unterscheiden sich Fehlerbilder und Lösungen. Wir prüfen den Aufbau und empfehlen das sinnvolle Vorgehen."
+      }
+    ],
+    checklist: ["Filter prüfen", "Betriebsart nennen", "Geräusche notieren", "Marke & Modell bereithalten", "Anrufen"]
   }
 ];
 

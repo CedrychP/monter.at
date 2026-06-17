@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
-import ContactForm from "./ContactForm";
+import RepairBookingForm from "./RepairBookingForm";
 import ReviewsCarousel from "./ReviewsCarousel";
 import HeroSlider from "./HeroSlider";
 import ApplianceSlider from "./ApplianceSlider";
@@ -12,6 +12,40 @@ const businessImage =
 
 const emergencyPhoneDisplay = "01 4171346";
 const emergencyPhoneHref = "+4314171346";
+
+const kontaktLinks = [
+  {
+    title: "Ersatzteile bestellen",
+    text: "Originalteil für Ihr Gerät anfragen — wir besorgen und verbauen es.",
+    href: "/ersatzteile",
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3Z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
+        <path d="M4 7.5 12 12l8-4.5M12 12v9" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
+      </svg>
+    )
+  },
+  {
+    title: "Allgemeines Anliegen",
+    text: "Fragen, Anliegen oder Beschwerden — wir melden uns zeitnah zurück.",
+    href: "/kontakt",
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M4 5h16v11H8l-4 3V5Z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
+      </svg>
+    )
+  },
+  {
+    title: "Firmenkunden",
+    text: "Service für Betriebe, Hausverwaltungen und Vermieter.",
+    href: "#geschaeftskunden",
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M4 21V5l8-2v18M12 21V9l8 2v10M4 21h16M8 8h0M8 12h0M8 16h0M16 14h0M16 17h0" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    )
+  }
+];
 
 export const metadata: Metadata = {
   title:
@@ -1380,37 +1414,39 @@ export default function Home() {
                 </span>
               </a>
 
-              <div className="mt-8 grid gap-px overflow-hidden rounded-sm bg-[color:var(--border)] sm:grid-cols-2">
-                {[
-                  "Termin meist binnen 1–2 Tagen",
-                  "Privat & Gewerbe",
-                  "Transparente Anfahrt & Preise",
-                  "Markenoffen in Wien & NÖ"
-                ].map((item) => (
-                  <div key={item} className="flex items-center gap-2.5 bg-white px-4 py-4">
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" className="flex-none text-[color:var(--accent)]" aria-hidden="true">
-                      <path d="M5 12.5l4.5 4.5L19 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                    <p className="text-sm font-normal text-[color:var(--ink)]">{item}</p>
-                  </div>
-                ))}
+              <div className="mt-8">
+                <p className="tracking-eyebrow text-[color:var(--muted)]">Kein Reparaturtermin?</p>
+                <div className="mt-4 grid gap-2.5">
+                  {kontaktLinks.map((link) => (
+                    <Link
+                      key={link.title}
+                      href={link.href}
+                      className="group flex items-center gap-4 rounded-xl border border-[color:var(--border)] bg-white p-4 transition hover:border-[color:var(--ink)]"
+                    >
+                      <span className="grid h-11 w-11 flex-none place-items-center rounded-lg bg-[color:var(--bg-muted)] text-[color:var(--accent)] transition-colors group-hover:bg-[color:var(--accent-soft)]">
+                        {link.icon}
+                      </span>
+                      <span className="flex-1">
+                        <span className="block text-sm font-semibold text-[color:var(--ink)]">
+                          {link.title}
+                        </span>
+                        <span className="block text-xs font-normal leading-relaxed text-[color:var(--muted)]">
+                          {link.text}
+                        </span>
+                      </span>
+                      <span className="flex-none text-[color:var(--muted-soft)] transition-transform group-hover:translate-x-0.5 group-hover:text-[color:var(--ink)]">
+                        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                          <path d="M1 8h13M9 3l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      </span>
+                    </Link>
+                  ))}
+                </div>
               </div>
-
-              <p className="mt-6 text-sm font-normal leading-relaxed text-[color:var(--muted)]">
-                Ersatzteile bestellen?{" "}
-                <Link href="/ersatzteile" className="font-medium text-[color:var(--accent)] underline-offset-4 hover:underline">
-                  Hier geht es zur Ersatzteile-Seite
-                </Link>
-                .
-              </p>
             </div>
 
             <div className="reveal rounded-sm border border-[color:var(--border)] bg-white p-6 sm:p-10">
-              <ContactForm
-                phoneHref={emergencyPhoneHref}
-                eyebrow="Anfrageformular"
-                title="Anfrage senden"
-              />
+              <RepairBookingForm phoneHref={emergencyPhoneHref} />
             </div>
           </div>
         </div>
