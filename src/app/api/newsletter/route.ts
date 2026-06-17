@@ -48,7 +48,7 @@ export async function POST(request: Request) {
   const missingEnvVars = requiredEnvVars.filter((key) => !process.env[key]);
 
   if (missingEnvVars.length > 0 || !newsletterRecipient) {
-    const missing = [...missingEnvVars];
+    const missing: string[] = [...missingEnvVars];
     if (!newsletterRecipient) missing.push("CONTACT_TO_NEWSLETTER (oder CONTACT_TO)");
     console.error(`Missing mail configuration: ${missing.join(", ")}`);
     return NextResponse.json(
