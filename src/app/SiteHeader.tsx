@@ -1104,8 +1104,10 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
         {/* Mobile navigation */}
         <div
           id="mobile-navigation"
-          className={`overflow-hidden border-t border-white/10 bg-[color:var(--ink)] text-white transition-[max-height,opacity] duration-300 lg:hidden ${
-            mobileMenuOpen ? "max-h-[90vh] opacity-100" : "max-h-0 opacity-0"
+          className={`bg-[color:var(--ink)] text-white lg:hidden ${
+            mobileMenuOpen
+              ? "max-h-[90vh] overflow-hidden border-t border-white/10 opacity-100 transition-[max-height,opacity] duration-300"
+              : "hidden"
           }`}
         >
           <div className="relative max-h-[88vh] overflow-y-auto bg-[color:var(--ink)] px-5 pb-6 pt-5 text-white sm:px-8">

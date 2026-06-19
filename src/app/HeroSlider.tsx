@@ -166,7 +166,7 @@ export default function HeroSlider() {
 
   return (
     <section
-      className="relative isolate min-h-[580px] overflow-hidden bg-[color:var(--ink)] text-white sm:min-h-[720px] lg:min-h-[820px]"
+      className="relative isolate min-h-[580px] overflow-hidden bg-[color:var(--ink)] text-white max-lg:-mt-[3.75rem] sm:min-h-[720px] lg:min-h-[820px]"
       aria-roledescription="Karussell"
       aria-label="MONTER Leistungen"
       onFocusCapture={() => setPaused(true)}
@@ -196,7 +196,7 @@ export default function HeroSlider() {
                   sizes="100vw"
                   className="object-cover object-center"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/60" />
                 <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/10 to-transparent" />
               </div>
 
