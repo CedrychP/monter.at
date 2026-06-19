@@ -10,53 +10,35 @@ type ReviewsCarouselProps = {
 
 const visibleCount = 3;
 
-function formatReviewRating(rating: number): string {
-  return Number.isInteger(rating) ? String(rating) : rating.toFixed(1).replace(".", ",");
-}
-
-function StarRating({ rating }: { rating: number }) {
+function StarRating({ rating, size = 12 }: { rating: number; size?: number }) {
   const filled = Math.round(rating);
 
   return (
-    <div className="flex items-center gap-0.5" aria-hidden="true">
+    <span
+      className="flex items-center gap-px text-amber-400"
+      aria-label={`${filled} von 5 Sternen`}
+    >
       {Array.from({ length: 5 }, (_, index) => (
         <svg
           key={index}
-          width="14"
-          height="14"
+          width={size}
+          height={size}
           viewBox="0 0 24 24"
+          aria-hidden="true"
           className={index < filled ? "text-amber-400" : "text-[color:var(--border-strong)]"}
         >
           <path
             fill="currentColor"
-            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+            d="M12 3l2.6 5.7 6.2.6-4.7 4.2 1.4 6.1L12 16.9 6.5 19.6l1.4-6.1L3.2 9.3l6.2-.6L12 3Z"
           />
         </svg>
       ))}
-    </div>
-  );
-}
-
-function ReviewRating({ rating }: { rating: number }) {
-  return (
-    <div
-      className="flex items-center gap-2.5"
-      aria-label={`${formatReviewRating(rating)} von 5 Sternen`}
-    >
-      <div className="flex items-baseline gap-0.5">
-        <span className="font-display text-2xl font-normal leading-none tracking-tight text-[color:var(--accent)]">
-          {formatReviewRating(rating)}
-        </span>
-        <span className="text-xs font-light text-[color:var(--muted)]">/5</span>
-      </div>
-      <StarRating rating={rating} />
-    </div>
+    </span>
   );
 }
 
 function ReviewCard({
   review,
-  source,
   className = ""
 }: {
   review: Review;
@@ -66,41 +48,36 @@ function ReviewCard({
   const rating = review.rating ?? 5;
 
   return (
-    <article className={`flex h-full flex-col justify-between bg-white p-6 sm:p-8 lg:p-10 ${className}`}>
-      <div>
-        <div className="flex items-start justify-between gap-3">
-          <span className="font-display text-3xl font-light leading-none text-[color:var(--accent)]">
-            &ldquo;
-          </span>
-          <ReviewRating rating={rating} />
-        </div>
-        <p className="font-display mt-4 text-[1.05rem] font-normal italic leading-snug tracking-tight text-[color:var(--ink)] sm:text-[1.2rem] lg:text-[1.35rem]">
-          {review.text}
-        </p>
+    <article className={`flex h-full flex-col bg-white p-5 sm:p-6 ${className}`}>
+      <div className="flex items-center justify-between gap-3">
+        <StarRating rating={rating} />
+        <span className="text-xs font-medium tabular-nums tracking-tight text-[color:var(--muted)]">
+          {rating}/5
+        </span>
       </div>
-      <div className="mt-8 border-t border-[color:var(--border)] pt-5 sm:mt-10">
-        <p className="tracking-eyebrow text-[color:var(--muted)]">
-          {source === "google" ? "Google-Bewertung" : "Bewertung"}
-        </p>
-        <div className="mt-2 flex items-center gap-3">
-          {review.photoUrl ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={review.photoUrl}
-              alt=""
-              width={32}
-              height={32}
-              className="h-8 w-8 rounded-full object-cover"
-            />
+
+      <p className="mt-3.5 line-clamp-5 text-sm font-normal leading-relaxed text-[color:var(--ink)] sm:line-clamp-6 sm:text-[0.95rem]">
+        &ldquo;{review.text}&rdquo;
+      </p>
+
+      <div className="mt-auto flex items-center gap-2.5 border-t border-[color:var(--border)] pt-4">
+        {review.photoUrl ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={review.photoUrl}
+            alt=""
+            width={28}
+            height={28}
+            className="h-7 w-7 flex-none rounded-full object-cover"
+          />
+        ) : null}
+        <div className="min-w-0">
+          <p className="truncate text-sm font-medium tracking-tight text-[color:var(--ink)]">
+            {review.name}
+          </p>
+          {review.relativeTime ? (
+            <p className="text-xs font-light text-[color:var(--muted)]">{review.relativeTime}</p>
           ) : null}
-          <div className="min-w-0">
-            <p className="truncate text-sm font-medium tracking-tight text-[color:var(--ink)]">
-              {review.name}
-            </p>
-            {review.relativeTime ? (
-              <p className="text-xs font-light text-[color:var(--muted)]">{review.relativeTime}</p>
-            ) : null}
-          </div>
         </div>
       </div>
     </article>
@@ -130,24 +107,24 @@ export default function ReviewsCarousel({ reviews, source }: ReviewsCarouselProp
     <div>
       {/* Mobile & Tablet: horizontal swipe */}
       <div className="md:hidden -mx-5 px-5 sm:-mx-8 sm:px-8">
-        <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div className="flex snap-x snap-mandatory gap-3 overflow-x-auto scroll-smooth pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {reviews.map((review) => (
             <ReviewCard
               key={`${review.name}-${review.text.slice(0, 24)}-mobile`}
               review={review}
               source={source}
-              className="w-[min(88vw,22rem)] flex-none snap-center border border-[color:var(--border)]"
+              className="w-[min(82vw,20rem)] flex-none snap-center border border-[color:var(--border)]"
             />
           ))}
         </div>
-        <p className="mt-4 text-center text-xs font-light text-[color:var(--muted)]">
+        <p className="mt-3 text-center text-xs font-light text-[color:var(--muted)]">
           Wischen für weitere Bewertungen
         </p>
       </div>
 
       {/* Desktop: 3-up grid with navigation */}
       <div className="hidden md:block">
-        <div className="grid gap-px bg-[color:var(--border)] md:grid-cols-3">
+        <div className="grid gap-px overflow-hidden rounded-sm bg-[color:var(--border)] md:grid-cols-3">
           {visibleReviews.map((review, index) => (
             <ReviewCard
               key={`${review.name}-${review.text.slice(0, 24)}-${index}`}
@@ -157,8 +134,8 @@ export default function ReviewsCarousel({ reviews, source }: ReviewsCarouselProp
           ))}
         </div>
 
-        {reviews.length > 1 ? (
-          <div className="mt-10 flex items-center justify-between border-t border-[color:var(--border)] pt-8">
+        {reviews.length > visibleCount ? (
+          <div className="mt-6 flex items-center justify-between border-t border-[color:var(--border)] pt-5">
             <p className="tracking-eyebrow text-[color:var(--muted)]">
               <span className="font-medium text-[color:var(--ink)]">
                 {String(startIndex + 1).padStart(2, "0")}
@@ -166,10 +143,10 @@ export default function ReviewsCarousel({ reviews, source }: ReviewsCarouselProp
               <span className="px-2 text-[color:var(--border-strong)]">/</span>
               <span>{String(reviews.length).padStart(2, "0")}</span>
             </p>
-            <div className="flex gap-4">
+            <div className="flex gap-3">
               <button
                 type="button"
-                className="group grid h-12 w-12 place-items-center border border-[color:var(--border)] text-[color:var(--ink)] transition hover:border-[color:var(--ink)]"
+                className="group grid h-10 w-10 place-items-center border border-[color:var(--border)] text-[color:var(--ink)] transition hover:border-[color:var(--ink)]"
                 onClick={showPrevious}
                 aria-label="Vorherige Bewertungen anzeigen"
               >
@@ -177,7 +154,7 @@ export default function ReviewsCarousel({ reviews, source }: ReviewsCarouselProp
               </button>
               <button
                 type="button"
-                className="group grid h-12 w-12 place-items-center border border-[color:var(--ink)] bg-[color:var(--ink)] text-white transition hover:border-[color:var(--accent)] hover:bg-[color:var(--accent)]"
+                className="group grid h-10 w-10 place-items-center border border-[color:var(--ink)] bg-[color:var(--ink)] text-white transition hover:border-[color:var(--accent)] hover:bg-[color:var(--accent)]"
                 onClick={showNext}
                 aria-label="Weitere Bewertungen anzeigen"
               >

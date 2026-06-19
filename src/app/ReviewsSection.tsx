@@ -31,65 +31,15 @@ function GoogleMark({ className = "" }: { className?: string }) {
   );
 }
 
-function StarRow() {
+function StarRow({ size = 14 }: { size?: number }) {
   return (
-    <div className="flex items-center gap-0.5" aria-hidden="true">
+    <span className="flex items-center gap-0.5 text-amber-400" aria-hidden="true">
       {Array.from({ length: 5 }, (_, index) => (
-        <svg key={index} width="16" height="16" viewBox="0 0 24 24" className="text-amber-400">
-          <path
-            fill="currentColor"
-            d="M12 3l2.6 5.7 6.2.6-4.7 4.2 1.4 6.1L12 16.9 6.5 19.6l1.4-6.1L3.2 9.3l6.2-.6L12 3Z"
-          />
+        <svg key={index} width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 3l2.6 5.7 6.2.6-4.7 4.2 1.4 6.1L12 16.9 6.5 19.6l1.4-6.1L3.2 9.3l6.2-.6L12 3Z" />
         </svg>
       ))}
-    </div>
-  );
-}
-
-function RatingSummary({
-  ratingDisplay,
-  totalCount,
-  source
-}: {
-  ratingDisplay: string;
-  totalCount: number;
-  source: "google" | "fallback";
-}) {
-  return (
-    <div className="w-full max-w-[20rem] shrink-0 rounded-sm border border-[color:var(--border)] bg-white p-5 shadow-[0_18px_40px_-28px_rgba(10,10,10,0.35)] sm:p-6 lg:ml-auto">
-      <div className="flex items-center justify-between gap-3">
-        <div className="flex items-center gap-2">
-          {source === "google" ? <GoogleMark /> : null}
-          <span className="text-[0.72rem] font-medium uppercase tracking-[0.14em] text-[color:var(--muted)]">
-            {source === "google" ? "Google" : "Kund:innen"}
-          </span>
-        </div>
-        <StarRow />
-      </div>
-
-      <div className="mt-5 flex items-end gap-3">
-        <p className="font-display text-[3.25rem] font-normal leading-none tracking-tight text-[color:var(--accent)] sm:text-[3.75rem]">
-          {ratingDisplay}
-        </p>
-        <div className="pb-1">
-          <p className="text-sm font-medium text-[color:var(--ink)]">von 5</p>
-          <p className="mt-0.5 text-xs font-light leading-relaxed text-[color:var(--muted)]">
-            Durchschnitt
-          </p>
-        </div>
-      </div>
-
-      <p className="mt-5 border-t border-[color:var(--border)] pt-4 text-sm font-light leading-relaxed text-[color:var(--muted)]">
-        {totalCount > 0 ? (
-          <>
-            <span className="font-medium text-[color:var(--ink)]">{totalCount}</span>
-            {" Bewertungen auf Google"}
-          </>
-        ) : (
-          "Weiterempfehlung unserer Kund:innen"
-        )}
-      </p>
-    </div>
+    </span>
   );
 }
 
@@ -98,58 +48,66 @@ export default async function ReviewsSection() {
   const googleUrl = getGoogleReviewsUrl();
 
   return (
-    <section id="bewertungen" className="border-y border-[color:var(--border)] bg-[color:var(--bg-muted)] py-16 sm:py-24 lg:py-32">
+    <section id="bewertungen" className="border-y border-[color:var(--border)] bg-[color:var(--bg-muted)] py-16 sm:py-20 lg:py-28">
       <div className="mx-auto max-w-[88rem] px-5 sm:px-8">
-        <div className="reveal flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between lg:gap-12">
-          <div className="max-w-2xl flex-1">
+        <div className="reveal flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <div className="max-w-2xl">
             <p className="cap-line tracking-eyebrow">Bewertungen</p>
-            <h2 className="font-display mt-6 text-balance text-3xl font-normal leading-[1.05] tracking-tight sm:mt-8 sm:text-4xl md:text-5xl lg:text-6xl">
+            <h2 className="font-display mt-6 text-balance text-3xl font-normal leading-[1.05] tracking-tight sm:text-4xl md:text-5xl">
               Vertrauen entsteht durch klare Arbeit.
             </h2>
-            <p className="mt-5 max-w-xl text-[1.02rem] font-light leading-relaxed text-[color:var(--muted)]">
-              {data.source === "google"
-                ? "Echte Rückmeldungen von Kund:innen — direkt aus unserem Google-Profil."
-                : "Was unsere Kund:innen an Reparatur, Service und Beratung schätzen."}
-            </p>
           </div>
 
-          <RatingSummary
-            ratingDisplay={data.ratingDisplay}
-            totalCount={data.totalCount}
-            source={data.source}
-          />
-        </div>
-
-        <div className="mt-10 sm:mt-16">
-          <ReviewsCarousel reviews={data.reviews} source={data.source} />
-        </div>
-
-        <div className="mt-8 flex flex-col items-start gap-4 border-t border-[color:var(--border)] pt-8 sm:flex-row sm:items-center sm:justify-between">
           <Link
             href={googleUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex max-w-full items-center gap-2.5 text-sm font-medium text-[color:var(--ink)] transition hover:text-[color:var(--accent)]"
+            className="inline-flex w-fit shrink-0 items-center gap-3.5 rounded-sm border border-[color:var(--border)] bg-white px-5 py-3 transition hover:border-[color:var(--ink)]"
           >
-            <GoogleMark />
+            {data.source === "google" ? (
+              <span className="grid h-9 w-9 flex-none place-items-center rounded-full bg-[color:var(--bg-muted)]">
+                <GoogleMark />
+              </span>
+            ) : null}
+            <span className="text-left">
+              <span className="flex items-center gap-2.5">
+                <span className="font-display text-2xl font-normal tracking-tight text-[color:var(--ink)] sm:text-3xl">
+                  {data.ratingDisplay}
+                </span>
+                <StarRow />
+              </span>
+              <span className="mt-0.5 block text-xs font-light text-[color:var(--muted)]">
+                {data.totalCount > 0
+                  ? `${data.totalCount} Bewertungen auf Google`
+                  : "Weiterempfehlung unserer Kund:innen"}
+              </span>
+            </span>
+          </Link>
+        </div>
+
+        <div className="reveal mt-8 sm:mt-10">
+          <ReviewsCarousel reviews={data.reviews} source={data.source} />
+        </div>
+
+        <div className="reveal mt-6 flex flex-wrap items-center gap-x-6 gap-y-3 sm:mt-8">
+          <Link
+            href={googleUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="link-arrow text-sm"
+          >
             {data.totalCount > 0
-              ? `Alle ${data.totalCount} Bewertungen auf Google ansehen`
-              : "Unser Google-Profil ansehen"}
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              <path
-                d="M1 8h13M9 3l5 5-5 5"
-                stroke="currentColor"
-                strokeWidth="1.2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
+              ? `Alle ${data.totalCount} Bewertungen ansehen`
+              : "Google-Profil ansehen"}
+            <svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M1 8h13M9 3l5 5-5 5" stroke="currentColor" strokeWidth="1.2" fill="none" />
             </svg>
           </Link>
           <Link
             href={googleUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="link-arrow text-sm"
+            className="link-arrow text-sm text-[color:var(--muted)]"
           >
             Bewertung schreiben
             <svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true">
