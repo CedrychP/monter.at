@@ -119,7 +119,7 @@ type SiteFooterProps = {
 
 export default function SiteFooter({ logoSrc }: SiteFooterProps) {
   return (
-    <footer className="bg-[color:var(--ink)] text-white">
+    <footer className="bg-[color:var(--ink)] text-white max-lg:pb-[calc(5rem+env(safe-area-inset-bottom,0px))]">
       <div className="mx-auto max-w-[88rem] px-5 py-16 sm:px-8 sm:py-20 lg:py-24">
         <div className="grid gap-12 sm:gap-14 xl:grid-cols-[1.25fr_2fr]">
           <div className="md:flex md:items-start md:justify-between md:gap-12 xl:block">
