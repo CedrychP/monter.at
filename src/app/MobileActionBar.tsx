@@ -7,7 +7,7 @@ import { siteConfig } from "./siteConfig";
 
 export default function MobileActionBar() {
   return (
-    <div className="fixed inset-x-0 bottom-0 z-[55] border-t border-white/10 bg-[color:var(--ink)] lg:hidden">
+    <div className="mobile-safe-bottom fixed inset-x-0 bottom-0 z-[55] border-t border-white/10 bg-[color:var(--ink)] lg:hidden">
       <div className="mx-auto grid max-w-[88rem] grid-cols-2">
         <a
           href={`tel:${siteConfig.phoneHref}`}

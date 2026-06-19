@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import RepairBookingForm from "./RepairBookingForm";
-import ReviewsCarousel from "./ReviewsCarousel";
+import ReviewsSection from "./ReviewsSection";
 import HeroSlider from "./HeroSlider";
 import ApplianceSlider from "./ApplianceSlider";
 import { brandPages, brandOverview } from "./marken/brands";
@@ -388,7 +388,7 @@ export default function Home() {
   };
 
   return (
-    <main className="relative bg-white text-[color:var(--ink)]">
+    <main className="page-shell relative bg-white text-[color:var(--ink)]">
       <script
         type="application/ld+json"
         suppressHydrationWarning
@@ -425,7 +425,7 @@ export default function Home() {
       {/* WARUM MONTER */}
       <section
         id="warum-monter"
-        className="relative isolate overflow-hidden py-16 sm:py-20"
+        className="relative isolate overflow-hidden py-14 sm:py-20"
         style={{
           background:
             "linear-gradient(to bottom, var(--bg) 0%, var(--bg-muted) 12%, var(--bg-muted) 62%, var(--bg) 100%)"
@@ -456,7 +456,7 @@ export default function Home() {
           <div className="reveal grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
             <div>
               <p className="cap-line tracking-eyebrow text-[color:var(--ink)]">Warum MONTER?</p>
-              <h2 className="font-display mt-6 text-balance text-4xl font-normal leading-[1.05] tracking-tight sm:text-5xl">
+              <h2 className="font-display mt-6 text-balance text-3xl font-normal leading-[1.05] tracking-tight sm:text-4xl md:text-5xl">
                 Ehrliche Reparatur statt schneller Tausch.
               </h2>
             </div>
@@ -483,8 +483,8 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="mt-10 flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:justify-between">
-            <div className="flex flex-wrap items-center gap-x-10 gap-y-4">
+          <div className="mt-8 flex flex-col items-start gap-6 sm:mt-10 sm:flex-row sm:items-center sm:justify-between">
+            <div className="grid w-full grid-cols-2 gap-x-6 gap-y-5 sm:flex sm:w-auto sm:flex-wrap sm:items-center sm:gap-x-10 sm:gap-y-4">
               {whyMonterStats.map((stat) => (
                 <div key={stat.label}>
                   {stat.rating ? (
@@ -520,7 +520,7 @@ export default function Home() {
       </section>
 
       {/* LEISTUNGSBEREICHE — Überblick als Kästen */}
-      <section id="bereiche" className="relative isolate overflow-hidden bg-white py-24 sm:py-32">
+      <section id="bereiche" className="relative isolate overflow-hidden bg-white py-16 sm:py-24 lg:py-32">
         {/* eigenständiges rotes Akzent-Design (Glows + Punkte-Muster) */}
         <div aria-hidden="true" className="pointer-events-none absolute inset-0">
           <div
@@ -545,7 +545,7 @@ export default function Home() {
         <div className="relative mx-auto max-w-[88rem] px-5 sm:px-8">
           <div className="reveal max-w-3xl">
             <p className="cap-line tracking-eyebrow">Leistungsbereiche</p>
-            <h2 className="font-display mt-8 text-balance text-4xl font-normal leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
+            <h2 className="font-display mt-8 text-balance text-3xl font-normal leading-[1.05] tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
               Alles für Ihr Gerät — aus einer Hand.
             </h2>
             <p className="mt-8 text-[1.05rem] font-normal leading-relaxed text-[color:var(--muted)]">
@@ -650,11 +650,11 @@ export default function Home() {
       </section>
 
       {/* LEISTUNGEN — Geräte-Slider */}
-      <section id="leistungen" className="bg-white py-24 sm:py-32">
+      <section id="leistungen" className="bg-white py-16 sm:py-24 lg:py-32">
         <div className="mx-auto max-w-[88rem] px-5 sm:px-8">
           <div className="reveal">
             <p className="cap-line tracking-eyebrow">Haushaltsgeräte</p>
-            <h2 className="font-display mt-8 text-balance text-4xl font-normal leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
+            <h2 className="font-display mt-8 text-balance text-3xl font-normal leading-[1.05] tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
               Hochwertige Reparatur für Haushaltsgeräte.
             </h2>
           </div>
@@ -666,20 +666,20 @@ export default function Home() {
       </section>
 
       {/* GARAGENTOR — Leistungen als Kästen (Struktur wie im Header-Menü) */}
-      <section id="garage" className="border-y border-[color:var(--border)] bg-[color:var(--bg-muted)] py-24 sm:py-32">
+      <section id="garage" className="border-y border-[color:var(--border)] bg-[color:var(--bg-muted)] py-16 sm:py-24 lg:py-32">
         <div className="mx-auto max-w-[88rem] px-5 sm:px-8">
           <div className="reveal flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="cap-line tracking-eyebrow">Garagentor-Reparatur</p>
-              <h2 className="font-display mt-8 text-balance text-4xl font-normal leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
+              <h2 className="font-display mt-8 text-balance text-3xl font-normal leading-[1.05] tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
                 Sichere, leise und zuverlässige Tore.
               </h2>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-              <Link href="/garagentor-reparatur-wien" className="btn-primary">
+              <Link href="/garagentor-reparatur-wien" className="btn-primary w-full sm:w-auto">
                 Garagenservice ansehen
               </Link>
-              <Link href="/preise" className="btn-ghost">
+              <Link href="/preise" className="btn-ghost w-full sm:w-auto">
                 Preise ansehen
               </Link>
             </div>
@@ -783,7 +783,7 @@ export default function Home() {
       </section>
 
       {/* PROZESS — kreativer Stepper */}
-      <section className="relative isolate overflow-hidden bg-[color:var(--ink)] py-24 text-white sm:py-32">
+      <section className="relative isolate overflow-hidden bg-[color:var(--ink)] py-16 text-white sm:py-24 lg:py-32">
         <div aria-hidden="true" className="pointer-events-none absolute inset-0">
           <div
             className="absolute left-1/2 top-0 h-[28rem] w-[44rem] max-w-[90vw] -translate-x-1/2 rounded-full blur-[140px]"
@@ -804,7 +804,7 @@ export default function Home() {
         <div className="relative mx-auto max-w-[88rem] px-5 sm:px-8">
           <div className="reveal max-w-3xl">
             <p className="cap-line-light tracking-eyebrow text-white/70">Ablauf</p>
-            <h2 className="font-display mt-8 text-balance text-4xl font-normal leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
+            <h2 className="font-display mt-8 text-balance text-3xl font-normal leading-[1.05] tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
               In <span className="font-display-italic">drei Schritten</span> zur Reparatur.
             </h2>
             <p className="mt-6 max-w-xl text-[1.02rem] font-normal leading-relaxed text-white/65">
@@ -849,7 +849,7 @@ export default function Home() {
       </section>
 
       {/* GERÄTE-RETTER-PRÄMIE */}
-      <section className="relative isolate overflow-hidden bg-white py-24 sm:py-32">
+      <section className="relative isolate overflow-hidden bg-white py-16 sm:py-24 lg:py-32">
         <div aria-hidden="true" className="pointer-events-none absolute inset-0">
           <div
             className="absolute -right-44 top-1/3 h-[34rem] w-[34rem] rounded-full blur-[130px]"
@@ -862,7 +862,7 @@ export default function Home() {
             {/* Copy + Nutzen + CTA */}
             <div>
               <p className="cap-line tracking-eyebrow">Förderung · Geräte-Retter-Prämie</p>
-              <h2 className="font-display mt-8 text-balance text-4xl font-normal leading-[1.05] tracking-tight sm:text-5xl">
+              <h2 className="font-display mt-8 text-balance text-3xl font-normal leading-[1.05] tracking-tight sm:text-4xl md:text-5xl">
                 Reparieren lohnt sich —{" "}
                 <span className="text-[color:var(--accent)]">bis zu 130&nbsp;€ zurück.</span>
               </h2>
@@ -919,7 +919,7 @@ export default function Home() {
               <div className="relative">
                 <p className="cap-line-light tracking-eyebrow text-white/60">Ihre Ersparnis</p>
                 <div className="mt-6 flex items-end gap-4">
-                  <span className="font-display text-7xl font-normal leading-none tracking-tight text-[color:var(--accent-on-dark)] sm:text-8xl">
+                  <span className="font-display text-5xl font-normal leading-none tracking-tight text-[color:var(--accent-on-dark)] sm:text-7xl lg:text-8xl">
                     50%
                   </span>
                   <span className="mb-2 text-base font-normal leading-snug text-white/70">
@@ -1013,7 +1013,7 @@ export default function Home() {
         <div className="relative mx-auto max-w-[88rem] px-5 sm:px-8">
           <div className="reveal max-w-3xl">
             <p className="cap-line tracking-eyebrow">Markenübersicht</p>
-            <h2 className="font-display mt-6 text-balance text-4xl font-normal leading-[1.05] tracking-tight sm:text-5xl">
+            <h2 className="font-display mt-6 text-balance text-3xl font-normal leading-[1.05] tracking-tight sm:text-4xl md:text-5xl">
               Reparatur für viele bekannte Hersteller.
             </h2>
             <p className="mt-5 max-w-2xl text-[1.02rem] font-normal leading-relaxed text-[color:var(--muted)]">
@@ -1075,7 +1075,7 @@ export default function Home() {
           <div className="reveal grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
             <div>
               <p className="cap-line tracking-eyebrow">Einsatzgebiete</p>
-              <h2 className="font-display mt-6 text-balance text-4xl font-normal leading-[1.05] tracking-tight sm:text-5xl">
+              <h2 className="font-display mt-6 text-balance text-3xl font-normal leading-[1.05] tracking-tight sm:text-4xl md:text-5xl">
                 Wir kommen zu Ihnen.
               </h2>
             </div>
@@ -1135,8 +1135,8 @@ export default function Home() {
 
           <div className="mt-6 grid gap-px overflow-hidden rounded-sm border border-[color:var(--border)] bg-[color:var(--border)] lg:grid-cols-[1.7fr_1fr]">
             <div className="bg-white p-6 sm:p-8">
-              <div className="flex items-baseline justify-between border-b border-[color:var(--border)] pb-5">
-                <h3 className="flex items-center gap-2.5 font-display text-2xl font-normal tracking-tight">
+              <div className="flex flex-col gap-2 border-b border-[color:var(--border)] pb-5 sm:flex-row sm:items-baseline sm:justify-between">
+                <h3 className="flex items-center gap-2.5 font-display text-xl font-normal tracking-tight sm:text-2xl">
                   <span className="text-[color:var(--accent)]" aria-hidden="true">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                       <path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
@@ -1145,7 +1145,7 @@ export default function Home() {
                   </span>
                   Wien
                 </h3>
-                <span className="font-display text-2xl font-normal text-[color:var(--accent)]">
+                <span className="font-display text-xl font-normal text-[color:var(--accent)] sm:text-2xl">
                   ab 80 €
                 </span>
               </div>
@@ -1163,8 +1163,8 @@ export default function Home() {
             </div>
 
             <div className="bg-white p-6 sm:p-8">
-              <div className="flex items-baseline justify-between border-b border-[color:var(--border)] pb-5">
-                <h3 className="flex items-center gap-2.5 font-display text-2xl font-normal tracking-tight">
+              <div className="flex flex-col gap-2 border-b border-[color:var(--border)] pb-5 sm:flex-row sm:items-baseline sm:justify-between">
+                <h3 className="flex items-center gap-2.5 font-display text-xl font-normal tracking-tight sm:text-2xl">
                   <span className="text-[color:var(--accent)]" aria-hidden="true">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                       <path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
@@ -1173,7 +1173,7 @@ export default function Home() {
                   </span>
                   Niederösterreich
                 </h3>
-                <span className="font-display text-2xl font-normal text-[color:var(--accent)]">
+                <span className="font-display text-xl font-normal text-[color:var(--accent)] sm:text-2xl">
                   ab 100 €
                 </span>
               </div>
@@ -1207,31 +1207,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* BEWERTUNGEN */}
-      <section id="bewertungen" className="border-y border-[color:var(--border)] bg-[color:var(--bg-muted)] py-24 sm:py-32">
-        <div className="mx-auto max-w-[88rem] px-5 sm:px-8">
-          <div className="reveal flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
-            <div className="max-w-2xl">
-              <p className="cap-line tracking-eyebrow">Bewertungen</p>
-              <h2 className="font-display mt-8 text-balance text-4xl font-normal leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
-                Vertrauen entsteht durch klare Arbeit.
-              </h2>
-            </div>
-            <div className="text-right">
-              <p className="font-display text-5xl font-normal tracking-tight text-[color:var(--accent)] sm:text-6xl">
-                4,9
-              </p>
-              <p className="mt-1 tracking-eyebrow text-[color:var(--muted)]">
-                von 5 · Weiterempfehlung
-              </p>
-            </div>
-          </div>
-
-          <div className="mt-16">
-            <ReviewsCarousel />
-          </div>
-        </div>
-      </section>
+      <ReviewsSection />
 
       {/* FIRMENKUNDEN */}
       <section id="geschaeftskunden" className="bg-white py-16 sm:py-20">
@@ -1239,7 +1215,7 @@ export default function Home() {
           <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-16">
             <div className="reveal">
               <p className="cap-line tracking-eyebrow">Firmenkunden</p>
-              <h2 className="font-display mt-6 text-balance text-4xl font-normal leading-[1.05] tracking-tight sm:text-5xl">
+              <h2 className="font-display mt-6 text-balance text-3xl font-normal leading-[1.05] tracking-tight sm:text-4xl md:text-5xl">
                 Geräteservice für Betriebe, Hausverwaltungen und Vermieter.
               </h2>
               <p className="mt-6 max-w-xl text-[1.02rem] font-normal leading-relaxed text-[color:var(--muted)]">
@@ -1270,8 +1246,8 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="relative mt-12 overflow-hidden rounded-sm">
-            <div className="relative aspect-[21/9] w-full">
+          <div className="relative mt-10 overflow-hidden rounded-sm sm:mt-12">
+            <div className="relative aspect-[4/5] w-full sm:aspect-[16/9] lg:aspect-[21/9]">
               <Image
                 src={businessImage}
                 alt="Geräteservice für Firmenkunden"
@@ -1280,10 +1256,10 @@ export default function Home() {
                 className="object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/45 to-transparent" />
-              <div className="absolute inset-0 flex items-center px-8 sm:px-14">
+              <div className="absolute inset-0 flex items-end px-5 py-8 sm:items-center sm:px-10 sm:py-0 lg:px-14">
                 <div className="max-w-2xl text-white">
                   <p className="cap-line-light tracking-eyebrow text-white/70">Direktkontakt</p>
-                  <p className="font-display mt-5 text-3xl font-normal leading-tight tracking-tight sm:text-[2.75rem]">
+                  <p className="font-display mt-4 text-2xl font-normal leading-tight tracking-tight sm:mt-5 sm:text-3xl lg:text-[2.75rem]">
                     Mehrere Geräte im Objekt? <span className="font-display-italic">Wir koordinieren das.</span>
                   </p>
                   <div className="mt-7 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
@@ -1312,7 +1288,7 @@ export default function Home() {
       </section>
 
       {/* FAQ */}
-      <section id="faq" className="relative isolate overflow-hidden border-y border-[color:var(--border)] bg-[color:var(--bg-muted)] py-20 sm:py-28">
+      <section id="faq" className="relative isolate overflow-hidden border-y border-[color:var(--border)] bg-[color:var(--bg-muted)] py-16 sm:py-20 lg:py-28">
         <div aria-hidden="true" className="pointer-events-none absolute inset-0">
           <div
             className="absolute -left-44 top-0 h-[30rem] w-[30rem] rounded-full blur-[120px]"
@@ -1324,7 +1300,7 @@ export default function Home() {
           <div className="reveal flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <div className="max-w-2xl">
               <p className="cap-line tracking-eyebrow">Häufige Fragen</p>
-              <h2 className="font-display mt-6 text-balance text-4xl font-normal leading-[1.05] tracking-tight sm:text-5xl">
+              <h2 className="font-display mt-6 text-balance text-3xl font-normal leading-[1.05] tracking-tight sm:text-4xl md:text-5xl">
                 Kurz geklärt. <span className="font-display-italic">Schneller entschieden.</span>
               </h2>
             </div>
@@ -1358,7 +1334,7 @@ export default function Home() {
                 {group.map((faq) => (
                   <details key={faq.question} className="accordion-item">
                     <summary>
-                      <span className="font-display pr-5 text-base font-normal tracking-tight text-[color:var(--ink)] sm:text-lg">
+                      <span className="font-display min-w-0 flex-1 pr-4 text-base font-normal tracking-tight text-[color:var(--ink)] sm:pr-5 sm:text-lg">
                         {faq.question}
                       </span>
                       <span className="accordion-icon" aria-hidden="true" />
@@ -1375,7 +1351,7 @@ export default function Home() {
       </section>
 
       {/* KONTAKT */}
-      <section id="kontakt" className="relative isolate overflow-hidden bg-white py-20 sm:py-28">
+      <section id="kontakt" className="relative isolate overflow-hidden bg-white py-16 sm:py-20 lg:py-28">
         <div aria-hidden="true" className="pointer-events-none absolute inset-0">
           <div
             className="absolute -right-40 top-10 h-[28rem] w-[28rem] rounded-full blur-[120px]"
@@ -1384,10 +1360,10 @@ export default function Home() {
         </div>
 
         <div className="relative mx-auto max-w-[88rem] px-5 sm:px-8">
-          <div className="grid gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:gap-20">
+          <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:gap-20">
             <div className="reveal">
               <p className="cap-line tracking-eyebrow text-[color:var(--accent)]">Terminbuchung</p>
-              <h2 className="font-display mt-6 text-balance text-4xl font-normal leading-[1.05] tracking-tight sm:text-5xl lg:text-[3.5rem]">
+              <h2 className="font-display mt-6 text-balance text-3xl font-normal leading-[1.05] tracking-tight sm:text-4xl md:text-5xl lg:text-[3.25rem]">
                 Reparaturtermin <span className="font-display-italic">buchen.</span>
               </h2>
               <p className="mt-7 max-w-md text-[1.05rem] font-normal leading-relaxed text-[color:var(--muted)]">
@@ -1445,7 +1421,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="reveal rounded-sm border border-[color:var(--border)] bg-white p-6 sm:p-10">
+            <div className="reveal rounded-sm border border-[color:var(--border)] bg-white p-4 sm:p-6 lg:p-10">
               <RepairBookingForm phoneHref={emergencyPhoneHref} />
             </div>
           </div>

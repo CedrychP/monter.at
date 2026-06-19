@@ -30,14 +30,14 @@ export default function ApplianceSlider({
 
   const cardWidth = isLandscape
     ? "w-[86%] sm:w-[58%] lg:w-[42%] xl:w-[32%]"
-    : "w-[78%] sm:w-[46%] lg:w-[31%] xl:w-[23.5%]";
+    : "w-[82%] sm:w-[46%] lg:w-[31%] xl:w-[23.5%]";
   const cardAspect = isLandscape ? "aspect-[4/3]" : "aspect-[3/4]";
   const sizes = isLandscape
     ? "(min-width: 1280px) 32vw, (min-width: 1024px) 42vw, (min-width: 640px) 58vw, 86vw"
     : "(min-width: 1280px) 24vw, (min-width: 1024px) 31vw, (min-width: 640px) 46vw, 78vw";
 
   return (
-    <div className="relative">
+    <div className="relative -mx-5 px-5 sm:mx-0 sm:px-0">
       <div
         ref={trackRef}
         className="flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"

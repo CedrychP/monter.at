@@ -166,13 +166,13 @@ export default function HeroSlider() {
 
   return (
     <section
-      className="relative isolate min-h-[720px] overflow-hidden bg-[color:var(--ink)] text-white sm:min-h-[780px] lg:min-h-[860px]"
+      className="relative isolate min-h-[580px] overflow-hidden bg-[color:var(--ink)] text-white sm:min-h-[720px] lg:min-h-[820px]"
       aria-roledescription="Karussell"
       aria-label="MONTER Leistungen"
       onFocusCapture={() => setPaused(true)}
       onBlurCapture={() => setPaused(false)}
     >
-      <div className="relative min-h-[720px] sm:min-h-[780px] lg:min-h-[860px]">
+      <div className="relative min-h-[580px] sm:min-h-[720px] lg:min-h-[820px]">
         {slides.map((slide, slideIndex) => {
           const isActive = slideIndex === index;
           const Heading = slideIndex === 0 ? "h1" : "h2";
@@ -200,7 +200,7 @@ export default function HeroSlider() {
                 <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/10 to-transparent" />
               </div>
 
-              <div className="mx-auto flex h-full min-h-[720px] w-full max-w-[88rem] items-end px-5 pb-32 pt-32 sm:min-h-[780px] sm:px-8 sm:pb-36 lg:min-h-[860px] lg:pb-40">
+              <div className="mx-auto flex h-full min-h-[580px] w-full max-w-[88rem] items-end px-4 pb-28 pt-24 sm:min-h-[720px] sm:px-8 sm:pb-36 sm:pt-32 lg:min-h-[820px] lg:pb-40">
                 <div className={`max-w-2xl ${isActive ? "reveal" : ""}`} key={`${slide.id}-${isActive}`}>
                   <p
                     className={`tracking-eyebrow ${
@@ -213,13 +213,13 @@ export default function HeroSlider() {
                   </p>
 
                   <Heading
-                    className="mt-7 text-balance text-[2.7rem] font-medium leading-[1.04] tracking-[-0.03em] sm:text-[4.1rem] lg:text-[5.1rem]"
+                    className="mt-5 text-balance text-[clamp(1.85rem,7.5vw,2.65rem)] font-medium leading-[1.06] tracking-[-0.03em] sm:mt-7 sm:text-[clamp(2.35rem,5.5vw,3.75rem)] lg:text-[clamp(3rem,4.5vw,5.1rem)]"
                     style={{ fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif' }}
                   >
                     {slide.title}
                   </Heading>
 
-                  <p className="mt-6 max-w-xl text-pretty text-[1.02rem] font-normal leading-relaxed text-white/85 sm:text-[1.15rem]">
+                  <p className="mt-4 max-w-xl text-pretty text-[0.98rem] font-normal leading-relaxed text-white/85 sm:mt-6 sm:text-[1.08rem] lg:text-[1.15rem]">
                     {slide.text}
                   </p>
 
@@ -231,7 +231,7 @@ export default function HeroSlider() {
                       </p>
                     </div>
                   ) : slide.actions ? (
-                    <div className="mt-10 flex flex-col items-start gap-x-8 gap-y-5 sm:flex-row sm:items-center">
+                    <div className="mt-8 flex w-full max-w-md flex-col items-stretch gap-4 sm:mt-10 sm:max-w-none sm:flex-row sm:items-center sm:gap-x-8 sm:gap-y-5">
                       {slide.actions.map((action, actionIndex) => {
                         const isPrimary = action.variant === "primary";
                         const className = isPrimary
@@ -282,8 +282,8 @@ export default function HeroSlider() {
 
       {/* Slider controls */}
       <div className="pointer-events-none absolute inset-x-0 bottom-0 z-30">
-        <div className="mx-auto flex max-w-[88rem] items-center justify-between gap-6 px-5 pb-8 sm:px-8 sm:pb-10">
-          <div className="pointer-events-auto flex items-center gap-5">
+        <div className="mx-auto flex max-w-[88rem] items-center justify-between gap-4 px-4 pb-6 sm:px-8 sm:pb-10">
+          <div className="pointer-events-auto flex min-w-0 flex-1 items-center gap-3 sm:gap-5">
             <span className="text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-white/90 tabular-nums">
               {String(index + 1).padStart(2, "0")}
               <span className="text-white/40"> / {String(count).padStart(2, "0")}</span>
@@ -311,7 +311,7 @@ export default function HeroSlider() {
             </div>
           </div>
 
-          <div className="pointer-events-auto flex items-center gap-3">
+          <div className="pointer-events-auto hidden shrink-0 items-center gap-3 sm:flex">
             <button
               type="button"
               onClick={() => goTo(index - 1)}

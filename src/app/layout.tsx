@@ -124,7 +124,7 @@ export default function RootLayout({
         {children}
         <SiteFooter logoSrc={logoSrc} />
         {/* Abstandshalter, damit die fixe Mobile-CTA-Leiste nichts verdeckt */}
-        <div aria-hidden="true" className="h-[3.25rem] lg:hidden" />
+        <div aria-hidden="true" className="h-[calc(3.25rem+env(safe-area-inset-bottom,0px))] lg:hidden" />
         <MobileActionBar />
         <CookieBanner />
       </body>

@@ -146,7 +146,7 @@ export default function RepairBookingForm({ phoneHref, className = "" }: RepairB
     <form className={className} onSubmit={handleSubmit} noValidate>
       <div>
         <p className="cap-line tracking-eyebrow">Reparatur buchen</p>
-        <h3 className="font-display mt-6 text-3xl font-normal leading-tight tracking-tight sm:text-[2.1rem]">
+        <h3 className="font-display mt-5 text-2xl font-normal leading-tight tracking-tight sm:mt-6 sm:text-3xl lg:text-[2.1rem]">
           In 3 Schritten zum Termin.
         </h3>
         <p className="mt-3 text-sm font-light leading-relaxed text-[color:var(--muted)]">
@@ -155,12 +155,12 @@ export default function RepairBookingForm({ phoneHref, className = "" }: RepairB
         </p>
       </div>
 
-      <ol className="mt-8 flex items-center">
+      <ol className="mt-6 flex items-center sm:mt-8">
         {steps.map((label, index) => {
           const state = index < step ? "done" : index === step ? "active" : "idle";
           return (
-            <li key={label} className={`flex items-center ${index < steps.length - 1 ? "flex-1" : ""}`}>
-              <div className="flex items-center gap-2.5">
+            <li key={label} className={`flex min-w-0 items-center ${index < steps.length - 1 ? "flex-1" : ""}`}>
+              <div className="flex min-w-0 items-center gap-2 sm:gap-2.5">
                 <span
                   className={`grid h-8 w-8 flex-none place-items-center rounded-full text-sm font-semibold transition-colors ${
                     state === "done"
@@ -173,7 +173,7 @@ export default function RepairBookingForm({ phoneHref, className = "" }: RepairB
                   {state === "done" ? <CheckIcon /> : index + 1}
                 </span>
                 <span
-                  className={`hidden text-sm font-medium sm:block ${
+                  className={`truncate text-xs font-medium sm:text-sm ${
                     state === "idle" ? "text-[color:var(--muted-soft)]" : "text-[color:var(--ink)]"
                   }`}
                 >
@@ -182,7 +182,7 @@ export default function RepairBookingForm({ phoneHref, className = "" }: RepairB
               </div>
               {index < steps.length - 1 ? (
                 <span
-                  className={`mx-3 h-px flex-1 transition-colors ${
+                  className={`mx-2 h-px flex-1 transition-colors sm:mx-3 ${
                     index < step ? "bg-[color:var(--accent)]" : "bg-[color:var(--border)]"
                   }`}
                 />

@@ -25,7 +25,7 @@ export const siteConfig = {
     linkedin: "https://www.linkedin.com/"
   },
   googleReviewsUrl:
-    "https://www.google.com/maps/search/?api=1&query=Tech+Craft+Consulting+GmbH+Rappgasse+1%2F6+1210+Wien",
+    "https://www.google.com/maps/place/?q=place_id:ChIJ9S11rAulWKgRdQLAhpk4EPc",
   googleReviewWriteUrl:
-    "https://www.google.com/maps/search/?api=1&query=Tech+Craft+Consulting+GmbH+Rappgasse+1%2F6+1210+Wien"
+    "https://search.google.com/local/writereview?placeid=ChIJ9S11rAulWKgRdQLAhpk4EPc"
 };
