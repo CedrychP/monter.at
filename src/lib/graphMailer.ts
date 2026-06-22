@@ -83,7 +83,7 @@ export async function sendMail({ to, subject, text, replyTo }: MailInput): Promi
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ message, saveToSentItems: false })
+      body: JSON.stringify({ message, saveToSentItems: true })
     }
   );
 
