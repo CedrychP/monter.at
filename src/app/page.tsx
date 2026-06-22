@@ -408,6 +408,106 @@ export default function Home() {
       {/* HERO */}
       <HeroSlider />
 
+      {/* KONTAKT — direkt unter dem Hero */}
+      <section id="kontakt" className="relative isolate overflow-hidden bg-white py-16 sm:py-20 lg:py-28">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+          <div
+            className="absolute -right-40 top-10 h-[28rem] w-[28rem] rounded-full blur-[120px]"
+            style={{ backgroundColor: "rgba(168, 17, 42, 0.06)" }}
+          />
+        </div>
+
+        <div className="relative mx-auto max-w-[88rem] px-5 sm:px-8">
+          <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:gap-20">
+            <div className="reveal">
+              <p className="cap-line tracking-eyebrow text-[color:var(--accent)]">Terminbuchung</p>
+              <h2 className="font-display mt-6 text-balance text-3xl font-normal leading-[1.05] tracking-tight sm:text-4xl md:text-5xl lg:text-[3.25rem]">
+                Reparaturtermin <span className="font-display-italic">buchen.</span>
+              </h2>
+              <p className="mt-7 max-w-md text-[1.05rem] font-normal leading-relaxed text-[color:var(--muted)]">
+                Gerät, Fehlerbild und Wunschtermin angeben — wir melden uns zur Abstimmung. Bei
+                dringenden Ausfällen ist der direkte Anruf der schnellste Weg.
+              </p>
+
+              <div className="mt-10 grid gap-3 sm:grid-cols-2">
+                <a
+                  href={`tel:${emergencyPhoneHref}`}
+                  className="group flex items-center gap-4 rounded-sm border border-[color:var(--border)] bg-white p-5 transition hover:border-[color:var(--ink)]"
+                >
+                  <span className="grid h-12 w-12 flex-none place-items-center rounded-full bg-[color:var(--accent-soft)] text-[color:var(--accent)]">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path d="M5 4h3l1.6 4-2 1.3a11 11 0 0 0 5 5l1.3-2 4 1.6v3a2 2 0 0 1-2.1 2A15 15 0 0 1 3 6.1 2 2 0 0 1 5 4Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+                    </svg>
+                  </span>
+                  <span className="min-w-0">
+                    <span className="block text-xs font-normal tracking-eyebrow text-[color:var(--muted)]">
+                      Direkt anrufen
+                    </span>
+                    <span className="font-display block text-2xl font-normal tracking-tight text-[color:var(--ink)] sm:text-3xl">
+                      {emergencyPhoneDisplay}
+                    </span>
+                  </span>
+                </a>
+
+                <a
+                  href="mailto:info@monter.at"
+                  className="group flex items-center gap-4 rounded-sm border border-[color:var(--border)] bg-white p-5 transition hover:border-[color:var(--ink)]"
+                >
+                  <span className="grid h-12 w-12 flex-none place-items-center rounded-full bg-[color:var(--accent-soft)] text-[color:var(--accent)]">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" strokeWidth="1.5" />
+                      <path d="M4 7l8 6 8-6" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+                    </svg>
+                  </span>
+                  <span className="min-w-0">
+                    <span className="block text-xs font-normal tracking-eyebrow text-[color:var(--muted)]">
+                      Per E-Mail
+                    </span>
+                    <span className="font-display block truncate text-lg font-normal tracking-tight text-[color:var(--ink)] sm:text-xl">
+                      info@monter.at
+                    </span>
+                  </span>
+                </a>
+              </div>
+
+              <div className="mt-8">
+                <p className="tracking-eyebrow text-[color:var(--muted)]">Kein Reparaturtermin?</p>
+                <div className="mt-4 grid gap-2.5">
+                  {kontaktLinks.map((link) => (
+                    <Link
+                      key={link.title}
+                      href={link.href}
+                      className="group flex items-center gap-4 rounded-xl border border-[color:var(--border)] bg-white p-4 transition hover:border-[color:var(--ink)]"
+                    >
+                      <span className="grid h-11 w-11 flex-none place-items-center rounded-lg bg-[color:var(--bg-muted)] text-[color:var(--accent)] transition-colors group-hover:bg-[color:var(--accent-soft)]">
+                        {link.icon}
+                      </span>
+                      <span className="flex-1">
+                        <span className="block text-sm font-semibold text-[color:var(--ink)]">
+                          {link.title}
+                        </span>
+                        <span className="block text-xs font-normal leading-relaxed text-[color:var(--muted)]">
+                          {link.text}
+                        </span>
+                      </span>
+                      <span className="flex-none text-[color:var(--muted-soft)] transition-transform group-hover:translate-x-0.5 group-hover:text-[color:var(--ink)]">
+                        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                          <path d="M1 8h13M9 3l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="reveal rounded-sm border border-[color:var(--border)] bg-white p-4 sm:p-6 lg:p-10">
+              <RepairBookingForm phoneHref={emergencyPhoneHref} />
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* MARKENLEISTE */}
       <section className="border-b border-[color:var(--border)] bg-white">
         <div className="mx-auto flex max-w-[88rem] flex-col gap-4 px-5 py-6 sm:flex-row sm:items-center sm:justify-between sm:gap-10 sm:px-8 sm:py-7">
@@ -1350,80 +1450,43 @@ export default function Home() {
         </div>
       </section>
 
-      {/* KONTAKT */}
-      <section id="kontakt" className="relative isolate overflow-hidden bg-white py-16 sm:py-20 lg:py-28">
+      {/* CTA — verweist nach oben aufs Kontaktformular */}
+      <section className="relative isolate overflow-hidden bg-[color:var(--ink)] py-20 text-white sm:py-24 lg:py-32">
         <div aria-hidden="true" className="pointer-events-none absolute inset-0">
           <div
-            className="absolute -right-40 top-10 h-[28rem] w-[28rem] rounded-full blur-[120px]"
-            style={{ backgroundColor: "rgba(168, 17, 42, 0.06)" }}
+            className="absolute -right-32 -top-24 h-[30rem] w-[30rem] rounded-full blur-[130px]"
+            style={{ backgroundColor: "rgba(168, 17, 42, 0.28)" }}
+          />
+          <div
+            className="absolute -bottom-40 -left-24 h-[26rem] w-[26rem] rounded-full blur-[130px]"
+            style={{ backgroundColor: "rgba(168, 17, 42, 0.16)" }}
           />
         </div>
 
-        <div className="relative mx-auto max-w-[88rem] px-5 sm:px-8">
-          <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:gap-20">
-            <div className="reveal">
-              <p className="cap-line tracking-eyebrow text-[color:var(--accent)]">Terminbuchung</p>
-              <h2 className="font-display mt-6 text-balance text-3xl font-normal leading-[1.05] tracking-tight sm:text-4xl md:text-5xl lg:text-[3.25rem]">
-                Reparaturtermin <span className="font-display-italic">buchen.</span>
-              </h2>
-              <p className="mt-7 max-w-md text-[1.05rem] font-normal leading-relaxed text-[color:var(--muted)]">
-                Gerät, Fehlerbild und Wunschtermin angeben — wir melden uns zur Abstimmung. Bei
-                dringenden Ausfällen ist der direkte Anruf der schnellste Weg.
-              </p>
+        <div className="relative mx-auto flex max-w-[88rem] flex-col items-start gap-10 px-5 sm:px-8 lg:flex-row lg:items-end lg:justify-between">
+          <div className="reveal max-w-2xl">
+            <p className="cap-line-light tracking-eyebrow text-[color:var(--accent-on-dark)]">
+              Bereit für Ihre Reparatur?
+            </p>
+            <h2 className="font-display mt-6 text-balance text-3xl font-normal leading-[1.05] tracking-tight sm:text-4xl md:text-5xl lg:text-[3.25rem]">
+              In wenigen Schritten zum <span className="font-display-italic">Reparaturtermin.</span>
+            </h2>
+            <p className="mt-6 max-w-xl text-[1.05rem] font-normal leading-relaxed text-white/75">
+              Gerät und Fehlerbild angeben — wir melden uns zur Abstimmung. Schnell, transparent und
+              ohne Verpflichtung.
+            </p>
+          </div>
 
-              <a
-                href={`tel:${emergencyPhoneHref}`}
-                className="group mt-10 flex items-center gap-4 rounded-sm border border-[color:var(--border)] bg-white p-5 transition hover:border-[color:var(--ink)]"
-              >
-                <span className="grid h-12 w-12 flex-none place-items-center rounded-full bg-[color:var(--accent-soft)] text-[color:var(--accent)]">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M5 4h3l1.6 4-2 1.3a11 11 0 0 0 5 5l1.3-2 4 1.6v3a2 2 0 0 1-2.1 2A15 15 0 0 1 3 6.1 2 2 0 0 1 5 4Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
-                  </svg>
-                </span>
-                <span>
-                  <span className="block text-xs font-normal tracking-eyebrow text-[color:var(--muted)]">
-                    Direkt anrufen
-                  </span>
-                  <span className="font-display block text-2xl font-normal tracking-tight text-[color:var(--ink)] sm:text-3xl">
-                    {emergencyPhoneDisplay}
-                  </span>
-                </span>
-              </a>
-
-              <div className="mt-8">
-                <p className="tracking-eyebrow text-[color:var(--muted)]">Kein Reparaturtermin?</p>
-                <div className="mt-4 grid gap-2.5">
-                  {kontaktLinks.map((link) => (
-                    <Link
-                      key={link.title}
-                      href={link.href}
-                      className="group flex items-center gap-4 rounded-xl border border-[color:var(--border)] bg-white p-4 transition hover:border-[color:var(--ink)]"
-                    >
-                      <span className="grid h-11 w-11 flex-none place-items-center rounded-lg bg-[color:var(--bg-muted)] text-[color:var(--accent)] transition-colors group-hover:bg-[color:var(--accent-soft)]">
-                        {link.icon}
-                      </span>
-                      <span className="flex-1">
-                        <span className="block text-sm font-semibold text-[color:var(--ink)]">
-                          {link.title}
-                        </span>
-                        <span className="block text-xs font-normal leading-relaxed text-[color:var(--muted)]">
-                          {link.text}
-                        </span>
-                      </span>
-                      <span className="flex-none text-[color:var(--muted-soft)] transition-transform group-hover:translate-x-0.5 group-hover:text-[color:var(--ink)]">
-                        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                          <path d="M1 8h13M9 3l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                      </span>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            <div className="reveal rounded-sm border border-[color:var(--border)] bg-white p-4 sm:p-6 lg:p-10">
-              <RepairBookingForm phoneHref={emergencyPhoneHref} />
-            </div>
+          <div className="reveal flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:items-center">
+            <Link href="/#kontakt" className="btn-on-dark w-full justify-center sm:w-auto">
+              Termin buchen
+            </Link>
+            <a
+              href={`tel:${emergencyPhoneHref}`}
+              className="btn-on-dark-ghost w-full justify-center sm:w-auto"
+            >
+              {emergencyPhoneDisplay}
+            </a>
           </div>
         </div>
       </section>
