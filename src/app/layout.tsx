@@ -9,7 +9,7 @@ import { siteConfig } from "./siteConfig";
 import "./globals.css";
 
 const GOOGLE_ADS_ID = "AW-18096010711";
-const GTM_ID = "GTM-K7MCWCVF";
+const GTM_ID = "GTM-WPK8KT88";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.siteUrl),
