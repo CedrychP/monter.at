@@ -145,6 +145,16 @@ export default function HeroSlider() {
     [count]
   );
 
+  const goPrev = useCallback(
+    () => setIndex((current) => (current - 1 + count) % count),
+    [count]
+  );
+
+  const goNext = useCallback(
+    () => setIndex((current) => (current + 1) % count),
+    [count]
+  );
+
   useEffect(() => {
     if (typeof window === "undefined") return;
     const media = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -311,12 +321,12 @@ export default function HeroSlider() {
             </div>
           </div>
 
-          <div className="pointer-events-auto hidden shrink-0 items-center gap-3 sm:flex">
+          <div className="pointer-events-auto flex shrink-0 items-center gap-2 sm:gap-3">
             <button
               type="button"
-              onClick={() => goTo(index - 1)}
+              onClick={goPrev}
               aria-label="Vorherige Folie"
-              className="grid h-12 w-12 cursor-pointer place-items-center rounded-full border border-white/25 bg-white/[0.06] text-white backdrop-blur-md transition-all duration-300 hover:scale-[1.06] hover:border-white hover:bg-white hover:text-[color:var(--ink)] active:scale-95"
+              className="grid h-10 w-10 cursor-pointer place-items-center rounded-full border border-white/25 bg-white/[0.06] text-white backdrop-blur-md transition-all duration-300 hover:scale-[1.06] hover:border-white hover:bg-white hover:text-[color:var(--ink)] active:scale-95 sm:h-12 sm:w-12"
             >
               <svg width="17" height="17" viewBox="0 0 16 16" aria-hidden="true">
                 <path d="M10 3L5 8l5 5" stroke="currentColor" strokeWidth="1.6" fill="none" strokeLinecap="round" strokeLinejoin="round" />
@@ -324,9 +334,9 @@ export default function HeroSlider() {
             </button>
             <button
               type="button"
-              onClick={() => goTo(index + 1)}
+              onClick={goNext}
               aria-label="Nächste Folie"
-              className="grid h-12 w-12 cursor-pointer place-items-center rounded-full border border-white/25 bg-white/[0.06] text-white backdrop-blur-md transition-all duration-300 hover:scale-[1.06] hover:border-white hover:bg-white hover:text-[color:var(--ink)] active:scale-95"
+              className="grid h-10 w-10 cursor-pointer place-items-center rounded-full border border-white/25 bg-white/[0.06] text-white backdrop-blur-md transition-all duration-300 hover:scale-[1.06] hover:border-white hover:bg-white hover:text-[color:var(--ink)] active:scale-95 sm:h-12 sm:w-12"
             >
               <svg width="17" height="17" viewBox="0 0 16 16" aria-hidden="true">
                 <path d="M6 3l5 5-5 5" stroke="currentColor" strokeWidth="1.6" fill="none" strokeLinecap="round" strokeLinejoin="round" />
