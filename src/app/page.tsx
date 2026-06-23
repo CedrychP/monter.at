@@ -172,6 +172,12 @@ const applianceCategories = [
     image:
       "https://images.unsplash.com/photo-1677727852911-74e9d5269003?auto=format&fit=crop&w=1200&q=85",
     href: "/leistungen/backofen-herd-reparatur-wien"
+  },
+  {
+    title: "Dunstabzug",
+    image:
+      "https://images.unsplash.com/photo-1556909212-d5b604d0c90d?auto=format&fit=crop&w=1200&q=85",
+    href: "/leistungen/dunstabzug-reparatur-wien"
   }
 ];
 
