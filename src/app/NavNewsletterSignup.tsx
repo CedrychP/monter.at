@@ -3,10 +3,14 @@
 import Link from "next/link";
 import { FormEvent, useState } from "react";
 
+import { trackConversion } from "./analytics";
+
 type NavNewsletterSignupProps = {
   variant?: "dark" | "light";
   className?: string;
   compact?: boolean;
+  /** Quelle für das conversion_newsletter-Event (z. B. "header", "footer", "hero"). */
+  source?: string;
 };
 
 type SubmitState = {
@@ -17,7 +21,8 @@ type SubmitState = {
 export default function NavNewsletterSignup({
   variant = "dark",
   className = "",
-  compact = false
+  compact = false,
+  source = "header"
 }: NavNewsletterSignupProps) {
   const [submitState, setSubmitState] = useState<SubmitState>({ status: "idle", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -51,6 +56,8 @@ export default function NavNewsletterSignup({
         status: "success",
         message: result.message || "Danke — wir halten Sie über Neuigkeiten und Aktionen auf dem Laufenden."
       });
+      // Conversion erst nach erfolgreicher Server-Bestätigung melden (genau einmal).
+      trackConversion("newsletter", { source });
     } catch (error) {
       setSubmitState({
         status: "error",
@@ -72,11 +79,11 @@ export default function NavNewsletterSignup({
         <input className="hidden" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" />
 
         <div className="mt-5 flex items-center gap-2 border-b border-white/35 pb-2 transition focus-within:border-white/85">
-          <label className="sr-only" htmlFor="newsletter-email-footer">
+          <label className="sr-only" htmlFor={`newsletter-email-${source}`}>
             E-Mail-Adresse
           </label>
           <input
-            id="newsletter-email-footer"
+            id={`newsletter-email-${source}`}
             className="min-w-0 flex-1 bg-transparent py-1 text-base font-normal text-white outline-none placeholder:text-white/55"
             name="email"
             type="email"

@@ -235,7 +235,7 @@ export default function HeroSlider() {
 
                   {slide.newsletter ? (
                     <div className="mt-8 max-w-md">
-                      <NavNewsletterSignup variant="dark" compact />
+                      <NavNewsletterSignup variant="dark" compact source="hero" />
                       <p className="mt-3 text-xs font-normal leading-relaxed text-white/55">
                         Kostenlos anmelden — exklusiver Vorab-Zugang, jederzeit abbestellbar.
                       </p>

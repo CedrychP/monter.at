@@ -155,7 +155,7 @@ export default function SiteFooter({ logoSrc }: SiteFooterProps) {
             </div>
 
             <div className="mt-10 w-full max-w-md shrink-0 sm:max-w-sm md:mt-1 md:w-72 xl:mt-10 xl:w-auto xl:max-w-md">
-              <NavNewsletterSignup variant="dark" compact />
+              <NavNewsletterSignup variant="dark" compact source="footer" />
             </div>
           </div>
 

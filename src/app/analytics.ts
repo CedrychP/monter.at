@@ -5,7 +5,8 @@ export const GOOGLE_ADS_ID = "AW-18096010711";
 export const conversionLabels = {
   call: "",
   whatsapp: "",
-  form: ""
+  form: "",
+  newsletter: ""
 } as const;
 
 export type ConversionType = keyof typeof conversionLabels;
