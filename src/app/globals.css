@@ -843,6 +843,38 @@ canvas {
   border-color: var(--accent);
 }
 
+.hero-phone-cta {
+  justify-content: flex-start;
+  gap: 0.875rem;
+  padding: 0.75rem 1.35rem;
+  text-transform: none;
+}
+
+.hero-phone-cta__icon {
+  transition: background 220ms ease, color 220ms ease;
+}
+
+.hero-phone-cta__label {
+  transition: color 220ms ease;
+}
+
+.hero-phone-cta__number {
+  transition: color 220ms ease;
+}
+
+.btn-on-dark.hero-phone-cta:hover .hero-phone-cta__icon {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.btn-on-dark.hero-phone-cta:hover .hero-phone-cta__label {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.btn-on-dark.hero-phone-cta:hover .hero-phone-cta__number {
+  color: #fff;
+}
+
 .btn-on-dark-ghost {
   display: inline-flex;
   align-items: center;

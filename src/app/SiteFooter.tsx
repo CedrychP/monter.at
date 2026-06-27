@@ -262,9 +262,9 @@ export default function SiteFooter({ logoSrc }: SiteFooterProps) {
               <Link href="/barrierefreiheit" className="transition hover:text-white">
                 Barrierefreiheit
               </Link>
-              <a href="/sitemap.xml" className="transition hover:text-white">
+              <Link href="/sitemap" className="transition hover:text-white">
                 Sitemap
-              </a>
+              </Link>
             </div>
 
             <div className="flex shrink-0 flex-wrap items-center gap-1.5 self-start sm:gap-3 sm:self-auto sm:justify-end">

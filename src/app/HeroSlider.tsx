@@ -8,6 +8,7 @@ import NavNewsletterSignup from "./NavNewsletterSignup";
 import { siteConfig } from "./siteConfig";
 
 const phoneHref = siteConfig.phoneHref;
+const phoneDisplay = siteConfig.phoneDisplay;
 
 const SLIDE_DURATION = 6500;
 
@@ -55,7 +56,7 @@ const slides: Slide[] = [
     ),
     text: "Waschmaschine, Geschirrspüler, Kühl- und Gefriergeräte, Backofen, Herd und Trockner — markenoffen instand gesetzt mit klarer Diagnose und fairen Pauschalen.",
     actions: [
-      { label: "Jetzt anrufen", href: `tel:${phoneHref}`, variant: "primary" },
+      { label: phoneDisplay, href: `tel:${phoneHref}`, variant: "primary" },
       { label: "Geräte ansehen", href: "/#leistungen", variant: "ghost" }
     ]
   },
@@ -74,7 +75,7 @@ const slides: Slide[] = [
     ),
     text: "Federwechsel, Antriebsreparatur, Laufrollen und Wartung — für sichere, leise und zuverlässige Tore. Schnell vor Ort in Wien und Niederösterreich.",
     actions: [
-      { label: "Jetzt anrufen", href: `tel:${phoneHref}`, variant: "primary" },
+      { label: phoneDisplay, href: `tel:${phoneHref}`, variant: "primary" },
       { label: "Garagenservice ansehen", href: "/#garage", variant: "ghost" }
     ]
   },
@@ -133,6 +134,37 @@ const slides: Slide[] = [
     newsletter: true
   }
 ];
+
+function HeroPhoneCta({ tabIndex }: { tabIndex: number }) {
+  return (
+    <a
+      href={`tel:${phoneHref}`}
+      onClick={() => trackConversion("call", { source: "hero_slider" })}
+      className="btn-on-dark hero-phone-cta group w-full sm:w-auto"
+      tabIndex={tabIndex}
+      aria-label={`Anrufen ${phoneDisplay}`}
+    >
+      <span className="hero-phone-cta__icon grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[color:var(--accent-soft)] text-[color:var(--accent)]">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path
+            d="M6.5 3h3l1.5 4-2 1.5a12 12 0 0 0 5 5l1.5-2 4 1.5v3a2 2 0 0 1-2 2A16 16 0 0 1 4.5 5a2 2 0 0 1 2-2Z"
+            stroke="currentColor"
+            strokeWidth="1.6"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </span>
+      <span className="min-w-0 text-left">
+        <span className="hero-phone-cta__label block text-[0.65rem] font-medium uppercase tracking-[0.16em] text-[color:var(--muted)]">
+          Anrufen
+        </span>
+        <span className="hero-phone-cta__number font-display mt-0.5 block text-xl font-normal tabular-nums tracking-tight text-[color:var(--ink)] sm:text-2xl">
+          {phoneDisplay}
+        </span>
+      </span>
+    </a>
+  );
+}
 
 export default function HeroSlider() {
   const [index, setIndex] = useState(0);
@@ -244,6 +276,7 @@ export default function HeroSlider() {
                     <div className="mt-8 flex w-full max-w-md flex-col items-stretch gap-4 sm:mt-10 sm:max-w-none sm:flex-row sm:items-center sm:gap-x-8 sm:gap-y-5">
                       {slide.actions.map((action, actionIndex) => {
                         const isPrimary = action.variant === "primary";
+                        const isPhone = action.href.startsWith("tel:");
                         const className = isPrimary
                           ? "btn-on-dark"
                           : "link-arrow link-arrow--on-dark";
@@ -257,6 +290,16 @@ export default function HeroSlider() {
                             </svg>
                           </>
                         );
+
+                        if (isPhone && isPrimary) {
+                          return (
+                            <HeroPhoneCta
+                              key={`${slide.id}-phone`}
+                              tabIndex={isActive ? 0 : -1}
+                            />
+                          );
+                        }
+
                         return action.href.startsWith("tel:") ? (
                           <a
                             key={action.label}
