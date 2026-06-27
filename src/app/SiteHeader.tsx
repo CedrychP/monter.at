@@ -11,6 +11,7 @@ import {
 } from "react";
 import NavMonterAccount from "./NavMonterAccount";
 import NavNewsletterSignup from "./NavNewsletterSignup";
+import { klimaDeviceNavLinks, klimaRepairNavLinks } from "./klimageraete/klimaPages";
 import { siteConfig } from "./siteConfig";
 
 const emergencyPhoneDisplay = siteConfig.phoneDisplay;
@@ -157,6 +158,7 @@ const geraetepflegeLinks: NavLink[] = [
 // Hauptnavigation — Dropdowns über menuId an megaMenus gekoppelt
 const primaryNavGroup: NavLink[] = [
   { label: "Garagentore", href: "/garagentor-reparatur-wien", menuId: "garage" },
+  { label: "Klimageräte", href: "/klimageraete-reparatur-wien", menuId: "klima" },
   { label: "Haushaltsgeräte", href: "/#leistungen", menuId: "service" },
   { label: "Marken", href: "/#marken", menuId: "marken" }
 ];
@@ -253,6 +255,25 @@ const megaMenus: MegaMenuConfig[] = [
     feature: {
       eyebrow: "Garagentor Reparaturdienst",
       title: "Garagentor klemmt in Wien?",
+      text:
+        "Telefon ist der schnellste Weg zu einer Einschätzung. Wir prüfen Fehlerbild, Termin und Aufwand direkt im Gespräch.",
+      primaryLabel: "Jetzt anrufen",
+      primaryHref: `tel:${emergencyPhoneHref}`,
+      secondaryLabel: "Termin buchen",
+      secondaryHref: "/reparatur-buchen"
+    }
+  },
+  {
+    id: "klima",
+    label: "Klimageräte",
+    columns: [
+      { eyebrow: "Geräte & Wartung", items: klimaDeviceNavLinks },
+      { eyebrow: "Reparatur & Diagnose", items: klimaRepairNavLinks },
+      { eyebrow: "Mehr Service", items: additionalServiceLinks }
+    ],
+    feature: {
+      eyebrow: "Klimageräte Reparaturdienst",
+      title: "Klimaanlage kühlt nicht in Wien?",
       text:
         "Telefon ist der schnellste Weg zu einer Einschätzung. Wir prüfen Fehlerbild, Termin und Aufwand direkt im Gespräch.",
       primaryLabel: "Jetzt anrufen",

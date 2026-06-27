@@ -48,7 +48,8 @@ const deviceOptions = [
   "Backofen / Herd",
   "Trockner",
   "Garagentor",
-  "Anderes Gerät"
+  "Anderes Gerät",
+  "Klimagerät / Klimaanlage"
 ];
 
 const fieldClass =

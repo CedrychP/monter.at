@@ -26,6 +26,13 @@ const garageLinks = [
   { label: "Wartung & Service", href: "/garagentor-reparatur-wien" }
 ];
 
+const klimaLinks = [
+  { label: "Klimagerät Reparatur", href: "/klimageraete-reparatur-wien" },
+  { label: "Split-Klimaanlage", href: "/klimageraete/split-klimaanlage-wien" },
+  { label: "Wartung & Service", href: "/klimageraete/wartung-service-wien" },
+  { label: "Montage & Installation", href: "/klimageraete/montage-installation-wien" }
+];
+
 const regionLinks = [
   { label: "Wien", href: "/#anfahrt" },
   { label: "Niederösterreich", href: "/#anfahrt" }
@@ -167,6 +174,21 @@ export default function SiteFooter({ logoSrc }: SiteFooterProps) {
                   {garageLinks.map((item) => (
                     <Link
                       key={"garage" + item.label}
+                      className="w-fit border-b border-transparent transition hover:border-white hover:text-white"
+                      href={item.href}
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <p className={footerHeadingClass}>Klimageräte</p>
+                <div className="mt-7 grid gap-3.5 text-base font-normal text-white/90">
+                  {klimaLinks.map((item) => (
+                    <Link
+                      key={"klima" + item.label}
                       className="w-fit border-b border-transparent transition hover:border-white hover:text-white"
                       href={item.href}
                     >

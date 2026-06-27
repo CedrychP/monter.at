@@ -1,6 +1,7 @@
 import { blogPosts } from "./blog/posts";
 import { brandPages } from "./marken/brands";
 import { brandDeviceCategories } from "./marken/devices";
+import { klimaPages } from "./klimageraete/klimaPages";
 import { servicePages } from "./leistungen/services";
 
 export type SitemapLink = {
@@ -58,6 +59,19 @@ export const sitemapGroups: SitemapGroup[] = [
     href: "/garagentor-reparatur-wien",
     description: "Garagentor-Reparatur, Antrieb, Federn & Wartung.",
     links: [{ label: "Garagentor Reparatur Wien", href: "/garagentor-reparatur-wien" }]
+  },
+  {
+    id: "klimageraete",
+    label: "Klimageräte",
+    href: "/klimageraete-reparatur-wien",
+    description: "Klimagerät-Reparatur, Wartung, Kältemittel & Montage.",
+    links: [
+      { label: "Klimagerät Reparatur Wien", href: "/klimageraete-reparatur-wien" },
+      ...klimaPages.map((page) => ({
+        label: page.title,
+        href: `/klimageraete/${page.slug}`
+      }))
+    ]
   },
   {
     id: "service",
