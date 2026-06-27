@@ -51,8 +51,6 @@ const deviceOptions = [
   "Anderes Gerät"
 ];
 
-const steps = ["Gerät", "Adresse & Termin", "Kontakt"];
-
 const fieldClass =
   "mt-2 w-full rounded-lg border border-[color:var(--border)] bg-[color:var(--bg-muted)] px-4 py-3 text-[0.95rem] text-[color:var(--ink)] outline-none transition focus:border-[color:var(--ink)] focus:bg-white focus:ring-2 focus:ring-[color:var(--ink)]/10 placeholder:font-light placeholder:text-[color:var(--muted-soft)]";
 
@@ -67,14 +65,7 @@ const ArrowIcon = () => (
   </svg>
 );
 
-const CheckIcon = () => (
-  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-    <path d="M5 12.5l4.5 4.5L19 7" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
-);
-
 export default function RepairBookingForm({ phoneHref, className = "" }: RepairBookingFormProps) {
-  const [step, setStep] = useState(0);
   const [values, setValues] = useState<FormValues>(initialValues);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitState, setSubmitState] = useState<SubmitState>({ status: "idle", message: "" });
@@ -85,27 +76,21 @@ export default function RepairBookingForm({ phoneHref, className = "" }: RepairB
     setValues((prev) => ({ ...prev, [key]: event.target.value }));
   };
 
-  const stepValid = useMemo(() => {
-    if (step === 0) return Boolean(values.device) && values.message.trim().length > 3;
-    if (step === 1) return values.street.trim().length > 1 && values.city.trim().length > 1;
-    if (step === 2) return values.name.trim().length > 1 && values.phone.trim().length > 4 && isEmail(values.email);
-    return true;
-  }, [step, values]);
-
-  const goNext = () => {
-    if (!stepValid) return;
-    setStep((prev) => Math.min(prev + 1, steps.length - 1));
-  };
-
-  const goBack = () => setStep((prev) => Math.max(prev - 1, 0));
+  const formValid = useMemo(
+    () =>
+      Boolean(values.device) &&
+      values.message.trim().length > 3 &&
+      values.street.trim().length > 1 &&
+      values.city.trim().length > 1 &&
+      values.name.trim().length > 1 &&
+      values.phone.trim().length > 4 &&
+      isEmail(values.email),
+    [values]
+  );
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (step < steps.length - 1) {
-      goNext();
-      return;
-    }
-    if (!stepValid) return;
+    if (!formValid) return;
 
     setIsSubmitting(true);
     setSubmitState({ status: "idle", message: "" });
@@ -124,7 +109,6 @@ export default function RepairBookingForm({ phoneHref, className = "" }: RepairB
 
       trackConversion("form", { source: "repair_booking", request_type: "reparatur" });
       setValues(initialValues);
-      setStep(0);
       setSubmitState({
         status: "success",
         message: result.message || "Danke, Ihre Reparaturanfrage wurde gesendet. Wir melden uns schnellstmöglich."
@@ -147,209 +131,162 @@ export default function RepairBookingForm({ phoneHref, className = "" }: RepairB
       <div>
         <p className="cap-line tracking-eyebrow">Reparatur buchen</p>
         <h3 className="font-display mt-5 text-2xl font-normal leading-tight tracking-tight sm:mt-6 sm:text-3xl lg:text-[2.1rem]">
-          In 3 Schritten zum Termin.
+          Termin anfragen.
         </h3>
         <p className="mt-3 text-sm font-light leading-relaxed text-[color:var(--muted)]">
-          Ein paar Angaben zu Gerät, Standort und Erreichbarkeit — wir melden uns telefonisch zur
-          Terminabstimmung, meist innerhalb eines Werktags.
+          Gerät, Standort und Erreichbarkeit — wir melden uns telefonisch zur Terminabstimmung,
+          meist innerhalb eines Werktags.
         </p>
       </div>
 
-      <ol className="mt-6 flex items-center sm:mt-8">
-        {steps.map((label, index) => {
-          const state = index < step ? "done" : index === step ? "active" : "idle";
-          return (
-            <li key={label} className={`flex min-w-0 items-center ${index < steps.length - 1 ? "flex-1" : ""}`}>
-              <div className="flex min-w-0 items-center gap-2 sm:gap-2.5">
-                <span
-                  className={`grid h-8 w-8 flex-none place-items-center rounded-full text-sm font-semibold transition-colors ${
-                    state === "done"
-                      ? "bg-[color:var(--accent)] text-white"
-                      : state === "active"
-                        ? "bg-[color:var(--ink)] text-white"
-                        : "bg-[color:var(--bg-muted)] text-[color:var(--muted-soft)]"
-                  }`}
-                >
-                  {state === "done" ? <CheckIcon /> : index + 1}
-                </span>
-                <span
-                  className={`truncate text-xs font-medium sm:text-sm ${
-                    state === "idle" ? "text-[color:var(--muted-soft)]" : "text-[color:var(--ink)]"
-                  }`}
-                >
-                  {label}
-                </span>
-              </div>
-              {index < steps.length - 1 ? (
-                <span
-                  className={`mx-2 h-px flex-1 transition-colors sm:mx-3 ${
-                    index < step ? "bg-[color:var(--accent)]" : "bg-[color:var(--border)]"
-                  }`}
-                />
-              ) : null}
-            </li>
-          );
-        })}
-      </ol>
-
       <input className="hidden" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" />
 
-      <div className="mt-8">
-        {step === 0 ? (
-          <div className="grid gap-5">
-            <label className="block">
-              <span className={labelClass}>Welches Gerät?</span>
-              <select className={fieldClass} value={values.device} onChange={update("device")}>
-                <option value="" disabled>
-                  Bitte wählen …
-                </option>
-                {deviceOptions.map((option) => (
-                  <option key={option} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <label className="block">
-              <span className={labelClass}>
-                Marke &amp; Modell <span className={optionalClass}>· optional</span>
-              </span>
-              <input
-                className={fieldClass}
-                value={values.model}
-                onChange={update("model")}
-                placeholder="Bosch, Miele, Siemens ..."
-              />
-            </label>
-            <label className="block">
-              <span className={labelClass}>Was ist das Problem?</span>
-              <textarea
-                className={`${fieldClass} resize-y`}
-                rows={5}
-                value={values.message}
-                onChange={update("message")}
-                placeholder="Was passiert? Gibt es einen Fehlercode? Seit wann tritt der Fehler auf?"
-              />
-            </label>
-          </div>
-        ) : null}
+      <div className="mt-8 grid gap-5">
+        <label className="block">
+          <span className={labelClass}>Welches Gerät?</span>
+          <select className={fieldClass} value={values.device} onChange={update("device")} required>
+            <option value="" disabled>
+              Bitte wählen …
+            </option>
+            {deviceOptions.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+        </label>
 
-        {step === 1 ? (
-          <div className="grid gap-5 sm:grid-cols-2">
-            <label className="block">
-              <span className={labelClass}>Straße &amp; Nr.</span>
-              <input
-                className={fieldClass}
-                value={values.street}
-                onChange={update("street")}
-                placeholder="Musterstraße 1/6"
-              />
-            </label>
-            <label className="block">
-              <span className={labelClass}>PLZ &amp; Ort</span>
-              <input
-                className={fieldClass}
-                value={values.city}
-                onChange={update("city")}
-                placeholder="1210 Wien"
-              />
-            </label>
-            <label className="block">
-              <span className={labelClass}>Dringlichkeit</span>
-              <select className={fieldClass} value={values.urgency} onChange={update("urgency")}>
-                <option>Akuter Ausfall – möglichst schnell</option>
-                <option>In den nächsten Tagen</option>
-                <option>Zeitlich flexibel</option>
-              </select>
-            </label>
-            <label className="block">
-              <span className={labelClass}>
-                Wunschtermin <span className={optionalClass}>· optional</span>
-              </span>
-              <input
-                className={fieldClass}
-                value={values.preferredTime}
-                onChange={update("preferredTime")}
-                placeholder="z. B. werktags vormittags ..."
-              />
-            </label>
-          </div>
-        ) : null}
+        <div className="grid gap-5 sm:grid-cols-2">
+          <label className="block">
+            <span className={labelClass}>
+              Marke &amp; Modell <span className={optionalClass}>· optional</span>
+            </span>
+            <input
+              className={fieldClass}
+              value={values.model}
+              onChange={update("model")}
+              placeholder="Bosch, Miele, Siemens …"
+            />
+          </label>
+          <label className="block">
+            <span className={labelClass}>Dringlichkeit</span>
+            <select className={fieldClass} value={values.urgency} onChange={update("urgency")}>
+              <option>Akuter Ausfall – möglichst schnell</option>
+              <option>In den nächsten Tagen</option>
+              <option>Zeitlich flexibel</option>
+            </select>
+          </label>
+        </div>
 
-        {step === 2 ? (
-          <div className="grid gap-5 sm:grid-cols-2">
-            <label className="block">
-              <span className={labelClass}>Name oder Firma</span>
-              <input
-                className={fieldClass}
-                value={values.name}
-                onChange={update("name")}
-                placeholder="Max Mustermann GmbH"
-              />
-            </label>
-            <label className="block">
-              <span className={labelClass}>Telefonnummer</span>
-              <input
-                className={fieldClass}
-                type="tel"
-                value={values.phone}
-                onChange={update("phone")}
-                placeholder="01 234 56 78"
-              />
-            </label>
-            <label className="block">
-              <span className={labelClass}>E-Mail-Adresse</span>
-              <input
-                className={fieldClass}
-                type="email"
-                value={values.email}
-                onChange={update("email")}
-                placeholder="name@example.at"
-              />
-            </label>
-            <label className="block">
-              <span className={labelClass}>Kundentyp</span>
-              <select className={fieldClass} value={values.customerType} onChange={update("customerType")}>
-                <option>Privatkunde</option>
-                <option>Geschäftskunde</option>
-                <option>Hausverwaltung</option>
-              </select>
-            </label>
-          </div>
-        ) : null}
+        <label className="block">
+          <span className={labelClass}>Was ist das Problem?</span>
+          <textarea
+            className={`${fieldClass} resize-y`}
+            rows={4}
+            value={values.message}
+            onChange={update("message")}
+            placeholder="Was passiert? Gibt es einen Fehlercode? Seit wann tritt der Fehler auf?"
+            required
+          />
+        </label>
+
+        <div className="grid gap-5 sm:grid-cols-2">
+          <label className="block">
+            <span className={labelClass}>Straße &amp; Nr.</span>
+            <input
+              className={fieldClass}
+              value={values.street}
+              onChange={update("street")}
+              placeholder="Musterstraße 1/6"
+              required
+            />
+          </label>
+          <label className="block">
+            <span className={labelClass}>PLZ &amp; Ort</span>
+            <input
+              className={fieldClass}
+              value={values.city}
+              onChange={update("city")}
+              placeholder="1210 Wien"
+              required
+            />
+          </label>
+        </div>
+
+        <label className="block sm:max-w-[calc(50%-0.625rem)]">
+          <span className={labelClass}>
+            Wunschtermin <span className={optionalClass}>· optional</span>
+          </span>
+          <input
+            className={fieldClass}
+            value={values.preferredTime}
+            onChange={update("preferredTime")}
+            placeholder="z. B. werktags vormittags …"
+          />
+        </label>
+
+        <div className="grid gap-5 border-t border-[color:var(--border)] pt-6 sm:grid-cols-2">
+          <label className="block">
+            <span className={labelClass}>Name oder Firma</span>
+            <input
+              className={fieldClass}
+              value={values.name}
+              onChange={update("name")}
+              placeholder="Max Mustermann GmbH"
+              required
+            />
+          </label>
+          <label className="block">
+            <span className={labelClass}>Telefonnummer</span>
+            <input
+              className={fieldClass}
+              type="tel"
+              value={values.phone}
+              onChange={update("phone")}
+              placeholder="01 234 56 78"
+              required
+            />
+          </label>
+          <label className="block">
+            <span className={labelClass}>E-Mail-Adresse</span>
+            <input
+              className={fieldClass}
+              type="email"
+              value={values.email}
+              onChange={update("email")}
+              placeholder="name@example.at"
+              required
+            />
+          </label>
+          <label className="block">
+            <span className={labelClass}>Kundentyp</span>
+            <select className={fieldClass} value={values.customerType} onChange={update("customerType")}>
+              <option>Privatkunde</option>
+              <option>Geschäftskunde</option>
+              <option>Hausverwaltung</option>
+            </select>
+          </label>
+        </div>
       </div>
 
       <div className="mt-8 flex flex-col gap-4 border-t border-[color:var(--border)] pt-6 sm:flex-row sm:items-center sm:justify-between">
-        {step > 0 ? (
-          <button
-            type="button"
-            onClick={goBack}
-            className="inline-flex items-center justify-center gap-2 text-sm font-medium text-[color:var(--muted)] transition hover:text-[color:var(--ink)]"
-          >
-            <span className="rotate-180">
-              <ArrowIcon />
-            </span>
-            Zurück
-          </button>
-        ) : (
-          <a
-            href={`tel:${phoneHref}`}
-            onClick={() => trackConversion("call", { source: "repair_booking" })}
-            className="inline-flex items-center gap-2 text-sm font-medium text-[color:var(--ink)] transition hover:text-[color:var(--accent)]"
-          >
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M5 4h3l1.6 4-2 1.3a11 11 0 0 0 5 5l1.3-2 4 1.6v3a2 2 0 0 1-2.1 2A15 15 0 0 1 3 6.1 2 2 0 0 1 5 4Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
-            </svg>
-            Lieber anrufen
-          </a>
-        )}
+        <a
+          href={`tel:${phoneHref}`}
+          onClick={() => trackConversion("call", { source: "repair_booking" })}
+          className="inline-flex items-center gap-2 text-sm font-medium text-[color:var(--ink)] transition hover:text-[color:var(--accent)]"
+        >
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M5 4h3l1.6 4-2 1.3a11 11 0 0 0 5 5l1.3-2 4 1.6v3a2 2 0 0 1-2.1 2A15 15 0 0 1 3 6.1 2 2 0 0 1 5 4Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+          </svg>
+          Lieber anrufen
+        </a>
 
         <button
           type="submit"
-          disabled={!stepValid || isSubmitting}
+          disabled={!formValid || isSubmitting}
           className="inline-flex w-full items-center justify-center gap-2.5 rounded-lg bg-[color:var(--ink)] px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-[color:var(--accent)] disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
         >
-          {step < steps.length - 1 ? "Weiter" : isSubmitting ? "Wird gesendet …" : "Reparaturtermin anfragen"}
+          {isSubmitting ? "Wird gesendet …" : "Reparaturtermin anfragen"}
           {!isSubmitting ? <ArrowIcon /> : null}
         </button>
       </div>

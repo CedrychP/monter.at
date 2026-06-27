@@ -425,7 +425,7 @@ export default function Home() {
 
         <div className="relative mx-auto max-w-[88rem] px-5 sm:px-8">
           <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:gap-20">
-            <div className="reveal">
+            <div className="reveal order-2 lg:order-1">
               <p className="cap-line tracking-eyebrow text-[color:var(--accent)]">Terminbuchung</p>
               <h2 className="font-display mt-6 text-balance text-3xl font-normal leading-[1.05] tracking-tight sm:text-4xl md:text-5xl lg:text-[3.25rem]">
                 Reparaturtermin <span className="font-display-italic">buchen.</span>
@@ -507,7 +507,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="reveal rounded-sm border border-[color:var(--border)] bg-white p-4 sm:p-6 lg:p-10">
+            <div className="reveal order-1 lg:order-2 rounded-sm border border-[color:var(--border)] bg-white p-4 sm:p-6 lg:p-10">
               <RepairBookingForm phoneHref={emergencyPhoneHref} />
             </div>
           </div>
