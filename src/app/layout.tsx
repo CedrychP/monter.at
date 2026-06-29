@@ -83,6 +83,7 @@ export default function RootLayout({
   return (
     <html lang="de" data-scroll-behavior="smooth">
       <head>
+        <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
         <Script id="gtm-loader" strategy="afterInteractive">
           {`
             (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':

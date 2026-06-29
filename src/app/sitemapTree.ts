@@ -133,6 +133,12 @@ export const sitemapGroups: SitemapGroup[] = [
 ];
 
 /**
+ * Seiten, die nicht in der XML-Sitemap für Suchmaschinen erscheinen sollen.
+ * (z. B. interne Suche — dünn/dynamisch, separat mit noindex markiert.)
+ */
+export const SITEMAP_EXCLUDED_ROUTES = new Set<string>(["/suche"]);
+
+/**
  * Flacht den Baum zu echten, internen Seiten-Routen ab (ohne #-Anker, ohne Externe).
  * Wird von der XML-Sitemap genutzt, damit Visual und Crawler-Sitemap synchron bleiben.
  */
@@ -153,5 +159,11 @@ export function getSitemapRoutes(): string[] {
     group.links.forEach(collect);
   }
 
-  return Array.from(routes);
+  return Array.from(routes)
+    .filter((route) => !SITEMAP_EXCLUDED_ROUTES.has(route))
+    .sort((a, b) => {
+      if (a === "/") return -1;
+      if (b === "/") return 1;
+      return a.localeCompare(b, "de");
+    });
 }

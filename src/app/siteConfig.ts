@@ -1,5 +1,10 @@
+const defaultSiteUrl = "https://www.monter.at";
+
 export const siteConfig = {
-  siteUrl: "https://tcc-reparatur-service.at",
+  siteUrl: (process.env.NEXT_PUBLIC_SITE_URL ?? process.env.SITE_URL ?? defaultSiteUrl).replace(
+    /\/$/,
+    ""
+  ),
   serviceName: "MONTER Reparatur & Service",
   companyName: "Tech Craft Consulting GmbH",
   address: {
@@ -8,7 +13,7 @@ export const siteConfig = {
     city: "Wien",
     country: "AT"
   },
-  email: "office@tccreparatur.at",
+  email: "info@monter.at",
   phoneDisplay: "01 4171346",
   phoneHref: "+4314171346",
   // WhatsApp-fähige Nummer im internationalen Format ohne "+", Leerzeichen oder Bindestriche.

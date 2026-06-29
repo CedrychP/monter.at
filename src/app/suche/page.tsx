@@ -7,6 +7,10 @@ export const metadata = {
     "Leistungen, Marken und Ratgeber durchsuchen — MONTER Reparatur & Service in Wien.",
   alternates: {
     canonical: "/suche"
+  },
+  robots: {
+    index: false,
+    follow: true
   }
 };
 

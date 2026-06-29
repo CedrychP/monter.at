@@ -6,6 +6,7 @@ import ReviewsSection from "./ReviewsSection";
 import HeroSlider from "./HeroSlider";
 import ApplianceSlider from "./ApplianceSlider";
 import { brandPages, brandOverview } from "./marken/brands";
+import { siteConfig } from "./siteConfig";
 
 const businessImage =
   "https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&w=2000&q=85";
@@ -364,7 +365,7 @@ export default function Home() {
       "Firmenkunden Geräteservice"
     ],
     telephone: emergencyPhoneHref,
-    url: "https://tcc-reparatur-service.at"
+    url: siteConfig.siteUrl
   };
 
   const faqJsonLd = {
@@ -390,7 +391,7 @@ export default function Home() {
       telephone: emergencyPhoneHref
     },
     areaServed: ["Wien", "Niederösterreich"],
-    url: "https://tcc-reparatur-service.at"
+    url: siteConfig.siteUrl
   };
 
   return (
