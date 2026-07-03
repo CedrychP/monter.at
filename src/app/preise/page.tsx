@@ -14,13 +14,13 @@ const householdPriceItems: PriceItem[] = [
     number: "01",
     service: "Anfahrt Wien",
     price: "80 €",
-    note: "Anfahrt innerhalb von Wien. Wird ab einer Fahrzeit von über 40 Minuten verrechnet."
+    note: "Standard-Anfahrtsgebühr innerhalb von Wien — pro Einsatz vor Ort."
   },
   {
     number: "02",
     service: "Anfahrt Niederösterreich",
     price: "100 €",
-    note: "Anfahrt nach Niederösterreich. Wird ab einer Fahrzeit von über 40 Minuten verrechnet (An- und Abfahrt)."
+    note: "Standard-Anfahrtsgebühr für Einsätze in Niederösterreich — pro Einsatz vor Ort."
   },
   {
     number: "03",
@@ -205,9 +205,8 @@ export default function PreisePage() {
               Anfahrt, Diagnose &amp; Reparatur
             </h2>
             <p className="mt-4 max-w-2xl text-sm font-light leading-relaxed text-[color:var(--muted)]">
-              Anfahrtspauschalen gelten ab einer Fahrzeit von über 40 Minuten. Die erste
-              Arbeitseinheit (30 Minuten) ist in Diagnose und Reparatur inklusive — jede weitere
-              Einheit wird mit 50 € verrechnet.
+              Anfahrtsgebühr gemäß Tabelle. Die erste Arbeitseinheit (30 Minuten) ist in Diagnose
+              und Reparatur inklusive — jede weitere Einheit wird mit 50 € verrechnet.
             </p>
           </div>
           <div className="mt-10">
@@ -248,10 +247,10 @@ export default function PreisePage() {
                 Keine versteckten Posten.
               </h2>
               <p className="mt-8 text-[1.05rem] font-light leading-relaxed text-[color:var(--muted)]">
-                Haushaltsgeräte: Anfahrt ab 40+ Minuten Fahrzeit (80 € Wien, 100 € NÖ). Nur
-                Diagnose 120 €, Reparatur &amp; Diagnose 150 € — jeweils inklusive der ersten
-                30-Minuten-Arbeitseinheit, jede weitere Einheit 50 €. Garagenreparatur: Anfahrt
-                Wien 110 €, Niederösterreich 150 €, mehr als 1 Std. Fahrt 200 €.
+                Haushaltsgeräte: Anfahrtsgebühr 80 € in Wien, 100 € in NÖ. Nur Diagnose 120 €,
+                Reparatur &amp; Diagnose 150 € — jeweils inklusive der ersten 30-Minuten-Arbeitseinheit,
+                jede weitere Einheit 50 €. Garagenreparatur: Anfahrt Wien 110 €, Niederösterreich
+                150 €, mehr als 1 Std. Fahrt 200 €.
               </p>
               <p className="mt-4 text-[1.05rem] font-light leading-relaxed text-[color:var(--muted)]">
                 Material und Ersatzteile werden nur dann verrechnet, wenn sie tatsächlich
