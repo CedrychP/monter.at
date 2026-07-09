@@ -22,12 +22,11 @@ export const siteConfig = {
   whatsappDisplay: "01 4171346",
   vatId: "ATU82408379",
   social: {
-    instagram: "https://www.instagram.com/",
-    facebook: "https://www.facebook.com/",
-    tiktok: "https://www.tiktok.com/",
-    youtube: "https://www.youtube.com/",
-    x: "https://x.com/",
-    linkedin: "https://www.linkedin.com/"
+    instagram: "https://www.instagram.com/monteraustria/",
+    facebook: "https://www.facebook.com/profile.php?id=61591989052807",
+    tiktok: "https://www.tiktok.com/@monteraustria",
+    youtube: "https://www.youtube.com/channel/UCxdJa9hKrTdIKMZN_LG9dFg",
+    linkedin: "https://www.linkedin.com/company/monter-austria"
   },
   googleReviewsUrl:
     "https://www.google.com/maps/place/?q=place_id:ChIJ9S11rAulWKgRdQLAhpk4EPc",
