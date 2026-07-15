@@ -39,7 +39,13 @@ const householdPriceItems: PriceItem[] = [
     number: "05",
     service: "Zusätzliche Arbeitseinheit",
     price: "+50 €",
-    note: "Eine Arbeitseinheit entspricht 30 Minuten. Jede weitere Einheit nach der ersten wird mit 50 € verrechnet."
+    note: "Beim Erstbesuch: eine Arbeitseinheit = 30 Minuten. Jede weitere Einheit nach der ersten wird mit 50 € verrechnet."
+  },
+  {
+    number: "06",
+    service: "Folgebesuch — Ersatzteil einbauen",
+    price: "50 € + Ersatzteil",
+    note: "Beim zweiten Einsatz verrechnen wir nur eine Arbeitseinheit (50 €) und das benötigte Ersatzteil — ohne erneute Diagnose- oder Reparaturpauschale."
   }
 ];
 
@@ -64,40 +70,56 @@ const garageTravelPriceItems: PriceItem[] = [
   }
 ];
 
-const garageRepairPriceItems: PriceItem[] = [
+const garageLaborPriceItems: PriceItem[] = [
   {
     number: "04",
+    service: "Arbeitseinheit Garagentor",
+    price: "75 €",
+    note: "Eine Arbeitseinheit entspricht 30 Minuten. Jede weitere Einheit wird mit 75 € verrechnet."
+  },
+  {
+    number: "05",
+    service: "Folgebesuch — Ersatzteil einbauen",
+    price: "75 € + Ersatzteil",
+    note: "Beim zweiten Einsatz verrechnen wir nur eine Arbeitseinheit (75 €) und das benötigte Ersatzteil — ohne erneute Diagnose- oder Reparaturpauschale.",
+    highlight: true
+  }
+];
+
+const garageRepairPriceItems: PriceItem[] = [
+  {
+    number: "06",
     service: "Federwechsel",
     price: "150–250 €",
     note: "Austausch von Garagentorfedern je nach Torgröße, Federart und Einbausituation."
   },
   {
-    number: "05",
+    number: "07",
     service: "Austausch der Rollen",
     price: "50–100 €",
     note: "Erneuerung von Führungs- und Laufrollen am Garagentor — abhängig von Anzahl und Typ."
   },
   {
-    number: "06",
+    number: "08",
     service: "Reparatur des Antriebs",
     price: "200–500 €",
     note: "Fehlersuche und Reparatur des Torantriebs, abhängig von Defekt und Antriebsmodell.",
     highlight: true
   },
   {
-    number: "07",
+    number: "09",
     service: "Wartung: Schmierung der Schienen und Rollen",
     price: "100 €",
     note: "Reinigung, Schmierung und Funktionsprüfung von Schienen, Rollen und beweglichen Teilen."
   },
   {
-    number: "08",
+    number: "10",
     service: "Justieren des Torantriebs",
     price: "80–150 €",
     note: "Einstellen von Endlagen, Kraft und Laufeigenschaften des Garagentorantriebs."
   },
   {
-    number: "09",
+    number: "11",
     service: "Sicherheitsüberprüfung und Inspektion",
     price: "100–200 €",
     note: "Prüfung von Sicherheitskomponenten, Federzustand, Befestigungen und Gesamtfunktion des Tors."
@@ -206,7 +228,8 @@ export default function PreisePage() {
             </h2>
             <p className="mt-4 max-w-2xl text-sm font-light leading-relaxed text-[color:var(--muted)]">
               Anfahrtsgebühr gemäß Tabelle. Die erste Arbeitseinheit (30 Minuten) ist in Diagnose
-              und Reparatur inklusive — jede weitere Einheit wird mit 50 € verrechnet.
+              und Reparatur inklusive — jede weitere Einheit beim Erstbesuch 50 €. Beim zweiten
+              Einsatz zur Teilemontage: nur eine Arbeitseinheit (50 €) plus Ersatzteil.
             </p>
           </div>
           <div className="mt-10">
@@ -225,6 +248,19 @@ export default function PreisePage() {
           </div>
           <div className="mt-10">
             <PriceGrid items={garageTravelPriceItems} />
+          </div>
+
+          <div className="reveal mt-20">
+            <h2 className="font-display text-3xl font-light tracking-tight sm:text-4xl">
+              Arbeitseinheiten &amp; Folgebesuch
+            </h2>
+            <p className="mt-4 max-w-2xl text-sm font-light leading-relaxed text-[color:var(--muted)]">
+              Bei Garagentor-Reparaturen gilt eine Arbeitseinheit à 75 €. Beim zweiten Einsatz zum
+              Einbau von Ersatzteilen verrechnen wir ebenfalls nur eine Arbeitseinheit plus Material.
+            </p>
+          </div>
+          <div className="mt-10">
+            <PriceGrid items={garageLaborPriceItems} />
           </div>
 
           <div className="reveal mt-20">
@@ -249,8 +285,13 @@ export default function PreisePage() {
               <p className="mt-8 text-[1.05rem] font-light leading-relaxed text-[color:var(--muted)]">
                 Haushaltsgeräte: Anfahrtsgebühr 80 € in Wien, 100 € in NÖ. Nur Diagnose 120 €,
                 Reparatur &amp; Diagnose 150 € — jeweils inklusive der ersten 30-Minuten-Arbeitseinheit,
-                jede weitere Einheit 50 €. Garagenreparatur: Anfahrt Wien 110 €, Niederösterreich
-                150 €, mehr als 1 Std. Fahrt 200 €.
+                jede weitere Einheit beim Erstbesuch 50 €. Beim zweiten Einsatz (Ersatzteil einbauen):
+                nur eine Arbeitseinheit à 50 € plus Ersatzteil.
+              </p>
+              <p className="mt-4 text-[1.05rem] font-light leading-relaxed text-[color:var(--muted)]">
+                Garagenreparatur: Anfahrt Wien 110 €, Niederösterreich 150 €, mehr als 1 Std. Fahrt
+                200 €. Arbeitseinheit 75 € — beim Folgebesuch ebenfalls nur eine Einheit plus
+                Ersatzteil.
               </p>
               <p className="mt-4 text-[1.05rem] font-light leading-relaxed text-[color:var(--muted)]">
                 Material und Ersatzteile werden nur dann verrechnet, wenn sie tatsächlich

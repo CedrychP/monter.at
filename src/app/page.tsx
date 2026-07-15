@@ -283,7 +283,7 @@ const faqs = [
   {
     question: "Was kostet eine Waschmaschine Reparatur in Wien?",
     answer:
-      "Eine reine Diagnose vor Ort liegt bei 120 €, Reparatur & Diagnose bei 150 € — jeweils inklusive der ersten 30-Minuten-Arbeitseinheit, jede weitere Einheit kostet 50 €. Die Anfahrtsgebühr beträgt 80 € in Wien und 100 € in NÖ. Material wie Heizstab, Pumpe oder Stoßdämpfer kommt nur bei tatsächlichem Bedarf dazu und wird vor dem Einbau transparent abgestimmt."
+      "Eine reine Diagnose vor Ort liegt bei 120 €, Reparatur & Diagnose bei 150 € — jeweils inklusive der ersten 30-Minuten-Arbeitseinheit, jede weitere Einheit beim Erstbesuch kostet 50 €. Beim zweiten Einsatz zum Ersatzteileinbau verrechnen wir nur eine Arbeitseinheit (50 €) plus das Teil. Die Anfahrtsgebühr beträgt 80 € in Wien und 100 € in NÖ. Bei Garagentoren gilt eine Arbeitseinheit à 75 € — auch beim Folgebesuch nur eine Einheit plus Ersatzteil. Material wird vor dem Einbau transparent abgestimmt."
   },
   {
     question: "Wie schnell ist eine Geschirrspüler Reparatur möglich?",
