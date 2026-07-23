@@ -165,13 +165,22 @@ function PriceGrid({ items }: { items: PriceItem[] }) {
               {item.note}
             </p>
           </div>
-          <p
-            className={`font-display mt-12 text-4xl font-light tracking-tight sm:text-5xl ${
-              item.highlight ? "text-white" : "text-[color:var(--ink)]"
-            }`}
-          >
-            {item.price}
-          </p>
+          <div className="mt-12">
+            <p
+              className={`font-display text-4xl font-light tracking-tight sm:text-5xl ${
+                item.highlight ? "text-white" : "text-[color:var(--ink)]"
+              }`}
+            >
+              {item.price}
+            </p>
+            <p
+              className={`mt-2 text-xs font-light tracking-wide ${
+                item.highlight ? "text-white/60" : "text-[color:var(--muted-soft)]"
+              }`}
+            >
+              exkl. USt.
+            </p>
+          </div>
         </article>
       ))}
     </div>
@@ -201,6 +210,7 @@ export default function PreisePage() {
               <p className="mt-8 max-w-2xl text-[1.05rem] font-light leading-relaxed text-[color:var(--muted)]">
                 Transparente Pauschalen für Haushaltsgeräte und Garagentor-Reparaturen in Wien und
                 Niederösterreich. Material wird nur dann verrechnet, wenn es tatsächlich benötigt wird.
+                Alle Preise verstehen sich exklusive Umsatzsteuer.
               </p>
             </div>
             <div className="reveal border-l border-[color:var(--border)] py-2 pl-8">
@@ -295,7 +305,8 @@ export default function PreisePage() {
               </p>
               <p className="mt-4 text-[1.05rem] font-light leading-relaxed text-[color:var(--muted)]">
                 Material und Ersatzteile werden nur dann verrechnet, wenn sie tatsächlich
-                benötigt werden. Kosten werden vor dem Einbau transparent abgestimmt.
+                benötigt werden. Kosten werden vor dem Einbau transparent abgestimmt. Alle
+                angegebenen Preise verstehen sich exklusive Umsatzsteuer (USt.).
               </p>
               <a href={`tel:${phoneHref}`} className="btn-primary mt-10">
                 Jetzt Preis einschätzen lassen

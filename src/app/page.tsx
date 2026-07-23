@@ -283,7 +283,7 @@ const faqs = [
   {
     question: "Was kostet eine Waschmaschine Reparatur in Wien?",
     answer:
-      "Eine reine Diagnose vor Ort liegt bei 120 €, Reparatur & Diagnose bei 150 € — jeweils inklusive der ersten 30-Minuten-Arbeitseinheit, jede weitere Einheit beim Erstbesuch kostet 50 €. Beim zweiten Einsatz zum Ersatzteileinbau verrechnen wir nur eine Arbeitseinheit (50 €) plus das Teil. Die Anfahrtsgebühr beträgt 80 € in Wien und 100 € in NÖ. Bei Garagentoren gilt eine Arbeitseinheit à 75 € — auch beim Folgebesuch nur eine Einheit plus Ersatzteil. Material wird vor dem Einbau transparent abgestimmt."
+      "Eine reine Diagnose vor Ort liegt bei 120 €, Reparatur & Diagnose bei 150 € — jeweils inklusive der ersten 30-Minuten-Arbeitseinheit, jede weitere Einheit beim Erstbesuch kostet 50 €. Beim zweiten Einsatz zum Ersatzteileinbau verrechnen wir nur eine Arbeitseinheit (50 €) plus das Teil. Die Anfahrtsgebühr beträgt 80 € in Wien und 100 € in NÖ. Bei Garagentoren gilt eine Arbeitseinheit à 75 € — auch beim Folgebesuch nur eine Einheit plus Ersatzteil. Alle Preise verstehen sich exklusive USt. Material wird vor dem Einbau transparent abgestimmt."
   },
   {
     question: "Wie schnell ist eine Geschirrspüler Reparatur möglich?",
@@ -293,7 +293,7 @@ const faqs = [
   {
     question: "Reparieren Sie auch Garagentore?",
     answer:
-      "Ja. Neben Haushaltsgeräten bieten wir Garagentor-Reparatur und Wartung an: Federwechsel, Antriebsreparatur und -justierung, Austausch von Laufrollen sowie Sicherheitsüberprüfung und Inspektion. Die Anfahrt für Garagenarbeiten beträgt 110 € in Wien und 150 € in Niederösterreich."
+      "Ja. Neben Haushaltsgeräten bieten wir Garagentor-Reparatur und Wartung an: Federwechsel, Antriebsreparatur und -justierung, Austausch von Laufrollen sowie Sicherheitsüberprüfung und Inspektion. Die Anfahrt für Garagenarbeiten beträgt 110 € in Wien und 150 € in Niederösterreich. Alle Preise verstehen sich exklusive USt."
   },
   {
     question: "Repariert MONTER auch für Firmenkunden?",
