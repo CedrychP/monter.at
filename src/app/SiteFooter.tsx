@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import CookieSettingsButton from "./CookieSettingsButton";
 import NavNewsletterSignup from "./NavNewsletterSignup";
+import { coreRegions } from "./einsatzgebiete/regionPages";
 import { siteConfig } from "./siteConfig";
 
 const emergencyPhoneDisplay = siteConfig.phoneDisplay;
@@ -13,6 +14,7 @@ const footerHeadingClass =
 const brandQuickLinks = [
   { label: "Blog & News", href: "/blog" },
   { label: "Warum Monter?", href: "/ueber-uns" },
+  { label: "Unsere Arbeitsweise", href: "/ueber-uns#arbeitsweise" },
   { label: "FAQ", href: "/#faq" },
   { label: "Firmenkunden", href: "/firmenkunden" },
   { label: "Karriere", href: "/karriere" },
@@ -20,31 +22,35 @@ const brandQuickLinks = [
 ];
 
 const garageLinks = [
-  { label: "Garagentor Reparatur", href: "/garagentor-reparatur-wien" },
-  { label: "Antrieb & Motor", href: "/garagentor-reparatur-wien" },
-  { label: "Federwechsel", href: "/garagentor-reparatur-wien" },
-  { label: "Wartung & Service", href: "/garagentor-reparatur-wien" }
+  { label: "Garagentor Reparatur", href: "/garagentore" },
+  { label: "Antrieb & Motor", href: "/garagentore/torantrieb-motor-reparatur-wien" },
+  { label: "Federwechsel", href: "/garagentore/federwechsel-wien" },
+  { label: "Wartung & Service", href: "/garagentore/wartung-sicherheitspruefung-wien" }
 ];
 
 const klimaLinks = [
-  { label: "Klimagerät Reparatur", href: "/klimageraete-reparatur-wien" },
+  { label: "Klimagerät Reparatur", href: "/klimageraete" },
   { label: "Split-Klimaanlage", href: "/klimageraete/split-klimaanlage-wien" },
   { label: "Wartung & Service", href: "/klimageraete/wartung-service-wien" },
   { label: "Montage & Installation", href: "/klimageraete/montage-installation-wien" }
 ];
 
 const regionLinks = [
-  { label: "Wien", href: "/#anfahrt" },
-  { label: "Niederösterreich", href: "/#anfahrt" }
+  ...coreRegions.map((region) => ({
+    label: region.name,
+    href: `/einsatzgebiete/${region.slug}`
+  })),
+  { label: "Alle Einsatzgebiete", href: "/einsatzgebiete" }
 ];
 
 const applianceLinks = [
-  { label: "Waschmaschine", href: "/leistungen/waschmaschine-reparatur-wien" },
-  { label: "Geschirrspüler", href: "/leistungen/geschirrspueler-reparatur-wien" },
-  { label: "Backofen & Herd", href: "/leistungen/backofen-herd-reparatur-wien" },
-  { label: "Trockner", href: "/leistungen/trockner-reparatur-wien" },
-  { label: "Kühlschrank", href: "/leistungen/kuehlschrank-reparatur-wien" },
-  { label: "Fernseher", href: "/leistungen/fernseher-reparatur-wien" }
+  { label: "Waschmaschine", href: "/haushaltsgeraete/waschmaschine-reparatur-wien" },
+  { label: "Geschirrspüler", href: "/haushaltsgeraete/geschirrspueler-reparatur-wien" },
+  { label: "Backofen & Herd", href: "/haushaltsgeraete/backofen-herd-reparatur-wien" },
+  { label: "Trockner", href: "/haushaltsgeraete/trockner-reparatur-wien" },
+  { label: "Kühlschrank", href: "/haushaltsgeraete/kuehlschrank-reparatur-wien" },
+  { label: "Fernseher", href: "/haushaltsgeraete/fernseher-reparatur-wien" },
+  { label: "Alle Haushaltsgeräte", href: "/haushaltsgeraete" }
 ];
 
 const brandLinks = [
@@ -54,7 +60,7 @@ const brandLinks = [
   { label: "AEG", href: "/marken/aeg-reparatur-wien" },
   { label: "Beko", href: "/marken/beko-reparatur-wien" },
   { label: "Gorenje", href: "/marken/gorenje-reparatur-wien" },
-  { label: "Alle Marken", href: "/#marken" }
+  { label: "Alle Marken", href: "/marken" }
 ];
 
 const bottomBarLinks = [

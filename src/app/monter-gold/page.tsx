@@ -26,6 +26,11 @@ export const metadata: Metadata = {
     "Der MONTER GOLD Club ist in Vorbereitung: bevorzugte Termine, exklusive Vorteile, Wartung im Abo und früher Zugang zu neuen Services. Bald für Kundinnen und Kunden in Wien.",
   alternates: {
     canonical: "/monter-gold"
+  },
+  // Platzhalterseite: erreichbar und verlinkt, aber bis zum Start ohne Index.
+  robots: {
+    index: false,
+    follow: true
   }
 };
 

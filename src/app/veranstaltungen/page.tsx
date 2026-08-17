@@ -26,6 +26,11 @@ export const metadata: Metadata = {
     "Veranstaltungen von MONTER sind in Vorbereitung: Info-Termine, Aktionstage und Kooperationen rund um Reparatur, Pflege und Förderungen. Bald in Wien.",
   alternates: {
     canonical: "/veranstaltungen"
+  },
+  // Platzhalterseite: erreichbar und verlinkt, aber bis zum Start ohne Index.
+  robots: {
+    index: false,
+    follow: true
   }
 };
 

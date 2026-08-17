@@ -4,15 +4,19 @@ import { getSitemapRoutes } from "./sitemapTree";
 
 type ChangeFrequency = NonNullable<MetadataRoute.Sitemap[number]["changeFrequency"]>;
 
+const HUB_ROUTES = new Set(["/haushaltsgeraete", "/garagentore", "/klimageraete", "/marken"]);
+
 function getSitemapPriority(route: string): number {
   if (route === "") return 1;
+
+  // Kategorie-Hubs sind einen Klick von der Startseite entfernt und tragen die Struktur.
+  if (HUB_ROUTES.has(route)) return 0.9;
 
   if (
     route === "/kontakt" ||
     route === "/reparatur-buchen" ||
-    route.startsWith("/leistungen/") ||
-    route === "/garagentor-reparatur-wien" ||
-    route === "/klimageraete-reparatur-wien" ||
+    route.startsWith("/haushaltsgeraete/") ||
+    route.startsWith("/garagentore/") ||
     route.startsWith("/klimageraete/")
   ) {
     return 0.9;

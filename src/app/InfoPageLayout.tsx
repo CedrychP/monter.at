@@ -8,6 +8,11 @@ const phoneHref = siteConfig.phoneHref;
 export type InfoSection = {
   title: string;
   body: string;
+  /** Optionaler Verweis auf eine Detail- oder Übersichtsseite zum Abschnitt. */
+  link?: {
+    label: string;
+    href: string;
+  };
 };
 
 export type InfoCard = {
@@ -29,6 +34,8 @@ type InfoPageLayoutProps = {
   comingSoon?: boolean;
   primaryCta?: CtaConfig;
   secondaryCta?: CtaConfig;
+  /** Block direkt unter dem Hero — auf Hub-Seiten die Liste der Unterseiten. */
+  afterHero?: ReactNode;
   cardsEyebrow?: string;
   cardsTitle?: string;
   cardsIntro?: string;
@@ -55,6 +62,7 @@ export default function InfoPageLayout({
   comingSoon = false,
   primaryCta = { label: "Reparatur buchen", href: "/#kontakt" },
   secondaryCta = { label: "Jetzt anrufen", href: `tel:${phoneHref}` },
+  afterHero,
   cardsEyebrow,
   cardsTitle,
   cardsIntro,
@@ -112,6 +120,8 @@ export default function InfoPageLayout({
           </div>
         </div>
       </section>
+
+      {afterHero}
 
       {cards && cards.length > 0 ? (
         <section className="bg-[color:var(--bg-muted)] py-20 sm:py-24 lg:py-28">
@@ -178,6 +188,15 @@ export default function InfoPageLayout({
                       <p className="mt-3 text-sm font-light leading-relaxed text-[color:var(--muted)]">
                         {section.body}
                       </p>
+                      {section.link ? (
+                        <Link
+                          href={section.link.href}
+                          className="mt-4 inline-flex text-[0.72rem] font-medium uppercase tracking-[0.16em] text-[color:var(--accent)]"
+                        >
+                          {section.link.label}
+                          <span className="ml-1">→</span>
+                        </Link>
+                      ) : null}
                     </div>
                   ))}
                 </div>

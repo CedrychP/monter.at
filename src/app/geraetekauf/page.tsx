@@ -26,6 +26,11 @@ export const metadata: Metadata = {
     "Der Gerätekauf bei MONTER ist in Vorbereitung: kuratierte Haushaltsgeräte mit Beratung, Lieferung, Montage und Service aus einer Hand. Bald in Wien verfügbar.",
   alternates: {
     canonical: "/geraetekauf"
+  },
+  // Platzhalterseite: erreichbar und verlinkt, aber bis zum Start ohne Index.
+  robots: {
+    index: false,
+    follow: true
   }
 };
 

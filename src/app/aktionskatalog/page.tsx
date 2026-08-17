@@ -26,6 +26,11 @@ export const metadata: Metadata = {
     "Der MONTER Aktionskatalog ist in Vorbereitung: Saison-Aktionen, Paketpreise, Mitglieder-Vorteile und Hinweise zu aktuellen Förderungen. Bald verfügbar in Wien.",
   alternates: {
     canonical: "/aktionskatalog"
+  },
+  // Platzhalterseite: erreichbar und verlinkt, aber bis zum Start ohne Index.
+  robots: {
+    index: false,
+    follow: true
   }
 };
 

@@ -57,7 +57,7 @@ const slides: Slide[] = [
     text: "Waschmaschine, Geschirrspüler, Kühl- und Gefriergeräte, Backofen, Herd und Trockner — markenoffen instand gesetzt mit klarer Diagnose und fairen Pauschalen.",
     actions: [
       { label: phoneDisplay, href: `tel:${phoneHref}`, variant: "primary" },
-      { label: "Geräte ansehen", href: "/#leistungen", variant: "ghost" }
+      { label: "Geräte ansehen", href: "/haushaltsgeraete", variant: "ghost" }
     ]
   },
   {

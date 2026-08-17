@@ -1,23 +1,23 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import DetailPageLayout from "../../DetailPageLayout";
-import { getKlimaPage, klimaPages } from "../klimaPages";
+import { appliancePages, getAppliancePage } from "../appliancePages";
 
-type KlimaPageProps = {
+type AppliancePageProps = {
   params: Promise<{
     slug: string;
   }>;
 };
 
 export function generateStaticParams() {
-  return klimaPages.map((page) => ({
+  return appliancePages.map((page) => ({
     slug: page.slug
   }));
 }
 
-export async function generateMetadata({ params }: KlimaPageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: AppliancePageProps): Promise<Metadata> {
   const { slug } = await params;
-  const page = getKlimaPage(slug);
+  const page = getAppliancePage(slug);
 
   if (!page) {
     return {
@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: KlimaPageProps): Promise<Meta
     title: page.metaTitle,
     description: page.description,
     alternates: {
-      canonical: `/klimageraete/${page.slug}`
+      canonical: `/haushaltsgeraete/${page.slug}`
     },
     openGraph: {
       title: page.metaTitle,
@@ -39,36 +39,36 @@ export async function generateMetadata({ params }: KlimaPageProps): Promise<Meta
   };
 }
 
-export default async function KlimaDetailPage({ params }: KlimaPageProps) {
+export default async function ApplianceDetailPage({ params }: AppliancePageProps) {
   const { slug } = await params;
-  const page = getKlimaPage(slug);
+  const page = getAppliancePage(slug);
 
   if (!page) {
     notFound();
   }
 
-  const related = klimaPages.filter((item) => item.slug !== page.slug).slice(0, 3);
+  const related = appliancePages.filter((item) => item.slug !== page.slug).slice(0, 3);
 
   return (
     <DetailPageLayout
-      hub={{ label: "Klimageräte", href: "/klimageraete" }}
+      hub={{ label: "Haushaltsgeräte", href: "/haushaltsgeraete" }}
       category={page.category}
       h1={page.h1}
       intro={page.intro}
-      contactNote="Für schnelle Einschätzung, Terminabstimmung und dringende Ausfälle."
+      contactNote="Für schnelle Einschätzung, Terminabstimmung und Notdienst-Kontakt."
       checklist={page.checklist}
       sections={page.sections}
-      relatedEyebrow="Weitere Leistungen"
-      relatedTitle="Mehr rund um Klimageräte."
+      relatedEyebrow="Verwandte Leistungen"
+      relatedTitle="Weitere Reparaturen im Service."
       related={related.map((item) => ({
         category: item.category,
         title: item.title,
-        href: `/klimageraete/${item.slug}`
+        href: `/haushaltsgeraete/${item.slug}`
       }))}
       jsonLd={{
         name: page.title,
         description: page.description,
-        path: `/klimageraete/${page.slug}`
+        path: `/haushaltsgeraete/${page.slug}`
       }}
     />
   );

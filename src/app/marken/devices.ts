@@ -7,7 +7,7 @@ export type BrandDeviceCategory = {
   plural: string;
   /** Eyebrow-Text & Kategorie */
   category: string;
-  /** Pfad in /leistungen/* für interne Verlinkung */
+  /** Pfad in /haushaltsgeraete/* für interne Verlinkung */
   serviceSlug: string;
   /** Kurzbeschreibung für Hero-Subline / Cross-Links */
   short: string;

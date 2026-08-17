@@ -1,10 +1,12 @@
-export type ServicePage = {
+export type AppliancePage = {
   slug: string;
   title: string;
   metaTitle: string;
   description: string;
   h1: string;
   category: string;
+  /** Teaser für Hub-Übersicht und Cross-Links. */
+  short: string;
   intro: string;
   sections: {
     title: string;
@@ -13,7 +15,7 @@ export type ServicePage = {
   checklist: string[];
 };
 
-export const servicePages: ServicePage[] = [
+export const appliancePages: AppliancePage[] = [
   {
     slug: "waschmaschine-reparatur-wien",
     title: "Waschmaschine Reparatur Wien",
@@ -22,6 +24,8 @@ export const servicePages: ServicePage[] = [
       "Waschmaschine Reparatur in Wien: schnelle Einschätzung, klare Diagnose und telefonische Terminabstimmung. Jetzt MONTER Service anrufen.",
     h1: "Waschmaschine Reparatur in Wien",
     category: "Waschmaschine",
+    short:
+      "Pumpt nicht ab, schleudert nicht, verliert Wasser oder zeigt einen Fehlercode.",
     intro:
       "Wenn die Waschmaschine nicht abpumpt, schleudert, Wasser verliert oder einen Fehlercode zeigt, zählt eine schnelle und sinnvolle Einschätzung. MONTER Reparatur & Service unterstützt Haushalte, Vermieter und Hausverwaltungen in Wien bei typischen Waschmaschinenproblemen.",
     sections: [
@@ -51,6 +55,8 @@ export const servicePages: ServicePage[] = [
       "Geschirrspüler Reparatur in Wien: Hilfe bei Undichtigkeit, Pumpenproblemen und schlechter Reinigung. Jetzt Reparaturanfrage vorbereiten.",
     h1: "Geschirrspüler Reparatur in Wien",
     category: "Geschirrspüler",
+    short:
+      "Wasser bleibt stehen, Gerät heizt nicht, reinigt schlecht oder läuft aus.",
     intro:
       "Ein defekter Geschirrspüler stört den Alltag schnell. Ob Wasser stehen bleibt, das Gerät nicht heizt, schlecht reinigt oder ausläuft: Für eine gute Reparaturentscheidung braucht es eine klare Diagnose.",
     sections: [
@@ -80,6 +86,8 @@ export const servicePages: ServicePage[] = [
       "Backofen und Herd Reparatur in Wien: klare Hilfe bei Heizproblemen, Elektronikfehlern und Sicherheitsfragen. Jetzt anrufen.",
     h1: "Backofen und Herd Reparatur in Wien",
     category: "Backofen & Herd",
+    short:
+      "Keine Heizleistung, ausgefallene Funktionen oder ausgelöste Sicherung.",
     intro:
       "Wenn Backofen oder Herd nicht mehr heizen, Sicherungen auslösen oder Bedienelemente nicht reagieren, sollte Sicherheit an erster Stelle stehen. MONTER Reparatur & Service hilft bei der strukturierten Einschätzung.",
     sections: [
@@ -109,6 +117,8 @@ export const servicePages: ServicePage[] = [
       "Trockner Reparatur in Wien: Unterstützung bei feuchter Wäsche, Sensorproblemen, Wärmepumpe und Luftwegen. Jetzt Kontakt aufnehmen.",
     h1: "Trockner Reparatur in Wien",
     category: "Trockner",
+    short:
+      "Wäsche bleibt feucht, Wärmetauscher zugesetzt oder Sensorik defekt.",
     intro:
       "Wenn der Trockner läuft, aber die Wäsche feucht bleibt, steigen Zeitaufwand und Energiekosten. Eine gezielte Einschätzung hilft, Filterprobleme von technischen Defekten zu unterscheiden.",
     sections: [
@@ -138,6 +148,8 @@ export const servicePages: ServicePage[] = [
       "Kühlschrank Reparatur in Wien: schnelle Einschätzung bei Temperaturproblemen, Vereisung und Dichtungen. Jetzt Notdienst kontaktieren.",
     h1: "Kühlschrank Reparatur in Wien",
     category: "Kühlschrank",
+    short:
+      "Kühlt zu schwach, vereist stark oder der Kompressor läuft ungewöhnlich.",
     intro:
       "Wenn ein Kühlschrank nicht richtig kühlt, kann das schnell Lebensmittel betreffen. Wichtig ist eine schnelle Einschätzung von Temperatur, Dichtung, Vereisung und Geräuschentwicklung.",
     sections: [
@@ -167,6 +179,8 @@ export const servicePages: ServicePage[] = [
       "Tiefkühl Reparatur in Wien: Hilfe bei Temperaturverlust, Vereisung, Alarmen und Ausfällen. Jetzt schnell telefonisch klären.",
     h1: "Tiefkühl Reparatur in Wien",
     category: "Tiefkühlgerät",
+    short:
+      "Temperatur steigt, Alarm meldet sich oder das Gerät fällt ganz aus.",
     intro:
       "Bei Tiefkühlgeräten zählt Zeit. Wenn die Temperatur steigt, ein Alarm erscheint oder starke Vereisung entsteht, sollte rasch entschieden werden, ob Reparatur möglich und sinnvoll ist.",
     sections: [
@@ -196,6 +210,8 @@ export const servicePages: ServicePage[] = [
       "Waschtrockner Reparatur in Wien: Hilfe bei feuchter Wäsche, Pumpenproblemen, Heizung und Elektronik. Jetzt Reparaturanfrage vorbereiten.",
     h1: "Waschtrockner Reparatur in Wien",
     category: "Waschtrockner",
+    short:
+      "Kombigerät mit Fehlern beim Waschen, Schleudern oder Trocknen.",
     intro:
       "Ein Waschtrockner vereint zwei Geräte in einem — und damit auch mögliche Fehlerquellen aus beiden Bereichen. Ob beim Waschen oder Trocknen ein Problem auftritt: Eine klare Diagnose hilft, gezielt zu reparieren.",
     sections: [
@@ -225,6 +241,8 @@ export const servicePages: ServicePage[] = [
       "Dunstabzug Reparatur in Wien: Hilfe bei schwacher Saugleistung, Beleuchtung, Schaltern und Motor. Jetzt Kontakt aufnehmen.",
     h1: "Dunstabzug Reparatur in Wien",
     category: "Dunstabzug",
+    short:
+      "Schwache Saugleistung, laute Motoren, Beleuchtung oder Bedienfeld defekt.",
     intro:
       "Wenn die Dunstabzugshaube kaum noch Saugleistung bringt, laut wird oder Beleuchtung und Bedienung ausfallen, lohnt sich eine gezielte Prüfung von Motor, Filter und Elektronik.",
     sections: [
@@ -254,6 +272,8 @@ export const servicePages: ServicePage[] = [
       "Fernseher Reparatur in Wien: Hilfe bei schwarzem Bild, Streifen, Ton- und Anschlussproblemen sowie defekter Elektronik. Jetzt Kontakt aufnehmen.",
     h1: "Fernseher Reparatur in Wien",
     category: "Fernseher",
+    short:
+      "Schwarzes Bild, Streifen, fehlender Ton oder Gerät startet nicht mehr.",
     intro:
       "Bleibt der Bildschirm schwarz, zeigt das Bild Streifen oder Flecken, fehlt der Ton oder startet das Gerät ständig neu? Wir prüfen Netzteil, Elektronik, Panel-Ansteuerung und Anschlüsse und sagen offen, ob eine Reparatur wirtschaftlich sinnvoll ist.",
     sections: [
@@ -288,6 +308,24 @@ export const servicePages: ServicePage[] = [
   }
 ];
 
-export function getServicePage(slug: string) {
-  return servicePages.find((service) => service.slug === slug);
+export function getAppliancePage(slug: string) {
+  return appliancePages.find((page) => page.slug === slug);
 }
+
+export const applianceWashingNavLinks = appliancePages
+  .filter((page) =>
+    ["waschmaschine-reparatur-wien", "geschirrspueler-reparatur-wien", "trockner-reparatur-wien", "waschtrockner-reparatur-wien"].includes(
+      page.slug
+    )
+  )
+  .map((page) => ({ label: page.category, href: `/haushaltsgeraete/${page.slug}` }));
+
+export const applianceKitchenNavLinks = appliancePages
+  .filter((page) => !applianceWashingNavLinks.some((link) => link.href.endsWith(page.slug)))
+  .map((page) => ({ label: page.category, href: `/haushaltsgeraete/${page.slug}` }));
+
+export const applianceHubLinks = appliancePages.map((page) => ({
+  label: page.category,
+  href: `/haushaltsgeraete/${page.slug}`,
+  text: page.short
+}));

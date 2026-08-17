@@ -5,6 +5,8 @@ export type KlimaPage = {
   description: string;
   h1: string;
   category: string;
+  /** Teaser für Hub-Übersicht und Cross-Links. */
+  short: string;
   intro: string;
   sections: {
     title: string;
@@ -22,6 +24,8 @@ export const klimaPages: KlimaPage[] = [
       "Split-Klimaanlage Reparatur in Wien & NÖ: Kühlleistung, Entwässerung, Geräusche und Steuerung. Markenoffen, schnelle Einschätzung vor Ort.",
     h1: "Split-Klimaanlage Reparatur in Wien",
     category: "Split-Klimaanlage",
+    short:
+      "Innen- und Außengerät: Kühlleistung, Entwässerung, Geräusche und Steuerung.",
     intro:
       "Wenn die Split-Klimaanlage nicht mehr kühlt, Wasser tropft, ungewöhnliche Geräusche auftreten oder die Fernbedienung nicht reagiert, braucht es eine gezielte Diagnose. MONTER Reparatur & Service unterstützt Sie bei typischen Problemen an Innen- und Außengerät in Wien und Niederösterreich.",
     sections: [
@@ -57,6 +61,8 @@ export const klimaPages: KlimaPage[] = [
       "Multi-Split-Klimaanlage Reparatur in Wien: ein Außengerät, mehrere Innengeräte — Diagnose bei Kühlproblemen, Leitungsfehlern und Steuerung.",
     h1: "Multi-Split-Anlage Reparatur in Wien",
     category: "Multi-Split-Anlage",
+    short:
+      "Mehrere Innengeräte an einem Außengerät — Einzelausfall oder Systemfehler.",
     intro:
       "Multi-Split-Anlagen versorgen mehrere Räume über ein gemeinsames Außengerät. Wenn einzelne Innengeräte ausfallen oder die Gesamtleistung sinkt, ist eine strukturierte Fehlersuche entscheidend.",
     sections: [
@@ -92,6 +98,8 @@ export const klimaPages: KlimaPage[] = [
       "Monoblock-Klimagerät Reparatur in Wien: mobile und fest installierte Geräte — Kühlleistung, Abluft, Entwässerung und Elektronik.",
     h1: "Monoblock-Klimagerät Reparatur in Wien",
     category: "Monoblock-Klimagerät",
+    short:
+      "Mobile und fest installierte Geräte: Abluft, Kondensat und Elektronik.",
     intro:
       "Monoblock-Geräte sind kompakt und flexibel — ob mobil oder fest installiert. Wenn die Kühlleistung nachlässt, die Abluftführung stört oder das Gerät ungewöhnlich laut wird, helfen wir bei der Einschätzung und Reparatur.",
     sections: [
@@ -127,6 +135,8 @@ export const klimaPages: KlimaPage[] = [
       "Klimagerät Wartung in Wien & NÖ: Filter, Wärmetauscher, Dichtheit und Funktionsprüfung. Beugt Ausfällen vor und hält die Kühlleistung hoch.",
     h1: "Klimagerät Wartung & Service in Wien",
     category: "Wartung & Service",
+    short:
+      "Filter, Wärmetauscher und Funktionsprüfung — hält Leistung hoch und Verbrauch niedrig.",
     intro:
       "Regelmäßige Wartung hält Klimageräte effizient, leise und zuverlässig. Wir reinigen Filter und Wärmetauscher, prüfen Entwässerung, Lüfter und Sicherheitsfunktionen — für Privathaushalte und Gewerbe.",
     sections: [
@@ -162,6 +172,8 @@ export const klimaPages: KlimaPage[] = [
       "Kältemittelverlust und Dichtheitsprüfung bei Klimageräten in Wien: Leckage finden, fachgerecht dichten und System wieder in Betrieb nehmen.",
     h1: "Kältemittel & Dichtheitsprüfung in Wien",
     category: "Kältemittel & Dichtheit",
+    short:
+      "Leckage suchen, fachgerecht dichten und den Kältekreis wieder in Betrieb nehmen.",
     intro:
       "Sinkt die Kühlleistung langsam ab oder bildet sich Eis am Verdampfer, kann Kältemittelverlust die Ursache sein. Dichtheitsprüfung und fachgerechte Instandsetzung gehören in qualifizierte Hände.",
     sections: [
@@ -197,6 +209,8 @@ export const klimaPages: KlimaPage[] = [
       "Kompressor- und Verdichterreparatur bei Klimageräten in Wien: Startprobleme, Überhitzung, unrunder Lauf und Leistungsverlust.",
     h1: "Kompressor & Verdichter Reparatur in Wien",
     category: "Kompressor & Verdichter",
+    short:
+      "Startprobleme, Überhitzung und Leistungsverlust am Verdichter.",
     intro:
       "Der Verdichter ist das Herzstück jeder Klimaanlage. Startet das Gerät nicht, läuft es heiß oder liefert es dauerhaft zu wenig Kälte, prüfen wir Motor, Kondensator, Steuerung und mechanische Belastung.",
     sections: [
@@ -232,6 +246,8 @@ export const klimaPages: KlimaPage[] = [
       "Steuerung und Elektronik bei Klimageräten in Wien: Platine, Sensoren, Fernbedienung, WLAN-Modul und Fehlercodes.",
     h1: "Steuerung & Elektronik Reparatur in Wien",
     category: "Steuerung & Elektronik",
+    short:
+      "Platine, Sensoren, Fernbedienung und Smart-Module — Fehlercodes eingrenzen.",
     intro:
       "Reagiert die Klimaanlage nicht auf die Fernbedienung, zeigt sie Fehlercodes oder schaltet unregelmäßig, liegt die Ursache oft in Steuerplatine, Sensoren oder Verkabelung.",
     sections: [
@@ -267,6 +283,8 @@ export const klimaPages: KlimaPage[] = [
       "Reinigung und Entlüftung von Klimageräten in Wien: Filter, Wärmetauscher, Lüfter und Kondensatableitung — für bessere Luft und Kühlleistung.",
     h1: "Reinigung & Entlüftung in Wien",
     category: "Reinigung & Entlüftung",
+    short:
+      "Filter, Lamellen und Lüfter reinigen — für Luftqualität und volle Kühlleistung.",
     intro:
       "Verschmutzte Filter und Wärmetauscher verschlechtern Luftqualität und Kühlleistung. Wir reinigen zugängliche Bauteile fachgerecht und prüfen Lüfter und Entwässerung.",
     sections: [
@@ -302,6 +320,8 @@ export const klimaPages: KlimaPage[] = [
       "Montage und Installation von Klimageräten in Wien & NÖ: Split-Anlagen, Leitungsführung, Aufstellung und Inbetriebnahme.",
     h1: "Montage & Installation in Wien",
     category: "Montage & Installation",
+    short:
+      "Neuanlage oder Ersatzgerät fachgerecht montiert, geprüft und in Betrieb genommen.",
     intro:
       "Ob Neuanlage oder Ersatzgerät — eine saubere Montage entscheidet über Kühlleistung, Laufzeit und Wartbarkeit. Wir installieren Split- und Monoblock-Systeme fachgerecht in Wien und Niederösterreich.",
     sections: [
@@ -343,4 +363,10 @@ export const klimaDeviceNavLinks = klimaPages.slice(0, 4).map((page) => ({
 export const klimaRepairNavLinks = klimaPages.slice(4).map((page) => ({
   label: page.category,
   href: `/klimageraete/${page.slug}`
+}));
+
+export const klimaHubLinks = klimaPages.map((page) => ({
+  label: page.category,
+  href: `/klimageraete/${page.slug}`,
+  text: page.short
 }));

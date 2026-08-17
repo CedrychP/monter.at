@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const phoneDisplay = "01 4171346";
 const phoneHref = "+4314171346";
 
@@ -24,25 +26,31 @@ const householdPriceItems: PriceItem[] = [
   },
   {
     number: "03",
+    service: "Anfahrt weitere Bundesländer",
+    price: "auf Anfrage",
+    note: "Außerhalb von Wien, Niederösterreich und dem Nordburgenland arbeiten wir mit Partnerbetrieben — deren Anfahrtssatz nennen wir vor dem Termin."
+  },
+  {
+    number: "04",
     service: "Nur Diagnose",
     price: "120 €",
     note: "Prüfung des Geräts vor Ort mit Fehlerdiagnose. Die erste Arbeitseinheit (30 Minuten) ist inklusive."
   },
   {
-    number: "04",
+    number: "05",
     service: "Reparatur & Diagnose",
     price: "150 €",
     note: "Diagnose und Reparatur vor Ort. Die erste Arbeitseinheit (30 Minuten) ist inklusive.",
     highlight: true
   },
   {
-    number: "05",
+    number: "06",
     service: "Zusätzliche Arbeitseinheit",
     price: "+50 €",
     note: "Beim Erstbesuch: eine Arbeitseinheit = 30 Minuten. Jede weitere Einheit nach der ersten wird mit 50 € verrechnet."
   },
   {
-    number: "06",
+    number: "07",
     service: "Folgebesuch — Ersatzteil einbauen",
     price: "50 € + Ersatzteil",
     note: "Beim zweiten Einsatz verrechnen wir nur eine Arbeitseinheit (50 €) und das benötigte Ersatzteil — ohne erneute Diagnose- oder Reparaturpauschale."
@@ -67,6 +75,12 @@ const garageTravelPriceItems: PriceItem[] = [
     service: "Mehr als 1 Std. Fahrt",
     price: "200 €",
     note: "Anfahrtspauschale bei einer Fahrzeit von mehr als einer Stunde (An- und Abfahrt)."
+  },
+  {
+    number: "04",
+    service: "Anfahrt weitere Bundesländer",
+    price: "auf Anfrage",
+    note: "Ob ein Partnerbetrieb in Ihrer Region Torarbeiten abdeckt, klären wir bei der Anfrage — samt Anfahrtssatz."
   }
 ];
 
@@ -307,6 +321,15 @@ export default function PreisePage() {
                 Material und Ersatzteile werden nur dann verrechnet, wenn sie tatsächlich
                 benötigt werden. Kosten werden vor dem Einbau transparent abgestimmt. Alle
                 angegebenen Preise verstehen sich exklusive Umsatzsteuer (USt.).
+              </p>
+              <p className="mt-4 text-[1.05rem] font-light leading-relaxed text-[color:var(--muted)]">
+                Diese Sätze gelten für Einsätze unseres eigenen Teams in Wien, Niederösterreich und
+                im Nordburgenland. In den übrigen Bundesländern arbeiten wir mit Partnerbetrieben,
+                deren Anfahrtssatz wir Ihnen vor dem Termin nennen — eine Übersicht steht unter{" "}
+                <Link href="/einsatzgebiete" className="underline transition hover:text-[color:var(--accent)]">
+                  Einsatzgebiete
+                </Link>
+                .
               </p>
               <a href={`tel:${phoneHref}`} className="btn-primary mt-10">
                 Jetzt Preis einschätzen lassen

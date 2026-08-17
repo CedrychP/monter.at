@@ -6,6 +6,7 @@ import ReviewsSection from "./ReviewsSection";
 import HeroSlider from "./HeroSlider";
 import ApplianceSlider from "./ApplianceSlider";
 import { brandPages, brandOverview } from "./marken/brands";
+import { getFeaturedCities, homeRegions, servedAreasJsonLd } from "./einsatzgebiete/regionPages";
 import { siteConfig } from "./siteConfig";
 
 const businessImage =
@@ -143,49 +144,49 @@ const applianceCategories = [
     title: "Waschmaschine",
     image:
       "https://images.unsplash.com/photo-1632923565835-6582b54f2105?auto=format&fit=crop&w=1200&q=85",
-    href: "/leistungen/waschmaschine-reparatur-wien"
+    href: "/haushaltsgeraete/waschmaschine-reparatur-wien"
   },
   {
     title: "Trockner",
     image:
       "https://images.unsplash.com/photo-1775210727386-4c798dfae209?auto=format&fit=crop&w=1200&q=85",
-    href: "/leistungen/trockner-reparatur-wien"
+    href: "/haushaltsgeraete/trockner-reparatur-wien"
   },
   {
     title: "Geschirrspüler",
     image:
       "https://images.unsplash.com/photo-1620568400263-6f1cf95b9e30?auto=format&fit=crop&w=1200&q=85",
-    href: "/leistungen/geschirrspueler-reparatur-wien"
+    href: "/haushaltsgeraete/geschirrspueler-reparatur-wien"
   },
   {
     title: "Kühlschrank",
     image:
       "https://images.unsplash.com/photo-1667404202905-4335b5370d96?auto=format&fit=crop&w=1200&q=85",
-    href: "/leistungen/kuehlschrank-reparatur-wien"
+    href: "/haushaltsgeraete/kuehlschrank-reparatur-wien"
   },
   {
     title: "Gefrierschrank",
     image:
       "https://images.unsplash.com/photo-1719642357460-d0f611ebc108?auto=format&fit=crop&w=1200&q=85",
-    href: "/leistungen/tiefkuehl-reparatur-wien"
+    href: "/haushaltsgeraete/tiefkuehl-reparatur-wien"
   },
   {
     title: "Backofen & Herd",
     image:
       "https://images.unsplash.com/photo-1677727852911-74e9d5269003?auto=format&fit=crop&w=1200&q=85",
-    href: "/leistungen/backofen-herd-reparatur-wien"
+    href: "/haushaltsgeraete/backofen-herd-reparatur-wien"
   },
   {
     title: "Dunstabzug",
     image:
       "https://images.unsplash.com/photo-1556909212-d5b604d0c90d?auto=format&fit=crop&w=1200&q=85",
-    href: "/leistungen/dunstabzug-reparatur-wien"
+    href: "/haushaltsgeraete/dunstabzug-reparatur-wien"
   },
   {
     title: "Fernseher",
     image:
       "https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&w=1200&q=85",
-    href: "/leistungen/fernseher-reparatur-wien"
+    href: "/haushaltsgeraete/fernseher-reparatur-wien"
   }
 ];
 
@@ -241,37 +242,8 @@ const processSteps = [
   }
 ];
 
-const serviceAreasVienna = [
-  { plz: "1010", name: "Innere Stadt" },
-  { plz: "1020", name: "Leopoldstadt" },
-  { plz: "1030", name: "Landstraße" },
-  { plz: "1040", name: "Wieden" },
-  { plz: "1050", name: "Margareten" },
-  { plz: "1060", name: "Mariahilf" },
-  { plz: "1070", name: "Neubau" },
-  { plz: "1080", name: "Josefstadt" },
-  { plz: "1090", name: "Alsergrund" },
-  { plz: "1100", name: "Favoriten" },
-  { plz: "1110", name: "Simmering" },
-  { plz: "1120", name: "Meidling" },
-  { plz: "1130", name: "Hietzing" },
-  { plz: "1140", name: "Penzing" },
-  { plz: "1150", name: "Rudolfsheim-Fünfhaus" },
-  { plz: "1160", name: "Ottakring" },
-  { plz: "1170", name: "Hernals" },
-  { plz: "1180", name: "Währing" },
-  { plz: "1190", name: "Döbling" },
-  { plz: "1200", name: "Brigittenau" },
-  { plz: "1210", name: "Floridsdorf" },
-  { plz: "1220", name: "Donaustadt" },
-  { plz: "1230", name: "Liesing" }
-];
-
-const serviceAreasLowerAustria = [
-  { plz: "2103", name: "Langenzersdorf" },
-  { plz: "2380", name: "Perchtoldsdorf" },
-  { plz: "3400", name: "Klosterneuburg" }
-];
+const serviceAreasVienna = getFeaturedCities(homeRegions.vienna);
+const serviceAreasLowerAustria = getFeaturedCities(homeRegions.lowerAustria);
 
 const featuredBrands = [
   "Bosch",
@@ -397,7 +369,7 @@ export default function Home() {
       name: "MONTER Reparatur & Service",
       telephone: emergencyPhoneHref
     },
-    areaServed: ["Wien", "Niederösterreich"],
+    areaServed: servedAreasJsonLd,
     url: siteConfig.siteUrl
   };
 
@@ -673,7 +645,7 @@ export default function Home() {
               {
                 title: "Haushaltsgeräte-Reparatur",
                 text: "Waschmaschine, Geschirrspüler, Kühl- & Gefriergeräte, Backofen, Herd und Trockner — markenoffen.",
-                href: "/#leistungen",
+                href: "/haushaltsgeraete",
                 icon: (
                   <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <rect x="4" y="3" width="16" height="18" rx="1.6" stroke="currentColor" strokeWidth="1.4" />
@@ -685,7 +657,7 @@ export default function Home() {
               {
                 title: "Garagentor-Reparatur",
                 text: "Federwechsel, Antriebs- und Motorreparatur, Laufrollen sowie Wartung und Sicherheitscheck.",
-                href: "/garagentor-reparatur-wien",
+                href: "/garagentore",
                 icon: (
                   <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <path d="M3 21V8.5L12 4l9 4.5V21" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
@@ -715,22 +687,21 @@ export default function Home() {
                 )
               },
               {
-                title: "Geräte & Kategorien",
-                text: "Waschen · Spülen · Kühlen · Backen & Kochen · Trocknen — für jede Kategorie der passende Service.",
-                href: "/#leistungen",
+                title: "Klimageräte-Reparatur",
+                text: "Split-, Multi-Split- und Monoblock-Anlagen — Kühlleistung, Kältemittel, Steuerung, Wartung und Montage.",
+                href: "/klimageraete",
                 icon: (
                   <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <rect x="3" y="3" width="7" height="7" rx="1.2" stroke="currentColor" strokeWidth="1.4" />
-                    <rect x="14" y="3" width="7" height="7" rx="1.2" stroke="currentColor" strokeWidth="1.4" />
-                    <rect x="3" y="14" width="7" height="7" rx="1.2" stroke="currentColor" strokeWidth="1.4" />
-                    <rect x="14" y="14" width="7" height="7" rx="1.2" stroke="currentColor" strokeWidth="1.4" />
+                    <rect x="3" y="5" width="18" height="7" rx="1.4" stroke="currentColor" strokeWidth="1.4" />
+                    <path d="M6 9h12" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+                    <path d="M8 15c0 1.6 1.2 1.6 1.2 3.2M12 15c0 1.6 1.2 1.6 1.2 3.2M16 15c0 1.6 1.2 1.6 1.2 3.2" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
                   </svg>
                 )
               },
               {
                 title: "Hauptmarken",
                 text: "Bosch, Siemens, Miele, AEG, Gorenje und 60+ weitere Marken — kompetent und markenoffen serviciert.",
-                href: "/#marken",
+                href: "/marken",
                 icon: (
                   <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <circle cx="12" cy="9" r="5" stroke="currentColor" strokeWidth="1.4" />
@@ -790,7 +761,7 @@ export default function Home() {
               </h2>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-              <Link href="/garagentor-reparatur-wien" className="btn-primary w-full sm:w-auto">
+              <Link href="/garagentore" className="btn-primary w-full sm:w-auto">
                 Garagenservice ansehen
               </Link>
               <Link href="/preise" className="btn-ghost w-full sm:w-auto">
@@ -799,10 +770,11 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="reveal mt-12 grid gap-px overflow-hidden rounded-sm bg-[color:var(--border)] sm:grid-cols-2 lg:grid-cols-4">
+          <div className="reveal mt-12 grid gap-px overflow-hidden rounded-sm bg-[color:var(--border)] sm:grid-cols-2 lg:grid-cols-3">
             {[
               {
                 title: "Sektionaltore",
+                href: "/garagentore/sektionaltor-reparatur-wien",
                 icon: (
                   <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <path d="M3 21V8.5L12 4l9 4.5V21" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
@@ -811,7 +783,8 @@ export default function Home() {
                 )
               },
               {
-                title: "Rolltore",
+                title: "Schwing- & Rolltore",
+                href: "/garagentore/schwingtor-rolltor-reparatur-wien",
                 icon: (
                   <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <rect x="3" y="3" width="18" height="3.4" rx="1.5" stroke="currentColor" strokeWidth="1.4" />
@@ -821,7 +794,8 @@ export default function Home() {
                 )
               },
               {
-                title: "Torantriebe",
+                title: "Torantriebe & Motoren",
+                href: "/garagentore/torantrieb-motor-reparatur-wien",
                 icon: (
                   <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <circle cx="12" cy="12" r="3.2" stroke="currentColor" strokeWidth="1.4" />
@@ -830,17 +804,8 @@ export default function Home() {
                 )
               },
               {
-                title: "Motoren",
-                icon: (
-                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <rect x="3" y="8" width="12" height="8" rx="1.4" stroke="currentColor" strokeWidth="1.4" />
-                    <path d="M15 10.5h3l2 1.5-2 1.5h-3" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
-                    <path d="M6 8V6M10 8V6" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
-                  </svg>
-                )
-              },
-              {
                 title: "Federn & Federbruch",
+                href: "/garagentore/federwechsel-wien",
                 icon: (
                   <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <path d="M7 5h10M7 17h10M7 5c0 1.5 10 1.5 10 3s-10 1.5-10 3 10 1.5 10 3" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
@@ -848,7 +813,8 @@ export default function Home() {
                 )
               },
               {
-                title: "Rollentausch",
+                title: "Laufrollen & Schienen",
+                href: "/garagentore/laufrollen-schienen-wien",
                 icon: (
                   <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <circle cx="8" cy="11" r="3" stroke="currentColor" strokeWidth="1.4" />
@@ -858,15 +824,8 @@ export default function Home() {
                 )
               },
               {
-                title: "Wartung & Service",
-                icon: (
-                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M14.7 6.3a3.6 3.6 0 0 0-4.8 4.3L4 16.5 7.5 20l5.9-5.9a3.6 3.6 0 0 0 4.3-4.8l-2.4 2.4-2-2 2.4-2.4Z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
-                  </svg>
-                )
-              },
-              {
-                title: "Sicherheitsüberprüfung",
+                title: "Wartung & Sicherheitsprüfung",
+                href: "/garagentore/wartung-sicherheitspruefung-wien",
                 icon: (
                   <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <path d="M12 3l7 3v5c0 4.4-3 7.5-7 9-4-1.5-7-4.6-7-9V6l7-3Z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
@@ -877,7 +836,7 @@ export default function Home() {
             ].map((box) => (
               <Link
                 key={box.title}
-                href="/garagentor-reparatur-wien"
+                href={box.href}
                 className="group flex flex-col bg-white p-6 transition-colors duration-300 hover:bg-[color:var(--bg-muted)] lg:p-7"
               >
                 <span className="text-[color:var(--accent)]" aria-hidden="true">
@@ -1193,11 +1152,21 @@ export default function Home() {
                 Wir kommen zu Ihnen.
               </h2>
             </div>
-            <p className="max-w-xl text-[1.02rem] font-normal leading-relaxed text-[color:var(--muted)]">
-              Reparaturen in Wien und im Wiener Umland — schnell, planbar und mit transparenter
-              Anfahrt. Material wird nur bei tatsächlichem Bedarf verrechnet, bei längeren
-              Wegstrecken können Aufpreise anfallen.
-            </p>
+            <div className="max-w-xl">
+              <p className="text-[1.02rem] font-normal leading-relaxed text-[color:var(--muted)]">
+                Reparaturen in Wien und im Wiener Umland — schnell, planbar und mit transparenter
+                Anfahrt. Material wird nur bei tatsächlichem Bedarf verrechnet, bei längeren
+                Wegstrecken können Aufpreise anfallen. In den übrigen Bundesländern arbeiten wir
+                mit Partnerbetrieben.
+              </p>
+              <Link
+                href="/einsatzgebiete"
+                className="mt-5 inline-flex text-[0.72rem] font-medium uppercase tracking-[0.16em] text-[color:var(--accent)]"
+              >
+                Alle Einsatzgebiete in Österreich
+                <span className="ml-1">→</span>
+              </Link>
+            </div>
           </div>
 
           {/* Trust-Badges */}
@@ -1257,10 +1226,10 @@ export default function Home() {
                       <circle cx="12" cy="10" r="2.5" stroke="currentColor" strokeWidth="1.5" />
                     </svg>
                   </span>
-                  Wien
+                  {homeRegions.vienna.name}
                 </h3>
                 <span className="font-display text-xl font-normal text-[color:var(--accent)] sm:text-2xl">
-                  ab 80 €
+                  ab {homeRegions.vienna.travelFee.appliance}
                 </span>
               </div>
               <div className="mt-6 grid gap-x-6 gap-y-2 sm:grid-cols-2 lg:grid-cols-3">
@@ -1285,10 +1254,10 @@ export default function Home() {
                       <circle cx="12" cy="10" r="2.5" stroke="currentColor" strokeWidth="1.5" />
                     </svg>
                   </span>
-                  Niederösterreich
+                  {homeRegions.lowerAustria.name}
                 </h3>
                 <span className="font-display text-xl font-normal text-[color:var(--accent)] sm:text-2xl">
-                  ab 100 €
+                  ab {homeRegions.lowerAustria.travelFee.appliance}
                 </span>
               </div>
               <div className="mt-6 grid gap-y-2">
@@ -1303,7 +1272,15 @@ export default function Home() {
                 ))}
                 <div className="mt-6 rounded-sm bg-[color:var(--bg-muted)] p-5">
                   <p className="text-sm font-normal leading-relaxed text-[color:var(--muted)]">
-                    Ihre Region nicht dabei? Rufen Sie kurz an — wir prüfen Termine in der Nähe.
+                    Ihre Region nicht dabei? Außerhalb von Wien und Niederösterreich arbeiten wir
+                    mit{" "}
+                    <Link
+                      href="/einsatzgebiete"
+                      className="underline transition hover:text-[color:var(--accent)]"
+                    >
+                      Partnerbetrieben in allen Bundesländern
+                    </Link>
+                    . Rufen Sie kurz an — wir sagen Ihnen, wer kommt.
                   </p>
                   <a
                     href={`tel:${emergencyPhoneHref}`}

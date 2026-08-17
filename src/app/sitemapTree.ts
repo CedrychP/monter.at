@@ -1,8 +1,10 @@
 import { blogPosts } from "./blog/posts";
+import { appliancePages } from "./haushaltsgeraete/appliancePages";
+import { garagePages } from "./garagentore/garagePages";
+import { klimaPages } from "./klimageraete/klimaPages";
+import { isBrandDeviceEnriched } from "./marken/brandDeviceContent";
 import { brandPages } from "./marken/brands";
 import { brandDeviceCategories } from "./marken/devices";
-import { klimaPages } from "./klimageraete/klimaPages";
-import { servicePages } from "./leistungen/services";
 
 export type SitemapLink = {
   label: string;
@@ -23,50 +25,38 @@ export const sitemapHome: SitemapLink = { label: "Startseite", href: "/" };
 
 export const sitemapGroups: SitemapGroup[] = [
   {
-    id: "leistungen",
-    label: "Reparatur & Leistungen",
-    href: "/#leistungen",
-    description: "Haushaltsgeräte-Reparatur, Termin und Preise.",
+    id: "haushaltsgeraete",
+    label: "Haushaltsgeräte",
+    href: "/haushaltsgeraete",
+    description: "Reparatur nach Gerät — Waschmaschine bis Fernseher.",
     links: [
-      { label: "Reparatur buchen", href: "/reparatur-buchen" },
-      { label: "Preise & Pauschalen", href: "/preise" },
-      { label: "Ersatzteile", href: "/ersatzteile" },
-      { label: "Wartungsservice", href: "/wartungsservice" },
-      { label: "Lieferung & Montage", href: "/lieferung-montage" },
-      ...servicePages.map((service) => ({
-        label: service.title,
-        href: `/leistungen/${service.slug}`
+      { label: "Haushaltsgeräte — Übersicht", href: "/haushaltsgeraete" },
+      ...appliancePages.map((page) => ({
+        label: page.title,
+        href: `/haushaltsgeraete/${page.slug}`
       }))
     ]
   },
   {
-    id: "marken",
-    label: "Marken",
-    href: "/#marken",
-    description: "Markenoffene Reparatur — Geräte je Hersteller.",
-    links: brandPages.map((brand) => ({
-      label: brand.brand,
-      href: `/marken/${brand.slug}`,
-      children: brandDeviceCategories.map((device) => ({
-        label: device.label,
-        href: `/marken/${brand.slug}/${device.slug}`
-      }))
-    }))
-  },
-  {
-    id: "garagentor",
+    id: "garagentore",
     label: "Garagentore",
-    href: "/garagentor-reparatur-wien",
-    description: "Garagentor-Reparatur, Antrieb, Federn & Wartung.",
-    links: [{ label: "Garagentor Reparatur Wien", href: "/garagentor-reparatur-wien" }]
+    href: "/garagentore",
+    description: "Tore, Antriebe, Federn, Laufwerk und Wartung.",
+    links: [
+      { label: "Garagentore — Übersicht", href: "/garagentore" },
+      ...garagePages.map((page) => ({
+        label: page.title,
+        href: `/garagentore/${page.slug}`
+      }))
+    ]
   },
   {
     id: "klimageraete",
     label: "Klimageräte",
-    href: "/klimageraete-reparatur-wien",
+    href: "/klimageraete",
     description: "Klimagerät-Reparatur, Wartung, Kältemittel & Montage.",
     links: [
-      { label: "Klimagerät Reparatur Wien", href: "/klimageraete-reparatur-wien" },
+      { label: "Klimageräte — Übersicht", href: "/klimageraete" },
       ...klimaPages.map((page) => ({
         label: page.title,
         href: `/klimageraete/${page.slug}`
@@ -74,16 +64,47 @@ export const sitemapGroups: SitemapGroup[] = [
     ]
   },
   {
+    id: "marken",
+    label: "Marken",
+    href: "/marken",
+    description: "Markenoffene Reparatur — Geräte je Hersteller.",
+    links: [
+      { label: "Marken — Übersicht", href: "/marken" },
+      ...brandPages.map((brand) => ({
+        label: brand.brand,
+        href: `/marken/${brand.slug}`,
+        children: brandDeviceCategories.map((device) => ({
+          label: device.label,
+          href: `/marken/${brand.slug}/${device.slug}`
+        }))
+      }))
+    ]
+  },
+  {
+    id: "termin-preise",
+    label: "Termin & Preise",
+    href: "/reparatur-buchen",
+    description: "Termin buchen, Preise, Ersatzteile und Montage.",
+    links: [
+      { label: "Reparatur buchen", href: "/reparatur-buchen" },
+      { label: "Preise & Pauschalen", href: "/preise" },
+      { label: "Ersatzteile", href: "/ersatzteile" },
+      { label: "Wartungsservice", href: "/wartungsservice" },
+      { label: "Lieferung & Montage", href: "/lieferung-montage" },
+      { label: "Kontakt", href: "/kontakt" }
+    ]
+  },
+  {
     id: "service",
     label: "Service & Extras",
-    href: "/geraetekauf",
-    description: "Gerätekauf, Förderungen, Beratung und Aktionen.",
+    href: "/kaufberatung",
+    description: "Beratung, Förderungen, Entsorgung und Aktionen.",
     links: [
-      { label: "Gerätekauf", href: "/geraetekauf" },
       { label: "Kaufberatung", href: "/kaufberatung" },
       { label: "Garantieverlängerung", href: "/garantieverlaengerung" },
       { label: "Altgeräteentsorgung", href: "/altgeraeteentsorgung" },
       { label: "Geräte-Retter-Prämie", href: "/geraete-retter-praemie" },
+      { label: "Gerätekauf", href: "/geraetekauf" },
       { label: "MONTER GOLD", href: "/monter-gold" },
       { label: "Aktionskatalog", href: "/aktionskatalog" },
       { label: "Kurse", href: "/kurse" },
@@ -94,12 +115,11 @@ export const sitemapGroups: SitemapGroup[] = [
     id: "unternehmen",
     label: "Unternehmen",
     href: "/ueber-uns",
-    description: "Über MONTER, Firmenkunden, Karriere & Kontakt.",
+    description: "Über MONTER, Firmenkunden, Karriere & Suche.",
     links: [
       { label: "Über uns", href: "/ueber-uns" },
       { label: "Firmenkunden", href: "/firmenkunden" },
       { label: "Karriere", href: "/karriere" },
-      { label: "Kontakt", href: "/kontakt" },
       { label: "Suche", href: "/suche" }
     ]
   },
@@ -127,16 +147,33 @@ export const sitemapGroups: SitemapGroup[] = [
       { label: "Datenschutz", href: "/dsgvo" },
       { label: "AGB", href: "/agb" },
       { label: "Nutzungsbedingungen", href: "/nutzungsbedingungen" },
-      { label: "Barrierefreiheit", href: "/barrierefreiheit" }
+      { label: "Barrierefreiheit", href: "/barrierefreiheit" },
+      { label: "Sitemap", href: "/sitemap" }
     ]
   }
 ];
 
+/** Kombiseiten, die noch generischen Gerätetext tragen — auf noindex, also auch nicht in die XML-Sitemap. */
+const unenrichedBrandDeviceRoutes = brandPages.flatMap((brand) =>
+  brandDeviceCategories
+    .filter((device) => !isBrandDeviceEnriched(brand.slug, device.slug))
+    .map((device) => `/marken/${brand.slug}/${device.slug}`)
+);
+
 /**
- * Seiten, die nicht in der XML-Sitemap für Suchmaschinen erscheinen sollen.
- * (z. B. interne Suche — dünn/dynamisch, separat mit noindex markiert.)
+ * Seiten, die nicht in der XML-Sitemap für Suchmaschinen erscheinen sollen —
+ * interne Suche, Platzhalterseiten vor dem Start und unfertige Kombiseiten.
+ * Alle bleiben für Besucher erreichbar und in der Navigation verlinkt.
  */
-export const SITEMAP_EXCLUDED_ROUTES = new Set<string>(["/suche"]);
+export const SITEMAP_EXCLUDED_ROUTES = new Set<string>([
+  "/suche",
+  "/geraetekauf",
+  "/monter-gold",
+  "/kurse",
+  "/veranstaltungen",
+  "/aktionskatalog",
+  ...unenrichedBrandDeviceRoutes
+]);
 
 /**
  * Flacht den Baum zu echten, internen Seiten-Routen ab (ohne #-Anker, ohne Externe).

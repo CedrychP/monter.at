@@ -127,7 +127,10 @@ export default function UeberUnsPage() {
         </div>
       </section>
 
-      <section className="border-t border-[color:var(--border)] bg-[color:var(--bg-muted)] py-20 sm:py-24 lg:py-28">
+      <section
+        id="arbeitsweise"
+        className="scroll-mt-28 border-t border-[color:var(--border)] bg-[color:var(--bg-muted)] py-20 sm:py-24 lg:py-28"
+      >
         <div className="mx-auto max-w-[88rem] px-5 sm:px-8">
           <div className="grid gap-16 lg:grid-cols-[0.85fr_1.15fr] lg:gap-24">
             <div className="reveal">

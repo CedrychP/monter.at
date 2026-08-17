@@ -1,97 +1,122 @@
-import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import Link from "next/link";
-import { notFound } from "next/navigation";
-import { siteConfig } from "../../siteConfig";
-import { getServicePage, servicePages } from "../services";
+import { siteConfig } from "./siteConfig";
+import { servedAreas, type ServedArea } from "./einsatzgebiete/regionPages";
 
-type ServicePageProps = {
-  params: Promise<{
-    slug: string;
-  }>;
+type HubRef = {
+  label: string;
+  href: string;
 };
 
-export function generateStaticParams() {
-  return servicePages.map((service) => ({
-    slug: service.slug
-  }));
-}
+type RelatedEntry = {
+  category: string;
+  title: string;
+  href: string;
+};
 
-export async function generateMetadata({ params }: ServicePageProps): Promise<Metadata> {
-  const { slug } = await params;
-  const service = getServicePage(slug);
+type DetailPageLayoutProps = {
+  /** Elternseite des Detailbereichs — erzeugt Breadcrumb und Rücksprung. */
+  hub: HubRef;
+  category: string;
+  h1: string;
+  intro: string;
+  contactNote: string;
+  checklist: string[];
+  sections: { title: string; body: string }[];
+  relatedEyebrow: string;
+  relatedTitle: string;
+  related: RelatedEntry[];
+  /** Für Service- und Breadcrumb-Markup. */
+  jsonLd: { name: string; description: string; path: string };
+  /** Standard sind alle bedienten Gebiete; Regionalseiten setzen ihr eigenes. */
+  areaServed?: ServedArea | ServedArea[];
+  /** Zusätzliche Blöcke unterhalb des Hauptteils, z.B. Ortslisten oder FAQ. */
+  children?: ReactNode;
+};
 
-  if (!service) {
-    return {
-      title: "Service nicht gefunden"
-    };
-  }
-
-  return {
-    title: service.metaTitle,
-    description: service.description,
-    alternates: {
-      canonical: `/leistungen/${service.slug}`
-    },
-    openGraph: {
-      title: service.metaTitle,
-      description: service.description,
-      type: "website"
-    }
-  };
-}
-
-export default async function ServiceDetailPage({ params }: ServicePageProps) {
-  const { slug } = await params;
-  const service = getServicePage(slug);
-
-  if (!service) {
-    notFound();
-  }
-
-  const relatedServices = servicePages.filter((item) => item.slug !== service.slug).slice(0, 3);
-  const serviceJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    name: service.title,
-    description: service.description,
-    areaServed: {
-      "@type": "City",
-      name: "Wien"
-    },
-    provider: {
-      "@type": "LocalBusiness",
-      name: siteConfig.serviceName,
-      telephone: siteConfig.phoneHref,
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: siteConfig.address.street,
-        postalCode: siteConfig.address.postalCode,
-        addressLocality: siteConfig.address.city,
-        addressCountry: siteConfig.address.country
+export default function DetailPageLayout({
+  hub,
+  category,
+  h1,
+  intro,
+  contactNote,
+  checklist,
+  sections,
+  relatedEyebrow,
+  relatedTitle,
+  related,
+  jsonLd,
+  areaServed = servedAreas,
+  children
+}: DetailPageLayoutProps) {
+  const areas = Array.isArray(areaServed) ? areaServed : [areaServed];
+  const structuredData = [
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      name: jsonLd.name,
+      description: jsonLd.description,
+      areaServed: areas.map((area) => ({ "@type": area.type, name: area.name })),
+      provider: {
+        "@type": "LocalBusiness",
+        name: siteConfig.serviceName,
+        telephone: siteConfig.phoneHref,
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: siteConfig.address.street,
+          postalCode: siteConfig.address.postalCode,
+          addressLocality: siteConfig.address.city,
+          addressCountry: siteConfig.address.country
+        }
       }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Startseite", item: siteConfig.siteUrl },
+        { "@type": "ListItem", position: 2, name: hub.label, item: `${siteConfig.siteUrl}${hub.href}` },
+        { "@type": "ListItem", position: 3, name: jsonLd.name, item: `${siteConfig.siteUrl}${jsonLd.path}` }
+      ]
     }
-  };
+  ];
 
   return (
     <main className="min-h-screen bg-white text-[color:var(--ink)]">
       <script
         type="application/ld+json"
         suppressHydrationWarning
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
 
       <section className="border-b border-[color:var(--border)] bg-white">
         <div className="mx-auto max-w-[88rem] px-5 pb-20 pt-12 sm:px-8 sm:pb-24 sm:pt-16 lg:pb-32 lg:pt-20">
+          <nav aria-label="Breadcrumb" className="mb-8">
+            <ol className="flex flex-wrap items-center gap-2 text-[0.72rem] font-medium uppercase tracking-[0.16em] text-[color:var(--muted)]">
+              <li>
+                <Link href="/" className="transition hover:text-[color:var(--accent)]">
+                  Start
+                </Link>
+              </li>
+              <li aria-hidden="true">/</li>
+              <li>
+                <Link href={hub.href} className="transition hover:text-[color:var(--accent)]">
+                  {hub.label}
+                </Link>
+              </li>
+              <li aria-hidden="true">/</li>
+              <li className="text-[color:var(--ink)]">{category}</li>
+            </ol>
+          </nav>
+
           <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-end lg:gap-20">
             <div className="reveal">
-              <p className="cap-line tracking-eyebrow text-[color:var(--accent)]">
-                {service.category}
-              </p>
+              <p className="cap-line tracking-eyebrow text-[color:var(--accent)]">{category}</p>
               <h1 className="font-display mt-8 text-balance text-5xl font-light leading-[1.02] tracking-tight sm:text-6xl lg:text-[5rem]">
-                {service.h1}
+                {h1}
               </h1>
               <p className="mt-8 max-w-2xl text-[1.05rem] font-light leading-relaxed text-[color:var(--muted)]">
-                {service.intro}
+                {intro}
               </p>
             </div>
 
@@ -104,7 +129,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
                 {siteConfig.phoneDisplay}
               </a>
               <p className="mt-5 text-sm font-light leading-relaxed text-[color:var(--muted)]">
-                Für schnelle Einschätzung, Terminabstimmung und Notdienst-Kontakt.
+                {contactNote}
               </p>
             </div>
           </div>
@@ -119,7 +144,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
               Daten für die Anfrage
             </h2>
             <div className="mt-8 grid gap-0 border-t border-[color:var(--border)]">
-              {service.checklist.map((item, index) => (
+              {checklist.map((item, index) => (
                 <div
                   key={item}
                   className="flex items-center justify-between border-b border-[color:var(--border)] py-4"
@@ -129,13 +154,19 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
                 </div>
               ))}
             </div>
-            <Link href="/kontakt" className="btn-primary mt-10 w-full">
+            <Link href="/#kontakt" className="btn-primary mt-10 w-full">
               Anfrage stellen
+            </Link>
+            <Link
+              href={hub.href}
+              className="mt-4 inline-flex text-[0.72rem] font-medium uppercase tracking-[0.16em] text-[color:var(--muted)] transition hover:text-[color:var(--accent)]"
+            >
+              Alle {hub.label}
             </Link>
           </aside>
 
           <div className="space-y-12">
-            {service.sections.map((section, index) => (
+            {sections.map((section, index) => (
               <section
                 key={section.title}
                 className="border-b border-[color:var(--border)] pb-12 last:border-0"
@@ -151,22 +182,20 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
             ))}
 
             <section className="bg-[color:var(--ink)] p-10 text-white lg:p-14">
-              <p className="cap-line-light tracking-eyebrow text-white/70">Verwandte Leistungen</p>
+              <p className="cap-line-light tracking-eyebrow text-white/70">{relatedEyebrow}</p>
               <h2 className="font-display mt-7 text-3xl font-light leading-tight tracking-tight sm:text-4xl">
-                Weitere Reparaturen im Service.
+                {relatedTitle}
               </h2>
               <div className="mt-10 grid gap-px bg-white/15 sm:grid-cols-3">
-                {relatedServices.map((relatedService) => (
+                {related.map((entry) => (
                   <Link
-                    key={relatedService.slug}
-                    href={`/leistungen/${relatedService.slug}`}
+                    key={entry.href}
+                    href={entry.href}
                     className="group bg-[color:var(--ink)] p-6 transition hover:bg-white/5"
                   >
-                    <p className="tracking-eyebrow text-white/55">
-                      {relatedService.category}
-                    </p>
+                    <p className="tracking-eyebrow text-white/55">{entry.category}</p>
                     <h3 className="font-display mt-4 text-lg font-normal leading-snug tracking-tight">
-                      {relatedService.title}
+                      {entry.title}
                     </h3>
                     <span className="mt-6 inline-flex text-[0.72rem] font-medium uppercase tracking-[0.16em] text-white transition group-hover:text-[color:var(--accent)]">
                       Ansehen
@@ -179,6 +208,8 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
           </div>
         </div>
       </section>
+
+      {children}
     </main>
   );
 }

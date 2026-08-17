@@ -11,7 +11,9 @@ import {
 } from "react";
 import NavMonterAccount from "./NavMonterAccount";
 import NavNewsletterSignup from "./NavNewsletterSignup";
+import { garageDoorNavLinks, garageRepairNavLinks } from "./garagentore/garagePages";
 import { klimaDeviceNavLinks, klimaRepairNavLinks } from "./klimageraete/klimaPages";
+import { brandAlphabetGroups } from "./marken/brands";
 import { siteConfig } from "./siteConfig";
 
 const emergencyPhoneDisplay = siteConfig.phoneDisplay;
@@ -50,24 +52,19 @@ type MegaMenuConfig = {
 };
 
 const householdSanitaerLinks: NavLink[] = [
-  { label: "Waschmaschine", href: "/leistungen/waschmaschine-reparatur-wien" },
-  { label: "Geschirrspüler", href: "/leistungen/geschirrspueler-reparatur-wien" },
-  { label: "Trockner", href: "/leistungen/trockner-reparatur-wien" },
-  { label: "Waschtrockner", href: "/leistungen/waschtrockner-reparatur-wien" }
+  { label: "Waschmaschine", href: "/haushaltsgeraete/waschmaschine-reparatur-wien" },
+  { label: "Geschirrspüler", href: "/haushaltsgeraete/geschirrspueler-reparatur-wien" },
+  { label: "Trockner", href: "/haushaltsgeraete/trockner-reparatur-wien" },
+  { label: "Waschtrockner", href: "/haushaltsgeraete/waschtrockner-reparatur-wien" }
 ];
 
 const householdKuecheWohnenLinks: NavLink[] = [
-  { label: "Kühlschrank", href: "/leistungen/kuehlschrank-reparatur-wien" },
-  { label: "Gefrierschrank", href: "/leistungen/tiefkuehl-reparatur-wien" },
-  { label: "Herd & Ceranfeld", href: "/leistungen/backofen-herd-reparatur-wien" },
-  { label: "Backofen", href: "/leistungen/backofen-herd-reparatur-wien" },
-  { label: "Dunstabzug", href: "/leistungen/dunstabzug-reparatur-wien" },
-  { label: "Fernseher", href: "/leistungen/fernseher-reparatur-wien" }
-];
-
-const repairDevices: NavLink[] = [
-  ...householdSanitaerLinks,
-  ...householdKuecheWohnenLinks
+  { label: "Kühlschrank", href: "/haushaltsgeraete/kuehlschrank-reparatur-wien" },
+  { label: "Gefrierschrank", href: "/haushaltsgeraete/tiefkuehl-reparatur-wien" },
+  { label: "Backofen & Herd", href: "/haushaltsgeraete/backofen-herd-reparatur-wien" },
+  { label: "Dunstabzug", href: "/haushaltsgeraete/dunstabzug-reparatur-wien" },
+  { label: "Fernseher", href: "/haushaltsgeraete/fernseher-reparatur-wien" },
+  { label: "Alle Haushaltsgeräte", href: "/haushaltsgeraete" }
 ];
 
 const repairBrandsNav: NavLink[] = [
@@ -78,17 +75,14 @@ const repairBrandsNav: NavLink[] = [
   { label: "Gorenje", href: "/marken/gorenje-reparatur-wien" }
 ];
 
-const weitereMarkenAlphabetLinks: NavLink[] = [
-  { label: "A – D", href: "/#marken" },
-  { label: "E – H", href: "/#marken" },
-  { label: "I – L", href: "/#marken" },
-  { label: "M – P", href: "/#marken" },
-  { label: "Q – Z", href: "/#marken" }
-];
+const weitereMarkenAlphabetLinks: NavLink[] = brandAlphabetGroups.map((group) => ({
+  label: group.label,
+  href: group.href
+}));
 
 const additionalServiceLinks: NavLink[] = [
   { label: "Preise & Pauschalen", href: "/preise" },
-  { label: "Einsatzgebiete", href: "/#anfahrt" },
+  { label: "Einsatzgebiete", href: "/einsatzgebiete" },
   { label: "Ersatzteil gesucht?", href: "/ersatzteile" },
   { label: "Firmenkunden", href: "/firmenkunden" }
 ];
@@ -102,7 +96,7 @@ const serviceNavLinks: NavLink[] = [
 
 const serviceInfoLinks: NavLink[] = [
   { label: "Preise & Pauschalen", href: "/preise" },
-  { label: "Einsatzgebiete", href: "/#anfahrt" },
+  { label: "Einsatzgebiete", href: "/einsatzgebiete" },
   { label: "Firmenkunden", href: "/firmenkunden" }
 ];
 
@@ -135,33 +129,18 @@ const customerNewsLinks: NavLink[] = [
 ];
 
 const garageDoorAndServiceLinks: NavLink[] = [
-  { label: "Sektionaltor", href: "/garagentor-reparatur-wien" },
-  { label: "Rolltor", href: "/garagentor-reparatur-wien" },
-  { label: "Wartung & Service", href: "/garagentor-reparatur-wien" },
-  { label: "Sicherheitsüberprüfung", href: "/garagentor-reparatur-wien" }
+  ...garageDoorNavLinks,
+  { label: "Alle Garagentore", href: "/garagentore" }
 ];
 
-const garageDriveLinks: NavLink[] = [
-  { label: "Garagentorantrieb", href: "/garagentor-reparatur-wien" },
-  { label: "Motor", href: "/garagentor-reparatur-wien" },
-  { label: "Federbruch", href: "/garagentor-reparatur-wien" },
-  { label: "Federwechsel", href: "/garagentor-reparatur-wien" },
-  { label: "Rollentausch", href: "/garagentor-reparatur-wien" }
-];
-
-const geraetepflegeLinks: NavLink[] = [
-  { label: "Gerätepflege & Reinigung", href: "/wartungsservice" },
-  { label: "Geräte-Retter-Prämie", href: "/geraete-retter-praemie" },
-  { label: "Wartungsempfehlung", href: "/wartungsservice" },
-  { label: "Pflegeprodukte & Zubehör", href: "/ersatzteile" }
-];
+const garageDriveLinks: NavLink[] = garageRepairNavLinks;
 
 // Hauptnavigation — Dropdowns über menuId an megaMenus gekoppelt
 const primaryNavGroup: NavLink[] = [
-  { label: "Garagentore", href: "/garagentor-reparatur-wien", menuId: "garage" },
-  { label: "Klimageräte", href: "/klimageraete-reparatur-wien", menuId: "klima" },
-  { label: "Haushaltsgeräte", href: "/#leistungen", menuId: "service" },
-  { label: "Marken", href: "/#marken", menuId: "marken" }
+  { label: "Garagentore", href: "/garagentore", menuId: "garage" },
+  { label: "Klimageräte", href: "/klimageraete", menuId: "klima" },
+  { label: "Haushaltsgeräte", href: "/haushaltsgeraete", menuId: "service" },
+  { label: "Marken", href: "/marken", menuId: "marken" }
 ];
 
 const customerNavLink: NavLink = {
@@ -173,18 +152,6 @@ const customerNavLink: NavLink = {
 const secondaryNavGroup: NavLink[] = [
   { label: "Service", href: "/wartungsservice", menuId: "nav-service" },
   { label: "Gerätekauf", href: "/geraetekauf", menuId: "geraetekauf" }
-];
-
-const companyLinks: NavLink[] = [
-  { label: "Über MONTER", href: "/ueber-uns" },
-  { label: "Unsere Arbeitsweise", href: "/ueber-uns#arbeitsweise" },
-  { label: "Bewertungen", href: "/#bewertungen" }
-];
-
-const contentLinks: NavLink[] = [
-  { label: "Blog & News", href: "/blog" },
-  { label: "FAQ", href: "/#faq" },
-  { label: "Impressum", href: "/impressum" }
 ];
 
 const dropdownSpecialLinks: NavLink[] = [
@@ -269,7 +236,10 @@ const megaMenus: MegaMenuConfig[] = [
     label: "Klimageräte",
     columns: [
       { eyebrow: "Geräte & Wartung", items: klimaDeviceNavLinks },
-      { eyebrow: "Reparatur & Diagnose", items: klimaRepairNavLinks },
+      {
+        eyebrow: "Reparatur & Diagnose",
+        items: [...klimaRepairNavLinks, { label: "Alle Klimageräte", href: "/klimageraete" }]
+      },
       { eyebrow: "Mehr Service", items: additionalServiceLinks }
     ],
     feature: {
@@ -312,7 +282,7 @@ const megaMenus: MegaMenuConfig[] = [
       },
       {
         eyebrow: "Weitere Marken",
-        items: weitereMarkenAlphabetLinks
+        items: [...weitereMarkenAlphabetLinks, { label: "Alle Marken", href: "/marken" }]
       },
       {
         eyebrow: "Mehr Service",
@@ -372,53 +342,6 @@ const megaMenus: MegaMenuConfig[] = [
     ],
     account: true,
     newsletter: true
-  },
-  {
-    id: "pflege",
-    label: "Gerätepflege",
-    columns: [
-      { eyebrow: "Pflege & Wartung", items: geraetepflegeLinks },
-      {
-        eyebrow: "Geräte",
-        items: repairDevices.slice(0, 4)
-      },
-      {
-        eyebrow: "Service",
-        items: [
-          { label: "Preise & Pauschalen", href: "/preise" },
-          { label: "Anfrage stellen", href: "/kontakt" },
-          { label: "Alle Leistungen", href: "/#leistungen" }
-        ]
-      }
-    ],
-    feature: {
-      eyebrow: "Gerätepflege",
-      title: "Länger nutzen, besser pflegen.",
-      text:
-        "Reinigung, Wartung und klare Empfehlungen — damit Ihre Geräte zuverlässig bleiben und Reparaturen seltener werden.",
-      primaryLabel: "Beratung anfragen",
-      primaryHref: "/kontakt",
-      secondaryLabel: emergencyPhoneDisplay,
-      secondaryHref: `tel:${emergencyPhoneHref}`
-    }
-  },
-  {
-    id: "ueber",
-    label: "Über Uns",
-    columns: [
-      { eyebrow: "Unternehmen", items: companyLinks },
-      { eyebrow: "Inhalte", items: contentLinks }
-    ],
-    feature: {
-      eyebrow: "Hintergrund",
-      title: "MONTER Reparatur & Service",
-      text:
-        "Service-Auftritt der Tech Craft Consulting GmbH. Reparatur mit Technik, Hausverstand und klarer Haltung.",
-      primaryLabel: "Mehr über uns",
-      primaryHref: "/ueber-uns",
-      secondaryLabel: "Direkt anrufen",
-      secondaryHref: `tel:${emergencyPhoneHref}`
-    }
   }
 ];
 

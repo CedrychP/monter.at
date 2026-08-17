@@ -26,6 +26,11 @@ export const metadata: Metadata = {
     "Kurse und Workshops von MONTER sind in Vorbereitung: Geräte richtig pflegen, Fehler früh erkennen und sicher nutzen. Bald verfügbar in Wien.",
   alternates: {
     canonical: "/kurse"
+  },
+  // Platzhalterseite: erreichbar und verlinkt, aber bis zum Start ohne Index.
+  robots: {
+    index: false,
+    follow: true
   }
 };
 
