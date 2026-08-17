@@ -245,6 +245,46 @@ export const servicePages: ServicePage[] = [
       }
     ],
     checklist: ["Filter prüfen", "Betriebsart nennen", "Geräusche notieren", "Marke & Modell bereithalten", "Anrufen"]
+  },
+  {
+    slug: "fernseher-reparatur-wien",
+    title: "Fernseher Reparatur Wien",
+    metaTitle: "Fernseher Reparatur Wien | TV Service | MONTER",
+    description:
+      "Fernseher Reparatur in Wien: Hilfe bei schwarzem Bild, Streifen, Ton- und Anschlussproblemen sowie defekter Elektronik. Jetzt Kontakt aufnehmen.",
+    h1: "Fernseher Reparatur in Wien",
+    category: "Fernseher",
+    intro:
+      "Bleibt der Bildschirm schwarz, zeigt das Bild Streifen oder Flecken, fehlt der Ton oder startet das Gerät ständig neu? Wir prüfen Netzteil, Elektronik, Panel-Ansteuerung und Anschlüsse und sagen offen, ob eine Reparatur wirtschaftlich sinnvoll ist.",
+    sections: [
+      {
+        title: "Kein Bild, aber Ton",
+        body:
+          "Ein schwarzes Bild bei vorhandenem Ton deutet häufig auf Hintergrundbeleuchtung, Panel-Ansteuerung oder das Netzteil hin. Streifen, Flecken oder Farbfehler grenzen die Ursache weiter ein."
+      },
+      {
+        title: "Startprobleme und Elektronik",
+        body:
+          "Wenn das Gerät nicht mehr angeht, in einer Endlosschleife startet oder nur die Standby-LED blinkt, prüfen wir Netzteil, Hauptplatine und Spannungsversorgung gezielt."
+      },
+      {
+        title: "Ton, Anschlüsse und Bedienung",
+        body:
+          "Ausgefallene Lautsprecher, defekte HDMI-Buchsen, Probleme mit Empfang oder Fernbedienung lassen sich oft gezielt beheben, ohne das ganze Gerät zu tauschen."
+      },
+      {
+        title: "Wirtschaftlichkeit prüfen",
+        body:
+          "Bei Fernsehern entscheidet vor allem der Panel-Zustand: Ein defektes Display ist meist unwirtschaftlich, Netzteil- und Elektronikfehler dagegen häufig gut reparierbar. Wir schätzen das vorab ehrlich ein."
+      }
+    ],
+    checklist: [
+      "Marke & Modellnummer notieren",
+      "Bild- oder Tonfehler beschreiben",
+      "Standby-LED beobachten",
+      "Displaybruch prüfen",
+      "Telefonisch abklären"
+    ]
   }
 ];
 

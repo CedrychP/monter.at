@@ -43,7 +43,8 @@ const applianceLinks = [
   { label: "Geschirrspüler", href: "/leistungen/geschirrspueler-reparatur-wien" },
   { label: "Backofen & Herd", href: "/leistungen/backofen-herd-reparatur-wien" },
   { label: "Trockner", href: "/leistungen/trockner-reparatur-wien" },
-  { label: "Kühlschrank", href: "/leistungen/kuehlschrank-reparatur-wien" }
+  { label: "Kühlschrank", href: "/leistungen/kuehlschrank-reparatur-wien" },
+  { label: "Fernseher", href: "/leistungen/fernseher-reparatur-wien" }
 ];
 
 const brandLinks = [

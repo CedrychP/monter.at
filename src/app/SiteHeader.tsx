@@ -56,17 +56,18 @@ const householdSanitaerLinks: NavLink[] = [
   { label: "Waschtrockner", href: "/leistungen/waschtrockner-reparatur-wien" }
 ];
 
-const householdKuecheLinks: NavLink[] = [
+const householdKuecheWohnenLinks: NavLink[] = [
   { label: "Kühlschrank", href: "/leistungen/kuehlschrank-reparatur-wien" },
   { label: "Gefrierschrank", href: "/leistungen/tiefkuehl-reparatur-wien" },
   { label: "Herd & Ceranfeld", href: "/leistungen/backofen-herd-reparatur-wien" },
   { label: "Backofen", href: "/leistungen/backofen-herd-reparatur-wien" },
-  { label: "Dunstabzug", href: "/leistungen/dunstabzug-reparatur-wien" }
+  { label: "Dunstabzug", href: "/leistungen/dunstabzug-reparatur-wien" },
+  { label: "Fernseher", href: "/leistungen/fernseher-reparatur-wien" }
 ];
 
 const repairDevices: NavLink[] = [
   ...householdSanitaerLinks,
-  ...householdKuecheLinks
+  ...householdKuecheWohnenLinks
 ];
 
 const repairBrandsNav: NavLink[] = [
@@ -287,7 +288,7 @@ const megaMenus: MegaMenuConfig[] = [
     label: "Geräte",
     columns: [
       { eyebrow: "Sanitärgeräte", items: householdSanitaerLinks },
-      { eyebrow: "Küchengeräte", items: householdKuecheLinks },
+      { eyebrow: "Küche & Wohnen", items: householdKuecheWohnenLinks },
       { eyebrow: "Mehr Service", items: additionalServiceLinks }
     ],
     feature: {

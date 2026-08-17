@@ -60,6 +60,7 @@ export const metadata: Metadata = {
     "Kühlschrank Reparatur Wien",
     "Backofen Reparatur Wien",
     "Trockner Reparatur Wien",
+    "Fernseher Reparatur Wien",
     "Garagentor Reparatur Wien",
     "Reparatur Bosch Siemens Miele",
     "Hausverwaltung Geräteservice Wien"
@@ -179,6 +180,12 @@ const applianceCategories = [
     image:
       "https://images.unsplash.com/photo-1556909212-d5b604d0c90d?auto=format&fit=crop&w=1200&q=85",
     href: "/leistungen/dunstabzug-reparatur-wien"
+  },
+  {
+    title: "Fernseher",
+    image:
+      "https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&w=1200&q=85",
+    href: "/leistungen/fernseher-reparatur-wien"
   }
 ];
 
@@ -313,7 +320,7 @@ const faqs = [
   {
     question: "Welche Geräte reparieren Sie?",
     answer:
-      "Wir reparieren Waschmaschinen, Trockner, Geschirrspüler, Kühl- und Gefriergeräte sowie Backöfen, Herde und Kochfelder. Dazu kommen Garagentore und -antriebe. Ob sich eine Reparatur lohnt, klären wir vorab transparent mit Ihnen ab."
+      "Wir reparieren Waschmaschinen, Trockner, Geschirrspüler, Kühl- und Gefriergeräte, Backöfen, Herde, Kochfelder, Dunstabzugshauben und Fernseher. Dazu kommen Garagentore und -antriebe sowie Klimageräte. Ob sich eine Reparatur lohnt, klären wir vorab transparent mit Ihnen ab."
   },
   {
     question: "Wie läuft ein Reparaturtermin ab?",

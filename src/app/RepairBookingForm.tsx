@@ -47,6 +47,7 @@ const deviceOptions = [
   "Kühlschrank / Gefrierschrank",
   "Backofen / Herd",
   "Trockner",
+  "Fernseher",
   "Garagentor",
   "Anderes Gerät",
   "Klimagerät / Klimaanlage"
