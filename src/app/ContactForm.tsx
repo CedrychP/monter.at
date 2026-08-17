@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { trackConversion } from "./analytics";
+import { buildUserData, trackConversion } from "./analytics";
 
 type RequestType = "reparatur" | "anliegen" | "ersatzteile";
 
@@ -125,6 +125,11 @@ export default function ContactForm({
     const form = event.currentTarget;
     const formData = new FormData(form);
     const payload = Object.fromEntries(formData.entries());
+    // Vor dem Reset auslesen, damit die Enhanced-Conversion-Daten erhalten bleiben.
+    const userData = buildUserData({
+      email: formData.get("email"),
+      phone: formData.get("phone")
+    });
 
     try {
       const response = await fetch("/api/contact", {
@@ -141,7 +146,11 @@ export default function ContactForm({
       }
 
       form.reset();
-      trackConversion("form", { source: "contact_form", request_type: requestType });
+      trackConversion("form", {
+        source: "contact_form",
+        request_type: requestType,
+        user_data: userData
+      });
       setSubmitState({
         status: "success",
         message: result.message || "Danke, Ihre Anfrage wurde gesendet. Wir melden uns schnellstmöglich."

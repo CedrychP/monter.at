@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { trackConversion } from "./analytics";
+import { buildUserData, trackConversion } from "./analytics";
 
 type RepairBookingFormProps = {
   phoneHref: string;
@@ -108,7 +108,11 @@ export default function RepairBookingForm({ phoneHref, className = "" }: RepairB
         throw new Error(result.message || "Die Anfrage konnte nicht gesendet werden.");
       }
 
-      trackConversion("form", { source: "repair_booking", request_type: "reparatur" });
+      trackConversion("form", {
+        source: "repair_booking",
+        request_type: "reparatur",
+        user_data: buildUserData({ email: values.email, phone: values.phone })
+      });
       setValues(initialValues);
       setSubmitState({
         status: "success",

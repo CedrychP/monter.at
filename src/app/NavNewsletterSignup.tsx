@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { FormEvent, useState } from "react";
 
-import { trackConversion } from "./analytics";
+import { buildUserData, trackConversion } from "./analytics";
 
 type NavNewsletterSignupProps = {
   variant?: "dark" | "light";
@@ -36,6 +36,8 @@ export default function NavNewsletterSignup({
     const form = event.currentTarget;
     const formData = new FormData(form);
     const payload = Object.fromEntries(formData.entries());
+    // Vor dem Reset auslesen, damit die Enhanced-Conversion-Daten erhalten bleiben.
+    const userData = buildUserData({ email: formData.get("email") });
 
     try {
       const response = await fetch("/api/newsletter", {
@@ -57,7 +59,7 @@ export default function NavNewsletterSignup({
         message: result.message || "Danke — wir halten Sie über Neuigkeiten und Aktionen auf dem Laufenden."
       });
       // Conversion erst nach erfolgreicher Server-Bestätigung melden (genau einmal).
-      trackConversion("newsletter", { source });
+      trackConversion("newsletter", { source, user_data: userData });
     } catch (error) {
       setSubmitState({
         status: "error",

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 
-import { trackConversion } from "./analytics";
+import { trackConversion, trackCtaClick } from "./analytics";
 import { siteConfig } from "./siteConfig";
 
 export default function MobileActionBar() {
@@ -36,7 +36,7 @@ export default function MobileActionBar() {
 
         <Link
           href="/#kontakt"
-          onClick={() => trackConversion("form", { source: "mobile_bar" })}
+          onClick={() => trackCtaClick({ source: "mobile_bar", target: "kontakt" })}
           className="flex min-w-[9.75rem] items-center justify-center gap-2 rounded-sm bg-[color:var(--accent)] px-4 py-2.5 text-[0.78rem] font-medium uppercase tracking-[0.12em] text-white transition active:bg-[color:var(--accent-hover)]"
         >
           Termin buchen

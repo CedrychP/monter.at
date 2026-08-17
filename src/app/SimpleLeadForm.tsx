@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { trackConversion } from "./analytics";
+import { buildUserData, trackConversion } from "./analytics";
 
 type SimpleLeadFormProps = {
   requestType: "firmenkunden" | "karriere" | "anliegen";
@@ -73,6 +73,11 @@ export default function SimpleLeadForm({
     const form = event.currentTarget;
     const formData = new FormData(form);
     const payload = { ...Object.fromEntries(formData.entries()), requestType };
+    // Vor dem Reset auslesen, damit die Enhanced-Conversion-Daten erhalten bleiben.
+    const userData = buildUserData({
+      email: formData.get("email"),
+      phone: formData.get("phone")
+    });
 
     try {
       const response = await fetch("/api/contact", {
@@ -87,7 +92,11 @@ export default function SimpleLeadForm({
       }
 
       form.reset();
-      trackConversion("form", { source: "lead_form", request_type: requestType });
+      trackConversion("form", {
+        source: "lead_form",
+        request_type: requestType,
+        user_data: userData
+      });
       setSubmitState({
         status: "success",
         message: result.message || "Danke, Ihre Anfrage wurde gesendet. Wir melden uns schnellstmöglich."
