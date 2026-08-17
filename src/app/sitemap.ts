@@ -23,7 +23,9 @@ function getSitemapPriority(route: string): number {
   }
 
   // Einsatzgebiete stützen die Regionalsuche, bleiben aber unter den Produkt-Hubs.
+  // Ortsseiten liegen eine Stufe darunter: sie tragen die lokale Longtail-Suche.
   if (route === "/einsatzgebiete") return 0.8;
+  if (route.split("/").length > 3 && route.startsWith("/einsatzgebiete/")) return 0.6;
   if (route.startsWith("/einsatzgebiete/")) return 0.7;
 
   if (

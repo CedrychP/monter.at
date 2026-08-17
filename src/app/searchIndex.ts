@@ -4,6 +4,7 @@ import { appliancePages } from "./haushaltsgeraete/appliancePages";
 import { garagePages } from "./garagentore/garagePages";
 import { klimaPages } from "./klimageraete/klimaPages";
 import { regionPages } from "./einsatzgebiete/regionPages";
+import { locationPages, locationHref } from "./einsatzgebiete/locationPages";
 
 export type SearchEntry = {
   title: string;
@@ -59,6 +60,13 @@ export function buildSearchIndex(): SearchEntry[] {
     keywords: `${region.name} einsatzgebiet anfahrt region bundesland ${region.cities
       .map((city) => `${city.plz} ${city.name}`)
       .join(" ")}`
+  }));
+  const fromLocations: SearchEntry[] = locationPages.map((location) => ({
+    title: `Reparatur ${location.name}`,
+    description: location.short,
+    href: locationHref(location),
+    category: location.regionSlug === "wien" ? "Wiener Bezirk" : "Stadt",
+    keywords: `${location.name} ${location.postalCodes.join(" ")} reparatur techniker vor ort ${location.short}`
   }));
   const fromBlog: SearchEntry[] = blogPosts.map((post) => ({
     title: post.title,
@@ -131,6 +139,7 @@ export function buildSearchIndex(): SearchEntry[] {
     ...fromKlima,
     ...fromBrands,
     ...fromRegions,
+    ...fromLocations,
     ...fromBlog,
     ...fromStatic
   ];
