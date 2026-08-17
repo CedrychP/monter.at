@@ -34,7 +34,8 @@ const sections: InfoSection[] = [
   {
     title: "Einsatzgebiet und Termine",
     body:
-      "Wir betreuen alle Wiener Bezirke und das nähere Niederösterreich — für Privathaushalte, Vermieter, Hausverwaltungen und Gewerbe. Für die Anfrage brauchen wir Marke, Modellnummer vom Typenschild, den Fehlercode und eine kurze Beschreibung. Mit diesen Angaben lässt sich der Termin gezielt vorbereiten."
+      "Wir betreuen alle Wiener Bezirke und das nähere Niederösterreich — für Privathaushalte, Vermieter, Hausverwaltungen und Gewerbe. Im Burgenland, in Oberösterreich, der Steiermark und Salzburg sind Techniker vor Ort im Einsatz. Für die Anfrage brauchen wir Marke, Modellnummer vom Typenschild, den Fehlercode und eine kurze Beschreibung.",
+    link: { label: "Alle Einsatzgebiete", href: "/einsatzgebiete" }
   }
 ];
 

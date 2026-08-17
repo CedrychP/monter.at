@@ -1156,8 +1156,8 @@ export default function Home() {
               <p className="text-[1.02rem] font-normal leading-relaxed text-[color:var(--muted)]">
                 Reparaturen in Wien und im Wiener Umland — schnell, planbar und mit transparenter
                 Anfahrt. Material wird nur bei tatsächlichem Bedarf verrechnet, bei längeren
-                Wegstrecken können Aufpreise anfallen. In den übrigen Bundesländern arbeiten wir
-                mit Partnerbetrieben.
+                Wegstrecken können Aufpreise anfallen. Im Burgenland, in Oberösterreich, der
+                Steiermark und Salzburg sind Techniker vor Ort im Einsatz.
               </p>
               <Link
                 href="/einsatzgebiete"
@@ -1272,15 +1272,14 @@ export default function Home() {
                 ))}
                 <div className="mt-6 rounded-sm bg-[color:var(--bg-muted)] p-5">
                   <p className="text-sm font-normal leading-relaxed text-[color:var(--muted)]">
-                    Ihre Region nicht dabei? Außerhalb von Wien und Niederösterreich arbeiten wir
-                    mit{" "}
+                    Ihre Region nicht dabei? Wir sind auch im{" "}
                     <Link
                       href="/einsatzgebiete"
                       className="underline transition hover:text-[color:var(--accent)]"
                     >
-                      Partnerbetrieben in allen Bundesländern
-                    </Link>
-                    . Rufen Sie kurz an — wir sagen Ihnen, wer kommt.
+                      Burgenland, in Oberösterreich, der Steiermark und Salzburg
+                    </Link>{" "}
+                    tätig. Rufen Sie kurz an — wir prüfen Termine in der Nähe.
                   </p>
                   <a
                     href={`tel:${emergencyPhoneHref}`}

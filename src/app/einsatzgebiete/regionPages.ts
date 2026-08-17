@@ -17,8 +17,11 @@ export type RegionPage = {
   /** Teaser für Hub-Übersicht und Cross-Links. */
   short: string;
   intro: string;
-  /** Eigenes Team ab Wien oder Betreuung über einen Partnerbetrieb. */
-  coverage: "eigenes-team" | "partnerbetrieb";
+  /**
+   * kerngebiet: vom Wiener Standort aus mit festen Anfahrtssätzen.
+   * techniker-vor-ort: Techniker in der Region, Anfahrt je nach Adresse.
+   */
+  coverage: "kerngebiet" | "techniker-vor-ort";
   /** Wird auf der Seite sichtbar ausgegeben — keine erfundene lokale Präsenz. */
   coverageNote: string;
   travelFee: {
@@ -72,9 +75,11 @@ const viennaDistricts: RegionCity[] = [
   { plz: "1230", name: "Liesing" }
 ];
 
-/** Standardhinweis für Regionen, die über Partnerbetriebe betreut werden. */
-const partnerCoverageNote =
-  "Diese Region betreuen wir über Partnerbetriebe. Unser eigener Standort ist Wien — in dieser Region arbeiten geprüfte Fachbetriebe unter unserer Koordination. Anfrage, Terminabstimmung und Ansprechpartner laufen über uns, die Arbeit vor Ort erledigt der Partner.";
+/**
+ * Bundesländer ohne Techniker — hier nehmen wir keine Aufträge an.
+ * Wird auf dem Hub offen genannt, statt Seiten anzulegen, die niemand einlösen kann.
+ */
+export const unservedStates = ["Kärnten", "Tirol", "Vorarlberg"];
 
 export const regionPages: RegionPage[] = [
   {
@@ -88,9 +93,9 @@ export const regionPages: RegionPage[] = [
       "Alle 23 Bezirke mit eigenem Team, kurze Wege, Anfahrt ab 80 € — unser Kerngebiet.",
     intro:
       "Wien ist unser Kerngebiet: Unser Standort liegt in Floridsdorf, unsere Techniker fahren von hier aus alle 23 Bezirke an. Weil die Wege kurz sind, sind Termine oft schon binnen ein bis zwei Tagen möglich — und bei einem Wasseraustritt oder einem ausgefallenen Tiefkühlgerät auch am selben Tag. Diese Seite erklärt, wie Anfahrt, Terminplanung und Zugang in Wien konkret ablaufen.",
-    coverage: "eigenes-team",
+    coverage: "kerngebiet",
     coverageNote:
-      "Wien betreuen wir vollständig mit eigenen Technikern — kein Partnerbetrieb, keine Vermittlung. Unser Standort ist die Rappgasse 1/6 in 1210 Wien.",
+      "Wien betreuen wir vollständig mit eigenen Technikern. Unser Standort ist die Rappgasse 1/6 in 1210 Wien — von dort fahren wir alle 23 Bezirke an.",
     travelFee: {
       appliance: "80 €",
       garage: "110 €"
@@ -151,7 +156,7 @@ export const regionPages: RegionPage[] = [
       "Wiener Umland mit eigenem Team, Anfahrt ab 100 € — ab einer Stunde Fahrt gilt eine Pauschale.",
     intro:
       "Niederösterreich fahren wir mit dem eigenen Team an — am dichtesten im Umland von Wien, wo die Fahrzeiten kurz sind. Je weiter eine Adresse entfernt liegt, desto stärker bestimmt die Fahrzeit den Termin: Ab etwa einer Stunde Anfahrt gilt eine Pauschale von 200 €. Diese Seite zeigt, welche Orte im Kernbereich liegen und wie wir mit weiter entfernten Adressen umgehen.",
-    coverage: "eigenes-team",
+    coverage: "kerngebiet",
     coverageNote:
       "Niederösterreich betreuen wir von Wien aus mit eigenen Technikern. Im Umland ist das Alltag, in den äußeren Bezirken entscheidet die Fahrzeit über Termin und Anfahrtspauschale.",
     travelFee: {
@@ -232,17 +237,17 @@ export const regionPages: RegionPage[] = [
   {
     slug: "burgenland",
     name: "Burgenland",
-    metaTitle: "Einsatzgebiet Burgenland | MONTER Service",
+    metaTitle: "Reparatur Burgenland: Eisenstadt bis Güssing | MONTER",
     description:
-      "MONTER im Burgenland: Nordburgenland rund um Eisenstadt und den Neusiedler See liegt im Ein-Stunden-Radius von Wien, das südliche Burgenland betreuen Partnerbetriebe.",
-    h1: "Einsatzgebiet Burgenland.",
+      "MONTER im Burgenland: Haushaltsgeräte-Reparatur in Eisenstadt, Neusiedl am See, Mattersburg, Oberwart und Güssing. Nordburgenland zusätzlich vom Wiener Standort aus.",
+    h1: "Reparatur im Burgenland.",
     short:
-      "Nordburgenland im Ein-Stunden-Radius von Wien, Süden über Partnerbetriebe.",
+      "Von Eisenstadt bis Güssing mit Technikern vor Ort, im Norden zusätzlich ab Wien.",
     intro:
-      "Das Burgenland teilt sich für uns in zwei Zonen. Der Norden rund um Eisenstadt, Neusiedl am See und Mattersburg liegt im Ein-Stunden-Radius unseres Wiener Standorts — dort fahren wir mit dem eigenen Team. Im mittleren und südlichen Burgenland, von Oberpullendorf über Oberwart bis Jennersdorf, arbeiten wir mit Partnerbetrieben, weil eine Anfahrt aus Wien für Sie wirtschaftlich keinen Sinn ergibt.",
-    coverage: "eigenes-team",
+      "Im Burgenland arbeiten Techniker vor Ort — von Eisenstadt und dem Seewinkel über Mattersburg und Oberpullendorf bis Oberwart, Güssing und Jennersdorf. Der Norden rund um Eisenstadt, Neusiedl am See und Parndorf liegt zusätzlich im Ein-Stunden-Radius unseres Wiener Standorts, wodurch dort auch kurzfristige Termine gut planbar sind.",
+    coverage: "techniker-vor-ort",
     coverageNote:
-      "Nordburgenland fahren wir von Wien aus mit eigenen Technikern an. Für das mittlere und südliche Burgenland vermitteln wir an Partnerbetriebe — die Anfahrt aus Wien wäre dort teurer als die Reparatur.",
+      "Im Burgenland sind Techniker vor Ort im Einsatz. Das nördliche Burgenland erreichen wir zusätzlich vom Wiener Standort aus, weil es im Ein-Stunden-Radius liegt.",
     travelFee: {
       appliance: "auf Anfrage",
       garage: "auf Anfrage"
@@ -260,44 +265,44 @@ export const regionPages: RegionPage[] = [
       { plz: "8380", name: "Jennersdorf" }
     ],
     services: ["haushaltsgeraete", "garagentore", "klimageraete"],
-    responseNote: "Im Nordburgenland nach Absprache, im Süden über den Partnerbetrieb.",
+    responseNote: "Im Nordburgenland gut planbar, im Süden nach Absprache mit dem Techniker.",
     sections: [
       {
-        title: "Nordburgenland: eigenes Team ab Wien",
+        title: "Nordburgenland: Seewinkel und Eisenstadt",
         body:
-          "Eisenstadt, Rust, Neusiedl am See, Parndorf und Mattersburg erreichen wir von Floridsdorf aus in rund einer Stunde. Damit fallen diese Einsätze in dieselbe Logik wie das südliche Niederösterreich: Wir planen sie gebündelt mit Terminen in derselben Richtung, was den Termin um einige Tage verschieben kann, die Anfahrt für Sie aber kalkulierbar hält."
+          "Eisenstadt, Rust, Neusiedl am See, Parndorf, Frauenkirchen und Mattersburg liegen von unserem Wiener Standort rund eine Stunde entfernt. Dadurch lassen sich Termine dort ähnlich planen wie im südlichen Niederösterreich: gebündelt mit Einsätzen in derselben Richtung, was kurzfristige Fenster ergibt. In vielen Gemeinden am Neusiedler See kommt eine hohe Dichte an Zweitwohnsitzen und Ferienwohnungen dazu — dort ist eine Kontaktperson vor Ort besonders wichtig, damit die Fahrt nicht ins Leere geht."
       },
       {
-        title: "Mittleres und südliches Burgenland: Partnerbetrieb",
+        title: "Mittel- und Südburgenland: Oberwart bis Jennersdorf",
         body:
-          "Ab Oberpullendorf südwärts wird die Anfahrt aus Wien zum größten Kostenblock — bei einer Reparatur um 150 € steht das in keinem Verhältnis. Für Oberwart, Güssing und Jennersdorf vermitteln wir deshalb an Partnerbetriebe in der Region. Sie erreichen uns wie gewohnt, wir klären das Fehlerbild und geben es mit allen technischen Angaben weiter, damit der Betrieb vorbereitet anreist."
+          "Oberpullendorf, Oberwart, Güssing und Jennersdorf betreuen Techniker aus der Region. Die Wege sind hier länger und die Ortschaften kleiner, deshalb planen wir Termine gezielter statt tageweise spontan. Für Sie zählt vor allem, dass die Gerätedaten vorab stimmen: Ein zweiter Anfahrtsweg wegen eines fehlenden Ersatzteils fällt auf dieser Distanz stärker ins Gewicht als im Wiener Umland."
       },
       {
-        title: "Anfahrt: warum hier keine Pauschale steht",
+        title: "Anfahrt: warum hier keine feste Pauschale steht",
         body:
-          "Für Wien und Niederösterreich nennen wir feste Anfahrtssätze. Im Burgenland hängt die Anfahrt zu stark von der konkreten Adresse ab — zwischen Parndorf und Jennersdorf liegen fast zwei Stunden Fahrzeit. Wir nennen Ihnen die Anfahrt deshalb am Telefon, sobald wir die Adresse kennen, und zwar vor dem Termin."
+          "Für Wien und Niederösterreich nennen wir feste Anfahrtssätze. Im Burgenland hängt die Anfahrt zu stark von der Adresse ab — zwischen Parndorf und Jennersdorf liegen fast zwei Stunden Fahrzeit. Wir nennen Ihnen die Anfahrt deshalb am Telefon, sobald wir die Adresse kennen, und zwar vor dem Termin, nicht auf der Rechnung."
       },
       {
         title: "Was Sie für die Anfrage bereithalten sollten",
         body:
-          "Gerade bei längerer Anfahrt entscheidet die Vorbereitung, ob eine Fahrt genügt: Marke, vollständige Modellnummer vom Typenschild, angezeigter Fehlercode und eine kurze Beschreibung, wann der Fehler auftritt. Bei Garagentoren zusätzlich Torart, Antriebsmarke und ob das Tor noch von Hand bewegt werden kann."
+          "Marke, vollständige Modellnummer vom Typenschild, angezeigter Fehlercode und eine kurze Beschreibung, wann der Fehler auftritt. Bei Garagentoren zusätzlich Torart, Antriebsmarke und ob sich das Tor noch von Hand bewegen lässt. Mit diesen Angaben bringt der Techniker die wahrscheinlich benötigten Teile gleich mit."
       }
     ],
     faq: [
       {
         question: "Kommen Sie nach Eisenstadt?",
         answer:
-          "Ja. Eisenstadt und das nördliche Burgenland liegen im Ein-Stunden-Radius unseres Wiener Standorts und werden von unserem eigenen Team angefahren. Die Anfahrtskosten nennen wir am Telefon, sobald die Adresse feststeht."
+          "Ja. Eisenstadt und das nördliche Burgenland betreuen wir regelmäßig — die Region liegt zusätzlich im Ein-Stunden-Radius unseres Wiener Standorts. Die Anfahrtskosten nennen wir am Telefon, sobald die Adresse feststeht."
       },
       {
-        question: "Was passiert bei einer Anfrage aus Oberwart oder Güssing?",
+        question: "Und im Süden, etwa in Oberwart oder Güssing?",
         answer:
-          "Wir nehmen die Anfrage auf, klären mit Ihnen Fehlerbild und Gerätedaten und geben den Fall an einen Partnerbetrieb in Ihrer Region weiter. Das ist für Sie günstiger und schneller, als einen Techniker aus Wien über zwei Stunden anfahren zu lassen."
+          "Auch dort sind wir tätig, mit Technikern aus der Region. Weil die Wege länger sind, planen wir diese Termine gezielter — nennen Sie am Telefon bitte gleich Gerätedaten und Fehlercode, damit der Techniker vorbereitet anreist."
       },
       {
-        question: "Gilt die Ein-Stunden-Pauschale von 200 € auch hier?",
+        question: "Warum steht bei der Anfahrt kein fester Betrag?",
         answer:
-          "Für Einsätze unseres eigenen Teams ja — sie greift, sobald An- und Abfahrt zusammen mehr als eine Stunde ausmachen. Bei vermittelten Einsätzen über Partnerbetriebe gelten deren Anfahrtssätze, die wir Ihnen vorab nennen."
+          "Weil die Fahrzeit im Burgenland stark von der Adresse abhängt. Sie bekommen die Anfahrtskosten am Telefon genannt, bevor ein Termin vereinbart wird."
       }
     ],
     enriched: true
@@ -305,15 +310,16 @@ export const regionPages: RegionPage[] = [
   {
     slug: "oberoesterreich",
     name: "Oberösterreich",
-    metaTitle: "Einsatzgebiet Oberösterreich | MONTER Service",
+    metaTitle: "Reparatur Oberösterreich: Linz, Wels, Steyr | MONTER",
     description:
-      "MONTER in Oberösterreich: Haushaltsgeräte-Reparatur in Linz, Wels, Steyr und Umgebung über geprüfte Partnerbetriebe. Anfrage und Terminabstimmung laufen über uns.",
-    h1: "Einsatzgebiet Oberösterreich.",
-    short: "Linz, Wels und Steyr über geprüfte Partnerbetriebe — Koordination über uns.",
+      "Haushaltsgeräte-Reparatur in Oberösterreich: Linz, Wels, Steyr, Vöcklabruck und Umgebung. Techniker vor Ort, Diagnose vor dem Teiletausch, klare Einschätzung am Telefon.",
+    h1: "Reparatur in Oberösterreich.",
+    short: "Zentralraum Linz, Wels und Steyr mit Technikern vor Ort.",
     intro:
-      "Oberösterreich betreuen wir über Partnerbetriebe. Unser eigener Standort ist Wien; eine Anfahrt nach Linz oder Wels wäre für Sie unwirtschaftlich. Anfrage, technische Vorklärung und Terminabstimmung laufen deshalb über uns, die Arbeit vor Ort übernimmt ein Fachbetrieb aus der Region.",
-    coverage: "partnerbetrieb",
-    coverageNote: partnerCoverageNote,
+      "In Oberösterreich sind Techniker vor Ort im Einsatz — am dichtesten im Zentralraum zwischen Linz, Wels und Steyr, dazu Vöcklabruck, Perg, Kirchdorf und das Inn- und Mühlviertel. Wie überall gilt: Erst die Diagnose, dann der Teiletausch. Am Telefon klären wir Fehlercode und Gerätedaten vorab, damit der Techniker die passenden Teile gleich mitbringt.",
+    coverage: "techniker-vor-ort",
+    coverageNote:
+      "In Oberösterreich arbeiten Techniker vor Ort. Unser Firmensitz bleibt Wien — Anfrage, technische Vorklärung und Terminabstimmung laufen über uns.",
     travelFee: {
       appliance: "auf Anfrage",
       garage: "auf Anfrage"
@@ -329,45 +335,61 @@ export const regionPages: RegionPage[] = [
       { plz: "5280", name: "Braunau am Inn" }
     ],
     services: ["haushaltsgeraete"],
-    responseNote: "Termin und Vorlaufzeit klärt der Partnerbetrieb — wir melden uns nach der Anfrage.",
+    responseNote: "Im Zentralraum gut planbar, im Inn- und Mühlviertel nach Absprache.",
     sections: [
       {
-        title: "Wie die Betreuung über Partner abläuft",
+        title: "Zentralraum Linz, Wels und Steyr",
         body:
-          "Sie stellen die Anfrage bei uns. Wir klären Marke, Modellnummer, Fehlercode und Fehlerbild und geben den Fall mit diesen Angaben an einen Partnerbetrieb in Ihrer Region weiter. Der Betrieb stimmt den Termin direkt mit Ihnen ab und rechnet nach seinen Sätzen ab. Wir bleiben Ihr Ansprechpartner, wenn etwas unklar bleibt."
+          "Zwischen Linz, Wels und Steyr liegen die Wege kurz und die Bebauung ist dicht — von Gründerzeithäusern in der Linzer Innenstadt über Wohnanlagen der 1970er-Jahre bis zu Neubauten am Stadtrand. Für die Reparatur macht das einen Unterschied: In Altbauten sind Wasseranschluss und Abfluss oft älter als das Gerät selbst, und ein Waschmaschinenschaden ist dann nicht immer ein Gerätefehler. Wir prüfen deshalb Zulauf und Ablauf mit, bevor Teile getauscht werden."
       },
       {
-        title: "Was wir vorab klären können",
+        title: "Inn-, Mühl- und Hausruckviertel",
         body:
-          "Auch ohne eigenen Techniker vor Ort ist die telefonische Vorklärung wertvoll: Wir sagen Ihnen, was ein Fehlercode bedeutet, ob sich eine Reparatur beim Gerätealter noch rechnet und welche Teile wahrscheinlich gebraucht werden. Das verkürzt den Termin beim Partner und verhindert unnötige Anfahrten."
+          "Vöcklabruck, Braunau, Schärding, Perg und Kirchdorf sind flächige Bezirke mit vielen Einfamilienhäusern. Termine planen wir dort gezielter, weil zwischen zwei Adressen schnell eine halbe Stunde Fahrt liegt. Dafür ist der Zugang meist einfacher als in der Stadt: eigene Einfahrt, Gerät im Erdgeschoss oder Keller, kein Stiegenhaus."
+      },
+      {
+        title: "Was den Termin verkürzt",
+        body:
+          "Marke, vollständige Modellnummer vom Typenschild und der angezeigte Fehlercode. Damit lässt sich vorab einschätzen, welches Bauteil betroffen ist und ob das Teil verfügbar ist. Bei Geräten der BSH-Gruppe wie Bosch, Siemens und Neff oder der Electrolux-Gruppe wie AEG und Zanussi sind viele Bauteile markenübergreifend gleich, was die Teileversorgung auch bei älteren Geräten gut hält."
+      },
+      {
+        title: "Reparieren oder ersetzen",
+        body:
+          "Wir sagen offen, wenn sich eine Reparatur nicht mehr rechnet. Bei einem zwölf Jahre alten Gerät mit defekter Elektronik und einem Ersatzteilpreis nahe dem Neupreis ist der Austausch die vernünftigere Lösung — auch wenn wir daran nichts verdienen. Diese Einschätzung bekommen Sie möglichst schon am Telefon, nicht erst nach der Anfahrt."
       }
     ],
     faq: [
       {
-        question: "Kommt ein MONTER Techniker nach Linz?",
+        question: "Kommt ein Techniker nach Linz?",
         answer:
-          "Nein. Unser eigenes Team arbeitet in Wien, Niederösterreich und im Nordburgenland. In Oberösterreich übernimmt ein Partnerbetrieb den Einsatz — das ist für Sie schneller und günstiger als eine Anfahrt aus Wien."
+          "Ja. In Oberösterreich sind Techniker vor Ort im Einsatz, am dichtesten im Zentralraum Linz, Wels und Steyr. Rufen Sie an oder schicken Sie eine Anfrage — wir klären Fehlerbild und Termin."
       },
       {
-        question: "Gelten die Preise von der Preisseite auch hier?",
+        question: "Was kostet die Anfahrt in Oberösterreich?",
         answer:
-          "Nein. Die Anfahrts- und Arbeitssätze auf unserer Preisseite gelten für Einsätze unseres eigenen Teams. Bei Partnerbetrieben gelten deren Sätze, die wir Ihnen vor dem Termin nennen."
+          "Das hängt von der Adresse ab, deshalb steht hier kein fester Betrag. Sie erfahren die Anfahrtskosten am Telefon, bevor ein Termin vereinbart wird — nicht erst auf der Rechnung."
+      },
+      {
+        question: "Werden auch Garagentore und Klimageräte betreut?",
+        answer:
+          "Der Schwerpunkt in Oberösterreich liegt bei Haushaltsgeräten. Ob für Ihr Anliegen an Garagentor oder Klimaanlage ein Termin möglich ist, klären wir bei der Anfrage."
       }
     ],
-    enriched: false
+    enriched: true
   },
   {
     slug: "steiermark",
     name: "Steiermark",
-    metaTitle: "Einsatzgebiet Steiermark | MONTER Service",
+    metaTitle: "Reparatur Steiermark: Graz, Leoben, Bruck | MONTER",
     description:
-      "MONTER in der Steiermark: Haushaltsgeräte-Reparatur in Graz, Leoben, Bruck an der Mur und Umgebung über geprüfte Partnerbetriebe. Koordination über uns.",
-    h1: "Einsatzgebiet Steiermark.",
-    short: "Graz, Leoben und Bruck an der Mur über geprüfte Partnerbetriebe.",
+      "Haushaltsgeräte-Reparatur in der Steiermark: Graz, Bruck an der Mur, Leoben, Feldbach, Deutschlandsberg. Techniker vor Ort, Diagnose vor dem Teiletausch.",
+    h1: "Reparatur in der Steiermark.",
+    short: "Graz, Mürztal und Südsteiermark mit Technikern vor Ort.",
     intro:
-      "Die Steiermark betreuen wir über Partnerbetriebe. Anfrage und technische Vorklärung laufen über uns, den Einsatz vor Ort übernimmt ein Fachbetrieb aus der Region — von Graz über das Mürztal bis in die Südsteiermark.",
-    coverage: "partnerbetrieb",
-    coverageNote: partnerCoverageNote,
+      "In der Steiermark sind Techniker vor Ort im Einsatz — im Großraum Graz, im Mürztal rund um Bruck an der Mur und Leoben sowie in der Südsteiermark und dem Steirischen Vulkanland. Auch hier steht die Diagnose vor dem Teiletausch: Fehlercode auslesen, Bauteile messen, Wasser- und Stromweg prüfen, erst dann tauschen.",
+    coverage: "techniker-vor-ort",
+    coverageNote:
+      "In der Steiermark arbeiten Techniker vor Ort. Unser Firmensitz bleibt Wien — Anfrage, technische Vorklärung und Terminabstimmung laufen über uns.",
     travelFee: {
       appliance: "auf Anfrage",
       garage: "auf Anfrage"
@@ -383,45 +405,61 @@ export const regionPages: RegionPage[] = [
       { plz: "8940", name: "Liezen" }
     ],
     services: ["haushaltsgeraete"],
-    responseNote: "Termin und Vorlaufzeit klärt der Partnerbetrieb — wir melden uns nach der Anfrage.",
+    responseNote: "Im Großraum Graz gut planbar, in den Bergbezirken nach Absprache.",
     sections: [
       {
-        title: "Wie die Betreuung über Partner abläuft",
+        title: "Großraum Graz",
         body:
-          "Sie stellen die Anfrage bei uns. Wir klären Marke, Modellnummer, Fehlercode und Fehlerbild und geben den Fall mit diesen Angaben an einen Partnerbetrieb in Ihrer Region weiter. Der Betrieb stimmt den Termin direkt mit Ihnen ab und rechnet nach seinen Sätzen ab."
+          "Graz ist nach Wien die zweitgrößte Stadt Österreichs, und die Einsatzsituation ist ähnlich: viele Altbauwohnungen mit engen Stiegenhäusern, oft ohne Lift, dazu ein hoher Anteil an Studentenwohnungen mit älteren Geräten. Für den Termin ist deshalb wichtig, in welchem Stock das Gerät steht und ob ein Lift vorhanden ist — ein Kühlgerät im vierten Stock ohne Lift ist ein anderer Einsatz als eines im Erdgeschoss."
       },
       {
-        title: "Was wir vorab klären können",
+        title: "Mürztal, Obersteiermark und Vulkanland",
         body:
-          "Die telefonische Vorklärung nehmen wir auch dann ernst, wenn der Einsatz über einen Partner läuft: Was bedeutet der Fehlercode, rechnet sich die Reparatur beim Gerätealter noch, welche Teile werden wahrscheinlich gebraucht. Das spart Zeit beim Termin vor Ort."
+          "Bruck an der Mur, Leoben, Liezen und Murau im Norden, Feldbach, Fürstenfeld und Deutschlandsberg im Süden: flächige Bezirke, längere Wege, dafür meist einfacher Zugang zum Gerät. Termine planen wir hier gezielter und bündeln sie mit Einsätzen in derselben Richtung, was die Vorlaufzeit etwas erhöht."
+      },
+      {
+        title: "Was den Termin verkürzt",
+        body:
+          "Marke, vollständige Modellnummer vom Typenschild und der angezeigte Fehlercode. Damit lässt sich vorab einschätzen, welches Bauteil betroffen ist und ob es verfügbar ist. Notieren Sie den Code auch dann, wenn das Gerät zwischendurch wieder läuft — intermittierende Fehler sind ohne diesen Hinweis deutlich schwerer zu finden."
+      },
+      {
+        title: "Reparieren oder ersetzen",
+        body:
+          "Bei älteren Geräten sagen wir offen, wenn Ersatzteilpreis und Restlebensdauer keine Reparatur mehr rechtfertigen. Diese Einschätzung bekommen Sie möglichst schon am Telefon — es hat für Sie keinen Wert, wenn ein Techniker anfährt, um dann vom Austausch abzuraten."
       }
     ],
     faq: [
       {
-        question: "Kommt ein MONTER Techniker nach Graz?",
+        question: "Kommt ein Techniker nach Graz?",
         answer:
-          "Nein. Unser eigenes Team arbeitet in Wien, Niederösterreich und im Nordburgenland. In der Steiermark übernimmt ein Partnerbetrieb den Einsatz."
+          "Ja. In der Steiermark sind Techniker vor Ort im Einsatz, am dichtesten im Großraum Graz. Rufen Sie an oder schicken Sie eine Anfrage — wir klären Fehlerbild und Termin."
       },
       {
-        question: "Gelten die Preise von der Preisseite auch hier?",
+        question: "Was kostet die Anfahrt in der Steiermark?",
         answer:
-          "Nein. Die Sätze auf unserer Preisseite gelten für unser eigenes Team. Bei Partnerbetrieben gelten deren Sätze, die wir Ihnen vor dem Termin nennen."
+          "Das hängt von der Adresse ab, deshalb steht hier kein fester Betrag. Sie erfahren die Anfahrtskosten am Telefon, bevor ein Termin vereinbart wird."
+      },
+      {
+        question: "Werden auch Garagentore und Klimageräte betreut?",
+        answer:
+          "Der Schwerpunkt in der Steiermark liegt bei Haushaltsgeräten. Ob für Ihr Anliegen an Garagentor oder Klimaanlage ein Termin möglich ist, klären wir bei der Anfrage."
       }
     ],
-    enriched: false
+    enriched: true
   },
   {
     slug: "salzburg",
     name: "Salzburg",
-    metaTitle: "Einsatzgebiet Salzburg | MONTER Service",
+    metaTitle: "Reparatur Salzburg: Stadt, Flachgau, Pinzgau | MONTER",
     description:
-      "MONTER in Salzburg: Haushaltsgeräte-Reparatur in der Stadt Salzburg, Hallein, Zell am See und Umgebung über geprüfte Partnerbetriebe.",
-    h1: "Einsatzgebiet Salzburg.",
-    short: "Stadt Salzburg, Hallein und Pinzgau über geprüfte Partnerbetriebe.",
+      "Haushaltsgeräte-Reparatur in Salzburg: Stadt Salzburg, Hallein, Bischofshofen, Zell am See. Techniker vor Ort, Diagnose vor dem Teiletausch, klare Einschätzung.",
+    h1: "Reparatur in Salzburg.",
+    short: "Stadt Salzburg, Flachgau und Pinzgau mit Technikern vor Ort.",
     intro:
-      "Salzburg betreuen wir über Partnerbetriebe — von der Stadt über den Flachgau bis in den Pinzgau. Anfrage und technische Vorklärung laufen über uns, die Arbeit vor Ort übernimmt ein Fachbetrieb aus der Region.",
-    coverage: "partnerbetrieb",
-    coverageNote: partnerCoverageNote,
+      "In Salzburg sind Techniker vor Ort im Einsatz — in der Stadt und im Flachgau am dichtesten, dazu Hallein, Bischofshofen, Zell am See und der Lungau. Ein Salzburg-Thema kommt hier dazu: In Regionen mit vielen Ferienwohnungen und Beherbergungsbetrieben hängen Termine stark an der Saison.",
+    coverage: "techniker-vor-ort",
+    coverageNote:
+      "In Salzburg arbeiten Techniker vor Ort. Unser Firmensitz bleibt Wien — Anfrage, technische Vorklärung und Terminabstimmung laufen über uns.",
     travelFee: {
       appliance: "auf Anfrage",
       garage: "auf Anfrage"
@@ -436,191 +474,47 @@ export const regionPages: RegionPage[] = [
       { plz: "5700", name: "Zell am See" }
     ],
     services: ["haushaltsgeraete"],
-    responseNote: "Termin und Vorlaufzeit klärt der Partnerbetrieb — wir melden uns nach der Anfrage.",
+    responseNote: "In Stadt und Flachgau gut planbar, in den Gebirgsgauen saisonabhängig.",
     sections: [
       {
-        title: "Wie die Betreuung über Partner abläuft",
+        title: "Stadt Salzburg und Flachgau",
         body:
-          "Sie stellen die Anfrage bei uns. Wir klären Marke, Modellnummer, Fehlercode und Fehlerbild und geben den Fall mit diesen Angaben an einen Partnerbetrieb in Ihrer Region weiter. Der Betrieb stimmt den Termin direkt mit Ihnen ab."
+          "In der Stadt Salzburg prägen Altstadt und Gründerzeitviertel das Bild: enge Zufahrten, Innenhöfe, Stiegenhäuser ohne Lift. Wenn Sie bei der Anfrage sagen können, wo sich das Gerät befindet und wie der Zugang aussieht, planen wir den Einsatz passend — bei einem Kühl- oder Waschgerätetransport macht das den Unterschied zwischen einem und zwei Terminen. Im Flachgau rund um Neumarkt, Wallersee und Hallwang sind die Wege kürzer und die Zugänge einfacher."
       },
       {
-        title: "Was wir vorab klären können",
+        title: "Pinzgau, Pongau und Lungau",
         body:
-          "Fehlercode einordnen, Wirtschaftlichkeit einschätzen, wahrscheinliche Ersatzteile benennen — das machen wir am Telefon unabhängig davon, wer am Ende vor Ort arbeitet. In Tourismusregionen ist außerdem die Saison relevant: Vor der Sommersaison sind Termine merkbar knapper."
+          "Bischofshofen, Zell am See und Tamsweg liegen weiter auseinander, und die Fahrzeiten sind wetterabhängig. In der Hochsaison kommt dazu, dass in Ferienwohnungen und Beherbergungsbetrieben Geräte stärker beansprucht werden und Termine knapper sind. Wenn ein Gerät in einem vermieteten Objekt steht, hilft eine Kontaktperson vor Ort, die aufschließt."
+      },
+      {
+        title: "Was den Termin verkürzt",
+        body:
+          "Marke, vollständige Modellnummer vom Typenschild und der angezeigte Fehlercode. In Beherbergungsbetrieben mit mehreren gleichen Geräten ist zusätzlich hilfreich, ob der Fehler nur eines oder mehrere Geräte betrifft — das deutet oft auf Wasserqualität, Anschlusssituation oder Nutzung hin und nicht auf einen Gerätedefekt."
+      },
+      {
+        title: "Reparieren oder ersetzen",
+        body:
+          "Bei Geräten in gewerblich genutzten Wohnungen zählt Ausfallzeit oft mehr als der Reparaturpreis. Wir sagen deshalb offen, wenn ein Gerät wiederholt ausfallen wird und ein Austausch die ruhigere Lösung ist — und ebenso, wenn sich eine Reparatur klar lohnt."
       }
     ],
     faq: [
       {
-        question: "Kommt ein MONTER Techniker nach Salzburg?",
+        question: "Kommt ein Techniker in die Stadt Salzburg?",
         answer:
-          "Nein. Unser eigenes Team arbeitet in Wien, Niederösterreich und im Nordburgenland. In Salzburg übernimmt ein Partnerbetrieb den Einsatz."
+          "Ja. In Salzburg sind Techniker vor Ort im Einsatz, am dichtesten in der Stadt und im Flachgau. Rufen Sie an oder schicken Sie eine Anfrage — wir klären Fehlerbild und Termin."
       },
       {
-        question: "Gelten die Preise von der Preisseite auch hier?",
+        question: "Was kostet die Anfahrt in Salzburg?",
         answer:
-          "Nein. Die Sätze auf unserer Preisseite gelten für unser eigenes Team. Bei Partnerbetrieben gelten deren Sätze, die wir Ihnen vor dem Termin nennen."
-      }
-    ],
-    enriched: false
-  },
-  {
-    slug: "kaernten",
-    name: "Kärnten",
-    metaTitle: "Einsatzgebiet Kärnten | MONTER Service",
-    description:
-      "MONTER in Kärnten: Haushaltsgeräte-Reparatur in Klagenfurt, Villach, Wolfsberg und Umgebung über geprüfte Partnerbetriebe.",
-    h1: "Einsatzgebiet Kärnten.",
-    short: "Klagenfurt, Villach und Wolfsberg über geprüfte Partnerbetriebe.",
-    intro:
-      "Kärnten betreuen wir über Partnerbetriebe — vom Zentralraum Klagenfurt und Villach bis ins Lavanttal und Oberkärnten. Anfrage und technische Vorklärung laufen über uns, den Einsatz vor Ort übernimmt ein Fachbetrieb aus der Region.",
-    coverage: "partnerbetrieb",
-    coverageNote: partnerCoverageNote,
-    travelFee: {
-      appliance: "auf Anfrage",
-      garage: "auf Anfrage"
-    },
-    cities: [
-      { plz: "9020", name: "Klagenfurt" },
-      { plz: "9100", name: "Völkermarkt" },
-      { plz: "9300", name: "St. Veit an der Glan" },
-      { plz: "9400", name: "Wolfsberg" },
-      { plz: "9500", name: "Villach" },
-      { plz: "9620", name: "Hermagor" },
-      { plz: "9800", name: "Spittal an der Drau" }
-    ],
-    services: ["haushaltsgeraete"],
-    responseNote: "Termin und Vorlaufzeit klärt der Partnerbetrieb — wir melden uns nach der Anfrage.",
-    sections: [
-      {
-        title: "Wie die Betreuung über Partner abläuft",
-        body:
-          "Sie stellen die Anfrage bei uns. Wir klären Marke, Modellnummer, Fehlercode und Fehlerbild und geben den Fall mit diesen Angaben an einen Partnerbetrieb in Ihrer Region weiter. Der Betrieb stimmt den Termin direkt mit Ihnen ab."
+          "Das hängt von der Adresse ab, deshalb steht hier kein fester Betrag. Sie erfahren die Anfahrtskosten am Telefon, bevor ein Termin vereinbart wird."
       },
       {
-        title: "Was wir vorab klären können",
-        body:
-          "Wir ordnen den Fehlercode ein, schätzen ein, ob sich die Reparatur beim Gerätealter noch rechnet, und benennen die wahrscheinlich benötigten Teile. Das verkürzt den Termin vor Ort und verhindert eine zweite Anfahrt wegen eines fehlenden Bauteils."
+        question: "Sind Termine in der Hochsaison möglich?",
+        answer:
+          "Ja, aber mit mehr Vorlauf. In Regionen mit vielen Ferienwohnungen sind Termine zu Saisonbeginn und in den Ferienwochen knapper. Melden Sie sich in solchen Fällen früher — und bei einem ausgefallenen Kühlgerät sofort telefonisch."
       }
     ],
-    faq: [
-      {
-        question: "Kommt ein MONTER Techniker nach Klagenfurt?",
-        answer:
-          "Nein. Unser eigenes Team arbeitet in Wien, Niederösterreich und im Nordburgenland. In Kärnten übernimmt ein Partnerbetrieb den Einsatz."
-      },
-      {
-        question: "Gelten die Preise von der Preisseite auch hier?",
-        answer:
-          "Nein. Die Sätze auf unserer Preisseite gelten für unser eigenes Team. Bei Partnerbetrieben gelten deren Sätze, die wir Ihnen vor dem Termin nennen."
-      }
-    ],
-    enriched: false
-  },
-  {
-    slug: "tirol",
-    name: "Tirol",
-    metaTitle: "Einsatzgebiet Tirol | MONTER Service",
-    description:
-      "MONTER in Tirol: Haushaltsgeräte-Reparatur in Innsbruck, Kufstein, Imst und Osttirol über geprüfte Partnerbetriebe.",
-    h1: "Einsatzgebiet Tirol.",
-    short: "Innsbruck, Unterland und Oberland über geprüfte Partnerbetriebe.",
-    intro:
-      "Tirol betreuen wir über Partnerbetriebe — von Innsbruck über das Unterland rund um Kufstein bis ins Oberland und nach Osttirol. Anfrage und technische Vorklärung laufen über uns, die Arbeit vor Ort übernimmt ein Fachbetrieb aus der Region.",
-    coverage: "partnerbetrieb",
-    coverageNote: partnerCoverageNote,
-    travelFee: {
-      appliance: "auf Anfrage",
-      garage: "auf Anfrage"
-    },
-    cities: [
-      { plz: "6020", name: "Innsbruck" },
-      { plz: "6300", name: "Wörgl" },
-      { plz: "6330", name: "Kufstein" },
-      { plz: "6400", name: "Telfs" },
-      { plz: "6460", name: "Imst" },
-      { plz: "6500", name: "Landeck" },
-      { plz: "6600", name: "Reutte" },
-      { plz: "9900", name: "Lienz" }
-    ],
-    services: ["haushaltsgeraete"],
-    responseNote: "Termin und Vorlaufzeit klärt der Partnerbetrieb — wir melden uns nach der Anfrage.",
-    sections: [
-      {
-        title: "Wie die Betreuung über Partner abläuft",
-        body:
-          "Sie stellen die Anfrage bei uns. Wir klären Marke, Modellnummer, Fehlercode und Fehlerbild und geben den Fall mit diesen Angaben an einen Partnerbetrieb in Ihrer Region weiter. Der Betrieb stimmt den Termin direkt mit Ihnen ab."
-      },
-      {
-        title: "Was wir vorab klären können",
-        body:
-          "Fehlercode einordnen, Wirtschaftlichkeit einschätzen, wahrscheinliche Ersatzteile benennen. In den Tälern kommt die Anfahrt des Partnerbetriebs hinzu — je genauer die Gerätedaten, desto seltener wird eine zweite Fahrt nötig."
-      }
-    ],
-    faq: [
-      {
-        question: "Kommt ein MONTER Techniker nach Innsbruck?",
-        answer:
-          "Nein. Unser eigenes Team arbeitet in Wien, Niederösterreich und im Nordburgenland. In Tirol übernimmt ein Partnerbetrieb den Einsatz."
-      },
-      {
-        question: "Gelten die Preise von der Preisseite auch hier?",
-        answer:
-          "Nein. Die Sätze auf unserer Preisseite gelten für unser eigenes Team. Bei Partnerbetrieben gelten deren Sätze, die wir Ihnen vor dem Termin nennen."
-      }
-    ],
-    enriched: false
-  },
-  {
-    slug: "vorarlberg",
-    name: "Vorarlberg",
-    metaTitle: "Einsatzgebiet Vorarlberg | MONTER Service",
-    description:
-      "MONTER in Vorarlberg: Haushaltsgeräte-Reparatur in Bregenz, Dornbirn, Feldkirch und Bludenz über geprüfte Partnerbetriebe.",
-    h1: "Einsatzgebiet Vorarlberg.",
-    short: "Bregenz, Dornbirn, Feldkirch und Bludenz über geprüfte Partnerbetriebe.",
-    intro:
-      "Vorarlberg betreuen wir über Partnerbetriebe — im Rheintal von Bregenz über Dornbirn bis Feldkirch und im Walgau rund um Bludenz. Anfrage und technische Vorklärung laufen über uns, den Einsatz vor Ort übernimmt ein Fachbetrieb aus der Region.",
-    coverage: "partnerbetrieb",
-    coverageNote: partnerCoverageNote,
-    travelFee: {
-      appliance: "auf Anfrage",
-      garage: "auf Anfrage"
-    },
-    cities: [
-      { plz: "6700", name: "Bludenz" },
-      { plz: "6800", name: "Feldkirch" },
-      { plz: "6840", name: "Götzis" },
-      { plz: "6850", name: "Dornbirn" },
-      { plz: "6900", name: "Bregenz" },
-      { plz: "6971", name: "Hard" }
-    ],
-    services: ["haushaltsgeraete"],
-    responseNote: "Termin und Vorlaufzeit klärt der Partnerbetrieb — wir melden uns nach der Anfrage.",
-    sections: [
-      {
-        title: "Wie die Betreuung über Partner abläuft",
-        body:
-          "Sie stellen die Anfrage bei uns. Wir klären Marke, Modellnummer, Fehlercode und Fehlerbild und geben den Fall mit diesen Angaben an einen Partnerbetrieb in Ihrer Region weiter. Der Betrieb stimmt den Termin direkt mit Ihnen ab."
-      },
-      {
-        title: "Was wir vorab klären können",
-        body:
-          "Wir ordnen den Fehlercode ein, schätzen die Wirtschaftlichkeit ein und benennen die wahrscheinlich benötigten Teile — unabhängig davon, wer den Termin vor Ort übernimmt."
-      }
-    ],
-    faq: [
-      {
-        question: "Kommt ein MONTER Techniker nach Dornbirn?",
-        answer:
-          "Nein. Unser eigenes Team arbeitet in Wien, Niederösterreich und im Nordburgenland. In Vorarlberg übernimmt ein Partnerbetrieb den Einsatz."
-      },
-      {
-        question: "Gelten die Preise von der Preisseite auch hier?",
-        answer:
-          "Nein. Die Sätze auf unserer Preisseite gelten für unser eigenes Team. Bei Partnerbetrieben gelten deren Sätze, die wir Ihnen vor dem Termin nennen."
-      }
-    ],
-    enriched: false
+    enriched: true
   }
 ];
 
@@ -643,11 +537,13 @@ export function isRegionEnriched(slug: string): boolean {
   return regionBySlug.get(slug)?.enriched ?? false;
 }
 
-/** Regionen mit eigenem Team — Kerngebiet, wird zuerst gelistet. */
-export const coreRegions = regionPages.filter((region) => region.coverage === "eigenes-team");
+/** Wien und Niederösterreich — vom Standort aus, mit festen Anfahrtssätzen. */
+export const coreRegions = regionPages.filter((region) => region.coverage === "kerngebiet");
 
-/** Regionen, die über Partnerbetriebe laufen. */
-export const partnerRegions = regionPages.filter((region) => region.coverage === "partnerbetrieb");
+/** Weitere Bundesländer mit Technikern vor Ort. */
+export const additionalRegions = regionPages.filter(
+  (region) => region.coverage === "techniker-vor-ort"
+);
 
 export const regionHubLinks: HubDetailLink[] = regionPages.map((region) => ({
   label: region.name,

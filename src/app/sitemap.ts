@@ -22,6 +22,10 @@ function getSitemapPriority(route: string): number {
     return 0.9;
   }
 
+  // Einsatzgebiete stützen die Regionalsuche, bleiben aber unter den Produkt-Hubs.
+  if (route === "/einsatzgebiete") return 0.8;
+  if (route.startsWith("/einsatzgebiete/")) return 0.7;
+
   if (
     route === "/preise" ||
     route === "/blog" ||

@@ -28,7 +28,7 @@ const householdPriceItems: PriceItem[] = [
     number: "03",
     service: "Anfahrt weitere Bundesländer",
     price: "auf Anfrage",
-    note: "Außerhalb von Wien, Niederösterreich und dem Nordburgenland arbeiten wir mit Partnerbetrieben — deren Anfahrtssatz nennen wir vor dem Termin."
+    note: "Im Burgenland, in Oberösterreich, der Steiermark und Salzburg hängt die Anfahrt von der Adresse ab — wir nennen sie vor dem Termin."
   },
   {
     number: "04",
@@ -80,7 +80,7 @@ const garageTravelPriceItems: PriceItem[] = [
     number: "04",
     service: "Anfahrt weitere Bundesländer",
     price: "auf Anfrage",
-    note: "Ob ein Partnerbetrieb in Ihrer Region Torarbeiten abdeckt, klären wir bei der Anfrage — samt Anfahrtssatz."
+    note: "Torarbeiten bieten wir vor allem in Wien, Niederösterreich und im Burgenland an — Anfahrt und Verfügbarkeit klären wir bei der Anfrage."
   }
 ];
 
@@ -323,9 +323,9 @@ export default function PreisePage() {
                 angegebenen Preise verstehen sich exklusive Umsatzsteuer (USt.).
               </p>
               <p className="mt-4 text-[1.05rem] font-light leading-relaxed text-[color:var(--muted)]">
-                Diese Sätze gelten für Einsätze unseres eigenen Teams in Wien, Niederösterreich und
-                im Nordburgenland. In den übrigen Bundesländern arbeiten wir mit Partnerbetrieben,
-                deren Anfahrtssatz wir Ihnen vor dem Termin nennen — eine Übersicht steht unter{" "}
+                Die festen Anfahrtssätze gelten für Wien und Niederösterreich. Im Burgenland, in
+                Oberösterreich, der Steiermark und Salzburg richtet sich die Anfahrt nach der
+                Adresse und wird vor dem Termin genannt — eine Übersicht steht unter{" "}
                 <Link href="/einsatzgebiete" className="underline transition hover:text-[color:var(--accent)]">
                   Einsatzgebiete
                 </Link>

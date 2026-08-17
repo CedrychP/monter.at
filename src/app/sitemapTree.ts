@@ -1,4 +1,10 @@
 import { blogPosts } from "./blog/posts";
+import { regionPages } from "./einsatzgebiete/regionPages";
+import {
+  getLocationsForRegion,
+  locationHref,
+  unenrichedLocationRoutes
+} from "./einsatzgebiete/locationPages";
 import { appliancePages } from "./haushaltsgeraete/appliancePages";
 import { garagePages } from "./garagentore/garagePages";
 import { klimaPages } from "./klimageraete/klimaPages";
@@ -81,6 +87,30 @@ export const sitemapGroups: SitemapGroup[] = [
     ]
   },
   {
+    id: "einsatzgebiete",
+    label: "Einsatzgebiete",
+    href: "/einsatzgebiete",
+    description: "Wo wir arbeiten — Kerngebiet und Techniker vor Ort.",
+    links: [
+      { label: "Einsatzgebiete — Übersicht", href: "/einsatzgebiete" },
+      ...regionPages.map((region) => {
+        const locations = getLocationsForRegion(region.slug);
+        return {
+          label: region.name,
+          href: `/einsatzgebiete/${region.slug}`,
+          ...(locations.length > 0
+            ? {
+                children: locations.map((location) => ({
+                  label: location.name,
+                  href: locationHref(location)
+                }))
+              }
+            : {})
+        };
+      })
+    ]
+  },
+  {
     id: "termin-preise",
     label: "Termin & Preise",
     href: "/reparatur-buchen",
@@ -160,6 +190,11 @@ const unenrichedBrandDeviceRoutes = brandPages.flatMap((brand) =>
     .map((device) => `/marken/${brand.slug}/${device.slug}`)
 );
 
+/** Regionen ohne geprüfte Partnerdaten — erreichbar, aber noch nicht im Index. */
+const unenrichedRegionRoutes = regionPages
+  .filter((region) => !region.enriched)
+  .map((region) => `/einsatzgebiete/${region.slug}`);
+
 /**
  * Seiten, die nicht in der XML-Sitemap für Suchmaschinen erscheinen sollen —
  * interne Suche, Platzhalterseiten vor dem Start und unfertige Kombiseiten.
@@ -172,7 +207,9 @@ export const SITEMAP_EXCLUDED_ROUTES = new Set<string>([
   "/kurse",
   "/veranstaltungen",
   "/aktionskatalog",
-  ...unenrichedBrandDeviceRoutes
+  ...unenrichedBrandDeviceRoutes,
+  ...unenrichedRegionRoutes,
+  ...unenrichedLocationRoutes
 ]);
 
 /**

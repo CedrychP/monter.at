@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import DetailPageLayout from "../../DetailPageLayout";
-import { HubFaq } from "../../HubBlocks";
+import { HubDetailLinks, HubFaq } from "../../HubBlocks";
 import { getRegionPage, regionPages, type RegionPage, type RegionService } from "../regionPages";
+import { findLocationByCityName, getLocationsForRegion, locationHref } from "../locationPages";
 
 type RegionPageProps = {
   params: Promise<{
@@ -70,7 +71,7 @@ export async function generateMetadata({ params }: RegionPageProps): Promise<Met
 }
 
 function RegionFacts({ region }: { region: RegionPage }) {
-  const isPartner = region.coverage === "partnerbetrieb";
+  const isCore = region.coverage === "kerngebiet";
 
   return (
     <section className="border-t border-[color:var(--border)] bg-[color:var(--bg-muted)] py-20 sm:py-24">
@@ -78,7 +79,9 @@ function RegionFacts({ region }: { region: RegionPage }) {
         <div className="reveal max-w-2xl">
           <p className="cap-line tracking-eyebrow text-[color:var(--accent)]">Betreuung & Anfahrt</p>
           <h2 className="font-display mt-6 text-balance text-3xl font-light tracking-tight sm:text-4xl">
-            {isPartner ? `${region.name} über Partnerbetriebe.` : `${region.name} mit eigenem Team.`}
+            {isCore
+              ? `${region.name} mit eigenem Team.`
+              : `${region.name} mit Technikern vor Ort.`}
           </h2>
           <p className="mt-4 text-sm font-light leading-relaxed text-[color:var(--muted)]">
             {region.coverageNote}
@@ -166,21 +169,58 @@ function RegionCities({ region }: { region: RegionPage }) {
             </h2>
             <p className="mt-5 text-sm font-light leading-relaxed text-[color:var(--muted)]">
               {region.slug === "wien"
-                ? "Einheitlicher Anfahrtssatz im gesamten Stadtgebiet — von der Inneren Stadt bis Liesing."
+                ? "Einheitlicher Anfahrtssatz im gesamten Stadtgebiet — von der Inneren Stadt bis Liesing. Jeder Bezirk hat eine eigene Seite mit Baubestand, Zugang und typischen Einsätzen."
                 : "Eine Auswahl, keine abschließende Liste. Steht Ihr Ort nicht dabei, rufen Sie kurz an — wir sagen Ihnen offen, ob ein Einsatz sinnvoll ist."}
             </p>
           </div>
 
           <div className="grid gap-x-8 gap-y-0 sm:grid-cols-2 lg:grid-cols-3">
-            {region.cities.map((city) => (
-              <div
-                key={`${city.plz}-${city.name}`}
-                className="flex items-baseline gap-4 border-b border-[color:var(--border)] py-3 text-sm"
-              >
-                <span className="font-medium tabular-nums tracking-tight">{city.plz}</span>
-                <span className="font-normal text-[color:var(--muted)]">{city.name}</span>
-              </div>
-            ))}
+            {region.cities.map((city) => {
+              const location = findLocationByCityName(region.slug, city.name);
+              const row = (
+                <>
+                  <span className="font-medium tabular-nums tracking-tight">{city.plz}</span>
+                  <span
+                    className={
+                      location
+                        ? "font-normal text-[color:var(--ink)] group-hover:text-[color:var(--accent)]"
+                        : "font-normal text-[color:var(--muted)]"
+                    }
+                  >
+                    {city.name}
+                  </span>
+                  {location ? (
+                    <span
+                      aria-hidden="true"
+                      className="ml-auto text-[color:var(--accent)] transition group-hover:translate-x-1"
+                    >
+                      →
+                    </span>
+                  ) : null}
+                </>
+              );
+
+              if (!location) {
+                return (
+                  <div
+                    key={`${city.plz}-${city.name}`}
+                    className="flex items-baseline gap-4 border-b border-[color:var(--border)] py-3 text-sm"
+                  >
+                    {row}
+                  </div>
+                );
+              }
+
+              return (
+                <Link
+                  key={`${city.plz}-${city.name}`}
+                  href={locationHref(location)}
+                  className="group flex items-baseline gap-4 border-b border-[color:var(--border)] py-3 text-sm transition"
+                >
+                  {row}
+                </Link>
+              );
+            })}
           </div>
         </div>
       </div>
@@ -197,6 +237,7 @@ export default async function RegionDetailPage({ params }: RegionPageProps) {
   }
 
   const related = regionPages.filter((item) => item.slug !== region.slug).slice(0, 3);
+  const locations = getLocationsForRegion(region.slug);
 
   return (
     <DetailPageLayout
@@ -210,7 +251,7 @@ export default async function RegionDetailPage({ params }: RegionPageProps) {
       relatedEyebrow="Weitere Einsatzgebiete"
       relatedTitle="Wo wir außerdem arbeiten."
       related={related.map((item) => ({
-        category: item.coverage === "eigenes-team" ? "Eigenes Team" : "Partnerbetrieb",
+        category: item.coverage === "kerngebiet" ? "Kerngebiet" : "Techniker vor Ort",
         title: item.name,
         href: `/einsatzgebiete/${item.slug}`
       }))}
@@ -222,6 +263,24 @@ export default async function RegionDetailPage({ params }: RegionPageProps) {
       areaServed={{ type: region.slug === "wien" ? "City" : "State", name: region.name }}
     >
       <RegionFacts region={region} />
+      {locations.length > 0 ? (
+        <HubDetailLinks
+          eyebrow={region.slug === "wien" ? "Bezirke" : "Städte"}
+          title={
+            region.slug === "wien" ? "Wien im Detail." : `Städte in ${region.name} im Detail.`
+          }
+          intro={
+            region.slug === "wien"
+              ? "Baubestand, Zugang und typische Einsätze unterscheiden sich zwischen den Bezirken deutlich. Diese Seiten sagen, worauf es an Ihrer Adresse ankommt."
+              : "Eigene Seiten mit Baubestand, typischen Einsätzen und der Terminlage vor Ort."
+          }
+          links={locations.map((item) => ({
+            label: item.name,
+            href: locationHref(item),
+            text: item.short
+          }))}
+        />
+      ) : null}
       <RegionCities region={region} />
       <HubFaq
         eyebrow="Häufige Fragen"

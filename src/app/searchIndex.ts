@@ -3,6 +3,7 @@ import { brandPages } from "./marken/brands";
 import { appliancePages } from "./haushaltsgeraete/appliancePages";
 import { garagePages } from "./garagentore/garagePages";
 import { klimaPages } from "./klimageraete/klimaPages";
+import { regionPages } from "./einsatzgebiete/regionPages";
 
 export type SearchEntry = {
   title: string;
@@ -50,6 +51,15 @@ export function buildSearchIndex(): SearchEntry[] {
     category: "Marke",
     keywords: `${brand.brand} marke reparatur ${brand.description}`
   }));
+  const fromRegions: SearchEntry[] = regionPages.map((region) => ({
+    title: `Einsatzgebiet ${region.name}`,
+    description: region.short,
+    href: `/einsatzgebiete/${region.slug}`,
+    category: "Einsatzgebiet",
+    keywords: `${region.name} einsatzgebiet anfahrt region bundesland ${region.cities
+      .map((city) => `${city.plz} ${city.name}`)
+      .join(" ")}`
+  }));
   const fromBlog: SearchEntry[] = blogPosts.map((post) => ({
     title: post.title,
     description: post.description,
@@ -87,6 +97,13 @@ export function buildSearchIndex(): SearchEntry[] {
       keywords: "marken hersteller reparatur bosch miele siemens aeg beko gorenje"
     },
     {
+      title: "Einsatzgebiete in Österreich",
+      description: "Wien, Niederösterreich und Nordburgenland mit eigenem Team, Rest über Partner.",
+      href: "/einsatzgebiete",
+      category: "Einsatzgebiet",
+      keywords: "einsatzgebiet einsatzgebiete region bundesland österreich anfahrt partner"
+    },
+    {
       title: "Preise & Pauschalen",
       description: "Anfahrt, Diagnose, Reparatur und Material — transparent.",
       href: "/preise",
@@ -108,7 +125,15 @@ export function buildSearchIndex(): SearchEntry[] {
       keywords: "über uns unternehmen tcc tech craft"
     }
   ];
-  return [...fromAppliances, ...fromGarage, ...fromKlima, ...fromBrands, ...fromBlog, ...fromStatic];
+  return [
+    ...fromAppliances,
+    ...fromGarage,
+    ...fromKlima,
+    ...fromBrands,
+    ...fromRegions,
+    ...fromBlog,
+    ...fromStatic
+  ];
 }
 
 export function filterSearchResults(index: SearchEntry[], query: string, limit = 8): SearchEntry[] {

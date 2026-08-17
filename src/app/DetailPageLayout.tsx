@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { Fragment, type ReactNode } from "react";
 import Link from "next/link";
 import { siteConfig } from "./siteConfig";
 import { servedAreas, type ServedArea } from "./einsatzgebiete/regionPages";
@@ -17,6 +17,8 @@ type RelatedEntry = {
 type DetailPageLayoutProps = {
   /** Elternseite des Detailbereichs — erzeugt Breadcrumb und Rücksprung. */
   hub: HubRef;
+  /** Weitere Ebenen oberhalb des Hubs, z.B. Einsatzgebiete über einer Region. */
+  ancestors?: HubRef[];
   category: string;
   h1: string;
   intro: string;
@@ -36,6 +38,7 @@ type DetailPageLayoutProps = {
 
 export default function DetailPageLayout({
   hub,
+  ancestors = [],
   category,
   h1,
   intro,
@@ -50,6 +53,7 @@ export default function DetailPageLayout({
   children
 }: DetailPageLayoutProps) {
   const areas = Array.isArray(areaServed) ? areaServed : [areaServed];
+  const trail = [...ancestors, hub];
   const structuredData = [
     {
       "@context": "https://schema.org",
@@ -75,8 +79,18 @@ export default function DetailPageLayout({
       "@type": "BreadcrumbList",
       itemListElement: [
         { "@type": "ListItem", position: 1, name: "Startseite", item: siteConfig.siteUrl },
-        { "@type": "ListItem", position: 2, name: hub.label, item: `${siteConfig.siteUrl}${hub.href}` },
-        { "@type": "ListItem", position: 3, name: jsonLd.name, item: `${siteConfig.siteUrl}${jsonLd.path}` }
+        ...trail.map((step, index) => ({
+          "@type": "ListItem",
+          position: index + 2,
+          name: step.label,
+          item: `${siteConfig.siteUrl}${step.href}`
+        })),
+        {
+          "@type": "ListItem",
+          position: trail.length + 2,
+          name: jsonLd.name,
+          item: `${siteConfig.siteUrl}${jsonLd.path}`
+        }
       ]
     }
   ];
@@ -98,12 +112,16 @@ export default function DetailPageLayout({
                   Start
                 </Link>
               </li>
-              <li aria-hidden="true">/</li>
-              <li>
-                <Link href={hub.href} className="transition hover:text-[color:var(--accent)]">
-                  {hub.label}
-                </Link>
-              </li>
+              {trail.map((step) => (
+                <Fragment key={step.href}>
+                  <li aria-hidden="true">/</li>
+                  <li>
+                    <Link href={step.href} className="transition hover:text-[color:var(--accent)]">
+                      {step.label}
+                    </Link>
+                  </li>
+                </Fragment>
+              ))}
               <li aria-hidden="true">/</li>
               <li className="text-[color:var(--ink)]">{category}</li>
             </ol>

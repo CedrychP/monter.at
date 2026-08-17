@@ -17,7 +17,7 @@ const sections: InfoSection[] = [
   {
     title: "Einsatzgebiet Wien und Umgebung",
     body:
-      "Wir fahren alle Wiener Bezirke und das nähere Niederösterreich an — für Privathaushalte, Vermieter, Hausverwaltungen und Gewerbe. Bei Wasserschäden oder ausgefallenen Kühl- und Tiefkühlgeräten behandeln wir Anfragen vorrangig, weil dort jede Stunde zählt. In den übrigen Bundesländern arbeiten wir mit Partnerbetrieben.",
+      "Wir fahren alle Wiener Bezirke und das nähere Niederösterreich an — für Privathaushalte, Vermieter, Hausverwaltungen und Gewerbe. Bei Wasserschäden oder ausgefallenen Kühl- und Tiefkühlgeräten behandeln wir Anfragen vorrangig, weil dort jede Stunde zählt. Im Burgenland, in Oberösterreich, der Steiermark und Salzburg sind Techniker vor Ort im Einsatz.",
     link: { label: "Alle Einsatzgebiete", href: "/einsatzgebiete" }
   },
   {
