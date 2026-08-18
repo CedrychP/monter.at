@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import InfoPageLayout, { type InfoSection } from "../InfoPageLayout";
 import { HubDetailLinks, HubFaq, type HubDetailLink, type HubFaqItem } from "../HubBlocks";
 import { additionalRegions, coreRegions, unservedStates } from "./regionPages";
+import { buildMetadata } from "../pageMetadata";
 
 const toHubLinks = (regions: typeof coreRegions): HubDetailLink[] =>
   regions.map((region) => ({
@@ -68,14 +69,12 @@ const faqs: HubFaqItem[] = [
   }
 ];
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "Einsatzgebiete in Österreich | MONTER Reparatur & Service",
   description:
     "Wo MONTER arbeitet: Wien und Niederösterreich vom eigenen Standort, dazu Burgenland, Oberösterreich, Steiermark und Salzburg mit Technikern vor Ort. Anfahrt und Ablauf transparent.",
-  alternates: {
-    canonical: "/einsatzgebiete"
-  }
-};
+  path: "/einsatzgebiete"
+});
 
 export default function EinsatzgebieteHubPage() {
   return (

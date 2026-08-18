@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import InfoPageLayout, { type InfoCard } from "../InfoPageLayout";
+import { buildMetadata } from "../pageMetadata";
 
 const cards: InfoCard[] = [
   {
@@ -20,19 +21,17 @@ const cards: InfoCard[] = [
   }
 ];
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "MONTER GOLD Club | Bald verfügbar",
   description:
     "Der MONTER GOLD Club ist in Vorbereitung: bevorzugte Termine, exklusive Vorteile, Wartung im Abo und früher Zugang zu neuen Services. Bald für Kundinnen und Kunden in Wien.",
-  alternates: {
-    canonical: "/monter-gold"
-  },
+  path: "/monter-gold",
   // Platzhalterseite: erreichbar und verlinkt, aber bis zum Start ohne Index.
   robots: {
     index: false,
     follow: true
   }
-};
+});
 
 export default function MonterGoldPage() {
   return (

@@ -1,3 +1,6 @@
+import type { Metadata } from "next";
+import { buildMetadata } from "../pageMetadata";
+
 const companyName = "Tech Craft Consulting GmbH";
 const serviceName = "MONTER Reparatur & Service";
 const address = "Rappgasse 1/6, 1210 Wien";
@@ -6,14 +9,12 @@ const vatId = "ATU82408379";
 const phone = "01 4171346";
 const phoneHref = "+4314171346";
 
-export const metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "Datenschutz DSGVO | MONTER Reparatur Service",
   description:
     "Datenschutz und DSGVO-Informationen von MONTER Reparatur & Service in Wien. Lesen Sie, wie Kontakt- und Cookie-Daten verarbeitet werden.",
-  alternates: {
-    canonical: "/dsgvo"
-  }
-};
+  path: "/dsgvo"
+});
 
 const privacySections = [
   {

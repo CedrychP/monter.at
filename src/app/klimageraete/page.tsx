@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import InfoPageLayout, { type InfoSection } from "../InfoPageLayout";
 import { HubDetailLinks, HubFaq, type HubFaqItem } from "../HubBlocks";
 import { klimaHubLinks } from "./klimaPages";
+import { buildMetadata } from "../pageMetadata";
 
 const sections: InfoSection[] = [
   {
@@ -55,14 +56,12 @@ const faqs: HubFaqItem[] = [
   }
 ];
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "Klimagerät Reparatur Wien | MONTER Service",
   description:
     "Klimagerät Reparatur in Wien & NÖ: Split-Anlagen, Multi-Split, Monoblock, Kältemittel, Kompressor, Steuerung, Wartung und Montage. Markenoffen, schnell vor Ort.",
-  alternates: {
-    canonical: "/klimageraete"
-  }
-};
+  path: "/klimageraete"
+});
 
 export default function KlimageraeteHubPage() {
   return (

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import DetailPageLayout from "../../DetailPageLayout";
+import { HubFaq } from "../../HubBlocks";
+import { buildMetadata } from "../../pageMetadata";
 import { getKlimaPage, klimaPages } from "../klimaPages";
 
 type KlimaPageProps = {
@@ -25,18 +27,11 @@ export async function generateMetadata({ params }: KlimaPageProps): Promise<Meta
     };
   }
 
-  return {
+  return buildMetadata({
     title: page.metaTitle,
     description: page.description,
-    alternates: {
-      canonical: `/klimageraete/${page.slug}`
-    },
-    openGraph: {
-      title: page.metaTitle,
-      description: page.description,
-      type: "website"
-    }
-  };
+    path: `/klimageraete/${page.slug}`
+  });
 }
 
 export default async function KlimaDetailPage({ params }: KlimaPageProps) {
@@ -70,6 +65,12 @@ export default async function KlimaDetailPage({ params }: KlimaPageProps) {
         description: page.description,
         path: `/klimageraete/${page.slug}`
       }}
-    />
+    >
+      <HubFaq
+        eyebrow="Häufige Fragen"
+        title={`${page.category}: kurz beantwortet.`}
+        items={page.faq}
+      />
+    </DetailPageLayout>
   );
 }

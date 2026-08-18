@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import CookieBanner from "./CookieBanner";
+import { consentDefaultScript } from "./consentMode";
 import { getLogoSrc } from "./logoAsset";
 import MobileActionBar from "./MobileActionBar";
 import SiteFooter from "./SiteFooter";
 import SiteHeader from "./SiteHeader";
 import { siteConfig } from "./siteConfig";
+import TelClickTracker from "./TelClickTracker";
 import "./globals.css";
 
 const GOOGLE_ADS_ID = "AW-18096010711";
@@ -78,12 +80,37 @@ export default function RootLayout({
     }
   };
 
+  const websiteJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: siteConfig.serviceName,
+    url: siteConfig.siteUrl,
+    inLanguage: "de-AT",
+    publisher: {
+      "@type": "Organization",
+      name: siteConfig.serviceName,
+      url: siteConfig.siteUrl
+    },
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${siteConfig.siteUrl}/suche?q={search_term_string}`
+      },
+      "query-input": "required name=search_term_string"
+    }
+  };
+
   const logoSrc = getLogoSrc();
 
   return (
-    <html lang="de" data-scroll-behavior="smooth">
+    <html lang="de-AT" data-scroll-behavior="smooth">
       <head>
         <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
+        {/* Muss vor GTM und gtag laufen, sonst greifen die Consent-Defaults zu spät. */}
+        <Script id="consent-default" strategy="beforeInteractive">
+          {consentDefaultScript}
+        </Script>
         <Script id="gtm-loader" strategy="afterInteractive">
           {`
             (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -121,11 +148,20 @@ export default function RootLayout({
           suppressHydrationWarning
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
+        <script
+          type="application/ld+json"
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+        />
+        <a href="#inhalt" className="skip-link">
+          Zum Inhalt springen
+        </a>
         <SiteHeader logoSrc={logoSrc} />
-        {children}
+        <div id="inhalt">{children}</div>
         <SiteFooter logoSrc={logoSrc} />
         <MobileActionBar />
         <CookieBanner />
+        <TelClickTracker />
       </body>
     </html>
   );

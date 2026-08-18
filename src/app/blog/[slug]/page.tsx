@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { blogPosts, getBlogPost } from "../posts";
+import { buildMetadata } from "../../pageMetadata";
+import { siteConfig } from "../../siteConfig";
+import { blogPosts, getBlogPost, getRelatedPosts } from "../posts";
 
 type BlogPostPageProps = {
   params: Promise<{
@@ -9,8 +11,10 @@ type BlogPostPageProps = {
   }>;
 };
 
-const phoneDisplay = "01 4171346";
-const phoneHref = "+4314171346";
+const phoneDisplay = siteConfig.phoneDisplay;
+const phoneHref = siteConfig.phoneHref;
+
+const formatDate = (isoDate: string) => isoDate.split("-").reverse().join(".");
 
 export function generateStaticParams() {
   return blogPosts.map((post) => ({
@@ -28,19 +32,15 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     };
   }
 
-  return {
+  return buildMetadata({
     title: post.title,
     description: post.description,
-    alternates: {
-      canonical: `/blog/${post.slug}`
-    },
-    openGraph: {
-      title: post.title,
-      description: post.description,
-      type: "article",
-      publishedTime: post.date
-    }
-  };
+    path: `/blog/${post.slug}`,
+    type: "article",
+    images: [post.image],
+    publishedTime: post.date,
+    modifiedTime: post.dateModified
+  });
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
@@ -51,16 +51,37 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     notFound();
   }
 
-  const relatedPosts = blogPosts.filter((item) => item.slug !== post.slug).slice(0, 3);
+  const relatedPosts = getRelatedPosts(post);
+  const postUrl = `${siteConfig.siteUrl}/blog/${post.slug}`;
   const articleJsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
+    "@id": postUrl,
+    url: postUrl,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": postUrl
+    },
     headline: post.title,
     description: post.description,
+    image: [post.image],
+    articleSection: post.category,
+    inLanguage: "de-AT",
     datePublished: post.date,
+    dateModified: post.dateModified,
     author: {
       "@type": "Organization",
-      name: "MONTER Reparatur & Service"
+      name: siteConfig.serviceName,
+      url: siteConfig.siteUrl
+    },
+    publisher: {
+      "@type": "Organization",
+      name: siteConfig.serviceName,
+      url: siteConfig.siteUrl,
+      logo: {
+        "@type": "ImageObject",
+        url: `${siteConfig.siteUrl}/assets/logo.png`
+      }
     }
   };
 
@@ -85,7 +106,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </p>
           <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-[color:var(--border)] pt-6 text-xs font-medium uppercase tracking-[0.16em] text-[color:var(--muted)]">
             <span>Lesedauer · {post.readingTime}</span>
-            <span>Aktualisiert · {post.date.split("-").reverse().join(".")}</span>
+            <span>Veröffentlicht · {formatDate(post.date)}</span>
+            <span>Aktualisiert · {formatDate(post.dateModified)}</span>
           </div>
         </div>
       </section>

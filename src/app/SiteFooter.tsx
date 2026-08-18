@@ -135,7 +135,6 @@ export default function SiteFooter({ logoSrc }: SiteFooterProps) {
                   alt="MONTER Reparatur & Service"
                   width={300}
                   height={80}
-                  unoptimized
                   className="h-11 w-auto sm:h-12"
                 />
               </Link>

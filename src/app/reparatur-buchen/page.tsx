@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { siteConfig } from "../siteConfig";
 import RepairBookingForm from "../RepairBookingForm";
+import { buildMetadata } from "../pageMetadata";
 
 const phoneDisplay = siteConfig.phoneDisplay;
 const phoneHref = siteConfig.phoneHref;
@@ -12,14 +13,12 @@ const badges = [
   "Markenoffen in Wien & NÖ"
 ];
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "Reparaturtermin buchen Wien | MONTER Reparatur & Service",
   description:
     "Reparaturtermin online buchen: Haushaltsgeräte und Garagentore in Wien & NÖ. Gerät, Standort und Wunschtermin angeben — wir melden uns zur Abstimmung.",
-  alternates: {
-    canonical: "/reparatur-buchen"
-  }
-};
+  path: "/reparatur-buchen"
+});
 
 export default function ReparaturBuchenPage() {
   return (

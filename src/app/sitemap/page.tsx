@@ -3,17 +3,16 @@ import type { Metadata } from "next";
 
 import SitemapWeb from "../SitemapWeb";
 import { sitemapGroups, sitemapHome } from "../sitemapTree";
+import { buildMetadata } from "../pageMetadata";
 
 const serviceName = "MONTER Reparatur & Service";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "Sitemap | MONTER Reparatur & Service",
   description:
     "Die komplette Seitenstruktur von MONTER Reparatur & Service in Wien — als interaktives Netzdiagramm und vollständige Übersicht aller Seiten.",
-  alternates: {
-    canonical: "/sitemap"
-  }
-};
+  path: "/sitemap"
+});
 
 export default function SitemapPage() {
   return (

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { graphRequiredEnvVars, sendMail } from "../../../lib/graphMailer";
+import { checkRateLimit, getClientIp } from "../../../lib/rateLimit";
 
 type NewsletterPayload = {
   email?: unknown;
@@ -22,6 +23,15 @@ const sanitize = (value: unknown) => {
 const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
 export async function POST(request: Request) {
+  const rateLimit = checkRateLimit(`newsletter:${getClientIp(request)}`);
+
+  if (!rateLimit.allowed) {
+    return NextResponse.json(
+      { message: "Zu viele Anfragen in kurzer Zeit. Bitte später erneut versuchen." },
+      { status: 429, headers: { "Retry-After": String(rateLimit.retryAfterSeconds) } }
+    );
+  }
+
   let payload: NewsletterPayload;
 
   try {
@@ -30,9 +40,12 @@ export async function POST(request: Request) {
     return NextResponse.json({ message: "Ungültige Anfrage." }, { status: 400 });
   }
 
+  // Honeypot: nach außen ein Erfolg, damit der Bot nichts lernt. `tracked: false`
+  // verhindert, dass der Client daraus eine Conversion macht.
   if (sanitize(payload.website)) {
     return NextResponse.json({
-      message: "Danke — wir halten Sie über Neuigkeiten und Aktionen auf dem Laufenden."
+      message: "Danke — wir halten Sie über Neuigkeiten und Aktionen auf dem Laufenden.",
+      tracked: false
     });
   }
 

@@ -1,16 +1,17 @@
+import type { Metadata } from "next";
+import { buildMetadata } from "../pageMetadata";
+
 const serviceName = "MONTER Reparatur & Service";
 const email = "office@tccreparatur.at";
 const phone = "01 4171346";
 const phoneHref = "+4314171346";
 
-export const metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "Barrierefreiheit | MONTER Reparatur Service",
   description:
     "Informationen zur Barrierefreiheit des Webauftritts von MONTER Reparatur & Service in Wien.",
-  alternates: {
-    canonical: "/barrierefreiheit"
-  }
-};
+  path: "/barrierefreiheit"
+});
 
 const sections = [
   {

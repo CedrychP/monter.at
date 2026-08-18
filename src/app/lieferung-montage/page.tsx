@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import InfoPageLayout, { type InfoCard, type InfoSection } from "../InfoPageLayout";
+import { buildMetadata } from "../pageMetadata";
 
 const cards: InfoCard[] = [
   {
@@ -38,14 +39,12 @@ const sections: InfoSection[] = [
   }
 ];
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "Lieferung & Montage Wien | Haushaltsgeräte anschließen | MONTER",
   description:
     "Lieferung, Montage und Anschluss von Haushaltsgeräten in Wien: Anlieferung, fachgerechter Anschluss, Einbau und Altgeräte-Mitnahme — alles aus einer Hand.",
-  alternates: {
-    canonical: "/lieferung-montage"
-  }
-};
+  path: "/lieferung-montage"
+});
 
 export default function LieferungMontagePage() {
   return (

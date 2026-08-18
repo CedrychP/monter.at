@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import DetailPageLayout from "../../../DetailPageLayout";
 import { HubFaq } from "../../../HubBlocks";
+import { buildMetadata } from "../../../pageMetadata";
 import { requireRegionPage, getRegionPage } from "../../regionPages";
 import {
   getLocationPage,
@@ -44,20 +45,13 @@ export async function generateMetadata({ params }: LocationPageProps): Promise<M
     };
   }
 
-  return {
+  return buildMetadata({
     title: location.metaTitle,
     description: location.description,
-    alternates: {
-      canonical: locationHref(location)
-    },
-    openGraph: {
-      title: location.metaTitle,
-      description: location.description,
-      type: "website"
-    },
+    path: locationHref(location),
     // Orte ohne eigenen Inhalt bleiben aus dem Index, sind aber erreichbar.
-    ...(location.enriched ? {} : { robots: { index: false, follow: true } })
-  };
+    robots: location.enriched ? undefined : { index: false, follow: true }
+  });
 }
 
 function LocationProfile({ location }: { location: LocationPage }) {

@@ -1,3 +1,5 @@
+import type { HubFaqItem } from "../HubBlocks";
+
 export type KlimaPage = {
   slug: string;
   title: string;
@@ -13,6 +15,8 @@ export type KlimaPage = {
     body: string;
   }[];
   checklist: string[];
+  /** Wird als FAQPage-JSON-LD und Akkordeon auf der Detailseite ausgegeben. */
+  faq: HubFaqItem[];
 };
 
 export const klimaPages: KlimaPage[] = [
@@ -27,22 +31,27 @@ export const klimaPages: KlimaPage[] = [
     short:
       "Innen- und Außengerät: Kühlleistung, Entwässerung, Geräusche und Steuerung.",
     intro:
-      "Wenn die Split-Klimaanlage nicht mehr kühlt, Wasser tropft, ungewöhnliche Geräusche auftreten oder die Fernbedienung nicht reagiert, braucht es eine gezielte Diagnose. MONTER Reparatur & Service unterstützt Sie bei typischen Problemen an Innen- und Außengerät in Wien und Niederösterreich.",
+      "Wenn die Split-Klimaanlage nicht mehr kühlt, Wasser aus dem Innengerät tropft, ungewöhnliche Geräusche auftreten oder die Fernbedienung nicht reagiert, braucht es eine gezielte Diagnose statt eines schnellen Nachfüllens. Wir prüfen Innen- und Außengerät als System — in Wien und Niederösterreich, markenoffen von Daikin und Mitsubishi über Panasonic und LG bis zu Baumarktgeräten.",
     sections: [
       {
-        title: "Typische Fehlerbilder",
+        title: "Kühlt schlecht — die Reihenfolge der Prüfung",
         body:
-          "Schwache Kühlleistung, Eisbildung am Innengerät, undichtes Kondenswasser, unrunder Lüfterlauf oder Fehlercodes deuten auf unterschiedliche Ursachen hin — von verschmutzten Filtern über Kältemittelverlust bis zu Elektronikfehlern."
+          "Nachlassende Kühlleistung hat drei typische Ursachen, und sie werden in dieser Reihenfolge geprüft: verschmutzte Luftfilter und Verdampferlamellen am Innengerät, ein zugesetzter Verflüssiger am Außengerät und erst danach Kältemittelmangel. Wer zuerst nachfüllt, behandelt in den meisten Fällen das falsche Problem. Ein verstaubtes Außengerät auf einem Wiener Innenhofbalkon verliert messbar Leistung, weil die Wärme nicht abgeführt wird — Reinigung bringt dort mehr als jeder Bauteiltausch.",
       },
       {
-        title: "Innen- und Außengerät im Blick",
+        title: "Wasser tropft aus dem Innengerät",
         body:
-          "Bei Split-Systemen hängen Kühlleistung, Entwässerung und Betriebsgeräusche von beiden Einheiten ab. Wir prüfen Lüfter, Wärmetauscher, Leitungen und Steuerung und erklären, ob Reinigung, Bauteiltausch oder Wartung sinnvoll ist."
+          "Kondenswasser aus dem Innengerät ist die häufigste Störungsmeldung im Sommer. Ursache ist meist die Kondensatableitung: verstopfte Ablaufwanne, verkeimter Schlauch, ein Gegengefälle in der Leitung oder eine defekte Kondensatpumpe bei Geräten, die nach oben fördern müssen. In Altbauten mit langen Leitungswegen zum Innenhof kommt Verlegung mit zu geringem Gefälle als Bauursache dazu. Ist der Verdampfer vereist, tropft es ebenfalls — dann liegt die eigentliche Ursache bei Luftmenge oder Kältemittel.",
       },
       {
-        title: "Vorbereitung für den Termin",
+        title: "Geräusche, Vibration und Nachbarschaft",
         body:
-          "Marke, Modell, Fehlerbild und Standort von Innen- und Außengerät helfen bei der Einschätzung. Bei dringenden Ausfällen in heißen Perioden ist der telefonische Kontakt der schnellste Weg."
+          "Brummen und Vibrieren am Außengerät gehen häufig auf gealterte Schwingungsdämpfer, lose Konsolen oder ein unwuchtiges Lüfterrad zurück. Das ist in Wien nicht nur ein Komfortthema: Bei Geräten an Fassaden, Balkonen und in Innenhöfen sind Betriebsgeräusche regelmäßig Anlass für Beschwerden. Nachziehen, entkoppeln und das Lüfterrad reinigen senkt den Schallpegel oft deutlich. Pfeifen und Klackern am Innengerät kommt meist vom Querstromlüfter oder von der Klappenmechanik.",
+      },
+      {
+        title: "Fehlercodes und Kommunikation der Geräte",
+        body:
+          "Split-Anlagen melden Fehler über blinkende LEDs am Innengerät oder Codes im Display — bei Daikin etwa als zweistelliger Code über die Fernbedienung. Die Codes benennen den Bereich: Fühler, Druck, Kommunikation zwischen Innen- und Außengerät, Verdichter. Ein häufiger und günstiger Fall ist ein Kommunikationsfehler durch korrodierte Klemmen in der Außeneinheit. Notieren Sie die Blinkfolge oder den Code — damit kommen wir mit hoher Wahrscheinlichkeit mit dem passenden Teil.",
       }
     ],
     checklist: [
@@ -51,6 +60,23 @@ export const klimaPages: KlimaPage[] = [
       "Außengerät zugänglich halten",
       "Marke & Modell bereithalten",
       "Telefonisch Termin klären"
+    ],
+    faq: [
+      {
+        question: "Meine Klimaanlage kühlt schlecht — fehlt Kältemittel?",
+        answer:
+          "Meist nicht. Ein Kältekreis ist ein geschlossenes System und verbraucht kein Kältemittel; sinkt der Füllstand, liegt eine Undichtheit vor. Deutlich häufiger sind verschmutzte Filter, ein belegter Verdampfer und ein zugesetztes Außengerät. Wir prüfen in dieser Reihenfolge und suchen bei echtem Mangel die Leckage, statt nur nachzufüllen."
+      },
+      {
+        question: "Warum tropft Wasser aus dem Innengerät?",
+        answer:
+          "Fast immer wegen der Kondensatableitung: verstopfte Ablaufwanne, verkeimter oder falsch verlegter Schlauch oder eine defekte Kondensatpumpe. Zweite Möglichkeit ist ein vereister Verdampfer, der beim Abtauen mehr Wasser abgibt, als die Wanne fasst — dann behandeln wir die Ursache der Vereisung mit."
+      },
+      {
+        question: "Wie oft sollte eine Split-Anlage gewartet werden?",
+        answer:
+          "Bei normaler Nutzung im Haushalt einmal jährlich, am besten im Frühjahr vor der Saison. Bei gewerblicher Nutzung, Dauerbetrieb oder staubiger Umgebung häufiger. Die Wartung hält die Kühlleistung hoch und den Stromverbrauch niedrig — und sie deckt Undichtheiten auf, bevor der Verdichter Schaden nimmt."
+      }
     ]
   },
   {
@@ -64,22 +90,27 @@ export const klimaPages: KlimaPage[] = [
     short:
       "Mehrere Innengeräte an einem Außengerät — Einzelausfall oder Systemfehler.",
     intro:
-      "Multi-Split-Anlagen versorgen mehrere Räume über ein gemeinsames Außengerät. Wenn einzelne Innengeräte ausfallen oder die Gesamtleistung sinkt, ist eine strukturierte Fehlersuche entscheidend.",
+      "Multi-Split-Anlagen versorgen mehrere Räume über ein gemeinsames Außengerät. Fällt ein Innengerät aus oder sinkt die Leistung im ganzen System, entscheidet die richtige Eingrenzung über den Aufwand: lokaler Fehler am einzelnen Gerät oder ein Problem im gemeinsamen Kältekreis. Wir betreuen solche Anlagen in Wiener Wohnungen, Büros und Ordinationen.",
     sections: [
       {
-        title: "Einzelnes Innengerät betroffen",
+        title: "Nur ein Raum betroffen",
         body:
-          "Tropft nur in einem Raum Wasser, kühlt eine Zone nicht oder reagiert ein Innengerät nicht, kann die Ursache im jeweiligen Gerät, in der Leitung oder in der Verteilung liegen."
+          "Kühlt eine Zone nicht, während die anderen normal arbeiten, liegt der Fehler in der Regel lokal: Filter und Verdampfer des Innengeräts, das zugehörige Expansionsventil, ein Fühler oder die Datenleitung zum Außengerät. Auch die Kondensatableitung ist ein Einzelthema — ein tropfendes Innengerät im Schlafzimmer sagt nichts über den Rest der Anlage aus. Wir messen die Leistung raumweise, damit klar wird, ob das Gerät oder die Versorgung schwächelt.",
       },
       {
-        title: "Gesamtsystem prüfen",
+        title: "Alle Innengeräte schwach",
         body:
-          "Bei Multi-Split-Systemen sind Kältemittelkreislauf, Verdichterleistung und elektronische Zuordnung der Innengeräte eng verknüpft. Wir prüfen, ob das Problem lokal oder am Außengerät liegt."
+          "Sinkt die Leistung überall gleichmäßig, geht es um das Gemeinsame: Verflüssiger und Lüfter am Außengerät, Verdichterleistung, Kältemittelfüllung und die Verteilung. Multi-Split-Systeme sind hier empfindlicher als Einzelanlagen, weil die Füllmenge auf die gesamte Leitungslänge abgestimmt ist. Eine Undichtheit an einer einzigen Verschraubung senkt deshalb die Leistung in allen Räumen — und lässt sich nur mit Lecksuche, nicht mit Nachfüllen dauerhaft beheben.",
       },
       {
-        title: "Wartung für gleichmäßige Leistung",
+        title: "Gleichzeitiger Betrieb und Grenzen der Anlage",
         body:
-          "Regelmäßige Reinigung und Kontrolle aller Innengeräte verhindert, dass ein belastetes Gerät die Gesamtanlage ausbremst — besonders in Büros und Mehrzimmer-Wohnungen."
+          "Ein häufiger Befund ist gar kein Defekt: Multi-Split-Anlagen sind meist so ausgelegt, dass nicht alle Innengeräte gleichzeitig mit voller Leistung laufen können. Werden in einer Hitzeperiode alle Räume zugeschaltet, verteilt die Regelung die verfügbare Leistung — subjektiv fühlt sich das wie ein Defekt an. Wir prüfen die Auslegung gegen die tatsächliche Nutzung und sagen, ob Regelung, Bauteil oder Dimensionierung die Ursache ist.",
+      },
+      {
+        title: "Adressierung, Verkabelung und Wartung",
+        body:
+          "Jedes Innengerät hat im System eine eigene Adresse. Nach Stromausfällen, Modultausch oder Arbeiten an der Elektrik kommt es vor, dass Zuordnungen verloren gehen und Räume auf die falsche Fernbedienung reagieren. Das ist eine Konfigurations-, keine Bauteilfrage. Bei der Wartung reinigen wir alle Innengeräte gemeinsam, weil ein einzelnes belastetes Gerät die Regelung der ganzen Anlage aus dem Tritt bringt.",
       }
     ],
     checklist: [
@@ -88,6 +119,23 @@ export const klimaPages: KlimaPage[] = [
       "Außengerät freihalten",
       "Leitungsführung dokumentieren",
       "Anruf vorbereiten"
+    ],
+    faq: [
+      {
+        question: "Ein Innengerät kühlt nicht, die anderen schon. Woran liegt das?",
+        answer:
+          "Dann ist der Fehler mit hoher Wahrscheinlichkeit lokal: Filter und Verdampfer des Geräts, das zugehörige Expansionsventil, ein Fühler oder die Datenleitung. Am gemeinsamen Kältekreis liegt es selten, weil dessen Störungen alle Räume betreffen würden."
+      },
+      {
+        question: "Können alle Innengeräte gleichzeitig auf voller Leistung laufen?",
+        answer:
+          "In der Regel nicht. Multi-Split-Anlagen werden mit einem Gleichzeitigkeitsfaktor ausgelegt: Das Außengerät liefert weniger als die Summe aller Innengeräte. Bei voller Zuschaltung verteilt die Regelung die Leistung — das ist gewolltes Verhalten, kein Defekt."
+      },
+      {
+        question: "Lässt sich ein einzelnes Innengerät später ergänzen?",
+        answer:
+          "Nur, wenn das Außengerät einen freien Anschluss hat und die Leistungsreserve ausreicht. Wir prüfen Typenschild, vorhandene Anschlüsse und Leitungslängen und sagen, ob eine Ergänzung sinnvoll ist oder das Außengerät dabei überlastet würde."
+      }
     ]
   },
   {
@@ -101,22 +149,27 @@ export const klimaPages: KlimaPage[] = [
     short:
       "Mobile und fest installierte Geräte: Abluft, Kondensat und Elektronik.",
     intro:
-      "Monoblock-Geräte sind kompakt und flexibel — ob mobil oder fest installiert. Wenn die Kühlleistung nachlässt, die Abluftführung stört oder das Gerät ungewöhnlich laut wird, helfen wir bei der Einschätzung und Reparatur.",
+      "Monoblock-Geräte sind kompakt und flexibel — und in Wien oft die einzige Möglichkeit, wenn im denkmalgeschützten Altbau oder im Mietverhältnis kein Außengerät montiert werden darf. Wenn die Kühlleistung nachlässt, das Gerät Wasser meldet oder ungewöhnlich laut wird, prüfen wir Luftführung, Entwässerung und Elektronik.",
     sections: [
       {
-        title: "Abluft und Wärmeabfuhr",
+        title: "Abluftführung entscheidet über die Leistung",
         body:
-          "Bei Monoblock-Geräten ist eine saubere Abluftführung entscheidend. Blockierte Schlauchführungen oder undichte Fensterabdichtungen reduzieren die Kühlleistung deutlich."
+          "Bei Monoblock-Geräten sitzt der komplette Kältekreis im Raum; nur die Abwärme geht über den Schlauch nach draußen. Ist der Schlauch lang, geknickt oder liegt er in Schlaufen, staut sich die Wärme und die Kühlleistung bricht ein. Genauso wichtig ist die Fensterabdichtung: Eine offene Kippfensterspalte zieht warme Luft nach, die das Gerät gerade herausgeschafft hat. Wir prüfen zuerst diesen Aufbau — er ist häufiger die Ursache als ein technischer Defekt.",
       },
       {
-        title: "Entwässerung und Kondensat",
+        title: "Kondensat und Fehlermeldungen",
         body:
-          "Stehendes Wasser im Gerät oder undichte Auffangbehälter führen schnell zu Fehlermeldungen. Wir prüfen Pumpe, Schlauch und Niveauschalter."
+          "Monoblock-Geräte müssen anfallendes Kondensat entweder verdunsten oder sammeln. Stehendes Wasser, eine dauerhafte Behälter-Meldung oder ein Gerät, das nach kurzer Zeit abschaltet, deuten auf Niveauschalter, Pumpe oder einen verkeimten Ablauf hin. Bei fest installierten Geräten prüfen wir zusätzlich die Kondensatleitung nach außen, weil dort Gegengefälle und Verstopfung die typischen Ursachen sind.",
       },
       {
-        title: "Reparatur vs. Austausch",
+        title: "Geräusche, Lüfter und Verdichter",
         body:
-          "Bei älteren mobilen Geräten lohnt sich eine ehrliche Abwägung. Wir sagen Ihnen transparent, wann eine Reparatur wirtschaftlich sinnvoll ist."
+          "Weil der Verdichter im Raum steht, wirken Monoblock-Geräte grundsätzlich lauter als Split-Anlagen. Verändert sich das Geräusch aber deutlich, prüfen wir Lüfterlager, Auflagefüße und die Verdichteraufhängung. Ein rasselndes Geräusch beim Start kommt oft von einer gelösten Halterung; ein durchgehend brummender Betrieb ohne Kühlung deutet dagegen auf einen Verdichter hin, der gegen zu hohen Druck arbeitet — meist die Folge gestauter Abluft.",
+      },
+      {
+        title: "Reparatur oder Neugerät",
+        body:
+          "Bei mobilen Geräten im unteren Preissegment ist die wirtschaftliche Grenze schnell erreicht: Pumpe, Niveauschalter, Lüfter, Sensorik und Reinigung lohnen sich, ein Verdichter- oder Kältekreisschaden praktisch nie. Bei fest installierten Monoblock-Anlagen und hochwertigen Geräten sieht die Rechnung anders aus, weil Montage und Wanddurchführung erhalten bleiben. Wir sagen die Einschätzung vorab, damit keine Anfahrt für ein Gerät entsteht, dessen Reparatur sich nicht rechnet.",
       }
     ],
     checklist: [
@@ -125,6 +178,23 @@ export const klimaPages: KlimaPage[] = [
       "Entwässerung kontrollieren",
       "Fehlerbild beschreiben",
       "Telefonisch abklären"
+    ],
+    faq: [
+      {
+        question: "Warum kühlt mein mobiles Klimagerät so schwach?",
+        answer:
+          "Meist wegen der Abluft. Ein langer, geknickter oder in Schlaufen liegender Schlauch staut die Wärme, und eine offene Fensterspalte zieht warme Luft nach. Kurzer, gerader Schlauch und eine dichte Fensterabdichtung bringen mehr als jede Reparatur — erst danach prüfen wir das Gerät selbst."
+      },
+      {
+        question: "Das Gerät schaltet nach kurzer Zeit ab und meldet Wasser.",
+        answer:
+          "Dann spricht der Niveauschalter an: Behälter voll, Schwimmer verschmutzt, Pumpe blockiert oder Ablauf verstopft. Das sind günstige Reparaturen. Bei Geräten mit fester Kondensatleitung prüfen wir zusätzlich das Gefälle der Leitung nach außen."
+      },
+      {
+        question: "Lohnt sich die Reparatur eines mobilen Klimageräts?",
+        answer:
+          "Bei Pumpe, Niveauschalter, Lüfter, Sensorik und Reinigung ja. Bei einem Verdichter- oder Kältekreisschaden nicht — dort liegt der Aufwand bei günstigen Geräten über dem Neupreis. Diese Einschätzung geben wir vorab am Telefon."
+      }
     ]
   },
   {
@@ -138,22 +208,27 @@ export const klimaPages: KlimaPage[] = [
     short:
       "Filter, Wärmetauscher und Funktionsprüfung — hält Leistung hoch und Verbrauch niedrig.",
     intro:
-      "Regelmäßige Wartung hält Klimageräte effizient, leise und zuverlässig. Wir reinigen Filter und Wärmetauscher, prüfen Entwässerung, Lüfter und Sicherheitsfunktionen — für Privathaushalte und Gewerbe.",
+      "Regelmäßige Wartung hält Klimageräte effizient, leise und zuverlässig — und sie ist der günstigste Weg, teure Verdichterschäden zu vermeiden. Wir reinigen Filter und Wärmetauscher, prüfen Kondensatableitung, Lüfter, Elektrik und Sicherheitsfunktionen, für Privathaushalte wie für Büros, Ordinationen und Gastronomie in Wien und Niederösterreich.",
     sections: [
       {
-        title: "Was eine Wartung umfasst",
+        title: "Was eine Wartung tatsächlich umfasst",
         body:
-          "Sichtprüfung, Reinigung zugänglicher Komponenten, Kontrolle von Kondensatableitung, Lüfterlauf und Betriebsgeräuschen sowie Prüfung der Steuerung und Fernbedienung."
+          "Reinigung der Luftfilter und des Verdampferlamellenpakets im Innengerät, Reinigung des Verflüssigers und Lüfterrads am Außengerät, Durchspülen und Desinfizieren der Kondensatwanne und -leitung, Kontrolle von Kondensatpumpe, Schwingungsdämpfern und Befestigungen. Dazu die messtechnische Seite: Zu- und Ablufttemperatur, Stromaufnahme, Betriebsdrücke und eine Sichtprüfung aller Verschraubungen auf Ölspuren — der erste sichtbare Hinweis auf eine Undichtheit.",
       },
       {
-        title: "Warum Wartung sich lohnt",
+        title: "Warum sich der Termin rechnet",
         body:
-          "Verschmutzte Filter und Wärmetauscher erhöhen Stromverbrauch und Belastung des Verdichters. Geplante Wartung verlängert die Lebensdauer und reduziert teure Notfalleinsätze."
+          "Ein belegtes Lamellenpaket senkt den Luftdurchsatz, und der Verdichter arbeitet gegen schlechtere Wärmeübertragung — das kostet Strom und Lebensdauer. Der teuerste Schaden an einer Klimaanlage ist der Verdichter, und die häufigste Vorgeschichte dazu sind Monate Betrieb mit zu wenig Kältemittel oder verschmutzten Wärmetauschern. Wartung ist damit weniger Kosmetik als Vorsorge gegen genau den Fall, der wirtschaftlich weh tut.",
       },
       {
-        title: "Wartungsintervalle",
+        title: "Hygiene: was im Innengerät passiert",
         body:
-          "Bei regelmäßig genutzten Geräten empfehlen sich jährliche Kontrollen — bei intensiver Nutzung oder gewerblichem Betrieb häufiger. Wir passen den Rhythmus an Ihr Gerät an."
+          "Am kalten Verdampfer schlägt sich Feuchtigkeit nieder, in der Wanne steht Wasser — zusammen mit Staub ist das ein Nährboden für Bakterien und Schimmel. Riecht die Anlage beim Einschalten muffig, ist das der Befund, nicht eine Geruchsquelle im Raum. Deshalb gehören Wanne, Ablauf und Lüfterrad zu jeder Wartung. Gerade in Schlafzimmern und Ordinationen ist dieser Punkt wichtiger als die letzten Prozent Kühlleistung.",
+      },
+      {
+        title: "Intervalle und der richtige Zeitpunkt",
+        body:
+          "Für Haushaltsgeräte genügt in der Regel ein Termin pro Jahr, am besten im Frühjahr vor der Saison — dann ist die Anlage geprüft, bevor die erste Hitzewelle kommt, und Termine sind besser verfügbar als im Juli. Bei gewerblichem Dauerbetrieb, staubiger Umgebung oder Küchenluft empfehlen wir zwei Termine. Für Anlagen mit mehreren Innengeräten stimmen wir feste Intervalle ab, damit die Wartung planbar bleibt.",
       }
     ],
     checklist: [
@@ -162,6 +237,23 @@ export const klimaPages: KlimaPage[] = [
       "Zugang zu Außengerät sichern",
       "Nutzungsintensität beschreiben",
       "Termin anfragen"
+    ],
+    faq: [
+      {
+        question: "Wie oft muss eine Klimaanlage gewartet werden?",
+        answer:
+          "Im Haushalt einmal jährlich, idealerweise im Frühjahr. Bei gewerblichem Dauerbetrieb, staubiger Umgebung oder Küchenluft zweimal. Anlagen mit mehreren Innengeräten warten wir gesammelt, weil ein einzelnes belastetes Gerät die Regelung der gesamten Anlage beeinflusst."
+      },
+      {
+        question: "Meine Anlage riecht muffig. Hilft ein Filterwechsel?",
+        answer:
+          "Nur teilweise. Der Geruch entsteht meist im feuchten Bereich hinter dem Filter: am Verdampfer, in der Kondensatwanne und im Ablauf. Diese Bereiche werden bei der Wartung gereinigt und desinfiziert — der Filter allein löst das Problem selten."
+      },
+      {
+        question: "Wird bei der Wartung Kältemittel nachgefüllt?",
+        answer:
+          "Nicht routinemäßig. Ein Kältekreis ist geschlossen und verbraucht kein Kältemittel. Sinkt der Füllstand, liegt eine Undichtheit vor — dann suchen wir die Leckage und beheben sie, bevor befüllt wird. Nachfüllen ohne Lecksuche verschiebt das Problem nur."
+      }
     ]
   },
   {
@@ -175,22 +267,27 @@ export const klimaPages: KlimaPage[] = [
     short:
       "Leckage suchen, fachgerecht dichten und den Kältekreis wieder in Betrieb nehmen.",
     intro:
-      "Sinkt die Kühlleistung langsam ab oder bildet sich Eis am Verdampfer, kann Kältemittelverlust die Ursache sein. Dichtheitsprüfung und fachgerechte Instandsetzung gehören in qualifizierte Hände.",
+      "Sinkt die Kühlleistung langsam über Wochen oder bildet sich Eis am Verdampfer, ist Kältemittelverlust eine naheliegende Ursache. Wichtig ist dabei ein Grundsatz: Ein Kältekreis ist ein geschlossenes System und verbraucht kein Kältemittel. Fehlt etwas, gibt es eine undichte Stelle — und die gehört gefunden, nicht nur aufgefüllt.",
     sections: [
       {
         title: "Anzeichen für Kältemittelverlust",
         body:
-          "Schwache Kühlung trotz sauberer Filter, Eisbildung, ungewöhnliche Geräusche am Verdichter oder häufiges Abschalten des Systems können auf undichte Stellen hinweisen."
+          "Typisch ist ein schleichender Verlauf: Die Anlage kühlt über Wochen immer schwächer, obwohl Filter und Wärmetauscher sauber sind. Dazu kommen Eisbildung an Verdampfer oder Leitungsanschluss, Ölspuren an Verschraubungen im Außengerät, ein Verdichter, der ungewöhnlich häufig abschaltet, und Fehlercodes zu Druck oder Überhitzung. Ölspuren sind der verlässlichste Hinweis, weil das Schmieröl im Kreislauf mit dem Kältemittel austritt.",
       },
       {
-        title: "Leckage finden und beheben",
+        title: "Leckage finden statt nachfüllen",
         body:
-          "Wir lokalisieren Leckagen an Leitungen, Flanschen und Wärmetauschern und beheben undichte Stellen, bevor das System wieder befüllt und geprüft wird."
+          "Wir suchen die Undichtheit mit elektronischem Lecksuchgerät, Formiergas oder Kontrastmittel, abhängig von Anlage und Schadensbild. Die häufigsten Stellen sind Bördelverschraubungen am Innen- und Außengerät, Schweißnähte am Wärmetauscher und Ventilanschlüsse. Danach wird die Stelle instand gesetzt, das System evakuiert und mit der auf dem Typenschild angegebenen Menge neu befüllt — nicht nach Gefühl, weil Über- und Unterfüllung beide die Leistung senken und den Verdichter belasten.",
       },
       {
-        title: "Rechtliche Anforderungen",
+        title: "Rechtlicher Rahmen und Dokumentation",
         body:
-          "Arbeiten am Kältemittelkreislauf unterliegen Vorschriften. Wir führen Dichtheitsprüfungen und Befüllungen fachgerecht durch und dokumentieren den Zustand des Systems."
+          "Arbeiten am Kältekreis sind in der EU geregelt: Fluorierte Treibhausgase dürfen nur von zertifiziertem Personal gehandhabt werden, Kältemittel darf nicht in die Atmosphäre abgelassen, sondern muss abgesaugt und ordnungsgemäß entsorgt werden. Für gewerbliche Anlagen ab bestimmten Füllmengen sind zusätzlich regelmäßige Dichtheitsprüfungen und Aufzeichnungen vorgeschrieben. Wir führen die Arbeiten entsprechend durch und dokumentieren Befund, Menge und Kältemitteltyp.",
+      },
+      {
+        title: "R410A, R32 und ältere Anlagen",
+        body:
+          "Aktuelle Anlagen arbeiten meist mit R32, die Generation davor mit R410A. Beide sind nicht mischbar, und ältere Anlagen mit inzwischen ausgelaufenen Kältemitteln lassen sich nicht beliebig weiterbetreiben — beim Nachfüllen wird die Verfügbarkeit dann zur Kostenfrage. Bei solchen Geräten rechnen wir Instandsetzung offen gegen einen Neubau des Kreislaufs oder einen Anlagentausch, statt Geld in ein System zu stecken, dessen Betriebsstoff knapper und teurer wird.",
       }
     ],
     checklist: [
@@ -199,6 +296,23 @@ export const klimaPages: KlimaPage[] = [
       "Fehlercode mitteilen",
       "Gerät nicht öffnen",
       "Telefonisch abklären"
+    ],
+    faq: [
+      {
+        question: "Muss Kältemittel regelmäßig nachgefüllt werden?",
+        answer:
+          "Nein. Ein Kältekreis ist geschlossen und verbraucht im Normalbetrieb kein Kältemittel. Wer regelmäßig nachfüllen muss, hat eine Undichtheit. Nachfüllen ohne Lecksuche ist deshalb nur eine Verzögerung — und rechtlich problematisch, weil das Gas nicht entweichen darf."
+      },
+      {
+        question: "Woran erkenne ich, dass Kältemittel fehlt?",
+        answer:
+          "An einem schleichenden Leistungsverlust über Wochen bei sauberen Filtern, an Eisbildung am Verdampfer oder Leitungsanschluss und an Ölspuren an den Verschraubungen des Außengeräts. Fehlercodes zu Druck oder Überhitzung passen ebenfalls ins Bild."
+      },
+      {
+        question: "Dürfen Sie an meiner Anlage Kältemittel handhaben?",
+        answer:
+          "Arbeiten am Kältekreis erfolgen ausschließlich durch entsprechend zertifiziertes Personal, weil fluorierte Treibhausgase gesetzlich geregelt sind. Kältemittel wird abgesaugt und ordnungsgemäß entsorgt, nicht abgelassen. Befund, Menge und Kältemitteltyp dokumentieren wir für Sie."
+      }
     ]
   },
   {
@@ -212,22 +326,27 @@ export const klimaPages: KlimaPage[] = [
     short:
       "Startprobleme, Überhitzung und Leistungsverlust am Verdichter.",
     intro:
-      "Der Verdichter ist das Herzstück jeder Klimaanlage. Startet das Gerät nicht, läuft es heiß oder liefert es dauerhaft zu wenig Kälte, prüfen wir Motor, Kondensator, Steuerung und mechanische Belastung.",
+      "Der Verdichter ist das teuerste Bauteil jeder Klimaanlage — und fast nie die erste Ursache. Startet das Gerät nicht, schaltet es ständig ab oder liefert es dauerhaft zu wenig Kälte, prüfen wir zuerst Elektrik, Kondensator, Fühler und Wärmeabfuhr, bevor der Verdichter selbst in Frage kommt. Diese Reihenfolge entscheidet über die Rechnung.",
     sections: [
       {
-        title: "Startprobleme und Schutzschaltungen",
+        title: "Startet nicht oder schaltet ständig ab",
         body:
-          "Wiederholtes Ein- und Ausschalten, Stromstoß beim Start oder auslöste Schutzschaltungen deuten auf elektrische oder mechanische Probleme am Verdichter hin."
+          "Ein Verdichter, der brummt und wieder abschaltet, hat meist ein elektrisches Problem: gealterter Anlaufkondensator, defektes Schütz, verschmorte Klemme oder eine ausgelöste Schutzschaltung. Häufiges Ein- und Ausschalten in kurzen Abständen deutet dagegen auf Druck- oder Temperaturprobleme hin, nicht auf einen mechanischen Defekt. Bei Inverter-Geräten kommt die Leistungselektronik dazu, die den Verdichter ansteuert — und die ist deutlich günstiger als der Verdichter selbst.",
       },
       {
-        title: "Überhitzung und Leistungsverlust",
+        title: "Überhitzung und ihre Vorgeschichte",
         body:
-          "Verschmutzte Wärmetauscher, Kältemittelmangel oder defekte Lüfter belasten den Verdichter. Ohne rechtzeitige Reparatur droht ein Totalausfall."
+          "Läuft der Verdichter heiß, liegt die Ursache fast immer außerhalb: verschmutzter Verflüssiger, stehender Lüfter am Außengerät, zu geringer Luftabstand in einer Nische oder Kältemittelmangel. Ein Verdichter überhitzt nicht von selbst. Genau deshalb ist die häufigste Vorgeschichte eines Verdichterschadens ein Monate langer Betrieb mit zu wenig Kältemittel — das Gas kühlt auch den Motor, und fehlt es, steigt die Wickeltemperatur.",
       },
       {
-        title: "Reparatur oder Austausch",
+        title: "Wenn der Verdichter tatsächlich defekt ist",
         body:
-          "Nicht jeder Verdichter muss sofort ersetzt werden. Wir prüfen, ob ein Bauteiltausch oder eine Instandsetzung wirtschaftlich ist — transparent und nachvollziehbar."
+          "Ein mechanisch oder elektrisch defekter Verdichter zeigt sich an Windungsschluss, Masseschluss oder blockierter Mechanik — messbar, nicht Auslegungssache. Der Tausch bedeutet Absaugen des Kältemittels, Öffnen des Kreislaufs, neuen Filtertrockner, Evakuieren und exaktes Neubefüllen. Bei Splitgeräten im Haushaltsbereich liegt der Aufwand damit häufig in der Nähe einer neuen Anlage, bei größeren gewerblichen Systemen dagegen klar darunter.",
+      },
+      {
+        title: "Ehrliche Empfehlung statt Teiletausch",
+        body:
+          "Wir messen elektrische Werte, Betriebsdrücke und Temperaturen und legen offen, was wir sehen. Ist ein günstiges Bauteil im Umfeld die Ursache, tauschen wir das und dokumentieren, was zur Belastung geführt hat — sonst wiederholt sich der Schaden. Ist der Verdichter selbst hinüber, sagen wir das mit Zahlen: Reparaturaufwand, Alter der Anlage, Kältemitteltyp und Verfügbarkeit ergeben zusammen die Antwort, nicht das Bauchgefühl.",
       }
     ],
     checklist: [
@@ -236,6 +355,23 @@ export const klimaPages: KlimaPage[] = [
       "Fehlercode fotografieren",
       "Gerät nicht weiter belasten",
       "Anruf vorbereiten"
+    ],
+    faq: [
+      {
+        question: "Ist ein Verdichterschaden das Ende der Anlage?",
+        answer:
+          "Bei Split-Geräten im Haushaltsbereich meistens ja, weil Absaugen, Tausch, Filtertrockner, Evakuieren und Neubefüllen zusammen in die Nähe eines Neugeräts kommen. Bei größeren gewerblichen Anlagen lohnt sich der Tausch dagegen häufig klar."
+      },
+      {
+        question: "Mein Außengerät brummt, kühlt aber nicht. Ist der Verdichter kaputt?",
+        answer:
+          "Nicht unbedingt. Brummen ohne Anlauf deutet häufig auf den Anlaufkondensator, ein Schütz oder eine verschmorte Klemme hin — alles deutlich günstiger als der Verdichter. Wir messen die elektrischen Werte, bevor wir über einen Tausch sprechen."
+      },
+      {
+        question: "Wie vermeide ich einen Verdichterschaden?",
+        answer:
+          "Wärmetauscher sauber halten, dem Außengerät genügend Luft lassen und Leistungsverluste früh prüfen lassen. Monate Betrieb mit zu wenig Kältemittel ist die häufigste Vorgeschichte eines Verdichterschadens, weil das Gas auch die Motorwicklung kühlt."
+      }
     ]
   },
   {
@@ -249,22 +385,27 @@ export const klimaPages: KlimaPage[] = [
     short:
       "Platine, Sensoren, Fernbedienung und Smart-Module — Fehlercodes eingrenzen.",
     intro:
-      "Reagiert die Klimaanlage nicht auf die Fernbedienung, zeigt sie Fehlercodes oder schaltet unregelmäßig, liegt die Ursache oft in Steuerplatine, Sensoren oder Verkabelung.",
+      "Reagiert die Klimaanlage nicht auf die Fernbedienung, zeigt sie Fehlercodes oder schaltet sie unregelmäßig, liegt die Ursache oft nicht im Kältekreis, sondern in Steuerplatine, Sensorik oder Verkabelung. Das ist die gute Nachricht: Diese Fehler sind meist günstiger zu beheben als alles, was mit Kältemittel zu tun hat.",
     sections: [
       {
         title: "Fernbedienung und Bedieneinheit",
         body:
-          "Defekte Infrarot-Empfänger, leere Batterien oder fehlerhafte Kommunikation zwischen Innen- und Außengerät können simple Ursachen sein — wir grenzen das systematisch ein."
+          "Bevor Hardware getauscht wird, klären wir die einfachen Fälle: leere Batterien, ein verstellter Betriebsmodus, aktive Zeitschaltung oder ein defekter Infrarot-Empfänger im Innengerät. Ein Test mit der Handykamera zeigt, ob die Fernbedienung sendet. Bleibt die Anlage stumm, prüfen wir Empfänger, Bedienplatine und die Kommunikationsleitung zwischen Innen- und Außengerät — korrodierte Klemmen in der Außeneinheit sind dabei ein häufiger Befund.",
       },
       {
-        title: "Sensoren und Regelung",
+        title: "Sensoren: kleine Teile, große Wirkung",
         body:
-          "Temperaturfühler, Drucksensoren und Niveauschalter beeinflussen den Betrieb direkt. Fehlmessungen führen zu Abschaltungen oder ungleichmäßiger Kühlung."
+          "Temperaturfühler am Raumluftansaug und am Verdampfer, Drucksensoren und Niveauschalter der Kondensatwanne steuern den gesamten Betrieb. Ein gealterter Fühler mit abweichendem Widerstandswert führt zu Verhalten, das wie ein schwerer Defekt wirkt: Die Anlage kühlt zu kurz, taut ständig ab oder schaltet grundlos aus. Solche Fühler sind einzeln lieferbar und gehören zu den günstigsten Reparaturen an einer Klimaanlage.",
       },
       {
-        title: "Smart-Steuerung und Module",
+        title: "Fehlercodes richtig lesen",
         body:
-          "WLAN-Module und Smart-Home-Anbindungen können nach Updates oder Stromausfällen Probleme machen. Wir prüfen Hardware und Konfiguration."
+          "Split-Anlagen melden Fehler als Blinkmuster der LEDs am Innengerät oder als Code über die Fernbedienung; bei manchen Herstellern lässt sich der Speicher gezielt abfragen. Der Code benennt einen Bereich — Fühler, Druck, Kommunikation, Verdichter — und nicht das defekte Bauteil. Notieren Sie Code oder Blinkfolge, bevor Sie die Anlage stromlos machen: Ein Neustart löscht die Meldung oft und nimmt uns die wichtigste Information.",
+      },
+      {
+        title: "WLAN-Module und Smart-Home",
+        body:
+          "Nach Updates, Routerwechsel oder Stromausfall verlieren WLAN-Module gelegentlich die Verbindung oder die Anlage reagiert nur noch auf die Fernbedienung. Das ist in der Regel Konfiguration, nicht Defekt. Wir trennen die Fälle: Läuft die Anlage über die Fernbedienung normal, liegt es an der Anbindung — und dann bringt ein Modultausch nichts, solange die Netzwerkseite nicht geklärt ist.",
       }
     ],
     checklist: [
@@ -273,6 +414,23 @@ export const klimaPages: KlimaPage[] = [
       "Stromausfall-Historie nennen",
       "Marke & Modell bereithalten",
       "Telefonisch abklären"
+    ],
+    faq: [
+      {
+        question: "Die Anlage reagiert nicht auf die Fernbedienung. Was prüfen?",
+        answer:
+          "Batterien, Betriebsmodus und Zeitschaltung zuerst. Danach der Sendetest: Die Handykamera zeigt das Infrarotsignal als kurzes Aufleuchten der Diode. Sendet die Fernbedienung, liegt es am Empfänger oder der Bedienplatine im Innengerät — beides ist einzeln tauschbar."
+      },
+      {
+        question: "Kann ich die Anlage stromlos machen, um den Fehler zu löschen?",
+        answer:
+          "Ein Neustart hilft manchmal, löscht aber auch die Fehlermeldung. Notieren Sie deshalb vorher Code oder Blinkfolge. Kommt der Fehler wiederholt zurück, ist der Reset nur ein Symptomwechsel und die Ursache bleibt."
+      },
+      {
+        question: "Ist ein Elektronikfehler teurer als ein Kältekreisproblem?",
+        answer:
+          "In der Regel nicht. Fühler, Empfänger, Schütze und Kondensatoren sind günstige Einzelteile. Teuer wird es nur bei Leistungsplatinen von Inverter-Außengeräten — dort vergleichen wir den Preis vorab offen mit dem Wert der Anlage."
+      }
     ]
   },
   {
@@ -286,22 +444,27 @@ export const klimaPages: KlimaPage[] = [
     short:
       "Filter, Lamellen und Lüfter reinigen — für Luftqualität und volle Kühlleistung.",
     intro:
-      "Verschmutzte Filter und Wärmetauscher verschlechtern Luftqualität und Kühlleistung. Wir reinigen zugängliche Bauteile fachgerecht und prüfen Lüfter und Entwässerung.",
+      "Verschmutzte Filter und Wärmetauscher kosten Kühlleistung, Strom und Luftqualität — in dieser Reihenfolge merkt man es meist auch. Wir reinigen Innen- und Außengerät fachgerecht, spülen die Kondensatwanne und prüfen anschließend, was die Maßnahme messbar gebracht hat. Für Wohnungen, Büros und Ordinationen in Wien und Niederösterreich.",
     sections: [
       {
-        title: "Filter und Wärmetauscher",
+        title: "Filter, Lamellen und Lüfterrad",
         body:
-          "Staub und Pollen setzen sich an Filtern und Lamellen ab. Das reduziert Luftdurchsatz, erhöht den Stromverbrauch und kann unangenehme Gerüche verursachen."
+          "Die Luftfilter im Innengerät sind nur die erste Stufe: Dahinter setzt sich das Lamellenpaket des Verdampfers zu, und im Querstromlüfter bildet sich ein fester Belag aus Staub und Kondensat. Diesen Teil erreicht keine Haushaltsreinigung. Wir demontieren so weit nötig, reinigen die Lamellen schonend und das Lüfterrad gründlich — genau dort liegt der größte Teil des verlorenen Luftdurchsatzes und häufig auch die Geräuschursache.",
       },
       {
-        title: "Lüfter und Geräusche",
+        title: "Kondensatwanne und Ablauf",
         body:
-          "Vibrationsgeräusche oder pfeifende Lüfter deuten auf Verschmutzung oder Lagerschäden hin. Reinigung und Justierung bringen oft spürbare Verbesserung."
+          "In der Kondensatwanne steht Wasser, und mit Staub entsteht dort ein Biofilm, der den Ablauf verengt und Geruch verursacht. Wir spülen Wanne und Leitung, desinfizieren und prüfen das Gefälle. Bei Geräten mit Kondensatpumpe kontrollieren wir Schwimmer und Förderleistung. Ein verstopfter Ablauf ist die häufigste Ursache für ein tropfendes Innengerät — und die günstigste Reparatur, wenn sie früh passiert.",
       },
       {
-        title: "Hygiene und Luftqualität",
+        title: "Außengerät: der unterschätzte Teil",
         body:
-          "Gerade in Schlaf- und Wohnräumen lohnt sich regelmäßige Reinigung — für angenehme Raumluft und zuverlässige Kühlleistung in der Sommersaison."
+          "Am Verflüssiger des Außengeräts sammeln sich Pollen, Laub, Baustaub und in Wien häufig Taubenfedern. Weil dort die Wärme abgegeben wird, kostet ein belegter Verflüssiger direkt Kühlleistung und belastet den Verdichter. Wir reinigen das Lamellenpaket und das Lüfterrad, prüfen den Freiraum um das Gerät und die Schwingungsdämpfer — Letzteres ist bei Geräten an Fassaden und in Innenhöfen auch ein Nachbarschaftsthema.",
+      },
+      {
+        title: "Was Reinigung nicht leisten kann",
+        body:
+          "Reinigung bringt Luftdurchsatz, Hygiene und Effizienz zurück. Sie ersetzt keine Lecksuche und keine Reparatur: Kühlt die Anlage nach der Reinigung weiterhin schwach, liegt es an Kältemittelfüllung, Verdichterleistung oder Elektronik. Wir messen deshalb vor und nach der Reinigung Zu- und Ablufttemperatur und sagen anhand der Werte, ob die Maßnahme genügt hat oder ein weiterer Schritt ansteht.",
       }
     ],
     checklist: [
@@ -310,6 +473,23 @@ export const klimaPages: KlimaPage[] = [
       "Gerätestandort nennen",
       "Zugang sichern",
       "Termin anfragen"
+    ],
+    faq: [
+      {
+        question: "Reicht es, die Filter selbst auszuwaschen?",
+        answer:
+          "Als Zwischenpflege ja, alle paar Wochen in der Saison. Der Belag, der Leistung kostet, sitzt aber dahinter: im Lamellenpaket des Verdampfers und im Querstromlüfter. Diese Teile sind ohne Demontage nicht erreichbar und gehören zur professionellen Reinigung."
+      },
+      {
+        question: "Wie merke ich, dass eine Reinigung fällig ist?",
+        answer:
+          "An muffigem Geruch beim Einschalten, an sichtbarem Staub in den Lamellen, an einem lauteren Innengerät und an spürbar schwächerer Kühlung bei gleicher Einstellung. Spätestens nach einer Saison ohne Reinigung lohnt sich der Termin."
+      },
+      {
+        question: "Bringt Reinigung auch messbar weniger Stromverbrauch?",
+        answer:
+          "Ja, weil der Verdichter bei besserer Wärmeübertragung kürzer läuft. Wie viel es genau ist, hängt vom Ausgangszustand ab — wir messen Zu- und Ablufttemperatur vor und nach der Reinigung, damit die Verbesserung nicht Behauptung bleibt."
+      }
     ]
   },
   {
@@ -323,22 +503,27 @@ export const klimaPages: KlimaPage[] = [
     short:
       "Neuanlage oder Ersatzgerät fachgerecht montiert, geprüft und in Betrieb genommen.",
     intro:
-      "Ob Neuanlage oder Ersatzgerät — eine saubere Montage entscheidet über Kühlleistung, Laufzeit und Wartbarkeit. Wir installieren Split- und Monoblock-Systeme fachgerecht in Wien und Niederösterreich.",
+      "Ob Neuanlage oder Ersatzgerät — die Montage entscheidet über Kühlleistung, Laufzeit, Geräusch und Wartbarkeit. Wir installieren Split- und Monoblock-Systeme in Wien und Niederösterreich, klären vorab die baulichen und rechtlichen Rahmenbedingungen und nehmen die Anlage messtechnisch in Betrieb statt sie nur einzuschalten.",
     sections: [
       {
-        title: "Standort und Leitungsführung",
+        title: "Vorab klären: Zustimmung und Fassade",
         body:
-          "Innen- und Außengerät müssen optimal platziert werden: kurze Leitungswege, sichere Befestigung, saubere Durchführungen und zugängliche Wartungspunkte."
+          "In Wien ist die Montage eines Außengeräts selten allein eine technische Frage. Bei Mietwohnungen braucht es die Zustimmung des Eigentümers, in Wohnungseigentum die der Eigentümergemeinschaft; Anlagen an der Straßenfassade und in Schutzzonen sind zusätzlich baurechtlich zu beurteilen. Wir sprechen das vor dem Angebot durch und schlagen Alternativen vor, wenn die Fassade nicht in Frage kommt — Innenhofseite, Balkonaufstellung oder ein Monoblock-Gerät mit Wanddurchführung.",
       },
       {
-        title: "Inbetriebnahme und Prüfung",
+        title: "Standort, Leitungsführung, Geräusch",
         body:
-          "Nach der Montage folgen Vakuumierung, Dichtheitsprüfung, Inbetriebnahme und Funktionstest — damit das System von Anfang an zuverlässig läuft."
+          "Kurze Leitungswege, sinnvolle Höhenunterschiede, ein zugänglicher Wartungspunkt und eine dichte, korrekt abgedichtete Wanddurchführung sind die Basis. Das Innengerät soll die Luft frei verteilen können, ohne direkt auf Sitz- oder Schlafplätze zu blasen. Beim Außengerät planen wir Luftabstand, entkoppelte Befestigung und Kondensatableitung mit — und wir berücksichtigen, wohin der Schall geht: In Wiener Innenhöfen wird ein an sich leises Gerät durch Reflexion schnell zum Streitpunkt.",
       },
       {
-        title: "Bestehende Anlagen ersetzen",
+        title: "Inbetriebnahme nach Regeln, nicht nach Gefühl",
         body:
-          "Beim Austausch prüfen wir, ob Leitungen, Halterungen und Stromversorgung weiterverwendet werden können — das spart Aufwand und Kosten."
+          "Nach der Montage wird die Anlage auf Dichtheit geprüft, evakuiert und getrocknet — das Vakuum entfernt Feuchtigkeit, die den Kältekreis sonst über Jahre schädigt. Danach folgt das Freigeben oder exakte Befüllen mit der Menge laut Typenschild plus Zuschlag für die Leitungslänge, ein Probelauf mit Messung von Drücken, Temperaturen und Stromaufnahme und eine Übergabe mit Erklärung der Regelung. Diese Schritte sind der Unterschied zwischen einer Anlage, die zehn Jahre läuft, und einer, die im dritten Sommer schwächelt.",
+      },
+      {
+        title: "Bestandsanlage ersetzen",
+        body:
+          "Beim Gerätetausch prüfen wir, was weiterverwendbar ist: Halterungen, Wanddurchführung, Kondensatleitung und Stromversorgung oft ja, die Kältemittelleitungen nur bedingt. Ein Wechsel von R410A auf R32 erfordert saubere, druckgeprüfte Leitungen ohne Ölreste des alten Kältemittels — sonst leidet der neue Verdichter. Wir sagen offen, wann sich das Spülen der Bestandsleitungen rechnet und wann neue Leitungen die vernünftigere Wahl sind.",
       }
     ],
     checklist: [
@@ -347,6 +532,23 @@ export const klimaPages: KlimaPage[] = [
       "Stromanschluss prüfen",
       "Außenstellfläche sichern",
       "Beratung anfragen"
+    ],
+    faq: [
+      {
+        question: "Brauche ich in Wien eine Genehmigung für ein Außengerät?",
+        answer:
+          "In Mietwohnungen die Zustimmung des Eigentümers, in Wohnungseigentum die der Eigentümergemeinschaft. Bei Montage an der Straßenfassade oder in Schutzzonen kommt eine baurechtliche Beurteilung dazu. Wir klären das vor dem Angebot und schlagen Alternativen vor, wenn die Fassade ausfällt."
+      },
+      {
+        question: "Können die alten Kältemittelleitungen weiterverwendet werden?",
+        answer:
+          "Manchmal. Voraussetzung sind passender Querschnitt, unbeschädigte Leitungen und ein sauberer, druckgeprüfter Zustand ohne Ölreste des alten Kältemittels. Beim Wechsel von R410A auf R32 ist das entscheidend, sonst leidet der neue Verdichter. Wir prüfen und sagen, ob Spülen oder Neuverlegen sinnvoller ist."
+      },
+      {
+        question: "Wie lange dauert eine Split-Montage?",
+        answer:
+          "Eine Single-Split-Anlage mit kurzer Leitungsführung und einem Wanddurchbruch schaffen wir üblicherweise an einem Arbeitstag. Mehr Innengeräte, längere Leitungswege, Gerüst- oder Hebebühnenbedarf verlängern das entsprechend — den Ablauf legen wir vorab mit Ihnen fest."
+      }
     ]
   }
 ];

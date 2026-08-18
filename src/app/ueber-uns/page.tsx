@@ -1,4 +1,6 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+import { buildMetadata } from "../pageMetadata";
 
 const phoneDisplay = "01 4171346";
 const phoneHref = "+4314171346";
@@ -39,14 +41,12 @@ const approachSteps = [
   }
 ];
 
-export const metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "Über MONTER Reparatur Service Wien",
   description:
     "Über MONTER Reparatur & Service in Wien: technische Einschätzung, ehrliche Reparaturberatung und direkter Kontakt für Haushaltsgeräte.",
-  alternates: {
-    canonical: "/ueber-uns"
-  }
-};
+  path: "/ueber-uns"
+});
 
 export default function UeberUnsPage() {
   return (

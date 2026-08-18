@@ -10,7 +10,8 @@
   --ink: #0a0a0a;
   --ink-strong: #000000;
   --muted: #52525b;
-  --muted-soft: #8a8a93;
+  /* Mindestens 4,5:1 auf Weiß (WCAG AA für Fließtext und Platzhalter). */
+  --muted-soft: #6b6b74;
   --accent: #a8112a;
   --accent-hover: #7d0d1e;
   --accent-soft: #f5e4e6;
@@ -897,6 +898,42 @@ canvas {
   border-color: #fff;
 }
 
+/* Sichtbarer Tastaturfokus — nur bei Tastaturnavigation, nicht beim Mausklick. */
+.btn-primary:focus-visible,
+.btn-ghost:focus-visible,
+.btn-on-dark-ghost:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.btn-on-dark:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+/* Sprunglink: erst bei Tastaturfokus sichtbar. */
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  transform: translateY(-150%);
+  padding: 0.75rem 1.25rem;
+  background: var(--ink);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: transform 160ms ease;
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
 /* Pfeil-Link */
 .link-arrow {
   display: inline-flex;
@@ -1188,6 +1225,12 @@ canvas {
 
 .input-edge:focus {
   border-color: var(--ink);
+}
+
+/* Die Unterkante allein ist als Fokusindikator zu schwach. */
+.input-edge:focus-visible {
+  border-color: var(--accent);
+  box-shadow: 0 1px 0 0 var(--accent);
 }
 
 /* Trennlinien */

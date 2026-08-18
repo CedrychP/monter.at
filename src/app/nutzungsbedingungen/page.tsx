@@ -1,14 +1,15 @@
+import type { Metadata } from "next";
+import { buildMetadata } from "../pageMetadata";
+
 const serviceName = "MONTER Reparatur & Service";
 const email = "office@tccreparatur.at";
 
-export const metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "Nutzungsbedingungen | MONTER Reparatur Service",
   description:
     "Nutzungsbedingungen für den Webauftritt von MONTER Reparatur & Service in Wien.",
-  alternates: {
-    canonical: "/nutzungsbedingungen"
-  }
-};
+  path: "/nutzungsbedingungen"
+});
 
 const sections = [
   {

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import InfoPageLayout, { type InfoCard } from "../InfoPageLayout";
+import { buildMetadata } from "../pageMetadata";
 
 const cards: InfoCard[] = [
   {
@@ -20,19 +21,17 @@ const cards: InfoCard[] = [
   }
 ];
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "Veranstaltungen | Termine & Aktionstage | MONTER",
   description:
     "Veranstaltungen von MONTER sind in Vorbereitung: Info-Termine, Aktionstage und Kooperationen rund um Reparatur, Pflege und Förderungen. Bald in Wien.",
-  alternates: {
-    canonical: "/veranstaltungen"
-  },
+  path: "/veranstaltungen",
   // Platzhalterseite: erreichbar und verlinkt, aber bis zum Start ohne Index.
   robots: {
     index: false,
     follow: true
   }
-};
+});
 
 export default function VeranstaltungenPage() {
   return (

@@ -139,18 +139,20 @@ export default function ContactForm({
         },
         body: JSON.stringify(payload)
       });
-      const result = (await response.json()) as { message?: string };
+      const result = (await response.json()) as { message?: string; tracked?: boolean };
 
       if (!response.ok) {
         throw new Error(result.message || "Die Anfrage konnte nicht gesendet werden.");
       }
 
       form.reset();
-      trackConversion("form", {
-        source: "contact_form",
-        request_type: requestType,
-        user_data: userData
-      });
+      if (result.tracked !== false) {
+        trackConversion("form", {
+          source: "contact_form",
+          request_type: requestType,
+          user_data: userData
+        });
+      }
       setSubmitState({
         status: "success",
         message: result.message || "Danke, Ihre Anfrage wurde gesendet. Wir melden uns schnellstmöglich."
@@ -249,7 +251,7 @@ export default function ContactForm({
             </Link>
             <a
               href={`tel:${phoneHref}`}
-              onClick={() => trackConversion("call", { source: "contact_form" })}
+              data-tel-source="contact_form"
               className="inline-flex items-center justify-center gap-2 rounded-lg border border-[color:var(--border)] px-5 py-3 text-sm font-medium text-[color:var(--ink)] transition hover:border-[color:var(--ink)]"
             >
               <PhoneIcon />
@@ -367,7 +369,7 @@ export default function ContactForm({
               </p>
               <a
                 href={`tel:${phoneHref}`}
-                onClick={() => trackConversion("call", { source: "contact_form" })}
+                data-tel-source="contact_form"
                 className="inline-flex items-center gap-2 text-sm font-medium text-[color:var(--ink)] transition hover:text-[color:var(--accent)]"
               >
                 <PhoneIcon />

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { siteConfig } from "../siteConfig";
 import SimpleLeadForm from "../SimpleLeadForm";
+import { buildMetadata } from "../pageMetadata";
 
 const phoneDisplay = siteConfig.phoneDisplay;
 const phoneHref = siteConfig.phoneHref;
@@ -28,14 +29,12 @@ const benefits = [
   }
 ];
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "Firmenkunden & Hausverwaltungen Wien | MONTER Geräteservice",
   description:
     "Geräteservice für Betriebe, Hausverwaltungen und Vermieter in Wien: ein Ansprechpartner, planbare Termine, Dokumentation und Kostenklarheit. Jetzt Firmenkunden-Anfrage senden.",
-  alternates: {
-    canonical: "/firmenkunden"
-  }
-};
+  path: "/firmenkunden"
+});
 
 export default function FirmenkundenPage() {
   return (

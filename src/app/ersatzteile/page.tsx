@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { siteConfig } from "../siteConfig";
 import ContactForm from "../ContactForm";
+import { buildMetadata } from "../pageMetadata";
 
 const phoneDisplay = siteConfig.phoneDisplay;
 const phoneHref = siteConfig.phoneHref;
@@ -80,14 +81,12 @@ const partsSteps = [
   }
 ];
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "Ersatzteile Haushaltsgeräte & Garagentor Wien | MONTER",
   description:
     "Originale Ersatzteile für Haushaltsgeräte und Garagentore in Wien: Pumpen, Heizstäbe, Dichtungen, Lager, Elektronik, Federn, Laufrollen und Antriebe. Wir identifizieren, besorgen und verbauen das passende Teil.",
-  alternates: {
-    canonical: "/ersatzteile"
-  }
-};
+  path: "/ersatzteile"
+});
 
 function PartGrid({ items }: { items: PartCategory[] }) {
   return (

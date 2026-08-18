@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { buildMetadata } from "../../pageMetadata";
 import { siteConfig } from "../../siteConfig";
 import { brandPages, getBrandPage } from "../brands";
 import { brandDeviceCategories } from "../devices";
@@ -29,18 +30,11 @@ export async function generateMetadata({ params }: BrandPageProps): Promise<Meta
     };
   }
 
-  return {
+  return buildMetadata({
     title: brand.metaTitle,
     description: brand.description,
-    alternates: {
-      canonical: `/marken/${brand.slug}`
-    },
-    openGraph: {
-      title: brand.metaTitle,
-      description: brand.description,
-      type: "website"
-    }
-  };
+    path: `/marken/${brand.slug}`
+  });
 }
 
 export default async function BrandDetailPage({ params }: BrandPageProps) {

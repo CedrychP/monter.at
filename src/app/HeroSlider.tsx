@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { trackConversion } from "./analytics";
 import NavNewsletterSignup from "./NavNewsletterSignup";
 import { siteConfig } from "./siteConfig";
 
@@ -13,15 +12,15 @@ const phoneDisplay = siteConfig.phoneDisplay;
 const SLIDE_DURATION = 6500;
 
 const applianceImage =
-  "https://images.unsplash.com/photo-1580253249119-e953161ee30d?auto=format&fit=crop&w=2400&q=85";
+  "https://images.unsplash.com/photo-1580253249119-e953161ee30d?auto=format&fit=crop&w=1600&q=85";
 const garageImage =
-  "https://images.unsplash.com/photo-1696992812596-3c0d4d2d1299?auto=format&fit=crop&w=2400&q=85";
+  "https://images.unsplash.com/photo-1696992812596-3c0d4d2d1299?auto=format&fit=crop&w=1600&q=85";
 const premiumImage =
-  "https://images.unsplash.com/photo-1604242693257-8c3348cd7fb1?auto=format&fit=crop&w=2400&q=85";
+  "https://images.unsplash.com/photo-1604242693257-8c3348cd7fb1?auto=format&fit=crop&w=1600&q=85";
 const partsImage =
-  "https://images.unsplash.com/photo-1530124566582-a618bc2615dc?auto=format&fit=crop&w=2400&q=85";
+  "https://images.unsplash.com/photo-1530124566582-a618bc2615dc?auto=format&fit=crop&w=1600&q=85";
 const newsletterImage =
-  "https://images.unsplash.com/photo-1634549709262-508c47d4c229?auto=format&fit=crop&w=2400&q=85";
+  "https://images.unsplash.com/photo-1634549709262-508c47d4c229?auto=format&fit=crop&w=1600&q=85";
 
 type SlideAction = {
   label: string;
@@ -139,7 +138,7 @@ function HeroPhoneCta({ tabIndex }: { tabIndex: number }) {
   return (
     <a
       href={`tel:${phoneHref}`}
-      onClick={() => trackConversion("call", { source: "hero_slider" })}
+      data-tel-source="hero_slider"
       className="btn-on-dark hero-phone-cta group w-full sm:w-auto"
       tabIndex={tabIndex}
       aria-label={`Anrufen ${phoneDisplay}`}
@@ -172,10 +171,7 @@ export default function HeroSlider() {
   const reducedMotionRef = useRef(false);
   const count = slides.length;
 
-  const goTo = useCallback(
-    (next: number) => setIndex((current) => (next + count) % count),
-    [count]
-  );
+  const goTo = useCallback((next: number) => setIndex(((next % count) + count) % count), [count]);
 
   const goPrev = useCallback(
     () => setIndex((current) => (current - 1 + count) % count),
@@ -304,7 +300,7 @@ export default function HeroSlider() {
                           <a
                             key={action.label}
                             href={action.href}
-                            onClick={() => trackConversion("call", { source: "hero_slider" })}
+                            data-tel-source="hero_slider"
                             className={className}
                             tabIndex={isActive ? 0 : -1}
                             style={{ animationDelay: `${actionIndex * 60}ms` }}

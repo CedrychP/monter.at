@@ -16,7 +16,7 @@ const emergencyPhoneHref = siteConfig.phoneHref;
 export default function SearchPage() {
   const searchParams = useSearchParams();
   const searchInputRef = useRef<HTMLInputElement | null>(null);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState(() => searchParams.get("q") ?? "");
   const searchIndex = useMemo(() => buildSearchIndex(), []);
   const searchResults = useMemo(
     () => filterSearchResults(searchIndex, searchQuery),
@@ -24,12 +24,8 @@ export default function SearchPage() {
   );
 
   useEffect(() => {
-    const initialQuery = searchParams.get("q");
-    if (initialQuery) {
-      setSearchQuery(initialQuery);
-    }
     searchInputRef.current?.focus();
-  }, [searchParams]);
+  }, []);
 
   const onSearchSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -42,10 +38,14 @@ export default function SearchPage() {
     <main className="min-h-screen bg-[color:var(--ink)] text-white">
       <section className="border-b border-white/10">
         <div className="mx-auto w-full max-w-[88rem] px-5 py-12 sm:px-8 lg:py-16">
-          <form onSubmit={onSearchSubmit}>
+          <h1 className="cap-line tracking-eyebrow text-[color:var(--accent)]">
+            Suche auf monter.at
+          </h1>
+
+          <form onSubmit={onSearchSubmit} className="mt-6">
             <label className="block">
-              <span className="cap-line tracking-eyebrow text-[color:var(--accent)]">Suche</span>
-              <div className="mt-6 flex items-center gap-4 border-b-2 border-white/80 pb-3">
+              <span className="sr-only">Leistungen, Marken und Ratgeber durchsuchen</span>
+              <div className="flex items-center gap-4 border-b-2 border-white/80 pb-3">
                 <svg
                   width="22"
                   height="22"

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import DetailPageLayout from "../../DetailPageLayout";
+import { HubFaq } from "../../HubBlocks";
+import { buildMetadata } from "../../pageMetadata";
 import { appliancePages, getAppliancePage } from "../appliancePages";
 
 type AppliancePageProps = {
@@ -25,18 +27,11 @@ export async function generateMetadata({ params }: AppliancePageProps): Promise<
     };
   }
 
-  return {
+  return buildMetadata({
     title: page.metaTitle,
     description: page.description,
-    alternates: {
-      canonical: `/haushaltsgeraete/${page.slug}`
-    },
-    openGraph: {
-      title: page.metaTitle,
-      description: page.description,
-      type: "website"
-    }
-  };
+    path: `/haushaltsgeraete/${page.slug}`
+  });
 }
 
 export default async function ApplianceDetailPage({ params }: AppliancePageProps) {
@@ -70,6 +65,12 @@ export default async function ApplianceDetailPage({ params }: AppliancePageProps
         description: page.description,
         path: `/haushaltsgeraete/${page.slug}`
       }}
-    />
+    >
+      <HubFaq
+        eyebrow="Häufige Fragen"
+        title={`${page.category}: kurz beantwortet.`}
+        items={page.faq}
+      />
+    </DetailPageLayout>
   );
 }

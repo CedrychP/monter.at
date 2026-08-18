@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import InfoPageLayout, { type InfoCard, type InfoSection } from "../InfoPageLayout";
+import { buildMetadata } from "../pageMetadata";
 
 const cards: InfoCard[] = [
   {
@@ -43,14 +44,12 @@ const sections: InfoSection[] = [
   }
 ];
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "Geräte-Retter-Prämie nutzen | Reparaturförderung Wien | MONTER",
   description:
     "Geräte-Retter-Prämie: bis zu 50 % und max. 130 € Förderung auf die Reparatur von Elektro- und Elektronikgeräten. Nachfolger des Reparaturbonus — wir helfen beim Einlösen in Wien.",
-  alternates: {
-    canonical: "/geraete-retter-praemie"
-  }
-};
+  path: "/geraete-retter-praemie"
+});
 
 export default function GeraeteRetterPraemiePage() {
   return (

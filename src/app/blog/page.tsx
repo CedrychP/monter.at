@@ -1,14 +1,14 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { blogPosts } from "./posts";
+import { buildMetadata } from "../pageMetadata";
 
-export const metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "Haushaltsgeräte Reparatur Blog Wien | MONTER",
   description:
-    "Blog zur Haushaltsgeräte Reparatur in Wien: Tipps zu Waschmaschine, Geschirrspüler, Kühlschrank und Trockner. Jetzt Ratgeber lesen.",
-  alternates: {
-    canonical: "/blog"
-  }
-};
+    "Blog zur Reparatur in Wien: Tipps zu Waschmaschine, Geschirrspüler, Kühlschrank, Trockner, Garagentor und Klimaanlage. Jetzt Ratgeber lesen.",
+  path: "/blog"
+});
 
 export default function BlogPage() {
   const featuredPost = blogPosts[0];
@@ -60,7 +60,7 @@ export default function BlogPage() {
                 {featuredPost.readingTime}
               </p>
               <p className="mt-6 text-sm font-light leading-relaxed text-[color:var(--muted)]">
-                Aktualisiert am {featuredPost.date.split("-").reverse().join(".")}
+                Aktualisiert am {featuredPost.dateModified.split("-").reverse().join(".")}
               </p>
             </div>
           </Link>

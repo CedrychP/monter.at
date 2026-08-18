@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { buildMetadata } from "../../../pageMetadata";
 import { siteConfig } from "../../../siteConfig";
 import { brandPages, getBrandPage } from "../../brands";
 import { brandDeviceCategories, getBrandDeviceCategory } from "../../devices";
@@ -40,12 +41,10 @@ export async function generateMetadata({ params }: BrandDevicePageProps): Promis
     ? `${brand.brand} ${device.label} Reparatur in Wien: typische Fehlerbilder, verbreitete Modellreihen und Ersatzteillage. Diagnose vor dem Teiletausch, ehrliche Einschätzung.`
     : `${brand.brand} ${device.label} Reparatur in Wien und Umgebung: schnelle Einschätzung, klare Diagnose und telefonische Terminabstimmung.`;
 
-  return {
+  return buildMetadata({
     title,
     description,
-    alternates: {
-      canonical: `/marken/${brand.slug}/${device.slug}`
-    },
+    path: `/marken/${brand.slug}/${device.slug}`,
     // Kombiseiten ohne markenspezifischen Inhalt bleiben aus dem Index, bis sie
     // echten Text tragen — sichtbar und verlinkt bleiben sie trotzdem.
     robots: content?.enriched
@@ -53,13 +52,8 @@ export async function generateMetadata({ params }: BrandDevicePageProps): Promis
       : {
           index: false,
           follow: true
-        },
-    openGraph: {
-      title,
-      description,
-      type: "website"
-    }
-  };
+        }
+  });
 }
 
 export default async function BrandDevicePage({ params }: BrandDevicePageProps) {
@@ -269,11 +263,12 @@ export default async function BrandDevicePage({ params }: BrandDevicePageProps) 
             {showErrorCodes ? (
               <section className="border-b border-[color:var(--border)] pb-12">
                 <p className="tracking-eyebrow text-[color:var(--muted)]">
-                  Häufige Fehlercodes bei {brand.brand} {device.plural}
+                  Fehlercodes und Anzeigen bei {brand.brand} {device.plural}
                 </p>
                 <p className="mt-4 text-sm font-light leading-relaxed text-[color:var(--muted)]">
-                  Ein Code benennt den gestörten Bereich, nicht zwingend das defekte Bauteil. Die
-                  Bedeutung kann je Baureihe abweichen.
+                  Ein Code benennt den gestörten Bereich, nicht zwingend das defekte Bauteil, und die
+                  Bedeutung kann je Baureihe abweichen. Wo der Hersteller für diese Gerätegattung
+                  keine Codeliste im Klartext ausgibt, stehen hier die Anzeigen, die das Gerät zeigt.
                 </p>
                 <dl className="mt-8 grid gap-px bg-[color:var(--border)] sm:grid-cols-2">
                   {content.errorCodes.map((entry) => (

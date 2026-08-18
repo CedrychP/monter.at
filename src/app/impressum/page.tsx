@@ -1,3 +1,6 @@
+import type { Metadata } from "next";
+import { buildMetadata } from "../pageMetadata";
+
 const companyName = "Tech Craft Consulting GmbH";
 const serviceName = "MONTER Reparatur & Service";
 const address = "Rappgasse 1/6, 1210 Wien";
@@ -14,14 +17,12 @@ const companyDetails = [
   { label: "UID-Nummer", value: vatId }
 ];
 
-export const metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "Impressum | MONTER Reparatur Service",
   description:
     "Impressum von MONTER Reparatur & Service in Wien mit Unternehmensdaten der Tech Craft Consulting GmbH und direktem Kontakt.",
-  alternates: {
-    canonical: "/impressum"
-  }
-};
+  path: "/impressum"
+});
 
 export default function ImpressumPage() {
   return (

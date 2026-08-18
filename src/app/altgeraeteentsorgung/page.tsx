@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import InfoPageLayout, { type InfoCard, type InfoSection } from "../InfoPageLayout";
+import { buildMetadata } from "../pageMetadata";
 
 const cards: InfoCard[] = [
   {
@@ -38,14 +39,12 @@ const sections: InfoSection[] = [
   }
 ];
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "Altgeräteentsorgung Wien | Elektrogeräte entsorgen | MONTER",
   description:
     "Altgeräteentsorgung in Wien: fachgerechte Entsorgung und Verwertung von Elektroaltgeräten, Mitnahme bei Lieferung, Abbau und Abtransport. Umweltgerecht und unkompliziert.",
-  alternates: {
-    canonical: "/altgeraeteentsorgung"
-  }
-};
+  path: "/altgeraeteentsorgung"
+});
 
 export default function AltgeraeteentsorgungPage() {
   return (

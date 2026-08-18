@@ -1,3 +1,5 @@
+import type { HubFaqItem } from "../HubBlocks";
+
 export type GaragePage = {
   slug: string;
   title: string;
@@ -13,6 +15,8 @@ export type GaragePage = {
     body: string;
   }[];
   checklist: string[];
+  /** Wird als FAQPage-JSON-LD und Akkordeon auf der Detailseite ausgegeben. */
+  faq: HubFaqItem[];
 };
 
 export const garagePages: GaragePage[] = [
@@ -56,6 +60,23 @@ export const garagePages: GaragePage[] = [
       "Schadstelle fotografieren",
       "Antrieb vorhanden? angeben",
       "Telefonisch Termin klären"
+    ],
+    faq: [
+      {
+        question: "Lässt sich ein einzelnes Paneel tauschen?",
+        answer:
+          "Bei Sektionaltoren häufig ja — das ist der große Vorteil dieser Bauart. Voraussetzung ist, dass der Hersteller das Paneel in Farbe und Sicke noch liefert. Bei älteren Toren prüfen wir die Verfügbarkeit vorab, damit klar ist, ob Einzeltausch oder Richten der sinnvollere Weg ist."
+      },
+      {
+        question: "Mein Tor steht schief. Ist das gefährlich?",
+        answer:
+          "Ein schief laufendes Tor deutet auf ein ausgehängtes oder gelängtes Tragseil hin, und das ist sicherheitsrelevant: Im Extremfall kann das Torblatt unkontrolliert absinken. Bitte das Tor nicht weiter benutzen und den Antrieb entriegeln, bis es geprüft ist."
+      },
+      {
+        question: "Was kostet eine Sektionaltor-Reparatur?",
+        answer:
+          "Die Anfahrt inklusive Prüfung ist ein fester Betrag, danach kommen Arbeitszeit und Teile dazu. Dichtungen, Laufrollen und Scharniere liegen im überschaubaren Rahmen, ein Paneeltausch deutlich darüber. Sie erfahren den Aufwand vor Ort, bevor wir etwas bestellen."
+      }
     ]
   },
   {
@@ -98,6 +119,23 @@ export const garagePages: GaragePage[] = [
       "Blockade beschreiben",
       "Fotos von innen und außen",
       "Telefonisch abklären"
+    ],
+    faq: [
+      {
+        question: "Mein Schwingtor fällt von selbst zu — was ist die Ursache?",
+        answer:
+          "Dann trägt die Federspannung das Torgewicht nicht mehr: Zugfedern sind gelängt, ausgehängt oder gebrochen. Das ist ein Sicherheitsthema, weil das Torblatt beim Zufallen erhebliche Kräfte entwickelt. Bitte das Tor bis zur Reparatur nicht mehr benutzen."
+      },
+      {
+        question: "Der Rollpanzer ist aus der Führung gesprungen. Selbst einhängen?",
+        answer:
+          "Bitte nicht. Beim Einsetzen steht der Panzer unter Spannung der Federzüge in der Wickelwelle, und eine falsche Wicklungsrichtung beschädigt Lamellen und Welle. Wir setzen den Panzer zurück und prüfen dabei gleich Führungen und Federzüge."
+      },
+      {
+        question: "Bekommt man für alte Tore in Innenhöfen noch Ersatzteile?",
+        answer:
+          "Originalteile oft nicht mehr, passende Alternativbauteile in der Regel schon. Wir arbeiten mit Standardprofilen, angepassten Lagern und gefertigten Ersatzteilen — damit halten bestehende Tore häufig noch viele Jahre, ohne dass die ganze Anlage getauscht werden muss."
+      }
     ]
   },
   {
@@ -140,6 +178,23 @@ export const garagePages: GaragePage[] = [
       "Handsender-LED prüfen",
       "Lichtschranke ansehen",
       "Telefonisch abklären"
+    ],
+    faq: [
+      {
+        question: "Der Antrieb brummt, das Tor bewegt sich nicht. Motorschaden?",
+        answer:
+          "Meist nicht. Brummen ohne Bewegung deutet häufig auf den Anlaufkondensator, ein blockiertes Getriebe oder eine schwergängige Mechanik hin. Wir prüfen in dieser Reihenfolge, weil ein Kondensator ein Bruchteil eines neuen Antriebs kostet."
+      },
+      {
+        question: "Warum fährt mein Tor kurz vor Schluss wieder auf?",
+        answer:
+          "Das ist die Kraftbegrenzung, und sie arbeitet richtig: Sie erkennt einen Widerstand. Ursache ist meist schwergängige Mechanik, ein nachlassendes Federpaket, eine verschmutzte Lichtschranke oder eine verstellte Endlage. Wir beheben die Ursache und stellen die Kraft danach korrekt ein."
+      },
+      {
+        question: "Muss bei einem alten Antrieb gleich alles neu?",
+        answer:
+          "Nicht zwangsläufig. Handsender, Empfänger, Lichtschranke und Kondensator sind meist einzeln lieferbar. Erst wenn Steuerplatine oder Funkteile nicht mehr verfügbar sind — bei Anlagen ab etwa 15 Jahren häufig der Fall — ist ein neuer Antrieb wirtschaftlich sinnvoller. Wir nennen beide Wege mit Kosten."
+      }
     ]
   },
   {
@@ -182,6 +237,23 @@ export const garagePages: GaragePage[] = [
       "Bruchstelle fotografieren",
       "Torgewicht/-größe schätzen",
       "Sofort anrufen"
+    ],
+    faq: [
+      {
+        question: "Kann ich das Tor bis zur Reparatur noch von Hand öffnen?",
+        answer:
+          "Nur mit Vorsicht und möglichst zu zweit. Ohne funktionierende Feder trägt niemand mehr das Torgewicht — das Torblatt kann beim Absinken erhebliche Kraft entwickeln. Am besten lassen Sie das Tor geschlossen und den Antrieb entriegelt, bis die Feder getauscht ist."
+      },
+      {
+        question: "Warum sollen beide Federn getauscht werden?",
+        answer:
+          "Weil beide dieselbe Belastungsgeschichte haben. Federn werden nach Lastwechseln bemessen; bricht die erste, ist die zweite statistisch am Ende ihrer Lebensdauer. Ein Paartausch verhindert einen zweiten Ausfall wenige Monate später und erhält den Gleichlauf des Tores."
+      },
+      {
+        question: "Wie schnell können Sie bei einem Federbruch kommen?",
+        answer:
+          "Federbrüche behandeln wir vorrangig, weil das Tor bis dahin nicht sicher nutzbar ist — häufig am selben oder nächsten Werktag. Hilfreich für die Vorbereitung sind Torbreite, Torhöhe, Torart und ein Foto der Bruchstelle mitsamt Federaufnahme."
+      }
     ]
   },
   {
@@ -224,6 +296,23 @@ export const garagePages: GaragePage[] = [
       "Rollen fotografieren",
       "Seit wann laut? angeben",
       "Termin anfragen"
+    ],
+    faq: [
+      {
+        question: "Mein Tor ist plötzlich sehr laut. Muss ich schmieren?",
+        answer:
+          "Gezielt ja, aber mit dem richtigen Mittel und an der richtigen Stelle: Rollenlager, Scharniere und Federwellenlager werden geschmiert, die Laufschienen dagegen nur gereinigt. Fett in der Schiene bindet Staub und verschlimmert das Problem mittelfristig."
+      },
+      {
+        question: "Warum tauschen Sie alle Laufrollen statt nur der defekten?",
+        answer:
+          "Weil eine neue Rolle zwischen abgenutzten wieder ungleichmäßig läuft und das Tor dadurch weiter schwankt. Ein kompletter Satz kostet wenig, hält den Lauf gleichmäßig und schont Antrieb und Federn deutlich länger."
+      },
+      {
+        question: "Was passiert, wenn ich das aufschiebe?",
+        answer:
+          "Schwergängige Mechanik lässt den Antrieb dauerhaft gegen Widerstand arbeiten und belastet zusätzlich die Federn. Aus einem Satz Laufrollen wird dann schnell ein Antriebs- oder Federschaden — deshalb ist der frühe Tausch fast immer die günstigste Variante."
+      }
     ]
   },
   {
@@ -266,6 +355,23 @@ export const garagePages: GaragePage[] = [
       "Nutzung beschreiben (privat/gewerblich)",
       "Antriebsmarke bereithalten",
       "Wartungstermin anfragen"
+    ],
+    faq: [
+      {
+        question: "Ist die Wartung eines Garagentors vorgeschrieben?",
+        answer:
+          "Für kraftbetätigte Tore im gewerblichen Umfeld und in Mehrparteienhäusern gilt eine regelmäßige Prüfung durch eine sachkundige Person. Bei privaten Garagen ist sie nicht vorgeschrieben, aber sinnvoll — der Großteil der Ausfälle, die wir sehen, hat eine erkennbare Vorgeschichte."
+      },
+      {
+        question: "Was bekomme ich nach der Prüfung in die Hand?",
+        answer:
+          "Eine nachvollziehbare Dokumentation der geprüften Punkte mit Befund und durchgeführten Einstellungen. Für Hausverwaltungen und Betriebe ist das der Nachweis, dass die Sicherheitsfunktionen geprüft wurden; auffällige Verschleißpunkte vermerken wir mit einer Empfehlung."
+      },
+      {
+        question: "Wie oft ist eine Wartung sinnvoll?",
+        answer:
+          "Bei privater Nutzung jährlich. Bei Sammelgaragen, Mehrparteienhäusern und Betrieben mit vielen Torfahrten pro Tag empfehlen wir halbjährlich, weil dort Federn, Seile und Laufrollen entsprechend schneller verschleißen."
+      }
     ]
   }
 ];

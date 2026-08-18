@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import InfoPageLayout, { type InfoSection } from "../InfoPageLayout";
 import { HubDetailLinks, HubFaq, type HubFaqItem } from "../HubBlocks";
 import { garageHubLinks } from "./garagePages";
+import { buildMetadata } from "../pageMetadata";
 
 const sections: InfoSection[] = [
   {
@@ -55,14 +56,12 @@ const faqs: HubFaqItem[] = [
   }
 ];
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "Garagentor Reparatur Wien | MONTER Service",
   description:
     "Garagentor Reparatur in Wien & NÖ: Federbruch, Federwechsel, Torantriebe, Motoren, Laufrollen, Schienen und Wartung. Sektionaltor, Schwingtor, Rolltor — markenoffen, schnell vor Ort.",
-  alternates: {
-    canonical: "/garagentore"
-  }
-};
+  path: "/garagentore"
+});
 
 export default function GaragentoreHubPage() {
   return (

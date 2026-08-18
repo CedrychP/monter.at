@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import InfoPageLayout, { type InfoCard } from "../InfoPageLayout";
+import { buildMetadata } from "../pageMetadata";
 
 const cards: InfoCard[] = [
   {
@@ -20,19 +21,17 @@ const cards: InfoCard[] = [
   }
 ];
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "Kurse & Workshops | Geräte richtig pflegen | MONTER",
   description:
     "Kurse und Workshops von MONTER sind in Vorbereitung: Geräte richtig pflegen, Fehler früh erkennen und sicher nutzen. Bald verfügbar in Wien.",
-  alternates: {
-    canonical: "/kurse"
-  },
+  path: "/kurse",
   // Platzhalterseite: erreichbar und verlinkt, aber bis zum Start ohne Index.
   robots: {
     index: false,
     follow: true
   }
-};
+});
 
 export default function KursePage() {
   return (

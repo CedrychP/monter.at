@@ -2,6 +2,13 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
+    // Das Logo traegt einen Cache-Buster (?v=mtime), deshalb muss der Pfad mit
+    // Query-String ausdruecklich erlaubt sein, damit next/image ihn optimiert.
+    localPatterns: [
+      {
+        pathname: "/assets/**"
+      }
+    ],
     remotePatterns: [
       {
         protocol: "https",

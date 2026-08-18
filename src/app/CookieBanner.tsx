@@ -1,59 +1,98 @@
 "use client";
 
-import { useEffect, useState } from "react";
-
-type CookieConsent = {
-  necessary: true;
-  analytics: boolean;
-  marketing: boolean;
-};
-
-const storageKey = "tcc-cookie-consent";
-const defaultConsent: CookieConsent = {
-  necessary: true,
-  analytics: false,
-  marketing: false
-};
+import { useCallback, useEffect, useRef, useState } from "react";
+import {
+  applyConsent,
+  DEFAULT_CONSENT,
+  FULL_CONSENT,
+  OPEN_CONSENT_SETTINGS_EVENT,
+  readStoredConsent,
+  type CookieConsent
+} from "./consentMode";
 
 export default function CookieBanner() {
   const [isVisible, setIsVisible] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
-  const [consent, setConsent] = useState<CookieConsent>(defaultConsent);
+  const [consent, setConsent] = useState<CookieConsent>(DEFAULT_CONSENT);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const restoreFocusTo = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     const openSettings = () => {
+      restoreFocusTo.current = document.activeElement as HTMLElement | null;
       setIsVisible(true);
       setShowSettings(true);
     };
 
     const timer = window.setTimeout(() => {
-      const savedConsent = window.localStorage.getItem(storageKey);
+      const stored = readStoredConsent();
 
-      if (savedConsent) {
-        try {
-          setConsent(JSON.parse(savedConsent) as CookieConsent);
-        } catch {
-          setConsent(defaultConsent);
-        }
+      if (stored) {
+        setConsent(stored);
       } else {
         setIsVisible(true);
       }
     }, 0);
 
-    window.addEventListener("tcc:open-cookie-settings", openSettings);
+    window.addEventListener(OPEN_CONSENT_SETTINGS_EVENT, openSettings);
 
     return () => {
       window.clearTimeout(timer);
-      window.removeEventListener("tcc:open-cookie-settings", openSettings);
+      window.removeEventListener(OPEN_CONSENT_SETTINGS_EVENT, openSettings);
     };
   }, []);
 
-  const saveConsent = (nextConsent: CookieConsent) => {
+  const saveConsent = useCallback((nextConsent: CookieConsent) => {
     setConsent(nextConsent);
-    window.localStorage.setItem(storageKey, JSON.stringify(nextConsent));
+    applyConsent(nextConsent);
     setIsVisible(false);
     setShowSettings(false);
-  };
+    restoreFocusTo.current?.focus();
+    restoreFocusTo.current = null;
+  }, []);
+
+  // Fokus in den Dialog holen und dort halten, solange er offen ist.
+  useEffect(() => {
+    if (!isVisible) return;
+
+    const dialog = dialogRef.current;
+    if (!dialog) return;
+
+    const focusable = () =>
+      Array.from(
+        dialog.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        )
+      );
+
+    focusable()[0]?.focus();
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        saveConsent(DEFAULT_CONSENT);
+        return;
+      }
+
+      if (event.key !== "Tab") return;
+
+      const elements = focusable();
+      if (elements.length === 0) return;
+
+      const first = elements[0];
+      const last = elements[elements.length - 1];
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [isVisible, showSettings, saveConsent]);
 
   if (!isVisible) {
     return null;
@@ -61,12 +100,25 @@ export default function CookieBanner() {
 
   return (
     <div className="fixed inset-x-0 bottom-0 z-[70] px-4 pb-4 sm:px-6 sm:pb-6">
-      <div className="mx-auto max-h-[calc(100vh-2rem)] max-w-xl overflow-y-auto border border-[color:var(--border)] bg-white p-6 text-[color:var(--ink)] shadow-[0_24px_60px_-20px_rgba(0,0,0,0.18)] sm:ml-auto sm:mr-0 sm:p-8">
+      <div
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="cookie-banner-title"
+        aria-describedby="cookie-banner-text"
+        className="mx-auto max-h-[calc(100vh-2rem)] max-w-xl overflow-y-auto border border-[color:var(--border)] bg-white p-6 text-[color:var(--ink)] shadow-[0_24px_60px_-20px_rgba(0,0,0,0.18)] sm:ml-auto sm:mr-0 sm:p-8"
+      >
         <p className="cap-line tracking-eyebrow text-[color:var(--accent)]">Datenschutz</p>
-        <h2 className="font-display mt-6 text-2xl font-normal leading-tight tracking-tight sm:text-3xl">
+        <h2
+          id="cookie-banner-title"
+          className="font-display mt-6 text-2xl font-normal leading-tight tracking-tight sm:text-3xl"
+        >
           Cookies auf dieser Website
         </h2>
-        <p className="mt-4 text-sm font-light leading-relaxed text-[color:var(--muted)]">
+        <p
+          id="cookie-banner-text"
+          className="mt-4 text-sm font-light leading-relaxed text-[color:var(--muted)]"
+        >
           Wir verwenden notwendige Cookies. Analyse und Marketing aktivieren wir nur mit
           Ihrer Zustimmung.
         </p>
@@ -136,7 +188,7 @@ export default function CookieBanner() {
             <button
               type="button"
               className="btn-ghost py-3 text-[0.7rem]"
-              onClick={() => saveConsent(defaultConsent)}
+              onClick={() => saveConsent(DEFAULT_CONSENT)}
             >
               Nur notwendige
             </button>
@@ -150,11 +202,7 @@ export default function CookieBanner() {
             <button
               type="button"
               className="btn-primary py-3 text-[0.7rem]"
-              onClick={() =>
-                saveConsent(
-                  showSettings ? consent : { necessary: true, analytics: true, marketing: true }
-                )
-              }
+              onClick={() => saveConsent(showSettings ? consent : FULL_CONSENT)}
             >
               {showSettings ? "Speichern" : "Akzeptieren"}
             </button>

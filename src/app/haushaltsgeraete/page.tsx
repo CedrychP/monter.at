@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import InfoPageLayout, { type InfoSection } from "../InfoPageLayout";
 import { HubDetailLinks, HubFaq, type HubFaqItem } from "../HubBlocks";
 import { applianceHubLinks } from "./appliancePages";
+import { buildMetadata } from "../pageMetadata";
 
 const sections: InfoSection[] = [
   {
@@ -55,14 +56,12 @@ const faqs: HubFaqItem[] = [
   }
 ];
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "Haushaltsgeräte Reparatur Wien | MONTER Service",
   description:
     "Haushaltsgeräte Reparatur in Wien & NÖ: Waschmaschine, Trockner, Geschirrspüler, Backofen, Herd, Kühl- und Tiefkühlgerät, Dunstabzug und Fernseher. Markenoffen, schnelle Diagnose.",
-  alternates: {
-    canonical: "/haushaltsgeraete"
-  }
-};
+  path: "/haushaltsgeraete"
+});
 
 export default function HaushaltsgeraeteHubPage() {
   return (

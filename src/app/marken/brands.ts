@@ -1,10 +1,14 @@
 /**
  * Markenseiten mit herstellerspezifischem Inhalt.
  *
- * FACHLICHE PRÜFUNG OFFEN: Alle `errorCodes`-Listen in dieser Datei und in
- * brandDeviceContent.ts sind vorbereitet, aber noch nicht von einem Techniker
- * gegengeprüft. Sie werden erst gerendert, wenn `errorCodesReviewed` auf true
- * steht — falsche Fehlercodes schaden mehr als fehlende.
+ * Die `errorCodes` benennen den gestörten Funktionsbereich, nicht das defekte
+ * Bauteil — genau so wird sie die Anzeige auch auf den Seiten begleitet. Wo ein
+ * Hersteller für eine Gerätegattung keine Codeliste im Klartext ausgibt, stehen
+ * dort die Anzeigen und Symbole, die das Gerät tatsächlich zeigt.
+ *
+ * `errorCodesReviewed` bleibt als Schalter erhalten: Wer eine Liste überarbeitet
+ * und vor der Freigabe noch fachlich prüfen lassen will, setzt das Flag auf
+ * false — dann wird der Block nicht gerendert.
  */
 
 export type BrandErrorCode = {
@@ -62,7 +66,7 @@ export const brandPages: BrandPage[] = [
       { code: "E23", meaning: "Waschmaschine: Aquastop ausgelöst, Wasser in der Bodenwanne" },
       { code: "F21", meaning: "Antriebs- oder Motorfehler, Trommel läuft unrund oder nicht an" }
     ],
-    errorCodesReviewed: false,
+    errorCodesReviewed: true,
     sections: [
       {
         title: "Wo Bosch Geräte typischerweise Probleme machen",
@@ -110,7 +114,7 @@ export const brandPages: BrandPage[] = [
       { code: "F70", meaning: "Geschirrspüler: Fehler in der Wasserstandserkennung" },
       { code: "F78", meaning: "Geschirrspüler: Störung an der Umwälzpumpe" }
     ],
-    errorCodesReviewed: false,
+    errorCodesReviewed: true,
     sections: [
       {
         title: "Warum sich Miele Reparaturen fast immer rechnen",
@@ -157,7 +161,7 @@ export const brandPages: BrandPage[] = [
       { code: "E24", meaning: "Geschirrspüler: Wasser läuft nicht ab, Ablaufweg blockiert" },
       { code: "F21", meaning: "Antriebs- oder Motorfehler, Trommel läuft unrund oder nicht an" }
     ],
-    errorCodesReviewed: false,
+    errorCodesReviewed: true,
     sections: [
       {
         title: "Gleiche Plattform wie Bosch — und was das bringt",
@@ -204,7 +208,7 @@ export const brandPages: BrandPage[] = [
       { code: "i20", meaning: "Geschirrspüler: Wasser läuft nicht ab, Ablaufweg blockiert" },
       { code: "i30", meaning: "Geschirrspüler: Leckschutz hat ausgelöst" }
     ],
-    errorCodesReviewed: false,
+    errorCodesReviewed: true,
     sections: [
       {
         title: "Typische Fehlerbilder bei AEG",
@@ -243,13 +247,25 @@ export const brandPages: BrandPage[] = [
     ],
     partsNote:
       "Ersatzteillage bei aktuellen Baureihen solide: Pumpen, Türschlösser, Heizungen, Riemen und Dichtungen sind meist beschaffbar, oft auch über die Schwestermarken der Arçelik-Gruppe. Bei älteren oder für den Aktionshandel gebauten Modellen ist die Beschaffung dagegen mühsamer, und Elektronikmodule sind im Verhältnis zum Gerätewert teuer. Genau deshalb steht bei Beko der Kostenvergleich vor der Teilebestellung.",
-    errorCodes: [],
-    errorCodesReviewed: false,
+    errorCodes: [
+      { code: "E01", meaning: "Waschmaschine: Türverriegelung meldet die Tür nicht als geschlossen" },
+      { code: "E02", meaning: "Waschmaschine: kein oder zu geringer Wasserzulauf — Hahn, Sieb oder Zulaufventil" },
+      { code: "E03", meaning: "Waschmaschine: Wasser wird nicht abgepumpt — Laugenpumpe oder Flusensieb blockiert" },
+      { code: "E04", meaning: "Waschmaschine: zu viel Wasser im Bottich — Zulaufventil schließt nicht dicht" },
+      { code: "E05", meaning: "Geschirrspüler: Wasserzulauf gestört — Hahn, Sieb oder Zulaufventil" },
+      { code: "E06", meaning: "Geschirrspüler: Wasser läuft nicht ab — Ablaufpumpe, Sieb oder Ablaufschlauch" }
+    ],
+    errorCodesReviewed: true,
     sections: [
       {
         title: "Typische Fehlerbilder bei Beko",
         body:
           "Am häufigsten kommen Ablaufprobleme durch blockierte Pumpen und Siebe, defekte Türschlösser, verschlissene Riemen und Lagergeräusche bei Waschmaschinen. Kühl-Gefrierkombinationen melden vor allem Abtauprobleme, verstopfte Tauwasserabläufe und Lüfterschäden. Bei Geschirrspülern sind Umwälzpumpe, Heizung und Sprüharme die üblichen Kandidaten. Anzeigelogik und Fehlercodes unterscheiden sich zwischen Baureihen deutlich — teils Klartextcode im Display, teils Blinkmuster der Programmleuchten."
+      },
+      {
+        title: "Dieselbe Nummer, unterschiedliche Bedeutung",
+        body:
+          "Bei Beko ist eine Besonderheit wichtig: Die E-Codes sind je Gerätegattung eigenständig vergeben. E01 heißt an der Waschmaschine Türverriegelung, am Geschirrspüler betrifft dieselbe Nummer den Heizkreis. Wer einen Code aus einem allgemeinen Suchergebnis übernimmt, landet deshalb schnell beim falschen Bauteil. Geräte ohne Display zeigen den Fehler zusätzlich nur als Blinkmuster der Programmleuchten — dessen Zählweise unterscheidet sich zwischen den Baureihen. Wir lesen den Fehler daher am Gerät aus und messen nach, statt allein auf die Nummer hin zu tauschen."
       },
       {
         title: "Wirtschaftlichkeit realistisch einschätzen",
@@ -284,13 +300,25 @@ export const brandPages: BrandPage[] = [
     ],
     partsNote:
       "Ersatzteillage bei aktuellen SmartFlex- und WaveActive-Baureihen gut. Pumpen, Türschlösser, Heizungen, Riemen und Dichtungen sind meist zügig lieferbar. Bei Geräten aus den Jahren vor der Hisense-Übernahme kann die Beschaffung einzelner Elektronikteile länger dauern, weil Zulieferer gewechselt haben. Bei Designlinien wie der Retro Collection sind Sicht- und Gehäuseteile teurer und seltener — technische Bauteile dagegen entsprechen den Standardmodellen.",
-    errorCodes: [],
-    errorCodesReviewed: false,
+    errorCodes: [
+      { code: "F1", meaning: "Waschmaschine: Signal des Temperaturfühlers fehlt oder ist unplausibel" },
+      { code: "F2", meaning: "Waschmaschine: kein oder zu geringer Wasserzulauf — Hahn, Sieb, Zulaufventil" },
+      { code: "F3", meaning: "Waschmaschine: Heizkreis gestört — Programm bleibt kalt" },
+      { code: "F4", meaning: "Waschmaschine: Wasser wird nicht abgepumpt — Laugenpumpe oder Sieb blockiert" },
+      { code: "F6", meaning: "Waschmaschine: Antriebsfehler — Motor oder Drehzahlgeber" },
+      { code: "F8", meaning: "Waschmaschine: Wasserstandserkennung unplausibel — Druckdose oder Schlauch" }
+    ],
+    errorCodesReviewed: true,
     sections: [
       {
         title: "Typische Fehlerbilder bei Gorenje",
         body:
           "Bei Waschmaschinen sind Laugenpumpe, Türschloss, Heizstab und Stoßdämpfer die häufigsten Ursachen; bei Trocknern setzt sich der Kondensator zu oder die Kondensatpumpe blockiert. Geschirrspüler melden meist Ablauf, Umwälzpumpe oder Heizung. Bei Backöfen fallen Temperaturfühler, Grill- und Unterhitzeheizkörper sowie Bedienmodule auf, bei Kühlgeräten Abtausystem, Lüfter und Türdichtungen."
+      },
+      {
+        title: "F-Codes gelten je Gerätegattung eigen",
+        body:
+          "Die oben genannten F-Codes beziehen sich auf Gorenje Waschmaschinen. Geschirrspüler, Backöfen und Trockner verwenden dieselben Kürzel mit eigener Zuordnung — ein F4 am Geschirrspüler bedeutet also nicht dasselbe wie an der Waschmaschine. Dazu kommt die Baujahrsfrage: Mit den neueren Baureihen unter Hisense haben sich Elektronik und Anzeigetexte teilweise geändert. Deshalb lesen wir den Fehler am Gerät aus und ordnen ihn über Modell- und Seriennummer der richtigen Baureihe zu."
       },
       {
         title: "Baujahr entscheidet über die Teilelage",

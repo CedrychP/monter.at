@@ -617,7 +617,6 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
                 width={300}
                 height={80}
                 priority
-                unoptimized
                 className="h-8 w-auto sm:h-9"
               />
             </Link>

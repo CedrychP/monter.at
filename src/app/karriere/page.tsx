@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { siteConfig } from "../siteConfig";
 import SimpleLeadForm from "../SimpleLeadForm";
+import { buildMetadata } from "../pageMetadata";
 
 const phoneDisplay = siteConfig.phoneDisplay;
 const phoneHref = siteConfig.phoneHref;
@@ -36,14 +37,12 @@ const positions = [
   "Initiativbewerbung"
 ];
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "Karriere bei MONTER | Jobs & Bewerbung Wien",
   description:
     "Karriere bei MONTER Reparatur & Service in Wien: Servicetechniker:innen für Haushaltsgeräte und Garagentore, Büro & Disposition sowie Initiativbewerbungen. Jetzt bewerben.",
-  alternates: {
-    canonical: "/karriere"
-  }
-};
+  path: "/karriere"
+});
 
 export default function KarrierePage() {
   return (

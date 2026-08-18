@@ -4,7 +4,6 @@ export const GOOGLE_ADS_ID = "AW-18096010711";
 // Solange leer, wird nur ein dataLayer-Event für GTM ausgelöst (kein Ads-Conversion-Hit).
 export const conversionLabels = {
   call: "",
-  whatsapp: "",
   form: "",
   newsletter: ""
 } as const;

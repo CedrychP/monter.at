@@ -1,4 +1,6 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+import { buildMetadata } from "../pageMetadata";
 
 const phoneDisplay = "01 4171346";
 const phoneHref = "+4314171346";
@@ -201,14 +203,12 @@ function PriceGrid({ items }: { items: PriceItem[] }) {
   );
 }
 
-export const metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "Preise Reparatur Wien | Haushaltsgeräte & Garagentor | MONTER",
   description:
     "Preise für Haushaltsgeräte- und Garagentor-Reparatur in Wien und Niederösterreich: Anfahrt, Diagnose, Reparatur, Federwechsel, Antrieb, Wartung und Inspektion — transparent und nachvollziehbar.",
-  alternates: {
-    canonical: "/preise"
-  }
-};
+  path: "/preise"
+});
 
 export default function PreisePage() {
   return (

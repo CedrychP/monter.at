@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import InfoPageLayout, { type InfoCard, type InfoSection } from "../InfoPageLayout";
+import { buildMetadata } from "../pageMetadata";
 
 const cards: InfoCard[] = [
   {
@@ -38,14 +39,12 @@ const sections: InfoSection[] = [
   }
 ];
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "Kaufberatung Haushaltsgeräte Wien | Reparieren oder ersetzen | MONTER",
   description:
     "Kaufberatung in Wien: Wir sagen ehrlich, ob sich eine Reparatur lohnt oder ein Neukauf sinnvoller ist — herstellerneutral, mit Blick auf Energie, Folgekosten und Einbau.",
-  alternates: {
-    canonical: "/kaufberatung"
-  }
-};
+  path: "/kaufberatung"
+});
 
 export default function KaufberatungPage() {
   return (

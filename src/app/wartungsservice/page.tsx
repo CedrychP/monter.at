@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import InfoPageLayout, { type InfoCard, type InfoSection } from "../InfoPageLayout";
+import { buildMetadata } from "../pageMetadata";
 
 const cards: InfoCard[] = [
   {
@@ -38,14 +39,12 @@ const sections: InfoSection[] = [
   }
 ];
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "Wartungsservice Wien | Haushaltsgeräte & Garagentore | MONTER",
   description:
     "Wartungsservice in Wien für Haushaltsgeräte und Garagentore: Prüfung, Reinigung, Justierung und Sicherheitskontrolle. Beugt Ausfällen vor und verlängert die Lebensdauer.",
-  alternates: {
-    canonical: "/wartungsservice"
-  }
-};
+  path: "/wartungsservice"
+});
 
 export default function WartungsservicePage() {
   return (

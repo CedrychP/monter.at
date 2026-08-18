@@ -25,6 +25,8 @@ type FormValues = {
   phone: string;
   email: string;
   customerType: string;
+  /** Honeypot — von echten Besuchern nie gefüllt. */
+  website: string;
 };
 
 const initialValues: FormValues = {
@@ -38,7 +40,8 @@ const initialValues: FormValues = {
   name: "",
   phone: "",
   email: "",
-  customerType: "Privatkunde"
+  customerType: "Privatkunde",
+  website: ""
 };
 
 const deviceOptions = [
@@ -103,17 +106,19 @@ export default function RepairBookingForm({ phoneHref, className = "" }: RepairB
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...values, requestType: "reparatur" })
       });
-      const result = (await response.json()) as { message?: string };
+      const result = (await response.json()) as { message?: string; tracked?: boolean };
 
       if (!response.ok) {
         throw new Error(result.message || "Die Anfrage konnte nicht gesendet werden.");
       }
 
-      trackConversion("form", {
-        source: "repair_booking",
-        request_type: "reparatur",
-        user_data: buildUserData({ email: values.email, phone: values.phone })
-      });
+      if (result.tracked !== false) {
+        trackConversion("form", {
+          source: "repair_booking",
+          request_type: "reparatur",
+          user_data: buildUserData({ email: values.email, phone: values.phone })
+        });
+      }
       setValues(initialValues);
       setSubmitState({
         status: "success",
@@ -145,7 +150,15 @@ export default function RepairBookingForm({ phoneHref, className = "" }: RepairB
         </p>
       </div>
 
-      <input className="hidden" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" />
+      <input
+        className="hidden"
+        name="website"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        value={values.website}
+        onChange={update("website")}
+      />
 
       <div className="mt-8 grid gap-5">
         <label className="block">
@@ -278,7 +291,7 @@ export default function RepairBookingForm({ phoneHref, className = "" }: RepairB
       <div className="mt-8 flex flex-col gap-4 border-t border-[color:var(--border)] pt-6 sm:flex-row sm:items-center sm:justify-between">
         <a
           href={`tel:${phoneHref}`}
-          onClick={() => trackConversion("call", { source: "repair_booking" })}
+          data-tel-source="repair_booking"
           className="inline-flex items-center gap-2 text-sm font-medium text-[color:var(--ink)] transition hover:text-[color:var(--accent)]"
         >
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">

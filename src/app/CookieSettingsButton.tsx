@@ -1,5 +1,7 @@
 "use client";
 
+import { OPEN_CONSENT_SETTINGS_EVENT } from "./consentMode";
+
 type CookieSettingsButtonProps = {
   className?: string;
 };
@@ -9,7 +11,7 @@ export default function CookieSettingsButton({ className }: CookieSettingsButton
     <button
       type="button"
       className={className}
-      onClick={() => window.dispatchEvent(new Event("tcc:open-cookie-settings"))}
+      onClick={() => window.dispatchEvent(new Event(OPEN_CONSENT_SETTINGS_EVENT))}
     >
       Cookie Einstellungen
     </button>

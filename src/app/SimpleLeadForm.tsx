@@ -85,18 +85,20 @@ export default function SimpleLeadForm({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
       });
-      const result = (await response.json()) as { message?: string };
+      const result = (await response.json()) as { message?: string; tracked?: boolean };
 
       if (!response.ok) {
         throw new Error(result.message || "Die Anfrage konnte nicht gesendet werden.");
       }
 
       form.reset();
-      trackConversion("form", {
-        source: "lead_form",
-        request_type: requestType,
-        user_data: userData
-      });
+      if (result.tracked !== false) {
+        trackConversion("form", {
+          source: "lead_form",
+          request_type: requestType,
+          user_data: userData
+        });
+      }
       setSubmitState({
         status: "success",
         message: result.message || "Danke, Ihre Anfrage wurde gesendet. Wir melden uns schnellstmöglich."
@@ -193,7 +195,7 @@ export default function SimpleLeadForm({
           </p>
           <a
             href={`tel:${phoneHref}`}
-            onClick={() => trackConversion("call", { source: "lead_form" })}
+            data-tel-source="lead_form"
             className="inline-flex items-center gap-2 text-sm font-medium text-[color:var(--ink)] transition hover:text-[color:var(--accent)]"
           >
             <PhoneIcon />

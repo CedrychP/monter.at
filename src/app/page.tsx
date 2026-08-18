@@ -7,10 +7,11 @@ import HeroSlider from "./HeroSlider";
 import ApplianceSlider from "./ApplianceSlider";
 import { brandPages, brandOverview } from "./marken/brands";
 import { getFeaturedCities, homeRegions, servedAreasJsonLd } from "./einsatzgebiete/regionPages";
+import { buildMetadata } from "./pageMetadata";
 import { siteConfig } from "./siteConfig";
 
 const businessImage =
-  "https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&w=2000&q=85";
+  "https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&w=1600&q=85";
 
 const emergencyPhoneDisplay = "01 4171346";
 const emergencyPhoneHref = "+4314171346";
@@ -49,11 +50,11 @@ const kontaktLinks = [
   }
 ];
 
-export const metadata: Metadata = {
-  title:
-    "Haushaltsgeräte & Garagentor Reparatur Wien | MONTER Reparatur & Service",
+export const metadata: Metadata = buildMetadata({
+  title: "Haushaltsgeräte & Garagentor Reparatur Wien | MONTER Reparatur & Service",
   description:
     "Haushaltsgeräte Reparatur in Wien: Waschmaschine, Geschirrspüler, Kühlschrank, Backofen und Trockner. Dazu Garagentor-Reparatur und Wartung. Klare Diagnose, transparente Preise, markenoffen für Bosch, Siemens, Miele, AEG und mehr.",
+  path: "/",
   keywords: [
     "Haushaltsgeräte Reparatur Wien",
     "Waschmaschine Reparatur Wien",
@@ -65,11 +66,8 @@ export const metadata: Metadata = {
     "Garagentor Reparatur Wien",
     "Reparatur Bosch Siemens Miele",
     "Hausverwaltung Geräteservice Wien"
-  ],
-  alternates: {
-    canonical: "/"
-  }
-};
+  ]
+});
 
 const whyMonter = [
   {

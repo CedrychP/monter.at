@@ -1,3 +1,6 @@
+import type { Metadata } from "next";
+import { buildMetadata } from "../pageMetadata";
+
 const companyName = "Tech Craft Consulting GmbH";
 const serviceName = "MONTER Reparatur & Service";
 const address = "Rappgasse 1/6, 1210 Wien";
@@ -6,14 +9,12 @@ const vatId = "ATU82408379";
 const phone = "01 4171346";
 const phoneHref = "+4314171346";
 
-export const metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "AGB | MONTER Reparatur Service Wien",
   description:
     "AGB von MONTER Reparatur & Service in Wien: Bedingungen für Reparaturanfragen, Termine, Preise und Objektservice ansehen.",
-  alternates: {
-    canonical: "/agb"
-  }
-};
+  path: "/agb"
+});
 
 const terms = [
   {

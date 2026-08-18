@@ -1,5 +1,7 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import ContactForm from "../ContactForm";
+import { buildMetadata } from "../pageMetadata";
 
 const phoneDisplay = "01 4171346";
 const phoneHref = "+4314171346";
@@ -42,14 +44,12 @@ const otherRequests = [
   }
 ];
 
-export const metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "Kontakt & Anliegen | MONTER Reparatur & Service Wien",
   description:
     "Kontakt zu MONTER Reparatur & Service in Wien: Fragen, Anliegen, Beschwerden oder Feedback telefonisch, per E-Mail an info@monter.at oder über das Kontaktformular.",
-  alternates: {
-    canonical: "/kontakt"
-  }
-};
+  path: "/kontakt"
+});
 
 export default function KontaktPage() {
   return (

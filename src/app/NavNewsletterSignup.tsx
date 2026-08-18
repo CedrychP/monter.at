@@ -47,7 +47,7 @@ export default function NavNewsletterSignup({
         },
         body: JSON.stringify(payload)
       });
-      const result = (await response.json()) as { message?: string };
+      const result = (await response.json()) as { message?: string; tracked?: boolean };
 
       if (!response.ok) {
         throw new Error(result.message || "Die Anmeldung konnte nicht gesendet werden.");
@@ -59,7 +59,9 @@ export default function NavNewsletterSignup({
         message: result.message || "Danke — wir halten Sie über Neuigkeiten und Aktionen auf dem Laufenden."
       });
       // Conversion erst nach erfolgreicher Server-Bestätigung melden (genau einmal).
-      trackConversion("newsletter", { source, user_data: userData });
+      if (result.tracked !== false) {
+        trackConversion("newsletter", { source, user_data: userData });
+      }
     } catch (error) {
       setSubmitState({
         status: "error",

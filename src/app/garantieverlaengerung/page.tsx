@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import InfoPageLayout, { type InfoCard, type InfoSection } from "../InfoPageLayout";
+import { buildMetadata } from "../pageMetadata";
 
 const cards: InfoCard[] = [
   {
@@ -38,14 +39,12 @@ const sections: InfoSection[] = [
   }
 ];
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "Garantie & Gewährleistung | Reparatur Wien | MONTER",
   description:
     "Garantie und Gewährleistung bei MONTER: Gewährleistung auf Reparaturleistungen, originale Ersatzteile und dokumentierte Arbeit. Erweiterte Garantiepakete in Vorbereitung.",
-  alternates: {
-    canonical: "/garantieverlaengerung"
-  }
-};
+  path: "/garantieverlaengerung"
+});
 
 export default function GarantieverlaengerungPage() {
   return (

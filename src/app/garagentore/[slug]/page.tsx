@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import DetailPageLayout from "../../DetailPageLayout";
+import { HubFaq } from "../../HubBlocks";
+import { buildMetadata } from "../../pageMetadata";
 import { garagePages, getGaragePage } from "../garagePages";
 
 type GaragePageProps = {
@@ -25,18 +27,11 @@ export async function generateMetadata({ params }: GaragePageProps): Promise<Met
     };
   }
 
-  return {
+  return buildMetadata({
     title: page.metaTitle,
     description: page.description,
-    alternates: {
-      canonical: `/garagentore/${page.slug}`
-    },
-    openGraph: {
-      title: page.metaTitle,
-      description: page.description,
-      type: "website"
-    }
-  };
+    path: `/garagentore/${page.slug}`
+  });
 }
 
 export default async function GarageDetailPage({ params }: GaragePageProps) {
@@ -70,6 +65,12 @@ export default async function GarageDetailPage({ params }: GaragePageProps) {
         description: page.description,
         path: `/garagentore/${page.slug}`
       }}
-    />
+    >
+      <HubFaq
+        eyebrow="Häufige Fragen"
+        title={`${page.category}: kurz beantwortet.`}
+        items={page.faq}
+      />
+    </DetailPageLayout>
   );
 }

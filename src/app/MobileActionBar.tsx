@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 
-import { trackConversion, trackCtaClick } from "./analytics";
+import { trackCtaClick } from "./analytics";
 import { siteConfig } from "./siteConfig";
 
 export default function MobileActionBar() {
@@ -11,7 +11,7 @@ export default function MobileActionBar() {
       <div className="mx-auto grid max-w-[88rem] grid-cols-[minmax(0,1fr)_auto] items-stretch gap-2.5">
         <a
           href={`tel:${siteConfig.phoneHref}`}
-          onClick={() => trackConversion("call", { source: "mobile_bar" })}
+          data-tel-source="mobile_bar"
           className="flex min-w-0 items-center gap-3 rounded-sm border border-white/15 bg-white/[0.04] px-3 py-2.5 text-white transition active:border-white/30 active:bg-white/[0.08]"
         >
           <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-white/15 bg-white/[0.06] text-white">

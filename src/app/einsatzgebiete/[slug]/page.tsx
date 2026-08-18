@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import DetailPageLayout from "../../DetailPageLayout";
 import { HubDetailLinks, HubFaq } from "../../HubBlocks";
+import { buildMetadata } from "../../pageMetadata";
 import { getRegionPage, regionPages, type RegionPage, type RegionService } from "../regionPages";
 import { findLocationByCityName, getLocationsForRegion, locationHref } from "../locationPages";
 
@@ -54,20 +55,13 @@ export async function generateMetadata({ params }: RegionPageProps): Promise<Met
     };
   }
 
-  return {
+  return buildMetadata({
     title: region.metaTitle,
     description: region.description,
-    alternates: {
-      canonical: `/einsatzgebiete/${region.slug}`
-    },
-    openGraph: {
-      title: region.metaTitle,
-      description: region.description,
-      type: "website"
-    },
+    path: `/einsatzgebiete/${region.slug}`,
     // Regionen ohne geprüfte Partnerdaten bleiben aus dem Index, sind aber erreichbar.
-    ...(region.enriched ? {} : { robots: { index: false, follow: true } })
-  };
+    robots: region.enriched ? undefined : { index: false, follow: true }
+  });
 }
 
 function RegionFacts({ region }: { region: RegionPage }) {
