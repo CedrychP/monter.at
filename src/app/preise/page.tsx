@@ -17,13 +17,13 @@ const householdPriceItems: PriceItem[] = [
   {
     number: "01",
     service: "Anfahrt Wien",
-    price: "80 €",
+    price: "96 €",
     note: "Standard-Anfahrtsgebühr innerhalb von Wien — pro Einsatz vor Ort."
   },
   {
     number: "02",
     service: "Anfahrt Niederösterreich",
-    price: "100 €",
+    price: "120 €",
     note: "Standard-Anfahrtsgebühr für Einsätze in Niederösterreich — pro Einsatz vor Ort."
   },
   {
@@ -35,27 +35,27 @@ const householdPriceItems: PriceItem[] = [
   {
     number: "04",
     service: "Nur Diagnose",
-    price: "120 €",
+    price: "144 €",
     note: "Prüfung des Geräts vor Ort mit Fehlerdiagnose. Die erste Arbeitseinheit (30 Minuten) ist inklusive."
   },
   {
     number: "05",
     service: "Reparatur & Diagnose",
-    price: "150 €",
+    price: "180 €",
     note: "Diagnose und Reparatur vor Ort. Die erste Arbeitseinheit (30 Minuten) ist inklusive.",
     highlight: true
   },
   {
     number: "06",
     service: "Zusätzliche Arbeitseinheit",
-    price: "+50 €",
-    note: "Beim Erstbesuch: eine Arbeitseinheit = 30 Minuten. Jede weitere Einheit nach der ersten wird mit 50 € verrechnet."
+    price: "+60 €",
+    note: "Beim Erstbesuch: eine Arbeitseinheit = 30 Minuten. Jede weitere Einheit nach der ersten wird mit 60 € verrechnet."
   },
   {
     number: "07",
     service: "Folgebesuch — Ersatzteil einbauen",
-    price: "50 € + Ersatzteil",
-    note: "Beim zweiten Einsatz verrechnen wir nur eine Arbeitseinheit (50 €) und das benötigte Ersatzteil — ohne erneute Diagnose- oder Reparaturpauschale."
+    price: "60 € + Ersatzteil",
+    note: "Beim zweiten Einsatz verrechnen wir nur eine Arbeitseinheit (60 €) und das benötigte Ersatzteil — ohne erneute Diagnose- oder Reparaturpauschale."
   }
 ];
 
@@ -63,19 +63,19 @@ const garageTravelPriceItems: PriceItem[] = [
   {
     number: "01",
     service: "Anfahrt Wien",
-    price: "110 €",
+    price: "132 €",
     note: "Anfahrt innerhalb von Wien für Garagen- und Torreparaturen."
   },
   {
     number: "02",
     service: "Anfahrt Niederösterreich",
-    price: "150 €",
+    price: "180 €",
     note: "Anfahrt nach Niederösterreich für Garagen- und Torreparaturen."
   },
   {
     number: "03",
     service: "Mehr als 1 Std. Fahrt",
-    price: "200 €",
+    price: "240 €",
     note: "Anfahrtspauschale bei einer Fahrzeit von mehr als einer Stunde (An- und Abfahrt)."
   },
   {
@@ -90,14 +90,14 @@ const garageLaborPriceItems: PriceItem[] = [
   {
     number: "04",
     service: "Arbeitseinheit Garagentor",
-    price: "75 €",
-    note: "Eine Arbeitseinheit entspricht 30 Minuten. Jede weitere Einheit wird mit 75 € verrechnet."
+    price: "90 €",
+    note: "Eine Arbeitseinheit entspricht 30 Minuten. Jede weitere Einheit wird mit 90 € verrechnet."
   },
   {
     number: "05",
     service: "Folgebesuch — Ersatzteil einbauen",
-    price: "75 € + Ersatzteil",
-    note: "Beim zweiten Einsatz verrechnen wir nur eine Arbeitseinheit (75 €) und das benötigte Ersatzteil — ohne erneute Diagnose- oder Reparaturpauschale.",
+    price: "90 € + Ersatzteil",
+    note: "Beim zweiten Einsatz verrechnen wir nur eine Arbeitseinheit (90 €) und das benötigte Ersatzteil — ohne erneute Diagnose- oder Reparaturpauschale.",
     highlight: true
   }
 ];
@@ -106,38 +106,38 @@ const garageRepairPriceItems: PriceItem[] = [
   {
     number: "06",
     service: "Federwechsel",
-    price: "150–250 €",
+    price: "180–300 €",
     note: "Austausch von Garagentorfedern je nach Torgröße, Federart und Einbausituation."
   },
   {
     number: "07",
     service: "Austausch der Rollen",
-    price: "50–100 €",
+    price: "60–120 €",
     note: "Erneuerung von Führungs- und Laufrollen am Garagentor — abhängig von Anzahl und Typ."
   },
   {
     number: "08",
     service: "Reparatur des Antriebs",
-    price: "200–500 €",
+    price: "240–600 €",
     note: "Fehlersuche und Reparatur des Torantriebs, abhängig von Defekt und Antriebsmodell.",
     highlight: true
   },
   {
     number: "09",
     service: "Wartung: Schmierung der Schienen und Rollen",
-    price: "100 €",
+    price: "120 €",
     note: "Reinigung, Schmierung und Funktionsprüfung von Schienen, Rollen und beweglichen Teilen."
   },
   {
     number: "10",
     service: "Justieren des Torantriebs",
-    price: "80–150 €",
+    price: "96–180 €",
     note: "Einstellen von Endlagen, Kraft und Laufeigenschaften des Garagentorantriebs."
   },
   {
     number: "11",
     service: "Sicherheitsüberprüfung und Inspektion",
-    price: "100–200 €",
+    price: "120–240 €",
     note: "Prüfung von Sicherheitskomponenten, Federzustand, Befestigungen und Gesamtfunktion des Tors."
   }
 ];
@@ -194,7 +194,7 @@ function PriceGrid({ items }: { items: PriceItem[] }) {
                 item.highlight ? "text-white/60" : "text-[color:var(--muted-soft)]"
               }`}
             >
-              exkl. USt.
+              inkl. 20&nbsp;% MwSt.
             </p>
           </div>
         </article>
@@ -206,7 +206,7 @@ function PriceGrid({ items }: { items: PriceItem[] }) {
 export const metadata: Metadata = buildMetadata({
   title: "Preise Reparatur Wien | Haushaltsgeräte & Garagentor | MONTER",
   description:
-    "Preise für Haushaltsgeräte- und Garagentor-Reparatur in Wien und Niederösterreich: Anfahrt, Diagnose, Reparatur, Federwechsel, Antrieb, Wartung und Inspektion — transparent und nachvollziehbar.",
+    "Preise inkl. MwSt. für Haushaltsgeräte- und Garagentor-Reparatur in Wien und Niederösterreich: Anfahrt, Diagnose, Reparatur, Federwechsel, Antrieb, Wartung und Inspektion — transparent und nachvollziehbar.",
   path: "/preise"
 });
 
@@ -224,7 +224,7 @@ export default function PreisePage() {
               <p className="mt-8 max-w-2xl text-[1.05rem] font-light leading-relaxed text-[color:var(--muted)]">
                 Transparente Pauschalen für Haushaltsgeräte und Garagentor-Reparaturen in Wien und
                 Niederösterreich. Material wird nur dann verrechnet, wenn es tatsächlich benötigt wird.
-                Alle Preise verstehen sich exklusive Umsatzsteuer.
+                Alle Preise verstehen sich inklusive 20&nbsp;% Mehrwertsteuer.
               </p>
             </div>
             <div className="reveal border-l border-[color:var(--border)] py-2 pl-8">
@@ -252,8 +252,9 @@ export default function PreisePage() {
             </h2>
             <p className="mt-4 max-w-2xl text-sm font-light leading-relaxed text-[color:var(--muted)]">
               Anfahrtsgebühr gemäß Tabelle. Die erste Arbeitseinheit (30 Minuten) ist in Diagnose
-              und Reparatur inklusive — jede weitere Einheit beim Erstbesuch 50 €. Beim zweiten
-              Einsatz zur Teilemontage: nur eine Arbeitseinheit (50 €) plus Ersatzteil.
+              und Reparatur inklusive — jede weitere Einheit beim Erstbesuch 60 €. Beim zweiten
+              Einsatz zur Teilemontage: nur eine Arbeitseinheit (60 €) plus Ersatzteil. Alle Beträge
+              inkl. MwSt.
             </p>
           </div>
           <div className="mt-10">
@@ -267,7 +268,7 @@ export default function PreisePage() {
             </h2>
             <p className="mt-4 max-w-2xl text-sm font-light leading-relaxed text-[color:var(--muted)]">
               Anfahrtspauschalen für Garagentor-Reparaturen und Wartung in Wien, Niederösterreich
-              und bei längerer Anfahrt.
+              und bei längerer Anfahrt — jeweils inklusive MwSt.
             </p>
           </div>
           <div className="mt-10">
@@ -279,8 +280,9 @@ export default function PreisePage() {
               Arbeitseinheiten &amp; Folgebesuch
             </h2>
             <p className="mt-4 max-w-2xl text-sm font-light leading-relaxed text-[color:var(--muted)]">
-              Bei Garagentor-Reparaturen gilt eine Arbeitseinheit à 75 €. Beim zweiten Einsatz zum
-              Einbau von Ersatzteilen verrechnen wir ebenfalls nur eine Arbeitseinheit plus Material.
+              Bei Garagentor-Reparaturen gilt eine Arbeitseinheit à 90 € inkl. MwSt. Beim zweiten
+              Einsatz zum Einbau von Ersatzteilen verrechnen wir ebenfalls nur eine Arbeitseinheit
+              plus Material.
             </p>
           </div>
           <div className="mt-10">
@@ -292,8 +294,8 @@ export default function PreisePage() {
               Reparaturen &amp; Wartung
             </h2>
             <p className="mt-4 max-w-2xl text-sm font-light leading-relaxed text-[color:var(--muted)]">
-              Orientierungspreise für häufige Garagentor-Leistungen. Der endgültige Preis hängt von
-              Torgröße, Antriebsmodell und Einbausituation ab.
+              Orientierungspreise für häufige Garagentor-Leistungen, inklusive MwSt. Der endgültige
+              Preis hängt von Torgröße, Antriebsmodell und Einbausituation ab.
             </p>
           </div>
           <div className="mt-10">
@@ -307,20 +309,20 @@ export default function PreisePage() {
                 Keine versteckten Posten.
               </h2>
               <p className="mt-8 text-[1.05rem] font-light leading-relaxed text-[color:var(--muted)]">
-                Haushaltsgeräte: Anfahrtsgebühr 80 € in Wien, 100 € in NÖ. Nur Diagnose 120 €,
-                Reparatur &amp; Diagnose 150 € — jeweils inklusive der ersten 30-Minuten-Arbeitseinheit,
-                jede weitere Einheit beim Erstbesuch 50 €. Beim zweiten Einsatz (Ersatzteil einbauen):
-                nur eine Arbeitseinheit à 50 € plus Ersatzteil.
+                Haushaltsgeräte: Anfahrtsgebühr 96 € in Wien, 120 € in NÖ. Nur Diagnose 144 €,
+                Reparatur &amp; Diagnose 180 € — jeweils inklusive der ersten 30-Minuten-Arbeitseinheit,
+                jede weitere Einheit beim Erstbesuch 60 €. Beim zweiten Einsatz (Ersatzteil einbauen):
+                nur eine Arbeitseinheit à 60 € plus Ersatzteil.
               </p>
               <p className="mt-4 text-[1.05rem] font-light leading-relaxed text-[color:var(--muted)]">
-                Garagenreparatur: Anfahrt Wien 110 €, Niederösterreich 150 €, mehr als 1 Std. Fahrt
-                200 €. Arbeitseinheit 75 € — beim Folgebesuch ebenfalls nur eine Einheit plus
+                Garagenreparatur: Anfahrt Wien 132 €, Niederösterreich 180 €, mehr als 1 Std. Fahrt
+                240 €. Arbeitseinheit 90 € — beim Folgebesuch ebenfalls nur eine Einheit plus
                 Ersatzteil.
               </p>
               <p className="mt-4 text-[1.05rem] font-light leading-relaxed text-[color:var(--muted)]">
                 Material und Ersatzteile werden nur dann verrechnet, wenn sie tatsächlich
                 benötigt werden. Kosten werden vor dem Einbau transparent abgestimmt. Alle
-                angegebenen Preise verstehen sich exklusive Umsatzsteuer (USt.).
+                angegebenen Preise verstehen sich inklusive 20&nbsp;% Mehrwertsteuer (MwSt.).
               </p>
               <p className="mt-4 text-[1.05rem] font-light leading-relaxed text-[color:var(--muted)]">
                 Die festen Anfahrtssätze gelten für Wien und Niederösterreich. Im Burgenland, in

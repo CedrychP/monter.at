@@ -35,7 +35,7 @@ export const niederoesterreichCities: LocationPage[] = [
       {
         title: "Termin und Anfahrt",
         body:
-          "Für Niederösterreich gilt ein Anfahrtssatz von 100 € für Haushaltsgeräte und 150 € für Garagentor-Arbeiten, jeweils exklusive USt. Liegt An- und Abfahrt zusammen über einer Stunde, greift eine Pauschale von 200 €. Für St. Pölten planen wir Termine mit etwas mehr Vorlauf als in Wien, weil wir Fahrten in dieselbe Richtung bündeln."
+          "Für Niederösterreich gilt ein Anfahrtssatz von 120 € für Haushaltsgeräte und 180 € für Garagentor-Arbeiten, jeweils inklusive 20 % MwSt. Liegt An- und Abfahrt zusammen über einer Stunde, greift eine Pauschale von 240 €. Für St. Pölten planen wir Termine mit etwas mehr Vorlauf als in Wien, weil wir Fahrten in dieselbe Richtung bündeln."
       },
       {
         title: "Was Sie bereithalten sollten",
@@ -52,7 +52,7 @@ export const niederoesterreichCities: LocationPage[] = [
       {
         question: "Was kostet die Anfahrt nach St. Pölten?",
         answer:
-          "Der niederösterreichische Satz von 100 € für Haushaltsgeräte beziehungsweise 150 € für Torarbeiten, exklusive USt. Übersteigt die Fahrzeit für An- und Abfahrt eine Stunde, gilt die Pauschale von 200 €. Was in Ihrem Fall zutrifft, sagen wir vor dem Termin."
+          "Der niederösterreichische Satz von 120 € für Haushaltsgeräte beziehungsweise 180 € für Torarbeiten, inklusive 20 % MwSt. Übersteigt die Fahrzeit für An- und Abfahrt eine Stunde, gilt die Pauschale von 240 €. Was in Ihrem Fall zutrifft, sagen wir vor dem Termin."
       },
       {
         question: "Mein Geschirrspüler spült schlecht, obwohl er sauber ist. Warum?",
@@ -91,7 +91,7 @@ export const niederoesterreichCities: LocationPage[] = [
       {
         title: "Anfahrt und Terminlage",
         body:
-          "Es gilt der niederösterreichische Anfahrtssatz von 100 € für Haushaltsgeräte und 150 € für Torarbeiten, exklusive USt. Bei An- und Abfahrt über einer Stunde greift die Pauschale von 200 €. Termine legen wir bevorzugt in Tage, an denen wir ohnehin im Wiener Süden unterwegs sind."
+          "Es gilt der niederösterreichische Anfahrtssatz von 120 € für Haushaltsgeräte und 180 € für Torarbeiten, inklusive 20 % MwSt. Bei An- und Abfahrt über einer Stunde greift die Pauschale von 240 €. Termine legen wir bevorzugt in Tage, an denen wir ohnehin im Wiener Süden unterwegs sind."
       },
       {
         title: "Was den Termin verkürzt",
@@ -152,7 +152,7 @@ export const niederoesterreichCities: LocationPage[] = [
       {
         title: "Anfahrt und Termin",
         body:
-          "Es gilt der niederösterreichische Satz von 100 € für Haushaltsgeräte und 150 € für Torarbeiten, exklusive USt.; bei mehr als einer Stunde An- und Abfahrt die Pauschale von 200 €. Baden erreichen wir zügig über die A2, weshalb die Ein-Stunden-Regel hier meist nicht greift."
+          "Es gilt der niederösterreichische Satz von 120 € für Haushaltsgeräte und 180 € für Torarbeiten, inklusive 20 % MwSt.; bei mehr als einer Stunde An- und Abfahrt die Pauschale von 240 €. Baden erreichen wir zügig über die A2, weshalb die Ein-Stunden-Regel hier meist nicht greift."
       }
     ],
     faq: [
@@ -208,7 +208,7 @@ export const niederoesterreichCities: LocationPage[] = [
       {
         title: "Anfahrt und Kosten",
         body:
-          "100 € Anfahrt für Haushaltsgeräte, 150 € für Garagentor-Arbeiten, jeweils exklusive USt. Die Ein-Stunden-Pauschale von 200 € greift bei Mödling wegen der kurzen Fahrzeit in der Regel nicht."
+          "120 € Anfahrt für Haushaltsgeräte, 180 € für Garagentor-Arbeiten, jeweils inklusive 20 % MwSt. Die Ein-Stunden-Pauschale von 240 € greift bei Mödling wegen der kurzen Fahrzeit in der Regel nicht."
       }
     ],
     faq: [

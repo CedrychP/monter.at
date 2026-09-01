@@ -22,7 +22,7 @@ const sections: InfoSection[] = [
   {
     title: "Anfahrt in Wien und Niederösterreich",
     body:
-      "Innerhalb Wiens beträgt die Anfahrt 80 € für Haushaltsgeräte und 110 € für Garagentor-Arbeiten. In Niederösterreich sind es 100 € beziehungsweise 150 €. Liegt die Fahrzeit für An- und Abfahrt über einer Stunde, gilt eine Pauschale von 200 €. Alle Beträge exklusive USt. und pro Einsatz vor Ort."
+      "Innerhalb Wiens beträgt die Anfahrt 96 € für Haushaltsgeräte und 132 € für Garagentor-Arbeiten. In Niederösterreich sind es 120 € beziehungsweise 180 €. Liegt die Fahrzeit für An- und Abfahrt über einer Stunde, gilt eine Pauschale von 240 €. Alle Beträge inklusive 20 % MwSt. und pro Einsatz vor Ort."
   },
   {
     title: "Burgenland, Oberösterreich, Steiermark und Salzburg",

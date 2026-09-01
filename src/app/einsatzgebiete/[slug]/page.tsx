@@ -89,7 +89,7 @@ function RegionFacts({ region }: { region: RegionPage }) {
               {region.travelFee.appliance}
             </p>
             <p className="mt-3 text-sm font-light leading-relaxed text-[color:var(--muted)]">
-              Pro Einsatz vor Ort, exklusive USt.
+              Pro Einsatz vor Ort, inkl. 20&nbsp;% MwSt.
             </p>
           </div>
           <div className="bg-white p-7">
@@ -98,7 +98,7 @@ function RegionFacts({ region }: { region: RegionPage }) {
               {region.travelFee.garage}
             </p>
             <p className="mt-3 text-sm font-light leading-relaxed text-[color:var(--muted)]">
-              Pro Einsatz vor Ort, exklusive USt.
+              Pro Einsatz vor Ort, inkl. 20&nbsp;% MwSt.
             </p>
           </div>
           <div className="bg-white p-7">

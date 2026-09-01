@@ -42,7 +42,7 @@ export const wienDistricts: LocationPage[] = [
       {
         question: "Was kostet die Anfahrt in den 1. Bezirk?",
         answer:
-          "Wie in ganz Wien 80 € für Haushaltsgeräte und 110 € für Garagentor-Arbeiten, jeweils exklusive USt. und pro Einsatz. Für die Innere Stadt gibt es keinen Zuschlag, auch wenn die Zufahrt aufwendiger ist."
+          "Wie in ganz Wien 96 € für Haushaltsgeräte und 132 € für Garagentor-Arbeiten, jeweils inklusive 20 % MwSt. und pro Einsatz. Für die Innere Stadt gibt es keinen Zuschlag, auch wenn die Zufahrt aufwendiger ist."
       },
       {
         question: "Können Einbaugeräte ausgebaut werden, ohne die Küche zu beschädigen?",
@@ -272,7 +272,7 @@ export const wienDistricts: LocationPage[] = [
       {
         question: "Gibt es einen Zuschlag, weil die Zufahrt schwierig ist?",
         answer:
-          "Nein. In Wien gelten 80 € Anfahrt für Haushaltsgeräte und 110 € für Garagentor-Arbeiten, exklusive USt., unabhängig vom Bezirk. Nur die tatsächliche Arbeitszeit vor Ort wird verrechnet."
+          "Nein. In Wien gelten 96 € Anfahrt für Haushaltsgeräte und 132 € für Garagentor-Arbeiten, inklusive 20 % MwSt., unabhängig vom Bezirk. Nur die tatsächliche Arbeitszeit vor Ort wird verrechnet."
       },
       {
         question: "Können Sie am Abend oder samstags kommen?",
@@ -502,7 +502,7 @@ export const wienDistricts: LocationPage[] = [
       {
         question: "Betreuen Sie Garagentore auch an Einfamilienhäusern in Simmering?",
         answer:
-          "Ja. Sektionaltore, Schwing- und Kipptore sowie die üblichen Antriebe sind Standard bei uns. Die Anfahrt für Torarbeiten beträgt in Wien 110 € exklusive USt."
+          "Ja. Sektionaltore, Schwing- und Kipptore sowie die üblichen Antriebe sind Standard bei uns. Die Anfahrt für Torarbeiten beträgt in Wien 132 € inklusive 20 % MwSt."
       },
       {
         question: "Meine Waschmaschine im Keller zeigt wechselnde Fehler. Woran liegt das?",
@@ -553,7 +553,7 @@ export const wienDistricts: LocationPage[] = [
       {
         question: "Kommen Sie auch nach Hetzendorf und Altmannsdorf?",
         answer:
-          "Ja, ganz 1120 ist Standardeinsatzgebiet mit 80 € Anfahrt für Haushaltsgeräte und 110 € für Torarbeiten, jeweils exklusive USt."
+          "Ja, ganz 1120 ist Standardeinsatzgebiet mit 96 € Anfahrt für Haushaltsgeräte und 132 € für Torarbeiten, jeweils inklusive 20 % MwSt."
       }
     ],
     enriched: true
@@ -783,7 +783,7 @@ export const wienDistricts: LocationPage[] = [
       {
         question: "Gilt der Wiener Anfahrtssatz auch in Neuwaldegg?",
         answer:
-          "Ja. Ganz 1170 zählt zum Wiener Einsatzgebiet: 80 € Anfahrt für Haushaltsgeräte, 110 € für Torarbeiten, jeweils exklusive USt."
+          "Ja. Ganz 1170 zählt zum Wiener Einsatzgebiet: 96 € Anfahrt für Haushaltsgeräte, 132 € für Torarbeiten, jeweils inklusive 20 % MwSt."
       }
     ],
     enriched: true
@@ -967,7 +967,7 @@ export const wienDistricts: LocationPage[] = [
       {
         question: "Gibt es für Floridsdorf einen günstigeren Anfahrtssatz?",
         answer:
-          "Die Anfahrt beträgt wie in ganz Wien 80 € für Haushaltsgeräte und 110 € für Torarbeiten, exklusive USt. Der Vorteil liegt nicht im Preis, sondern in der Geschwindigkeit."
+          "Die Anfahrt beträgt wie in ganz Wien 96 € für Haushaltsgeräte und 132 € für Torarbeiten, inklusive 20 % MwSt. Der Vorteil liegt nicht im Preis, sondern in der Geschwindigkeit."
       }
     ],
     enriched: true

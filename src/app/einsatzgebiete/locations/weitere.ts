@@ -333,7 +333,7 @@ export const weitereCities: LocationPage[] = [
       {
         question: "Was kostet die Anfahrt nach Eisenstadt?",
         answer:
-          "Das hängt von der Adresse ab, deshalb steht hier kein fester Betrag. Sie erfahren die Anfahrt am Telefon, bevor ein Termin vereinbart wird. Liegt An- und Abfahrt zusammen über einer Stunde, kann die Pauschale von 200 € greifen."
+          "Das hängt von der Adresse ab, deshalb steht hier kein fester Betrag. Sie erfahren die Anfahrt am Telefon, bevor ein Termin vereinbart wird. Liegt An- und Abfahrt zusammen über einer Stunde, kann die Pauschale von 240 € greifen."
       },
       {
         question: "Betreuen Sie auch Garagentore im Burgenland?",

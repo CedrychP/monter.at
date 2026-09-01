@@ -87,18 +87,18 @@ export const regionPages: RegionPage[] = [
     name: "Wien",
     metaTitle: "Einsatzgebiet Wien: alle 23 Bezirke | MONTER Service",
     description:
-      "MONTER im Einsatzgebiet Wien: alle 23 Bezirke, Anfahrt ab 80 €, Termine oft binnen 1–2 Tagen. Wie Anfahrt, Parksituation und Terminplanung in Wien konkret ablaufen.",
+      "MONTER im Einsatzgebiet Wien: alle 23 Bezirke, Anfahrt ab 96 € inkl. MwSt., Termine oft binnen 1–2 Tagen. Wie Anfahrt, Parksituation und Terminplanung in Wien konkret ablaufen.",
     h1: "Einsatzgebiet Wien.",
     short:
-      "Alle 23 Bezirke mit eigenem Team, kurze Wege, Anfahrt ab 80 € — unser Kerngebiet.",
+      "Alle 23 Bezirke mit eigenem Team, kurze Wege, Anfahrt ab 96 € inkl. MwSt. — unser Kerngebiet.",
     intro:
       "Wien ist unser Kerngebiet: Unser Standort liegt in Floridsdorf, unsere Techniker fahren von hier aus alle 23 Bezirke an. Weil die Wege kurz sind, sind Termine oft schon binnen ein bis zwei Tagen möglich — und bei einem Wasseraustritt oder einem ausgefallenen Tiefkühlgerät auch am selben Tag. Diese Seite erklärt, wie Anfahrt, Terminplanung und Zugang in Wien konkret ablaufen.",
     coverage: "kerngebiet",
     coverageNote:
       "Wien betreuen wir vollständig mit eigenen Technikern. Unser Standort ist die Rappgasse 1/6 in 1210 Wien — von dort fahren wir alle 23 Bezirke an.",
     travelFee: {
-      appliance: "80 €",
-      garage: "110 €"
+      appliance: "96 €",
+      garage: "132 €"
     },
     cities: viennaDistricts,
     featuredCities: viennaDistricts,
@@ -108,7 +108,7 @@ export const regionPages: RegionPage[] = [
       {
         title: "Anfahrt und Termine in Wien",
         body:
-          "Die Anfahrt innerhalb Wiens beträgt 80 € für Haushaltsgeräte und 110 € für Garagentor-Arbeiten, jeweils pro Einsatz vor Ort und exklusive USt. Weil unser Standort in Floridsdorf liegt und alle Bezirke innerhalb kurzer Fahrzeit erreichbar sind, gibt es in Wien keine Staffelung nach Bezirk. Wir planen mehrere Einsätze pro Tag in räumlicher Nähe — dadurch entstehen kurzfristig freie Fenster, gerade am Vormittag."
+          "Die Anfahrt innerhalb Wiens beträgt 96 € für Haushaltsgeräte und 132 € für Garagentor-Arbeiten, jeweils pro Einsatz vor Ort und inklusive 20 % MwSt. Weil unser Standort in Floridsdorf liegt und alle Bezirke innerhalb kurzer Fahrzeit erreichbar sind, gibt es in Wien keine Staffelung nach Bezirk. Wir planen mehrere Einsätze pro Tag in räumlicher Nähe — dadurch entstehen kurzfristig freie Fenster, gerade am Vormittag."
       },
       {
         title: "Altbau, Innenhof und Parksituation",
@@ -130,7 +130,7 @@ export const regionPages: RegionPage[] = [
       {
         question: "Kostet die Anfahrt in Randbezirken mehr?",
         answer:
-          "Nein. Innerhalb Wiens gilt ein einheitlicher Anfahrtssatz von 80 € für Haushaltsgeräte und 110 € für Garagentore — unabhängig davon, ob der Einsatz in der Inneren Stadt oder in Liesing liegt."
+          "Nein. Innerhalb Wiens gilt ein einheitlicher Anfahrtssatz von 96 € für Haushaltsgeräte und 132 € für Garagentore — unabhängig davon, ob der Einsatz in der Inneren Stadt oder in Liesing liegt. Alle Preise inkl. MwSt."
       },
       {
         question: "Wie schnell bekomme ich in Wien einen Termin?",
@@ -150,18 +150,18 @@ export const regionPages: RegionPage[] = [
     name: "Niederösterreich",
     metaTitle: "Einsatzgebiet Niederösterreich | MONTER Service",
     description:
-      "MONTER in Niederösterreich: Wiener Umland, Industrieviertel und Weinviertel mit eigenem Team, Anfahrt ab 100 €. Ab einer Stunde Fahrzeit gilt eine Pauschale von 200 €.",
+      "MONTER in Niederösterreich: Wiener Umland, Industrieviertel und Weinviertel mit eigenem Team, Anfahrt ab 120 € inkl. MwSt. Ab einer Stunde Fahrzeit gilt eine Pauschale von 240 €.",
     h1: "Einsatzgebiet Niederösterreich.",
     short:
-      "Wiener Umland mit eigenem Team, Anfahrt ab 100 € — ab einer Stunde Fahrt gilt eine Pauschale.",
+      "Wiener Umland mit eigenem Team, Anfahrt ab 120 € inkl. MwSt. — ab einer Stunde Fahrt gilt eine Pauschale.",
     intro:
-      "Niederösterreich fahren wir mit dem eigenen Team an — am dichtesten im Umland von Wien, wo die Fahrzeiten kurz sind. Je weiter eine Adresse entfernt liegt, desto stärker bestimmt die Fahrzeit den Termin: Ab etwa einer Stunde Anfahrt gilt eine Pauschale von 200 €. Diese Seite zeigt, welche Orte im Kernbereich liegen und wie wir mit weiter entfernten Adressen umgehen.",
+      "Niederösterreich fahren wir mit dem eigenen Team an — am dichtesten im Umland von Wien, wo die Fahrzeiten kurz sind. Je weiter eine Adresse entfernt liegt, desto stärker bestimmt die Fahrzeit den Termin: Ab etwa einer Stunde Anfahrt gilt eine Pauschale von 240 € inkl. MwSt. Diese Seite zeigt, welche Orte im Kernbereich liegen und wie wir mit weiter entfernten Adressen umgehen.",
     coverage: "kerngebiet",
     coverageNote:
       "Niederösterreich betreuen wir von Wien aus mit eigenen Technikern. Im Umland ist das Alltag, in den äußeren Bezirken entscheidet die Fahrzeit über Termin und Anfahrtspauschale.",
     travelFee: {
-      appliance: "100 €",
-      garage: "150 €"
+      appliance: "120 €",
+      garage: "180 €"
     },
     cities: [
       { plz: "2000", name: "Stockerau" },
@@ -197,7 +197,7 @@ export const regionPages: RegionPage[] = [
       {
         title: "Anfahrt und die Ein-Stunden-Regel",
         body:
-          "Die Anfahrt nach Niederösterreich beträgt 100 € für Haushaltsgeräte und 150 € für Garagentor-Arbeiten. Liegt die Fahrzeit für An- und Abfahrt über einer Stunde, gilt stattdessen eine Pauschale von 200 €. Das klingt nach Kleingedrucktem, ist aber der ehrlichere Weg: Eine Fahrt nach Krems bindet einen Techniker deutlich länger als eine nach Mödling, und diesen Unterschied verstecken wir nicht in den Arbeitskosten."
+          "Die Anfahrt nach Niederösterreich beträgt 120 € für Haushaltsgeräte und 180 € für Garagentor-Arbeiten, jeweils inklusive 20 % MwSt. Liegt die Fahrzeit für An- und Abfahrt über einer Stunde, gilt stattdessen eine Pauschale von 240 €. Das klingt nach Kleingedrucktem, ist aber der ehrlichere Weg: Eine Fahrt nach Krems bindet einen Techniker deutlich länger als eine nach Mödling, und diesen Unterschied verstecken wir nicht in den Arbeitskosten."
       },
       {
         title: "Kernbereich und äußere Bezirke",
@@ -217,9 +217,9 @@ export const regionPages: RegionPage[] = [
     ],
     faq: [
       {
-        question: "Wann gilt die Pauschale von 200 € statt 100 €?",
+        question: "Wann gilt die Pauschale von 240 € statt 120 €?",
         answer:
-          "Sobald An- und Abfahrt zusammen mehr als eine Stunde Fahrzeit ausmachen. Wir sagen Ihnen das am Telefon vorab, sobald wir die Adresse kennen — Sie erfahren die Anfahrtskosten also vor dem Termin, nicht danach."
+          "Sobald An- und Abfahrt zusammen mehr als eine Stunde Fahrzeit ausmachen. Wir sagen Ihnen das am Telefon vorab, sobald wir die Adresse kennen — Sie erfahren die Anfahrtskosten also vor dem Termin, nicht danach. Alle Preise inkl. MwSt."
       },
       {
         question: "Kommen Sie in jeden Bezirk Niederösterreichs?",
@@ -229,7 +229,7 @@ export const regionPages: RegionPage[] = [
       {
         question: "Sind Garagentor-Arbeiten in Niederösterreich möglich?",
         answer:
-          "Ja, inklusive Federwechsel, Antriebsreparatur und Wartung. Die Anfahrt beträgt hier 150 €, weil für Torarbeiten mehr Werkzeug und Material mitgeführt wird. Nennen Sie bitte Torart und Antriebsmarke — danach entscheidet sich, welche Teile wir einladen."
+          "Ja, inklusive Federwechsel, Antriebsreparatur und Wartung. Die Anfahrt beträgt hier 180 € inkl. MwSt., weil für Torarbeiten mehr Werkzeug und Material mitgeführt wird. Nennen Sie bitte Torart und Antriebsmarke — danach entscheidet sich, welche Teile wir einladen."
       }
     ],
     enriched: true
