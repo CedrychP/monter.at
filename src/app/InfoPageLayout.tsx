@@ -80,20 +80,25 @@ export default function InfoPageLayout({
         <div className="mx-auto max-w-[88rem] px-5 pb-20 pt-12 sm:px-8 sm:pb-24 sm:pt-16 lg:pb-32 lg:pt-20">
           <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-end lg:gap-20">
             <div className="reveal">
+              <p className="cap-line tracking-eyebrow text-[color:var(--accent)]">{eyebrow}</p>
               {comingSoon ? (
-                <span className="inline-flex items-center gap-2 rounded-full border border-[color:var(--border)] bg-[color:var(--bg-muted)] px-3 py-1 text-[0.65rem] font-medium uppercase tracking-[0.16em] text-[color:var(--muted)]">
+                <span className="mt-5 inline-flex items-center gap-2 rounded-full border border-[color:var(--accent)]/20 bg-[color:var(--accent-soft)] px-3 py-1 text-[0.65rem] font-medium uppercase tracking-[0.16em] text-[color:var(--accent)]">
                   <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--accent)]" aria-hidden="true" />
                   Bald verfügbar
                 </span>
-              ) : (
-                <p className="cap-line tracking-eyebrow text-[color:var(--accent)]">{eyebrow}</p>
-              )}
+              ) : null}
               <h1 className="font-display mt-8 text-balance text-5xl font-light leading-[1.02] tracking-tight sm:text-6xl lg:text-[4.75rem]">
                 {title}
               </h1>
               <p className="mt-8 max-w-2xl text-[1.05rem] font-light leading-relaxed text-[color:var(--muted)]">
                 {intro}
               </p>
+              {comingSoon ? (
+                <p className="mt-5 max-w-2xl text-sm font-normal leading-relaxed text-[color:var(--ink)]">
+                  Dieses Angebot startet in Kürze. Sie können sich vormerken — Reparaturen, Preise und
+                  Termine sind wie gewohnt erreichbar.
+                </p>
+              ) : null}
               <div className="mt-10 flex flex-col gap-3 sm:flex-row">
                 <Link href={primaryCta.href} className="btn-primary">
                   {primaryCta.label}

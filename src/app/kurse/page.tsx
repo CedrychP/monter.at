@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import InfoPageLayout, { type InfoCard } from "../InfoPageLayout";
-import { buildMetadata } from "../pageMetadata";
+import { buildMetadata, comingSoonRobots } from "../pageMetadata";
 
 const cards: InfoCard[] = [
   {
@@ -26,11 +26,7 @@ export const metadata: Metadata = buildMetadata({
   description:
     "Kurse und Workshops von MONTER sind in Vorbereitung: Geräte richtig pflegen, Fehler früh erkennen und sicher nutzen. Bald verfügbar in Wien.",
   path: "/kurse",
-  // Platzhalterseite: erreichbar und verlinkt, aber bis zum Start ohne Index.
-  robots: {
-    index: false,
-    follow: true
-  }
+  robots: comingSoonRobots
 });
 
 export default function KursePage() {

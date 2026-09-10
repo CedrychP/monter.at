@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import InfoPageLayout, { type InfoCard } from "../InfoPageLayout";
-import { buildMetadata } from "../pageMetadata";
+import { buildMetadata, comingSoonRobots } from "../pageMetadata";
 
 const cards: InfoCard[] = [
   {
@@ -26,11 +26,7 @@ export const metadata: Metadata = buildMetadata({
   description:
     "Der Gerätekauf bei MONTER ist in Vorbereitung: kuratierte Haushaltsgeräte mit Beratung, Lieferung, Montage und Service aus einer Hand. Bald in Wien verfügbar.",
   path: "/geraetekauf",
-  // Platzhalterseite: erreichbar und verlinkt, aber bis zum Start ohne Index.
-  robots: {
-    index: false,
-    follow: true
-  }
+  robots: comingSoonRobots
 });
 
 export default function GeraetekaufPage() {

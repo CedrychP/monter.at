@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import InfoPageLayout, { type InfoCard } from "../InfoPageLayout";
-import { buildMetadata } from "../pageMetadata";
+import { buildMetadata, comingSoonRobots } from "../pageMetadata";
 
 const cards: InfoCard[] = [
   {
@@ -26,11 +26,7 @@ export const metadata: Metadata = buildMetadata({
   description:
     "Der MONTER GOLD Club ist in Vorbereitung: bevorzugte Termine, exklusive Vorteile, Wartung im Abo und früher Zugang zu neuen Services. Bald für Kundinnen und Kunden in Wien.",
   path: "/monter-gold",
-  // Platzhalterseite: erreichbar und verlinkt, aber bis zum Start ohne Index.
-  robots: {
-    index: false,
-    follow: true
-  }
+  robots: comingSoonRobots
 });
 
 export default function MonterGoldPage() {

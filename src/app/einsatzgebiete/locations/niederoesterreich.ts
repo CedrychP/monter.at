@@ -225,7 +225,119 @@ export const niederoesterreichCities: LocationPage[] = [
       {
         question: "Kommen Sie auch nach Hinterbrühl, Vösendorf oder Brunn am Gebirge?",
         answer:
-          "Ja, der gesamte Bezirk Mödling zählt zum regelmäßigen Einsatzgebiet mit den niederösterreichischen Sätzen."
+          "Ja. Hinterbrühl und Brunn am Gebirge fahren wir mit denselben niederösterreichischen Sätzen an. Vösendorf hat eine eigene Seite — die Anfahrt von Wien ist dort ähnlich kurz wie nach Mödling."
+      }
+    ],
+    enriched: true
+  },
+  {
+    regionSlug: "niederoesterreich",
+    slug: "klosterneuburg",
+    name: "Klosterneuburg",
+    postalCodes: ["3400"],
+    metaTitle: "Haushaltsgeräte Reparatur Klosterneuburg | MONTER",
+    description:
+      "Haushaltsgeräte reparieren lassen in Klosterneuburg: Stiftstadt, Weidling, Kierling. Kurze Anfahrt aus Wien, Diagnose vor dem Teiletausch.",
+    h1: "Reparatur in Klosterneuburg.",
+    short: "Nördlich von Wien an der Donau — kurze Wege, regelmäßige Termine.",
+    intro:
+      "Haushaltsgeräte in Klosterneuburg reparieren wir regelmäßig: Die Stadt liegt direkt nördlich von Wien, die Fahrt aus Floridsdorf oder Döbling ist kurz. Termine sind deshalb oft ähnlich kurzfristig planbar wie in Wien — mit den niederösterreichischen Anfahrtssätzen.",
+    character:
+      "Die Stiftstadt hat einen dichten historischen Kern mit engen Gassen und knappen Halteplätzen, dazu Hanglagen in Weidling und Kierling und jüngere Wohngebiete Richtung Kritzendorf und Höflein. In den Altbauten stehen Waschmaschinen oft im Keller ohne Lift, in den Hanghäusern gibt es eigene Garagen und häufiger Einbaugeräte. Weil viele Haushalte nach Wien pendeln, sind Termine am frühen Morgen oder späteren Nachmittag hier besonders gefragt.",
+    focus: [
+      "Waschmaschinen und Trockner in Kellern ohne Lift",
+      "Einbaugeschirrspüler und Backöfen in sanierten Altbauküchen",
+      "Gefriergeräte in Weinkellern und Nebenräumen",
+      "Garagentore an Hanggrundstücken in Weidling und Kierling"
+    ],
+    sections: [
+      {
+        title: "Haushaltsgerät reparieren lassen in Klosterneuburg",
+        body:
+          "Die Nähe zu Wien macht Klosterneuburg zu einem der dichtesten Einsatzorte außerhalb der Stadtgrenze. Bei Wasseraustritt oder einem ausgefallenen Tiefkühlgerät ist oft ein Termin binnen ein bis zwei Werktagen möglich. Nennen Sie Marke, Modellnummer und Fehlerbild — dann bringen wir die wahrscheinlichen Teile gleich mit."
+      },
+      {
+        title: "Zugang in Stiftstadt und Hanglage",
+        body:
+          "Im historischen Kern sind Parken und Geräteträger der limitierende Faktor, nicht die Technik. In Weidling und Kierling kommen steile Zufahrten und Geräte in Untergeschossen dazu. Sagen Sie bei der Anfrage, ob ein Lift vorhanden ist und wo das Gerät steht — das ändert, was wir am Fahrzeug mitnehmen."
+      },
+      {
+        title: "Anfahrt und Kosten",
+        body:
+          "120 € Anfahrt für Haushaltsgeräte, 180 € für Garagentor-Arbeiten, jeweils inklusive 20 % MwSt. Die Ein-Stunden-Pauschale von 240 € greift in Klosterneuburg wegen der kurzen Fahrzeit in der Regel nicht."
+      }
+    ],
+    faq: [
+      {
+        question: "Wie schnell ist ein Termin in Klosterneuburg möglich?",
+        answer:
+          "Oft binnen ein bis zwei Werktagen, weil wir ohnehin im Wiener Norden unterwegs sind. Dringende Fälle wie Wasseraustritt ziehen wir vor — rufen Sie dann direkt an."
+      },
+      {
+        question: "Warum gilt der niederösterreichische Satz, obwohl Klosterneuburg so nah ist?",
+        answer:
+          "Wir staffeln die Anfahrt nach Bundesland, nicht nach Kilometern — so ist der Betrag vorab klar. Der Vorteil der Nähe liegt bei der Termingeschwindigkeit, nicht beim Satz."
+      },
+      {
+        question: "Kommen Sie auch nach Weidling, Kierling oder Kritzendorf?",
+        answer:
+          "Ja, das gesamte Stadtgebiet von Klosterneuburg inklusive der Katastralgemeinden. Nennen Sie die genaue Adresse, dann sagen wir Termin und Anfahrt."
+      }
+    ],
+    enriched: true
+  },
+  {
+    regionSlug: "niederoesterreich",
+    slug: "voesendorf",
+    name: "Vösendorf",
+    postalCodes: ["2331"],
+    metaTitle: "Haushaltsgeräte Reparatur Vösendorf | MONTER",
+    description:
+      "Haushaltsgeräte reparieren in Vösendorf: Wohngebiete an der Stadtgrenze, SCS-Umfeld. Kurze Anfahrt aus Wien, Diagnose vor dem Teiletausch.",
+    h1: "Reparatur in Vösendorf.",
+    short: "Südlich von Wien an der Stadtgrenze — kurze Anfahrt, schnelle Termine.",
+    intro:
+      "Haushaltsgeräte in Vösendorf reparieren wir vom Wiener Standort aus mit sehr kurzer Anfahrt: Die Gemeinde grenzt an Liesing, Termine lassen sich oft in Wiener Südtouren einfügen. Es gilt der niederösterreichische Anfahrtssatz — der Vorteil der Lage liegt bei der Geschwindigkeit.",
+    character:
+      "Vösendorf mischt Wohnsiedlungen, Reihenhäuser und Gewerbe rund um die Shopping City Süd. Viele Haushalte pendeln nach Wien, Geräte stehen in Waschküchen, Garagen und Einbauküchen der 1990er- und 2000er-Jahre. Im Gewerbeumfeld kommen zusätzlich Kühl- und Gefriergeräte in Gastronomie und Handel vor — dort zählt der Ausfall schneller als im Privathaushalt.",
+    focus: [
+      "Waschmaschinen, Trockner und Geschirrspüler in Siedlungshäusern",
+      "Einbaugeräte in Küchen der 1990er- und 2000er-Jahre",
+      "Kühl- und Gefriergeräte in Gastronomie rund um die SCS",
+      "Garagentore an Reihenhaus- und Siedlungszufahrten"
+    ],
+    sections: [
+      {
+        title: "Kurze Fahrt über Liesing",
+        body:
+          "Von Wien aus ist Vösendorf eine der kürzesten Fahrten in Niederösterreich. Dringende Fälle wie ein Wasseraustritt oder ein ausgefallenes Tiefkühlgerät bekommen deshalb oft einen Termin binnen ein bis zwei Werktagen. Trotzdem gilt der niederösterreichische Anfahrtssatz — das sagen wir vorab, damit es keine Überraschung gibt."
+      },
+      {
+        title: "Wohnen und Gewerbe nebeneinander",
+        body:
+          "Neben Privathaushalten betreuen wir in Vösendorf auch Gastronomie und Handel. Gewerbliche Kühlgeräte laufen mit höherer Taktung; für die Terminplanung hilft uns, ob das Gerät Ware sichert oder „nur“ den Haushalt betrifft. Sagen Sie das gleich bei der Anfrage."
+      },
+      {
+        title: "Anfahrt und Kosten",
+        body:
+          "120 € Anfahrt für Haushaltsgeräte, 180 € für Garagentor-Arbeiten, jeweils inklusive 20 % MwSt. Die Ein-Stunden-Pauschale von 240 € greift in Vösendorf wegen der kurzen Fahrzeit in der Regel nicht."
+      }
+    ],
+    faq: [
+      {
+        question: "Wie schnell kommen Sie nach Vösendorf?",
+        answer:
+          "Oft binnen ein bis zwei Werktagen, weil die Gemeinde an Wien-Liesing grenzt. Dringende Fälle ziehen wir vor — rufen Sie dann direkt an."
+      },
+      {
+        question: "Gilt in Vösendorf der Wiener oder der NÖ-Anfahrtssatz?",
+        answer:
+          "Der niederösterreichische Satz: 120 € für Haushaltsgeräte, 180 € für Torarbeiten, inklusive 20 % MwSt. Der Vorteil der Stadtgrenze ist die Termingeschwindigkeit."
+      },
+      {
+        question: "Reparieren Sie auch Geräte in Betrieben an der SCS?",
+        answer:
+          "Ja. Gastronomie- und Handelsgeräte behandeln wir mit Vorrang, wenn Ware gefährdet ist. Nennen Sie Gerätetyp und ob es um Kühlkette oder Privathaushalt geht."
       }
     ],
     enriched: true

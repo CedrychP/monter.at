@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import ContactForm from "../ContactForm";
 import { buildMetadata } from "../pageMetadata";
+import { siteConfig } from "../siteConfig";
 
 const phoneDisplay = "01 4171346";
 const phoneHref = "+4314171346";
@@ -146,6 +147,11 @@ export default function KontaktPage() {
               </h3>
               <p className="mt-4 text-sm font-light leading-relaxed text-[color:var(--muted)]">
                 Service- und Unternehmensstandort der Tech Craft Consulting GmbH.
+              </p>
+              <p className="mt-4 text-sm font-light leading-relaxed text-[color:var(--muted)]">
+                {siteConfig.openingHoursDisplay[0]}
+                <br />
+                {siteConfig.openingHoursDisplay[1]}
               </p>
             </div>
           </div>

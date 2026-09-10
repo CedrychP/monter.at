@@ -27,7 +27,18 @@ export const siteConfig = {
   googleReviewsUrl:
     "https://www.google.com/maps/place/?q=place_id:ChIJ9S11rAulWKgRdQLAhpk4EPc",
   googleReviewWriteUrl:
-    "https://search.google.com/local/writereview?placeid=ChIJ9S11rAulWKgRdQLAhpk4EPc"
+    "https://search.google.com/local/writereview?placeid=ChIJ9S11rAulWKgRdQLAhpk4EPc",
+  /** Aus dem Google-Unternehmensprofil, Rappgasse 1/6, 1210 Wien. */
+  geo: {
+    latitude: 48.2684967,
+    longitude: 16.3925317
+  },
+  /** Schema.org-Format, identisch mit Google Maps. */
+  openingHours: ["Mo-Fr 07:00-18:00"],
+  openingHoursDisplay: [
+    "Montag–Freitag: 07:00–18:00 Uhr",
+    "Samstag und Sonntag: geschlossen"
+  ]
 };
 
 /** Stabile JSON-LD-ID — Service-Seiten verweisen darauf statt LocalBusiness zu kopieren. */

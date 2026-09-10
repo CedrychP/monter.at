@@ -71,6 +71,12 @@ export default function RootLayout({
       addressCountry: siteConfig.address.country
     },
     areaServed: ["Wien", "Niederösterreich", "Österreich"],
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: siteConfig.geo.latitude,
+      longitude: siteConfig.geo.longitude
+    },
+    openingHours: siteConfig.openingHours,
     sameAs: Object.values(siteConfig.social),
     contactPoint: {
       "@type": "ContactPoint",

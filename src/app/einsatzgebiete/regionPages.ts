@@ -169,6 +169,7 @@ export const regionPages: RegionPage[] = [
       { plz: "2103", name: "Langenzersdorf" },
       { plz: "2201", name: "Gerasdorf bei Wien" },
       { plz: "2320", name: "Schwechat" },
+      { plz: "2331", name: "Vösendorf" },
       { plz: "2340", name: "Mödling" },
       { plz: "2361", name: "Laxenburg" },
       { plz: "2380", name: "Perchtoldsdorf" },

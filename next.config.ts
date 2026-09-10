@@ -7,6 +7,15 @@ const securityHeaders = [
   { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" }
 ];
 
+const comingSoonNoindex = { key: "X-Robots-Tag", value: "noindex, follow" };
+const comingSoonPaths = [
+  "/monter-gold",
+  "/kurse",
+  "/aktionskatalog",
+  "/geraetekauf",
+  "/veranstaltungen"
+];
+
 const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
@@ -26,6 +35,10 @@ const nextConfig: NextConfig = {
   },
   async headers() {
     return [
+      ...comingSoonPaths.map((source) => ({
+        source,
+        headers: [...securityHeaders, comingSoonNoindex]
+      })),
       {
         source: "/",
         headers: securityHeaders

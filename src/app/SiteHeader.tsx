@@ -25,6 +25,7 @@ type NavLink = {
   menuId?: string;
   gold?: boolean;
   external?: boolean;
+  soon?: boolean;
 };
 
 type MegaMenuColumn = {
@@ -124,8 +125,8 @@ const customerVoiceLinks: NavLink[] = [
 const customerNewsLinks: NavLink[] = [
   { label: "Blog & News", href: "/blog" },
   { label: "FAQ", href: "/#faq" },
-  { label: "Kurse", href: "/kurse" },
-  { label: "Veranstaltungen", href: "/veranstaltungen" }
+  { label: "Kurse", href: "/kurse", soon: true },
+  { label: "Veranstaltungen", href: "/veranstaltungen", soon: true }
 ];
 
 const garageDoorAndServiceLinks: NavLink[] = [
@@ -151,17 +152,30 @@ const customerNavLink: NavLink = {
 
 const secondaryNavGroup: NavLink[] = [
   { label: "Service", href: "/wartungsservice", menuId: "nav-service" },
-  { label: "Gerätekauf", href: "/geraetekauf", menuId: "geraetekauf" }
+  { label: "Gerätekauf", href: "/geraetekauf", menuId: "geraetekauf", soon: true }
 ];
 
 const dropdownSpecialLinks: NavLink[] = [
   { label: "Über Monter", href: "/ueber-uns" },
-  { label: "MONTER GOLD", href: "/monter-gold", gold: true },
-  { label: "Aktionskatalog", href: "/aktionskatalog" },
+  { label: "MONTER GOLD", href: "/monter-gold", gold: true, soon: true },
+  { label: "Aktionskatalog", href: "/aktionskatalog", soon: true },
   { label: "Geräte-Retter-Prämie", href: "/geraete-retter-praemie" },
   { label: "Kaufberatung", href: "/kaufberatung" },
   { label: "Bewertungen", href: "/#bewertungen" }
 ];
+
+function NavLinkText({ item }: { item: NavLink }) {
+  return (
+    <>
+      {item.label}
+      {item.soon ? (
+        <span className="ml-1.5 inline-flex align-middle text-[0.58rem] font-medium uppercase tracking-[0.14em] text-[color:var(--accent-on-dark)]">
+          Bald
+        </span>
+      ) : null}
+    </>
+  );
+}
 
 function getDropdownSpecialLinkClassName(item: NavLink, light = false): string {
   const classes = ["nav-dropdown-special-link"];
@@ -192,14 +206,14 @@ function NavDropdownLink({
         onClick={onClick}
         className={className}
       >
-        {item.label}
+        <NavLinkText item={item} />
       </a>
     );
   }
 
   return (
     <Link href={item.href} onClick={onClick} className={className}>
-      {item.label}
+      <NavLinkText item={item} />
     </Link>
   );
 }
@@ -336,7 +350,7 @@ const megaMenus: MegaMenuConfig[] = [
       {
         eyebrow: "Neugerätekauf",
         items: [],
-        note: "Der Neugerätekauf ist bei uns derzeit noch nicht verfügbar."
+        note: "Bald verfügbar: kuratierte Geräte mit Beratung, Lieferung und Montage. Bis dahin helfen wir bei Reparatur oder ehrlicher Kaufberatung."
       },
       { eyebrow: "Zusatz", items: geraetekaufExtraLinks }
     ],
@@ -481,7 +495,7 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
       aria-expanded={activeMenu === link.menuId}
       aria-controls={`mega-${link.menuId}`}
     >
-      {link.label}
+      <NavLinkText item={link} />
     </Link>
   );
 
@@ -935,7 +949,7 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
                             onClick={closeAllOverlays}
                             className={getDropdownSpecialLinkClassName(item)}
                           >
-                            {item.label}
+                            <NavLinkText item={item} />
                           </Link>
                         ))}
                       </div>
@@ -952,7 +966,7 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
                           onClick={closeAllOverlays}
                           className={getDropdownSpecialLinkClassName(item)}
                         >
-                          {item.label}
+                          <NavLinkText item={item} />
                         </Link>
                       ))}
                     </div>
@@ -1064,7 +1078,7 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
                   onClick={() => setMobileMenuOpen(false)}
                   className={getDropdownSpecialLinkClassName(item)}
                 >
-                  {item.label}
+                  <NavLinkText item={item} />
                 </Link>
               ))}
             </div>
@@ -1089,7 +1103,7 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
               return (
                 <details key={`m-${link.label}`} className="group border-b border-white/10 py-3">
                   <summary className="flex cursor-pointer list-none items-center justify-between text-[1.05rem] font-semibold tracking-tight">
-                    {link.label}
+                    <NavLinkText item={link} />
                     <svg className="ml-3 shrink-0 text-white/50 transition-transform group-open:rotate-180" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
                       <path d="M3 6l5 5 5-5" stroke="currentColor" strokeWidth="1.4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
@@ -1115,7 +1129,7 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
               link.menuId ? (
                 <details key={`m-${link.label}`} className="group border-b border-white/10 py-3">
                   <summary className="flex cursor-pointer list-none items-center justify-between text-[1.05rem] font-semibold tracking-tight">
-                    {link.label}
+                    <NavLinkText item={link} />
                     <svg className="ml-3 shrink-0 text-white/50 transition-transform group-open:rotate-180" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
                       <path d="M3 6l5 5 5-5" stroke="currentColor" strokeWidth="1.4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>

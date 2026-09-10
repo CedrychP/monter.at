@@ -57,9 +57,9 @@ const faqs: HubFaqItem[] = [
 ];
 
 export const metadata: Metadata = buildMetadata({
-  title: "Klimagerät Reparatur Wien | MONTER Service",
+  title: "Klimaanlage Service & Reparatur Wien | MONTER",
   description:
-    "Klimagerät Reparatur in Wien & NÖ: Split-Anlagen, Multi-Split, Monoblock, Kältemittel, Kompressor, Steuerung, Wartung und Montage. Markenoffen, schnell vor Ort.",
+    "Klimaanlage Service in Wien: Wartung, Reparatur und Montage für Split, Multi-Split und Monoblock. Markenoffen, vor Ort in Wien und NÖ.",
   path: "/klimageraete"
 });
 
@@ -67,7 +67,7 @@ export default function KlimageraeteHubPage() {
   return (
     <InfoPageLayout
       eyebrow="Klimageräte"
-      title="Klimagerät Reparatur in Wien."
+      title="Klimaanlage Service und Reparatur in Wien."
       intro="Kühlt die Anlage nicht mehr, tropft Wasser, zeigt Fehlercodes oder macht ungewöhnliche Geräusche? Wir prüfen Kühlkreis, Elektronik und Entwässerung — und reparieren Split-, Multi-Split- und Monoblock-Geräte markenoffen in Wien und Niederösterreich. Unten finden Sie die einzelnen Bereiche im Detail."
       heroNote="Beschreiben Sie Gerätetyp, Fehlerbild und Standort — wir melden uns zur Terminabstimmung."
       primaryCta={{ label: "Klimagerät-Reparatur anfragen", href: "/reparatur-buchen" }}

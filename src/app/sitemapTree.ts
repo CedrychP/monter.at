@@ -134,11 +134,11 @@ export const sitemapGroups: SitemapGroup[] = [
       { label: "Garantieverlängerung", href: "/garantieverlaengerung" },
       { label: "Altgeräteentsorgung", href: "/altgeraeteentsorgung" },
       { label: "Geräte-Retter-Prämie", href: "/geraete-retter-praemie" },
-      { label: "Gerätekauf", href: "/geraetekauf" },
-      { label: "MONTER GOLD", href: "/monter-gold" },
-      { label: "Aktionskatalog", href: "/aktionskatalog" },
-      { label: "Kurse", href: "/kurse" },
-      { label: "Veranstaltungen", href: "/veranstaltungen" }
+      { label: "Gerätekauf · Bald", href: "/geraetekauf" },
+      { label: "MONTER GOLD · Bald", href: "/monter-gold" },
+      { label: "Aktionskatalog · Bald", href: "/aktionskatalog" },
+      { label: "Kurse · Bald", href: "/kurse" },
+      { label: "Veranstaltungen · Bald", href: "/veranstaltungen" }
     ]
   },
   {

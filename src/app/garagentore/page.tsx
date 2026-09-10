@@ -53,13 +53,18 @@ const faqs: HubFaqItem[] = [
     question: "Wie schnell sind Sie bei einem blockierten Tor vor Ort?",
     answer:
       "Ein blockiertes Tor behandeln wir vorrangig, weil damit oft ein Fahrzeug eingeschlossen ist. Rufen Sie in solchen Fällen direkt an — telefonisch klären wir Fehlerbild und den nächstmöglichen Termin sofort."
+  },
+  {
+    question: "Reparieren Sie Garagentore in ganz Wien?",
+    answer:
+      "Ja — alle Bezirke, plus das nähere Niederösterreich. Sektionaltor, Schwingtor, Rolltor, Holz- und Designtore. Nennen Sie Torart und Antriebsmarke, dann wissen wir, welche Teile wir mitbringen."
   }
 ];
 
 export const metadata: Metadata = buildMetadata({
-  title: "Garagentor Reparatur Wien | MONTER Service",
+  title: "Garagentore Wien | Reparatur & Service | MONTER",
   description:
-    "Garagentor Reparatur in Wien & NÖ: Federbruch, Federwechsel, Torantriebe, Motoren, Laufrollen, Schienen und Wartung. Sektionaltor, Schwingtor, Rolltor — markenoffen, schnell vor Ort.",
+    "Garagentore Wien: Reparatur für Sektionaltor, Schwingtor und Rolltor. Feder, Antrieb, Laufrollen, Wartung — markenoffen in Wien und NÖ.",
   path: "/garagentore"
 });
 
@@ -67,8 +72,8 @@ export default function GaragentoreHubPage() {
   return (
     <InfoPageLayout
       eyebrow="Garagentore"
-      title="Garagentor Reparatur in Wien."
-      intro="Klemmender Antrieb, gebrochene Feder, lautes Laufverhalten oder ein Tor, das nicht mehr schließt? Wir prüfen Mechanik und Elektronik, justieren präzise und tauschen Verschleißteile — für sichere, leise und zuverlässige Tore in Wien und Niederösterreich. Unten finden Sie die einzelnen Bereiche im Detail."
+      title="Garagentore in Wien."
+      intro="Garagentore in Wien: klemmender Antrieb, gebrochene Feder, lautes Laufverhalten oder ein Tor, das nicht mehr schließt? Wir prüfen Mechanik und Elektronik, justieren und tauschen Verschleißteile — Sektionaltor, Schwingtor, Rolltor, markenoffen in Wien und Niederösterreich. Unten die einzelnen Bereiche im Detail."
       heroNote="Beschreiben Sie Torart, Antrieb und Fehlerbild — wir kommen schnell vor Ort."
       primaryCta={{ label: "Garagentor-Reparatur anfragen", href: "/reparatur-buchen" }}
       afterHero={

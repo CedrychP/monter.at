@@ -81,14 +81,14 @@ export function buildSearchIndex(): SearchEntry[] {
       description: "Übersicht aller Gerätearten — Waschmaschine bis Fernseher.",
       href: "/haushaltsgeraete",
       category: "Haushaltsgeräte",
-      keywords: "haushaltsgeräte reparatur übersicht geräte waschmaschine backofen"
+      keywords: "haushaltsgeräte reparatur wien elektrogeräte reparaturdienst altgeräte"
     },
     {
-      title: "Garagentor Reparatur Wien",
+      title: "Garagentore Wien",
       description: "Tore, Antriebe, Federn, Laufwerk und Wartung im Überblick.",
       href: "/garagentore",
       category: "Garagentore",
-      keywords: "garagentor reparatur übersicht antrieb feder sektionaltor rolltor"
+      keywords: "garagentore wien garagentor reparatur übersicht antrieb feder sektionaltor rolltor"
     },
     {
       title: "Klimagerät Reparatur Wien",
@@ -99,10 +99,10 @@ export function buildSearchIndex(): SearchEntry[] {
     },
     {
       title: "Marken — Reparatur nach Hersteller",
-      description: "Bosch, Miele, Siemens, AEG, Beko, Gorenje und viele weitere.",
+      description: "Bosch, Miele, Siemens, AEG, Bauknecht, Beko, Gorenje und viele weitere.",
       href: "/marken",
       category: "Marken",
-      keywords: "marken hersteller reparatur bosch miele siemens aeg beko gorenje"
+      keywords: "marken hersteller reparatur bosch miele siemens aeg bauknecht beko gorenje"
     },
     {
       title: "Einsatzgebiete in Österreich",
@@ -131,6 +131,20 @@ export function buildSearchIndex(): SearchEntry[] {
       href: "/ueber-uns",
       category: "Unternehmen",
       keywords: "über uns unternehmen tcc tech craft"
+    },
+    {
+      title: "Geräteretterprämie Österreich",
+      description: "50 % und max. 130 € auf die Reparatur — Ablauf und Einlösen.",
+      href: "/geraete-retter-praemie",
+      category: "Förderung",
+      keywords: "geräteretterprämie geräteretterprämie österreich geräte-retter-prämie reparaturbonus förderung"
+    },
+    {
+      title: "Lieferservice Großgeräte Wien",
+      description: "Lieferung, Anschluss, Aufbau und Altgeräte-Mitnahme.",
+      href: "/lieferung-montage",
+      category: "Service",
+      keywords: "lieferservice großgeräte anschluss aufbau lieferung montage altgerät trockner"
     }
   ];
   return [

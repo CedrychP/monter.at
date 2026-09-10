@@ -25,13 +25,13 @@ export const appliancePages: AppliancePage[] = [
     title: "Waschmaschine Reparatur Wien",
     metaTitle: "Waschmaschine Reparatur Wien | MONTER Service",
     description:
-      "Waschmaschine pumpt nicht ab, schleudert nicht oder zeigt E18? Reparatur in Wien, klar kalkuliert inkl. MwSt. Jetzt anrufen.",
-    h1: "Waschmaschine Reparatur in Wien",
+      "Waschmaschine Reparatur Wien: pumpt nicht ab, schleudert nicht oder zeigt E18? In der Nähe vor Ort, klar kalkuliert inkl. MwSt.",
+    h1: "Waschmaschine Reparatur Wien.",
     category: "Waschmaschine",
     short:
       "Pumpt nicht ab, schleudert nicht, verliert Wasser oder zeigt einen Fehlercode.",
     intro:
-      "Wenn die Waschmaschine nicht abpumpt, nicht schleudert, Wasser verliert oder einen Fehlercode zeigt, zählt eine schnelle und ehrliche Einschätzung. Wir reparieren markenoffen in ganz Wien und im nahen Niederösterreich — bei Privathaushalten, Vermietern und Hausverwaltungen. In den meisten Fällen steckt hinter dem Fehlerbild ein einzelnes Verschleißteil, das sich gezielt tauschen lässt.",
+      "Waschmaschine Reparatur in Wien: Wenn das Gerät nicht abpumpt, nicht schleudert, Wasser verliert oder einen Fehlercode zeigt, zählt eine schnelle Einschätzung. Wir reparieren markenoffen in allen Bezirken und im nahen Umland — Bosch, Miele, Siemens, AEG und weitere. In den meisten Fällen steckt hinter dem Fehlerbild ein einzelnes Verschleißteil.",
     sections: [
       {
         title: "Pumpt nicht ab, schleudert nicht",
@@ -70,6 +70,16 @@ export const appliancePages: AppliancePage[] = [
         question: "Kommen Sie auch am selben Tag?",
         answer:
           "Bei akuten Ausfällen mit Wasseraustritt versuchen wir, einen Termin am selben oder am nächsten Werktag zu legen. Rufen Sie dafür bitte direkt an, statt das Formular zu nutzen — telefonisch können wir sofort einschätzen, wie dringend der Fall ist und welches Teil wir vorsorglich mitnehmen."
+      },
+      {
+        question: "Wer repariert Waschmaschinen in der Nähe?",
+        answer:
+          "Wir kommen zu Ihnen nach Hause in ganz Wien und ins nähere Niederösterreich. Die Reparatur findet vor Ort statt — Sie müssen das Gerät nicht in eine Werkstatt bringen. Rufen Sie an, dann sagen wir den nächsten freien Termin in Ihrem Bezirk."
+      },
+      {
+        question: "Reparieren Sie auch AEG Waschmaschinen in Wien?",
+        answer:
+          "Ja. AEG Waschmaschinen der Serien 6000 bis 9000 gehören zum Alltag: Ablauf, Türschloss, Kohlebürsten älterer Motoren und Heizung sind gut über die Electrolux-Gruppe beschaffbar. Die Modellnummer vom Typenschild reicht für eine erste Einschätzung."
       }
     ]
   },
@@ -78,13 +88,13 @@ export const appliancePages: AppliancePage[] = [
     title: "Geschirrspüler Reparatur Wien",
     metaTitle: "Geschirrspüler Reparatur Wien | MONTER Service",
     description:
-      "Geschirrspüler reinigt schlecht, bleibt nass oder zieht kein Wasser? Reparatur in Wien inkl. MwSt. Jetzt Termin anfragen.",
+      "Geschirrspüler Reparatur Wien und Spülmaschine: reinigt schlecht, bleibt nass oder zieht kein Wasser? Vor Ort, inkl. MwSt.",
     h1: "Geschirrspüler Reparatur in Wien",
     category: "Geschirrspüler",
     short:
       "Wasser bleibt stehen, Gerät heizt nicht, reinigt schlecht oder läuft aus.",
     intro:
-      "Ein defekter Geschirrspüler stört den Alltag sofort — und bei Einbaugeräten steht zusätzlich die Küche auf dem Spiel. Ob Wasser stehen bleibt, das Programm kalt bleibt, das Geschirr nicht sauber wird oder Wasser unter dem Gerät austritt: Wir grenzen die Ursache ein, statt auf Verdacht zu tauschen. Markenoffen in Wien und im nahen Niederösterreich.",
+      "Geschirrspüler Reparatur in Wien — umgangssprachlich oft Spülmaschine: Wenn Wasser stehen bleibt, das Programm kalt bleibt, das Geschirr nicht sauber wird oder Wasser unter dem Gerät austritt, steht bei Einbaugeräten zusätzlich die Küche auf dem Spiel. Wir grenzen die Ursache ein, statt auf Verdacht zu tauschen. Markenoffen, auch AEG und Bauknecht, in Wien und im nahen Niederösterreich.",
     sections: [
       {
         title: "Wasser bleibt stehen oder läuft nicht ab",
@@ -123,6 +133,16 @@ export const appliancePages: AppliancePage[] = [
         question: "Muss das Einbaugerät für die Reparatur ausgebaut werden?",
         answer:
           "Oft nicht — Sieb, Sprüharme, Ablaufpumpe und Türdichtung sind von vorne erreichbar. Für Arbeiten an Umwälzpumpe, Heizung oder Bodenwanne ziehen wir das Gerät fachgerecht aus der Nische und bauen es danach wieder mit Wasser-, Abwasser- und Stromanschluss ein."
+      },
+      {
+        question: "Wer repariert Geschirrspüler bzw. die Spülmaschine in der Nähe?",
+        answer:
+          "Wir reparieren Geschirrspüler und Spülmaschinen vor Ort in Wien und im Umland. Sie müssen das Einbaugerät nicht selbst ausbauen. Rufen Sie an — wir sagen den nächsten Termin in Ihrem Bezirk und welche Teile wir mitbringen."
+      },
+      {
+        question: "Reparieren Sie AEG- und Bauknecht-Geschirrspüler?",
+        answer:
+          "Ja. AEG-Geräte teilen sich viele Teile mit Electrolux und Zanussi; Bauknecht hängt an der Whirlpool-Teilewelt. Beides ist bei Pumpen, Ventilen, Heizung und Türdichtung in der Regel gut beschaffbar. Die Modellnummer vom Typenschild klärt die Lage vorab."
       }
     ]
   },
@@ -176,6 +196,11 @@ export const appliancePages: AppliancePage[] = [
         question: "Reparieren Sie auch Glaskeramik- und Induktionskochfelder?",
         answer:
           "Ja, wenn die Ursache in Elektronik, Sensortasten, Spulen oder Lüfter liegt. Ein gesprungenes oder gebrochenes Glaskeramikfeld ist dagegen fast immer unwirtschaftlich, weil das Glas als komplette Baugruppe geliefert wird."
+      },
+      {
+        question: "Gibt es eine Backofen-Reparatur in der Nähe?",
+        answer:
+          "Ja — wir kommen zu Ihnen nach Hause in ganz Wien und ins nähere Niederösterreich. Einbaubacköfen bleiben in der Küche; wir arbeiten in der Nische oder bauen das Gerät fachgerecht aus, wenn der Zugang es verlangt. Rufen Sie an, dann legen wir den Termin in Ihrem Bezirk."
       }
     ]
   },
@@ -184,7 +209,7 @@ export const appliancePages: AppliancePage[] = [
     title: "Trockner Reparatur Wien",
     metaTitle: "Trockner Reparatur Wien | MONTER Service",
     description:
-      "Trockner braucht zu lange oder die Wäsche bleibt feucht? Filter, Sensor und Wärmepumpe prüfen wir in Wien. Jetzt anrufen.",
+      "Trockner Reparatur Wien: Wäsche bleibt feucht oder das Programm dauert zu lang? Filter, Sensor und Wärmepumpe prüfen. Jetzt anrufen.",
     h1: "Trockner Reparatur in Wien",
     category: "Trockner",
     short:
@@ -229,6 +254,11 @@ export const appliancePages: AppliancePage[] = [
         question: "Kann ich den Wärmetauscher selbst reinigen?",
         answer:
           "Den vorderen Bereich bei Geräten mit Wartungsklappe ja, vorsichtig und ohne die Lamellen zu verbiegen. Der tiefer liegende Teil des Pakets ist ohne Demontage nicht erreichbar — dort setzt sich der Belag aber gerade fest. Diesen Teil übernehmen wir beim Termin mit."
+      },
+      {
+        question: "Ich brauche einen neuen Trockner mit Lieferung, Installation und Altgeräte-Mitnahme.",
+        answer:
+          "Wenn die Reparatur sich nicht mehr rechnet, übernehmen wir Lieferung, Anschluss und Mitnahme des alten Geräts in Wien. Die Details stehen auf der Seite Lieferung & Montage — für die Reparatur selbst rufen Sie zuerst an, oft reicht eine Reinigung."
       }
     ]
   },
@@ -237,13 +267,13 @@ export const appliancePages: AppliancePage[] = [
     title: "Kühlschrank Reparatur Wien",
     metaTitle: "Kühlschrank Reparatur Wien | MONTER Service",
     description:
-      "Kühlschrank kühlt zu schwach, vereist oder tropft? Dichtung, Abtauung und Kältekreis in Wien prüfen. Jetzt anrufen.",
+      "Kühlschrank Reparatur Wien: kühlt zu schwach, vereist oder tropft? Dichtung, Abtauung und Kältekreis vor Ort prüfen. In der Nähe anrufen.",
     h1: "Kühlschrank Reparatur in Wien",
     category: "Kühlschrank",
     short:
       "Kühlt zu schwach, vereist stark oder der Kompressor läuft ungewöhnlich.",
     intro:
-      "Wenn ein Kühlschrank nicht richtig kühlt, geht es zuerst um die Lebensmittel und dann um das Gerät. Wichtig ist eine schnelle Einordnung: Temperatur, Türdichtung, Vereisung, Laufverhalten des Kompressors. Vieles davon lässt sich am Telefon vorab eingrenzen, damit wir mit dem passenden Teil kommen — in ganz Wien und im nahen Niederösterreich.",
+      "Kühlschrank Reparatur in Wien: Wenn das Gerät nicht richtig kühlt, geht es zuerst um die Lebensmittel. Wichtig ist eine schnelle Einordnung — Temperatur, Türdichtung, Vereisung, Laufverhalten des Kompressors. Vieles davon lässt sich am Telefon vorab eingrenzen, damit wir mit dem passenden Teil kommen. In allen Bezirken und im nahen Niederösterreich, auch AEG.",
     sections: [
       {
         title: "Kühlt zu schwach oder vereist",
@@ -282,21 +312,31 @@ export const appliancePages: AppliancePage[] = [
         question: "Der Kühlschrank läuft ohne Pause. Ist der Kompressor defekt?",
         answer:
           "Nicht zwangsläufig. Häufiger sind eine verhärtete Türdichtung, eine gestörte Abtauung, ein defekter Fühler oder ein verstaubter Verflüssiger — bei Geräten in engen Nischen auch einfach fehlende Luftzufuhr. Diese Punkte prüfen wir zuerst, weil sie günstig zu beheben sind."
+      },
+      {
+        question: "Gibt es Kühlschrank-Reparatur in der Nähe?",
+        answer:
+          "Ja. Wir kommen zu Ihnen nach Hause in Wien und ins Umland — das Gerät bleibt stehen, der Transport entfällt. Ausfälle mit Verderbrisiko behandeln wir vorrangig. Rufen Sie an, dann sagen wir den nächsten Termin in Ihrem Bezirk."
+      },
+      {
+        question: "Reparieren Sie auch AEG Kühlschränke?",
+        answer:
+          "Ja. AEG Kühlgeräte teilen Plattformen mit Electrolux; Dichtungen, Fühler, Lüfter und Abtauheizung sind in der Regel gut verfügbar. Den Kältekreis rechnen wir vorher ehrlich — bei älteren Geräten ist der Austausch oft die bessere Wahl."
       }
     ]
   },
   {
     slug: "tiefkuehl-reparatur-wien",
-    title: "Tiefkühl Reparatur Wien",
-    metaTitle: "Tiefkühl Reparatur Wien | MONTER Service",
+    title: "Gefrierschrank & Tiefkühl Reparatur Wien",
+    metaTitle: "Gefrierschrank Reparatur Wien | Tiefkühl | MONTER",
     description:
-      "Tiefkühlgerät alarmiert oder taut an? Abtauung, Dichtung und Temperatur in Wien vorrangig prüfen. Jetzt anrufen.",
-    h1: "Tiefkühl Reparatur in Wien",
-    category: "Tiefkühlgerät",
+      "Gefrierschrank Reparatur Wien: Tiefkühlschrank oder -truhe alarmiert oder taut an? Abtauung und Dichtung vorrangig prüfen. Jetzt anrufen.",
+    h1: "Gefrierschrank- und Tiefkühl-Reparatur in Wien",
+    category: "Gefrierschrank & Tiefkühl",
     short:
       "Temperatur steigt, Alarm meldet sich oder das Gerät fällt ganz aus.",
     intro:
-      "Bei Tiefkühlgeräten zählt Zeit: Steigt die Temperatur oder meldet das Gerät Alarm, geht es zuerst um das Gefriergut und dann um die Reparatur. Wir behandeln solche Anfragen vorrangig, weil der Warenwert im Gerät oft höher ist als die Reparatur selbst — für Haushalte in Wien wie für Gastronomie und Ordinationen.",
+      "Gefrierschrank-Reparatur in Wien: Steigt die Temperatur oder meldet das Tiefkühlgerät Alarm, geht es zuerst um das Gefriergut. Wir behandeln Anfragen zu Gefrierschrank, Gefriertruhe und Einbau-Tiefkühl vorrangig, weil der Warenwert oft höher ist als die Reparatur — für Haushalte in Wien wie für Gastronomie und Ordinationen.",
     sections: [
       {
         title: "Sofortmaßnahmen bei Temperaturanstieg",
@@ -335,6 +375,11 @@ export const appliancePages: AppliancePage[] = [
         question: "Übernehmen Sie auch Gefriertruhen in Gastronomie und Ordinationen?",
         answer:
           "Ja. Gewerbliche Geräte laufen mit höherer Taktung und haben oft eine eigene Teilenummerlogik. Für Betriebe mit sensibler Ware stimmen wir auf Wunsch Wartungsintervalle ab, statt auf den Ausfall zu warten."
+      },
+      {
+        question: "Reparieren Sie Gefrierschränke und Gefriertruhen?",
+        answer:
+          "Ja — freistehenden Gefrierschrank, Einbau-Tiefkühl und Truhe. Das Vorgehen ist dasselbe: Temperatur sichern, Ursache eingrenzen, dann Dichtung, Abtauung oder Kältekreis. Rufen Sie bei Alarm sofort an, nicht erst wenn die Ware angetaut ist."
       }
     ]
   },

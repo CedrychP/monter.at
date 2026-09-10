@@ -1,3 +1,5 @@
+import type { HubFaqItem } from "../HubBlocks";
+
 /**
  * Markenseiten mit herstellerspezifischem Inhalt.
  *
@@ -30,6 +32,10 @@ export type BrandPage = {
   partsNote: string;
   errorCodes: BrandErrorCode[];
   errorCodesReviewed: boolean;
+  /** Optionaler H1; ohne Angabe: „{Marke} Reparatur in Wien.“ */
+  h1?: string;
+  /** Markenspezifische FAQ — nur setzen, wenn die Fragen wirklich zur Marke gehören. */
+  faq?: HubFaqItem[];
   sections: {
     title: string;
     body: string;
@@ -88,9 +94,10 @@ export const brandPages: BrandPage[] = [
   {
     slug: "miele-reparatur-wien",
     brand: "Miele",
-    metaTitle: "Miele Reparatur Wien | W1, T1 & G7000 Service | MONTER",
+    h1: "Miele Service in Wien.",
+    metaTitle: "Miele Service Wien | Reparatur W1, T1 & G7000 | MONTER",
     description:
-      "Miele Reparatur in Wien: W1 Waschmaschinen, T1 Trockner, G-Serie Geschirrspüler. Fehlercodes wie F11, F19 und F50, lange Ersatzteilverfügbarkeit.",
+      "Miele Service in Wien: Reparatur für W1 Waschmaschinen, T1 Trockner und G-Serie Geschirrspüler. Fehlercodes wie F11, F19 und F50, lange Ersatzteilverfügbarkeit.",
     hubTeaser:
       "W1, T1 und G-Serie — lange Teileversorgung, Reparatur lohnt oft auch nach 15 Jahren.",
     intro:
@@ -183,9 +190,9 @@ export const brandPages: BrandPage[] = [
   {
     slug: "aeg-reparatur-wien",
     brand: "AEG",
-    metaTitle: "AEG Reparatur Wien | Serie 6000–9000 & Fehlercodes | MONTER",
+    metaTitle: "AEG Reparatur Wien | Trockner, Waschmaschine & Service | MONTER",
     description:
-      "AEG Haushaltsgeräte Reparatur in Wien: Serie 6000 bis 9000, ProSense und ÖKOMix, Fehlercodes wie E10, E20 und E40. Ersatzteile über die Electrolux-Gruppe.",
+      "AEG Reparatur Wien: Trockner, Waschmaschine, Geschirrspüler und Kühlgeräte. Serie 6000–9000, Fehlercodes E10, E20, E40. Teile über Electrolux.",
     hubTeaser:
       "Serie 6000 bis 9000, Electrolux-Plattform mit Zanussi und Electrolux-Geräten.",
     intro:
@@ -224,6 +231,23 @@ export const brandPages: BrandPage[] = [
         title: "Reparatur oder Austausch bei AEG",
         body:
           "Bei Geräten der Serien 6000 bis 9000 lohnt sich eine Reparatur in der Regel, solange Bottich, Lager und Gehäuse in Ordnung sind. Kritisch wird es bei Lagerschäden in geschlossenen Bottichen und bei Kombinationen aus Elektronik- und Motorschaden. Wir nennen den Aufwand vor der Teilebestellung und vergleichen ihn offen mit dem Preis eines gleichwertigen Neugeräts."
+      }
+    ],
+    faq: [
+      {
+        question: "Reparieren Sie AEG Trockner in Wien?",
+        answer:
+          "Ja. Die häufigste Ursache bei AEG Wärmepumpentrocknern ist ein zugesetzter Luftweg, nicht ein defekter Kältekreis. Wir reinigen Filter und Verdampfer und messen danach nach. Kondensatpumpe, Sensor und Riemen sind über die Electrolux-Gruppe gut beschaffbar."
+      },
+      {
+        question: "Was bedeuten die AEG Fehlercodes E10, E20 und E40?",
+        answer:
+          "E10 betrifft den Wasserzulauf, E20 den Ablauf, E40 die Türverriegelung. Der Code benennt den Bereich, nicht automatisch das defekte Teil. Notieren Sie den Code und die Modellnummer — damit grenzen wir am Telefon schon ein, welches Teil wir mitbringen."
+      },
+      {
+        question: "Sind AEG-Ersatzteile noch verfügbar?",
+        answer:
+          "Bei den Serien 6000 bis 9000 in der Regel ja, oft auch als baugleiches Electrolux- oder Zanussi-Teil. Bei sehr alten Geräten vor der Serien-Nomenklatur prüfen wir die Lage vorab anhand des Typenschilds."
       }
     ]
   },
@@ -329,6 +353,71 @@ export const brandPages: BrandPage[] = [
         title: "Ganze Gerätelinien und Hausverwaltungen",
         body:
           "Weil Gorenje in Wiener Wohnanlagen oft als komplette Küchenausstattung verbaut ist, betreuen wir für Hausverwaltungen regelmäßig mehrere gleiche Geräte. Das hat einen praktischen Vorteil: Wir kennen die typischen Schwachstellen der Baureihe, können Termine bündeln und häufig benötigte Teile gleich in passender Stückzahl mitbringen."
+      }
+    ]
+  },
+  {
+    slug: "bauknecht-reparatur-wien",
+    brand: "Bauknecht",
+    metaTitle: "Bauknecht Reparaturservice Wien | Geschirrspüler & Hausgeräte | MONTER",
+    description:
+      "Bauknecht Reparaturservice in Wien: Geschirrspüler, Waschmaschine, Trockner und Kühlgeräte. Whirlpool-Teilewelt, Diagnose vor dem Teiletausch.",
+    hubTeaser:
+      "Whirlpool-Gruppe — verbreitete Einbaugeräte, Teile oft baugleich mit Whirlpool und Ignis.",
+    intro:
+      "Bauknecht ist in Wiener Einbauküchen häufig vertreten, besonders bei Geschirrspülern und Waschmaschinen aus dem Möbelhandel. Die Marke gehört zur Whirlpool-Gruppe und teilt Plattformen mit Whirlpool, Ignis und Privileg — das erweitert die Ersatzteilbasis. Wir sind Reparaturservice für Bauknecht in Wien und im nahen Niederösterreich.",
+    profile:
+      "Bauknecht ist eine Marke der Whirlpool Corporation. Viele Baugruppen — Pumpen, Türschlösser, Heizungen, Elektronikplattformen — werden markenübergreifend mit Whirlpool, Ignis und teilweise Privileg eingesetzt. Wenn ein Bauknecht-Teil nicht mehr unter der Originalnummer läuft, lässt sich deshalb oft ein baugleiches Whirlpool-Teil verwenden. Die Fehlercode-Systematik folgt weitgehend der Whirlpool-Gruppe.",
+    modelSeries: [
+      "Einbaugeschirrspüler aus Küchenzeilen des Möbelhandels",
+      "Waschmaschinen mit 6th Sense bzw. Sensorprogrammen",
+      "Wärmepumpen- und Kondenstrockner",
+      "Einbau-Kühl-Gefrier-Kombinationen",
+      "Schwestermarken mit geteilter Technik: Whirlpool, Ignis, Privileg"
+    ],
+    partsNote:
+      "Ersatzteillage bei aktuellen Baureihen solide, weil die Whirlpool-Gruppe Teile über mehrere Marken hinweg führt. Pumpen, Ventile, Heizungen, Türdichtungen und Schlösser sind in der Regel zügig lieferbar. Enger wird es bei älteren Elektronikmodulen und bei Design-Sichtteilen aus Einbauküchen — dort prüfen wir vor der Anfahrt Modell- und Seriennummer.",
+    errorCodes: [
+      { code: "F06", meaning: "Waschmaschine: Türverriegelung meldet die Tür nicht als geschlossen" },
+      { code: "F08", meaning: "Waschmaschine: Heizkreis gestört — Programm bleibt kalt" },
+      { code: "F11", meaning: "Waschmaschine: Wasser wird nicht abgepumpt — Laugenpumpe oder Sieb" },
+      { code: "F13", meaning: "Waschmaschine: Temperaturfühler fehlt oder unplausibel" },
+      { code: "F6", meaning: "Geschirrspüler: Ablaufweg blockiert — Pumpe, Sieb oder Schlauch" },
+      { code: "F8", meaning: "Geschirrspüler: Wasserzulauf gestört — Hahn, Sieb oder Ventil" }
+    ],
+    errorCodesReviewed: true,
+    sections: [
+      {
+        title: "Typische Fehlerbilder bei Bauknecht",
+        body:
+          "Beim Geschirrspüler sehen wir vor allem Ablauf, Umwälzpumpe, Heizung und Türdichtung — oft in Einbaunischen, in denen das Gerät selten gewartet wurde. Waschmaschinen zeigen Ablauf, Türschloss und Heizung. Trockner brauchen länger, weil Filter und Wärmetauscher zugesetzt sind. Kühlgeräte fallen über Abtauung, Dichtung und Lüfter auf."
+      },
+      {
+        title: "Reparaturservice über die Whirlpool-Teilewelt",
+        body:
+          "Der Vorteil der Konzernzugehörigkeit: Ein Bauknecht-Geschirrspüler teilt viele Bauteile mit Whirlpool. Das hält Reparaturen länger wirtschaftlich, als die Marke allein vermuten lässt. Elektronik mit markenspezifischer Software tauschen wir nur gegen das passende Originalteil."
+      },
+      {
+        title: "Einbaugeräte aus dem Möbelhandel",
+        body:
+          "Viele Bauknecht-Geräte stehen als Einbau in Küchenzeilen. Ein Austausch bedeutet Front, Nische und Sockel — deshalb bleibt die Reparatur hier oft die bessere Wahl. Wir bauen fachgerecht aus und wieder ein, inklusive Wasser-, Abwasser- und Stromanschluss."
+      }
+    ],
+    faq: [
+      {
+        question: "Gibt es einen Bauknecht Reparaturservice in Wien?",
+        answer:
+          "Ja. Wir reparieren Bauknecht markenoffen vor Ort — Geschirrspüler, Waschmaschine, Trockner und Kühlgeräte. Kein Vertragswerkstatt-Zwang: Nach der Herstellergarantie ist ein markenoffener Betrieb meist schneller."
+      },
+      {
+        question: "Sind Bauknecht-Ersatzteile noch zu bekommen?",
+        answer:
+          "Bei gängigen Verschleißteilen ja, oft als baugleiches Whirlpool-Teil. Für die Vorabklärung brauchen wir die Modellnummer vom Typenschild. Sichtteile aus alten Einbauküchen können länger dauern oder unwirtschaftlich sein."
+      },
+      {
+        question: "Reparieren Sie Bauknecht Geschirrspüler als Einbaugerät?",
+        answer:
+          "Ja. Sieb, Sprüharme und Ablaufpumpe erreichen wir oft von vorne; für Bodenwanne und Heizung ziehen wir das Gerät aus der Nische. Die Modellnummer klärt vorab, welche Teile zur Baureihe passen."
       }
     ]
   }

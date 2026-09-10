@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import InfoPageLayout, { type InfoCard, type InfoSection } from "../InfoPageLayout";
+import { HubFaq, type HubFaqItem } from "../HubBlocks";
 import { buildMetadata } from "../pageMetadata";
 
 const cards: InfoCard[] = [
@@ -25,7 +26,7 @@ const sections: InfoSection[] = [
   {
     title: "Was ist die Geräte-Retter-Prämie?",
     body:
-      "Die Geräte-Retter-Prämie ist das Nachfolgemodell des österreichischen Reparaturbonus. Sie unterstützt die Reparatur von Elektro- und Elektronikgeräten finanziell und macht Reparieren attraktiver als Wegwerfen."
+      "Die Geräte-Retter-Prämie — oft Geräteretterprämie geschrieben — ist das Nachfolgemodell des österreichischen Reparaturbonus. Sie unterstützt die Reparatur von Elektro- und Elektronikgeräten finanziell und macht Reparieren attraktiver als Wegwerfen."
   },
   {
     title: "So funktioniert es",
@@ -44,10 +45,33 @@ const sections: InfoSection[] = [
   }
 ];
 
+const faqs: HubFaqItem[] = [
+  {
+    question: "Was ist die Geräteretterprämie?",
+    answer:
+      "Die Geräte-Retter-Prämie — oft Geräteretterprämie geschrieben — ist das Nachfolgemodell des österreichischen Reparaturbonus. Sie fördert die Reparatur von Elektro- und Elektronikgeräten mit 50 % der Brutto-Reparaturkosten, maximal 130 € pro Reparatur."
+  },
+  {
+    question: "Wie hoch ist die Geräteretterprämie in Österreich?",
+    answer:
+      "50 % der Bruttoreparatur, gedeckelt bei 130 €. Beispiel: Kostet die Reparatur 200 €, werden 100 € gefördert. Liegt die Rechnung über 260 €, bleiben 130 € der Höchstbetrag."
+  },
+  {
+    question: "Wie läuft der Antrag ab?",
+    answer:
+      "Sie beantragen den Bon online, bringen ihn zum Termin mit oder lösen ihn über uns als teilnehmenden Betrieb ein. Der Förderbetrag wird direkt von der Rechnung abgezogen. Die genauen Schritte der laufenden Periode nennen wir bei der Anfrage."
+  },
+  {
+    question: "Für welche Geräte gilt die Prämie?",
+    answer:
+      "Für förderfähige Elektro- und Elektronikgeräte von Privatpersonen — typisch Waschmaschine, Geschirrspüler, Kühlschrank, Trockner, Backofen. Ob Ihr Gerät in der aktuellen Periode dabei ist, klären wir vor der Reparatur."
+  }
+];
+
 export const metadata: Metadata = buildMetadata({
-  title: "Geräte-Retter-Prämie nutzen | Reparaturförderung Wien | MONTER",
+  title: "Geräteretterprämie Österreich | Geräte-Retter-Prämie | MONTER",
   description:
-    "Geräte-Retter-Prämie: bis zu 50 % und max. 130 € Förderung auf die Reparatur von Elektro- und Elektronikgeräten. Nachfolger des Reparaturbonus — wir helfen beim Einlösen in Wien.",
+    "Geräteretterprämie Österreich: 50 % und max. 130 € auf die Reparatur. Ablauf, Höhe und Einlösen der Geräte-Retter-Prämie in Wien — Nachfolger des Reparaturbonus.",
   path: "/geraete-retter-praemie"
 });
 
@@ -56,7 +80,7 @@ export default function GeraeteRetterPraemiePage() {
     <InfoPageLayout
       eyebrow="Förderung"
       title="Geräte-Retter-Prämie nutzen."
-      intro="Reparieren lohnt sich doppelt: Mit der Geräte-Retter-Prämie — dem Nachfolger des Reparaturbonus — sparen Sie bis zu 50 % und maximal 130 € auf die Reparatur Ihrer Elektrogeräte. Wir helfen Ihnen beim Einlösen."
+      intro="Geräteretterprämie in Österreich: Mit der Geräte-Retter-Prämie — dem Nachfolger des Reparaturbonus — sparen Sie 50 % und maximal 130 € auf die Reparatur Ihrer Elektrogeräte. Hier stehen Was, Höhe und Ablauf. Wir helfen beim Einlösen in Wien."
       heroNote="Wir informieren Sie im Zuge der Anfrage über den aktuellen Förderstand."
       primaryCta={{ label: "Reparatur mit Prämie anfragen", href: "/reparatur-buchen" }}
       cardsEyebrow="Ihre Vorteile"
@@ -68,6 +92,12 @@ export default function GeraeteRetterPraemiePage() {
       sections={sections}
       closingTitle="Prämie nutzen & sparen."
       closingText="Beschreiben Sie uns Ihr Gerät und Fehlerbild — wir prüfen die Reparatur und unterstützen beim Einlösen der Prämie."
-    />
+    >
+      <HubFaq
+        eyebrow="Häufige Fragen"
+        title="Geräteretterprämie: kurz geklärt."
+        items={faqs}
+      />
+    </InfoPageLayout>
   );
 }

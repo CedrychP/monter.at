@@ -71,7 +71,7 @@ const faqs: HubFaqItem[] = [
 export const metadata: Metadata = buildMetadata({
   title: "Marken — Haushaltsgeräte Reparatur Wien | MONTER Service",
   description:
-    "Markenoffene Haushaltsgeräte-Reparatur in Wien: Bosch, Miele, Siemens, AEG, Beko, Gorenje und über 60 weitere Marken. Fehlercodes, Ersatzteillage und Termin klären.",
+    "Markenoffene Haushaltsgeräte-Reparatur in Wien: Bosch, Miele, Siemens, AEG, Bauknecht, Beko, Gorenje und über 60 weitere Marken. Fehlercodes, Ersatzteillage und Termin klären.",
   path: "/marken"
 });
 
@@ -80,7 +80,7 @@ export default function MarkenHubPage() {
     <InfoPageLayout
       eyebrow="Marken"
       title="Reparatur nach Marke."
-      intro="Wir reparieren Haushaltsgeräte markenoffen — von Bosch, Miele und Siemens über AEG, Beko und Gorenje bis zu Handelsmarken aus dem Möbelhandel. Für die häufigsten Marken finden Sie eigene Seiten mit typischen Fehlercodes, Modellreihen und Hinweisen zur Ersatzteillage."
+      intro="Wir reparieren Haushaltsgeräte markenoffen — von Bosch, Miele und Siemens über AEG, Bauknecht, Beko und Gorenje bis zu Handelsmarken aus dem Möbelhandel. Für die häufigsten Marken finden Sie eigene Seiten mit typischen Fehlercodes, Modellreihen und Hinweisen zur Ersatzteillage."
       heroNote="Nennen Sie Marke, Modellnummer und Fehlercode — damit lässt sich die Ersatzteillage vorab klären."
       primaryCta={{ label: "Reparatur anfragen", href: "/reparatur-buchen" }}
       afterHero={

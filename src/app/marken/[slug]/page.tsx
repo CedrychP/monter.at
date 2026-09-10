@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { buildMetadata } from "../../pageMetadata";
 import { localBusinessProviderRef, siteConfig } from "../../siteConfig";
+import { HubFaq } from "../../HubBlocks";
 import { brandPages, getBrandPage } from "../brands";
 import { brandDeviceCategories } from "../devices";
 import { isBrandDeviceEnriched } from "../brandDeviceContent";
@@ -107,7 +108,7 @@ export default async function BrandDetailPage({ params }: BrandPageProps) {
             <div className="reveal">
               <p className="cap-line tracking-eyebrow text-[color:var(--accent)]">Markenservice</p>
               <h1 className="font-display mt-8 text-balance text-5xl font-light leading-[1.02] tracking-tight sm:text-6xl lg:text-[5rem]">
-                {brand.brand} Reparatur in Wien.
+                {brand.h1 ?? `${brand.brand} Reparatur in Wien.`}
               </h1>
               <p className="mt-8 max-w-2xl text-[1.05rem] font-light leading-relaxed text-[color:var(--muted)]">
                 {brand.intro}
@@ -223,6 +224,14 @@ export default async function BrandDetailPage({ params }: BrandPageProps) {
           </div>
         </div>
       </section>
+
+      {brand.faq && brand.faq.length > 0 ? (
+        <HubFaq
+          eyebrow="Häufige Fragen"
+          title={`${brand.brand}: kurz beantwortet.`}
+          items={brand.faq}
+        />
+      ) : null}
 
       <section className="bg-[color:var(--bg-muted)] py-20 sm:py-24 lg:py-28">
         <div className="mx-auto max-w-[88rem] px-5 sm:px-8">

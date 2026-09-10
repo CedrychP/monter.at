@@ -8,7 +8,8 @@ const sections: InfoSection[] = [
   {
     title: "Was zur Haushaltsgeräte-Reparatur gehört",
     body:
-      "Wir reparieren Waschmaschinen, Waschtrockner, Trockner, Geschirrspüler, Backöfen und Herde, Kühl- und Tiefkühlgeräte, Dunstabzugshauben sowie Fernseher — freistehend und als Einbaugerät. Typische Arbeiten sind Pumpen und Ventile, Heizelemente und Sensoren, Türverriegelungen und Dichtungen, Lager und Antriebe sowie Steuerelektronik. Markenoffen für alle gängigen Hersteller."
+      "Wir sind Reparaturdienst für Elektro- und Haushaltsgeräte in Wien: Waschmaschine, Waschtrockner, Trockner, Geschirrspüler, Backofen und Herd, Kühl- und Tiefkühlgerät, Dunstabzug und Fernseher — freistehend und als Einbaugerät. Typische Arbeiten sind Pumpen und Ventile, Heizelemente und Sensoren, Türverriegelungen und Dichtungen, Lager und Antriebe sowie Steuerelektronik. Markenoffen, auch bei älteren Altgeräten, solange Ersatzteile verfügbar sind.",
+    link: { label: "Waschmaschine Reparatur Wien", href: "/haushaltsgeraete/waschmaschine-reparatur-wien" }
   },
   {
     title: "Erst Diagnose, dann Entscheidung",
@@ -18,8 +19,8 @@ const sections: InfoSection[] = [
   {
     title: "Einsatzgebiet Wien und Umgebung",
     body:
-      "Wir fahren alle Wiener Bezirke und das nähere Niederösterreich an — für Privathaushalte, Vermieter, Hausverwaltungen und Gewerbe. Bei Wasserschäden oder ausgefallenen Kühl- und Tiefkühlgeräten behandeln wir Anfragen vorrangig, weil dort jede Stunde zählt. Im Burgenland, in Oberösterreich, der Steiermark und Salzburg sind Techniker vor Ort im Einsatz.",
-    link: { label: "Alle Einsatzgebiete", href: "/einsatzgebiete" }
+      "Haushaltsgeräte Reparatur in Wien heißt bei uns alle 23 Bezirke plus das nähere Niederösterreich — Klosterneuburg, Vösendorf, Mödling und das übrige Umland gehören zum regelmäßigen Einsatz. Für Privathaushalte, Vermieter, Hausverwaltungen und Gewerbe. Bei Wasserschäden oder ausgefallenen Kühl- und Tiefkühlgeräten behandeln wir Anfragen vorrangig. Im Burgenland, in Oberösterreich, der Steiermark und Salzburg sind Techniker vor Ort im Einsatz.",
+    link: { label: "Klosterneuburg, Vösendorf & NÖ", href: "/einsatzgebiete/niederoesterreich" }
   },
   {
     title: "Preise und Ersatzteile",
@@ -53,13 +54,23 @@ const faqs: HubFaqItem[] = [
     question: "Wie schnell ist ein Termin möglich?",
     answer:
       "Das hängt von Bezirk und Auslastung ab. Dringende Fälle wie Wasseraustritt oder ein ausgefallenes Tiefkühlgerät ziehen wir vor — rufen Sie in solchen Fällen direkt an, das ist deutlich schneller als das Formular."
+  },
+  {
+    question: "Reparieren Sie auch alte Elektrogeräte und Altgeräte?",
+    answer:
+      "Ja, solange Ersatzteile beschaffbar sind. Bei älteren Haushaltsgeräten prüfen wir zuerst die Teilelage und rechnen den Aufwand gegen ein gleichwertiges Neugerät. Wenn die Reparatur sich nicht mehr lohnt, sagen wir das vor der Bestellung."
+  },
+  {
+    question: "Kommen Sie auch nach Klosterneuburg oder Vösendorf?",
+    answer:
+      "Ja. Klosterneuburg, Vösendorf und das nähere Wiener Umland fahren wir regelmäßig an — mit den niederösterreichischen Anfahrtssätzen, dafür oft ähnlich kurzfristig wie in Wien."
   }
 ];
 
 export const metadata: Metadata = buildMetadata({
-  title: "Haushaltsgeräte Reparatur Wien | MONTER Service",
+  title: "Haushaltsgeräte Reparatur Wien | MONTER",
   description:
-    "Haushaltsgeräte Reparatur in Wien & NÖ: Waschmaschine, Trockner, Geschirrspüler, Backofen, Herd, Kühl- und Tiefkühlgerät, Dunstabzug und Fernseher. Markenoffen, schnelle Diagnose.",
+    "Haushaltsgeräte Reparatur Wien: Elektrogeräte und Reparaturdienst für Waschmaschine, Geschirrspüler, Kühlschrank, Trockner, Backofen. Markenoffen, inkl. MwSt.",
   path: "/haushaltsgeraete"
 });
 
@@ -68,7 +79,7 @@ export default function HaushaltsgeraeteHubPage() {
     <InfoPageLayout
       eyebrow="Haushaltsgeräte"
       title="Haushaltsgeräte Reparatur in Wien."
-      intro="Waschmaschine, Geschirrspüler, Backofen, Kühlgerät, Trockner, Dunstabzug oder Fernseher — wir suchen den Fehler, nennen den Aufwand und reparieren markenoffen in Wien und Niederösterreich. Unten finden Sie jedes Gerät mit typischen Fehlerbildern im Detail."
+      intro="Haushaltsgeräte Reparatur Wien: Wir sind der Reparaturdienst für Elektrogeräte — Waschmaschine, Geschirrspüler, Backofen, Kühlgerät, Trockner, Dunstabzug oder Fernseher. Wir suchen den Fehler, nennen den Aufwand und reparieren markenoffen in Wien, Klosterneuburg, Vösendorf und dem näheren Niederösterreich. Unten jedes Gerät mit typischen Fehlerbildern."
       heroNote="Nennen Sie Gerät, Modellnummer und Fehlercode — dann bringen wir die passenden Teile gleich mit."
       primaryCta={{ label: "Reparatur anfragen", href: "/reparatur-buchen" }}
       afterHero={

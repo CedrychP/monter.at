@@ -68,6 +68,16 @@ export function buildMetadata({
   };
 }
 
+/** Platzhalterseiten: sichtbar und verlinkt, aber nicht im Index. */
+export const comingSoonRobots: Metadata["robots"] = {
+  index: false,
+  follow: true,
+  googleBot: {
+    index: false,
+    follow: true
+  }
+};
+
 /** Kürzt Fließtext auf eine Meta-Description ohne mitten im Wort zu schneiden. */
 export function clipMetaDescription(text: string, max = 158): string {
   const compact = text.replace(/\s+/g, " ").trim();

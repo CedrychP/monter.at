@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { buildMetadata } from "../pageMetadata";
+import { siteConfig } from "../siteConfig";
 
 const companyName = "Tech Craft Consulting GmbH";
 const serviceName = "MONTER Reparatur & Service";
@@ -14,6 +15,7 @@ const companyDetails = [
   { label: "Adresse", value: address },
   { label: "E-Mail", value: email },
   { label: "Telefon", value: phone },
+  { label: "Öffnungszeiten", value: siteConfig.openingHoursDisplay.join(" · ") },
   { label: "UID-Nummer", value: vatId }
 ];
 
