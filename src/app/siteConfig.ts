@@ -29,3 +29,10 @@ export const siteConfig = {
   googleReviewWriteUrl:
     "https://search.google.com/local/writereview?placeid=ChIJ9S11rAulWKgRdQLAhpk4EPc"
 };
+
+/** Stabile JSON-LD-ID — Service-Seiten verweisen darauf statt LocalBusiness zu kopieren. */
+export const localBusinessId = `${siteConfig.siteUrl}/#localbusiness`;
+
+export const localBusinessProviderRef = {
+  "@id": localBusinessId
+};

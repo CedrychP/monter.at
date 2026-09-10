@@ -11,7 +11,7 @@ export const weitereCities: LocationPage[] = [
     slug: "linz",
     name: "Linz",
     postalCodes: ["4020", "4030", "4040"],
-    metaTitle: "Gerätereparatur Linz | MONTER Service",
+    metaTitle: "Haushaltsgeräte Reparatur Linz | MONTER Service",
     description:
       "Haushaltsgeräte-Reparatur in Linz: Innenstadt, Urfahr, Ebelsberg und Umgebung. Techniker vor Ort, Diagnose vor dem Teiletausch, Kosten vorab geklärt.",
     h1: "Reparatur in Linz.",
@@ -67,7 +67,7 @@ export const weitereCities: LocationPage[] = [
     slug: "wels",
     name: "Wels",
     postalCodes: ["4600"],
-    metaTitle: "Gerätereparatur Wels | MONTER Service",
+    metaTitle: "Haushaltsgeräte Reparatur Wels | MONTER Service",
     description:
       "Haushaltsgeräte-Reparatur in Wels und Umgebung: Techniker vor Ort, Diagnose vor dem Teiletausch, Anfahrtskosten vorab am Telefon geklärt.",
     h1: "Reparatur in Wels.",
@@ -123,7 +123,7 @@ export const weitereCities: LocationPage[] = [
     slug: "steyr",
     name: "Steyr",
     postalCodes: ["4400"],
-    metaTitle: "Gerätereparatur Steyr | MONTER Service",
+    metaTitle: "Haushaltsgeräte Reparatur Steyr | MONTER Service",
     description:
       "Haushaltsgeräte-Reparatur in Steyr: historische Altstadt, Siedlungsgebiete und Umgebung. Techniker vor Ort, Kosten vor dem Termin geklärt.",
     h1: "Reparatur in Steyr.",
@@ -179,7 +179,7 @@ export const weitereCities: LocationPage[] = [
     slug: "graz",
     name: "Graz",
     postalCodes: ["8010", "8020", "8045", "8055"],
-    metaTitle: "Gerätereparatur Graz | MONTER Service",
+    metaTitle: "Haushaltsgeräte Reparatur Graz | MONTER Service",
     description:
       "Haushaltsgeräte-Reparatur in Graz: Altbau in Geidorf und Lend, Neubau in Reininghaus, Studentenwohnungen. Techniker vor Ort, Diagnose vor dem Teiletausch.",
     h1: "Reparatur in Graz.",
@@ -236,7 +236,7 @@ export const weitereCities: LocationPage[] = [
     name: "Stadt Salzburg",
     cityListName: "Salzburg",
     postalCodes: ["5020"],
-    metaTitle: "Gerätereparatur Salzburg Stadt | MONTER Service",
+    metaTitle: "Haushaltsgeräte Reparatur Salzburg Stadt | MONTER Service",
     description:
       "Haushaltsgeräte-Reparatur in der Stadt Salzburg: Altstadt, Lehen, Itzling und Aigen. Techniker vor Ort, Kosten vor dem Termin geklärt.",
     h1: "Reparatur in der Stadt Salzburg.",
@@ -292,7 +292,7 @@ export const weitereCities: LocationPage[] = [
     slug: "eisenstadt",
     name: "Eisenstadt",
     postalCodes: ["7000"],
-    metaTitle: "Gerätereparatur Eisenstadt | MONTER Service",
+    metaTitle: "Haushaltsgeräte Reparatur Eisenstadt | MONTER Service",
     description:
       "Haushaltsgeräte-Reparatur in Eisenstadt und Umgebung: Landeshauptstadt im Nordburgenland, im Ein-Stunden-Radius von Wien. Termine gut planbar.",
     h1: "Reparatur in Eisenstadt.",

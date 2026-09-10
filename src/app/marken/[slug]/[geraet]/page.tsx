@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { buildMetadata } from "../../../pageMetadata";
-import { siteConfig } from "../../../siteConfig";
+import { buildMetadata, clipMetaDescription } from "../../../pageMetadata";
+import { localBusinessProviderRef, siteConfig } from "../../../siteConfig";
 import { brandPages, getBrandPage } from "../../brands";
 import { brandDeviceCategories, getBrandDeviceCategory } from "../../devices";
 import { getBrandDeviceContent } from "../../brandDeviceContent";
@@ -38,8 +38,10 @@ export async function generateMetadata({ params }: BrandDevicePageProps): Promis
   const content = getBrandDeviceContent(brand.slug, device.slug);
   const title = `${brand.brand} ${device.label} Reparatur Wien | MONTER Service`;
   const description = content
-    ? `${brand.brand} ${device.label} Reparatur in Wien: typische Fehlerbilder, verbreitete Modellreihen und Ersatzteillage. Diagnose vor dem Teiletausch, ehrliche Einschätzung.`
-    : `${brand.brand} ${device.label} Reparatur in Wien und Umgebung: schnelle Einschätzung, klare Diagnose und telefonische Terminabstimmung.`;
+    ? clipMetaDescription(
+        `${brand.brand} ${device.label} Reparatur in Wien: ${content.intro}`
+      )
+    : `${brand.brand} ${device.label} Reparatur in Wien: ${device.short} Jetzt Termin anfragen.`;
 
   return buildMetadata({
     title,
@@ -88,18 +90,7 @@ export default async function BrandDevicePage({ params }: BrandDevicePageProps) 
         name: brand.brand
       },
       areaServed: servedAreasJsonLd,
-      provider: {
-        "@type": "LocalBusiness",
-        name: siteConfig.serviceName,
-        telephone: siteConfig.phoneHref,
-        address: {
-          "@type": "PostalAddress",
-          streetAddress: siteConfig.address.street,
-          postalCode: siteConfig.address.postalCode,
-          addressLocality: siteConfig.address.city,
-          addressCountry: siteConfig.address.country
-        }
-      }
+      provider: localBusinessProviderRef
     },
     {
       "@context": "https://schema.org",

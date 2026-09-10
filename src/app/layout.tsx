@@ -6,7 +6,7 @@ import { getLogoSrc } from "./logoAsset";
 import MobileActionBar from "./MobileActionBar";
 import SiteFooter from "./SiteFooter";
 import SiteHeader from "./SiteHeader";
-import { siteConfig } from "./siteConfig";
+import { localBusinessId, siteConfig } from "./siteConfig";
 import TelClickTracker from "./TelClickTracker";
 import "./globals.css";
 
@@ -16,7 +16,7 @@ const GTM_ID = "GTM-WPK8KT88";
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.siteUrl),
   title: {
-    default: "Haushaltsgeräte Reparatur Wien | MONTER Service",
+    default: "MONTER Reparatur & Service | Wien",
     template: "%s"
   },
   description:
@@ -31,11 +31,8 @@ export const metadata: Metadata = {
     "MONTER Reparatur und Service"
   ],
   authors: [{ name: "Tech Craft Consulting GmbH" }],
-  alternates: {
-    canonical: "/"
-  },
   openGraph: {
-    title: "Haushaltsgeräte Reparatur Wien | MONTER Service",
+    title: "MONTER Reparatur & Service | Wien",
     description:
       "Schnelle Haushaltsgeräte Reparatur in Wien für Privatkunden, Firmenkunden und Hausverwaltungen.",
     url: siteConfig.siteUrl,
@@ -56,13 +53,16 @@ export default function RootLayout({
 }>) {
   const organizationJsonLd = {
     "@context": "https://schema.org",
-    "@type": ["Organization", "LocalBusiness"],
+    "@type": ["LocalBusiness", "Organization"],
+    "@id": localBusinessId,
     name: siteConfig.serviceName,
     legalName: siteConfig.companyName,
     url: siteConfig.siteUrl,
     email: siteConfig.email,
     telephone: siteConfig.phoneHref,
     vatID: siteConfig.vatId,
+    image: `${siteConfig.siteUrl}/assets/logo.png`,
+    logo: `${siteConfig.siteUrl}/assets/logo.png`,
     address: {
       "@type": "PostalAddress",
       streetAddress: siteConfig.address.street,
@@ -71,6 +71,7 @@ export default function RootLayout({
       addressCountry: siteConfig.address.country
     },
     areaServed: ["Wien", "Niederösterreich", "Österreich"],
+    sameAs: Object.values(siteConfig.social),
     contactPoint: {
       "@type": "ContactPoint",
       telephone: siteConfig.phoneHref,
@@ -87,9 +88,7 @@ export default function RootLayout({
     url: siteConfig.siteUrl,
     inLanguage: "de-AT",
     publisher: {
-      "@type": "Organization",
-      name: siteConfig.serviceName,
-      url: siteConfig.siteUrl
+      "@id": localBusinessId
     },
     potentialAction: {
       "@type": "SearchAction",
@@ -106,6 +105,9 @@ export default function RootLayout({
   return (
     <html lang="de-AT" data-scroll-behavior="smooth">
       <head>
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://images.unsplash.com" />
         <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
         {/* Muss vor GTM und gtag laufen, sonst greifen die Consent-Defaults zu spät. */}
         <Script id="consent-default" strategy="beforeInteractive">

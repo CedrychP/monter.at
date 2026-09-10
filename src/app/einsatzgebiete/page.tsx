@@ -83,7 +83,7 @@ export default function EinsatzgebieteHubPage() {
       title="Wo wir arbeiten."
       intro="Wien und Niederösterreich sind unser Kerngebiet: alle 23 Bezirke und das Wiener Umland mit eigenem Team, festen Anfahrtssätzen und kurzfristigen Terminen. Dazu kommen Burgenland, Oberösterreich, Steiermark und Salzburg mit Technikern vor Ort. In Kärnten, Tirol und Vorarlberg sind wir derzeit nicht tätig — das sagen wir lieber vorab."
       heroNote="Nennen Sie Postleitzahl und Fehlerbild — wir sagen Ihnen sofort, ob und wann ein Termin möglich ist."
-      primaryCta={{ label: "Reparatur anfragen", href: "/#kontakt" }}
+      primaryCta={{ label: "Reparatur anfragen", href: "/reparatur-buchen" }}
       afterHero={
         <HubDetailLinks
           eyebrow="Kerngebiet"

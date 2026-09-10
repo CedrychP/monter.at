@@ -1,6 +1,6 @@
 import { Fragment, type ReactNode } from "react";
 import Link from "next/link";
-import { siteConfig } from "./siteConfig";
+import { localBusinessProviderRef, siteConfig } from "./siteConfig";
 import { servedAreas, type ServedArea } from "./einsatzgebiete/regionPages";
 
 type HubRef = {
@@ -61,18 +61,7 @@ export default function DetailPageLayout({
       name: jsonLd.name,
       description: jsonLd.description,
       areaServed: areas.map((area) => ({ "@type": area.type, name: area.name })),
-      provider: {
-        "@type": "LocalBusiness",
-        name: siteConfig.serviceName,
-        telephone: siteConfig.phoneHref,
-        address: {
-          "@type": "PostalAddress",
-          streetAddress: siteConfig.address.street,
-          postalCode: siteConfig.address.postalCode,
-          addressLocality: siteConfig.address.city,
-          addressCountry: siteConfig.address.country
-        }
-      }
+      provider: localBusinessProviderRef
     },
     {
       "@context": "https://schema.org",
@@ -172,7 +161,7 @@ export default function DetailPageLayout({
                 </div>
               ))}
             </div>
-            <Link href="/#kontakt" className="btn-primary mt-10 w-full">
+            <Link href="/reparatur-buchen" className="btn-primary mt-10 w-full">
               Anfrage stellen
             </Link>
             <Link

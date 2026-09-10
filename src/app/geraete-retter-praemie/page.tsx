@@ -58,7 +58,7 @@ export default function GeraeteRetterPraemiePage() {
       title="Geräte-Retter-Prämie nutzen."
       intro="Reparieren lohnt sich doppelt: Mit der Geräte-Retter-Prämie — dem Nachfolger des Reparaturbonus — sparen Sie bis zu 50 % und maximal 130 € auf die Reparatur Ihrer Elektrogeräte. Wir helfen Ihnen beim Einlösen."
       heroNote="Wir informieren Sie im Zuge der Anfrage über den aktuellen Förderstand."
-      primaryCta={{ label: "Reparatur mit Prämie anfragen", href: "/#kontakt" }}
+      primaryCta={{ label: "Reparatur mit Prämie anfragen", href: "/reparatur-buchen" }}
       cardsEyebrow="Ihre Vorteile"
       cardsTitle="So viel können Sie sparen."
       cardsIntro="Die wichtigsten Eckdaten der Förderung auf einen Blick."

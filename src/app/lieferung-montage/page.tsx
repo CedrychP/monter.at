@@ -53,7 +53,7 @@ export default function LieferungMontagePage() {
       title="Lieferung, Montage & Anschluss."
       intro="Neues Gerät gekauft? Wir liefern, montieren und schließen fachgerecht an — inklusive Funktionsprüfung und auf Wunsch Mitnahme des Altgeräts. Sauber, sicher und ohne Stress."
       heroNote="Nennen Sie Gerät, Aufstellort und Wunschtermin — wir koordinieren Lieferung und Montage."
-      primaryCta={{ label: "Lieferung & Montage anfragen", href: "/#kontakt" }}
+      primaryCta={{ label: "Lieferung & Montage anfragen", href: "/reparatur-buchen" }}
       cardsEyebrow="Leistungen"
       cardsTitle="Vom Karton zum laufenden Gerät."
       cardsIntro="Wir übernehmen den kompletten Ablauf — markenoffen in Wien und Umgebung."

@@ -60,7 +60,7 @@ export default function InfoPageLayout({
   intro,
   heroNote,
   comingSoon = false,
-  primaryCta = { label: "Reparatur buchen", href: "/#kontakt" },
+  primaryCta = { label: "Reparatur buchen", href: "/reparatur-buchen" },
   secondaryCta = { label: "Jetzt anrufen", href: `tel:${phoneHref}` },
   afterHero,
   cardsEyebrow,
@@ -222,7 +222,7 @@ export default function InfoPageLayout({
               <a href={`tel:${phoneHref}`} className="btn-on-dark">
                 {phoneDisplay}
               </a>
-              <Link href="/#kontakt" className="btn-on-dark-ghost">
+              <Link href="/reparatur-buchen" className="btn-on-dark-ghost">
                 Reparatur buchen
                 <ArrowIcon />
               </Link>

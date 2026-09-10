@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { buildMetadata } from "../../pageMetadata";
-import { siteConfig } from "../../siteConfig";
+import { localBusinessProviderRef, siteConfig } from "../../siteConfig";
 import { brandPages, getBrandPage } from "../brands";
 import { brandDeviceCategories } from "../devices";
 import { isBrandDeviceEnriched } from "../brandDeviceContent";
@@ -57,18 +57,7 @@ export default async function BrandDetailPage({ params }: BrandPageProps) {
       serviceType: `${brand.brand} Haushaltsgeräte Reparatur`,
       brand: { "@type": "Brand", name: brand.brand },
       areaServed: servedAreasJsonLd,
-      provider: {
-        "@type": "LocalBusiness",
-        name: siteConfig.serviceName,
-        telephone: siteConfig.phoneHref,
-        address: {
-          "@type": "PostalAddress",
-          streetAddress: siteConfig.address.street,
-          postalCode: siteConfig.address.postalCode,
-          addressLocality: siteConfig.address.city,
-          addressCountry: siteConfig.address.country
-        }
-      }
+      provider: localBusinessProviderRef
     },
     {
       "@context": "https://schema.org",

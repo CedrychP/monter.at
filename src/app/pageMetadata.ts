@@ -67,3 +67,14 @@ export function buildMetadata({
     ...(robots ? { robots } : {})
   };
 }
+
+/** Kürzt Fließtext auf eine Meta-Description ohne mitten im Wort zu schneiden. */
+export function clipMetaDescription(text: string, max = 158): string {
+  const compact = text.replace(/\s+/g, " ").trim();
+  if (compact.length <= max) return compact;
+
+  const slice = compact.slice(0, max - 1);
+  const lastSpace = slice.lastIndexOf(" ");
+  const cut = lastSpace > 80 ? slice.slice(0, lastSpace) : slice;
+  return `${cut.replace(/[.,;:–—-]\s*$/, "")}…`;
+}

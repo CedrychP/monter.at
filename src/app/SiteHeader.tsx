@@ -88,7 +88,7 @@ const additionalServiceLinks: NavLink[] = [
 ];
 
 const serviceNavLinks: NavLink[] = [
-  { label: "Reparatur buchen", href: "/#kontakt" },
+  { label: "Reparatur buchen", href: "/reparatur-buchen" },
   { label: "Ersatzteil gesucht?", href: "/ersatzteile" },
   { label: "Wartungsservice", href: "/wartungsservice" },
   { label: "Lieferung & Montage", href: "/lieferung-montage" }

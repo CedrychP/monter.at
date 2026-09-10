@@ -70,7 +70,7 @@ export default function GaragentoreHubPage() {
       title="Garagentor Reparatur in Wien."
       intro="Klemmender Antrieb, gebrochene Feder, lautes Laufverhalten oder ein Tor, das nicht mehr schließt? Wir prüfen Mechanik und Elektronik, justieren präzise und tauschen Verschleißteile — für sichere, leise und zuverlässige Tore in Wien und Niederösterreich. Unten finden Sie die einzelnen Bereiche im Detail."
       heroNote="Beschreiben Sie Torart, Antrieb und Fehlerbild — wir kommen schnell vor Ort."
-      primaryCta={{ label: "Garagentor-Reparatur anfragen", href: "/#kontakt" }}
+      primaryCta={{ label: "Garagentor-Reparatur anfragen", href: "/reparatur-buchen" }}
       afterHero={
         <HubDetailLinks
           eyebrow={`${garageHubLinks.length} Bereiche`}

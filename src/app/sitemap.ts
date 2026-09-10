@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { blogPosts } from "./blog/posts";
 import { siteConfig } from "./siteConfig";
 import { getSitemapRoutes } from "./sitemapTree";
 
@@ -69,9 +70,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Routen kommen aus dem zentralen Seitenbaum (sitemapTree.ts) — dadurch bleiben
   // die visuelle Sitemap (/sitemap) und die XML-Sitemap immer synchron.
   const routes = getSitemapRoutes().map((route) => (route === "/" ? "" : route));
+  const buildDate = new Date();
+  const blogLastModified = new Map(
+    blogPosts.map((post) => [`/blog/${post.slug}`, new Date(post.dateModified)])
+  );
 
   return routes.map((route) => ({
     url: `${siteConfig.siteUrl}${route}`,
+    lastModified: blogLastModified.get(route) ?? buildDate,
     changeFrequency: getChangeFrequency(route),
     priority: getSitemapPriority(route)
   }));

@@ -11,7 +11,7 @@ export const niederoesterreichCities: LocationPage[] = [
     slug: "st-poelten",
     name: "St. Pölten",
     postalCodes: ["3100", "3105", "3109"],
-    metaTitle: "Gerätereparatur St. Pölten | MONTER Service",
+    metaTitle: "Haushaltsgeräte Reparatur St. Pölten | MONTER Service",
     description:
       "Haushaltsgeräte-Reparatur in St. Pölten: Innenstadt, Viehofen, Spratzern und Umgebung. Diagnose vor dem Teiletausch, Anfahrt und Termin vorab geklärt.",
     h1: "Reparatur in St. Pölten.",
@@ -67,7 +67,7 @@ export const niederoesterreichCities: LocationPage[] = [
     slug: "wiener-neustadt",
     name: "Wiener Neustadt",
     postalCodes: ["2700"],
-    metaTitle: "Gerätereparatur Wiener Neustadt | MONTER Service",
+    metaTitle: "Haushaltsgeräte Reparatur Wiener Neustadt | MONTER Service",
     description:
       "Haushaltsgeräte-Reparatur in Wiener Neustadt: Innenstadt, Josefstadt, Föhrenwald und Umgebung. Diagnose vor dem Teiletausch, Anfahrt vorab genannt.",
     h1: "Reparatur in Wiener Neustadt.",
@@ -123,7 +123,7 @@ export const niederoesterreichCities: LocationPage[] = [
     slug: "baden",
     name: "Baden",
     postalCodes: ["2500"],
-    metaTitle: "Gerätereparatur Baden bei Wien | MONTER Service",
+    metaTitle: "Haushaltsgeräte Reparatur Baden bei Wien | MONTER Service",
     description:
       "Haushaltsgeräte-Reparatur in Baden bei Wien: Kurstadt mit Biedermeierbestand und Villen. Erfahrung mit Einbaugeräten, Toren und Klimaanlagen.",
     h1: "Reparatur in Baden bei Wien.",
@@ -179,7 +179,7 @@ export const niederoesterreichCities: LocationPage[] = [
     slug: "moedling",
     name: "Mödling",
     postalCodes: ["2340"],
-    metaTitle: "Gerätereparatur Mödling | MONTER Service",
+    metaTitle: "Haushaltsgeräte Reparatur Mödling | MONTER Service",
     description:
       "Haushaltsgeräte-Reparatur in Mödling: Altstadt, Hinterbrühl-Nähe und Wohngebiete. Kurze Anfahrt aus Wien, Diagnose vor dem Teiletausch.",
     h1: "Reparatur in Mödling.",

@@ -82,7 +82,7 @@ export default function MarkenHubPage() {
       title="Reparatur nach Marke."
       intro="Wir reparieren Haushaltsgeräte markenoffen — von Bosch, Miele und Siemens über AEG, Beko und Gorenje bis zu Handelsmarken aus dem Möbelhandel. Für die häufigsten Marken finden Sie eigene Seiten mit typischen Fehlercodes, Modellreihen und Hinweisen zur Ersatzteillage."
       heroNote="Nennen Sie Marke, Modellnummer und Fehlercode — damit lässt sich die Ersatzteillage vorab klären."
-      primaryCta={{ label: "Reparatur anfragen", href: "/#kontakt" }}
+      primaryCta={{ label: "Reparatur anfragen", href: "/reparatur-buchen" }}
       afterHero={
         <HubDetailLinks
           eyebrow="Markenseiten"

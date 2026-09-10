@@ -53,7 +53,7 @@ export default function WartungsservicePage() {
       title="Wartung & Service für Ihre Geräte."
       intro="Mit regelmäßiger Wartung bleiben Haushaltsgeräte und Garagentore zuverlässig und sicher. Wir prüfen, reinigen und justieren — und geben klare Empfehlungen, damit Reparaturen seltener nötig sind."
       heroNote="Nennen Sie uns Geräte oder Tor und Standort — wir stimmen einen Wartungstermin ab."
-      primaryCta={{ label: "Wartung anfragen", href: "/#kontakt" }}
+      primaryCta={{ label: "Wartung anfragen", href: "/reparatur-buchen" }}
       cardsEyebrow="Leistungen"
       cardsTitle="Wartung mit System."
       cardsIntro="Für Haushaltsgeräte und Garagentore — markenoffen in Wien und Niederösterreich."

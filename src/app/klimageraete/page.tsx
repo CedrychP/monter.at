@@ -70,7 +70,7 @@ export default function KlimageraeteHubPage() {
       title="Klimagerät Reparatur in Wien."
       intro="Kühlt die Anlage nicht mehr, tropft Wasser, zeigt Fehlercodes oder macht ungewöhnliche Geräusche? Wir prüfen Kühlkreis, Elektronik und Entwässerung — und reparieren Split-, Multi-Split- und Monoblock-Geräte markenoffen in Wien und Niederösterreich. Unten finden Sie die einzelnen Bereiche im Detail."
       heroNote="Beschreiben Sie Gerätetyp, Fehlerbild und Standort — wir melden uns zur Terminabstimmung."
-      primaryCta={{ label: "Klimagerät-Reparatur anfragen", href: "/#kontakt" }}
+      primaryCta={{ label: "Klimagerät-Reparatur anfragen", href: "/reparatur-buchen" }}
       afterHero={
         <HubDetailLinks
           eyebrow={`${klimaHubLinks.length} Bereiche`}

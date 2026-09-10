@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import type { Review } from "../lib/googleReviews";
 
@@ -62,8 +63,7 @@ function ReviewCard({
 
       <div className="mt-auto flex items-center gap-2.5 border-t border-[color:var(--border)] pt-4">
         {review.photoUrl ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
+          <Image
             src={review.photoUrl}
             alt=""
             width={28}

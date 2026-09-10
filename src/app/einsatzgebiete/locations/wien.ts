@@ -11,7 +11,7 @@ export const wienDistricts: LocationPage[] = [
     slug: "innere-stadt",
     name: "Innere Stadt",
     postalCodes: ["1010"],
-    metaTitle: "Gerätereparatur 1010 Wien: Innere Stadt | MONTER",
+    metaTitle: "Haushaltsgeräte Reparatur 1010 Wien: Innere Stadt | MONTER",
     description:
       "Reparatur von Haushaltsgeräten, Garagentoren und Klimageräten in der Inneren Stadt (1010). Termine mit Ladezonen-Planung, Erfahrung mit Altbau und Einbaugeräten.",
     h1: "Reparatur in der Inneren Stadt (1010).",
@@ -57,7 +57,7 @@ export const wienDistricts: LocationPage[] = [
     slug: "leopoldstadt",
     name: "Leopoldstadt",
     postalCodes: ["1020"],
-    metaTitle: "Gerätereparatur 1020 Wien: Leopoldstadt | MONTER",
+    metaTitle: "Haushaltsgeräte Reparatur 1020 Wien: Leopoldstadt | MONTER",
     description:
       "Reparatur in der Leopoldstadt (1020): Karmeliterviertel, Nordbahnviertel und Stuwerviertel. Erfahrung mit Altbau und Neubau-Einbaugeräten, Termine für Vermieter.",
     h1: "Reparatur in der Leopoldstadt (1020).",
@@ -103,7 +103,7 @@ export const wienDistricts: LocationPage[] = [
     slug: "landstrasse",
     name: "Landstraße",
     postalCodes: ["1030"],
-    metaTitle: "Gerätereparatur 1030 Wien: Landstraße | MONTER",
+    metaTitle: "Haushaltsgeräte Reparatur 1030 Wien: Landstraße | MONTER",
     description:
       "Reparatur auf der Landstraße (1030): Gründerzeit, Quartier Belvedere und die Neubauanlagen um den Hauptbahnhof. Termine auch über Hausverwaltungen.",
     h1: "Reparatur auf der Landstraße (1030).",
@@ -149,7 +149,7 @@ export const wienDistricts: LocationPage[] = [
     slug: "wieden",
     name: "Wieden",
     postalCodes: ["1040"],
-    metaTitle: "Gerätereparatur 1040 Wien: Wieden | MONTER",
+    metaTitle: "Haushaltsgeräte Reparatur 1040 Wien: Wieden | MONTER",
     description:
       "Reparatur auf der Wieden (1040): dichter Altbau, kleine Küchen und Waschmaschinen im Bad. Erfahrung mit Waschtrocknern und Geräten auf engem Raum.",
     h1: "Reparatur auf der Wieden (1040).",
@@ -195,7 +195,7 @@ export const wienDistricts: LocationPage[] = [
     slug: "margareten",
     name: "Margareten",
     postalCodes: ["1050"],
-    metaTitle: "Gerätereparatur 1050 Wien: Margareten | MONTER",
+    metaTitle: "Haushaltsgeräte Reparatur 1050 Wien: Margareten | MONTER",
     description:
       "Reparatur in Margareten (1050): dichter Gründerzeitbestand mit alten Anschlüssen, enge Innenhöfe. Wir prüfen Zulauf und Abfluss mit, bevor Teile getauscht werden.",
     h1: "Reparatur in Margareten (1050).",
@@ -241,7 +241,7 @@ export const wienDistricts: LocationPage[] = [
     slug: "mariahilf",
     name: "Mariahilf",
     postalCodes: ["1060"],
-    metaTitle: "Gerätereparatur 1060 Wien: Mariahilf | MONTER",
+    metaTitle: "Haushaltsgeräte Reparatur 1060 Wien: Mariahilf | MONTER",
     description:
       "Reparatur in Mariahilf (1060): Altbau rund um die Mariahilfer Straße, knappe Ladezonen, Wohnungen über Geschäftslokalen. Termine mit Zufahrtsplanung.",
     h1: "Reparatur in Mariahilf (1060).",
@@ -287,7 +287,7 @@ export const wienDistricts: LocationPage[] = [
     slug: "neubau",
     name: "Neubau",
     postalCodes: ["1070"],
-    metaTitle: "Gerätereparatur 1070 Wien: Neubau | MONTER",
+    metaTitle: "Haushaltsgeräte Reparatur 1070 Wien: Neubau | MONTER",
     description:
       "Reparatur in Neubau (1070): kleine Altbauwohnungen am Spittelberg, Geräte in Nischen und Innenhofzugänge. Erfahrung mit Waschtrocknern auf engem Raum.",
     h1: "Reparatur in Neubau (1070).",
@@ -333,7 +333,7 @@ export const wienDistricts: LocationPage[] = [
     slug: "josefstadt",
     name: "Josefstadt",
     postalCodes: ["1080"],
-    metaTitle: "Gerätereparatur 1080 Wien: Josefstadt | MONTER",
+    metaTitle: "Haushaltsgeräte Reparatur 1080 Wien: Josefstadt | MONTER",
     description:
       "Reparatur in der Josefstadt (1080): dichter Altbau, viele Ordinationen und Kanzleien, kaum Parkplatz. Termine für Wohnungen und gewerbliche Nutzung.",
     h1: "Reparatur in der Josefstadt (1080).",
@@ -379,7 +379,7 @@ export const wienDistricts: LocationPage[] = [
     slug: "alsergrund",
     name: "Alsergrund",
     postalCodes: ["1090"],
-    metaTitle: "Gerätereparatur 1090 Wien: Alsergrund | MONTER",
+    metaTitle: "Haushaltsgeräte Reparatur 1090 Wien: Alsergrund | MONTER",
     description:
       "Reparatur am Alsergrund (1090): Gründerzeitbestand, viele Wohngemeinschaften und Geräte mit hoher Auslastung. Termine für Mieter, Vermieter und Verwaltungen.",
     h1: "Reparatur am Alsergrund (1090).",
@@ -425,7 +425,7 @@ export const wienDistricts: LocationPage[] = [
     slug: "favoriten",
     name: "Favoriten",
     postalCodes: ["1100"],
-    metaTitle: "Gerätereparatur 1100 Wien: Favoriten | MONTER",
+    metaTitle: "Haushaltsgeräte Reparatur 1100 Wien: Favoriten | MONTER",
     description:
       "Reparatur in Favoriten (1100): Gründerzeit, Gemeindebau und Neubau im Sonnwendviertel. Waschmaschinen, Geschirrspüler und Kühlgeräte für Familien und Verwaltungen.",
     h1: "Reparatur in Favoriten (1100).",
@@ -471,7 +471,7 @@ export const wienDistricts: LocationPage[] = [
     slug: "simmering",
     name: "Simmering",
     postalCodes: ["1110"],
-    metaTitle: "Gerätereparatur 1110 Wien: Simmering | MONTER",
+    metaTitle: "Haushaltsgeräte Reparatur 1110 Wien: Simmering | MONTER",
     description:
       "Reparatur in Simmering (1110): Gemeindebauanlagen, Neubau um die Gasometer und Einfamilienhäuser in Kaiserebersdorf. Auch Garagentore und Klimageräte.",
     h1: "Reparatur in Simmering (1110).",
@@ -517,7 +517,7 @@ export const wienDistricts: LocationPage[] = [
     slug: "meidling",
     name: "Meidling",
     postalCodes: ["1120"],
-    metaTitle: "Gerätereparatur 1120 Wien: Meidling | MONTER",
+    metaTitle: "Haushaltsgeräte Reparatur 1120 Wien: Meidling | MONTER",
     description:
       "Reparatur in Meidling (1120): Gründerzeit an der Meidlinger Hauptstraße, Gemeindebau und Hetzendorfer Hausgebiete. Haushaltsgeräte, Tore und Klimageräte.",
     h1: "Reparatur in Meidling (1120).",
@@ -563,7 +563,7 @@ export const wienDistricts: LocationPage[] = [
     slug: "hietzing",
     name: "Hietzing",
     postalCodes: ["1130"],
-    metaTitle: "Gerätereparatur 1130 Wien: Hietzing | MONTER",
+    metaTitle: "Haushaltsgeräte Reparatur 1130 Wien: Hietzing | MONTER",
     description:
       "Reparatur in Hietzing (1130): Villen und Einfamilienhäuser, hochwertige Einbaugeräte, eigene Garagen. Service für Miele, Gaggenau, Liebherr und Garagentore.",
     h1: "Reparatur in Hietzing (1130).",
@@ -609,7 +609,7 @@ export const wienDistricts: LocationPage[] = [
     slug: "penzing",
     name: "Penzing",
     postalCodes: ["1140"],
-    metaTitle: "Gerätereparatur 1140 Wien: Penzing | MONTER",
+    metaTitle: "Haushaltsgeräte Reparatur 1140 Wien: Penzing | MONTER",
     description:
       "Reparatur in Penzing (1140): Gründerzeit an der Linzer Straße, Häuser in Hütteldorf und Hadersdorf. Haushaltsgeräte, Garagentore und Klimageräte.",
     h1: "Reparatur in Penzing (1140).",
@@ -655,7 +655,7 @@ export const wienDistricts: LocationPage[] = [
     slug: "rudolfsheim-fuenfhaus",
     name: "Rudolfsheim-Fünfhaus",
     postalCodes: ["1150"],
-    metaTitle: "Gerätereparatur 1150 Wien: Rudolfsheim-Fünfhaus | MONTER",
+    metaTitle: "Haushaltsgeräte Reparatur 1150 Wien: Rudolfsheim-Fünfhaus | MONTER",
     description:
       "Reparatur in Rudolfsheim-Fünfhaus (1150): dichter Altbau rund um den Westbahnhof, hoher Mietanteil, alte Anschlüsse. Termine auch über Vermieter.",
     h1: "Reparatur in Rudolfsheim-Fünfhaus (1150).",
@@ -701,7 +701,7 @@ export const wienDistricts: LocationPage[] = [
     slug: "ottakring",
     name: "Ottakring",
     postalCodes: ["1160"],
-    metaTitle: "Gerätereparatur 1160 Wien: Ottakring | MONTER",
+    metaTitle: "Haushaltsgeräte Reparatur 1160 Wien: Ottakring | MONTER",
     description:
       "Reparatur in Ottakring (1160): Gründerzeit am Gürtel, Hanglage Richtung Wilhelminenberg, alte Steigleitungen. Haushaltsgeräte, Tore und Klimageräte.",
     h1: "Reparatur in Ottakring (1160).",
@@ -747,7 +747,7 @@ export const wienDistricts: LocationPage[] = [
     slug: "hernals",
     name: "Hernals",
     postalCodes: ["1170"],
-    metaTitle: "Gerätereparatur 1170 Wien: Hernals | MONTER",
+    metaTitle: "Haushaltsgeräte Reparatur 1170 Wien: Hernals | MONTER",
     description:
       "Reparatur in Hernals (1170): Altbau an der Hernalser Hauptstraße, Hanglagen in Dornbach und Neuwaldegg. Haushaltsgeräte, Garagentore und Klimageräte.",
     h1: "Reparatur in Hernals (1170).",
@@ -793,7 +793,7 @@ export const wienDistricts: LocationPage[] = [
     slug: "waehring",
     name: "Währing",
     postalCodes: ["1180"],
-    metaTitle: "Gerätereparatur 1180 Wien: Währing | MONTER",
+    metaTitle: "Haushaltsgeräte Reparatur 1180 Wien: Währing | MONTER",
     description:
       "Reparatur in Währing (1180): Cottageviertel mit Villen, Gründerzeit rund um die Gentzgasse. Hochwertige Einbaugeräte, Garagentore und Klimageräte.",
     h1: "Reparatur in Währing (1180).",
@@ -839,7 +839,7 @@ export const wienDistricts: LocationPage[] = [
     slug: "doebling",
     name: "Döbling",
     postalCodes: ["1190"],
-    metaTitle: "Gerätereparatur 1190 Wien: Döbling | MONTER",
+    metaTitle: "Haushaltsgeräte Reparatur 1190 Wien: Döbling | MONTER",
     description:
       "Reparatur in Döbling (1190): Villen in Grinzing, Sievering und Nussdorf, steile Einfahrten, hochwertige Einbaugeräte. Auch Garagentore und Klimaanlagen.",
     h1: "Reparatur in Döbling (1190).",
@@ -885,7 +885,7 @@ export const wienDistricts: LocationPage[] = [
     slug: "brigittenau",
     name: "Brigittenau",
     postalCodes: ["1200"],
-    metaTitle: "Gerätereparatur 1200 Wien: Brigittenau | MONTER",
+    metaTitle: "Haushaltsgeräte Reparatur 1200 Wien: Brigittenau | MONTER",
     description:
       "Reparatur in der Brigittenau (1200): dichter Altbau, Gemeindebauanlagen und Neubau an der Donau. Haushaltsgeräte-Service für Mieter, Vermieter und Verwaltungen.",
     h1: "Reparatur in der Brigittenau (1200).",
@@ -931,7 +931,7 @@ export const wienDistricts: LocationPage[] = [
     slug: "floridsdorf",
     name: "Floridsdorf",
     postalCodes: ["1210"],
-    metaTitle: "Gerätereparatur 1210 Wien: Floridsdorf | MONTER",
+    metaTitle: "Haushaltsgeräte Reparatur 1210 Wien: Floridsdorf | MONTER",
     description:
       "Reparatur in Floridsdorf (1210): unser Standort liegt hier. Kürzeste Anfahrt, Häuser in Strebersdorf und Stammersdorf, Anlagen in der Großfeldsiedlung.",
     h1: "Reparatur in Floridsdorf (1210).",
@@ -977,7 +977,7 @@ export const wienDistricts: LocationPage[] = [
     slug: "donaustadt",
     name: "Donaustadt",
     postalCodes: ["1220"],
-    metaTitle: "Gerätereparatur 1220 Wien: Donaustadt | MONTER",
+    metaTitle: "Haushaltsgeräte Reparatur 1220 Wien: Donaustadt | MONTER",
     description:
       "Reparatur in der Donaustadt (1220): Seestadt Aspern, Kagran, Essling und Hausgebiete. Neubau-Einbaugeräte, Klimaanlagen und Garagentore.",
     h1: "Reparatur in der Donaustadt (1220).",
@@ -1023,7 +1023,7 @@ export const wienDistricts: LocationPage[] = [
     slug: "liesing",
     name: "Liesing",
     postalCodes: ["1230"],
-    metaTitle: "Gerätereparatur 1230 Wien: Liesing | MONTER",
+    metaTitle: "Haushaltsgeräte Reparatur 1230 Wien: Liesing | MONTER",
     description:
       "Reparatur in Liesing (1230): Häuser in Mauer, Rodaun und Siebenhirten, Wohnanlagen in Alterlaa. Haushaltsgeräte, Garagentore und Klimageräte.",
     h1: "Reparatur in Liesing (1230).",

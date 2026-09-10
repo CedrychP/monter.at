@@ -2,14 +2,50 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import DetailPageLayout from "../../DetailPageLayout";
 import { HubFaq } from "../../HubBlocks";
+import { brandDeviceCategories } from "../../marken/devices";
 import { buildMetadata } from "../../pageMetadata";
-import { appliancePages, getAppliancePage } from "../appliancePages";
+import { appliancePages, getAppliancePage, type AppliancePage } from "../appliancePages";
 
 type AppliancePageProps = {
   params: Promise<{
     slug: string;
   }>;
 };
+
+const featuredBrands = [
+  { brand: "Bosch", slug: "bosch-reparatur-wien" },
+  { brand: "Miele", slug: "miele-reparatur-wien" },
+  { brand: "Siemens", slug: "siemens-reparatur-wien" }
+] as const;
+
+function relatedEntries(page: AppliancePage) {
+  const relatedAppliances = appliancePages
+    .filter((item) => item.slug !== page.slug)
+    .slice(0, 2)
+    .map((item) => ({
+      category: item.category,
+      title: item.title,
+      href: `/haushaltsgeraete/${item.slug}`
+    }));
+
+  const device = brandDeviceCategories.find((item) => item.serviceSlug === page.slug);
+
+  const relatedBrands = featuredBrands.map((brand) =>
+    device
+      ? {
+          category: brand.brand,
+          title: `${brand.brand} ${device.label} Reparatur`,
+          href: `/marken/${brand.slug}/${device.slug}`
+        }
+      : {
+          category: brand.brand,
+          title: `${brand.brand} Reparatur Wien`,
+          href: `/marken/${brand.slug}`
+        }
+  );
+
+  return [...relatedAppliances, ...relatedBrands];
+}
 
 export function generateStaticParams() {
   return appliancePages.map((page) => ({
@@ -42,7 +78,7 @@ export default async function ApplianceDetailPage({ params }: AppliancePageProps
     notFound();
   }
 
-  const related = appliancePages.filter((item) => item.slug !== page.slug).slice(0, 3);
+  const related = relatedEntries(page);
 
   return (
     <DetailPageLayout
@@ -55,11 +91,7 @@ export default async function ApplianceDetailPage({ params }: AppliancePageProps
       sections={page.sections}
       relatedEyebrow="Verwandte Leistungen"
       relatedTitle="Weitere Reparaturen im Service."
-      related={related.map((item) => ({
-        category: item.category,
-        title: item.title,
-        href: `/haushaltsgeraete/${item.slug}`
-      }))}
+      related={related}
       jsonLd={{
         name: page.title,
         description: page.description,

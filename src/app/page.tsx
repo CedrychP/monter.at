@@ -8,7 +8,7 @@ import ApplianceSlider from "./ApplianceSlider";
 import { brandPages, brandOverview } from "./marken/brands";
 import { getFeaturedCities, homeRegions, servedAreasJsonLd } from "./einsatzgebiete/regionPages";
 import { buildMetadata } from "./pageMetadata";
-import { siteConfig } from "./siteConfig";
+import { localBusinessId, siteConfig } from "./siteConfig";
 
 const businessImage =
   "https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&w=1600&q=85";
@@ -51,9 +51,9 @@ const kontaktLinks = [
 ];
 
 export const metadata: Metadata = buildMetadata({
-  title: "Haushaltsgeräte & Garagentor Reparatur Wien | MONTER Reparatur & Service",
+  title: "Haushaltsgeräte Reparatur Wien | MONTER",
   description:
-    "Haushaltsgeräte Reparatur in Wien: Waschmaschine, Geschirrspüler, Kühlschrank, Backofen und Trockner. Dazu Garagentor-Reparatur und Wartung. Klare Diagnose, transparente Preise, markenoffen für Bosch, Siemens, Miele, AEG und mehr.",
+    "Waschmaschine, Geschirrspüler, Kühlschrank und Garagentor in Wien reparieren. Preise inkl. MwSt. Jetzt anrufen oder Termin anfragen.",
   path: "/",
   keywords: [
     "Haushaltsgeräte Reparatur Wien",
@@ -325,26 +325,6 @@ const faqs = [
 ];
 
 export default function Home() {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    name: "MONTER Reparatur & Service",
-    legalName: "Tech Craft Consulting GmbH",
-    description:
-      "Haushaltsgeräte- und Garagentor-Reparatur sowie Geräteservice für Privatkunden und Firmenkunden.",
-    areaServed: "Österreich",
-    serviceType: [
-      "Haushaltsgeräte Reparatur",
-      "Waschmaschinen Reparatur",
-      "Geschirrspüler Reparatur",
-      "Kühlschrank Reparatur",
-      "Garagentor Reparatur",
-      "Firmenkunden Geräteservice"
-    ],
-    telephone: emergencyPhoneHref,
-    url: siteConfig.siteUrl
-  };
-
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -363,9 +343,7 @@ export default function Home() {
     "@type": "Service",
     serviceType: "Haushaltsgeräte- und Garagentor-Reparatur",
     provider: {
-      "@type": "LocalBusiness",
-      name: "MONTER Reparatur & Service",
-      telephone: emergencyPhoneHref
+      "@id": localBusinessId
     },
     areaServed: servedAreasJsonLd,
     url: siteConfig.siteUrl
@@ -373,11 +351,6 @@ export default function Home() {
 
   return (
     <main className="page-shell relative bg-white text-[color:var(--ink)]">
-      <script
-        type="application/ld+json"
-        suppressHydrationWarning
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
       <script
         type="application/ld+json"
         suppressHydrationWarning

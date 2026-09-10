@@ -25,7 +25,7 @@ export const appliancePages: AppliancePage[] = [
     title: "Waschmaschine Reparatur Wien",
     metaTitle: "Waschmaschine Reparatur Wien | MONTER Service",
     description:
-      "Waschmaschine Reparatur in Wien: schnelle Einschätzung, klare Diagnose und telefonische Terminabstimmung. Jetzt MONTER Service anrufen.",
+      "Waschmaschine pumpt nicht ab, schleudert nicht oder zeigt E18? Reparatur in Wien, klar kalkuliert inkl. MwSt. Jetzt anrufen.",
     h1: "Waschmaschine Reparatur in Wien",
     category: "Waschmaschine",
     short:
@@ -78,7 +78,7 @@ export const appliancePages: AppliancePage[] = [
     title: "Geschirrspüler Reparatur Wien",
     metaTitle: "Geschirrspüler Reparatur Wien | MONTER Service",
     description:
-      "Geschirrspüler Reparatur in Wien: Hilfe bei Undichtigkeit, Pumpenproblemen und schlechter Reinigung. Jetzt Reparaturanfrage vorbereiten.",
+      "Geschirrspüler reinigt schlecht, bleibt nass oder zieht kein Wasser? Reparatur in Wien inkl. MwSt. Jetzt Termin anfragen.",
     h1: "Geschirrspüler Reparatur in Wien",
     category: "Geschirrspüler",
     short:
@@ -131,7 +131,7 @@ export const appliancePages: AppliancePage[] = [
     title: "Backofen & Herd Reparatur Wien",
     metaTitle: "Backofen Herd Reparatur Wien | MONTER Service",
     description:
-      "Backofen und Herd Reparatur in Wien: klare Hilfe bei Heizproblemen, Elektronikfehlern und Sicherheitsfragen. Jetzt anrufen.",
+      "Backofen oder Herd bleibt kalt, heizt ungleichmäßig oder löst die Sicherung? Reparatur in Wien. Jetzt anrufen.",
     h1: "Backofen und Herd Reparatur in Wien",
     category: "Backofen & Herd",
     short:
@@ -184,7 +184,7 @@ export const appliancePages: AppliancePage[] = [
     title: "Trockner Reparatur Wien",
     metaTitle: "Trockner Reparatur Wien | MONTER Service",
     description:
-      "Trockner Reparatur in Wien: Unterstützung bei feuchter Wäsche, Sensorproblemen, Wärmepumpe und Luftwegen. Jetzt Kontakt aufnehmen.",
+      "Trockner braucht zu lange oder die Wäsche bleibt feucht? Filter, Sensor und Wärmepumpe prüfen wir in Wien. Jetzt anrufen.",
     h1: "Trockner Reparatur in Wien",
     category: "Trockner",
     short:
@@ -237,7 +237,7 @@ export const appliancePages: AppliancePage[] = [
     title: "Kühlschrank Reparatur Wien",
     metaTitle: "Kühlschrank Reparatur Wien | MONTER Service",
     description:
-      "Kühlschrank Reparatur in Wien: schnelle Einschätzung bei Temperaturproblemen, Vereisung und Dichtungen. Jetzt Notdienst kontaktieren.",
+      "Kühlschrank kühlt zu schwach, vereist oder tropft? Dichtung, Abtauung und Kältekreis in Wien prüfen. Jetzt anrufen.",
     h1: "Kühlschrank Reparatur in Wien",
     category: "Kühlschrank",
     short:
@@ -290,7 +290,7 @@ export const appliancePages: AppliancePage[] = [
     title: "Tiefkühl Reparatur Wien",
     metaTitle: "Tiefkühl Reparatur Wien | MONTER Service",
     description:
-      "Tiefkühl Reparatur in Wien: Hilfe bei Temperaturverlust, Vereisung, Alarmen und Ausfällen. Jetzt schnell telefonisch klären.",
+      "Tiefkühlgerät alarmiert oder taut an? Abtauung, Dichtung und Temperatur in Wien vorrangig prüfen. Jetzt anrufen.",
     h1: "Tiefkühl Reparatur in Wien",
     category: "Tiefkühlgerät",
     short:
@@ -343,7 +343,7 @@ export const appliancePages: AppliancePage[] = [
     title: "Waschtrockner Reparatur Wien",
     metaTitle: "Waschtrockner Reparatur Wien | MONTER Service",
     description:
-      "Waschtrockner Reparatur in Wien: Hilfe bei feuchter Wäsche, Pumpenproblemen, Heizung und Elektronik. Jetzt Reparaturanfrage vorbereiten.",
+      "Waschtrockner wäscht, trocknet aber nicht? Pumpe, Kondensat und Heizung in Wien prüfen. Jetzt Termin anfragen.",
     h1: "Waschtrockner Reparatur in Wien",
     category: "Waschtrockner",
     short:
@@ -396,7 +396,7 @@ export const appliancePages: AppliancePage[] = [
     title: "Dunstabzug Reparatur Wien",
     metaTitle: "Dunstabzug Reparatur Wien | MONTER Service",
     description:
-      "Dunstabzug Reparatur in Wien: Hilfe bei schwacher Saugleistung, Beleuchtung, Schaltern und Motor. Jetzt Kontakt aufnehmen.",
+      "Dunstabzug saugt schwach, rauscht oder die Beleuchtung fällt aus? Motor und Filter in Wien reparieren. Jetzt anrufen.",
     h1: "Dunstabzug Reparatur in Wien",
     category: "Dunstabzug",
     short:
@@ -449,7 +449,7 @@ export const appliancePages: AppliancePage[] = [
     title: "Fernseher Reparatur Wien",
     metaTitle: "Fernseher Reparatur Wien | TV Service | MONTER",
     description:
-      "Fernseher Reparatur in Wien: Hilfe bei schwarzem Bild, Streifen, Ton- und Anschlussproblemen sowie defekter Elektronik. Jetzt Kontakt aufnehmen.",
+      "Fernseher bleibt schwarz, hat Streifen oder keinen Ton? Netzteil und Anschlüsse in Wien prüfen. Jetzt anrufen.",
     h1: "Fernseher Reparatur in Wien",
     category: "Fernseher",
     short:

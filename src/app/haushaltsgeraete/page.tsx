@@ -70,7 +70,7 @@ export default function HaushaltsgeraeteHubPage() {
       title="Haushaltsgeräte Reparatur in Wien."
       intro="Waschmaschine, Geschirrspüler, Backofen, Kühlgerät, Trockner, Dunstabzug oder Fernseher — wir suchen den Fehler, nennen den Aufwand und reparieren markenoffen in Wien und Niederösterreich. Unten finden Sie jedes Gerät mit typischen Fehlerbildern im Detail."
       heroNote="Nennen Sie Gerät, Modellnummer und Fehlercode — dann bringen wir die passenden Teile gleich mit."
-      primaryCta={{ label: "Reparatur anfragen", href: "/#kontakt" }}
+      primaryCta={{ label: "Reparatur anfragen", href: "/reparatur-buchen" }}
       afterHero={
         <HubDetailLinks
           eyebrow={`${applianceHubLinks.length} Gerätearten`}

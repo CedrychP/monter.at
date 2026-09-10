@@ -213,7 +213,7 @@ export default function HeroSlider() {
       <div className="relative min-h-[580px] sm:min-h-[720px] lg:min-h-[820px]">
         {slides.map((slide, slideIndex) => {
           const isActive = slideIndex === index;
-          const Heading = slideIndex === 0 ? "h1" : "h2";
+                  const Heading = slideIndex === 0 ? "h1" : "p";
           return (
             <div
               key={slide.id}
@@ -226,14 +226,22 @@ export default function HeroSlider() {
               aria-label={`${slideIndex + 1} von ${count}`}
             >
               <div className="absolute inset-0 -z-10">
-                <Image
-                  src={slide.image}
-                  alt={slide.alt}
-                  fill
-                  priority={slideIndex === 0}
-                  sizes="100vw"
-                  className="object-cover object-center"
-                />
+                {(slideIndex === 0 ||
+                  isActive ||
+                  Math.min(
+                    Math.abs(slideIndex - index),
+                    count - Math.abs(slideIndex - index)
+                  ) <= 1) && (
+                  <Image
+                    src={slide.image}
+                    alt={slide.alt}
+                    fill
+                    priority={slideIndex === 0}
+                    fetchPriority={slideIndex === 0 ? "high" : "auto"}
+                    sizes="100vw"
+                    className="object-cover object-center"
+                  />
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/60" />
                 <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/10 to-transparent" />
               </div>

@@ -35,8 +35,8 @@ export default function MobileActionBar() {
         </a>
 
         <Link
-          href="/#kontakt"
-          onClick={() => trackCtaClick({ source: "mobile_bar", target: "kontakt" })}
+          href="/reparatur-buchen"
+          onClick={() => trackCtaClick({ source: "mobile_bar", target: "reparatur-buchen" })}
           className="flex min-w-[9.75rem] items-center justify-center gap-2 rounded-sm bg-[color:var(--accent)] px-4 py-2.5 text-[0.78rem] font-medium uppercase tracking-[0.12em] text-white transition active:bg-[color:var(--accent-hover)]"
         >
           Termin buchen
