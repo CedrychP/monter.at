@@ -2,48 +2,20 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import StarRating from "./StarRating";
 import type { Review } from "../lib/googleReviews";
 
 type ReviewsCarouselProps = {
   reviews: Review[];
-  source: "google" | "fallback";
 };
 
 const visibleCount = 3;
-
-function StarRating({ rating, size = 12 }: { rating: number; size?: number }) {
-  const filled = Math.round(rating);
-
-  return (
-    <span
-      className="flex items-center gap-px text-amber-400"
-      aria-label={`${filled} von 5 Sternen`}
-    >
-      {Array.from({ length: 5 }, (_, index) => (
-        <svg
-          key={index}
-          width={size}
-          height={size}
-          viewBox="0 0 24 24"
-          aria-hidden="true"
-          className={index < filled ? "text-amber-400" : "text-[color:var(--border-strong)]"}
-        >
-          <path
-            fill="currentColor"
-            d="M12 3l2.6 5.7 6.2.6-4.7 4.2 1.4 6.1L12 16.9 6.5 19.6l1.4-6.1L3.2 9.3l6.2-.6L12 3Z"
-          />
-        </svg>
-      ))}
-    </span>
-  );
-}
 
 function ReviewCard({
   review,
   className = ""
 }: {
   review: Review;
-  source: "google" | "fallback";
   className?: string;
 }) {
   const rating = review.rating ?? 5;
@@ -51,13 +23,13 @@ function ReviewCard({
   return (
     <article className={`flex h-full flex-col bg-white p-5 sm:p-6 ${className}`}>
       <div className="flex items-center justify-between gap-3">
-        <StarRating rating={rating} />
+        <StarRating rating={rating} size={12} />
         <span className="text-xs font-medium tabular-nums tracking-tight text-[color:var(--muted)]">
-          {rating}/5
+          {rating.toFixed(1).replace(".", ",")}/5
         </span>
       </div>
 
-      <p className="mt-3.5 line-clamp-5 text-sm font-normal leading-relaxed text-[color:var(--ink)] sm:line-clamp-6 sm:text-[0.95rem]">
+      <p className="mt-3.5 line-clamp-5 min-h-[6.75rem] text-sm font-normal leading-relaxed text-[color:var(--ink)] sm:min-h-[7.15rem] sm:text-[0.95rem]">
         &ldquo;{review.text}&rdquo;
       </p>
 
@@ -84,7 +56,7 @@ function ReviewCard({
   );
 }
 
-export default function ReviewsCarousel({ reviews, source }: ReviewsCarouselProps) {
+export default function ReviewsCarousel({ reviews }: ReviewsCarouselProps) {
   const [startIndex, setStartIndex] = useState(0);
 
   if (reviews.length === 0) {
@@ -112,7 +84,6 @@ export default function ReviewsCarousel({ reviews, source }: ReviewsCarouselProp
             <ReviewCard
               key={`${review.name}-${review.text.slice(0, 24)}-mobile`}
               review={review}
-              source={source}
               className="w-[min(82vw,20rem)] flex-none snap-center border border-[color:var(--border)]"
             />
           ))}
@@ -129,7 +100,6 @@ export default function ReviewsCarousel({ reviews, source }: ReviewsCarouselProp
             <ReviewCard
               key={`${review.name}-${review.text.slice(0, 24)}-${index}`}
               review={review}
-              source={source}
             />
           ))}
         </div>

@@ -8,6 +8,8 @@ import ApplianceSlider from "./ApplianceSlider";
 import { brandPages, brandOverview } from "./marken/brands";
 import { getFeaturedCities, homeRegions, servedAreasJsonLd } from "./einsatzgebiete/regionPages";
 import { buildMetadata } from "./pageMetadata";
+import { GoogleRatingStat } from "./GoogleRatingLive";
+import { getGoogleReviews, toGoogleRatingSummary } from "../lib/googleReviews";
 import { localBusinessId, siteConfig } from "./siteConfig";
 
 const businessImage =
@@ -131,9 +133,8 @@ const whyMonter = [
 ];
 
 const whyMonterStats = [
-  { value: "4,9", rating: true, label: "Bewertung unserer Kund:innen" },
-  { value: "60+", rating: false, label: "Marken im Service" },
-  { value: "bis 130 €", rating: false, label: "Reparaturbonus zurück" }
+  { value: "60+", label: "Marken im Service" },
+  { value: "bis 130 €", label: "Reparaturbonus zurück" }
 ];
 
 // Platzhalter-Bilder (verifiziert ladbar) — Fotos werden später feinjustiert
@@ -324,7 +325,10 @@ const faqs = [
   }
 ];
 
-export default function Home() {
+export const revalidate = 3600;
+
+export default async function Home() {
+  const googleReviews = await getGoogleReviews();
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -542,26 +546,17 @@ export default function Home() {
 
           <div className="mt-8 flex flex-col items-start gap-6 sm:mt-10 sm:flex-row sm:items-center sm:justify-between">
             <div className="grid w-full grid-cols-2 gap-x-6 gap-y-5 sm:flex sm:w-auto sm:flex-wrap sm:items-center sm:gap-x-10 sm:gap-y-4">
+              <div>
+                <GoogleRatingStat
+                  initial={toGoogleRatingSummary(googleReviews)}
+                  href={siteConfig.googleReviewsUrl}
+                />
+              </div>
               {whyMonterStats.map((stat) => (
                 <div key={stat.label}>
-                  {stat.rating ? (
-                    <div className="flex items-center gap-2.5">
-                      <p className="font-display text-3xl font-normal tracking-tight text-[color:var(--ink)] sm:text-4xl">
-                        {stat.value}
-                      </p>
-                      <span className="flex items-center gap-0.5 text-amber-400" aria-hidden="true">
-                        {[0, 1, 2, 3, 4].map((i) => (
-                          <svg key={i} width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 3l2.6 5.7 6.2.6-4.7 4.2 1.4 6.1L12 16.9 6.5 19.6l1.4-6.1L3.2 9.3l6.2-.6L12 3Z" />
-                          </svg>
-                        ))}
-                      </span>
-                    </div>
-                  ) : (
-                    <p className="font-display text-3xl font-normal tracking-tight text-[color:var(--ink)] sm:text-4xl">
-                      {stat.value}
-                    </p>
-                  )}
+                  <p className="font-display text-3xl font-normal tracking-tight text-[color:var(--ink)] sm:text-4xl">
+                    {stat.value}
+                  </p>
                   <p className="mt-1 text-sm font-normal text-[color:var(--muted)]">{stat.label}</p>
                 </div>
               ))}

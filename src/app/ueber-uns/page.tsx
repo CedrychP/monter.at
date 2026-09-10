@@ -1,15 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { GoogleRatingPlain } from "../GoogleRatingLive";
+import {
+  getGoogleReviews,
+  toGoogleRatingSummary
+} from "../../lib/googleReviews";
 import { buildMetadata } from "../pageMetadata";
 
 const phoneDisplay = "01 4171346";
 const phoneHref = "+4314171346";
-
-const stats = [
-  { value: "24 h", label: "Reaktion bei dringenden Ausfällen" },
-  { value: "4,9 / 5", label: "kundenorientierte Einschätzung" },
-  { value: "B2C + B2B", label: "Privat- und Firmenkunden" }
-];
 
 const values = [
   {
@@ -48,7 +47,16 @@ export const metadata: Metadata = buildMetadata({
   path: "/ueber-uns"
 });
 
-export default function UeberUnsPage() {
+export const revalidate = 3600;
+
+export default async function UeberUnsPage() {
+  const googleReviews = await getGoogleReviews();
+  const googleSummary = toGoogleRatingSummary(googleReviews);
+  const stats = [
+    { value: "24 h" as const, label: "Reaktion bei dringenden Ausfällen" },
+    { value: "google" as const, label: "Bewertung auf Google" },
+    { value: "B2C + B2B" as const, label: "Privat- und Firmenkunden" }
+  ];
   return (
     <main className="min-h-screen bg-white text-[color:var(--ink)]">
       <section className="border-b border-[color:var(--border)] bg-white">
@@ -87,7 +95,11 @@ export default function UeberUnsPage() {
                     </p>
                   </div>
                   <p className="font-display text-3xl font-light tracking-tight text-[color:var(--ink)] sm:text-4xl">
-                    {stat.value}
+                    {stat.value === "google" ? (
+                      <GoogleRatingPlain initial={googleSummary} />
+                    ) : (
+                      stat.value
+                    )}
                   </p>
                 </div>
               ))}
