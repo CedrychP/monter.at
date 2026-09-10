@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
 import StarRating from "./StarRating";
 import type { Review } from "../lib/googleReviews";
@@ -35,12 +34,15 @@ function ReviewCard({
 
       <div className="mt-auto flex items-center gap-2.5 border-t border-[color:var(--border)] pt-4">
         {review.photoUrl ? (
-          <Image
+          // Google-Avatare kommen von wechselnden lh*-Hosts; next/image würde die Seite sonst 500en.
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
             src={review.photoUrl}
             alt=""
             width={28}
             height={28}
             className="h-7 w-7 flex-none rounded-full object-cover"
+            referrerPolicy="no-referrer"
           />
         ) : null}
         <div className="min-w-0">
