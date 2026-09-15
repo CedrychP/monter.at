@@ -8,6 +8,7 @@ import SiteFooter from "./SiteFooter";
 import SiteHeader from "./SiteHeader";
 import { localBusinessId, siteConfig } from "./siteConfig";
 import TelClickTracker from "./TelClickTracker";
+import OpenAiPageView from "./OpenAiPageView";
 import "./globals.css";
 
 const GOOGLE_ADS_ID = "AW-18096010711";
@@ -176,6 +177,7 @@ export default function RootLayout({
         <MobileActionBar />
         <CookieBanner />
         <TelClickTracker />
+        <OpenAiPageView />
       </body>
     </html>
   );
