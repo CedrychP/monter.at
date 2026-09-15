@@ -130,7 +130,8 @@ export default function CookieBanner() {
                 <div>
                   <p className="text-sm font-medium">Notwendig</p>
                   <p className="mt-1 text-xs font-light leading-relaxed text-[color:var(--muted)]">
-                    Immer aktiv für die korrekte Funktion der Website.
+                    Immer aktiv für die korrekte Funktion der Website, inklusive der passenden
+                    Kontaktnummer nach einem Anzeigenklick.
                   </p>
                 </div>
                 <span className="tracking-eyebrow text-[color:var(--accent)]">Aktiv</span>

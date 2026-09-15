@@ -2,15 +2,16 @@
 
 import Link from "next/link";
 
+import { TrackedPhoneLink, useAdPhone } from "./AdPhone";
 import { trackCtaClick } from "./analytics";
-import { siteConfig } from "./siteConfig";
 
 export default function MobileActionBar() {
+  const phone = useAdPhone();
+
   return (
     <div className="fixed inset-x-0 bottom-0 z-[55] border-t border-white/10 bg-[color:var(--ink)] px-3 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom,0px))] lg:hidden">
       <div className="mx-auto grid max-w-[88rem] grid-cols-[minmax(0,1fr)_auto] items-stretch gap-2.5">
-        <a
-          href={`tel:${siteConfig.phoneHref}`}
+        <TrackedPhoneLink
           data-tel-source="mobile_bar"
           className="flex min-w-0 items-center gap-3 rounded-sm border border-white/15 bg-white/[0.04] px-3 py-2.5 text-white transition active:border-white/30 active:bg-white/[0.08]"
         >
@@ -28,11 +29,11 @@ export default function MobileActionBar() {
             <span className="block text-[0.62rem] font-medium uppercase tracking-[0.16em] text-white/55">
               Anrufen
             </span>
-            <span className="mt-0.5 block truncate font-display text-base tabular-nums tracking-tight text-white">
-              {siteConfig.phoneDisplay}
+            <span className="mt-0.5 block truncate font-display text-base tabular-nums tracking-tight text-white" data-phone-number>
+              {phone.display}
             </span>
           </span>
-        </a>
+        </TrackedPhoneLink>
 
         <Link
           href="/reparatur-buchen"

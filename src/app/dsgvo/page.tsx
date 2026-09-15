@@ -27,7 +27,7 @@ const privacySections = [
   },
   {
     title: "Cookies",
-    text: "Notwendige Cookies dienen der technischen Bereitstellung. Optionale Analyse- oder Marketing-Cookies werden nur nach Ihrer Zustimmung verwendet."
+    text: "Notwendige Cookies dienen der technischen Bereitstellung, darunter ein Cookie zur Anzeige der passenden Telefonnummer nach einem Anzeigenklick. Optionale Analyse- oder Marketing-Cookies werden nur nach Ihrer Zustimmung verwendet."
   },
   {
     title: "Ihre Rechte",
@@ -56,6 +56,7 @@ export default function DsgvoPage() {
               <p className="tracking-eyebrow text-[color:var(--muted)]">Datenschutzkontakt</p>
               <a
                 href={`tel:${phoneHref}`}
+                data-legal-phone
                 className="font-display mt-4 block break-words text-3xl font-light tracking-tight text-[color:var(--accent)] sm:text-4xl"
               >
                 {phone}

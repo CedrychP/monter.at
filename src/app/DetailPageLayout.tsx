@@ -1,5 +1,6 @@
 import { Fragment, type ReactNode } from "react";
 import Link from "next/link";
+import { TrackedPhoneLink } from "./AdPhone";
 import { localBusinessProviderRef, siteConfig } from "./siteConfig";
 import { servedAreas, type ServedArea } from "./einsatzgebiete/regionPages";
 
@@ -129,12 +130,7 @@ export default function DetailPageLayout({
 
             <div className="reveal border-l border-[color:var(--border)] py-2 pl-8">
               <p className="tracking-eyebrow text-[color:var(--muted)]">Direktkontakt</p>
-              <a
-                href={`tel:${siteConfig.phoneHref}`}
-                className="font-display mt-4 block break-words text-3xl font-light tracking-tight text-[color:var(--accent)] sm:text-4xl"
-              >
-                {siteConfig.phoneDisplay}
-              </a>
+              <TrackedPhoneLink className="font-display mt-4 block break-words text-3xl font-light tracking-tight text-[color:var(--accent)] sm:text-4xl" />
               <p className="mt-5 text-sm font-light leading-relaxed text-[color:var(--muted)]">
                 {contactNote}
               </p>

@@ -56,6 +56,7 @@ export default function AgbPage() {
               <p className="tracking-eyebrow text-[color:var(--muted)]">Schnellkontakt</p>
               <a
                 href={`tel:${phoneHref}`}
+                data-legal-phone
                 className="font-display mt-4 block break-words text-3xl font-light tracking-tight text-[color:var(--accent)] sm:text-4xl"
               >
                 {phone}

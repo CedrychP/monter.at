@@ -1,12 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import CookieSettingsButton from "./CookieSettingsButton";
+import { TrackedPhoneLink } from "./AdPhone";
 import NavNewsletterSignup from "./NavNewsletterSignup";
 import { coreRegions } from "./einsatzgebiete/regionPages";
 import { siteConfig } from "./siteConfig";
-
-const emergencyPhoneDisplay = siteConfig.phoneDisplay;
-const emergencyPhoneHref = siteConfig.phoneHref;
 
 const footerHeadingClass =
   "text-[0.8rem] font-medium uppercase tracking-[0.2em] text-white/75";
@@ -243,12 +241,7 @@ export default function SiteFooter({ logoSrc }: SiteFooterProps) {
 
             <div>
               <p className={footerHeadingClass}>Direkt klären</p>
-              <a
-                href={`tel:${emergencyPhoneHref}`}
-                className="mt-7 block text-xl font-medium tracking-tight text-white transition hover:text-[color:var(--accent)]"
-              >
-                {emergencyPhoneDisplay}
-              </a>
+              <TrackedPhoneLink className="mt-7 block text-xl font-medium tracking-tight text-white transition hover:text-[color:var(--accent)]" />
               <p className="mt-3.5 text-sm font-normal leading-relaxed text-white/65">
                 Bei dringenden Ausfällen ist der Anruf der schnellste Weg.
               </p>

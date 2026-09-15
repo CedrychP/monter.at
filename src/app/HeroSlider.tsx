@@ -4,10 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import NavNewsletterSignup from "./NavNewsletterSignup";
+import { useAdPhone } from "./AdPhone";
 import { siteConfig } from "./siteConfig";
-
-const phoneHref = siteConfig.phoneHref;
-const phoneDisplay = siteConfig.phoneDisplay;
 
 const SLIDE_DURATION = 6500;
 
@@ -55,7 +53,7 @@ const slides: Slide[] = [
     ),
     text: "Waschmaschine, Geschirrspüler, Kühl- und Gefriergeräte, Backofen, Herd und Trockner — markenoffen instand gesetzt mit klarer Diagnose und fairen Pauschalen.",
     actions: [
-      { label: phoneDisplay, href: `tel:${phoneHref}`, variant: "primary" },
+      { label: siteConfig.phoneDisplay, href: `tel:${siteConfig.phoneHref}`, variant: "primary" },
       { label: "Geräte ansehen", href: "/haushaltsgeraete", variant: "ghost" }
     ]
   },
@@ -74,7 +72,7 @@ const slides: Slide[] = [
     ),
     text: "Federwechsel, Antriebsreparatur, Laufrollen und Wartung — für sichere, leise und zuverlässige Tore. Schnell vor Ort in Wien und Niederösterreich.",
     actions: [
-      { label: phoneDisplay, href: `tel:${phoneHref}`, variant: "primary" },
+      { label: siteConfig.phoneDisplay, href: `tel:${siteConfig.phoneHref}`, variant: "primary" },
       { label: "Garagenservice ansehen", href: "/#garage", variant: "ghost" }
     ]
   },
@@ -135,13 +133,15 @@ const slides: Slide[] = [
 ];
 
 function HeroPhoneCta({ tabIndex }: { tabIndex: number }) {
+  const phone = useAdPhone();
+
   return (
     <a
-      href={`tel:${phoneHref}`}
+      href={`tel:${phone.href}`}
       data-tel-source="hero_slider"
       className="btn-on-dark hero-phone-cta group w-full sm:w-auto"
       tabIndex={tabIndex}
-      aria-label={`Anrufen ${phoneDisplay}`}
+      aria-label={`Anrufen ${phone.display}`}
     >
       <span className="hero-phone-cta__icon grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[color:var(--accent-soft)] text-[color:var(--accent)]">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -157,8 +157,8 @@ function HeroPhoneCta({ tabIndex }: { tabIndex: number }) {
         <span className="hero-phone-cta__label block text-[0.65rem] font-medium uppercase tracking-[0.16em] text-[color:var(--muted)]">
           Anrufen
         </span>
-        <span className="hero-phone-cta__number font-display mt-0.5 block text-xl font-normal tabular-nums tracking-tight text-[color:var(--ink)] sm:text-2xl">
-          {phoneDisplay}
+        <span className="hero-phone-cta__number font-display mt-0.5 block text-xl font-normal tabular-nums tracking-tight text-[color:var(--ink)] sm:text-2xl" data-phone-number>
+          {phone.display}
         </span>
       </span>
     </a>

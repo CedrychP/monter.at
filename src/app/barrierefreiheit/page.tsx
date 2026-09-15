@@ -65,6 +65,7 @@ export default function BarrierefreiheitPage() {
               Telefon:{" "}
               <a
                 href={`tel:${phoneHref}`}
+                data-legal-phone
                 className="border-b border-[color:var(--ink)] text-[color:var(--ink)] transition hover:border-[color:var(--accent)] hover:text-[color:var(--accent)]"
               >
                 {phone}

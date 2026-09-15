@@ -16,6 +16,20 @@ export const siteConfig = {
   email: "info@monter.at",
   phoneDisplay: "01 4171346",
   phoneHref: "+4314171346",
+  /**
+   * Tracking-Nummern für Ads. Leer = Standardnummer.
+   * Vercel-Env überschreibt: NEXT_PUBLIC_PHONE_META_* / NEXT_PUBLIC_PHONE_CHATGPT_*.
+   */
+  adPhones: {
+    meta: {
+      display: "01 4170399",
+      href: "+4314170399"
+    },
+    chatgpt: {
+      display: "01 4170399",
+      href: "+4314170399"
+    }
+  },
   vatId: "ATU82408379",
   social: {
     instagram: "https://www.instagram.com/monteraustria/",

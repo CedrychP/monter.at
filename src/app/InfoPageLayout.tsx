@@ -1,9 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { TrackedPhoneLink } from "./AdPhone";
 import { siteConfig } from "./siteConfig";
-
-const phoneDisplay = siteConfig.phoneDisplay;
-const phoneHref = siteConfig.phoneHref;
 
 export type InfoSection = {
   title: string;
@@ -61,7 +59,7 @@ export default function InfoPageLayout({
   heroNote,
   comingSoon = false,
   primaryCta = { label: "Reparatur buchen", href: "/reparatur-buchen" },
-  secondaryCta = { label: "Jetzt anrufen", href: `tel:${phoneHref}` },
+  secondaryCta = { label: "Jetzt anrufen", href: `tel:${siteConfig.phoneHref}` },
   afterHero,
   cardsEyebrow,
   cardsTitle,
@@ -103,20 +101,19 @@ export default function InfoPageLayout({
                 <Link href={primaryCta.href} className="btn-primary">
                   {primaryCta.label}
                 </Link>
-                <a href={secondaryCta.href} className="btn-ghost">
-                  {secondaryCta.label}
-                </a>
+                {secondaryCta.href.startsWith("tel:") ? (
+                  <TrackedPhoneLink className="btn-ghost">{secondaryCta.label}</TrackedPhoneLink>
+                ) : (
+                  <a href={secondaryCta.href} className="btn-ghost">
+                    {secondaryCta.label}
+                  </a>
+                )}
               </div>
             </div>
 
             <div className="reveal border-l border-[color:var(--border)] py-2 pl-8">
               <p className="tracking-eyebrow text-[color:var(--muted)]">Schnellster Weg</p>
-              <a
-                href={`tel:${phoneHref}`}
-                className="font-display mt-4 block break-words text-3xl font-light tracking-tight text-[color:var(--accent)] sm:text-4xl"
-              >
-                {phoneDisplay}
-              </a>
+              <TrackedPhoneLink className="font-display mt-4 block break-words text-3xl font-light tracking-tight text-[color:var(--accent)] sm:text-4xl" />
               <p className="mt-5 text-sm font-light leading-relaxed text-[color:var(--muted)]">
                 {heroNote ??
                   "Nennen Sie uns Gerät, Modell und Fehlerbild — wir melden uns zur Terminabstimmung."}
@@ -224,9 +221,7 @@ export default function InfoPageLayout({
               <p className="mt-5 text-[1rem] font-light leading-relaxed text-white/75">{closingText}</p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
-              <a href={`tel:${phoneHref}`} className="btn-on-dark">
-                {phoneDisplay}
-              </a>
+              <TrackedPhoneLink className="btn-on-dark" />
               <Link href="/reparatur-buchen" className="btn-on-dark-ghost">
                 Reparatur buchen
                 <ArrowIcon />

@@ -46,6 +46,7 @@ export default function ImpressumPage() {
               <p className="tracking-eyebrow text-[color:var(--muted)]">Schnellkontakt</p>
               <a
                 href={`tel:${phoneHref}`}
+                data-legal-phone
                 className="font-display mt-4 block break-words text-3xl font-light tracking-tight text-[color:var(--accent)] sm:text-4xl"
               >
                 {phone}
@@ -72,7 +73,7 @@ export default function ImpressumPage() {
 
             <article className="bg-white p-8 lg:p-10">
               <p className="cap-line tracking-eyebrow text-[color:var(--accent)]">Kontakt</p>
-              <a href={`tel:${phoneHref}`} className="font-display mt-7 block text-2xl font-normal tracking-tight">
+              <a href={`tel:${phoneHref}`} data-legal-phone className="font-display mt-7 block text-2xl font-normal tracking-tight">
                 {phone}
               </a>
               <a

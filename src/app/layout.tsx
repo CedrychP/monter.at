@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import Script from "next/script";
+import { cookies } from "next/headers";
+import { AdPhoneProvider } from "./AdPhone";
+import { AD_PHONE_COOKIE, parseAdSource } from "./adPhone";
 import CookieBanner from "./CookieBanner";
 import { consentDefaultScript } from "./consentMode";
 import { getLogoSrc } from "./logoAsset";
@@ -47,11 +50,13 @@ export const metadata: Metadata = {
   }
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cookieStore = await cookies();
+  const initialAdSource = parseAdSource(cookieStore.get(AD_PHONE_COOKIE)?.value);
   const organizationJsonLd = {
     "@context": "https://schema.org",
     "@type": ["LocalBusiness", "Organization"],
@@ -168,16 +173,18 @@ export default function RootLayout({
           suppressHydrationWarning
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
         />
-        <a href="#inhalt" className="skip-link">
-          Zum Inhalt springen
-        </a>
-        <SiteHeader logoSrc={logoSrc} />
-        <div id="inhalt">{children}</div>
-        <SiteFooter logoSrc={logoSrc} />
-        <MobileActionBar />
-        <CookieBanner />
-        <TelClickTracker />
-        <OpenAiPageView />
+        <AdPhoneProvider initialSource={initialAdSource}>
+          <a href="#inhalt" className="skip-link">
+            Zum Inhalt springen
+          </a>
+          <SiteHeader logoSrc={logoSrc} />
+          <div id="inhalt">{children}</div>
+          <SiteFooter logoSrc={logoSrc} />
+          <MobileActionBar />
+          <CookieBanner />
+          <TelClickTracker />
+          <OpenAiPageView />
+        </AdPhoneProvider>
       </body>
     </html>
   );

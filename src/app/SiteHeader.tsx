@@ -6,18 +6,17 @@ import { usePathname } from "next/navigation";
 import {
   useCallback,
   useEffect,
+  useMemo,
   useRef,
   useState
 } from "react";
+import { useAdPhone } from "./AdPhone";
 import NavMonterAccount from "./NavMonterAccount";
 import NavNewsletterSignup from "./NavNewsletterSignup";
 import { garageDoorNavLinks, garageRepairNavLinks } from "./garagentore/garagePages";
 import { klimaDeviceNavLinks, klimaRepairNavLinks } from "./klimageraete/klimaPages";
 import { brandAlphabetGroups } from "./marken/brands";
 import { siteConfig } from "./siteConfig";
-
-const emergencyPhoneDisplay = siteConfig.phoneDisplay;
-const emergencyPhoneHref = siteConfig.phoneHref;
 
 type NavLink = {
   label: string;
@@ -218,14 +217,15 @@ function NavDropdownLink({
   );
 }
 
-function getFeatureLinkLabel(label: string, href: string): string {
-  if (href.startsWith("tel:") && label === emergencyPhoneDisplay) {
+function getFeatureLinkLabel(label: string, href: string, phoneDisplay: string): string {
+  if (href.startsWith("tel:") && label === phoneDisplay) {
     return `Telefon: ${label}`;
   }
   return label;
 }
 
-const megaMenus: MegaMenuConfig[] = [
+function getMegaMenus(phoneHref: string): MegaMenuConfig[] {
+  return [
   {
     id: "garage",
     label: "Garagentore",
@@ -240,7 +240,7 @@ const megaMenus: MegaMenuConfig[] = [
       text:
         "Telefon ist der schnellste Weg zu einer Einschätzung. Wir prüfen Fehlerbild, Termin und Aufwand direkt im Gespräch.",
       primaryLabel: "Jetzt anrufen",
-      primaryHref: `tel:${emergencyPhoneHref}`,
+      primaryHref: `tel:${phoneHref}`,
       secondaryLabel: "Termin buchen",
       secondaryHref: "/reparatur-buchen"
     }
@@ -262,7 +262,7 @@ const megaMenus: MegaMenuConfig[] = [
       text:
         "Telefon ist der schnellste Weg zu einer Einschätzung. Wir prüfen Fehlerbild, Termin und Aufwand direkt im Gespräch.",
       primaryLabel: "Jetzt anrufen",
-      primaryHref: `tel:${emergencyPhoneHref}`,
+      primaryHref: `tel:${phoneHref}`,
       secondaryLabel: "Termin buchen",
       secondaryHref: "/reparatur-buchen"
     }
@@ -281,7 +281,7 @@ const megaMenus: MegaMenuConfig[] = [
       text:
         "Telefon ist der schnellste Weg zu einer Einschätzung. Wir prüfen Fehlerbild, Termin und Aufwand direkt im Gespräch.",
       primaryLabel: "Jetzt anrufen",
-      primaryHref: `tel:${emergencyPhoneHref}`,
+      primaryHref: `tel:${phoneHref}`,
       secondaryLabel: "Termin buchen",
       secondaryHref: "/reparatur-buchen"
     }
@@ -309,7 +309,7 @@ const megaMenus: MegaMenuConfig[] = [
       text:
         "Bosch, Siemens, Miele, AEG, Gorenje, Elektra Bregenz und viele mehr — markenoffen, mit ehrlicher Diagnose.",
       primaryLabel: "Jetzt anrufen",
-      primaryHref: `tel:${emergencyPhoneHref}`,
+      primaryHref: `tel:${phoneHref}`,
       secondaryLabel: "Termin buchen",
       secondaryHref: "/reparatur-buchen"
     }
@@ -328,7 +328,7 @@ const megaMenus: MegaMenuConfig[] = [
       text:
         "Telefon ist der schnellste Weg zu einer Einschätzung. Wir prüfen Fehlerbild, Termin und Aufwand direkt im Gespräch.",
       primaryLabel: "Jetzt anrufen",
-      primaryHref: `tel:${emergencyPhoneHref}`,
+      primaryHref: `tel:${phoneHref}`,
       secondaryLabel: "Termin buchen",
       secondaryHref: "/reparatur-buchen"
     }
@@ -357,7 +357,8 @@ const megaMenus: MegaMenuConfig[] = [
     account: true,
     newsletter: true
   }
-];
+  ];
+}
 
 type SiteHeaderProps = {
   logoSrc: string;
@@ -365,6 +366,8 @@ type SiteHeaderProps = {
 
 export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
   const pathname = usePathname();
+  const { display: emergencyPhoneDisplay, href: emergencyPhoneHref } = useAdPhone();
+  const megaMenus = useMemo(() => getMegaMenus(emergencyPhoneHref), [emergencyPhoneHref]);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [accountOpen, setAccountOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
@@ -546,7 +549,7 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
               onClick={() => setMobileMenuOpen(false)}
               className="btn-on-dark justify-center"
             >
-              {getFeatureLinkLabel(menu.feature.primaryLabel, menu.feature.primaryHref)}
+              {getFeatureLinkLabel(menu.feature.primaryLabel, menu.feature.primaryHref, emergencyPhoneDisplay)}
             </a>
             {menu.feature.secondaryLabel && menu.feature.secondaryHref ? (
               <Link
@@ -554,7 +557,7 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
                 onClick={() => setMobileMenuOpen(false)}
                 className="btn-on-dark-ghost justify-center"
               >
-                {getFeatureLinkLabel(menu.feature.secondaryLabel, menu.feature.secondaryHref)}
+                {getFeatureLinkLabel(menu.feature.secondaryLabel, menu.feature.secondaryHref, emergencyPhoneDisplay)}
               </Link>
             ) : null}
           </div>
@@ -1014,7 +1017,7 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
                           onClick={closeAllOverlays}
                           className="nav-dropdown-cta nav-dropdown-cta--primary"
                         >
-                          {getFeatureLinkLabel(menu.feature.primaryLabel, menu.feature.primaryHref)}
+                          {getFeatureLinkLabel(menu.feature.primaryLabel, menu.feature.primaryHref, emergencyPhoneDisplay)}
                         </a>
                         {menu.feature.secondaryLabel && menu.feature.secondaryHref ? (
                           <a
@@ -1024,7 +1027,8 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
                           >
                             {getFeatureLinkLabel(
                               menu.feature.secondaryLabel,
-                              menu.feature.secondaryHref
+                              menu.feature.secondaryHref,
+                              emergencyPhoneDisplay
                             )}
                           </a>
                         ) : null}

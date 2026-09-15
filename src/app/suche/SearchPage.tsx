@@ -3,15 +3,12 @@
 import Link from "next/link";
 import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import { TrackedPhoneLink } from "../AdPhone";
 import {
   buildSearchIndex,
   filterSearchResults,
   popularSearches
 } from "../searchIndex";
-import { siteConfig } from "../siteConfig";
-
-const emergencyPhoneDisplay = siteConfig.phoneDisplay;
-const emergencyPhoneHref = siteConfig.phoneHref;
 
 export default function SearchPage() {
   const searchParams = useSearchParams();
@@ -113,9 +110,7 @@ export default function SearchPage() {
                     <p className="mt-3 text-sm font-normal leading-relaxed text-white/60">
                       Rufen Sie uns kurz an — wir prüfen, ob die Reparatur möglich ist.
                     </p>
-                    <a href={`tel:${emergencyPhoneHref}`} className="btn-primary mt-6">
-                      {emergencyPhoneDisplay}
-                    </a>
+                    <TrackedPhoneLink className="btn-primary mt-6" />
                   </div>
                 )
               ) : (
@@ -145,12 +140,7 @@ export default function SearchPage() {
               <p className="mt-4 text-sm font-normal leading-relaxed text-white/65">
                 Bei dringenden Ausfällen oder unklarem Fehlerbild ist das Telefon der schnellste Weg.
               </p>
-              <a
-                href={`tel:${emergencyPhoneHref}`}
-                className="font-display mt-6 block text-3xl font-medium tracking-tight text-white transition hover:text-[color:var(--accent)]"
-              >
-                {emergencyPhoneDisplay}
-              </a>
+              <TrackedPhoneLink className="font-display mt-6 block text-3xl font-medium tracking-tight text-white transition hover:text-[color:var(--accent)]" />
               <Link href="/kontakt" className="link-arrow link-arrow--on-dark mt-6">
                 Anfrageformular
                 <svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true">
