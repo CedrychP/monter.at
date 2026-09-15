@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
+import { trackOpenAiEvent } from "./analytics";
 
 /** Interne Suche und API — kein Content-PageView für OpenAI Ads. */
 const SKIP_PREFIXES = ["/suche", "/api/"];
@@ -12,17 +13,8 @@ function shouldMeasure(pathname: string): boolean {
   return !SKIP_PREFIXES.some((prefix) => pathname === prefix || pathname.startsWith(prefix));
 }
 
-function measurePageView(pathname: string): boolean {
-  if (typeof window.oaiq !== "function") return false;
-  if (lastMeasuredPath === pathname) return true;
-
-  lastMeasuredPath = pathname;
-  window.oaiq("measure", "page_viewed", { type: "contents" });
-  return true;
-}
-
 /**
- * OpenAI Ads: page_viewed auf jedem Content-Aufruf, auch bei Client-Navigation.
+ * OpenAI Ads: page_viewed auf jedem Content-Aufruf, Pixel + Conversions API.
  * Nicht im Init-Skript im Head — sonst zählt der erste Hit doppelt.
  */
 export default function OpenAiPageView() {
@@ -30,18 +22,10 @@ export default function OpenAiPageView() {
 
   useEffect(() => {
     if (!pathname || !shouldMeasure(pathname)) return;
+    if (lastMeasuredPath === pathname) return;
 
-    if (measurePageView(pathname)) return;
-
-    const interval = window.setInterval(() => {
-      if (measurePageView(pathname)) window.clearInterval(interval);
-    }, 50);
-    const timeout = window.setTimeout(() => window.clearInterval(interval), 4000);
-
-    return () => {
-      window.clearInterval(interval);
-      window.clearTimeout(timeout);
-    };
+    lastMeasuredPath = pathname;
+    trackOpenAiEvent("page_viewed");
   }, [pathname]);
 
   return null;

@@ -12,6 +12,7 @@ import SiteHeader from "./SiteHeader";
 import { localBusinessId, siteConfig } from "./siteConfig";
 import TelClickTracker from "./TelClickTracker";
 import OpenAiPageView from "./OpenAiPageView";
+import { OPENAI_PIXEL_ID } from "./openaiAds";
 import "./globals.css";
 
 const GOOGLE_ADS_ID = "AW-18096010711";
@@ -150,7 +151,7 @@ export default async function RootLayout({
         <Script id="openai-pixel" strategy="afterInteractive">
           {`
             !function(w,d,s,u){if(w.oaiq)return;var q=function(){q.q.push(arguments)};q.q=[];w.oaiq=q;var j=d.createElement(s);j.async=1;j.src=u;var f=d.getElementsByTagName(s)[0];f.parentNode.insertBefore(j,f)}(window,document,"script","https://bzrcdn.openai.com/sdk/oaiq.min.js");
-            oaiq("init",{pixelId:"SC6rakggZtkTgJaibxRgyH",debug:true});
+            oaiq("init",{pixelId:"${OPENAI_PIXEL_ID}",debug:true});
           `}
         </Script>
       </head>

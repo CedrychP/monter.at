@@ -1,3 +1,5 @@
+import { OPPREF_COOKIE, PIXEL_OBREF_COOKIE, PIXEL_OPPREF_COOKIE } from "./openaiAds";
+
 export const GOOGLE_ADS_ID = "AW-18096010711";
 
 // Conversion-Labels aus Google Ads eintragen (Format: "AW-18096010711/XXXXXXXX").
@@ -93,14 +95,77 @@ export function trackConversion(type: ConversionType, params: Record<string, unk
   }
 
   if (type === "call" || type === "form") {
-    measureOpenAiAppointment();
+    trackOpenAiEvent("appointment_scheduled", params);
   }
 }
 
-function measureOpenAiAppointment() {
+const OPENAI_EVENT_DATA = {
+  appointment_scheduled: { type: "customer_action" },
+  page_viewed: { type: "contents" }
+} as const;
+
+export type OpenAiEventName = keyof typeof OPENAI_EVENT_DATA;
+
+function readCookie(name: string): string {
+  const match = document.cookie.match(new RegExp(`(?:^|; )${name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}=([^;]*)`));
+  return match?.[1] ? decodeURIComponent(match[1]) : "";
+}
+
+function readUserData(params: Record<string, unknown>): { email?: string; phone?: string } {
+  const userData = params.user_data;
+  if (!userData || typeof userData !== "object") return {};
+
+  const record = userData as Record<string, unknown>;
+  return {
+    email: typeof record.email === "string" ? record.email : undefined,
+    phone: typeof record.phone_number === "string" ? record.phone_number : undefined
+  };
+}
+
+function sendOpenAiServerEvent(
+  eventName: OpenAiEventName,
+  eventId: string,
+  params: Record<string, unknown>
+) {
+  const user = readUserData(params);
+  const oppref =
+    readCookie(PIXEL_OPPREF_COOKIE) ||
+    readCookie(OPPREF_COOKIE) ||
+    new URLSearchParams(window.location.search).get("oppref") ||
+    "";
+
+  const body = JSON.stringify({
+    event_id: eventId,
+    type: eventName,
+    source_url: window.location.href,
+    oppref: oppref || undefined,
+    obref: readCookie(PIXEL_OBREF_COOKIE) || undefined,
+    email: user.email,
+    phone: user.phone
+  });
+
+  try {
+    const blob = new Blob([body], { type: "application/json" });
+    if (navigator.sendBeacon("/api/openai-conversion", blob)) return;
+  } catch {
+    /* Fallback auf fetch */
+  }
+
+  void fetch("/api/openai-conversion", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body,
+    keepalive: true
+  }).catch(() => undefined);
+}
+
+export function trackOpenAiEvent(eventName: OpenAiEventName, params: Record<string, unknown> = {}) {
+  const eventId = crypto.randomUUID();
+  sendOpenAiServerEvent(eventName, eventId, params);
+
   const fire = () => {
     if (typeof window.oaiq !== "function") return false;
-    window.oaiq("measure", "appointment_scheduled", { type: "customer_action" });
+    window.oaiq("measure", eventName, OPENAI_EVENT_DATA[eventName], { event_id: eventId });
     return true;
   };
 
