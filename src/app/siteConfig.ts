@@ -16,10 +16,7 @@ export const siteConfig = {
   email: "info@monter.at",
   phoneDisplay: "01 4171346",
   phoneHref: "+4314171346",
-  /**
-   * Tracking-Nummern für Ads. Leer = Standardnummer.
-   * Vercel-Env überschreibt: NEXT_PUBLIC_PHONE_META_* / NEXT_PUBLIC_PHONE_CHATGPT_*.
-   */
+  /** Tracking-Nummer für Meta- und ChatGPT-Ads. */
   adPhones: {
     meta: {
       display: "01 4170399",

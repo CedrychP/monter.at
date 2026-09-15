@@ -34,27 +34,8 @@ export function isLegalPhonePath(pathname: string): boolean {
   return LEGAL_PHONE_PATHS.includes(path);
 }
 
-function envOrConfig(envValue: string | undefined, configValue: string): string {
-  const fromEnv = envValue?.trim() ?? "";
-  if (fromEnv) return fromEnv;
-  return configValue.trim();
-}
-
 function phoneForSource(source: AdPhoneSource): { display: string; href: string } {
-  if (source === "meta") {
-    return {
-      display: envOrConfig(process.env.NEXT_PUBLIC_PHONE_META_DISPLAY, siteConfig.adPhones.meta.display),
-      href: envOrConfig(process.env.NEXT_PUBLIC_PHONE_META_HREF, siteConfig.adPhones.meta.href)
-    };
-  }
-
-  return {
-    display: envOrConfig(
-      process.env.NEXT_PUBLIC_PHONE_CHATGPT_DISPLAY,
-      siteConfig.adPhones.chatgpt.display
-    ),
-    href: envOrConfig(process.env.NEXT_PUBLIC_PHONE_CHATGPT_HREF, siteConfig.adPhones.chatgpt.href)
-  };
+  return source === "meta" ? siteConfig.adPhones.meta : siteConfig.adPhones.chatgpt;
 }
 
 export function getAdPhone(source: AdPhoneSource | null): AdPhone {
