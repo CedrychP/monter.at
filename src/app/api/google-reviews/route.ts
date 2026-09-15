@@ -5,7 +5,8 @@ import {
   toGoogleRatingSummary
 } from "../../../lib/googleReviews";
 
-export const revalidate = GOOGLE_REVIEWS_REVALIDATE_SECONDS;
+/** Muss ein Literal sein — Next 16 wertet Segment-Config nicht aus Variablen. */
+export const revalidate = 3600;
 
 export async function GET() {
   const data = await getGoogleReviews();
