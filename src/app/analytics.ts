@@ -79,6 +79,7 @@ export function buildUserData({ email, phone }: { email?: unknown; phone?: unkno
  * an Google Ads. Läuft nur clientseitig und schlägt nie hart fehl.
  *
  * Wichtig: Nur nach erfolgreicher Server-Bestätigung aufrufen, nicht beim Klick.
+ * Anfrage-Formulare und Telefonklicks gehen zusätzlich an OpenAI Ads.
  */
 export function trackConversion(type: ConversionType, params: Record<string, unknown> = {}) {
   if (typeof window === "undefined") return;
@@ -90,6 +91,25 @@ export function trackConversion(type: ConversionType, params: Record<string, unk
   if (label && typeof window.gtag === "function") {
     window.gtag("event", "conversion", { send_to: label, ...params });
   }
+
+  if (type === "call" || type === "form") {
+    measureOpenAiAppointment();
+  }
+}
+
+function measureOpenAiAppointment() {
+  const fire = () => {
+    if (typeof window.oaiq !== "function") return false;
+    window.oaiq("measure", "appointment_scheduled", { type: "customer_action" });
+    return true;
+  };
+
+  if (fire()) return;
+
+  const interval = window.setInterval(() => {
+    if (fire()) window.clearInterval(interval);
+  }, 50);
+  window.setTimeout(() => window.clearInterval(interval), 4000);
 }
 
 /**
