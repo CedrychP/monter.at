@@ -4,7 +4,7 @@ import { appliancePages } from "./haushaltsgeraete/appliancePages";
 import { garagePages } from "./garagentore/garagePages";
 import { klimaPages } from "./klimageraete/klimaPages";
 import { regionPages } from "./einsatzgebiete/regionPages";
-import { locationPages, locationHref } from "./einsatzgebiete/locationPages";
+import { getLocationPage, locationPages, locationHref } from "./einsatzgebiete/locationPages";
 
 export type SearchEntry = {
   title: string;
@@ -61,13 +61,23 @@ export function buildSearchIndex(): SearchEntry[] {
       .map((city) => `${city.plz} ${city.name}`)
       .join(" ")}`
   }));
-  const fromLocations: SearchEntry[] = locationPages.map((location) => ({
-    title: `Reparatur ${location.name}`,
-    description: location.short,
-    href: locationHref(location),
-    category: location.regionSlug === "wien" ? "Wiener Bezirk" : "Stadt",
-    keywords: `${location.name} ${location.postalCodes.join(" ")} reparatur techniker vor ort ${location.short}`
-  }));
+  const fromLocations: SearchEntry[] = locationPages.map((location) => {
+    const city = location.parentSlug
+      ? getLocationPage(location.regionSlug, location.parentSlug)
+      : undefined;
+    const name = city ? `${city.name}-${location.name}` : location.name;
+    return {
+      title: `Reparatur ${name}`,
+      description: location.short,
+      href: locationHref(location),
+      category: city
+        ? `Stadtteil ${city.name}`
+        : location.regionSlug === "wien"
+          ? "Wiener Bezirk"
+          : "Stadt",
+      keywords: `${name} ${location.name} ${location.postalCodes.join(" ")} reparatur techniker vor ort ${location.short}`
+    };
+  });
   const fromBlog: SearchEntry[] = blogPosts.map((post) => ({
     title: post.title,
     description: post.description,

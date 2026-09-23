@@ -1,6 +1,7 @@
 import { blogPosts } from "./blog/posts";
 import { regionPages } from "./einsatzgebiete/regionPages";
 import {
+  getDistrictsFor,
   getLocationsForRegion,
   locationHref,
   unenrichedLocationRoutes
@@ -100,10 +101,13 @@ export const sitemapGroups: SitemapGroup[] = [
           href: `/einsatzgebiete/${region.slug}`,
           ...(locations.length > 0
             ? {
-                children: locations.map((location) => ({
-                  label: location.name,
-                  href: locationHref(location)
-                }))
+                children: locations.flatMap((location) => [
+                  { label: location.name, href: locationHref(location) },
+                  ...getDistrictsFor(location).map((district) => ({
+                    label: `${location.name} · ${district.name}`,
+                    href: locationHref(district)
+                  }))
+                ])
               }
             : {})
         };
