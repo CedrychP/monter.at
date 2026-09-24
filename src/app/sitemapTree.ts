@@ -7,6 +7,7 @@ import {
   unenrichedLocationRoutes
 } from "./einsatzgebiete/locationPages";
 import { appliancePages } from "./haushaltsgeraete/appliancePages";
+import { linzAppliancePages } from "./haushaltsgeraete/linzAppliancePages";
 import { garagePages } from "./garagentore/garagePages";
 import { klimaPages } from "./klimageraete/klimaPages";
 import { isBrandDeviceEnriched } from "./marken/brandDeviceContent";
@@ -41,7 +42,15 @@ export const sitemapGroups: SitemapGroup[] = [
       ...appliancePages.map((page) => ({
         label: page.title,
         href: `/haushaltsgeraete/${page.slug}`
-      }))
+      })),
+      {
+        label: "Haushaltsgeräte Linz",
+        href: "/einsatzgebiete/oberoesterreich/linz",
+        children: linzAppliancePages.map((page) => ({
+          label: page.category,
+          href: `/haushaltsgeraete/${page.slug}`
+        }))
+      }
     ]
   },
   {

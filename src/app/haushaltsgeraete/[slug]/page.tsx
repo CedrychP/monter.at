@@ -5,7 +5,14 @@ import { HubFaq } from "../../HubBlocks";
 import { isBrandDeviceEnriched } from "../../marken/brandDeviceContent";
 import { brandDeviceCategories } from "../../marken/devices";
 import { buildMetadata } from "../../pageMetadata";
-import { appliancePages, getAppliancePage, type AppliancePage } from "../appliancePages";
+import {
+  allAppliancePages,
+  appliancePages,
+  getAppliancePage,
+  isLinzAppliancePage,
+  type AppliancePage
+} from "../appliancePages";
+import { linzAppliancePages } from "../linzAppliancePages";
 
 type AppliancePageProps = {
   params: Promise<{
@@ -49,7 +56,37 @@ function brandsForPage(slug: string) {
   ];
 }
 
+const LINZ_HREF = "/einsatzgebiete/oberoesterreich/linz";
+
+function relatedLinzEntries(page: AppliancePage) {
+  const preferred = (relatedBySlug[page.slug.replace(/-linz$/, "-wien")] ?? []).map((slug) =>
+    slug.replace(/-wien$/, "-linz")
+  );
+  const appliances = [
+    ...preferred
+      .map((slug) => linzAppliancePages.find((item) => item.slug === slug))
+      .filter((item): item is AppliancePage => Boolean(item)),
+    ...linzAppliancePages.filter((item) => item.slug !== page.slug && !preferred.includes(item.slug))
+  ]
+    .slice(0, 3)
+    .map((item) => ({
+      category: item.category,
+      title: item.title,
+      href: `/haushaltsgeraete/${item.slug}`
+    }));
+
+  return [
+    { category: "Einsatzgebiet", title: "Reparatur in Linz", href: LINZ_HREF },
+    ...appliances,
+    { category: "Oberösterreich", title: "Einsatzgebiet Oberösterreich", href: "/einsatzgebiete/oberoesterreich" }
+  ];
+}
+
 function relatedEntries(page: AppliancePage) {
+  if (isLinzAppliancePage(page.slug)) {
+    return relatedLinzEntries(page);
+  }
+
   const hub = {
     category: "Übersicht",
     title: "Haushaltsgeräte Reparatur Wien",
@@ -105,7 +142,7 @@ function relatedEntries(page: AppliancePage) {
 }
 
 export function generateStaticParams() {
-  return appliancePages.map((page) => ({
+  return allAppliancePages.map((page) => ({
     slug: page.slug
   }));
 }
@@ -136,14 +173,32 @@ export default async function ApplianceDetailPage({ params }: AppliancePageProps
   }
 
   const related = relatedEntries(page);
+  const isLinz = isLinzAppliancePage(page.slug);
 
   return (
     <DetailPageLayout
-      hub={{ label: "Haushaltsgeräte", href: "/haushaltsgeraete" }}
+      ancestors={isLinz ? [{ label: "Haushaltsgeräte", href: "/haushaltsgeraete" }] : undefined}
+      hub={
+        isLinz
+          ? { label: "Linz", href: LINZ_HREF }
+          : { label: "Haushaltsgeräte", href: "/haushaltsgeraete" }
+      }
       category={page.category}
       h1={page.h1}
       intro={page.intro}
-      contactNote="Für schnelle Einschätzung, Terminabstimmung und Notdienst-Kontakt."
+      contactNote={
+        isLinz
+          ? "Nennen Sie Adresse, Gerät und Fehlerbild — wir sagen Ihnen Anfahrt und Termin in Linz."
+          : "Für schnelle Einschätzung, Terminabstimmung und Notdienst-Kontakt."
+      }
+      areaServed={
+        isLinz
+          ? [
+              { type: "City", name: "Linz" },
+              { type: "State", name: "Oberösterreich" }
+            ]
+          : undefined
+      }
       checklist={page.checklist}
       sections={page.sections}
       relatedEyebrow="Verwandte Leistungen"

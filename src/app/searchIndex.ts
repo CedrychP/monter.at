@@ -1,6 +1,6 @@
 import { blogPosts } from "./blog/posts";
 import { brandPages } from "./marken/brands";
-import { appliancePages } from "./haushaltsgeraete/appliancePages";
+import { allAppliancePages } from "./haushaltsgeraete/appliancePages";
 import { garagePages } from "./garagentore/garagePages";
 import { klimaPages } from "./klimageraete/klimaPages";
 import { regionPages } from "./einsatzgebiete/regionPages";
@@ -24,7 +24,7 @@ export const popularSearches = [
 ];
 
 export function buildSearchIndex(): SearchEntry[] {
-  const fromAppliances: SearchEntry[] = appliancePages.map((service) => ({
+  const fromAppliances: SearchEntry[] = allAppliancePages.map((service) => ({
     title: service.title,
     description: service.description,
     href: `/haushaltsgeraete/${service.slug}`,

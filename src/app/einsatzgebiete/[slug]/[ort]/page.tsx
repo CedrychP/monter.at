@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import DetailPageLayout from "../../../DetailPageLayout";
 import { HubDetailLinks, HubFaq } from "../../../HubBlocks";
 import { buildMetadata } from "../../../pageMetadata";
+import type { AppliancePage } from "../../../haushaltsgeraete/appliancePages";
+import { linzAppliancePages } from "../../../haushaltsgeraete/linzAppliancePages";
 import LocationProfile from "../../LocationProfile";
 import { getRegionPage } from "../../regionPages";
 import {
@@ -18,6 +20,10 @@ type LocationPageProps = {
     slug: string;
     ort: string;
   }>;
+};
+
+const cityAppliancePages: Record<string, AppliancePage[]> = {
+  "oberoesterreich/linz": linzAppliancePages
 };
 
 const anfrageChecklist = [
@@ -69,6 +75,7 @@ export default async function LocationDetailPage({ params }: LocationPageProps) 
     .filter((item) => item.slug !== location.slug)
     .slice(0, 3);
   const districts = getDistrictsFor(location);
+  const appliances = cityAppliancePages[`${region.slug}/${location.slug}`] ?? [];
 
   return (
     <DetailPageLayout
@@ -101,6 +108,18 @@ export default async function LocationDetailPage({ params }: LocationPageProps) 
         location={location}
         parent={{ label: `Einsatzgebiet ${region.name}`, href: `/einsatzgebiete/${region.slug}` }}
       />
+      {appliances.length > 0 ? (
+        <HubDetailLinks
+          eyebrow="Reparatur nach Gerät"
+          title={`Haushaltsgeräte in ${location.name}.`}
+          intro="Typische Fehlerbilder, Fehlercodes und die Frage Reparatur oder Austausch — je Gerät eine eigene Seite."
+          links={appliances.map((page) => ({
+            label: page.category,
+            href: `/haushaltsgeraete/${page.slug}`,
+            text: page.short
+          }))}
+        />
+      ) : null}
       {districts.length > 0 ? (
         <HubDetailLinks
           eyebrow="Stadtteile"

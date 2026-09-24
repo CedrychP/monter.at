@@ -1,4 +1,5 @@
 import type { HubFaqItem } from "../HubBlocks";
+import { linzAppliancePages } from "./linzAppliancePages";
 
 export type AppliancePage = {
   slug: string;
@@ -550,8 +551,15 @@ export const appliancePages: AppliancePage[] = [
   }
 ];
 
+/** Inklusive Linz — die Linzer Seiten bleiben aus Menü und Wiener Hub, sind aber eigene Routen. */
+export const allAppliancePages: AppliancePage[] = [...appliancePages, ...linzAppliancePages];
+
 export function getAppliancePage(slug: string) {
-  return appliancePages.find((page) => page.slug === slug);
+  return allAppliancePages.find((page) => page.slug === slug);
+}
+
+export function isLinzAppliancePage(slug: string) {
+  return linzAppliancePages.some((page) => page.slug === slug);
 }
 
 export const applianceWashingNavLinks = appliancePages
