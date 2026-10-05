@@ -1091,6 +1091,25 @@ canvas {
   animation-range: entry 12% cover 40%;
 }
 
+@media (max-width: 1023px) {
+  .reveal,
+  .stagger > * {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Große Weichzeichner kosten auf dem Handy spürbar Renderzeit. */
+  [class*="blur-["] {
+    display: none;
+  }
+
+  #inhalt main > section:nth-child(n + 4) {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 48rem;
+  }
+}
+
 @supports not (animation-timeline: view()) {
   .reveal,
   .stagger > * {

@@ -26,6 +26,7 @@ declare global {
     dataLayer?: Record<string, unknown>[];
     gtag?: (...args: unknown[]) => void;
     oaiq?: (...args: unknown[]) => void;
+    __monterTagsReady?: boolean;
   }
 }
 

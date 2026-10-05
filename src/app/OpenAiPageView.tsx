@@ -24,8 +24,23 @@ export default function OpenAiPageView() {
     if (!pathname || !shouldMeasure(pathname)) return;
     if (lastMeasuredPath === pathname) return;
 
-    lastMeasuredPath = pathname;
-    trackOpenAiEvent("page_viewed");
+    const measure = () => {
+      if (lastMeasuredPath === pathname) return;
+      lastMeasuredPath = pathname;
+      trackOpenAiEvent("page_viewed");
+    };
+
+    if (window.__monterTagsReady) {
+      measure();
+      return;
+    }
+
+    window.addEventListener("monter-tags-ready", measure, { once: true });
+    const fallback = window.setTimeout(measure, 9000);
+    return () => {
+      window.removeEventListener("monter-tags-ready", measure);
+      window.clearTimeout(fallback);
+    };
   }, [pathname]);
 
   return null;

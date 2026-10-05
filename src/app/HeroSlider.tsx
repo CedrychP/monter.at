@@ -20,6 +20,17 @@ const partsImage =
 const newsletterImage =
   "https://images.unsplash.com/photo-1634549709262-508c47d4c229?auto=format&fit=crop&w=1280&q=60";
 
+const HERO_WIDTHS = [480, 768, 1080, 1440];
+
+function heroCdnUrl(url: string, width: number) {
+  const base = url.split("?")[0];
+  return `${base}?auto=format&fit=crop&w=${width}&q=45`;
+}
+
+function heroSrcSet(url: string) {
+  return HERO_WIDTHS.map((width) => `${heroCdnUrl(url, width)} ${width}w`).join(", ");
+}
+
 type SlideAction = {
   label: string;
   href: string;
@@ -172,17 +183,25 @@ export default function HeroSlider() {
   const reducedMotionRef = useRef(false);
   const count = slides.length;
 
-  const goTo = useCallback((next: number) => setIndex(((next % count) + count) % count), [count]);
+  const revealSlides = useCallback(() => setDeferSlides(false), []);
 
-  const goPrev = useCallback(
-    () => setIndex((current) => (current - 1 + count) % count),
-    [count]
+  const goTo = useCallback(
+    (next: number) => {
+      revealSlides();
+      setIndex(((next % count) + count) % count);
+    },
+    [count, revealSlides]
   );
 
-  const goNext = useCallback(
-    () => setIndex((current) => (current + 1) % count),
-    [count]
-  );
+  const goPrev = useCallback(() => {
+    revealSlides();
+    setIndex((current) => (current - 1 + count) % count);
+  }, [count, revealSlides]);
+
+  const goNext = useCallback(() => {
+    revealSlides();
+    setIndex((current) => (current + 1) % count);
+  }, [count, revealSlides]);
 
   useEffect(() => {
     const enable = () => setDeferSlides(false);
@@ -206,12 +225,12 @@ export default function HeroSlider() {
   }, []);
 
   useEffect(() => {
-    if (paused || reducedMotionRef.current) return;
+    if (deferSlides || paused || reducedMotionRef.current) return;
     const timer = window.setTimeout(() => {
       setIndex((current) => (current + 1) % count);
     }, SLIDE_DURATION);
     return () => window.clearTimeout(timer);
-  }, [index, paused, count]);
+  }, [deferSlides, index, paused, count]);
 
   return (
     <section
@@ -221,8 +240,15 @@ export default function HeroSlider() {
       onFocusCapture={() => setPaused(true)}
       onBlurCapture={() => setPaused(false)}
     >
+      <link
+        rel="preload"
+        as="image"
+        imageSrcSet={heroSrcSet(slides[0].image)}
+        imageSizes="100vw"
+        fetchPriority="high"
+      />
       <div className="relative min-h-[580px] sm:min-h-[720px] lg:min-h-[820px]">
-        {slides.map((slide, slideIndex) => {
+        {(deferSlides ? slides.slice(0, 1) : slides).map((slide, slideIndex) => {
           const isActive = slideIndex === index;
                   const Heading = slideIndex === 0 ? "h1" : "p";
           return (
@@ -237,24 +263,30 @@ export default function HeroSlider() {
               aria-label={`${slideIndex + 1} von ${count}`}
             >
               <div className="absolute inset-0 -z-10">
-                {(slideIndex === 0 ||
-                  (!deferSlides &&
-                    (isActive ||
-                      Math.min(
-                        Math.abs(slideIndex - index),
-                        count - Math.abs(slideIndex - index)
-                      ) <= 1))) && (
+                {slideIndex === 0 ? (
+                  <img
+                    src={heroCdnUrl(slide.image, 768)}
+                    srcSet={heroSrcSet(slide.image)}
+                    sizes="100vw"
+                    alt={slide.alt}
+                    fetchPriority="high"
+                    decoding="async"
+                    className="absolute inset-0 h-full w-full object-cover object-center"
+                  />
+                ) : !deferSlides &&
+                  (isActive ||
+                    Math.min(Math.abs(slideIndex - index), count - Math.abs(slideIndex - index)) <=
+                      1) ? (
                   <Image
                     src={slide.image}
-                    alt={slide.alt}
+                    alt=""
                     fill
-                    priority={slideIndex === 0}
-                    fetchPriority={slideIndex === 0 ? "high" : "low"}
-                    quality={slideIndex === 0 ? 60 : 55}
+                    fetchPriority="low"
+                    quality={50}
                     sizes="100vw"
                     className="object-cover object-center"
                   />
-                )}
+                ) : null}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/60" />
                 <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/10 to-transparent" />
               </div>
