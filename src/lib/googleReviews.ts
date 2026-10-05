@@ -54,7 +54,7 @@ function formatRating(rating: number): string {
   return rating.toFixed(1).replace(".", ",");
 }
 
-function fallbackData(): GoogleReviewsData {
+export function getFallbackGoogleReviews(): GoogleReviewsData {
   return {
     rating: 4.6,
     ratingDisplay: "4,6",
@@ -126,7 +126,7 @@ async function loadGoogleReviews(): Promise<GoogleReviewsData> {
   const placeId = process.env.GOOGLE_PLACE_ID;
 
   if (!apiKey || !placeId) {
-    return fallbackData();
+    return getFallbackGoogleReviews();
   }
 
   try {
@@ -139,13 +139,14 @@ async function loadGoogleReviews(): Promise<GoogleReviewsData> {
           "X-Goog-FieldMask":
             "rating,userRatingCount,reviews.rating,reviews.text,reviews.originalText,reviews.relativePublishTimeDescription,reviews.authorAttribution"
         },
-        cache: "no-store"
+        cache: "no-store",
+        signal: AbortSignal.timeout(2000)
       }
     );
 
     if (!response.ok) {
       console.error("Google Places API error:", response.status, await response.text());
-      return fallbackData();
+      return getFallbackGoogleReviews();
     }
 
     const data = (await response.json()) as GooglePlaceResponse;
@@ -159,18 +160,19 @@ async function loadGoogleReviews(): Promise<GoogleReviewsData> {
       }))
     );
 
-    const rating = typeof data.rating === "number" ? data.rating : fallbackData().rating;
+    const fallback = getFallbackGoogleReviews();
+    const rating = typeof data.rating === "number" ? data.rating : fallback.rating;
 
     return {
       rating,
       ratingDisplay: formatRating(rating),
-      totalCount: data.userRatingCount ?? fallbackData().totalCount,
-      reviews: apiReviews.length > 0 ? apiReviews : fallbackData().reviews,
+      totalCount: data.userRatingCount ?? fallback.totalCount,
+      reviews: apiReviews.length > 0 ? apiReviews : fallback.reviews,
       source: "google"
     };
   } catch (error) {
     console.error("Failed to fetch Google reviews", error);
-    return fallbackData();
+    return getFallbackGoogleReviews();
   }
 }
 

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import RepairBookingForm from "./RepairBookingForm";
 import ReviewsSection from "./ReviewsSection";
@@ -9,7 +10,7 @@ import { brandPages, brandOverview } from "./marken/brands";
 import { getFeaturedCities, homeRegions, servedAreasJsonLd } from "./einsatzgebiete/regionPages";
 import { buildMetadata } from "./pageMetadata";
 import { GoogleRatingStat } from "./GoogleRatingLive";
-import { getGoogleReviews, toGoogleRatingSummary } from "../lib/googleReviews";
+import { getFallbackGoogleReviews, toGoogleRatingSummary } from "../lib/googleReviews";
 import { localBusinessId, siteConfig } from "./siteConfig";
 
 const businessImage =
@@ -327,8 +328,8 @@ const faqs = [
 
 export const revalidate = 3600;
 
-export default async function Home() {
-  const googleReviews = await getGoogleReviews();
+export default function Home() {
+  const googleReviews = getFallbackGoogleReviews();
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -1263,7 +1264,9 @@ export default async function Home() {
         </div>
       </section>
 
-      <ReviewsSection />
+      <Suspense fallback={null}>
+        <ReviewsSection />
+      </Suspense>
 
       {/* FIRMENKUNDEN */}
       <section id="geschaeftskunden" className="bg-white py-16 sm:py-20">

@@ -118,15 +118,13 @@ export default async function RootLayout({
   return (
     <html lang="de-AT" data-scroll-behavior="smooth">
       <head>
-        <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-        <link rel="preconnect" href="https://images.unsplash.com" />
         <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
         {/* Muss vor GTM und gtag laufen, sonst greifen die Consent-Defaults zu spät. */}
         <Script id="consent-default" strategy="beforeInteractive">
           {consentDefaultScript}
         </Script>
-        <Script id="gtm-loader" strategy="afterInteractive">
+        <Script id="gtm-loader" strategy="lazyOnload">
           {`
             (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
             new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -138,9 +136,9 @@ export default async function RootLayout({
         <Script
           id="gtag-loader"
           src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ADS_ID}`}
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
-        <Script id="gtag-init" strategy="afterInteractive">
+        <Script id="gtag-init" strategy="lazyOnload">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
@@ -148,7 +146,7 @@ export default async function RootLayout({
             gtag('config', '${GOOGLE_ADS_ID}');
           `}
         </Script>
-        <Script id="openai-pixel" strategy="afterInteractive">
+        <Script id="openai-pixel" strategy="lazyOnload">
           {`
             !function(w,d,s,u){if(w.oaiq)return;var q=function(){q.q.push(arguments)};q.q=[];w.oaiq=q;var j=d.createElement(s);j.async=1;j.src=u;var f=d.getElementsByTagName(s)[0];f.parentNode.insertBefore(j,f)}(window,document,"script","https://bzrcdn.openai.com/sdk/oaiq.min.js");
             oaiq("init",{pixelId:"${OPENAI_PIXEL_ID}",debug:true});

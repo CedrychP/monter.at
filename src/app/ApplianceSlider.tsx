@@ -54,6 +54,7 @@ export default function ApplianceSlider({
               alt={`${item.title} Reparatur`}
               fill
               sizes={sizes}
+              quality={60}
               className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent" />

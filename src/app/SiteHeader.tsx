@@ -630,7 +630,6 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
                 alt="MONTER Reparatur & Service"
                 width={300}
                 height={80}
-                priority
                 className="h-8 w-auto sm:h-9"
               />
             </Link>

@@ -97,14 +97,26 @@ export function AdPhoneProvider({ initialSource, children }: AdPhoneProviderProp
   const phone = useMemo(() => getAdPhone(source), [source]);
 
   useEffect(() => {
-    applyTrackedPhone(document.body, phone, pathname);
+    if (phone.href === siteConfig.phoneHref && phone.display === siteConfig.phoneDisplay) {
+      return;
+    }
 
-    const observer = new MutationObserver(() => {
+    let frame = 0;
+    const apply = () => {
+      observer.disconnect();
       applyTrackedPhone(document.body, phone, pathname);
+      observer.observe(document.body, { childList: true, subtree: true });
+    };
+    const observer = new MutationObserver(() => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(apply);
     });
 
-    observer.observe(document.body, { childList: true, subtree: true });
-    return () => observer.disconnect();
+    apply();
+    return () => {
+      cancelAnimationFrame(frame);
+      observer.disconnect();
+    };
   }, [phone, pathname]);
 
   return <AdPhoneContext.Provider value={phone}>{children}</AdPhoneContext.Provider>;

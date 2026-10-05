@@ -10,15 +10,15 @@ import { siteConfig } from "./siteConfig";
 const SLIDE_DURATION = 6500;
 
 const applianceImage =
-  "https://images.unsplash.com/photo-1580253249119-e953161ee30d?auto=format&fit=crop&w=1600&q=85";
+  "https://images.unsplash.com/photo-1580253249119-e953161ee30d?auto=format&fit=crop&w=1280&q=60";
 const garageImage =
-  "https://images.unsplash.com/photo-1696992812596-3c0d4d2d1299?auto=format&fit=crop&w=1600&q=85";
+  "https://images.unsplash.com/photo-1696992812596-3c0d4d2d1299?auto=format&fit=crop&w=1280&q=60";
 const premiumImage =
-  "https://images.unsplash.com/photo-1604242693257-8c3348cd7fb1?auto=format&fit=crop&w=1600&q=85";
+  "https://images.unsplash.com/photo-1604242693257-8c3348cd7fb1?auto=format&fit=crop&w=1280&q=60";
 const partsImage =
-  "https://images.unsplash.com/photo-1530124566582-a618bc2615dc?auto=format&fit=crop&w=1600&q=85";
+  "https://images.unsplash.com/photo-1530124566582-a618bc2615dc?auto=format&fit=crop&w=1280&q=60";
 const newsletterImage =
-  "https://images.unsplash.com/photo-1634549709262-508c47d4c229?auto=format&fit=crop&w=1600&q=85";
+  "https://images.unsplash.com/photo-1634549709262-508c47d4c229?auto=format&fit=crop&w=1280&q=60";
 
 type SlideAction = {
   label: string;
@@ -168,6 +168,7 @@ function HeroPhoneCta({ tabIndex }: { tabIndex: number }) {
 export default function HeroSlider() {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [deferSlides, setDeferSlides] = useState(true);
   const reducedMotionRef = useRef(false);
   const count = slides.length;
 
@@ -182,6 +183,16 @@ export default function HeroSlider() {
     () => setIndex((current) => (current + 1) % count),
     [count]
   );
+
+  useEffect(() => {
+    const enable = () => setDeferSlides(false);
+    if (typeof window.requestIdleCallback === "function") {
+      const id = window.requestIdleCallback(enable, { timeout: 2500 });
+      return () => window.cancelIdleCallback(id);
+    }
+    const timer = window.setTimeout(enable, 1500);
+    return () => window.clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -227,17 +238,19 @@ export default function HeroSlider() {
             >
               <div className="absolute inset-0 -z-10">
                 {(slideIndex === 0 ||
-                  isActive ||
-                  Math.min(
-                    Math.abs(slideIndex - index),
-                    count - Math.abs(slideIndex - index)
-                  ) <= 1) && (
+                  (!deferSlides &&
+                    (isActive ||
+                      Math.min(
+                        Math.abs(slideIndex - index),
+                        count - Math.abs(slideIndex - index)
+                      ) <= 1))) && (
                   <Image
                     src={slide.image}
                     alt={slide.alt}
                     fill
                     priority={slideIndex === 0}
-                    fetchPriority={slideIndex === 0 ? "high" : "auto"}
+                    fetchPriority={slideIndex === 0 ? "high" : "low"}
+                    quality={slideIndex === 0 ? 60 : 55}
                     sizes="100vw"
                     className="object-cover object-center"
                   />
@@ -247,7 +260,7 @@ export default function HeroSlider() {
               </div>
 
               <div className="mx-auto flex h-full min-h-[580px] w-full max-w-[88rem] items-end px-4 pb-28 pt-24 sm:min-h-[720px] sm:px-8 sm:pb-36 sm:pt-32 lg:min-h-[820px] lg:pb-40">
-                <div className={`max-w-2xl ${isActive ? "reveal" : ""}`} key={`${slide.id}-${isActive}`}>
+                <div className="max-w-2xl">
                   <p
                     className={`tracking-eyebrow ${
                       slide.newsletter

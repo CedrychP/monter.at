@@ -13,6 +13,7 @@ const comingSoonPaths = ["/monter-gold", "/geraetekauf"];
 const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
+    minimumCacheTTL: 60 * 60 * 24 * 30,
     // Das Logo traegt einen Cache-Buster (?v=mtime), deshalb muss der Pfad mit
     // Query-String ausdruecklich erlaubt sein, damit next/image ihn optimiert.
     localPatterns: [
