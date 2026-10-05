@@ -123,9 +123,7 @@ const customerVoiceLinks: NavLink[] = [
 
 const customerNewsLinks: NavLink[] = [
   { label: "Blog & News", href: "/blog" },
-  { label: "FAQ", href: "/#faq" },
-  { label: "Kurse", href: "/kurse", soon: true },
-  { label: "Veranstaltungen", href: "/veranstaltungen", soon: true }
+  { label: "FAQ", href: "/#faq" }
 ];
 
 const garageDoorAndServiceLinks: NavLink[] = [

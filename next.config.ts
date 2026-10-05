@@ -8,12 +8,7 @@ const securityHeaders = [
 ];
 
 const comingSoonNoindex = { key: "X-Robots-Tag", value: "noindex, follow" };
-const comingSoonPaths = [
-  "/monter-gold",
-  "/kurse",
-  "/geraetekauf",
-  "/veranstaltungen"
-];
+const comingSoonPaths = ["/monter-gold", "/geraetekauf"];
 
 const nextConfig: NextConfig = {
   images: {

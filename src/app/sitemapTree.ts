@@ -148,9 +148,7 @@ export const sitemapGroups: SitemapGroup[] = [
       { label: "Altgeräteentsorgung", href: "/altgeraeteentsorgung" },
       { label: "Geräte-Retter-Prämie", href: "/geraete-retter-praemie" },
       { label: "Gerätekauf · Bald", href: "/geraetekauf" },
-      { label: "MONTER GOLD · Bald", href: "/monter-gold" },
-      { label: "Kurse · Bald", href: "/kurse" },
-      { label: "Veranstaltungen · Bald", href: "/veranstaltungen" }
+      { label: "MONTER GOLD · Bald", href: "/monter-gold" }
     ]
   },
   {
@@ -216,8 +214,6 @@ export const SITEMAP_EXCLUDED_ROUTES = new Set<string>([
   "/suche",
   "/geraetekauf",
   "/monter-gold",
-  "/kurse",
-  "/veranstaltungen",
   ...unenrichedBrandDeviceRoutes,
   ...unenrichedRegionRoutes,
   ...unenrichedLocationRoutes
