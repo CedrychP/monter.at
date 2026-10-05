@@ -11,6 +11,7 @@ import { getFeaturedCities, homeRegions, servedAreasJsonLd } from "./einsatzgebi
 import { buildMetadata } from "./pageMetadata";
 import { GoogleRatingStat } from "./GoogleRatingLive";
 import { getFallbackGoogleReviews, toGoogleRatingSummary } from "../lib/googleReviews";
+import { heroCdnUrl, heroLcpImage, heroSrcSet } from "../lib/heroLcp";
 import { localBusinessId, siteConfig } from "./siteConfig";
 
 const businessImage =
@@ -356,6 +357,14 @@ export default function Home() {
 
   return (
     <main className="page-shell relative bg-white text-[color:var(--ink)]">
+      <link
+        rel="preload"
+        as="image"
+        href={heroCdnUrl(heroLcpImage, 768)}
+        imageSrcSet={heroSrcSet(heroLcpImage)}
+        imageSizes="100vw"
+        fetchPriority="high"
+      />
       <script
         type="application/ld+json"
         suppressHydrationWarning
@@ -475,9 +484,14 @@ export default function Home() {
         <div className="mx-auto flex max-w-[88rem] flex-col gap-4 px-5 py-6 sm:flex-row sm:items-center sm:justify-between sm:gap-10 sm:px-8 sm:py-7">
           <p className="shrink-0 tracking-eyebrow text-[color:var(--muted)]">Markenoffener Service</p>
           <div className="marquee min-w-0 flex-1 overflow-hidden">
-            <div className="marquee-track flex items-center gap-12 whitespace-nowrap text-base font-normal tracking-[0.18em] text-[color:var(--muted)]">
-              {[...featuredBrands, ...featuredBrands].map((brand, index) => (
-                <span key={`${brand}-${index}`}>{brand}</span>
+            <div className="marquee-track flex items-center gap-x-12 gap-y-2 whitespace-nowrap text-base font-normal tracking-[0.18em] text-[color:var(--muted)] max-lg:w-auto max-lg:flex-wrap max-lg:whitespace-normal">
+              {featuredBrands.map((brand) => (
+                <span key={brand}>{brand}</span>
+              ))}
+              {featuredBrands.map((brand) => (
+                <span key={`${brand}-loop`} className="max-lg:hidden" aria-hidden="true">
+                  {brand}
+                </span>
               ))}
             </div>
           </div>

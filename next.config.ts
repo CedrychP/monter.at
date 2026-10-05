@@ -11,6 +11,10 @@ const comingSoonNoindex = { key: "X-Robots-Tag", value: "noindex, follow" };
 const comingSoonPaths = ["/monter-gold", "/geraetekauf"];
 
 const nextConfig: NextConfig = {
+  experimental: {
+    // CSS steckt im HTML, damit kein extra Stylesheet den ersten Render blockiert.
+    inlineCss: true
+  },
   images: {
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 60 * 60 * 24 * 30,
