@@ -157,7 +157,6 @@ const secondaryNavGroup: NavLink[] = [
 const dropdownSpecialLinks: NavLink[] = [
   { label: "Über Monter", href: "/ueber-uns" },
   { label: "MONTER GOLD", href: "/monter-gold", gold: true, soon: true },
-  { label: "Aktionskatalog", href: "/aktionskatalog", soon: true },
   { label: "Geräte-Retter-Prämie", href: "/geraete-retter-praemie" },
   { label: "Kaufberatung", href: "/kaufberatung" },
   { label: "Bewertungen", href: "/#bewertungen" }

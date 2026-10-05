@@ -141,7 +141,7 @@ export const sitemapGroups: SitemapGroup[] = [
     id: "service",
     label: "Service & Extras",
     href: "/kaufberatung",
-    description: "Beratung, Förderungen, Entsorgung und Aktionen.",
+    description: "Beratung, Förderungen und Entsorgung.",
     links: [
       { label: "Kaufberatung", href: "/kaufberatung" },
       { label: "Garantieverlängerung", href: "/garantieverlaengerung" },
@@ -149,7 +149,6 @@ export const sitemapGroups: SitemapGroup[] = [
       { label: "Geräte-Retter-Prämie", href: "/geraete-retter-praemie" },
       { label: "Gerätekauf · Bald", href: "/geraetekauf" },
       { label: "MONTER GOLD · Bald", href: "/monter-gold" },
-      { label: "Aktionskatalog · Bald", href: "/aktionskatalog" },
       { label: "Kurse · Bald", href: "/kurse" },
       { label: "Veranstaltungen · Bald", href: "/veranstaltungen" }
     ]
@@ -219,7 +218,6 @@ export const SITEMAP_EXCLUDED_ROUTES = new Set<string>([
   "/monter-gold",
   "/kurse",
   "/veranstaltungen",
-  "/aktionskatalog",
   ...unenrichedBrandDeviceRoutes,
   ...unenrichedRegionRoutes,
   ...unenrichedLocationRoutes

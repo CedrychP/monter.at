@@ -59,4 +59,4 @@ Garagentore haben eigene Anfahrtspauschalen. Aktuelle Übersicht: https://www.mo
 ## Noch nicht live
 
 Die folgenden Angebote sind in Vorbereitung. Die Seiten sind erreichbar, aber nicht für die Suche indexiert:
-Gerätekauf, MONTER GOLD Club, Aktionskatalog, Kurse, Veranstaltungen.
+Gerätekauf, MONTER GOLD Club, Kurse, Veranstaltungen.

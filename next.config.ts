@@ -11,7 +11,6 @@ const comingSoonNoindex = { key: "X-Robots-Tag", value: "noindex, follow" };
 const comingSoonPaths = [
   "/monter-gold",
   "/kurse",
-  "/aktionskatalog",
   "/geraetekauf",
   "/veranstaltungen"
 ];
