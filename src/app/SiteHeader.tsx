@@ -11,7 +11,6 @@ import {
   useState
 } from "react";
 import { useAdPhone } from "./AdPhone";
-import NavMonterAccount from "./NavMonterAccount";
 import NavNewsletterSignup from "./NavNewsletterSignup";
 import { garageDoorNavLinks, garageRepairNavLinks } from "./garagentore/garagePages";
 import { klimaDeviceNavLinks, klimaRepairNavLinks } from "./klimageraete/klimaPages";
@@ -47,7 +46,6 @@ type MegaMenuConfig = {
     secondaryHref?: string;
   };
   newsletter?: boolean;
-  account?: boolean;
   showSpecialLinks?: boolean;
 };
 
@@ -337,7 +335,6 @@ function getMegaMenus(phoneHref: string): MegaMenuConfig[] {
       { eyebrow: "Service", items: serviceNavLinks },
       { eyebrow: "Informationen", items: serviceInfoLinks }
     ],
-    account: true,
     newsletter: true
   },
   {
@@ -351,7 +348,6 @@ function getMegaMenus(phoneHref: string): MegaMenuConfig[] {
       },
       { eyebrow: "Zusatz", items: geraetekaufExtraLinks }
     ],
-    account: true,
     newsletter: true
   }
   ];
@@ -366,14 +362,10 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
   const { display: emergencyPhoneDisplay, href: emergencyPhoneHref } = useAdPhone();
   const megaMenus = useMemo(() => getMegaMenus(emergencyPhoneHref), [emergencyPhoneHref]);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
-  const [accountOpen, setAccountOpen] = useState(false);
-  const [cartOpen, setCartOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isAtTop, setIsAtTop] = useState(true);
   const [navHidden, setNavHidden] = useState(false);
   const [headerHovered, setHeaderHovered] = useState(false);
-  const accountPanelRef = useRef<HTMLDivElement | null>(null);
-  const cartPanelRef = useRef<HTMLDivElement | null>(null);
   const lastScrollYRef = useRef(0);
   const scrollAccumRef = useRef(0);
   const scrollTickingRef = useRef(false);
@@ -410,8 +402,6 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
 
   const closeAllOverlays = useCallback(() => {
     setActiveMenu(null);
-    setAccountOpen(false);
-    setCartOpen(false);
   }, []);
 
   useEffect(() => {
@@ -447,36 +437,7 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
     };
   }, [activeMenu, mobileMenuOpen]);
 
-  useEffect(() => {
-    if (!accountOpen) return;
-    const onClick = (event: MouseEvent) => {
-      if (
-        accountPanelRef.current &&
-        !accountPanelRef.current.contains(event.target as Node)
-      ) {
-        setAccountOpen(false);
-      }
-    };
-    window.addEventListener("mousedown", onClick);
-    return () => window.removeEventListener("mousedown", onClick);
-  }, [accountOpen]);
-
-  useEffect(() => {
-    if (!cartOpen) return;
-    const onClick = (event: MouseEvent) => {
-      if (
-        cartPanelRef.current &&
-        !cartPanelRef.current.contains(event.target as Node)
-      ) {
-        setCartOpen(false);
-      }
-    };
-    window.addEventListener("mousedown", onClick);
-    return () => window.removeEventListener("mousedown", onClick);
-  }, [cartOpen]);
-
   const showMegaMenu = (id: string) => {
-    setAccountOpen(false);
     setActiveMenu(id);
   };
 
@@ -523,11 +484,6 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
           ) : null}
         </div>
       ))}
-      {menu.account ? (
-        <div className="border-t border-white/10 pt-5">
-          <NavMonterAccount variant="dark" onNavigate={() => setMobileMenuOpen(false)} />
-        </div>
-      ) : null}
       {menu.newsletter ? (
         <div className="border-t border-white/10 pt-5">
           <NavNewsletterSignup variant="dark" />
@@ -648,8 +604,6 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
                 href="/suche"
                 onClick={() => {
                   setActiveMenu(null);
-                  setAccountOpen(false);
-                  setCartOpen(false);
                 }}
                 aria-label="Suche"
                 className={`grid h-10 w-10 place-items-center transition ${
@@ -663,176 +617,6 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
                   <path d="m13.5 13.5 4 4" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
                 </svg>
               </Link>
-
-              <div className="relative" ref={accountPanelRef}>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setActiveMenu(null);
-                    setCartOpen(false);
-                    setAccountOpen((current) => !current);
-                  }}
-                  aria-label={accountOpen ? "Kontobereich schließen" : "Kontobereich öffnen"}
-                  aria-expanded={accountOpen}
-                  className={`hidden h-10 w-10 place-items-center transition sm:grid ${
-                    accountOpen
-                      ? "text-[color:var(--nav-text-hover)]"
-                      : "text-[color:var(--nav-text)] hover:text-[color:var(--nav-text-hover)]"
-                  }`}
-                >
-                  <svg width="22" height="22" viewBox="0 0 20 20" aria-hidden="true">
-                    <circle cx="10" cy="7" r="3.2" stroke="currentColor" strokeWidth="1.3" fill="none" />
-                    <path
-                      d="M3 17c.8-3.4 3.6-5.2 7-5.2s6.2 1.8 7 5.2"
-                      stroke="currentColor"
-                      strokeWidth="1.3"
-                      fill="none"
-                      strokeLinecap="round"
-                    />
-                  </svg>
-                </button>
-
-                {accountOpen ? (
-                  <div
-                    className="fixed inset-x-3 top-[4.5rem] z-[110] mx-auto w-auto max-w-[24rem] overflow-hidden rounded-2xl border border-white/10 bg-[color:var(--ink)] text-white shadow-[0_28px_70px_-20px_rgba(0,0,0,0.65)] sm:absolute sm:inset-x-auto sm:right-0 sm:top-full sm:mx-0 sm:mt-3 sm:w-[22rem] sm:max-w-[calc(100vw-2rem)] sm:rounded-xl"
-                  >
-                    <div className="flex items-start gap-4 border-b border-white/10 px-6 py-5">
-                      <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-white/15 bg-white/5 text-white">
-                        <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true">
-                          <circle cx="10" cy="7" r="3.2" stroke="currentColor" strokeWidth="1.3" fill="none" />
-                          <path
-                            d="M3 17c.8-3.4 3.6-5.2 7-5.2s6.2 1.8 7 5.2"
-                            stroke="currentColor"
-                            strokeWidth="1.3"
-                            fill="none"
-                            strokeLinecap="round"
-                          />
-                        </svg>
-                      </span>
-                      <div className="min-w-0">
-                        <p className="tracking-eyebrow text-[color:var(--accent-on-dark)]">Mein Monter</p>
-                        <p className="mt-1.5 font-display text-lg font-normal leading-tight tracking-tight text-white">
-                          Ihr Kundenbereich
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="px-6 py-6">
-                      <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-[0.65rem] font-medium uppercase tracking-[0.16em] text-white/70">
-                        <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--accent)]" aria-hidden="true" />
-                        Bald verfügbar
-                      </span>
-                      <p className="mt-4 text-sm font-light leading-relaxed text-white/65">
-                        Verlauf, Rechnungen und Termine an einem Ort — der Kundenbereich ist gerade in
-                        Vorbereitung. Bis dahin erreichen Sie uns direkt:
-                      </p>
-
-                      <div className="header-panel-cta-list">
-                        <a href={`tel:${emergencyPhoneHref}`} className="header-panel-cta header-panel-cta--primary">
-                          {emergencyPhoneDisplay}
-                        </a>
-                        <Link
-                          href="/kontakt"
-                          onClick={() => setAccountOpen(false)}
-                          className="header-panel-cta header-panel-cta--secondary"
-                        >
-                          Anfrage stellen
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                ) : null}
-              </div>
-
-              <div className="relative" ref={cartPanelRef}>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setActiveMenu(null);
-                    setAccountOpen(false);
-                    setCartOpen((current) => !current);
-                  }}
-                  aria-label={cartOpen ? "Warenkorb schließen" : "Warenkorb öffnen"}
-                  aria-expanded={cartOpen}
-                  className={`hidden h-10 w-10 place-items-center transition sm:grid ${
-                    cartOpen
-                      ? "text-[color:var(--nav-text-hover)]"
-                      : "text-[color:var(--nav-text)] hover:text-[color:var(--nav-text-hover)]"
-                  }`}
-                >
-                  <svg
-                    width="22"
-                    height="22"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.6"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    aria-hidden="true"
-                  >
-                    <circle cx="9" cy="21" r="1" />
-                    <circle cx="20" cy="21" r="1" />
-                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
-                  </svg>
-                </button>
-
-                {cartOpen ? (
-                  <div
-                    className="fixed inset-x-3 top-[4.5rem] z-[110] mx-auto w-auto max-w-[24rem] overflow-hidden rounded-2xl border border-white/10 bg-[color:var(--ink)] text-white shadow-[0_28px_70px_-20px_rgba(0,0,0,0.65)] sm:absolute sm:inset-x-auto sm:right-0 sm:top-full sm:mx-0 sm:mt-3 sm:w-[22rem] sm:max-w-[calc(100vw-2rem)] sm:rounded-xl"
-                  >
-                    <div className="flex items-start gap-4 border-b border-white/10 px-6 py-5">
-                      <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-white/15 bg-white/5 text-white">
-                        <svg
-                          width="20"
-                          height="20"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="1.6"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          aria-hidden="true"
-                        >
-                          <circle cx="9" cy="21" r="1" />
-                          <circle cx="20" cy="21" r="1" />
-                          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
-                        </svg>
-                      </span>
-                      <div className="min-w-0">
-                        <p className="tracking-eyebrow text-[color:var(--accent-on-dark)]">Warenkorb</p>
-                        <p className="mt-1.5 font-display text-lg font-normal leading-tight tracking-tight text-white">
-                          Bestellung &amp; Angebot
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="px-6 py-6">
-                      <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-[0.65rem] font-medium uppercase tracking-[0.16em] text-white/70">
-                        <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--accent)]" aria-hidden="true" />
-                        Bald verfügbar
-                      </span>
-                      <p className="mt-4 text-sm font-light leading-relaxed text-white/65">
-                        Die Bestellfunktion ist gerade in Vorbereitung. Für Leistungen und Ersatzteile
-                        erstellen wir Ihnen gerne ein individuelles Angebot:
-                      </p>
-
-                      <div className="header-panel-cta-list">
-                        <a href={`tel:${emergencyPhoneHref}`} className="header-panel-cta header-panel-cta--primary">
-                          {emergencyPhoneDisplay}
-                        </a>
-                        <Link
-                          href="/kontakt"
-                          onClick={() => setCartOpen(false)}
-                          className="header-panel-cta header-panel-cta--secondary"
-                        >
-                          Anfrage stellen
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                ) : null}
-              </div>
 
               <button
                 type="button"
@@ -938,7 +722,7 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
                 aria-hidden={activeMenu !== menu.id}
               >
                 <div className="nav-dropdown-inner">
-                  {menu.columns.length === 0 && !menu.feature && !menu.account && !menu.newsletter ? (
+                  {menu.columns.length === 0 && !menu.feature && !menu.newsletter ? (
                     <div className="nav-dropdown-column nav-dropdown-column--special-only">
                       <div className="nav-dropdown-special-list">
                         {dropdownSpecialLinks.map((item) => (
@@ -1029,15 +813,6 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
                           </a>
                         ) : null}
                       </div>
-                    </aside>
-                  </div>
-                  ) : null}
-
-                  {menu.account ? (
-                  <div className="nav-dropdown-column-group">
-                    <div className="nav-dropdown-separator" aria-hidden="true" />
-                    <aside className="nav-dropdown-column nav-dropdown-column--account">
-                      <NavMonterAccount variant="dark" onNavigate={closeAllOverlays} />
                     </aside>
                   </div>
                   ) : null}
@@ -1150,19 +925,6 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
                 </Link>
               )
             )}
-
-            <details className="group border-b border-white/10 py-3">
-              <summary className="flex cursor-pointer list-none items-center justify-between text-[1.05rem] font-semibold tracking-tight">
-                Mein MONTER
-                <svg className="ml-3 shrink-0 text-white/50 transition-transform group-open:rotate-180" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
-                  <path d="M3 6l5 5 5-5" stroke="currentColor" strokeWidth="1.4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </summary>
-              <p className="mt-4 text-sm font-light leading-relaxed text-white/80">
-                Der Kundenbereich ist noch nicht verfügbar. Bitte melden Sie sich vorerst
-                telefonisch oder über das Anfrageformular.
-              </p>
-            </details>
 
             <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] p-5">
               <div className="flex items-center gap-3">
