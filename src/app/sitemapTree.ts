@@ -187,7 +187,6 @@ export const sitemapGroups: SitemapGroup[] = [
       { label: "Datenschutz", href: "/dsgvo" },
       { label: "AGB", href: "/agb" },
       { label: "Nutzungsbedingungen", href: "/nutzungsbedingungen" },
-      { label: "Barrierefreiheit", href: "/barrierefreiheit" },
       { label: "Sitemap", href: "/sitemap" }
     ]
   }
