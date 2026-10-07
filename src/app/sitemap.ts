@@ -41,8 +41,7 @@ function getSitemapPriority(route: string): number {
   if (
     route === "/impressum" ||
     route === "/dsgvo" ||
-    route === "/agb" ||
-    route === "/nutzungsbedingungen"
+    route === "/agb"
   ) {
     return 0.3;
   }
@@ -56,8 +55,7 @@ function getChangeFrequency(route: string): ChangeFrequency {
   if (
     route === "/impressum" ||
     route === "/dsgvo" ||
-    route === "/agb" ||
-    route === "/nutzungsbedingungen"
+    route === "/agb"
   ) {
     return "yearly";
   }

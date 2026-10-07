@@ -12,9 +12,9 @@ type SitemapWebProps = {
 
 const VIEW = 1000;
 const CENTER = VIEW / 2;
-const RING_RADII = [110, 195, 280, 350];
-const NODE_RADIUS = 280;
-const SPOKE_END = 350;
+const NODE_RADIUS = 248;
+const LABEL_RADIUS = 330;
+const RINGS = [82, 164, NODE_RADIUS];
 
 function polar(angleRad: number, radius: number) {
   return {
@@ -27,40 +27,31 @@ export default function SitemapWeb({ groups, home }: SitemapWebProps) {
   const [activeId, setActiveId] = useState(groups[0]?.id ?? "");
 
   const geometry = useMemo(() => {
-    const count = groups.length;
-    const sector = (Math.PI * 2) / count;
+    const sector = (Math.PI * 2) / groups.length;
 
     return groups.map((group, index) => {
       const angle = -Math.PI / 2 + index * sector;
-      const dir = polar(angle, 1);
-      const node = polar(angle, NODE_RADIUS);
-      const spokeEnd = polar(angle, SPOKE_END);
-      const labelPoint = polar(angle, NODE_RADIUS + 30);
-
       const cos = Math.cos(angle);
-      const anchor: "start" | "end" | "middle" =
-        cos > 0.35 ? "start" : cos < -0.35 ? "end" : "middle";
+      const anchor: "start" | "middle" | "end" =
+        cos > 0.4 ? "start" : cos < -0.4 ? "end" : "middle";
 
-      // Satelliten (Seiten des Bereichs) fächern sich entlang der Speiche auf.
-      const satelliteCount = Math.min(group.links.length, 9);
-      const span = sector * 0.42;
-      const satellites = Array.from({ length: satelliteCount }, (_, i) => {
-        const t = satelliteCount === 1 ? 0.5 : i / (satelliteCount - 1);
-        const a = angle - span + t * span * 2;
-        return polar(a, NODE_RADIUS + 56);
-      });
-
-      return { group, angle, dir, node, spokeEnd, labelPoint, anchor, satellites };
+      return {
+        group,
+        angle,
+        node: polar(angle, NODE_RADIUS),
+        label: polar(angle, LABEL_RADIUS),
+        anchor
+      };
     });
   }, [groups]);
 
-  const ringPolygons = useMemo(
+  const rings = useMemo(
     () =>
-      RING_RADII.map((radius) =>
+      RINGS.map((radius) =>
         geometry
-          .map((g) => {
-            const p = polar(g.angle, radius);
-            return `${p.x.toFixed(1)},${p.y.toFixed(1)}`;
+          .map((item) => {
+            const point = polar(item.angle, radius);
+            return `${point.x.toFixed(1)},${point.y.toFixed(1)}`;
           })
           .join(" ")
       ),
@@ -70,108 +61,98 @@ export default function SitemapWeb({ groups, home }: SitemapWebProps) {
   const active = groups.find((group) => group.id === activeId) ?? groups[0];
 
   return (
-    <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:gap-12">
-      {/* Spinnennetz */}
-      <div className="relative">
+    <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+      <div>
         <svg
           viewBox={`0 0 ${VIEW} ${VIEW}`}
-          className="h-auto w-full select-none"
+          className="mx-auto h-auto w-full max-w-[40rem] select-none"
           role="img"
-          aria-label="Seitenstruktur als Netzdiagramm"
+          aria-label="Bereiche der Website"
+          style={{ fontFamily: "inherit" }}
         >
-          {/* Dekorative Netzfäden */}
-          <g stroke="rgba(255,255,255,0.12)" fill="none" strokeWidth={1}>
-            {ringPolygons.map((points, i) => (
-              <polygon key={i} points={points} />
+          <g fill="none" stroke="rgba(255,255,255,0.14)" strokeWidth={1}>
+            {rings.map((points) => (
+              <polygon key={points} points={points} />
             ))}
-            {geometry.map((g) => (
-              <line key={g.group.id} x1={CENTER} y1={CENTER} x2={g.spokeEnd.x} y2={g.spokeEnd.y} />
+            {geometry.map((item) => (
+              <line
+                key={item.group.id}
+                x1={CENTER}
+                y1={CENTER}
+                x2={item.node.x}
+                y2={item.node.y}
+              />
             ))}
           </g>
 
-          {/* Aktiver Bereich: hervorgehobene Speiche + Satellitenfäden */}
           {geometry
-            .filter((g) => g.group.id === active?.id)
-            .map((g) => (
-              <g key={`active-${g.group.id}`}>
-                <line
-                  x1={CENTER}
-                  y1={CENTER}
-                  x2={g.node.x}
-                  y2={g.node.y}
-                  stroke="var(--accent)"
-                  strokeWidth={1.6}
-                />
-                {g.satellites.map((s, i) => (
-                  <g key={i}>
-                    <line
-                      x1={g.node.x}
-                      y1={g.node.y}
-                      x2={s.x}
-                      y2={s.y}
-                      stroke="rgba(255,96,115,0.5)"
-                      strokeWidth={1}
-                    />
-                    <circle cx={s.x} cy={s.y} r={5} fill="var(--accent-on-dark)" />
-                  </g>
-                ))}
-              </g>
+            .filter((item) => item.group.id === active?.id)
+            .map((item) => (
+              <line
+                key={`active-${item.group.id}`}
+                x1={CENTER}
+                y1={CENTER}
+                x2={item.node.x}
+                y2={item.node.y}
+                stroke="var(--accent)"
+                strokeWidth={1.6}
+              />
             ))}
 
-          {/* Gruppen-Knoten */}
-          {geometry.map((g) => {
-            const isActive = g.group.id === active?.id;
+          {geometry.map((item) => {
+            const isActive = item.group.id === active?.id;
             return (
-              <g key={`node-${g.group.id}`} className="cursor-pointer">
+              <g key={item.group.id} className="cursor-pointer" onMouseEnter={() => setActiveId(item.group.id)}>
                 <circle
-                  cx={g.node.x}
-                  cy={g.node.y}
-                  r={isActive ? 13 : 9}
+                  cx={item.node.x}
+                  cy={item.node.y}
+                  r={36}
+                  fill="transparent"
+                  onClick={() => setActiveId(item.group.id)}
+                />
+                <circle
+                  cx={item.node.x}
+                  cy={item.node.y}
+                  r={isActive ? 11 : 7}
                   fill={isActive ? "var(--accent-on-dark)" : "#ffffff"}
-                  stroke={isActive ? "var(--accent)" : "rgba(255,255,255,0.4)"}
+                  stroke={isActive ? "var(--accent)" : "rgba(255,255,255,0.45)"}
                   strokeWidth={isActive ? 4 : 2}
-                  onMouseEnter={() => setActiveId(g.group.id)}
-                  onClick={() => setActiveId(g.group.id)}
+                  className="pointer-events-none"
                 />
                 <text
-                  x={g.labelPoint.x}
-                  y={g.labelPoint.y}
-                  textAnchor={g.anchor}
+                  x={item.label.x}
+                  y={item.label.y}
+                  textAnchor={item.anchor}
                   dominantBaseline="middle"
-                  fontSize={23}
+                  fontSize={22}
                   fontWeight={isActive ? 600 : 400}
                   fill={isActive ? "#ffffff" : "rgba(255,255,255,0.62)"}
-                  className="pointer-events-auto cursor-pointer"
-                  onMouseEnter={() => setActiveId(g.group.id)}
-                  onClick={() => setActiveId(g.group.id)}
+                  onClick={() => setActiveId(item.group.id)}
                 >
-                  {g.group.label}
+                  {item.group.label}
                 </text>
               </g>
             );
           })}
 
-          {/* Zentrum / Startseite */}
-          <g>
-            <circle cx={CENTER} cy={CENTER} r={40} fill="var(--accent)" />
-            <circle cx={CENTER} cy={CENTER} r={40} fill="none" stroke="rgba(255,255,255,0.25)" strokeWidth={2} />
+          <Link href={home.href} aria-label={home.label}>
+            <circle cx={CENTER} cy={CENTER} r={42} fill="var(--accent)" />
             <text
               x={CENTER}
               y={CENTER}
               textAnchor="middle"
               dominantBaseline="middle"
-              fontSize={22}
+              fontSize={20}
               fontWeight={600}
               fill="#ffffff"
+              className="pointer-events-none"
             >
               Start
             </text>
-          </g>
+          </Link>
         </svg>
 
-        {/* Unsichtbare Buttons für Tastatur-/Screenreader-Bedienung */}
         <div className="sr-only">
-          <Link href={home.href}>{home.label}</Link>
           {groups.map((group) => (
             <button key={group.id} type="button" onClick={() => setActiveId(group.id)}>
               {group.label} anzeigen
@@ -180,55 +161,42 @@ export default function SitemapWeb({ groups, home }: SitemapWebProps) {
         </div>
       </div>
 
-      {/* Detailpanel des aktiven Bereichs */}
       <div aria-live="polite">
         {active ? (
-          <div className="rounded-sm border border-white/12 bg-white/[0.03] p-6 sm:p-7">
-            <p className="text-[0.7rem] font-medium uppercase tracking-[0.18em] text-[color:var(--accent-on-dark)]">
+          <div className="border border-white/12 bg-white/[0.03] p-6 sm:p-8">
+            <p className="text-[0.68rem] font-medium uppercase tracking-[0.16em] text-[color:var(--accent-on-dark)]">
               Bereich
             </p>
-            <h3 className="font-display mt-3 text-2xl font-normal tracking-tight text-white sm:text-3xl">
-              {active.label}
-            </h3>
-            <p className="mt-2 text-sm font-light leading-relaxed text-white/60">
+            <h2 className="font-display mt-3 text-3xl font-light tracking-tight text-white sm:text-4xl">
+              <Link href={active.href} className="transition hover:text-[color:var(--accent-on-dark)]">
+                {active.label}
+              </Link>
+            </h2>
+            <p className="mt-3 max-w-md text-sm font-light leading-relaxed text-white/60">
               {active.description}
             </p>
-
-            <div className="mt-6 grid gap-1.5">
+            <ul className="mt-7 grid gap-1">
               {active.links.map((link) => (
-                <div key={link.href}>
+                <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="group flex items-center justify-between gap-3 rounded-sm border border-transparent px-3 py-2 text-sm font-normal text-white/85 transition hover:border-white/15 hover:bg-white/[0.05] hover:text-white"
+                    className="group flex items-center justify-between gap-4 border border-transparent px-3 py-2 text-sm text-white/85 transition hover:border-white/15 hover:bg-white/[0.05] hover:text-white"
                   >
-                    <span className="min-w-0 truncate">{link.label}</span>
+                    <span className="min-w-0">{link.label}</span>
                     <svg
                       width="14"
                       height="14"
                       viewBox="0 0 16 16"
                       fill="none"
                       aria-hidden="true"
-                      className="flex-none text-white/35 transition group-hover:translate-x-0.5 group-hover:text-[color:var(--accent-on-dark)]"
+                      className="shrink-0 text-white/35 transition group-hover:translate-x-0.5 group-hover:text-[color:var(--accent-on-dark)]"
                     >
                       <path d="M1 8h13M9 3l5 5-5 5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </Link>
-                  {link.children && link.children.length > 0 ? (
-                    <div className="ml-3 mt-1 flex flex-wrap gap-x-3 gap-y-1 border-l border-white/10 pl-3">
-                      {link.children.map((child) => (
-                        <Link
-                          key={child.href}
-                          href={child.href}
-                          className="text-xs font-light text-white/45 transition hover:text-white"
-                        >
-                          {child.label}
-                        </Link>
-                      ))}
-                    </div>
-                  ) : null}
-                </div>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
         ) : null}
       </div>

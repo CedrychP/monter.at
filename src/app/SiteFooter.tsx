@@ -64,8 +64,7 @@ const brandLinks = [
 const bottomBarLinks = [
   { label: "Impressum", href: "/impressum" },
   { label: "AGB", href: "/agb" },
-  { label: "Datenschutz", href: "/dsgvo" },
-  { label: "Nutzungsbedingungen", href: "/nutzungsbedingungen" }
+  { label: "Datenschutz", href: "/dsgvo" }
 ];
 
 const socialLinks = [

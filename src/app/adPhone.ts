@@ -16,12 +16,7 @@ const META_UTM_SOURCE = /^(facebook|fb|instagram|ig|meta|an)([._-].*)?$/i;
 const CHATGPT_UTM_SOURCE = /^(chatgpt|openai|oai)([._-].*)?$/i;
 const META_UTM_MEDIUM = /^(facebook|fb|instagram|ig|meta|paid_social|paidsocial)$/i;
 
-const LEGAL_PHONE_PATHS = [
-  "/impressum",
-  "/agb",
-  "/dsgvo",
-  "/nutzungsbedingungen"
-];
+const LEGAL_PHONE_PATHS = ["/impressum", "/agb", "/dsgvo"];
 
 export function parseAdSource(value: string | undefined | null): AdPhoneSource | null {
   if (value === "meta" || value === "chatgpt") return value;

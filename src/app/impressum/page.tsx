@@ -73,8 +73,7 @@ type Detail = {
 
 const legalLinks = [
   { href: "/dsgvo", label: "Datenschutz" },
-  { href: "/agb", label: "AGB" },
-  { href: "/nutzungsbedingungen", label: "Nutzungsbedingungen" }
+  { href: "/agb", label: "AGB" }
 ];
 
 function DetailList({ items }: { items: Detail[] }) {

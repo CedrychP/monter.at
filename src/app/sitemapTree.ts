@@ -38,7 +38,6 @@ export const sitemapGroups: SitemapGroup[] = [
     href: "/haushaltsgeraete",
     description: "Reparatur nach Gerät — Waschmaschine bis Fernseher.",
     links: [
-      { label: "Haushaltsgeräte — Übersicht", href: "/haushaltsgeraete" },
       ...appliancePages.map((page) => ({
         label: page.title,
         href: `/haushaltsgeraete/${page.slug}`
@@ -47,7 +46,7 @@ export const sitemapGroups: SitemapGroup[] = [
         label: "Haushaltsgeräte Linz",
         href: "/einsatzgebiete/oberoesterreich/linz",
         children: linzAppliancePages.map((page) => ({
-          label: page.category,
+          label: page.title,
           href: `/haushaltsgeraete/${page.slug}`
         }))
       }
@@ -58,70 +57,75 @@ export const sitemapGroups: SitemapGroup[] = [
     label: "Garagentore",
     href: "/garagentore",
     description: "Tore, Antriebe, Federn, Laufwerk und Wartung.",
-    links: [
-      { label: "Garagentore — Übersicht", href: "/garagentore" },
-      ...garagePages.map((page) => ({
-        label: page.title,
-        href: `/garagentore/${page.slug}`
-      }))
-    ]
+    links: garagePages.map((page) => ({
+      label: page.title,
+      href: `/garagentore/${page.slug}`
+    }))
   },
   {
     id: "klimageraete",
     label: "Klimageräte",
     href: "/klimageraete",
     description: "Klimagerät-Reparatur, Wartung, Kältemittel & Montage.",
-    links: [
-      { label: "Klimageräte — Übersicht", href: "/klimageraete" },
-      ...klimaPages.map((page) => ({
-        label: page.title,
-        href: `/klimageraete/${page.slug}`
-      }))
-    ]
+    links: klimaPages.map((page) => ({
+      label: page.title,
+      href: `/klimageraete/${page.slug}`
+    }))
   },
   {
     id: "marken",
     label: "Marken",
     href: "/marken",
     description: "Markenoffene Reparatur — Geräte je Hersteller.",
-    links: [
-      { label: "Marken — Übersicht", href: "/marken" },
-      ...brandPages.map((brand) => ({
+    links: brandPages.map((brand) => {
+      const devices = brandDeviceCategories.filter((device) =>
+        isBrandDeviceEnriched(brand.slug, device.slug)
+      );
+      return {
         label: brand.brand,
         href: `/marken/${brand.slug}`,
-        children: brandDeviceCategories.map((device) => ({
-          label: device.label,
-          href: `/marken/${brand.slug}/${device.slug}`
-        }))
-      }))
-    ]
+        ...(devices.length > 0
+          ? {
+              children: devices.map((device) => ({
+                label: device.label,
+                href: `/marken/${brand.slug}/${device.slug}`
+              }))
+            }
+          : {})
+      };
+    })
   },
   {
     id: "einsatzgebiete",
     label: "Einsatzgebiete",
     href: "/einsatzgebiete",
     description: "Wo wir arbeiten — Kerngebiet und Techniker vor Ort.",
-    links: [
-      { label: "Einsatzgebiete — Übersicht", href: "/einsatzgebiete" },
-      ...regionPages.map((region) => {
-        const locations = getLocationsForRegion(region.slug);
-        return {
-          label: region.name,
-          href: `/einsatzgebiete/${region.slug}`,
-          ...(locations.length > 0
-            ? {
-                children: locations.flatMap((location) => [
-                  { label: location.name, href: locationHref(location) },
-                  ...getDistrictsFor(location).map((district) => ({
-                    label: `${location.name} · ${district.name}`,
-                    href: locationHref(district)
-                  }))
-                ])
-              }
-            : {})
-        };
-      })
-    ]
+    links: regionPages.map((region) => {
+      const locations = getLocationsForRegion(region.slug);
+      return {
+        label: region.name,
+        href: `/einsatzgebiete/${region.slug}`,
+        ...(locations.length > 0
+          ? {
+              children: locations.map((location) => {
+                const districts = getDistrictsFor(location);
+                return {
+                  label: location.name,
+                  href: locationHref(location),
+                  ...(districts.length > 0
+                    ? {
+                        children: districts.map((district) => ({
+                          label: district.name,
+                          href: locationHref(district)
+                        }))
+                      }
+                    : {})
+                };
+              })
+            }
+          : {})
+      };
+    })
   },
   {
     id: "termin-preise",
@@ -141,25 +145,22 @@ export const sitemapGroups: SitemapGroup[] = [
     id: "service",
     label: "Service & Extras",
     href: "/kaufberatung",
-    description: "Beratung, Förderungen und Entsorgung.",
+    description: "Beratung, Förderung und Entsorgung.",
     links: [
       { label: "Kaufberatung", href: "/kaufberatung" },
       { label: "Altgeräteentsorgung", href: "/altgeraeteentsorgung" },
-      { label: "Geräte-Retter-Prämie", href: "/geraete-retter-praemie" },
-      { label: "Gerätekauf · Bald", href: "/geraetekauf" },
-      { label: "MONTER GOLD · Bald", href: "/monter-gold" }
+      { label: "Geräte-Retter-Prämie", href: "/geraete-retter-praemie" }
     ]
   },
   {
     id: "unternehmen",
     label: "Unternehmen",
     href: "/ueber-uns",
-    description: "Über MONTER, Firmenkunden, Karriere & Suche.",
+    description: "Über MONTER, Firmenkunden und Karriere.",
     links: [
       { label: "Über uns", href: "/ueber-uns" },
       { label: "Firmenkunden", href: "/firmenkunden" },
-      { label: "Karriere", href: "/karriere" },
-      { label: "Suche", href: "/suche" }
+      { label: "Karriere", href: "/karriere" }
     ]
   },
   {
@@ -169,7 +170,6 @@ export const sitemapGroups: SitemapGroup[] = [
     description: "Ratgeber, FAQ und Tipps rund um Reparaturen.",
     links: [
       { label: "Blog & News", href: "/blog" },
-      { label: "Häufige Fragen (FAQ)", href: "/#faq" },
       ...blogPosts.map((post) => ({
         label: post.title,
         href: `/blog/${post.slug}`
@@ -180,13 +180,11 @@ export const sitemapGroups: SitemapGroup[] = [
     id: "rechtliches",
     label: "Rechtliches",
     href: "/impressum",
-    description: "Impressum, Datenschutz und rechtliche Hinweise.",
+    description: "Impressum, AGB und Datenschutz.",
     links: [
       { label: "Impressum", href: "/impressum" },
-      { label: "Datenschutz", href: "/dsgvo" },
       { label: "AGB", href: "/agb" },
-      { label: "Nutzungsbedingungen", href: "/nutzungsbedingungen" },
-      { label: "Sitemap", href: "/sitemap" }
+      { label: "Datenschutz", href: "/dsgvo" }
     ]
   }
 ];
@@ -222,7 +220,7 @@ export const SITEMAP_EXCLUDED_ROUTES = new Set<string>([
  * Wird von der XML-Sitemap genutzt, damit Visual und Crawler-Sitemap synchron bleiben.
  */
 export function getSitemapRoutes(): string[] {
-  const routes = new Set<string>(["/"]);
+  const routes = new Set<string>(["/", "/sitemap"]);
 
   const collect = (link: SitemapLink) => {
     if (link.href.startsWith("/") && !link.href.includes("#")) {
