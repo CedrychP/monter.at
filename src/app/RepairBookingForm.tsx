@@ -45,15 +45,15 @@ const initialValues: FormValues = {
 };
 
 const deviceOptions = [
-  "Waschmaschine",
-  "Geschirrspüler",
-  "Trockner",
-  "Kühlschrank / Gefrierschrank",
-  "Backofen / Herd",
-  "Klimagerät / Klimaanlage",
-  "Garagentor",
-  "Fernseher",
-  "Anderes Gerät"
+  { value: "Waschmaschine", label: "Waschmaschine" },
+  { value: "Geschirrspüler", label: "Geschirrspüler" },
+  { value: "Trockner", label: "Trockner" },
+  { value: "Kühlschrank / Gefrierschrank", label: "Kühl & Gefrier" },
+  { value: "Backofen / Herd", label: "Backofen / Herd" },
+  { value: "Klimagerät / Klimaanlage", label: "Klimagerät" },
+  { value: "Garagentor", label: "Garagentor" },
+  { value: "Fernseher", label: "Fernseher" },
+  { value: "Anderes Gerät", label: "Anderes Gerät" }
 ];
 
 const fieldClass =
@@ -203,21 +203,21 @@ export default function RepairBookingForm({ phoneHref, className = "" }: RepairB
               }`}
             >
               {deviceOptions.map((option) => {
-                const selected = values.device === option;
+                const selected = values.device === option.value;
                 return (
                   <button
-                    key={option}
+                    key={option.value}
                     type="button"
                     role="radio"
                     aria-checked={selected}
-                    onClick={() => setValues((prev) => ({ ...prev, device: option }))}
+                    onClick={() => setValues((prev) => ({ ...prev, device: option.value }))}
                     className={`rounded-lg border px-3 py-2.5 text-left text-sm leading-snug transition ${
                       selected
                         ? "border-[color:var(--ink)] bg-[color:var(--ink)] text-white"
                         : "border-[color:var(--border)] bg-[color:var(--bg-muted)] text-[color:var(--ink)] hover:border-[color:var(--ink)]"
                     }`}
                   >
-                    {option}
+                    {option.label}
                   </button>
                 );
               })}

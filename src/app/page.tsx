@@ -353,7 +353,7 @@ export default function Home() {
       <HeroSlider />
 
       {/* KONTAKT — direkt unter dem Hero */}
-      <section id="kontakt" className="relative isolate overflow-hidden bg-white py-16 sm:py-20 lg:py-28">
+      <section id="kontakt" className="relative isolate scroll-mt-24 overflow-hidden bg-white py-16 sm:py-20 lg:py-28">
         <div aria-hidden="true" className="pointer-events-none absolute inset-0">
           <div
             className="absolute -right-40 top-10 h-[28rem] w-[28rem] rounded-full blur-[120px]"
