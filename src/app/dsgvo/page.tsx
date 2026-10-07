@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { buildMetadata } from "../pageMetadata";
 
-const companyName = "Tech Craft Consulting GmbH";
 const serviceName = "MONTER Reparatur & Service";
 const address = "Rappgasse 1/6, 1210 Wien";
 const email = "datenschutz@monter.at";
@@ -10,7 +9,7 @@ const phone = "01 4171346";
 const phoneHref = "+4314171346";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Datenschutz DSGVO | MONTER Reparatur Service",
+  title: "Datenschutz DSGVO | MONTER Reparatur & Service",
   description:
     "Datenschutz und DSGVO-Informationen von MONTER Reparatur & Service in Wien. Lesen Sie, wie Kontakt- und Cookie-Daten verarbeitet werden.",
   path: "/dsgvo"
@@ -19,7 +18,7 @@ export const metadata: Metadata = buildMetadata({
 const privacySections = [
   {
     title: "Verantwortlicher",
-    text: `Verantwortlich für diesen Webauftritt ist die ${companyName}, ${address}, als Betreiberin des Service-Auftritts ${serviceName}.`
+    text: `Verantwortlich für diesen Webauftritt ist ${serviceName}, ${address}. Der Rechtsträger steht im Impressum.`
   },
   {
     title: "Kontaktaufnahme",
@@ -74,10 +73,10 @@ export default function DsgvoPage() {
           <div className="grid gap-px bg-[color:var(--border)] lg:grid-cols-3">
             <article className="bg-white p-8 lg:p-10">
               <p className="cap-line tracking-eyebrow text-[color:var(--accent)]">Verantwortlicher</p>
-              <h2 className="font-display mt-7 text-2xl font-normal tracking-tight">{companyName}</h2>
+              <h2 className="font-display mt-7 text-2xl font-normal tracking-tight">{serviceName}</h2>
               <p className="mt-5 font-light leading-relaxed text-[color:var(--muted)]">{address}</p>
               <p className="mt-2 font-light leading-relaxed text-[color:var(--muted)]">
-                Service-Auftritt: {serviceName}
+                Rechtsträger laut <a href="/impressum" className="border-b border-current">Impressum</a>.
               </p>
             </article>
 

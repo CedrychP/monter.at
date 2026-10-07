@@ -41,7 +41,7 @@ const approachSteps = [
 ];
 
 export const metadata: Metadata = buildMetadata({
-  title: "Über MONTER Reparatur Service Wien",
+  title: "Über MONTER Reparatur & Service Wien",
   description:
     "Über MONTER Reparatur & Service in Wien: technische Einschätzung, ehrliche Reparaturberatung und direkter Kontakt für Haushaltsgeräte.",
   path: "/ueber-uns"
@@ -68,7 +68,7 @@ export default async function UeberUnsPage() {
                 Reparatur mit Technik, Hausverstand und <span className="font-display-italic">klarer Haltung.</span>
               </h1>
               <p className="mt-8 max-w-2xl text-[1.05rem] font-light leading-relaxed text-[color:var(--muted)]">
-                MONTER Reparatur & Service ist der Service-Auftritt der Tech Craft Consulting GmbH.
+                MONTER Reparatur & Service repariert Haushaltsgeräte, Klimageräte und Garagentore in Wien.
                 Wir verbinden technisches Verständnis, digitale Organisation und ehrliche
                 Kommunikation, damit Reparaturen nicht kompliziert werden.
               </p>

@@ -137,10 +137,10 @@ export function buildSearchIndex(): SearchEntry[] {
     },
     {
       title: "Über MONTER Reparatur & Service",
-      description: "Service-Auftritt der Tech Craft Consulting GmbH in Wien.",
+      description: "MONTER Reparatur & Service in Wien: Haushaltsgeräte, Klima und Garagentore.",
       href: "/ueber-uns",
       category: "Unternehmen",
-      keywords: "über uns unternehmen tcc tech craft"
+      keywords: "über uns unternehmen monter reparatur wien"
     },
     {
       title: "Geräteretterprämie Österreich",

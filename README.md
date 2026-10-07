@@ -1,7 +1,6 @@
-# TCC Reparatur & Service
+# MONTER Reparatur & Service
 
-SEO-orientierte Next.js Website für Haushaltsgeräte Reparatur unter dem Alias
-`TCC Reparatur & Service` der `Tech Craft Consulting GmbH`.
+Next.js-Website für MONTER Reparatur & Service. Der Rechtsträger steht im Impressum.
 
 ## Entwicklung
 

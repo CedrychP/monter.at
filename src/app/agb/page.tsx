@@ -1,16 +1,15 @@
 import type { Metadata } from "next";
 import { buildMetadata } from "../pageMetadata";
 
-const companyName = "Tech Craft Consulting GmbH";
 const serviceName = "MONTER Reparatur & Service";
 const address = "Rappgasse 1/6, 1210 Wien";
-const email = "office@tccreparatur.at";
+const email = "info@monter.at";
 const vatId = "ATU82408379";
 const phone = "01 4171346";
 const phoneHref = "+4314171346";
 
 export const metadata: Metadata = buildMetadata({
-  title: "AGB | MONTER Reparatur Service Wien",
+  title: "AGB | MONTER Reparatur & Service Wien",
   description:
     "AGB von MONTER Reparatur & Service in Wien: Bedingungen für Reparaturanfragen, Termine, Preise und Objektservice ansehen.",
   path: "/agb"
@@ -74,10 +73,10 @@ export default function AgbPage() {
           <div className="grid gap-px bg-[color:var(--border)] lg:grid-cols-3">
             <article className="bg-white p-8 lg:p-10">
               <p className="cap-line tracking-eyebrow text-[color:var(--accent)]">Anbieter</p>
-              <h2 className="font-display mt-7 text-2xl font-normal tracking-tight">{companyName}</h2>
+              <h2 className="font-display mt-7 text-2xl font-normal tracking-tight">{serviceName}</h2>
               <p className="mt-5 font-light leading-relaxed text-[color:var(--muted)]">{address}</p>
               <p className="mt-2 font-light leading-relaxed text-[color:var(--muted)]">
-                Service-Auftritt: {serviceName}
+                Rechtsträger laut <a href="/impressum" className="border-b border-current">Impressum</a>.
               </p>
             </article>
 

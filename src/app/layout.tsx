@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     "Firmenkunden Geräteservice",
     "MONTER Reparatur und Service"
   ],
-  authors: [{ name: "Tech Craft Consulting GmbH" }],
+  authors: [{ name: siteConfig.serviceName }],
   openGraph: {
     title: "MONTER Reparatur & Service | Wien",
     description:
@@ -63,7 +63,6 @@ export default async function RootLayout({
     "@type": ["LocalBusiness", "Organization"],
     "@id": localBusinessId,
     name: siteConfig.serviceName,
-    legalName: siteConfig.companyName,
     url: siteConfig.siteUrl,
     email: siteConfig.email,
     telephone: siteConfig.phoneHref,

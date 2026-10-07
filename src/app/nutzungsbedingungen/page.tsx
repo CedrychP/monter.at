@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import { buildMetadata } from "../pageMetadata";
 
 const serviceName = "MONTER Reparatur & Service";
-const email = "office@tccreparatur.at";
+const email = "info@monter.at";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Nutzungsbedingungen | MONTER Reparatur Service",
+  title: "Nutzungsbedingungen | MONTER Reparatur & Service",
   description:
     "Nutzungsbedingungen für den Webauftritt von MONTER Reparatur & Service in Wien.",
   path: "/nutzungsbedingungen"

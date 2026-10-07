@@ -146,7 +146,7 @@ export default function KontaktPage() {
                 {address}
               </h3>
               <p className="mt-4 text-sm font-light leading-relaxed text-[color:var(--muted)]">
-                Service- und Unternehmensstandort der Tech Craft Consulting GmbH.
+                Standort von MONTER Reparatur & Service in Wien.
               </p>
               <p className="mt-4 text-sm font-light leading-relaxed text-[color:var(--muted)]">
                 {siteConfig.openingHoursDisplay[0]}
@@ -191,7 +191,7 @@ export default function KontaktPage() {
               </a>
             </div>
             <iframe
-              title="Google Maps Standort Tech Craft Consulting GmbH"
+              title="Google Maps Standort MONTER Reparatur & Service"
               src={`https://www.google.com/maps?q=${mapsQuery}&output=embed`}
               className="h-80 w-full border-0 grayscale lg:h-[28rem]"
               loading="lazy"
