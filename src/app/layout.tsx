@@ -13,6 +13,7 @@ import { localBusinessId, siteConfig } from "./siteConfig";
 import TelClickTracker from "./TelClickTracker";
 import DeferredTags from "./DeferredTags";
 import OpenAiPageView from "./OpenAiPageView";
+import VercelAnalytics from "./VercelAnalytics";
 import { OPENAI_PIXEL_ID } from "./openaiAds";
 import "./globals.css";
 
@@ -154,6 +155,7 @@ export default async function RootLayout({
           <TelClickTracker />
           <OpenAiPageView />
           <DeferredTags pixelId={OPENAI_PIXEL_ID} />
+          <VercelAnalytics />
         </AdPhoneProvider>
       </body>
     </html>

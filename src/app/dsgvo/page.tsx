@@ -126,7 +126,7 @@ const sections: Section[] = [
     number: "09",
     title: "Statistik",
     paragraphs: [
-      "Stimmen Sie der Statistik zu, laden wir Google Analytics 4. Damit sehen wir, welche Seiten aufgerufen werden. Es entsteht daraus kein Werbeprofil und es werden keine Anzeigen-Pixel geladen.",
+      "Stimmen Sie der Statistik zu, laden wir Google Analytics 4 und Vercel Web Analytics. Damit sehen wir, welche Seiten aufgerufen werden. Vercel setzt dafür kein Cookie. Es entsteht daraus kein Werbeprofil und es werden keine Anzeigen-Pixel geladen.",
       "Rechtsgrundlage ist Ihre Einwilligung, Artikel 6 Absatz 1 Buchstabe a DSGVO. Widerrufen Sie sie, laden wir Google Analytics bei späteren Besuchen nicht mehr. Google kann Daten in den USA verarbeiten, siehe Abschnitt 12."
     ]
   },
@@ -148,7 +148,7 @@ const sections: Section[] = [
     paragraphs: [
       "Intern sehen die Daten nur Personen, die sie für Termin, Reparatur, Rechnung oder die Bearbeitung Ihrer Anfrage brauchen.",
       "Microsoft 365 übermittelt die Formular-E-Mails. Der Hoster der Website kann Verbindungsdaten in Protokollen sehen, etwa IP-Adresse, Zeitpunkt und aufgerufene Adresse, um den Betrieb und die Sicherheit der Seite zu gewährleisten.",
-      "Nur nach der jeweiligen Zustimmung: Google (Analytics und Ads), Meta, Microsoft (Clarity) und OpenAI. Öffentliche Bewertungen, die wir auf der Website zeigen, stammen von Google. Dabei erhalten wir keine privaten Kontodaten der Bewertenden über das hinaus, was in der Bewertung öffentlich steht.",
+      "Nur nach der jeweiligen Zustimmung: Google (Analytics und Ads), Vercel (Web Analytics), Meta, Microsoft (Clarity) und OpenAI. Öffentliche Bewertungen, die wir auf der Website zeigen, stammen von Google. Dabei erhalten wir keine privaten Kontodaten der Bewertenden über das hinaus, was in der Bewertung öffentlich steht.",
       "Eine Behörde oder ein Gericht erhält Daten nur, wenn wir dazu verpflichtet sind."
     ]
   },
@@ -157,7 +157,7 @@ const sections: Section[] = [
     number: "12",
     title: "Daten außerhalb der EU",
     paragraphs: [
-      "Microsoft, Google, Meta und OpenAI können Daten in den USA verarbeiten. Soweit diese Anbieter unter dem EU-US Data Privacy Framework zertifiziert sind, stützt sich die Übermittlung darauf. Ergänzend verwenden die Anbieter Standardvertragsklauseln der Europäischen Kommission.",
+      "Microsoft, Google, Vercel, Meta und OpenAI können Daten in den USA verarbeiten. Soweit diese Anbieter unter dem EU-US Data Privacy Framework zertifiziert sind, stützt sich die Übermittlung darauf. Ergänzend verwenden die Anbieter Standardvertragsklauseln der Europäischen Kommission.",
       "Eine Übermittlung zu Werbe- und Statistikzwecken findet nur statt, wenn Sie die passende Einwilligung gegeben haben. Der E-Mail-Versand der Formulare über Microsoft 365 erfolgt, weil wir die Anfrage sonst nicht beantworten können."
     ]
   },

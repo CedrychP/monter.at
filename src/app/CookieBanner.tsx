@@ -219,8 +219,8 @@ export default function CookieBanner() {
                   onChange={(analytics) => setConsent((current) => ({ ...current, analytics }))}
                 />
                 <p className="col-span-2 text-sm font-light leading-relaxed text-[color:var(--muted)]">
-                  Lädt Google Analytics und zählt, welche Seiten besucht werden. Meta, Google Ads
-                  und der ChatGPT-Anzeigenpixel bleiben aus.
+                  Lädt Google Analytics und Vercel Web Analytics und zählt, welche Seiten besucht
+                  werden. Meta, Google Ads und der ChatGPT-Anzeigenpixel bleiben aus.
                 </p>
               </div>
 

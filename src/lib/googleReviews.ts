@@ -2,7 +2,7 @@ import { cache } from "react";
 import { unstable_cache } from "next/cache";
 import { siteConfig } from "../app/siteConfig";
 
-/** Google-Werte höchstens stündlich neu laden — reicht für Sterne und Anzahl. */
+/** Bewertungen stehen fest im Code. Der Wert hält die bestehende Cache-Signatur. */
 export const GOOGLE_REVIEWS_REVALIDATE_SECONDS = 60 * 60;
 
 export type Review = {
@@ -20,11 +20,6 @@ export type GoogleReviewsData = {
   reviews: Review[];
   source: "google" | "fallback";
 };
-
-const MIN_GOOD_RATING = 4;
-const MIN_REVIEW_CHARS = 120;
-const MAX_REVIEWS = 6;
-const LENGTH_BAND = 0.28;
 
 /** Letzter bekannter Stand von Google — nur längere, gute Rezensionen, ähnlich lang. */
 const fallbackReviews: Review[] = [
@@ -50,10 +45,6 @@ const fallbackReviews: Review[] = [
   }
 ];
 
-function formatRating(rating: number): string {
-  return rating.toFixed(1).replace(".", ",");
-}
-
 export function getFallbackGoogleReviews(): GoogleReviewsData {
   return {
     rating: 4.6,
@@ -64,116 +55,8 @@ export function getFallbackGoogleReviews(): GoogleReviewsData {
   };
 }
 
-type LocalizedText = {
-  text?: string;
-  languageCode?: string;
-};
-
-type GooglePlaceReview = {
-  rating?: number;
-  relativePublishTimeDescription?: string;
-  text?: LocalizedText;
-  originalText?: LocalizedText;
-  authorAttribution?: {
-    displayName?: string;
-    photoUri?: string;
-  };
-};
-
-type GooglePlaceResponse = {
-  rating?: number;
-  userRatingCount?: number;
-  reviews?: GooglePlaceReview[];
-};
-
-function normalizeReviewText(value: string): string {
-  return value.replace(/\s+/g, " ").trim();
-}
-
-function pickReviewText(review: GooglePlaceReview): string {
-  const original = normalizeReviewText(review.originalText?.text ?? "");
-  const translated = normalizeReviewText(review.text?.text ?? "");
-
-  if (review.originalText?.languageCode === "de" && original) return original;
-  if (review.text?.languageCode === "de" && translated) return translated;
-  return original || translated;
-}
-
-function pickEvenLengthReviews(reviews: Review[]): Review[] {
-  const good = reviews.filter(
-    (review) => (review.rating ?? 0) >= MIN_GOOD_RATING && review.text.length >= MIN_REVIEW_CHARS
-  );
-
-  if (good.length <= MAX_REVIEWS) {
-    return [...good].sort((a, b) => b.text.length - a.text.length);
-  }
-
-  const byLength = [...good].sort((a, b) => a.text.length - b.text.length);
-  const median = byLength[Math.floor(byLength.length / 2)]?.text.length ?? MIN_REVIEW_CHARS;
-  const minLen = median * (1 - LENGTH_BAND);
-  const maxLen = median * (1 + LENGTH_BAND);
-  const clustered = good.filter((review) => review.text.length >= minLen && review.text.length <= maxLen);
-  const pool = clustered.length >= 3 ? clustered : good;
-
-  return [...pool]
-    .sort((a, b) => Math.abs(a.text.length - median) - Math.abs(b.text.length - median))
-    .slice(0, MAX_REVIEWS)
-    .sort((a, b) => b.text.length - a.text.length);
-}
-
 async function loadGoogleReviews(): Promise<GoogleReviewsData> {
-  const apiKey = process.env.GOOGLE_PLACES_API_KEY;
-  const placeId = process.env.GOOGLE_PLACE_ID;
-
-  if (!apiKey || !placeId) {
-    return getFallbackGoogleReviews();
-  }
-
-  try {
-    const response = await fetch(
-      `https://places.googleapis.com/v1/places/${placeId}?languageCode=de`,
-      {
-        headers: {
-          "Content-Type": "application/json",
-          "X-Goog-Api-Key": apiKey,
-          "X-Goog-FieldMask":
-            "rating,userRatingCount,reviews.rating,reviews.text,reviews.originalText,reviews.relativePublishTimeDescription,reviews.authorAttribution"
-        },
-        cache: "no-store",
-        signal: AbortSignal.timeout(2000)
-      }
-    );
-
-    if (!response.ok) {
-      console.error("Google Places API error:", response.status, await response.text());
-      return getFallbackGoogleReviews();
-    }
-
-    const data = (await response.json()) as GooglePlaceResponse;
-    const apiReviews = pickEvenLengthReviews(
-      (data.reviews ?? []).map((review) => ({
-        name: review.authorAttribution?.displayName?.trim() || "Google-Nutzer:in",
-        text: pickReviewText(review),
-        rating: typeof review.rating === "number" ? review.rating : 5,
-        relativeTime: review.relativePublishTimeDescription,
-        photoUrl: review.authorAttribution?.photoUri
-      }))
-    );
-
-    const fallback = getFallbackGoogleReviews();
-    const rating = typeof data.rating === "number" ? data.rating : fallback.rating;
-
-    return {
-      rating,
-      ratingDisplay: formatRating(rating),
-      totalCount: data.userRatingCount ?? fallback.totalCount,
-      reviews: apiReviews.length > 0 ? apiReviews : fallback.reviews,
-      source: "google"
-    };
-  } catch (error) {
-    console.error("Failed to fetch Google reviews", error);
-    return getFallbackGoogleReviews();
-  }
+  return getFallbackGoogleReviews();
 }
 
 const getCachedGoogleReviews = unstable_cache(loadGoogleReviews, ["google-reviews"], {
@@ -181,7 +64,7 @@ const getCachedGoogleReviews = unstable_cache(loadGoogleReviews, ["google-review
   tags: ["google-reviews"]
 });
 
-/** Dedupliziert pro Request, dazwischen stündlich von Google neu. */
+/** Dieselben gespeicherten Bewertungen für alle Aufrufe in einem Request. */
 export const getGoogleReviews = cache(getCachedGoogleReviews);
 
 export type GoogleRatingSummary = {
