@@ -735,6 +735,52 @@ canvas {
   color: #fff;
 }
 
+/* Cookie-Banner: eigene Maße, damit die globalen Button-Paddings auf schmalen Geräten nicht umbrechen. */
+.cookie-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.7rem 0.7rem;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  line-height: 1.15;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.cookie-action-primary {
+  background: var(--ink);
+  color: #fff;
+  border: 1px solid var(--ink);
+}
+
+.cookie-action-primary:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.cookie-action-ghost {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--ink);
+}
+
+.cookie-action-ghost:hover {
+  background: var(--ink);
+  color: #fff;
+}
+
+@media (min-width: 768px) {
+  .cookie-action {
+    width: auto;
+    padding-left: 1.1rem;
+    padding-right: 1.1rem;
+  }
+}
+
 .btn-on-dark {
   display: inline-flex;
   align-items: center;
@@ -814,7 +860,8 @@ canvas {
 /* Sichtbarer Tastaturfokus — nur bei Tastaturnavigation, nicht beim Mausklick. */
 .btn-primary:focus-visible,
 .btn-ghost:focus-visible,
-.btn-on-dark-ghost:focus-visible {
+.btn-on-dark-ghost:focus-visible,
+.cookie-action:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
 }
