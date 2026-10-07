@@ -64,6 +64,34 @@ const optionalClass = "font-normal text-[color:var(--muted-soft)]";
 
 const isEmail = (value: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
 
+type FieldKey = "device" | "message" | "street" | "city" | "name" | "phone" | "email";
+
+const problemText = (key: FieldKey, values: FormValues): string | null => {
+  const text = (value: string) => value.trim();
+  switch (key) {
+    case "device":
+      return values.device ? null : "Bitte ein Gerät auswählen.";
+    case "message":
+      if (!text(values.message)) return "Bitte beschreiben, was nicht funktioniert.";
+      if (text(values.message).length <= 3) return "Bitte das Problem etwas genauer beschreiben.";
+      return null;
+    case "street":
+      return text(values.street).length > 1 ? null : "Bitte Straße und Hausnummer angeben.";
+    case "city":
+      return text(values.city).length > 1 ? null : "Bitte PLZ und Ort angeben.";
+    case "name":
+      return text(values.name).length > 1 ? null : "Bitte Ihren Namen angeben.";
+    case "phone":
+      if (!text(values.phone)) return "Bitte eine Telefonnummer angeben.";
+      if (text(values.phone).length <= 4) return "Die Telefonnummer ist zu kurz.";
+      return null;
+    case "email":
+      if (!text(values.email)) return "Bitte eine E-Mail-Adresse angeben.";
+      if (!isEmail(values.email)) return "Diese E-Mail-Adresse ist ungültig.";
+      return null;
+  }
+};
+
 const ArrowIcon = () => (
   <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
     <path d="M1 8h13M9 3l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -74,6 +102,7 @@ export default function RepairBookingForm({ phoneHref, className = "" }: RepairB
   const [values, setValues] = useState<FormValues>(initialValues);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [attempted, setAttempted] = useState(false);
+  const [touched, setTouched] = useState<Partial<Record<FieldKey, boolean>>>({});
   const [submitState, setSubmitState] = useState<SubmitState>({ status: "idle", message: "" });
 
   const update = (key: keyof FormValues) => (
@@ -82,30 +111,35 @@ export default function RepairBookingForm({ phoneHref, className = "" }: RepairB
     setValues((prev) => ({ ...prev, [key]: event.target.value }));
   };
 
-  const formValid = useMemo(
+  const problems = useMemo(
     () =>
-      Boolean(values.device) &&
-      values.message.trim().length > 3 &&
-      values.street.trim().length > 1 &&
-      values.city.trim().length > 1 &&
-      values.name.trim().length > 1 &&
-      values.phone.trim().length > 4 &&
-      isEmail(values.email),
+      ({
+        device: problemText("device", values),
+        message: problemText("message", values),
+        street: problemText("street", values),
+        city: problemText("city", values),
+        name: problemText("name", values),
+        phone: problemText("phone", values),
+        email: problemText("email", values)
+      }) satisfies Record<FieldKey, string | null>,
     [values]
   );
 
-  const missing = {
-    device: !values.device,
-    message: values.message.trim().length <= 3,
-    street: values.street.trim().length <= 1,
-    city: values.city.trim().length <= 1,
-    name: values.name.trim().length <= 1,
-    phone: values.phone.trim().length <= 4,
-    email: !isEmail(values.email)
+  const formValid = Object.values(problems).every((problem) => problem === null);
+
+  const showProblem = (key: FieldKey) => Boolean((attempted || touched[key]) && problems[key]);
+
+  const markTouched = (key: FieldKey) => () => {
+    setTouched((prev) => ({ ...prev, [key]: true }));
   };
 
-  const fieldClassFor = (invalid: boolean) =>
-    `${fieldClass}${invalid ? " border-[color:var(--accent)] bg-white" : ""}`;
+  const invalidFieldStyle = {
+    borderColor: "var(--accent)",
+    backgroundColor: "var(--accent-soft)",
+    boxShadow: "0 0 0 1px var(--accent)"
+  };
+
+  const invalidLabelStyle = { color: "var(--accent)" };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -113,7 +147,7 @@ export default function RepairBookingForm({ phoneHref, className = "" }: RepairB
       setAttempted(true);
       const firstInvalid = (
         ["device", "message", "street", "city", "name", "phone", "email"] as const
-      ).find((key) => missing[key]);
+      ).find((key) => problems[key]);
       if (firstInvalid) {
         document.getElementById(`repair-${firstInvalid}`)?.focus();
       }
@@ -144,6 +178,7 @@ export default function RepairBookingForm({ phoneHref, className = "" }: RepairB
       }
       setValues(initialValues);
       setAttempted(false);
+      setTouched({});
       setSubmitState({
         status: "success",
         message: result.message || "Danke, Ihre Reparaturanfrage wurde gesendet. Wir melden uns schnellstmöglich."
@@ -190,16 +225,22 @@ export default function RepairBookingForm({ phoneHref, className = "" }: RepairB
             1 · Das Gerät
           </legend>
           <div>
-            <span className={labelClass} id="repair-device-label">
+            <span
+              className={labelClass}
+              style={showProblem("device") ? invalidLabelStyle : undefined}
+              id="repair-device-label"
+            >
               Welches Gerät?
             </span>
             <div
               id="repair-device"
               role="radiogroup"
               aria-labelledby="repair-device-label"
+              aria-invalid={showProblem("device")}
+              aria-describedby={showProblem("device") ? "repair-device-error" : undefined}
               tabIndex={-1}
-              className={`mt-2 grid grid-cols-2 gap-2 sm:grid-cols-3 ${
-                attempted && missing.device ? "rounded-lg ring-2 ring-[color:var(--accent)]" : ""
+              className={`mt-2 grid grid-cols-2 gap-2 rounded-lg sm:grid-cols-3 ${
+                showProblem("device") ? "ring-2 ring-[color:var(--accent)]" : ""
               }`}
             >
               {deviceOptions.map((option) => {
@@ -222,20 +263,35 @@ export default function RepairBookingForm({ phoneHref, className = "" }: RepairB
                 );
               })}
             </div>
+            {showProblem("device") ? (
+              <p id="repair-device-error" className="mt-2 text-sm font-medium text-[color:var(--accent)]">
+                {problems.device}
+              </p>
+            ) : null}
           </div>
 
           <label className="block">
-            <span className={labelClass}>Was ist das Problem?</span>
+            <span className={labelClass} style={showProblem("message") ? invalidLabelStyle : undefined}>
+              Was ist das Problem?
+            </span>
             <textarea
               id="repair-message"
-              className={`${fieldClassFor(attempted && missing.message)} resize-y`}
+              className={`${fieldClass} resize-y`}
+              style={showProblem("message") ? invalidFieldStyle : undefined}
               rows={3}
               value={values.message}
               onChange={update("message")}
+              onBlur={markTouched("message")}
               placeholder="Was passiert? Gibt es einen Fehlercode?"
-              aria-invalid={attempted && missing.message}
+              aria-invalid={showProblem("message")}
+              aria-describedby={showProblem("message") ? "repair-message-error" : undefined}
               required
             />
+            {showProblem("message") ? (
+              <p id="repair-message-error" className="mt-1.5 text-sm font-medium text-[color:var(--accent)]">
+                {problems.message}
+              </p>
+            ) : null}
           </label>
 
           <div className="grid gap-5 sm:grid-cols-2">
@@ -268,30 +324,50 @@ export default function RepairBookingForm({ phoneHref, className = "" }: RepairB
 
           <div className="grid gap-5 sm:grid-cols-2">
             <label className="block">
-              <span className={labelClass}>Straße &amp; Nr.</span>
+              <span className={labelClass} style={showProblem("street") ? invalidLabelStyle : undefined}>
+                Straße &amp; Nr.
+              </span>
               <input
                 id="repair-street"
-                className={fieldClassFor(attempted && missing.street)}
+                className={fieldClass}
+                style={showProblem("street") ? invalidFieldStyle : undefined}
                 value={values.street}
                 onChange={update("street")}
+                onBlur={markTouched("street")}
                 placeholder="Musterstraße 1/6"
                 autoComplete="street-address"
-                aria-invalid={attempted && missing.street}
+                aria-invalid={showProblem("street")}
+                aria-describedby={showProblem("street") ? "repair-street-error" : undefined}
                 required
               />
+              {showProblem("street") ? (
+                <p id="repair-street-error" className="mt-1.5 text-sm font-medium text-[color:var(--accent)]">
+                  {problems.street}
+                </p>
+              ) : null}
             </label>
             <label className="block">
-              <span className={labelClass}>PLZ &amp; Ort</span>
+              <span className={labelClass} style={showProblem("city") ? invalidLabelStyle : undefined}>
+                PLZ &amp; Ort
+              </span>
               <input
                 id="repair-city"
-                className={fieldClassFor(attempted && missing.city)}
+                className={fieldClass}
+                style={showProblem("city") ? invalidFieldStyle : undefined}
                 value={values.city}
                 onChange={update("city")}
+                onBlur={markTouched("city")}
                 placeholder="1210 Wien"
                 autoComplete="address-level2"
-                aria-invalid={attempted && missing.city}
+                aria-invalid={showProblem("city")}
+                aria-describedby={showProblem("city") ? "repair-city-error" : undefined}
                 required
               />
+              {showProblem("city") ? (
+                <p id="repair-city-error" className="mt-1.5 text-sm font-medium text-[color:var(--accent)]">
+                  {problems.city}
+                </p>
+              ) : null}
             </label>
           </div>
 
@@ -314,45 +390,75 @@ export default function RepairBookingForm({ phoneHref, className = "" }: RepairB
           </legend>
           <div className="grid gap-5 sm:grid-cols-2">
             <label className="block">
-              <span className={labelClass}>Name</span>
+              <span className={labelClass} style={showProblem("name") ? invalidLabelStyle : undefined}>
+                Name
+              </span>
               <input
                 id="repair-name"
-                className={fieldClassFor(attempted && missing.name)}
+                className={fieldClass}
+                style={showProblem("name") ? invalidFieldStyle : undefined}
                 value={values.name}
                 onChange={update("name")}
+                onBlur={markTouched("name")}
                 placeholder="Vor- und Nachname"
                 autoComplete="name"
-                aria-invalid={attempted && missing.name}
+                aria-invalid={showProblem("name")}
+                aria-describedby={showProblem("name") ? "repair-name-error" : undefined}
                 required
               />
+              {showProblem("name") ? (
+                <p id="repair-name-error" className="mt-1.5 text-sm font-medium text-[color:var(--accent)]">
+                  {problems.name}
+                </p>
+              ) : null}
             </label>
             <label className="block">
-              <span className={labelClass}>Telefonnummer</span>
+              <span className={labelClass} style={showProblem("phone") ? invalidLabelStyle : undefined}>
+                Telefonnummer
+              </span>
               <input
                 id="repair-phone"
-                className={fieldClassFor(attempted && missing.phone)}
+                className={fieldClass}
+                style={showProblem("phone") ? invalidFieldStyle : undefined}
                 type="tel"
                 value={values.phone}
                 onChange={update("phone")}
+                onBlur={markTouched("phone")}
                 placeholder="01 234 56 78"
                 autoComplete="tel"
-                aria-invalid={attempted && missing.phone}
+                aria-invalid={showProblem("phone")}
+                aria-describedby={showProblem("phone") ? "repair-phone-error" : undefined}
                 required
               />
+              {showProblem("phone") ? (
+                <p id="repair-phone-error" className="mt-1.5 text-sm font-medium text-[color:var(--accent)]">
+                  {problems.phone}
+                </p>
+              ) : null}
             </label>
             <label className="block">
-              <span className={labelClass}>E-Mail-Adresse</span>
+              <span className={labelClass} style={showProblem("email") ? invalidLabelStyle : undefined}>
+                E-Mail-Adresse
+              </span>
               <input
                 id="repair-email"
-                className={fieldClassFor(attempted && missing.email)}
+                className={fieldClass}
+                style={showProblem("email") ? invalidFieldStyle : undefined}
                 type="email"
                 value={values.email}
                 onChange={update("email")}
+                onBlur={markTouched("email")}
                 placeholder="name@example.at"
                 autoComplete="email"
-                aria-invalid={attempted && missing.email}
+                aria-invalid={showProblem("email")}
+                aria-describedby={showProblem("email") ? "repair-email-error" : undefined}
                 required
               />
+              {showProblem("email") ? (
+                <p id="repair-email-error" className="mt-1.5 text-sm font-medium text-[color:var(--accent)]">
+                  {problems.email}
+                </p>
+              ) : null}
             </label>
             <label className="block">
               <span className={labelClass}>Kundentyp</span>
@@ -369,7 +475,7 @@ export default function RepairBookingForm({ phoneHref, className = "" }: RepairB
       <div className="mt-8 border-t border-[color:var(--border)] pt-6">
         {attempted && !formValid ? (
           <p className="mb-4 text-sm font-medium text-[color:var(--accent)]" role="alert">
-            Bitte Gerät, Problem, Adresse, Name, Telefon und E-Mail ausfüllen.
+            Bitte die rot markierten Felder prüfen.
           </p>
         ) : null}
         <button
