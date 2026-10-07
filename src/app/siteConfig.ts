@@ -6,6 +6,7 @@ export const siteConfig = {
     ""
   ),
   serviceName: "MONTER Reparatur & Service",
+  /** Rechtsträger. Nur das Impressum gibt diesen Namen aus. */
   companyName: "Tech Craft Consulting GmbH",
   address: {
     street: "Rappgasse 1/6",

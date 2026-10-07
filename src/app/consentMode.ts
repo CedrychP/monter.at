@@ -17,10 +17,10 @@ export type CookieConsent = {
   marketing: boolean;
 };
 
-export const CONSENT_STORAGE_KEY = "tcc-cookie-consent";
+export const CONSENT_STORAGE_KEY = "monter-cookie-consent";
 
 /** Event, auf das der Cookie-Banner aus dem Footer heraus geöffnet wird. */
-export const OPEN_CONSENT_SETTINGS_EVENT = "tcc:open-cookie-settings";
+export const OPEN_CONSENT_SETTINGS_EVENT = "monter:open-cookie-settings";
 
 /** Event für GTM, damit dort Trigger auf Consent-Änderungen reagieren können. */
 export const CONSENT_UPDATE_EVENT = "cookie_consent_update";

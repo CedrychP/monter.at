@@ -193,7 +193,7 @@ export default function KontaktPage() {
             <iframe
               title="Google Maps Standort MONTER Reparatur & Service"
               src={`https://www.google.com/maps?q=${mapsQuery}&output=embed`}
-              className="h-80 w-full border-0 grayscale lg:h-[28rem]"
+              className="h-80 w-full border-0 lg:h-[28rem]"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             />
