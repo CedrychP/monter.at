@@ -47,13 +47,13 @@ const initialValues: FormValues = {
 const deviceOptions = [
   "Waschmaschine",
   "Geschirrspüler",
+  "Trockner",
   "Kühlschrank / Gefrierschrank",
   "Backofen / Herd",
-  "Trockner",
-  "Fernseher",
+  "Klimagerät / Klimaanlage",
   "Garagentor",
-  "Anderes Gerät",
-  "Klimagerät / Klimaanlage"
+  "Fernseher",
+  "Anderes Gerät"
 ];
 
 const fieldClass =
@@ -73,6 +73,7 @@ const ArrowIcon = () => (
 export default function RepairBookingForm({ phoneHref, className = "" }: RepairBookingFormProps) {
   const [values, setValues] = useState<FormValues>(initialValues);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [attempted, setAttempted] = useState(false);
   const [submitState, setSubmitState] = useState<SubmitState>({ status: "idle", message: "" });
 
   const update = (key: keyof FormValues) => (
@@ -93,9 +94,31 @@ export default function RepairBookingForm({ phoneHref, className = "" }: RepairB
     [values]
   );
 
+  const missing = {
+    device: !values.device,
+    message: values.message.trim().length <= 3,
+    street: values.street.trim().length <= 1,
+    city: values.city.trim().length <= 1,
+    name: values.name.trim().length <= 1,
+    phone: values.phone.trim().length <= 4,
+    email: !isEmail(values.email)
+  };
+
+  const fieldClassFor = (invalid: boolean) =>
+    `${fieldClass}${invalid ? " border-[color:var(--accent)] bg-white" : ""}`;
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!formValid) return;
+    if (!formValid) {
+      setAttempted(true);
+      const firstInvalid = (
+        ["device", "message", "street", "city", "name", "phone", "email"] as const
+      ).find((key) => missing[key]);
+      if (firstInvalid) {
+        document.getElementById(`repair-${firstInvalid}`)?.focus();
+      }
+      return;
+    }
 
     setIsSubmitting(true);
     setSubmitState({ status: "idle", message: "" });
@@ -120,6 +143,7 @@ export default function RepairBookingForm({ phoneHref, className = "" }: RepairB
         });
       }
       setValues(initialValues);
+      setAttempted(false);
       setSubmitState({
         status: "success",
         message: result.message || "Danke, Ihre Reparaturanfrage wurde gesendet. Wir melden uns schnellstmöglich."
@@ -140,13 +164,13 @@ export default function RepairBookingForm({ phoneHref, className = "" }: RepairB
   return (
     <form className={className} onSubmit={handleSubmit} noValidate>
       <div>
-        <p className="cap-line tracking-eyebrow">Reparatur buchen</p>
+        <p className="cap-line tracking-eyebrow">Etwa eine Minute</p>
         <h3 className="font-display mt-5 text-2xl font-normal leading-tight tracking-tight sm:mt-6 sm:text-3xl lg:text-[2.1rem]">
           Termin anfragen.
         </h3>
         <p className="mt-3 text-sm font-light leading-relaxed text-[color:var(--muted)]">
-          Gerät, Standort und Erreichbarkeit — wir melden uns telefonisch zur Terminabstimmung,
-          meist innerhalb eines Werktags.
+          Wir rufen zurück und stimmen den Termin ab, meist innerhalb eines Werktags. Die Anfrage
+          ist noch kein Auftrag.
         </p>
       </div>
 
@@ -160,154 +184,212 @@ export default function RepairBookingForm({ phoneHref, className = "" }: RepairB
         onChange={update("website")}
       />
 
-      <div className="mt-8 grid gap-5">
-        <label className="block">
-          <span className={labelClass}>Welches Gerät?</span>
-          <select className={fieldClass} value={values.device} onChange={update("device")} required>
-            <option value="" disabled>
-              Bitte wählen …
-            </option>
-            {deviceOptions.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
-        </label>
+      <div className="mt-8 grid gap-8">
+        <fieldset className="grid gap-5">
+          <legend className="text-[0.68rem] font-medium uppercase tracking-[0.16em] text-[color:var(--accent)]">
+            1 · Das Gerät
+          </legend>
+          <div>
+            <span className={labelClass} id="repair-device-label">
+              Welches Gerät?
+            </span>
+            <div
+              id="repair-device"
+              role="radiogroup"
+              aria-labelledby="repair-device-label"
+              tabIndex={-1}
+              className={`mt-2 grid grid-cols-2 gap-2 sm:grid-cols-3 ${
+                attempted && missing.device ? "rounded-lg ring-2 ring-[color:var(--accent)]" : ""
+              }`}
+            >
+              {deviceOptions.map((option) => {
+                const selected = values.device === option;
+                return (
+                  <button
+                    key={option}
+                    type="button"
+                    role="radio"
+                    aria-checked={selected}
+                    onClick={() => setValues((prev) => ({ ...prev, device: option }))}
+                    className={`rounded-lg border px-3 py-2.5 text-left text-sm leading-snug transition ${
+                      selected
+                        ? "border-[color:var(--ink)] bg-[color:var(--ink)] text-white"
+                        : "border-[color:var(--border)] bg-[color:var(--bg-muted)] text-[color:var(--ink)] hover:border-[color:var(--ink)]"
+                    }`}
+                  >
+                    {option}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
 
-        <div className="grid gap-5 sm:grid-cols-2">
+          <label className="block">
+            <span className={labelClass}>Was ist das Problem?</span>
+            <textarea
+              id="repair-message"
+              className={`${fieldClassFor(attempted && missing.message)} resize-y`}
+              rows={3}
+              value={values.message}
+              onChange={update("message")}
+              placeholder="Was passiert? Gibt es einen Fehlercode?"
+              aria-invalid={attempted && missing.message}
+              required
+            />
+          </label>
+
+          <div className="grid gap-5 sm:grid-cols-2">
+            <label className="block">
+              <span className={labelClass}>
+                Marke &amp; Modell <span className={optionalClass}>· optional</span>
+              </span>
+              <input
+                className={fieldClass}
+                value={values.model}
+                onChange={update("model")}
+                placeholder="Bosch, Miele, Siemens …"
+              />
+            </label>
+            <label className="block">
+              <span className={labelClass}>Dringlichkeit</span>
+              <select className={fieldClass} value={values.urgency} onChange={update("urgency")}>
+                <option>Akuter Ausfall – möglichst schnell</option>
+                <option>In den nächsten Tagen</option>
+                <option>Zeitlich flexibel</option>
+              </select>
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset className="grid gap-5">
+          <legend className="text-[0.68rem] font-medium uppercase tracking-[0.16em] text-[color:var(--accent)]">
+            2 · Wo wir hinkommen
+          </legend>
+
+          <div className="grid gap-5 sm:grid-cols-2">
+            <label className="block">
+              <span className={labelClass}>Straße &amp; Nr.</span>
+              <input
+                id="repair-street"
+                className={fieldClassFor(attempted && missing.street)}
+                value={values.street}
+                onChange={update("street")}
+                placeholder="Musterstraße 1/6"
+                autoComplete="street-address"
+                aria-invalid={attempted && missing.street}
+                required
+              />
+            </label>
+            <label className="block">
+              <span className={labelClass}>PLZ &amp; Ort</span>
+              <input
+                id="repair-city"
+                className={fieldClassFor(attempted && missing.city)}
+                value={values.city}
+                onChange={update("city")}
+                placeholder="1210 Wien"
+                autoComplete="address-level2"
+                aria-invalid={attempted && missing.city}
+                required
+              />
+            </label>
+          </div>
+
           <label className="block">
             <span className={labelClass}>
-              Marke &amp; Modell <span className={optionalClass}>· optional</span>
+              Wunschtermin <span className={optionalClass}>· optional</span>
             </span>
             <input
               className={fieldClass}
-              value={values.model}
-              onChange={update("model")}
-              placeholder="Bosch, Miele, Siemens …"
+              value={values.preferredTime}
+              onChange={update("preferredTime")}
+              placeholder="z. B. werktags vormittags"
             />
           </label>
-          <label className="block">
-            <span className={labelClass}>Dringlichkeit</span>
-            <select className={fieldClass} value={values.urgency} onChange={update("urgency")}>
-              <option>Akuter Ausfall – möglichst schnell</option>
-              <option>In den nächsten Tagen</option>
-              <option>Zeitlich flexibel</option>
-            </select>
-          </label>
-        </div>
+        </fieldset>
 
-        <label className="block">
-          <span className={labelClass}>Was ist das Problem?</span>
-          <textarea
-            className={`${fieldClass} resize-y`}
-            rows={4}
-            value={values.message}
-            onChange={update("message")}
-            placeholder="Was passiert? Gibt es einen Fehlercode? Seit wann tritt der Fehler auf?"
-            required
-          />
-        </label>
-
-        <div className="grid gap-5 sm:grid-cols-2">
-          <label className="block">
-            <span className={labelClass}>Straße &amp; Nr.</span>
-            <input
-              className={fieldClass}
-              value={values.street}
-              onChange={update("street")}
-              placeholder="Musterstraße 1/6"
-              required
-            />
-          </label>
-          <label className="block">
-            <span className={labelClass}>PLZ &amp; Ort</span>
-            <input
-              className={fieldClass}
-              value={values.city}
-              onChange={update("city")}
-              placeholder="1210 Wien"
-              required
-            />
-          </label>
-        </div>
-
-        <label className="block sm:max-w-[calc(50%-0.625rem)]">
-          <span className={labelClass}>
-            Wunschtermin <span className={optionalClass}>· optional</span>
-          </span>
-          <input
-            className={fieldClass}
-            value={values.preferredTime}
-            onChange={update("preferredTime")}
-            placeholder="z. B. werktags vormittags …"
-          />
-        </label>
-
-        <div className="grid gap-5 border-t border-[color:var(--border)] pt-6 sm:grid-cols-2">
-          <label className="block">
-            <span className={labelClass}>Name oder Firma</span>
-            <input
-              className={fieldClass}
-              value={values.name}
-              onChange={update("name")}
-              placeholder="Max Mustermann GmbH"
-              required
-            />
-          </label>
-          <label className="block">
-            <span className={labelClass}>Telefonnummer</span>
-            <input
-              className={fieldClass}
-              type="tel"
-              value={values.phone}
-              onChange={update("phone")}
-              placeholder="01 234 56 78"
-              required
-            />
-          </label>
-          <label className="block">
-            <span className={labelClass}>E-Mail-Adresse</span>
-            <input
-              className={fieldClass}
-              type="email"
-              value={values.email}
-              onChange={update("email")}
-              placeholder="name@example.at"
-              required
-            />
-          </label>
-          <label className="block">
-            <span className={labelClass}>Kundentyp</span>
-            <select className={fieldClass} value={values.customerType} onChange={update("customerType")}>
-              <option>Privatkunde</option>
-              <option>Geschäftskunde</option>
-              <option>Hausverwaltung</option>
-            </select>
-          </label>
-        </div>
+        <fieldset className="grid gap-5">
+          <legend className="text-[0.68rem] font-medium uppercase tracking-[0.16em] text-[color:var(--accent)]">
+            3 · Wie wir Sie erreichen
+          </legend>
+          <div className="grid gap-5 sm:grid-cols-2">
+            <label className="block">
+              <span className={labelClass}>Name</span>
+              <input
+                id="repair-name"
+                className={fieldClassFor(attempted && missing.name)}
+                value={values.name}
+                onChange={update("name")}
+                placeholder="Vor- und Nachname"
+                autoComplete="name"
+                aria-invalid={attempted && missing.name}
+                required
+              />
+            </label>
+            <label className="block">
+              <span className={labelClass}>Telefonnummer</span>
+              <input
+                id="repair-phone"
+                className={fieldClassFor(attempted && missing.phone)}
+                type="tel"
+                value={values.phone}
+                onChange={update("phone")}
+                placeholder="01 234 56 78"
+                autoComplete="tel"
+                aria-invalid={attempted && missing.phone}
+                required
+              />
+            </label>
+            <label className="block">
+              <span className={labelClass}>E-Mail-Adresse</span>
+              <input
+                id="repair-email"
+                className={fieldClassFor(attempted && missing.email)}
+                type="email"
+                value={values.email}
+                onChange={update("email")}
+                placeholder="name@example.at"
+                autoComplete="email"
+                aria-invalid={attempted && missing.email}
+                required
+              />
+            </label>
+            <label className="block">
+              <span className={labelClass}>Kundentyp</span>
+              <select className={fieldClass} value={values.customerType} onChange={update("customerType")}>
+                <option>Privatkunde</option>
+                <option>Geschäftskunde</option>
+                <option>Hausverwaltung</option>
+              </select>
+            </label>
+          </div>
+        </fieldset>
       </div>
 
-      <div className="mt-8 flex flex-col gap-4 border-t border-[color:var(--border)] pt-6 sm:flex-row sm:items-center sm:justify-between">
-        <a
-          href={`tel:${phoneHref}`}
-          data-tel-source="repair_booking"
-          className="inline-flex items-center gap-2 text-sm font-medium text-[color:var(--ink)] transition hover:text-[color:var(--accent)]"
-        >
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M5 4h3l1.6 4-2 1.3a11 11 0 0 0 5 5l1.3-2 4 1.6v3a2 2 0 0 1-2.1 2A15 15 0 0 1 3 6.1 2 2 0 0 1 5 4Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
-          </svg>
-          Lieber anrufen
-        </a>
-
+      <div className="mt-8 border-t border-[color:var(--border)] pt-6">
+        {attempted && !formValid ? (
+          <p className="mb-4 text-sm font-medium text-[color:var(--accent)]" role="alert">
+            Bitte Gerät, Problem, Adresse, Name, Telefon und E-Mail ausfüllen.
+          </p>
+        ) : null}
         <button
           type="submit"
-          disabled={!formValid || isSubmitting}
-          className="inline-flex w-full items-center justify-center gap-2.5 rounded-lg bg-[color:var(--ink)] px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-[color:var(--accent)] disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
+          disabled={isSubmitting}
+          className="inline-flex w-full items-center justify-center gap-2.5 rounded-lg bg-[color:var(--ink)] px-6 py-4 text-sm font-semibold text-white transition hover:bg-[color:var(--accent)] disabled:cursor-wait"
         >
-          {isSubmitting ? "Wird gesendet …" : "Reparaturtermin anfragen"}
+          {isSubmitting ? "Wird gesendet …" : "Termin anfragen"}
           {!isSubmitting ? <ArrowIcon /> : null}
         </button>
+        <p className="mt-3 text-center text-sm font-light leading-relaxed text-[color:var(--muted)]">
+          Unverbindlich. Wir bestätigen den Termin am Telefon.
+          <a
+            href={`tel:${phoneHref}`}
+            data-tel-source="repair_booking"
+            className="ml-1 border-b border-current text-[color:var(--ink)]"
+          >
+            Bei einem Ausfall direkt anrufen.
+          </a>
+        </p>
       </div>
 
       {submitState.message ? (
