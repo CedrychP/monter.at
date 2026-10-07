@@ -3,7 +3,7 @@ import type { AppliancePage } from "./appliancePages";
 /**
  * Geräteseiten für Linz. Eigener Text statt Stadtname-Tausch: Wasserhärte laut
  * LINZ AG 14–21 °dH (überwiegend Härtestufe III), Techniker vor Ort, Anfahrt
- * ohne festen Satz. Fernseher fehlt bewusst, solange in Linz nicht bestätigt.
+ * ohne festen Satz.
  */
 export const linzAppliancePages: AppliancePage[] = [
   {
@@ -404,6 +404,59 @@ export const linzAppliancePages: AppliancePage[] = [
         question: "Kommen Sie für einen Dunstabzug nach Linz?",
         answer:
           "Ja, in das gesamte Linzer Stadtgebiet. Die Anfahrtskosten erfahren Sie am Telefon, bevor ein Termin vereinbart wird."
+      }
+    ]
+  },
+  {
+    slug: "fernseher-reparatur-linz",
+    title: "Fernseher Reparatur Linz",
+    metaTitle: "Fernseher Reparatur Linz | MONTER Service",
+    description:
+      "Fernseher in Linz bleibt schwarz, hat Streifen oder keinen Ton? Netzteil, Hintergrundbeleuchtung und Anschlüsse vor Ort prüfen.",
+    h1: "Fernseher Reparatur in Linz",
+    category: "Fernseher",
+    short: "Schwarzes Bild, Streifen, fehlender Ton oder Gerät startet nicht mehr.",
+    intro:
+      "Bleibt der Bildschirm schwarz, zeigt er Streifen oder fehlt der Ton, prüfen wir in Linz Netzteil, Hintergrundbeleuchtung, Panel-Ansteuerung und Anschlüsse direkt am Gerät. Die entscheidende Frage klären wir möglichst schon am Telefon: Liegt der Fehler in der Elektronik davor, oder ist das Panel selbst betroffen?",
+    sections: [
+      {
+        title: "Ton ohne Bild",
+        body:
+          "Ton ohne Bild ist ein brauchbares Symptom. Meist fällt die Hintergrundbeleuchtung aus, weil LED-Leisten, deren Treiber oder das Netzteil keine Spannung mehr liefern. Ein Test vorab: Im dunklen Raum schräg mit einer Taschenlampe auf den Schirm leuchten. Ist ein schwaches Bild zu erkennen, arbeitet die Bildverarbeitung noch und die Reparatur ist in der Regel sinnvoll."
+      },
+      {
+        title: "Vor Ort statt Transport",
+        body:
+          "Große Fernseher transportieren wir ungern. In den Linzer Gründerzeithäusern, etwa in der Innenstadt oder in Alt-Urfahr, fehlt oft ein Lift, und ein Panel über das Stiegenhaus zu tragen ist das größere Risiko als die Reparatur selbst. Deshalb arbeiten wir nach Möglichkeit am Aufstellort, auch wenn das Gerät an der Wand hängt. Braucht ein Befund die Werkstatt, sprechen wir den Transport vorher ab."
+      },
+      {
+        title: "Streifen, Sprung und was sich rechnet",
+        body:
+          "Senkrechte oder waagrechte Streifen können an Verbindungsleitungen oder Treiberplatinen liegen und sind dann reparierbar. Ein Sprung, eine Druckstelle oder ein Spinnennetzmuster im Glas ist ein Panel-Schaden: Das Panel kommt als ganze Baugruppe und kostet in der Regel mehr als der Restwert des Geräts. Netzteil, Hintergrundbeleuchtung, Buchsen und Hauptplatine lohnen sich, ein gebrochenes Panel nicht. Diese Einschätzung geben wir vor dem Termin, die Anfahrt nennen wir am Telefon."
+      }
+    ],
+    checklist: [
+      "Marke & Modellnummer notieren",
+      "Bild- oder Tonfehler beschreiben",
+      "Standby-LED beobachten",
+      "Displaybruch prüfen",
+      "Telefonisch abklären"
+    ],
+    faq: [
+      {
+        question: "Mein Fernseher hat Ton, aber kein Bild. Ist er noch zu retten?",
+        answer:
+          "Oft ja. Ton ohne Bild deutet auf Hintergrundbeleuchtung oder Netzteil hin, nicht auf das Panel. Erkennen Sie im Dunkeln mit einer Taschenlampe ein schwaches Bild, ist die Bildverarbeitung intakt."
+      },
+      {
+        question: "Lohnt sich eine TV-Reparatur überhaupt noch?",
+        answer:
+          "Netzteil, LED-Beleuchtung, Anschlüsse und Hauptplatine sind bei größeren Geräten meist wirtschaftlich. Ein defektes oder gesprungenes Panel ist es nicht. Das sagen wir, bevor jemand ausrückt."
+      },
+      {
+        question: "Kommen Sie für einen Fernseher nach Linz?",
+        answer:
+          "Ja, in das gesamte Linzer Stadtgebiet, und wenn möglich reparieren wir vor Ort. Die Anfahrtskosten erfahren Sie am Telefon, bevor ein Termin vereinbart wird."
       }
     ]
   }

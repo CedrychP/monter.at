@@ -38,10 +38,14 @@ export const sitemapGroups: SitemapGroup[] = [
     href: "/haushaltsgeraete",
     description: "Reparatur nach Gerät — Waschmaschine bis Fernseher.",
     links: [
-      ...appliancePages.map((page) => ({
-        label: page.title,
-        href: `/haushaltsgeraete/${page.slug}`
-      })),
+      {
+        label: "Haushaltsgeräte Wien",
+        href: "/haushaltsgeraete",
+        children: appliancePages.map((page) => ({
+          label: page.title,
+          href: `/haushaltsgeraete/${page.slug}`
+        }))
+      },
       {
         label: "Haushaltsgeräte Linz",
         href: "/einsatzgebiete/oberoesterreich/linz",
