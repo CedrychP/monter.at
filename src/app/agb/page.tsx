@@ -71,10 +71,12 @@ const sections: Section[] = [
   {
     id: "termine",
     number: "05",
-    title: "Termine",
+    title: "Termine und Absage",
     paragraphs: [
       "Ein bestätigter Termin ist ein Zeitfenster. Eine Uhrzeit auf die Minute sagen wir nur zu, wenn wir das ausdrücklich tun.",
-      "Ist beim Eintreffen niemand anzutreffen, obwohl der Termin bestätigt war, dürfen wir die Anfahrt nach der Preisliste verrechnen."
+      "Eine Absage bis 24 Stunden vor Beginn des bestätigten Zeitfensters ist kostenfrei. Sagt der Kunde danach ab, also innerhalb der letzten 24 Stunden vor dem Einsatz, dürfen wir eine Stornorechnung über die Anfahrt nach der Preisliste stellen.",
+      "Ist beim Eintreffen niemand anzutreffen, obwohl der Termin bestätigt war, dürfen wir dieselbe Anfahrt verrechnen.",
+      "Das gesetzliche Widerrufsrecht nach Abschnitt 13 bleibt davon unberührt, solange wir mit der Leistung noch nicht begonnen haben."
     ]
   },
   {
