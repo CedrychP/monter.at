@@ -271,9 +271,6 @@ export default function SiteFooter({ logoSrc }: SiteFooterProps) {
                 </Link>
               ))}
               <CookieSettingsButton className="transition hover:text-white" />
-              <Link href="/barrierefreiheit" className="transition hover:text-white">
-                Barrierefreiheit
-              </Link>
               <Link href="/sitemap" className="transition hover:text-white">
                 Sitemap
               </Link>

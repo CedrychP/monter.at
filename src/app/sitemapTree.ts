@@ -144,7 +144,6 @@ export const sitemapGroups: SitemapGroup[] = [
     description: "Beratung, Förderungen und Entsorgung.",
     links: [
       { label: "Kaufberatung", href: "/kaufberatung" },
-      { label: "Garantieverlängerung", href: "/garantieverlaengerung" },
       { label: "Altgeräteentsorgung", href: "/altgeraeteentsorgung" },
       { label: "Geräte-Retter-Prämie", href: "/geraete-retter-praemie" },
       { label: "Gerätekauf · Bald", href: "/geraetekauf" },
@@ -187,7 +186,6 @@ export const sitemapGroups: SitemapGroup[] = [
       { label: "Datenschutz", href: "/dsgvo" },
       { label: "AGB", href: "/agb" },
       { label: "Nutzungsbedingungen", href: "/nutzungsbedingungen" },
-      { label: "Barrierefreiheit", href: "/barrierefreiheit" },
       { label: "Sitemap", href: "/sitemap" }
     ]
   }

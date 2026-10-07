@@ -20,7 +20,6 @@ const LEGAL_PHONE_PATHS = [
   "/impressum",
   "/agb",
   "/dsgvo",
-  "/barrierefreiheit",
   "/nutzungsbedingungen"
 ];
 

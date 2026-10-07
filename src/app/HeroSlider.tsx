@@ -6,11 +6,11 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import NavNewsletterSignup from "./NavNewsletterSignup";
 import { useAdPhone } from "./AdPhone";
 import { siteConfig } from "./siteConfig";
+import { heroCdnUrl, heroLcpImage, heroSrcSet } from "../lib/heroLcp";
 
 const SLIDE_DURATION = 6500;
 
-const applianceImage =
-  "https://images.unsplash.com/photo-1580253249119-e953161ee30d?auto=format&fit=crop&w=1280&q=60";
+const applianceImage = heroLcpImage;
 const garageImage =
   "https://images.unsplash.com/photo-1696992812596-3c0d4d2d1299?auto=format&fit=crop&w=1280&q=60";
 const premiumImage =
@@ -19,17 +19,6 @@ const partsImage =
   "https://images.unsplash.com/photo-1530124566582-a618bc2615dc?auto=format&fit=crop&w=1280&q=60";
 const newsletterImage =
   "https://images.unsplash.com/photo-1634549709262-508c47d4c229?auto=format&fit=crop&w=1280&q=60";
-
-const HERO_WIDTHS = [480, 768, 1080, 1440];
-
-function heroCdnUrl(url: string, width: number) {
-  const base = url.split("?")[0];
-  return `${base}?auto=format&fit=crop&w=${width}&q=45`;
-}
-
-function heroSrcSet(url: string) {
-  return HERO_WIDTHS.map((width) => `${heroCdnUrl(url, width)} ${width}w`).join(", ");
-}
 
 type SlideAction = {
   label: string;
@@ -240,13 +229,6 @@ export default function HeroSlider() {
       onFocusCapture={() => setPaused(true)}
       onBlurCapture={() => setPaused(false)}
     >
-      <link
-        rel="preload"
-        as="image"
-        imageSrcSet={heroSrcSet(slides[0].image)}
-        imageSizes="100vw"
-        fetchPriority="high"
-      />
       <div className="relative min-h-[580px] sm:min-h-[720px] lg:min-h-[820px]">
         {(deferSlides ? slides.slice(0, 1) : slides).map((slide, slideIndex) => {
           const isActive = slideIndex === index;
