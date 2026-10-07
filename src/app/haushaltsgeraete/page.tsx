@@ -46,11 +46,6 @@ const faqs: HubFaqItem[] = [
       "Ja. Einbaugeräte in Küchenzeilen bauen wir für die Reparatur fachgerecht aus und wieder ein. Bei Wasserschäden an Einbaugeräten ist Eile wichtig, damit Möbelkorpus und Boden keinen Folgeschaden nehmen."
   },
   {
-    question: "Bekomme ich eine Gewährleistung auf die Reparatur?",
-    answer:
-      "Ja, auf durchgeführte Arbeiten und eingebaute Teile leisten wir Gewährleistung. Die Reparatur wird dokumentiert, sodass Sie im Bedarfsfall einen belastbaren Nachweis haben."
-  },
-  {
     question: "Wie schnell ist ein Termin möglich?",
     answer:
       "Das hängt von Bezirk und Auslastung ab. Dringende Fälle wie Wasseraustritt oder ein ausgefallenes Tiefkühlgerät ziehen wir vor — rufen Sie in solchen Fällen direkt an, das ist deutlich schneller als das Formular."

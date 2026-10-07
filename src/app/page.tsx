@@ -306,11 +306,6 @@ const faqs = [
       "Ja. Auf Wunsch erstellen wir einen Kostenvoranschlag. Arbeitsaufwand über die erste Arbeitseinheit hinaus oder benötigtes Material stimmen wir grundsätzlich vor dem Einbau mit Ihnen ab — Sie zahlen nie etwas, dem Sie nicht zugestimmt haben."
   },
   {
-    question: "Gibt es Gewährleistung auf die Reparatur?",
-    answer:
-      "Ja. Auf unsere Arbeitsleistung und die fachgerecht verbauten Ersatzteile besteht die gesetzliche Gewährleistung. Sollte nach der Reparatur am selben Fehlerbild etwas auftreten, finden wir gemeinsam eine faire Lösung."
-  },
-  {
     question: "Verwenden Sie Originalersatzteile?",
     answer:
       "Wir verbauen Original- oder qualitativ gleichwertige, passgenaue Ersatzteile namhafter Hersteller. Welches Teil zum Einsatz kommt und was es kostet, besprechen wir vor dem Einbau."
