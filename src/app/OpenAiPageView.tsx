@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { trackOpenAiEvent } from "./analytics";
+import { allowsMarketing, CONSENT_CHANGED_EVENT } from "./consentMode";
 
 /** Interne Suche und API — kein Content-PageView für OpenAI Ads. */
 const SKIP_PREFIXES = ["/suche", "/api/"];
@@ -25,21 +26,18 @@ export default function OpenAiPageView() {
     if (lastMeasuredPath === pathname) return;
 
     const measure = () => {
-      if (lastMeasuredPath === pathname) return;
+      if (!allowsMarketing() || lastMeasuredPath === pathname) return;
       lastMeasuredPath = pathname;
       trackOpenAiEvent("page_viewed");
     };
 
-    if (window.__monterTagsReady) {
-      measure();
-      return;
-    }
+    if (window.__monterTagsReady) measure();
 
-    window.addEventListener("monter-tags-ready", measure, { once: true });
-    const fallback = window.setTimeout(measure, 9000);
+    window.addEventListener("monter-tags-ready", measure);
+    window.addEventListener(CONSENT_CHANGED_EVENT, measure);
     return () => {
       window.removeEventListener("monter-tags-ready", measure);
-      window.clearTimeout(fallback);
+      window.removeEventListener(CONSENT_CHANGED_EVENT, measure);
     };
   }, [pathname]);
 

@@ -10,6 +10,35 @@ import {
   type CookieConsent
 } from "./consentMode";
 
+function Switch({
+  checked,
+  label,
+  onChange
+}: {
+  checked: boolean;
+  label: string;
+  onChange: (next: boolean) => void;
+}) {
+  return (
+    <button
+      type="button"
+      role="switch"
+      aria-checked={checked}
+      aria-label={label}
+      onClick={() => onChange(!checked)}
+      className={`relative h-7 w-12 shrink-0 rounded-full transition-colors ${
+        checked ? "bg-[color:var(--accent)]" : "bg-[color:var(--border-strong)]"
+      }`}
+    >
+      <span
+        className={`absolute top-0.5 left-0.5 h-6 w-6 rounded-full bg-white shadow-sm transition-transform ${
+          checked ? "translate-x-5" : "translate-x-0"
+        }`}
+      />
+    </button>
+  );
+}
+
 export default function CookieBanner() {
   const [isVisible, setIsVisible] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
@@ -20,6 +49,8 @@ export default function CookieBanner() {
   useEffect(() => {
     const openSettings = () => {
       restoreFocusTo.current = document.activeElement as HTMLElement | null;
+      const stored = readStoredConsent();
+      if (stored) setConsent(stored);
       setIsVisible(true);
       setShowSettings(true);
     };
@@ -51,7 +82,6 @@ export default function CookieBanner() {
     restoreFocusTo.current = null;
   }, []);
 
-  // Fokus in den Dialog holen und dort halten, solange er offen ist.
   useEffect(() => {
     if (!isVisible) return;
 
@@ -99,116 +129,124 @@ export default function CookieBanner() {
   }
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-[70] px-4 pb-4 sm:px-6 sm:pb-6">
+    <div className="fixed inset-x-0 bottom-0 z-[70] border-t border-[color:var(--border)] bg-white shadow-[0_-24px_60px_-28px_rgba(0,0,0,0.35)]">
       <div
         ref={dialogRef}
         role="dialog"
         aria-modal="true"
         aria-labelledby="cookie-banner-title"
         aria-describedby="cookie-banner-text"
-        className="mx-auto max-h-[calc(100vh-2rem)] max-w-xl overflow-y-auto border border-[color:var(--border)] bg-white p-6 text-[color:var(--ink)] shadow-[0_24px_60px_-20px_rgba(0,0,0,0.18)] sm:ml-auto sm:mr-0 sm:p-8"
+        className="mx-auto max-h-[calc(100vh-1rem)] max-w-[88rem] overflow-y-auto px-5 py-5 pb-[max(1rem,env(safe-area-inset-bottom))] sm:px-8"
       >
-        <p className="cap-line tracking-eyebrow text-[color:var(--accent)]">Datenschutz</p>
-        <h2
-          id="cookie-banner-title"
-          className="font-display mt-6 text-2xl font-normal leading-tight tracking-tight sm:text-3xl"
-        >
-          Cookies auf dieser Website
-        </h2>
-        <p
-          id="cookie-banner-text"
-          className="mt-4 text-sm font-light leading-relaxed text-[color:var(--muted)]"
-        >
-          Wir verwenden notwendige Cookies. Analyse und Marketing aktivieren wir nur mit
-          Ihrer Zustimmung.
-        </p>
-
-        {showSettings ? (
-          <div className="mt-6 space-y-0 border-t border-[color:var(--border)]">
-            <div className="border-b border-[color:var(--border)] py-4">
-              <div className="flex items-center justify-between gap-4">
-                <div>
-                  <p className="text-sm font-medium">Notwendig</p>
-                  <p className="mt-1 text-xs font-light leading-relaxed text-[color:var(--muted)]">
-                    Immer aktiv für die korrekte Funktion der Website, inklusive der passenden
-                    Kontaktnummer nach einem Anzeigenklick.
-                  </p>
-                </div>
-                <span className="tracking-eyebrow text-[color:var(--accent)]">Aktiv</span>
-              </div>
-            </div>
-            <label className="block cursor-pointer border-b border-[color:var(--border)] py-4">
-              <div className="flex items-center justify-between gap-4">
-                <div>
-                  <p className="text-sm font-medium">Analyse</p>
-                  <p className="mt-1 text-xs font-light leading-relaxed text-[color:var(--muted)]">
-                    Hilft uns zu verstehen, welche Inhalte relevant sind.
-                  </p>
-                </div>
-                <input
-                  type="checkbox"
-                  className="h-4 w-4 cursor-pointer accent-[color:var(--accent)]"
-                  checked={consent.analytics}
-                  onChange={(event) =>
-                    setConsent((current) => ({ ...current, analytics: event.target.checked }))
-                  }
-                />
-              </div>
-            </label>
-            <label className="block cursor-pointer py-4">
-              <div className="flex items-center justify-between gap-4">
-                <div>
-                  <p className="text-sm font-medium">Marketing</p>
-                  <p className="mt-1 text-xs font-light leading-relaxed text-[color:var(--muted)]">
-                    Erlaubt spätere Kampagnen- und Conversion-Messung.
-                  </p>
-                </div>
-                <input
-                  type="checkbox"
-                  className="h-4 w-4 cursor-pointer accent-[color:var(--accent)]"
-                  checked={consent.marketing}
-                  onChange={(event) =>
-                    setConsent((current) => ({ ...current, marketing: event.target.checked }))
-                  }
-                />
-              </div>
-            </label>
-          </div>
-        ) : null}
-
-        <div className="mt-7 flex flex-col gap-3 border-t border-[color:var(--border)] pt-6">
-          <div className="flex flex-wrap gap-x-6 gap-y-2 text-xs font-light text-[color:var(--muted)]">
-            <a className="transition hover:text-[color:var(--accent)]" href="/dsgvo">
-              Datenschutz
-            </a>
-            <a className="transition hover:text-[color:var(--accent)]" href="/impressum">
-              Impressum
-            </a>
-          </div>
-          <div className="mt-2 grid gap-2 sm:grid-cols-3">
-            <button
-              type="button"
-              className="btn-ghost py-3 text-[0.7rem]"
-              onClick={() => saveConsent(DEFAULT_CONSENT)}
+        <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
+          <div>
+            <p className="cap-line tracking-eyebrow text-[color:var(--accent)]">Datenschutz</p>
+            <h2
+              id="cookie-banner-title"
+              className="font-display mt-4 text-2xl font-light leading-tight tracking-tight sm:text-3xl"
             >
+              Cookies nur mit Ihrer Wahl.
+            </h2>
+            <p
+              id="cookie-banner-text"
+              className="mt-4 max-w-2xl text-sm font-light leading-relaxed text-[color:var(--muted)]"
+            >
+              Die Seite, das Formular und die Telefonnummer laufen ohne Tracking. Analyse zählt
+              Besuche. Marketing misst, ob ein Anruf oder eine Anfrage aus einer Anzeige kam.
+              Beides bleibt aus, bis Sie es einschalten.
+            </p>
+          </div>
+
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+            <button type="button" className="btn-primary px-5 py-3 text-[0.72rem]" onClick={() => saveConsent(FULL_CONSENT)}>
+              Alle akzeptieren
+            </button>
+            <button type="button" className="btn-ghost px-5 py-3 text-[0.72rem]" onClick={() => saveConsent(DEFAULT_CONSENT)}>
               Nur notwendige
             </button>
             <button
               type="button"
-              className="btn-ghost py-3 text-[0.7rem]"
+              className="px-5 py-3 text-[0.72rem] font-medium uppercase tracking-[0.14em] text-[color:var(--muted)] transition hover:text-[color:var(--ink)]"
               onClick={() => setShowSettings((current) => !current)}
             >
-              {showSettings ? "Schließen" : "Anpassen"}
-            </button>
-            <button
-              type="button"
-              className="btn-primary py-3 text-[0.7rem]"
-              onClick={() => saveConsent(showSettings ? consent : FULL_CONSENT)}
-            >
-              {showSettings ? "Speichern" : "Akzeptieren"}
+              {showSettings ? "Auswahl zuklappen" : "Anpassen"}
             </button>
           </div>
         </div>
+
+        {showSettings ? (
+          <div className="mt-8 border-t border-[color:var(--border)]">
+            <div className="grid gap-0 border-b border-[color:var(--border)] py-5 sm:grid-cols-[1fr_auto] sm:items-center sm:gap-10">
+              <div>
+                <p className="text-sm font-medium">Notwendig</p>
+                <p className="mt-1 max-w-xl text-sm font-light leading-relaxed text-[color:var(--muted)]">
+                  Hält die Seite bedienbar, merkt sich diese Auswahl und zeigt nach einem
+                  Anzeigenklick die passende Telefonnummer. Immer an.
+                </p>
+              </div>
+              <span className="mt-3 text-[0.68rem] font-medium uppercase tracking-[0.16em] text-[color:var(--accent)] sm:mt-0">
+                Immer an
+              </span>
+            </div>
+
+            <div className="grid gap-4 border-b border-[color:var(--border)] py-5 sm:grid-cols-[1fr_auto] sm:items-center sm:gap-10">
+              <div>
+                <p className="text-sm font-medium">Analyse</p>
+                <p className="mt-1 max-w-xl text-sm font-light leading-relaxed text-[color:var(--muted)]">
+                  Lädt Google Analytics und zählt, welche Seiten besucht werden. Meta, Google Ads
+                  und der ChatGPT-Anzeigenpixel bleiben aus.
+                </p>
+              </div>
+              <Switch
+                label="Analyse"
+                checked={consent.analytics}
+                onChange={(analytics) => setConsent((current) => ({ ...current, analytics }))}
+              />
+            </div>
+
+            <div className="grid gap-4 py-5 sm:grid-cols-[1fr_auto] sm:items-center sm:gap-10">
+              <div>
+                <p className="text-sm font-medium">Marketing</p>
+                <p className="mt-1 max-w-xl text-sm font-light leading-relaxed text-[color:var(--muted)]">
+                  Lädt Google Ads, Meta, den ChatGPT-Anzeigenpixel und den Tag Manager. Nur dann
+                  zählen Anrufe und Formulare als Kampagnenergebnis.
+                </p>
+              </div>
+              <Switch
+                label="Marketing"
+                checked={consent.marketing}
+                onChange={(marketing) => setConsent((current) => ({ ...current, marketing }))}
+              />
+            </div>
+
+            <div className="flex flex-col gap-4 border-t border-[color:var(--border)] pt-5 sm:flex-row sm:items-center sm:justify-between">
+              <div className="flex gap-6 text-xs font-light text-[color:var(--muted)]">
+                <a className="border-b border-current transition hover:text-[color:var(--ink)]" href="/dsgvo">
+                  Datenschutz
+                </a>
+                <a className="border-b border-current transition hover:text-[color:var(--ink)]" href="/impressum">
+                  Impressum
+                </a>
+              </div>
+              <button
+                type="button"
+                className="btn-primary px-5 py-3 text-[0.72rem]"
+                onClick={() => saveConsent(consent)}
+              >
+                Auswahl speichern
+              </button>
+            </div>
+          </div>
+        ) : (
+          <div className="mt-6 flex gap-6 text-xs font-light text-[color:var(--muted)]">
+            <a className="border-b border-current transition hover:text-[color:var(--ink)]" href="/dsgvo">
+              Datenschutz
+            </a>
+            <a className="border-b border-current transition hover:text-[color:var(--ink)]" href="/impressum">
+              Impressum
+            </a>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -1,3 +1,4 @@
+import { allowsAnalytics, allowsMarketing } from "./consentMode";
 import { OPPREF_COOKIE, PIXEL_OBREF_COOKIE, PIXEL_OPPREF_COOKIE } from "./openaiAds";
 
 export const GOOGLE_ADS_ID = "AW-18096010711";
@@ -85,7 +86,7 @@ export function buildUserData({ email, phone }: { email?: unknown; phone?: unkno
  * Anfrage-Formulare und Telefonklicks gehen zusätzlich an OpenAI Ads.
  */
 export function trackConversion(type: ConversionType, params: Record<string, unknown> = {}) {
-  if (typeof window === "undefined") return;
+  if (typeof window === "undefined" || !allowsMarketing()) return;
 
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push({ event: `conversion_${type}`, ...params });
@@ -161,6 +162,8 @@ function sendOpenAiServerEvent(
 }
 
 export function trackOpenAiEvent(eventName: OpenAiEventName, params: Record<string, unknown> = {}) {
+  if (!allowsMarketing()) return;
+
   const eventId = crypto.randomUUID();
   sendOpenAiServerEvent(eventName, eventId, params);
 
@@ -184,7 +187,7 @@ export function trackOpenAiEvent(eventName: OpenAiEventName, params: Record<stri
  * ausschließlich echte Abschlüsse zählen.
  */
 export function trackCtaClick(params: Record<string, unknown> = {}) {
-  if (typeof window === "undefined") return;
+  if (typeof window === "undefined" || !allowsAnalytics()) return;
 
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push({ event: "cta_click", ...params });

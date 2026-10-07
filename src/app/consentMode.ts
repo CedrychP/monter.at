@@ -1,14 +1,9 @@
 /**
  * Google Consent Mode v2.
  *
- * Die Tags in layout.tsx laden weiterhin bei jedem Seitenaufruf, verhalten sich
- * aber ohne Einwilligung cookielos: Vor jedem Tag setzt ein Inline-Script alle
- * Consent-Typen auf "denied". Erst die Zustimmung im Banner schaltet per
- * gtag("consent", "update", ...) frei.
- *
- * Diese Variante ist Voraussetzung dafür, dass Google Ads im EWR Conversions
- * modellieren darf — ein reines Blockieren der Skripte liefert stattdessen
- * gar keine Daten.
+ * Vor jedem Tag steht die Einwilligung auf "denied". Analyse- und Marketing-
+ * Skripte lädt die Seite erst, nachdem das Banner die passende Wahl gespeichert
+ * hat. Ohne diese Wahl bleibt es bei den notwendigen Cookies.
  */
 
 export type CookieConsent = {
@@ -24,6 +19,9 @@ export const OPEN_CONSENT_SETTINGS_EVENT = "monter:open-cookie-settings";
 
 /** Event für GTM, damit dort Trigger auf Consent-Änderungen reagieren können. */
 export const CONSENT_UPDATE_EVENT = "cookie_consent_update";
+
+/** Die Seite lädt Tags nach, sobald das Banner eine Wahl gespeichert hat. */
+export const CONSENT_CHANGED_EVENT = "monter-consent-changed";
 
 export const DEFAULT_CONSENT: CookieConsent = {
   necessary: true,
@@ -98,6 +96,14 @@ export function readStoredConsent(): CookieConsent | null {
  * Schreibt die Einwilligung, meldet sie an Google Consent Mode und legt ein
  * eigenes dataLayer-Event nach, auf das GTM-Trigger hören können.
  */
+export function allowsAnalytics(): boolean {
+  return readStoredConsent()?.analytics === true;
+}
+
+export function allowsMarketing(): boolean {
+  return readStoredConsent()?.marketing === true;
+}
+
 export function applyConsent(consent: CookieConsent) {
   if (typeof window === "undefined") return;
 
@@ -110,14 +116,17 @@ export function applyConsent(consent: CookieConsent) {
   const granted = (allowed: boolean) => (allowed ? "granted" : "denied");
 
   window.dataLayer = window.dataLayer || [];
-  if (typeof window.gtag === "function") {
-    window.gtag("consent", "update", {
-      ad_storage: granted(consent.marketing),
-      ad_user_data: granted(consent.marketing),
-      ad_personalization: granted(consent.marketing),
-      analytics_storage: granted(consent.analytics)
-    });
-  }
+  window.gtag =
+    window.gtag ||
+    function gtag() {
+      window.dataLayer?.push(arguments as unknown as Record<string, unknown>);
+    };
+  window.gtag("consent", "update", {
+    ad_storage: granted(consent.marketing),
+    ad_user_data: granted(consent.marketing),
+    ad_personalization: granted(consent.marketing),
+    analytics_storage: granted(consent.analytics)
+  });
 
   window.dataLayer.push({
     event: CONSENT_UPDATE_EVENT,
@@ -125,4 +134,6 @@ export function applyConsent(consent: CookieConsent) {
     consent_marketing: consent.marketing,
     consent_source: "banner"
   });
+
+  window.dispatchEvent(new CustomEvent(CONSENT_CHANGED_EVENT, { detail: consent }));
 }
