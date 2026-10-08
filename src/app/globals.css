@@ -1089,6 +1089,27 @@ canvas {
   }
 }
 
+.career-dash {
+  stroke-dasharray: 7 9;
+  animation: career-dash 18s linear infinite;
+}
+
+@keyframes career-dash {
+  to {
+    stroke-dashoffset: -240;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .career-dash {
+    animation: none;
+  }
+
+  .career-motion {
+    display: none;
+  }
+}
+
 /* Marquee für Markenlogos */
 .marquee {
   mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
