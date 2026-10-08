@@ -30,6 +30,7 @@ type MegaMenuColumn = {
   eyebrow: string;
   items: NavLink[];
   note?: string;
+  placeholders?: number;
 };
 
 type MegaMenuConfig = {
@@ -79,26 +80,24 @@ const weitereMarkenAlphabetLinks: NavLink[] = brandAlphabetGroups.map((group) =>
 }));
 
 const additionalServiceLinks: NavLink[] = [
+  { label: "Über Monter", href: "/ueber-uns" },
   { label: "Preise & Pauschalen", href: "/preise" },
   { label: "Einsatzgebiete", href: "/einsatzgebiete" },
-  { label: "Ersatzteil gesucht?", href: "/ersatzteile" },
-  { label: "Firmenkunden", href: "/firmenkunden" },
-  { label: "Karriere", href: "/karriere" }
+  { label: "Häufige Fragen", href: "/#faq" }
 ];
 
 const serviceNavLinks: NavLink[] = [
-  { label: "Reparatur buchen", href: "/reparatur-buchen" },
   { label: "Wartungsservice", href: "/wartungsservice" },
   { label: "Lieferung & Montage", href: "/lieferung-montage" },
-  { label: "Kaufberatung", href: "/kaufberatung" }
+  { label: "Kaufberatung", href: "/kaufberatung" },
+  { label: "Altgeräteentsorgung", href: "/altgeraeteentsorgung" }
 ];
 
 const serviceInfoLinks: NavLink[] = [
+  { label: "Über Monter", href: "/ueber-uns" },
   { label: "Preise & Pauschalen", href: "/preise" },
   { label: "Einsatzgebiete", href: "/einsatzgebiete" },
-  { label: "Ersatzteil gesucht?", href: "/ersatzteile" },
-  { label: "Firmenkunden", href: "/firmenkunden" },
-  { label: "Karriere", href: "/karriere" }
+  { label: "Häufige Fragen", href: "/#faq" }
 ];
 
 const geraetekaufExtraLinks: NavLink[] = [
@@ -123,7 +122,8 @@ const customerVoiceLinks: NavLink[] = [
 
 const customerNewsLinks: NavLink[] = [
   { label: "Blog & News", href: "/blog" },
-  { label: "FAQ", href: "/#faq" }
+  { label: "Geräte-Retter-Prämie", href: "/geraete-retter-praemie" },
+  { label: "Karriere", href: "/karriere" }
 ];
 
 const garageDoorAndServiceLinks: NavLink[] = [
@@ -153,10 +153,11 @@ const secondaryNavGroup: NavLink[] = [
 ];
 
 const dropdownSpecialLinks: NavLink[] = [
-  { label: "Über Monter", href: "/ueber-uns" },
-  { label: "MONTER GOLD", href: "/monter-gold", gold: true, soon: true },
-  { label: "Geräte-Retter-Prämie", href: "/geraete-retter-praemie" },
-  { label: "Bewertungen", href: "/#bewertungen" }
+  { label: "Reparatur buchen", href: "/reparatur-buchen" },
+  { label: "Ersatzteil bestellen", href: "/ersatzteile" },
+  { label: "Anfrage senden", href: "/kontakt" },
+  { label: "Für Firmenkunden", href: "/firmenkunden" },
+  { label: "MONTER GOLD", href: "/monter-gold", gold: true, soon: true }
 ];
 
 function NavLinkText({ item }: { item: NavLink }) {
@@ -168,6 +169,23 @@ function NavLinkText({ item }: { item: NavLink }) {
           Bald
         </span>
       ) : null}
+    </>
+  );
+}
+
+function NavColumnPlaceholders({ count }: { count: number }) {
+  return (
+    <>
+      {Array.from({ length: count }, (_, index) => (
+        <div key={index} className="nav-dropdown-placeholder">
+          <span className="sr-only">Noch nicht verfügbar</span>
+          <span
+            className={`nav-dropdown-placeholder-bar nav-dropdown-placeholder-bar--${index + 1}`}
+            aria-hidden="true"
+          />
+          <span className="nav-dropdown-placeholder-label">Bald</span>
+        </div>
+      ))}
     </>
   );
 }
@@ -343,13 +361,9 @@ function getMegaMenus(phoneHref: string): MegaMenuConfig[] {
     id: "geraetekauf",
     label: "Gerätekauf",
     columns: [
-      {
-        eyebrow: "Neugerätekauf",
-        items: [],
-        note: "Bald verfügbar: kuratierte Geräte mit Beratung, Lieferung und Montage. Bis dahin helfen wir bei Reparatur oder ehrlicher Kaufberatung."
-      },
+      { eyebrow: "Neugerätekauf", items: geraetekaufExtraLinks, placeholders: 2 },
       { eyebrow: "Monter News", items: customerNewsLinks },
-      { eyebrow: "Zusatz", items: geraetekaufExtraLinks }
+      { eyebrow: "Informationen", items: additionalServiceLinks }
     ],
     newsletter: true
   }
@@ -473,8 +487,11 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
           {column.note ? (
             <p className="mt-2 text-sm font-light leading-relaxed text-white/70">{column.note}</p>
           ) : null}
-          {column.items.length > 0 ? (
+          {(column.placeholders ?? 0) > 0 || column.items.length > 0 ? (
             <div className="mt-2 grid gap-1">
+              {(column.placeholders ?? 0) > 0 ? (
+                <NavColumnPlaceholders count={column.placeholders!} />
+              ) : null}
               {column.items.map((item) => (
                 <NavDropdownLink
                   key={`m-${menu.id}-${column.eyebrow}-${item.label}`}
@@ -767,8 +784,11 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
                         {column.note ? (
                           <p className="nav-dropdown-note">{column.note}</p>
                         ) : null}
-                        {column.items.length > 0 ? (
+                        {(column.placeholders ?? 0) > 0 || column.items.length > 0 ? (
                         <div className="nav-dropdown-list">
+                          {(column.placeholders ?? 0) > 0 ? (
+                            <NavColumnPlaceholders count={column.placeholders!} />
+                          ) : null}
                           {column.items.map((item) => (
                             <NavDropdownLink
                               key={`${menu.id}-${item.label}`}

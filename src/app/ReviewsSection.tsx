@@ -11,7 +11,7 @@ export default async function ReviewsSection() {
   const summary = toGoogleRatingSummary(data);
 
   return (
-    <section id="bewertungen" className="border-y border-[color:var(--border)] bg-[color:var(--bg-muted)] py-16 sm:py-20 lg:py-28">
+    <section id="bewertungen" className="scroll-mt-24 border-y border-[color:var(--border)] bg-[color:var(--bg-muted)] py-16 sm:py-20 lg:py-28">
       <div className="mx-auto max-w-[88rem] px-5 sm:px-8">
         <div className="reveal flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div className="max-w-2xl">

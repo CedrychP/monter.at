@@ -135,6 +135,70 @@
   gap: 0.2rem;
 }
 
+.nav-dropdown-placeholder {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  min-height: 2.05rem;
+  padding: 0.2rem 0;
+}
+
+.nav-dropdown-placeholder-bar {
+  position: relative;
+  overflow: hidden;
+  height: 0.55rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.nav-dropdown-placeholder-bar--1 {
+  width: 68%;
+}
+
+.nav-dropdown-placeholder-bar--2 {
+  width: 48%;
+}
+
+.nav-dropdown-placeholder-bar::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.08) 35%,
+    rgba(255, 255, 255, 0.72) 50%,
+    rgba(255, 255, 255, 0.08) 65%,
+    transparent 100%
+  );
+  transform: translateX(-130%);
+  animation: nav-placeholder-shine 2.1s ease-in-out infinite;
+}
+
+.nav-dropdown-placeholder-bar--2::after {
+  animation-delay: 0.55s;
+}
+
+.nav-dropdown-placeholder-label {
+  flex: none;
+  font-size: 0.58rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-on-dark);
+}
+
+@keyframes nav-placeholder-shine {
+  0% {
+    transform: translateX(-130%);
+  }
+
+  58%,
+  100% {
+    transform: translateX(130%);
+  }
+}
+
 .nav-dropdown-link {
   display: inline-block;
   padding: 0.45rem 0;
@@ -1085,6 +1149,11 @@ canvas {
   animation: career-dash 18s linear infinite;
 }
 
+.contact-dash {
+  stroke-dasharray: 4 7;
+  animation: career-dash 16s linear infinite;
+}
+
 @keyframes career-dash {
   to {
     stroke-dashoffset: -240;
@@ -1092,11 +1161,14 @@ canvas {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .career-dash {
+  .career-dash,
+  .contact-dash,
+  .nav-dropdown-placeholder-bar::after {
     animation: none;
   }
 
-  .career-motion {
+  .career-motion,
+  .contact-motion {
     display: none;
   }
 }
