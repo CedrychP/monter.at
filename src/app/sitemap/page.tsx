@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 
+import RepairBookingCta from "../RepairBookingCta";
 import SitemapWeb from "../SitemapWeb";
 import { sitemapGroups, sitemapHome, type SitemapLink } from "../sitemapTree";
 import { buildMetadata } from "../pageMetadata";
@@ -140,6 +141,8 @@ export default function SitemapPage() {
           </div>
         </div>
       </section>
+
+      <RepairBookingCta />
     </main>
   );
 }

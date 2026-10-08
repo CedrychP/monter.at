@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Link from "next/link";
+import RepairBookingCta from "../RepairBookingCta";
 import { buildMetadata } from "../pageMetadata";
 import { siteConfig } from "../siteConfig";
 
@@ -249,6 +250,8 @@ export default function ImpressumPage() {
           </div>
         </div>
       </section>
+
+      <RepairBookingCta legalPhone />
     </main>
   );
 }
