@@ -61,7 +61,8 @@ export default function GoldSignup() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="relative border border-[color:var(--gold-on-dark)] bg-[#14120e] px-6 pb-7 pt-6 sm:px-8 sm:pb-8 sm:pt-9"
+      id="liste"
+      className="relative scroll-mt-28 border border-[color:var(--gold-on-dark)] bg-[#14120e] px-6 pb-7 pt-6 sm:px-8 sm:pb-8 sm:pt-9"
     >
       <span className="absolute -top-3 left-6 bg-[color:var(--ink)] px-3 text-[0.68rem] font-medium uppercase tracking-[0.22em] text-[color:var(--gold-on-dark)]">
         Newsletter

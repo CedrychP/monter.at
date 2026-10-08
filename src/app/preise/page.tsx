@@ -18,41 +18,60 @@ const householdPriceItems: PriceItem[] = [
     number: "01",
     service: "Anfahrt Wien",
     price: "96 €",
-    note: "Standard-Anfahrtsgebühr innerhalb von Wien — pro Einsatz vor Ort."
+    note: "Für alle Marken außer Gaggenau. Pro Einsatz vor Ort innerhalb von Wien."
   },
   {
     number: "02",
     service: "Anfahrt Niederösterreich",
     price: "120 €",
-    note: "Standard-Anfahrtsgebühr für Einsätze in Niederösterreich — pro Einsatz vor Ort."
+    note: "Für alle Marken außer Gaggenau. Pro Einsatz vor Ort in Niederösterreich."
   },
   {
     number: "03",
+    service: "Anfahrt Gaggenau",
+    price: "200 €",
+    note: "Nur bei Gaggenau, statt 96 € in Wien oder 120 € in Niederösterreich. Pro Einsatz vor Ort.",
+    highlight: true
+  },
+  {
+    number: "04",
     service: "Anfahrt weitere Bundesländer",
     price: "auf Anfrage",
     note: "Im Burgenland, in Oberösterreich, der Steiermark und Salzburg hängt die Anfahrt von der Adresse ab — wir nennen sie vor dem Termin."
   },
   {
-    number: "04",
-    service: "Nur Diagnose",
-    price: "144 €",
-    note: "Prüfung des Geräts vor Ort mit Fehlerdiagnose. Die erste Arbeitseinheit (30 Minuten) ist inklusive."
-  },
-  {
     number: "05",
-    service: "Reparatur & Diagnose",
-    price: "180 €",
-    note: "Diagnose und Reparatur vor Ort. Die erste Arbeitseinheit (30 Minuten) ist inklusive.",
-    highlight: true
+    service: "Nur Diagnose, freistehend",
+    price: "144 €",
+    note: "Prüfung eines freistehenden Geräts vor Ort. Die erste Arbeitseinheit (30 Minuten) ist inklusive."
   },
   {
     number: "06",
-    service: "Zusätzliche Arbeitseinheit",
-    price: "+60 €",
-    note: "Beim Erstbesuch: eine Arbeitseinheit = 30 Minuten. Jede weitere Einheit nach der ersten wird mit 60 € verrechnet."
+    service: "Nur Diagnose, Einbau",
+    price: "158 €",
+    note: "Rund 10 % über dem freistehenden Satz, auf den Euro gerundet. Die Diagnose am eingebauten Gerät ist aufwendiger. Erste 30 Minuten inklusive."
   },
   {
     number: "07",
+    service: "Reparatur & Diagnose, freistehend",
+    price: "180 €",
+    note: "Diagnose und Reparatur vor Ort am freistehenden Gerät. Die erste Arbeitseinheit (30 Minuten) ist inklusive."
+  },
+  {
+    number: "08",
+    service: "Reparatur & Diagnose, Einbau",
+    price: "198 €",
+    note: "Rund 10 % über dem freistehenden Satz, weil die Diagnose am Einbaugerät aufwendiger ist. Erste 30 Minuten inklusive.",
+    highlight: true
+  },
+  {
+    number: "09",
+    service: "Zusätzliche Arbeitseinheit",
+    price: "+60 €",
+    note: "Beim Erstbesuch: eine Arbeitseinheit = 30 Minuten. Jede weitere Einheit nach der ersten wird mit 60 € verrechnet, bei Einbau und freistehend gleich."
+  },
+  {
+    number: "10",
     service: "Folgebesuch — Ersatzteil einbauen",
     price: "60 € + Ersatzteil",
     note: "Beim zweiten Einsatz verrechnen wir nur eine Arbeitseinheit (60 €) und das benötigte Ersatzteil — ohne erneute Diagnose- oder Reparaturpauschale."
@@ -144,6 +163,8 @@ const garageRepairPriceItems: PriceItem[] = [
 
 const priceFactors = [
   "Gerätetyp und Fehlerbild",
+  "Freistehend oder Einbau",
+  "Marke, bei Gaggenau eigene Anfahrt",
   "Torgröße und Antriebsmodell",
   "Anfahrt und Fahrzeit",
   "Ersatzteilverfügbarkeit",
@@ -251,10 +272,11 @@ export default function PreisePage() {
               Anfahrt, Diagnose &amp; Reparatur
             </h2>
             <p className="mt-4 max-w-2xl text-sm font-light leading-relaxed text-[color:var(--muted)]">
-              Anfahrtsgebühr gemäß Tabelle. Die erste Arbeitseinheit (30 Minuten) ist in Diagnose
-              und Reparatur inklusive — jede weitere Einheit beim Erstbesuch 60 €. Beim zweiten
-              Einsatz zur Teilemontage: nur eine Arbeitseinheit (60 €) plus Ersatzteil. Alle Beträge
-              inkl. MwSt.
+              Anfahrt 96 € in Wien und 120 € in Niederösterreich, bei Gaggenau 200 €. Freistehend ist
+              die Diagnose günstiger, am Einbaugerät rund 10 % mehr. Die erste Arbeitseinheit
+              (30 Minuten) ist in Diagnose und Reparatur inklusive — jede weitere Einheit beim
+              Erstbesuch 60 €. Beim zweiten Einsatz zur Teilemontage: nur eine Arbeitseinheit
+              (60 €) plus Ersatzteil. Alle Beträge inkl. MwSt.
             </p>
           </div>
           <div className="mt-10">
@@ -309,10 +331,12 @@ export default function PreisePage() {
                 Keine versteckten Posten.
               </h2>
               <p className="mt-8 text-[1.05rem] font-light leading-relaxed text-[color:var(--muted)]">
-                Haushaltsgeräte: Anfahrtsgebühr 96 € in Wien, 120 € in NÖ. Nur Diagnose 144 €,
-                Reparatur &amp; Diagnose 180 € — jeweils inklusive der ersten 30-Minuten-Arbeitseinheit,
-                jede weitere Einheit beim Erstbesuch 60 €. Beim zweiten Einsatz (Ersatzteil einbauen):
-                nur eine Arbeitseinheit à 60 € plus Ersatzteil.
+                Haushaltsgeräte: Anfahrtsgebühr 96 € in Wien, 120 € in NÖ. Nur bei Gaggenau 200 €
+                Anfahrt. Freistehend: Nur Diagnose 144 €, Reparatur &amp; Diagnose 180 €. Einbau rund
+                10 % mehr (158 € bzw. 198 €), weil die Diagnose am eingebauten Gerät aufwendiger ist.
+                Jeweils inklusive der ersten 30-Minuten-Arbeitseinheit, jede weitere Einheit beim
+                Erstbesuch 60 €. Beim zweiten Einsatz (Ersatzteil einbauen): nur eine Arbeitseinheit
+                à 60 € plus Ersatzteil.
               </p>
               <p className="mt-4 text-[1.05rem] font-light leading-relaxed text-[color:var(--muted)]">
                 Garagenreparatur: Anfahrt Wien 132 €, Niederösterreich 180 €, mehr als 1 Std. Fahrt

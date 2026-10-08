@@ -241,7 +241,7 @@ const faqs = [
   {
     question: "Was kostet eine Waschmaschine Reparatur in Wien?",
     answer:
-      "Eine reine Diagnose vor Ort liegt bei 144 €, Reparatur & Diagnose bei 180 € — jeweils inklusive der ersten 30-Minuten-Arbeitseinheit, jede weitere Einheit beim Erstbesuch kostet 60 €. Beim zweiten Einsatz zum Ersatzteileinbau verrechnen wir nur eine Arbeitseinheit (60 €) plus das Teil. Die Anfahrtsgebühr beträgt 96 € in Wien und 120 € in NÖ. Bei Garagentoren gilt eine Arbeitseinheit à 90 € — auch beim Folgebesuch nur eine Einheit plus Ersatzteil. Alle Preise verstehen sich inklusive 20 % MwSt. Material wird vor dem Einbau transparent abgestimmt."
+      "Freistehend liegt eine reine Diagnose vor Ort bei 144 €, Reparatur und Diagnose bei 180 €. Am Einbaugerät sind es rund 10 % mehr (158 € bzw. 198 €), weil die Diagnose aufwendiger ist. Jeweils inklusive der ersten 30-Minuten-Arbeitseinheit, jede weitere Einheit beim Erstbesuch kostet 60 €. Beim zweiten Einsatz zum Ersatzteileinbau verrechnen wir nur eine Arbeitseinheit (60 €) plus das Teil. Die Anfahrtsgebühr beträgt 96 € in Wien und 120 € in Niederösterreich, bei Gaggenau 200 €. Bei Garagentoren gilt eine Arbeitseinheit à 90 € — auch beim Folgebesuch nur eine Einheit plus Ersatzteil. Alle Preise verstehen sich inklusive 20 % MwSt. Material wird vor dem Einbau transparent abgestimmt."
   },
   {
     question: "Wie schnell ist eine Geschirrspüler Reparatur möglich?",
@@ -1109,7 +1109,7 @@ export default function Home() {
               },
               {
                 title: "Transparente Anfahrt",
-                text: "Wien 96 €, NÖ 120 € inkl. MwSt. Längere Wegstrecken mit Aufpreis.",
+                text: "Wien 96 €, NÖ 120 €, Gaggenau 200 € inkl. MwSt.",
                 icon: (
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
