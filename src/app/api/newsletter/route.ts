@@ -5,6 +5,7 @@ import { checkRateLimit, getClientIp } from "../../../lib/rateLimit";
 type NewsletterPayload = {
   email?: unknown;
   website?: unknown;
+  source?: unknown;
 };
 
 const requiredEnvVars = graphRequiredEnvVars;
@@ -50,6 +51,9 @@ export async function POST(request: Request) {
   }
 
   const email = sanitize(payload.email);
+  const sourceRaw = sanitize(payload.source);
+  const source = /^[a-z0-9-]{1,32}$/.test(sourceRaw) ? sourceRaw : "";
+  const fromGold = source === "monter-gold";
 
   if (!email || !isValidEmail(email)) {
     return NextResponse.json(
@@ -70,8 +74,15 @@ export async function POST(request: Request) {
     );
   }
 
-  const subject = "Neue Newsletter-Anmeldung";
-  const text = ["Neue Newsletter-Anmeldung über die Website:", "", `E-Mail: ${email}`].join("\n");
+  const subject = fromGold ? "MONTER GOLD: Anmeldung zur ersten Liste" : "Neue Newsletter-Anmeldung";
+  const text = [
+    fromGold
+      ? "Neue Anmeldung zur ersten Liste von MONTER GOLD:"
+      : "Neue Newsletter-Anmeldung über die Website:",
+    "",
+    `E-Mail: ${email}`,
+    ...(source ? [`Quelle: ${source}`] : [])
+  ].join("\n");
 
   try {
     await sendMail({
@@ -82,7 +93,9 @@ export async function POST(request: Request) {
     });
 
     return NextResponse.json({
-      message: "Danke — wir halten Sie über Neuigkeiten und Aktionen auf dem Laufenden."
+      message: fromGold
+        ? "Sie stehen auf der ersten Liste. Wir schreiben Ihnen, bevor der Club offen ist."
+        : "Danke — wir halten Sie über Neuigkeiten und Aktionen auf dem Laufenden."
     });
   } catch (error) {
     console.error("Failed to send newsletter signup email", error);
