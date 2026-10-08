@@ -473,6 +473,7 @@ a.nav-dropdown-special-link--gold.nav-dropdown-special-link--light:focus-visible
   .nav-dropdown-inner {
     flex-direction: row;
     align-items: stretch;
+    min-height: 20.5rem;
     padding: 1.5rem 2rem 1.35rem;
   }
 
@@ -483,10 +484,7 @@ a.nav-dropdown-special-link--gold.nav-dropdown-special-link--light:focus-visible
     flex: 1;
   }
 
-  .nav-dropdown-column-group:has(.nav-dropdown-column--feature) {
-    flex: 0 0 16.5rem;
-  }
-
+  .nav-dropdown-column-group:has(.nav-dropdown-column--feature),
   .nav-dropdown-column-group:has(.nav-dropdown-column--newsletter) {
     flex: 0 0 18rem;
   }
@@ -522,14 +520,7 @@ a.nav-dropdown-special-link--gold.nav-dropdown-special-link--light:focus-visible
     border-bottom: none;
   }
 
-  .nav-dropdown-column--feature {
-    flex: 0 0 16.5rem;
-    width: 16.5rem;
-    padding-left: 0.85rem;
-    padding-right: 0;
-    border-bottom: none;
-  }
-
+  .nav-dropdown-column--feature,
   .nav-dropdown-column--newsletter {
     flex: 0 0 18rem;
     width: 18rem;

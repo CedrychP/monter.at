@@ -125,8 +125,8 @@ export default function KarrierePage() {
               Karriere
             </p>
             <h1 className="font-display mt-8 text-balance text-5xl font-light leading-[0.98] tracking-tight sm:text-6xl lg:text-[4.6rem]">
-              Rausfahren.
-              <span className="mt-1 block font-display-italic text-[color:var(--gold-on-dark)]">Oder einteilen.</span>
+              Techniker vor Ort.
+              <span className="mt-1 block font-display-italic text-[color:var(--gold-on-dark)]">Disposition im Büro.</span>
             </h1>
             <p className="mt-8 max-w-xl text-[1.05rem] font-light leading-relaxed text-white/75">
               MONTER Reparatur &amp; Service hält Haushaltsgeräte, Klimageräte und Garagentore in

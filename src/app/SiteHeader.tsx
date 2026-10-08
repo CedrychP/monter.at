@@ -82,20 +82,23 @@ const additionalServiceLinks: NavLink[] = [
   { label: "Preise & Pauschalen", href: "/preise" },
   { label: "Einsatzgebiete", href: "/einsatzgebiete" },
   { label: "Ersatzteil gesucht?", href: "/ersatzteile" },
-  { label: "Firmenkunden", href: "/firmenkunden" }
+  { label: "Firmenkunden", href: "/firmenkunden" },
+  { label: "Karriere", href: "/karriere" }
 ];
 
 const serviceNavLinks: NavLink[] = [
   { label: "Reparatur buchen", href: "/reparatur-buchen" },
-  { label: "Ersatzteil gesucht?", href: "/ersatzteile" },
   { label: "Wartungsservice", href: "/wartungsservice" },
-  { label: "Lieferung & Montage", href: "/lieferung-montage" }
+  { label: "Lieferung & Montage", href: "/lieferung-montage" },
+  { label: "Kaufberatung", href: "/kaufberatung" }
 ];
 
 const serviceInfoLinks: NavLink[] = [
   { label: "Preise & Pauschalen", href: "/preise" },
   { label: "Einsatzgebiete", href: "/einsatzgebiete" },
-  { label: "Firmenkunden", href: "/firmenkunden" }
+  { label: "Ersatzteil gesucht?", href: "/ersatzteile" },
+  { label: "Firmenkunden", href: "/firmenkunden" },
+  { label: "Karriere", href: "/karriere" }
 ];
 
 const geraetekaufExtraLinks: NavLink[] = [
@@ -153,7 +156,6 @@ const dropdownSpecialLinks: NavLink[] = [
   { label: "Über Monter", href: "/ueber-uns" },
   { label: "MONTER GOLD", href: "/monter-gold", gold: true, soon: true },
   { label: "Geräte-Retter-Prämie", href: "/geraete-retter-praemie" },
-  { label: "Kaufberatung", href: "/kaufberatung" },
   { label: "Bewertungen", href: "/#bewertungen" }
 ];
 
@@ -226,7 +228,7 @@ function getMegaMenus(phoneHref: string): MegaMenuConfig[] {
     columns: [
       { eyebrow: "Tore & Wartung", items: garageDoorAndServiceLinks },
       { eyebrow: "Antrieb & Reparatur", items: garageDriveLinks },
-      { eyebrow: "Mehr Service", items: additionalServiceLinks }
+      { eyebrow: "Informationen", items: additionalServiceLinks }
     ],
     feature: {
       eyebrow: "Garagentor Reparaturdienst",
@@ -248,7 +250,7 @@ function getMegaMenus(phoneHref: string): MegaMenuConfig[] {
         eyebrow: "Reparatur & Diagnose",
         items: [...klimaRepairNavLinks, { label: "Alle Klimageräte", href: "/klimageraete" }]
       },
-      { eyebrow: "Mehr Service", items: additionalServiceLinks }
+      { eyebrow: "Informationen", items: additionalServiceLinks }
     ],
     feature: {
       eyebrow: "Klimageräte Reparaturdienst",
@@ -267,7 +269,7 @@ function getMegaMenus(phoneHref: string): MegaMenuConfig[] {
     columns: [
       { eyebrow: "Sanitärgeräte", items: householdSanitaerLinks },
       { eyebrow: "Küche & Wohnen", items: householdKuecheWohnenLinks },
-      { eyebrow: "Mehr Service", items: additionalServiceLinks }
+      { eyebrow: "Informationen", items: additionalServiceLinks }
     ],
     feature: {
       eyebrow: "Haushaltsgeräte Reparaturdienst",
@@ -293,7 +295,7 @@ function getMegaMenus(phoneHref: string): MegaMenuConfig[] {
         items: [...weitereMarkenAlphabetLinks, { label: "Alle Marken", href: "/marken" }]
       },
       {
-        eyebrow: "Mehr Service",
+        eyebrow: "Informationen",
         items: additionalServiceLinks
       }
     ],
@@ -314,7 +316,7 @@ function getMegaMenus(phoneHref: string): MegaMenuConfig[] {
     columns: [
       { eyebrow: "Kundenstimmen", items: customerVoiceLinks },
       { eyebrow: "Monter News", items: customerNewsLinks },
-      { eyebrow: "Mehr Service", items: additionalServiceLinks }
+      { eyebrow: "Informationen", items: additionalServiceLinks }
     ],
     feature: {
       eyebrow: "Reparaturdienst",
@@ -332,6 +334,7 @@ function getMegaMenus(phoneHref: string): MegaMenuConfig[] {
     label: "Service",
     columns: [
       { eyebrow: "Service", items: serviceNavLinks },
+      { eyebrow: "Monter News", items: customerNewsLinks },
       { eyebrow: "Informationen", items: serviceInfoLinks }
     ],
     newsletter: true
@@ -345,6 +348,7 @@ function getMegaMenus(phoneHref: string): MegaMenuConfig[] {
         items: [],
         note: "Bald verfügbar: kuratierte Geräte mit Beratung, Lieferung und Montage. Bis dahin helfen wir bei Reparatur oder ehrlicher Kaufberatung."
       },
+      { eyebrow: "Monter News", items: customerNewsLinks },
       { eyebrow: "Zusatz", items: geraetekaufExtraLinks }
     ],
     newsletter: true
