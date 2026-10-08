@@ -1305,7 +1305,7 @@ export default function Home() {
       </section>
 
       {/* FAQ */}
-      <section id="faq" className="relative isolate overflow-hidden border-y border-[color:var(--border)] bg-[color:var(--bg-muted)] py-16 sm:py-20 lg:py-28">
+      <section id="faq" className="relative isolate scroll-mt-28 overflow-hidden border-y border-[color:var(--border)] bg-[color:var(--bg-muted)] py-16 sm:py-20 lg:py-28">
         <div aria-hidden="true" className="pointer-events-none absolute inset-0">
           <div
             className="absolute -left-44 top-0 h-[30rem] w-[30rem] rounded-full blur-[120px]"

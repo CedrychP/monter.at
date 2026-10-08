@@ -10,13 +10,28 @@ const footerHeadingClass =
   "text-[0.8rem] font-medium uppercase tracking-[0.2em] text-white/75";
 
 const brandQuickLinks = [
-  { label: "Blog & News", href: "/blog" },
-  { label: "Warum Monter?", href: "/ueber-uns" },
+  { label: "Über Monter", href: "/ueber-uns" },
   { label: "Unsere Arbeitsweise", href: "/ueber-uns#arbeitsweise" },
-  { label: "FAQ", href: "/#faq" },
-  { label: "Firmenkunden", href: "/firmenkunden" },
+  { label: "Preise & Pauschalen", href: "/preise" },
+  { label: "Häufige Fragen", href: "/#faq" },
+  { label: "Blog & News", href: "/blog" },
+  { label: "Geräte-Retter-Prämie", href: "/geraete-retter-praemie" },
   { label: "Karriere", href: "/karriere" },
   { label: "Bewertungen", href: "/#bewertungen" }
+];
+
+const serviceLinks = [
+  { label: "Wartungsservice", href: "/wartungsservice" },
+  { label: "Lieferung & Montage", href: "/lieferung-montage" },
+  { label: "Kaufberatung", href: "/kaufberatung" },
+  { label: "Altgeräteentsorgung", href: "/altgeraeteentsorgung" }
+];
+
+const directLinks = [
+  { label: "Reparatur buchen", href: "/reparatur-buchen" },
+  { label: "Ersatzteil bestellen", href: "/ersatzteile" },
+  { label: "Anfrage senden", href: "/kontakt" },
+  { label: "Für Firmenkunden", href: "/firmenkunden" }
 ];
 
 const garageLinks = [
@@ -38,6 +53,7 @@ const regionLinks = [
     label: region.name,
     href: `/einsatzgebiete/${region.slug}`
   })),
+  { label: "Oberösterreich", href: "/einsatzgebiete/oberoesterreich" },
   { label: "Alle Einsatzgebiete", href: "/einsatzgebiete" }
 ];
 
@@ -138,7 +154,7 @@ export default function SiteFooter({ logoSrc }: SiteFooterProps) {
 
               <p className="mt-7 max-w-md text-base font-normal leading-relaxed text-white/80">
                 Haushaltsgeräte- und Garagentor-Reparatur mit technischem Anspruch. Für
-                Privathaushalte, Hausverwaltungen und Betriebe in Wien und Niederösterreich —
+                Privathaushalte, Hausverwaltungen und Betriebe in Wien, Niederösterreich und Linz —
                 ehrliche Einschätzung, faire Preise, saubere Arbeit.
               </p>
 
@@ -238,21 +254,40 @@ export default function SiteFooter({ logoSrc }: SiteFooterProps) {
               </div>
             </div>
 
-            <div>
-              <p className={footerHeadingClass}>Direkt klären</p>
-              <TrackedPhoneLink className="mt-7 block text-xl font-medium tracking-tight text-white transition hover:text-[color:var(--accent)]" />
-              <p className="mt-3.5 text-sm font-normal leading-relaxed text-white/65">
-                Bei dringenden Ausfällen ist der Anruf der schnellste Weg.
-              </p>
-              <Link
-                href="/reparatur-buchen"
-                className="mt-5 inline-flex w-fit items-center gap-2 border-b border-white pb-1 text-sm font-medium uppercase tracking-[0.16em] text-white transition hover:border-[color:var(--accent)] hover:text-[color:var(--accent)]"
-              >
-                Reparatur buchen
-                <svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true">
-                  <path d="M1 8h13M9 3l5 5-5 5" stroke="currentColor" strokeWidth="1.4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </Link>
+            <div className="flex flex-col gap-10">
+              <div>
+                <p className={footerHeadingClass}>Service</p>
+                <div className="mt-7 grid gap-3.5 text-base font-normal text-white/90">
+                  {serviceLinks.map((item) => (
+                    <Link
+                      key={"service" + item.label}
+                      className="w-fit border-b border-transparent transition hover:border-white hover:text-white"
+                      href={item.href}
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <p className={footerHeadingClass}>Direkt klären</p>
+                <TrackedPhoneLink className="mt-7 block text-xl font-medium tracking-tight text-white transition hover:text-[color:var(--accent)]" />
+                <p className="mt-3.5 text-sm font-normal leading-relaxed text-white/65">
+                  Bei dringenden Ausfällen ist der Anruf der schnellste Weg.
+                </p>
+                <div className="mt-5 grid gap-3.5 text-base font-normal text-white/90">
+                  {directLinks.map((item) => (
+                    <Link
+                      key={"direct" + item.label}
+                      className="w-fit border-b border-transparent transition hover:border-white hover:text-white"
+                      href={item.href}
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>

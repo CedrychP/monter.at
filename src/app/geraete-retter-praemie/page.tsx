@@ -1,47 +1,39 @@
 import type { Metadata } from "next";
-import InfoPageLayout, { type InfoCard, type InfoSection } from "../InfoPageLayout";
+import Image from "next/image";
+import RepairBookingCta from "../RepairBookingCta";
 import { HubFaq, type HubFaqItem } from "../HubBlocks";
 import { buildMetadata } from "../pageMetadata";
+import { siteConfig } from "../siteConfig";
 
-const cards: InfoCard[] = [
-  {
-    title: "Bis zu 50 % gespart",
-    text: "Gefördert werden 50 % der Brutto-Reparaturkosten für förderfähige Elektro- und Elektronikgeräte."
-  },
-  {
-    title: "Maximal 130 € pro Reparatur",
-    text: "Pro förderfähiger Reparatur wird ein Bon von bis zu 130 € auf die Reparaturkosten angerechnet."
-  },
-  {
-    title: "Für Privatpersonen",
-    text: "Privatpersonen können den Bon für haushaltsübliche Geräte beantragen — einfach online."
-  },
-  {
-    title: "Bei teilnehmenden Betrieben",
-    text: "Die Prämie wird direkt bei der Reparatur über einen teilnehmenden Betrieb eingelöst."
-  }
+const imagePath = "/assets/geraete-retter-praemie.webp";
+const imageUrl = `${siteConfig.siteUrl}${imagePath}`;
+const imageCaption =
+  "Geräte-Retter-Prämie: Waschmaschine mit Werkzeug und dem Satz Bring's wieder zum Laufen.";
+
+const pageDescription =
+  "Geräte-Retter-Prämie: 50 % und höchstens 130 € auf die Reparatur, nur in der laufenden Förderperiode. MONTER ist Partnerunternehmen und löst den Bon ein.";
+
+const figures = [
+  { value: "50 %", label: "der Brutto-Reparaturkosten", note: "für förderfähige Elektro- und Elektronikgeräte" },
+  { value: "130 €", label: "höchstens pro Reparatur", note: "liegt die Rechnung darüber, bleibt der Deckel" },
+  { value: "100 €", label: "Beispiel bei 200 € Rechnung", note: "die Hälfte, unter dem Deckel, geht ab" }
 ];
 
-const sections: InfoSection[] = [
+const steps = [
   {
-    title: "Was ist die Geräte-Retter-Prämie?",
-    body:
-      "Die Geräte-Retter-Prämie — oft Geräteretterprämie geschrieben — ist das Nachfolgemodell des österreichischen Reparaturbonus. Sie unterstützt die Reparatur von Elektro- und Elektronikgeräten finanziell und macht Reparieren attraktiver als Wegwerfen."
+    number: "01",
+    title: "Bon holen",
+    text: "Sie beantragen den Bon online. Die Schritte der laufenden Periode nennen wir bei der Anfrage."
   },
   {
-    title: "So funktioniert es",
-    body:
-      "Sie beantragen den Bon online und lösen ihn bei einem teilnehmenden Reparaturbetrieb ein. Der Förderbetrag wird direkt von den Reparaturkosten abgezogen — Sie zahlen nur den reduzierten Betrag."
+    number: "02",
+    title: "Gerät prüfen lassen",
+    text: "Waschmaschine, Geschirrspüler, Kühlschrank, Trockner, Backofen — typische Geräte. Ob Ihres dabei ist, klären wir vor der Reparatur."
   },
   {
-    title: "Rechenbeispiel",
-    body:
-      "Kostet eine Reparatur z. B. 200 €, werden 50 % gefördert — das wären 100 €. Da der Maximalbetrag bei 130 € liegt, profitieren Sie hier mit den vollen 100 € Ersparnis und zahlen nur 100 €."
-  },
-  {
-    title: "Aktuelle Bedingungen",
-    body:
-      "Förderhöhe, Voraussetzungen und Verfügbarkeit können sich ändern und hängen von der jeweiligen Förderperiode ab. Wir informieren Sie im Zuge Ihrer Anfrage über den aktuellen Stand."
+    number: "03",
+    title: "Weniger zahlen",
+    text: "MONTER ist Partnerunternehmen. Der Förderbetrag geht direkt von der Rechnung, Sie zahlen den Rest."
   }
 ];
 
@@ -57,9 +49,19 @@ const faqs: HubFaqItem[] = [
       "50 % der Bruttoreparatur, gedeckelt bei 130 €. Beispiel: Kostet die Reparatur 200 €, werden 100 € gefördert. Liegt die Rechnung über 260 €, bleiben 130 € der Höchstbetrag."
   },
   {
+    question: "Gilt die Prämie nur für begrenzte Zeit?",
+    answer:
+      "Ja. Sie hängt an der laufenden Förderperiode. Ist die Periode zu oder der Rahmen ausgeschöpft, gibt es den Abzug nicht. Den aktuellen Stand nennen wir bei der Anfrage, bevor ein Termin feststeht."
+  },
+  {
+    question: "Ist MONTER Partnerunternehmen?",
+    answer:
+      "Ja. MONTER Reparatur & Service ist teilnehmendes Partnerunternehmen. Den Bon lösen Sie bei uns ein, der Förderbetrag wird direkt von der Rechnung abgezogen."
+  },
+  {
     question: "Wie läuft der Antrag ab?",
     answer:
-      "Sie beantragen den Bon online, bringen ihn zum Termin mit oder lösen ihn über uns als teilnehmenden Betrieb ein. Der Förderbetrag wird direkt von der Rechnung abgezogen. Die genauen Schritte der laufenden Periode nennen wir bei der Anfrage."
+      "Sie beantragen den Bon online und bringen ihn zum Termin mit oder lösen ihn über uns ein. Der Förderbetrag geht von der Rechnung ab. Die genauen Schritte der laufenden Periode nennen wir bei der Anfrage."
   },
   {
     question: "Für welche Geräte gilt die Prämie?",
@@ -68,36 +70,154 @@ const faqs: HubFaqItem[] = [
   }
 ];
 
+const pageJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: "Geräte-Retter-Prämie",
+  description: pageDescription,
+  url: `${siteConfig.siteUrl}/geraete-retter-praemie`,
+  inLanguage: "de-AT",
+  primaryImageOfPage: {
+    "@type": "ImageObject",
+    contentUrl: imageUrl,
+    url: imageUrl,
+    width: 898,
+    height: 607,
+    caption: imageCaption,
+    description: imageCaption,
+    inLanguage: "de-AT",
+    representativeOfPage: true
+  }
+};
+
 export const metadata: Metadata = buildMetadata({
   title: "Geräteretterprämie Österreich | Geräte-Retter-Prämie | MONTER",
-  description:
-    "Geräteretterprämie Österreich: 50 % und max. 130 € auf die Reparatur. Ablauf, Höhe und Einlösen der Geräte-Retter-Prämie in Wien — Nachfolger des Reparaturbonus.",
-  path: "/geraete-retter-praemie"
+  description: pageDescription,
+  path: "/geraete-retter-praemie",
+  images: [imageUrl]
 });
 
 export default function GeraeteRetterPraemiePage() {
   return (
-    <InfoPageLayout
-      eyebrow="Förderung"
-      title="Geräte-Retter-Prämie nutzen."
-      intro="Geräteretterprämie in Österreich: Mit der Geräte-Retter-Prämie — dem Nachfolger des Reparaturbonus — sparen Sie 50 % und maximal 130 € auf die Reparatur Ihrer Elektrogeräte. Hier stehen Was, Höhe und Ablauf. Wir helfen beim Einlösen in Wien."
-      heroNote="Wir informieren Sie im Zuge der Anfrage über den aktuellen Förderstand."
-      primaryCta={{ label: "Reparatur mit Prämie anfragen", href: "/reparatur-buchen" }}
-      cardsEyebrow="Ihre Vorteile"
-      cardsTitle="So viel können Sie sparen."
-      cardsIntro="Die wichtigsten Eckdaten der Förderung auf einen Blick."
-      cards={cards}
-      sectionsEyebrow="Förderung im Detail"
-      sectionsTitle="Reparieren statt wegwerfen."
-      sections={sections}
-      closingTitle="Prämie nutzen & sparen."
-      closingText="Beschreiben Sie uns Ihr Gerät und Fehlerbild — wir prüfen die Reparatur und unterstützen beim Einlösen der Prämie."
-    >
-      <HubFaq
-        eyebrow="Häufige Fragen"
-        title="Geräteretterprämie: kurz geklärt."
-        items={faqs}
+    <main className="min-h-screen bg-white text-[color:var(--ink)]">
+      <script
+        type="application/ld+json"
+        suppressHydrationWarning
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(pageJsonLd) }}
       />
-    </InfoPageLayout>
+
+      <section className="overflow-hidden bg-[#eef4ec]">
+        <div className="mx-auto grid max-w-[88rem] items-center gap-10 px-5 py-14 sm:px-8 sm:py-16 lg:grid-cols-[0.92fr_1.08fr] lg:gap-8 lg:py-20">
+          <div className="reveal">
+            <p className="cap-line tracking-eyebrow text-[color:var(--accent)]">Nur diese Förderperiode</p>
+            <h1 className="font-display mt-6 text-balance text-5xl font-light leading-[0.98] tracking-tight sm:text-6xl lg:text-[4.4rem]">
+              Die Hälfte
+              <span className="mt-1 block font-display-italic text-[color:var(--accent)]">bleibt bei Ihnen.</span>
+            </h1>
+            <p className="mt-8 max-w-xl text-[1.05rem] font-light leading-relaxed text-[color:var(--muted)]">
+              Die Geräte-Retter-Prämie folgt auf den Reparaturbonus. 50&nbsp;% der
+              Brutto-Reparaturkosten gehen ab, höchstens 130&nbsp;€. MONTER ist
+              Partnerunternehmen. Den Bon lösen Sie bei der Reparatur ein — solange diese
+              Periode läuft.
+            </p>
+            <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+              <a href="#ablauf" className="btn-primary">
+                Wie der Bon läuft
+              </a>
+              <a href="#termin" className="btn-ghost">
+                Zum Reparaturtermin
+              </a>
+            </div>
+          </div>
+          <figure className="reveal relative">
+            <Image
+              src={imagePath}
+              alt={imageCaption}
+              width={898}
+              height={607}
+              priority
+              sizes="(min-width: 1024px) 44rem, 100vw"
+              className="h-auto w-full"
+            />
+            <figcaption className="mt-3 max-w-lg text-sm font-light leading-relaxed text-[color:var(--muted)]">
+              Bring&apos;s wieder zum Laufen. Das Motiv der Geräte-Retter-Prämie.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <div aria-hidden="true" className="bg-[#eef4ec]">
+        <svg viewBox="0 0 1440 56" className="block h-10 w-full sm:h-14" preserveAspectRatio="none">
+          <polygon points="0,0 1440,56 0,56" fill="#0a0a0a" />
+        </svg>
+      </div>
+
+      <section className="bg-[color:var(--ink)] text-white">
+        <div className="mx-auto max-w-[88rem] px-5 py-16 sm:px-8 sm:py-20">
+          <p className="flex items-center gap-3 text-[0.72rem] font-medium uppercase tracking-[0.28em] text-[color:var(--accent-on-dark)]">
+            <span aria-hidden="true" className="h-px w-8 bg-[color:var(--accent)]" />
+            Was abgeht
+          </p>
+          <h2 className="font-display mt-6 max-w-2xl text-balance text-4xl font-light leading-tight tracking-tight sm:text-5xl">
+            Drei Zahlen. Danach der Ablauf.
+          </h2>
+          <dl className="mt-12 grid gap-px bg-white/15 sm:grid-cols-3">
+            {figures.map((item) => (
+              <div key={item.value} className="bg-[color:var(--ink)] px-6 py-8 sm:px-8 sm:py-10">
+                <dd className="font-display text-5xl font-light tracking-tight text-white tabular-nums sm:text-6xl">
+                  {item.value}
+                </dd>
+                <dt className="mt-4 text-base font-normal text-white">{item.label}</dt>
+                <p className="mt-2 text-sm font-light leading-relaxed text-white/65">{item.note}</p>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
+      <section id="ablauf" className="scroll-mt-28 bg-white py-16 sm:py-20 lg:py-24">
+        <div className="mx-auto max-w-[88rem] px-5 sm:px-8">
+          <div className="max-w-2xl">
+            <p className="cap-line tracking-eyebrow text-[color:var(--accent)]">Ablauf</p>
+            <h2 className="font-display mt-6 text-balance text-4xl font-light leading-tight tracking-tight sm:text-5xl">
+              Vom Bon zur Rechnung.
+            </h2>
+            <p className="mt-5 text-[1.02rem] font-light leading-relaxed text-[color:var(--muted)]">
+              Die Prämie gilt nur für die laufende Förderperiode. Ist sie zu oder der Rahmen
+              ausgeschöpft, entfällt der Abzug. Ob Ihr Gerät jetzt dabei ist, sagen wir vor dem
+              Termin.
+            </p>
+          </div>
+          <ol className="mt-12 grid gap-px bg-[color:var(--border)] lg:grid-cols-3">
+            {steps.map((step) => (
+              <li key={step.number} className="bg-white p-8 sm:p-10">
+                <span className="numeral text-[color:var(--accent)]">{step.number}</span>
+                <h3 className="font-display mt-6 text-3xl font-light tracking-tight">{step.title}</h3>
+                <p className="mt-4 text-sm font-light leading-relaxed text-[color:var(--muted)]">{step.text}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <HubFaq eyebrow="Häufige Fragen" title="Kurz geklärt, bevor der Termin feststeht." items={faqs} />
+
+      <section className="bg-white">
+        <div className="mx-auto max-w-[88rem] px-5 py-14 sm:px-8 sm:py-16">
+          <p className="cap-line tracking-eyebrow text-[color:var(--accent)]">Reparaturtermin</p>
+          <h2 className="font-display mt-5 max-w-2xl text-balance text-4xl font-light leading-tight tracking-tight sm:text-5xl">
+            Passt die Periode, folgt der Termin.
+          </h2>
+          <p className="mt-5 max-w-xl text-[1.02rem] font-light leading-relaxed text-[color:var(--muted)]">
+            Gerät und Fehlerbild reichen. Wir sagen, ob die Prämie jetzt greift, und stimmen den
+            Besuch ab. Noch kein Auftrag.
+          </p>
+        </div>
+      </section>
+
+      <div id="termin" className="scroll-mt-28">
+        <RepairBookingCta />
+      </div>
+    </main>
   );
 }
