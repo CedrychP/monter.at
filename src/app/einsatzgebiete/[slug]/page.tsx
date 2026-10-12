@@ -9,6 +9,8 @@ import { buildMetadata } from "../../pageMetadata";
 import { siteConfig } from "../../siteConfig";
 import { getRegionPage, regionPages, type RegionPage, type RegionService } from "../regionPages";
 import { findLocationByCityName, getLocationsForRegion, locationHref } from "../locationPages";
+import LinzPage from "../LinzPage";
+import NiederoesterreichPage from "../NiederoesterreichPage";
 import WienPage from "../WienPage";
 
 type RegionPageProps = {
@@ -66,7 +68,11 @@ export async function generateMetadata({ params }: RegionPageProps): Promise<Met
     images:
       region.slug === "wien"
         ? [`${siteConfig.siteUrl}/assets/einsatzgebiet-wien-stephansdom.webp`]
-        : undefined,
+        : region.slug === "niederoesterreich"
+          ? [`${siteConfig.siteUrl}/assets/einsatzgebiet-niederoesterreich-fluss.webp`]
+          : region.slug === "linz"
+            ? [`${siteConfig.siteUrl}/assets/einsatzgebiet-linz-donau.webp`]
+            : undefined,
     // Regionen ohne geprüfte Partnerdaten bleiben aus dem Index, sind aber erreichbar.
     robots: region.enriched ? undefined : { index: false, follow: true }
   });
@@ -268,6 +274,14 @@ export default async function RegionDetailPage({ params }: RegionPageProps) {
 
   if (region.slug === "wien") {
     return <WienPage region={region} />;
+  }
+
+  if (region.slug === "niederoesterreich") {
+    return <NiederoesterreichPage region={region} />;
+  }
+
+  if (region.slug === "linz") {
+    return <LinzPage region={region} />;
   }
 
   const related = regionPages.filter((item) => item.slug !== region.slug).slice(0, 3);

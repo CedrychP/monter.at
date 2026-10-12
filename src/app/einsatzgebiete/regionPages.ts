@@ -153,16 +153,16 @@ export const regionPages: RegionPage[] = [
   {
     slug: "niederoesterreich",
     name: "Niederösterreich",
-    metaTitle: "Einsatzgebiet Niederösterreich | MONTER Service",
+    metaTitle: "Haushaltsgeräte Reparatur Niederösterreich | MONTER",
     description:
-      "MONTER in Niederösterreich: Wiener Umland, Industrieviertel und Weinviertel mit eigenem Team, Anfahrt ab 120 € inkl. MwSt. Ab einer Stunde Fahrzeit gilt eine Pauschale von 240 €.",
-    h1: "Einsatzgebiet Niederösterreich.",
+      "Haushaltsgeräte, Garagentore und Klima in Niederösterreich, angefahren aus Floridsdorf. Anfahrt 120 €, ab einer Stunde Fahrzeit 240 € inkl. MwSt.",
+    h1: "Reparatur in Niederösterreich.",
     short:
       "Wiener Umland mit eigenem Team, Anfahrt ab 120 € inkl. MwSt. — ab einer Stunde Fahrt gilt eine Pauschale.",
-    image: "/assets/einsatzgebiet-niederoesterreich-wachau.webp",
-    imageAlt: "Ort an der Donau in der Wachau, Weingärten im Vordergrund.",
+    image: "/assets/einsatzgebiet-niederoesterreich-fluss.webp",
+    imageAlt: "Ort an der Donau in der Wachau, Hügel und Fluss.",
     intro:
-      "Niederösterreich fahren wir mit dem eigenen Team an — am dichtesten im Umland von Wien, wo die Fahrzeiten kurz sind. Je weiter eine Adresse entfernt liegt, desto stärker bestimmt die Fahrzeit den Termin: Ab etwa einer Stunde Anfahrt gilt eine Pauschale von 240 € inkl. MwSt. Diese Seite zeigt, welche Orte im Kernbereich liegen und wie wir mit weiter entfernten Adressen umgehen.",
+      "Niederösterreich fahren wir von der Rappgasse in Floridsdorf. Im Umland ist das Alltag, weiter draußen entscheidet die Fahrzeit: Ab etwa einer Stunde für An- und Abfahrt gilt 240 € statt 120 €. Den Betrag nennen wir, bevor ein Termin steht.",
     coverage: "kerngebiet",
     coverageNote:
       "Niederösterreich betreuen wir von Wien aus mit eigenen Technikern. Im Umland ist das Alltag, in den äußeren Bezirken entscheidet die Fahrzeit über Termin und Anfahrtspauschale.",
@@ -238,6 +238,11 @@ export const regionPages: RegionPage[] = [
         question: "Sind Garagentor-Arbeiten in Niederösterreich möglich?",
         answer:
           "Ja, inklusive Federwechsel, Antriebsreparatur und Wartung. Die Anfahrt beträgt hier 180 € inkl. MwSt., weil für Torarbeiten mehr Werkzeug und Material mitgeführt wird. Nennen Sie bitte Torart und Antriebsmarke — danach entscheidet sich, welche Teile wir einladen."
+      },
+      {
+        question: "Gibt es eine Niederlassung in Niederösterreich?",
+        answer:
+          "Nein. Der Sitz ist die Rappgasse 1/6 in 1210 Wien. Die Techniker fahren von Floridsdorf. Im Umland sind die Wege kurz, weiter draußen planen wir die Fahrt und nennen die Anfahrt vor dem Termin."
       }
     ],
     enriched: true
@@ -245,9 +250,9 @@ export const regionPages: RegionPage[] = [
   {
     slug: "linz",
     name: "Linz",
-    metaTitle: "Haushaltsgeräte Reparatur Linz | MONTER Service",
+    metaTitle: "Haushaltsgeräte Reparatur Linz | MONTER",
     description:
-      "Haushaltsgeräte-Reparatur in Linz: Innenstadt, Urfahr, Ebelsberg und die übrigen Stadtteile. Techniker vor Ort, Diagnose vor dem Teiletausch, Anfahrt vor dem Termin.",
+      "Haushaltsgeräte in allen 15 Linzer Stadtteilen, Techniker vor Ort. Diagnose vor dem Teiletausch. Die Anfahrt nennen wir am Telefon, bevor der Termin steht.",
     h1: "Reparatur in Linz.",
     short:
       "Techniker vor Ort in den 15 Stadtteilen. Schwerpunkt Haushaltsgeräte, Anfahrt wird vor dem Termin genannt.",
