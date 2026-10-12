@@ -88,10 +88,10 @@ export const regionPages: RegionPage[] = [
   {
     slug: "wien",
     name: "Wien",
-    metaTitle: "Einsatzgebiet Wien: alle 23 Bezirke | MONTER Service",
+    metaTitle: "Haushaltsgeräte Reparatur Wien | MONTER",
     description:
-      "MONTER im Einsatzgebiet Wien: alle 23 Bezirke, Anfahrt ab 96 € inkl. MwSt., Termine oft binnen 1–2 Tagen. Wie Anfahrt, Parksituation und Terminplanung in Wien konkret ablaufen.",
-    h1: "Einsatzgebiet Wien.",
+      "In allen 23 Bezirken: Haushaltsgeräte, Garagentore und Klima. Anfahrt 96 € inkl. MwSt., Sitz Rappgasse in 1210 Floridsdorf. Termine meist in 1–2 Tagen.",
+    h1: "Reparatur in Wien.",
     short:
       "Alle 23 Bezirke mit eigenem Team, kurze Wege, Anfahrt ab 96 € inkl. MwSt. — unser Kerngebiet.",
     image: "/assets/einsatzgebiet-wien-stephansdom.webp",

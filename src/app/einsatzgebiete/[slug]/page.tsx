@@ -6,8 +6,10 @@ import { linzAppliancePages } from "../../haushaltsgeraete/linzAppliancePages";
 import DetailPageLayout from "../../DetailPageLayout";
 import { HubDetailLinks, HubFaq } from "../../HubBlocks";
 import { buildMetadata } from "../../pageMetadata";
+import { siteConfig } from "../../siteConfig";
 import { getRegionPage, regionPages, type RegionPage, type RegionService } from "../regionPages";
 import { findLocationByCityName, getLocationsForRegion, locationHref } from "../locationPages";
+import WienPage from "../WienPage";
 
 type RegionPageProps = {
   params: Promise<{
@@ -61,6 +63,10 @@ export async function generateMetadata({ params }: RegionPageProps): Promise<Met
     title: region.metaTitle,
     description: region.description,
     path: `/einsatzgebiete/${region.slug}`,
+    images:
+      region.slug === "wien"
+        ? [`${siteConfig.siteUrl}/assets/einsatzgebiet-wien-stephansdom.webp`]
+        : undefined,
     // Regionen ohne geprüfte Partnerdaten bleiben aus dem Index, sind aber erreichbar.
     robots: region.enriched ? undefined : { index: false, follow: true }
   });
@@ -258,6 +264,10 @@ export default async function RegionDetailPage({ params }: RegionPageProps) {
 
   if (!region) {
     notFound();
+  }
+
+  if (region.slug === "wien") {
+    return <WienPage region={region} />;
   }
 
   const related = regionPages.filter((item) => item.slug !== region.slug).slice(0, 3);
