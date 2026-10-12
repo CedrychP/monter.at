@@ -1,0 +1,47 @@
+---
+description: Regeln für Blogposts von MONTER
+globs: src/app/blog/**
+alwaysApply: false
+---
+
+# Blogposts
+
+Du schreibst für MONTER Reparatur & Service (Haushaltsgeräte, Garagentore, Klimageräte) in Österreich. Zielgruppe: Privatkunden und Hausverwaltungen. Schreibe wie ein Praktiker aus dem Betrieb, in der Sie-Form, auf Österreichisch wo es natürlich sitzt.
+
+## Zuerst fragen, nicht losschreiben
+
+Bevor ein neuer Beitrag entsteht, diese vier Punkte klären. Ohne Antwort nicht schreiben:
+
+1. Hauptkeyword und Suchintention (informieren, vergleichen, kaufen).
+2. Eine echte Erfahrung, ein Kundenfall oder eine Zahl aus dem Betrieb.
+3. Die Haltung von MONTER zum Thema.
+4. Was Konkurrenten falsch machen oder weglassen.
+
+Erfinde keine Erfahrungen, Fälle, Zahlen, Zitate, Meistertitel, Gründungsjahre oder Personen. Fehlendes als `[TODO: …]` markieren. Preise nur brutto inklusive 20 % USt und nur, wenn sie schon auf der Website stehen. Einsatzgebiet nur so, wie es auf `/einsatzgebiete` steht.
+
+## Inhalt
+
+- Die Suchfrage in den ersten zwei, drei Sätzen beantworten. Keine Einleitung.
+- Mindestens zwei Punkte, die nicht in den Top-10 stehen: eigene Preise, Praxisfehler, lokale Besonderheit, klare Haltung. Sonst `[TODO]`.
+- Konkret: Euro, Zeit, Modell, Bezirk. Etwa 900 Wörter, nicht aufblasen.
+- Satzlänge wechseln. Fließtext vor Aufzählungen. Einschränkungen und „kommt drauf an“ sind erwünscht.
+- Kein Fazit, das nur wiederholt. Am Ende eine konkrete nächste Handlung.
+- Verboten: „In der heutigen schnelllebigen Welt“, „Es ist wichtig zu beachten“, „Zusammenfassend lässt sich sagen“, „Tauchen wir ein“, „entscheidend“, „nahtlos“, „ganzheitlich“, „maßgeschneidert“, „spielt eine zentrale Rolle“, „Egal ob … oder …“. „nicht nur … sondern auch“ höchstens einmal. Keine Emojis, keine rhetorische Frage am Abschnittsanfang, kein Gedankenstrich als Standard.
+
+## Technik
+
+Neuer Beitrag als Objekt in `src/app/blog/posts.ts` (`BlogPost`). Es gibt kein MDX und keinen Ordner `content/blog`. Felder: `slug`, `title` (max. 60 Zeichen, das ist die H1), `description` (140–155 Zeichen), `category`, `readingTime`, `date`, `dateModified`, `image`, `imageAlt`, `imageCaption`, `intro`, `sections` (`title` + `body`), `checklist`.
+
+`sections.body` ist Plaintext in einem `<p>`. Kein HTML und keine Markdown-Links in den String. Interne Links nur, wenn die Beitragsseite dafür erweitert wird. Externe Quellen nur, wenn die URL real existiert, sonst `[TODO: Quelle]`.
+
+Artikel-JSON-LD setzt die Beitragsseite bereits. Autor ist die Organisation MONTER. Keinen Personennamen einsetzen, solange keiner genannt ist. FAQPage nur für echte Kundenfragen und nur, wenn die Seite die Fragen auch anzeigt. Sonst `[TODO]`, kein Schema ohne Inhalt.
+
+Cover: lokales WebP unter `/assets`, Dateiname mit Gerät und Fehlerbild, Querformat, Motiv in der Mitte (4:3-Schnitt, `object-cover`). XMP auf Deutsch (`dc:title`, `dc:description`, `dc:subject`). Alt beschreibt das Foto, nicht den Suchbegriff. Kein Personenname, keine Behauptung, das Foto sei ein MONTER-Einsatz.
+
+## Nach dem Schreiben
+
+Kurz auflisten:
+
+- alle `[TODO]`-Stellen
+- Sätze, die noch generisch klingen
+- den Information Gain gegenüber der Konkurrenz

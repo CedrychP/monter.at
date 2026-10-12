@@ -52,8 +52,130 @@ const dryerImage = "/assets/blog-trockner-trocknet-nicht-wien.webp";
 const workshopImage = "/assets/blog-reparatur-oder-neukauf-wien.webp";
 const garageImage = "/assets/blog-garagentor-oeffnet-nicht-wien.webp";
 const climateImage = "/assets/blog-klimaanlage-kuehlt-nicht-wien.webp";
+const mieleWasherImage = "/assets/blog-miele-waschmaschine-reparieren-wien.webp";
+const boschWasherImage = "/assets/blog-bosch-waschmaschine-reparieren-wien.webp";
 
 export const blogPosts: BlogPost[] = [
+  {
+    slug: "bosch-waschmaschine-reparieren",
+    title: "Bosch Waschmaschine reparieren: wann es sich lohnt",
+    description:
+      "Bosch Waschmaschine reparieren statt ersetzen: was E18 bedeutet, was der Einsatz in Wien kostet und wann ein Neugerät die ehrlichere Wahl ist.",
+    category: "Waschmaschine",
+    readingTime: "5 Min.",
+    date: "2026-10-12",
+    dateModified: "2026-10-12",
+    image: boschWasherImage,
+    imageAlt: "Weiße Waschmaschinentür mit Jeans in der Trommel, daneben ein Regal mit Körben.",
+    imageCaption: "Beispielbild einer Tür. Serie und Modell stehen auf dem Typenschild, nicht auf der Blende.",
+    intro:
+      "Eine Bosch Waschmaschine reparieren lohnt sich meistens. In Wien ist das die Marke, die wir am häufigsten öffnen, und hinter dem Fehlerbild steckt fast immer ein einzelnes Verschleißteil. Unwirtschaftlich wird es beim Lagerschaden im geschlossenen Bottich oder wenn Motor und Steuerung gleichzeitig hin sind.",
+    sections: [
+      {
+        title: "Bosch Waschmaschine reparieren: was der Code sagt",
+        body:
+          "Steht Wasser in der Trommel, ziehen Sie den Stecker und stellen Sie eine Wanne unter das Flusensieb, bevor Sie es öffnen. Münzen, BH-Bügel und Haarnadeln sitzen oft im Pumpengehäuse. Knickt der Schlauch oder ist der Siphon dicht, ist die Maschine in Ordnung. Fotografieren Sie den Code. E18 heißt, das Abpumpen dauert zu lange. E17 ist der Zulauf, also Ventil, Sieb oder Aquastop. E23 heißt, der Aquastop hat ausgelöst und es steht Wasser in der Bodenwanne. F16 ist die Tür, F21 der Antrieb. Schleudert die Maschine nicht, obwohl sie waschen will, sperrt Bosch den Schleudergang oft nur, weil noch zu viel Wasser im Bottich steht. Das ist dann derselbe Ablaufweg, kein eigener Motorschaden. Die Rückwand bleibt zu."
+      },
+      {
+        title: "Serie 4, EcoSilence und Toplader",
+        body:
+          "Die Serie 4, Baureihen WAN und WAJ, ist die häufigste Klasse in Wiener Mietwohnungen. Die Serie 6, WAU und WAT, hat den EcoSilence-Drive, einen Antrieb ohne Kohlebürsten. An älteren Motoren sind die Bürsten dagegen ein normales Verschleißteil: die Trommel wäscht noch, schleudert aber nicht oder schleift. Wer eine Bürstenanleitung auf eine Serie 6 anwendet, sucht ein Teil, das nicht verbaut ist. Die Serie 8, WAV und WAX, hat Home Connect. Dort kann das Bedienmodul allein einen großen Teil der Rechnung ausmachen. Toplader der Reihen WOR und WOT stehen in schmalen Altbau-Bädern. Die Modellnummer auf dem Typenschild sagt, welcher dieser Wege gilt."
+      },
+      {
+        title: "Wenn die Maschine wandert",
+        body:
+          "Ein dumpfes Rumpeln beim Schleudern kommt von verschlissenen Stoßdämpfern oder vom Trommellager. Ein metallisches Schleifen kommt oft von einem Fremdkörper zwischen Trommel und Bottich. Wandert die Maschine über den Boden, sind meist die Transportsicherungen noch drin oder die Stellfüße nicht ausgerichtet. Das ist kein Lagerschaden und kein Grund für ein Neugerät. Stoßdämpfer und Federn tauschen wir paarweise. Ein einzelnes neues Teil lässt den Lauf sonst wieder unruhig werden."
+      },
+      {
+        title: "Wasser am Boden und das Stiegenhaus",
+        body:
+          "Wasser auf dem Boden kommt in Wiener Wohnungen häufiger vom Zulaufschlauch und von der Anschlussstelle als aus dem Gerät. Im Altbad hängt die Maschine oft an einem alten Eckventil. Türmanschette, Schläuche und Anschluss prüfen wir, bevor ein Bottich bestellt wird. Bleibt die Tür nach Programmende zu, ist das meist F16 oder Restwasser, das noch nicht abgepumpt ist. Wiener Hochquellwasser ist mittelhart, in Teilen der Stadt härter, und setzt sich auf den Heizstab. Ein kaltes Programm ist deshalb oft Kalk. Für den Tausch gegen ein Neugerät zählt außerdem das Stiegenhaus: fünf Stockwerke ohne Lift rechnen sich anders als eine Reparatur, bei der die Maschine stehen bleibt."
+      },
+      {
+        title: "Was eine Bosch-Reparatur in Wien kostet",
+        body:
+          "Die Sätze sind brutto, inklusive 20 % MwSt., und gelten für Bosch wie für die anderen Marken. Die Anfahrt für Haushaltsgeräte kostet in Wien 96 €, in Niederösterreich 120 €. Im Burgenland, in Oberösterreich, in der Steiermark und in Salzburg nennen wir sie vor dem Termin. Nur Diagnose: 144 € freistehend, 158 € bei Einbau. Reparatur und Diagnose zusammen: 180 € freistehend, 198 € bei Einbau. Die erste halbe Stunde steckt in dem Satz, jede weitere kostet 60 €. Der zweite Termin, wenn ein Teil bestellt werden musste, kostet 60 € plus das Teil, ohne eine zweite Diagnose-Pauschale. Pumpen, Türverriegelungen, Heizstäbe, Dämpfer und Manschetten sind für die gängigen Baureihen meist lagernd oder in wenigen Tagen da. Den Teilepreis nennen wir vor der Bestellung. Für Privatpersonen gilt in der laufenden Förderperiode die Geräte-Retter-Prämie: 50 % der Brutto-Reparaturkosten, höchstens 130 €. Bei 200 € Reparatur sind 100 € gefördert. Über 260 € bleibt der Deckel bei 130 €. Den Bon beantragen Sie online, der Betrag geht von der Rechnung ab."
+      },
+      {
+        title: "Wann wir vom Neugerät abraten",
+        body:
+          "Viele Angebote schreiben eine Serie 4 in der Mietwohnung ab, sobald ein Teil teurer wird. Pumpe, Türschloss, Heizung und Dämpfer rechnen sich fast immer, auch nach zehn Jahren. Teile für Bosch sind oft noch nach zehn bis fünfzehn Jahren lieferbar. Die Grenze ist der Lagerschaden im geschlossenen Bottich, und der Fall, in dem Motor und Steuerung gleichzeitig defekt sind. Dann liegt der Aufwand nahe an einem Neugerät derselben Klasse, nicht am billigsten Aktionsmodell. Beim Home-Connect-Modul sagen wir den Anteil an der Rechnung, bevor es bestellt wird. Liegt er zu hoch, hören Sie das vorher."
+      },
+      {
+        title: "Was wir für den Termin brauchen",
+        body:
+          "Fotografieren Sie Typenschild und Fehlercode und rufen Sie an. Mit WAN, WAU oder WAV und dem Code lässt sich sagen, ob Sieb, Bürsten oder Modul der erste Verdacht sind. Sagen Sie, ob die Maschine frei steht, eingebaut oder ein Toplader ist, und in welchem Bezirk. Wandert sie seit dem ersten Tag, erwähnen Sie das. Die Anfrage ist noch kein Auftrag. Liegt der Fall außerhalb dessen, was sich rechnet, hören Sie das, bevor jemand fährt."
+      }
+    ],
+    checklist: [
+      "Stecker ziehen, bevor das Sieb aufgeht",
+      "Wanne unter das Flusensieb",
+      "Code fotografieren, etwa E18 oder F16",
+      "Typenschild mit WAN, WAU oder WAV",
+      "Frei, Einbau oder Toplader",
+      "Bezirk nennen"
+    ]
+  },
+  {
+    slug: "miele-waschmaschine-reparieren",
+    title: "Miele Waschmaschine reparieren: wann es sich lohnt",
+    description:
+      "Miele Waschmaschine reparieren statt ersetzen: was Sie prüfen, was der Einsatz in Wien kostet und wann ein Neugerät die ehrlichere Wahl ist.",
+    category: "Waschmaschine",
+    readingTime: "5 Min.",
+    date: "2026-10-12",
+    dateModified: "2026-10-12",
+    image: mieleWasherImage,
+    imageAlt: "Blick in die Trommel einer weißen Waschmaschine, darin ein helles Handtuch.",
+    imageCaption: "Beispielbild einer Trommel. Die Marke steht auf dem Typenschild, nicht an der Tür.",
+    intro:
+      "Eine Miele Waschmaschine reparieren lohnt sich meistens. Bottich und Gehäuse halten bei dieser Marke oft länger als das erste Verschleißteil, und für viele Baureihen gibt es Teile noch nach mehr als zehn Jahren. Unwirtschaftlich wird es, wenn Lager und Elektronik gleichzeitig hin sind. Vorher lässt sich am Telefon schon viel eingrenzen.",
+    sections: [
+      {
+        title: "Miele Waschmaschine reparieren: was Sie vorher prüfen",
+        body:
+          "Steht Wasser in der Trommel, ziehen Sie den Stecker und stellen Sie eine Wanne unter das Flusensieb, bevor Sie es öffnen. Münzen und BH-Bügel blockieren den Weg zur Pumpe, der Ablaufschlauch knickt hinter dem Gerät, der Siphon ist dicht. Dann ist die Maschine in Ordnung und die Installation nicht. Fotografieren Sie den Code, statt ihn zu deuten. Bei Miele heißt F11 Ablauf, F19 Zulauf, F50 Antrieb, F53 Drehzahlgeber. Die Modellnummer steht auf dem Typenschild, meist an der Türinnenseite. Die brauchen wir, bevor ein Teil bestellt wird. Die Rückwand bleibt zu. Aufschrauben ist keine Vorarbeit."
+      },
+      {
+        title: "Kohlebürsten, oder eben keine",
+        body:
+          "Dreht die Trommel beim Waschen noch, schleudert aber nicht oder schleift laut, sind an Maschinen mit klassischem Motor oft die Kohlebürsten hin. Das ist ein planmäßiges Verschleißteil und eine der günstigeren Arbeiten an einer Miele. Neuere W1 Geräte, die Linien WCI, WCD und WSD, haben bürstenlose Antriebe. Dort gibt es dieses Bild nicht. Eine Anleitung für Bürsten an einer W1 sucht ein Teil, das nicht verbaut ist. Ob Ihre Maschine Bürsten hat, steht an der Baureihe, nicht am Alter allein."
+      },
+      {
+        title: "TwinDos ist oft kein Pumpenschaden",
+        body:
+          "Bei Geräten mit TwinDos kommt das Dosiersystem als eigene Baugruppe dazu. Verstopfte Leitungen, verklebte Ventile und eingetrocknete Kartuschenanschlüsse melden einen Fehler, ohne dass Pumpe oder Motor etwas haben. Das lässt sich reinigen. Eine neue Laugenpumpe wäre dann das falsche Teil. Deshalb fragen wir nach TwinDos, bevor wir ein Ablaufteil einplanen. Riecht die Wäsche nach altem Waschmittel und der Code passt nicht zum Wasserstand, ist die Dosierung der erste Verdacht."
+      },
+      {
+        title: "Altbau, Schleudern und Heizung",
+        body:
+          "Wiener Hochquellwasser ist mittelhart, in Teilen der Stadt mit Grundwasseranteil härter. Das setzt sich auf den Heizstab, unabhängig von der Marke. Ein Programm, das kalt bleibt, ist deshalb oft Kalk und nicht die Elektronik. Im Altbau kommt der Boden dazu. Schwingende Holzdielen machen ausgeschlagene Stoßdämpfer früher hörbar: die Maschine wandert im Schleudern, obwohl die Wäsche gleichmäßig liegt. Stoßdämpfer sind ein Verschleißteil. Ein Lagerschaden klingt anders, ein dauerndes Brummen auch ohne Schleudergang, oft mit Spiel in der Trommel. Diesen Unterschied klären wir am Gerät. Am Telefon bleibt es eine Vermutung."
+      },
+      {
+        title: "Was eine Miele-Reparatur in Wien kostet",
+        body:
+          "Die Sätze sind brutto, inklusive 20 % MwSt. Die Anfahrt für Haushaltsgeräte kostet in Wien 96 €, in Niederösterreich 120 €. Im Burgenland, in Oberösterreich, in der Steiermark und in Salzburg nennen wir sie vor dem Termin. Nur Diagnose: 144 € am freistehenden Gerät, 158 € bei Einbau. Reparatur und Diagnose zusammen: 180 € freistehend, 198 € bei Einbau. Die erste halbe Stunde steckt in dem Satz. Jede weitere halbe Stunde kostet 60 €. Muss ein Teil bestellt werden, kostet der zweite Termin 60 € plus das Teil, ohne eine zweite Diagnose-Pauschale. Den Teilepreis nennen wir vor der Bestellung. Einen festen Preis für Pumpe oder Bürsten gibt es hier nicht, der hängt an der Baureihe. Für Privatpersonen gilt in der laufenden Förderperiode die Geräte-Retter-Prämie: 50 % der Brutto-Reparaturkosten, höchstens 130 €. Kostet die Reparatur 200 €, sind 100 € gefördert. Liegt sie über 260 €, bleiben 130 € der Deckel. Den Bon beantragen Sie online, der Betrag geht von der Rechnung ab."
+      },
+      {
+        title: "Wann wir vom Neugerät abraten",
+        body:
+          "Viele Angebote springen beim ersten teuren Teil auf ein neues Gerät. Bei Miele ist das oft zu früh. Pumpe, Türschloss, Heizung, Dichtung, Stoßdämpfer und Riemen rechnen sich, solange Bottich und Lager in Ordnung sind. Auch an einer Maschine, die 15 Jahre gelaufen ist. Miele hält Teile für viele Baureihen deutlich länger als ein Jahrzehnt verfügbar, und baugleiche Fremdteile gibt es praktisch nicht. Wir setzen Originalteile ein. Module sind teurer als bei anderen Marken. Die Grenze ziehen wir, wenn ein Lagerschaden und ein Elektronikdefekt zusammenkommen. Dann liegt der Aufwand nah an einem Neugerät derselben Klasse, nicht am billigsten Aktionsmodell. Das sagen wir vor der Bestellung."
+      },
+      {
+        title: "Was wir für den Termin brauchen",
+        body:
+          "Fotografieren Sie Typenschild und Fehlercode und rufen Sie an. Mit Baureihe und Code lässt sich sagen, ob Bürsten, Pumpe oder TwinDos der erste Verdacht sind und welches Teil mitkommt. Sagen Sie dazu, ob die Maschine frei steht oder eingebaut ist, und in welchem Bezirk. Die Anfrage ist noch kein Auftrag. Liegt der Fall außerhalb dessen, was sich rechnet, hören Sie das, bevor jemand fährt."
+      }
+    ],
+    checklist: [
+      "Stecker ziehen, bevor das Sieb aufgeht",
+      "Wanne unter das Flusensieb",
+      "Fehlercode fotografieren",
+      "Typenschild mit Modellnummer",
+      "Freistehend oder Einbau",
+      "Bezirk nennen"
+    ]
+  },
   {
     slug: "waschmaschine-pumpt-nicht-ab",
     title: "Waschmaschine pumpt nicht ab: Ursachen und erste Schritte",
