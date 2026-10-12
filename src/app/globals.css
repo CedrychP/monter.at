@@ -1162,10 +1162,24 @@ canvas {
   }
 }
 
+@keyframes footer-blog-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.footer-blog-in {
+  animation: footer-blog-in 420ms ease;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .career-dash,
   .contact-dash,
-  .nav-dropdown-placeholder-bar::after {
+  .nav-dropdown-placeholder-bar::after,
+  .footer-blog-in {
     animation: none;
   }
 

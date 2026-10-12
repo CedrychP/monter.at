@@ -3,8 +3,17 @@ import Link from "next/link";
 import CookieSettingsButton from "./CookieSettingsButton";
 import { TrackedPhoneLink } from "./AdPhone";
 import NavNewsletterSignup from "./NavNewsletterSignup";
+import FooterBlogPreview from "./FooterBlogPreview";
+import { blogPosts } from "./blog/posts";
 import { coreRegions } from "./einsatzgebiete/regionPages";
 import { siteConfig } from "./siteConfig";
+
+const footerBlogPosts = blogPosts.map((post) => ({
+  slug: post.slug,
+  title: post.title,
+  category: post.category,
+  image: post.image
+}));
 
 const footerHeadingClass =
   "text-[0.8rem] font-medium uppercase tracking-[0.2em] text-white/75";
@@ -14,7 +23,6 @@ const brandQuickLinks = [
   { label: "Unsere Arbeitsweise", href: "/ueber-uns#arbeitsweise" },
   { label: "Preise & Pauschalen", href: "/preise" },
   { label: "Häufige Fragen", href: "/#faq" },
-  { label: "Blog & News", href: "/blog" },
   { label: "Geräte-Retter-Prämie", href: "/geraete-retter-praemie" },
   { label: "Karriere", href: "/karriere" },
   { label: "Bewertungen", href: "/#bewertungen" }
@@ -172,6 +180,7 @@ export default function SiteFooter({ logoSrc }: SiteFooterProps) {
 
             <div className="mt-10 w-full max-w-md shrink-0 sm:max-w-sm md:mt-1 md:w-72 xl:mt-10 xl:w-auto xl:max-w-md">
               <NavNewsletterSignup variant="dark" compact source="footer" />
+              <FooterBlogPreview posts={footerBlogPosts} />
             </div>
           </div>
 
