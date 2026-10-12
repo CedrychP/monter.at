@@ -28,11 +28,13 @@
 /* Header-Navigation */
 .nav-item {
   position: relative;
+  flex: none;
   color: var(--nav-text);
   font-size: 0.78rem;
   font-weight: 400;
   letter-spacing: 0.14em;
   text-transform: uppercase;
+  white-space: nowrap;
   transition: color 200ms ease;
 }
 

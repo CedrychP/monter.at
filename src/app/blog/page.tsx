@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { blogPosts } from "./posts";
 import { buildMetadata } from "../pageMetadata";
+import { siteConfig } from "../siteConfig";
+import BlogDirectory from "./BlogDirectory";
+import { blogPosts } from "./posts";
 
 export const metadata: Metadata = buildMetadata({
   title: "Haushaltsgeräte Reparatur Blog Wien | MONTER",
@@ -11,87 +12,61 @@ export const metadata: Metadata = buildMetadata({
 });
 
 export default function BlogPage() {
-  const featuredPost = blogPosts[0];
-  const remainingPosts = blogPosts.slice(1);
-
   return (
     <main className="min-h-screen bg-white text-[color:var(--ink)]">
       <section className="border-b border-[color:var(--border)] bg-white">
-        <div className="mx-auto max-w-[88rem] px-5 pb-20 pt-12 sm:px-8 sm:pb-24 sm:pt-16 lg:pb-32 lg:pt-20">
-          <div className="max-w-4xl reveal">
-            <p className="cap-line tracking-eyebrow text-[color:var(--accent)]">Blog & Ratgeber</p>
-            <h1 className="font-display mt-8 text-balance text-5xl font-light leading-[1.02] tracking-tight sm:text-6xl lg:text-[5rem]">
-              Ratgeber für <span className="font-display-italic">Haushaltsgeräte-Reparatur.</span>
+        <div className="mx-auto grid max-w-[88rem] items-center gap-14 px-5 py-16 sm:px-8 sm:py-20 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 lg:py-24">
+          <div>
+            <p className="cap-line tracking-eyebrow text-[color:var(--accent)]">Blog & News</p>
+            <h1 className="font-display mt-6 text-balance text-5xl font-light leading-[0.95] tracking-tight sm:text-6xl lg:text-7xl">
+              Erst das Fehlerbild.
+              <span className="mt-2 block italic text-[color:var(--accent)]">Dann der Beitrag.</span>
             </h1>
-            <p className="mt-8 max-w-2xl text-[1.05rem] font-light leading-relaxed text-[color:var(--muted)]">
-              Praktische Orientierung zu Fehlerbildern, Reparaturentscheidungen und sinnvoller
-              Vorbereitung vor dem Anruf.
+            <p className="mt-6 max-w-xl text-[1.05rem] font-light leading-relaxed text-[color:var(--muted)]">
+              Acht Ratgeber zu Waschmaschine, Geschirrspüler, Trockner, Kühlschrank, Backofen,
+              Garagentor und Klimagerät. Zum Orientieren in Wien, bevor der Termin steht.
             </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <a href="#beitraege" className="btn-primary">
+                <span>Zum Verzeichnis</span>
+              </a>
+              <a href={`tel:${siteConfig.phoneHref}`} className="btn-ghost">
+                <span>
+                  Anrufen <span data-phone-number>{siteConfig.phoneDisplay}</span>
+                </span>
+              </a>
+            </div>
           </div>
-        </div>
-      </section>
 
-      <section className="bg-white py-20 sm:py-24 lg:py-28">
-        <div className="mx-auto max-w-[88rem] px-5 sm:px-8">
-          <Link
-            href={`/blog/${featuredPost.slug}`}
-            className="reveal group grid gap-0 border border-[color:var(--border)] transition hover:border-[color:var(--ink)] lg:grid-cols-[1.2fr_0.8fr]"
-          >
-            <div className="bg-white p-8 lg:p-14">
-              <p className="cap-line tracking-eyebrow text-[color:var(--accent)]">
-                Empfohlen · {featuredPost.category}
-              </p>
-              <h2 className="font-display mt-8 text-balance text-3xl font-light leading-[1.05] tracking-tight sm:text-5xl">
-                {featuredPost.title}
-              </h2>
-              <p className="mt-6 text-[1.05rem] font-light leading-relaxed text-[color:var(--muted)]">
-                {featuredPost.description}
-              </p>
-              <span className="link-arrow mt-10">
-                Artikel lesen
-                <svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true">
-                  <path d="M1 8h13M9 3l5 5-5 5" stroke="currentColor" strokeWidth="1.2" fill="none" />
-                </svg>
-              </span>
-            </div>
-            <div className="border-t border-[color:var(--border)] bg-[color:var(--bg-muted)] p-8 lg:border-l lg:border-t-0 lg:p-14">
-              <p className="tracking-eyebrow text-[color:var(--muted)]">Lesedauer</p>
-              <p className="font-display mt-6 text-6xl font-light tracking-tight text-[color:var(--ink)] sm:text-7xl">
-                {featuredPost.readingTime}
-              </p>
-              <p className="mt-6 text-sm font-light leading-relaxed text-[color:var(--muted)]">
-                Aktualisiert am {featuredPost.dateModified.split("-").reverse().join(".")}
+          <div className="border border-[color:var(--border)] bg-[color:var(--bg-muted)] p-6 sm:p-8" aria-hidden="true">
+            <div className="flex items-baseline justify-between gap-4">
+              <p className="text-[0.72rem] font-medium uppercase tracking-[0.22em] text-[color:var(--accent)]">Inhalt</p>
+              <p className="font-display text-sm font-light text-[color:var(--muted)]">
+                {String(blogPosts.length).padStart(2, "0")}
               </p>
             </div>
-          </Link>
-
-          <div className="stagger mt-12 grid gap-px bg-[color:var(--border)] md:grid-cols-2 lg:grid-cols-3">
-            {remainingPosts.map((post) => (
-              <Link
-                key={post.slug}
-                href={`/blog/${post.slug}`}
-                className="group flex h-full flex-col justify-between bg-white p-8 transition hover:bg-[color:var(--bg-muted)] lg:p-10"
-              >
-                <div>
-                  <p className="tracking-eyebrow text-[color:var(--accent)]">{post.category}</p>
-                  <h2 className="font-display mt-6 text-2xl font-normal leading-tight tracking-tight sm:text-[1.75rem]">
-                    {post.title}
-                  </h2>
-                  <p className="mt-5 text-sm font-light leading-relaxed text-[color:var(--muted)]">
-                    {post.description}
-                  </p>
-                </div>
-                <div className="mt-10 flex items-center justify-between border-t border-[color:var(--border)] pt-5 text-[0.72rem] font-medium uppercase tracking-[0.16em]">
-                  <span className="text-[color:var(--muted)]">{post.readingTime}</span>
-                  <span className="text-[color:var(--ink)] transition group-hover:text-[color:var(--accent)]">
-                    Lesen →
+            <ol className="mt-6 border-t border-[color:var(--border)]">
+              {blogPosts.map((post, index) => (
+                <li
+                  key={post.slug}
+                  className="grid grid-cols-[2.5rem_1fr] gap-3 border-b border-[color:var(--border)] py-2.5"
+                >
+                  <span
+                    className={`font-display text-sm tracking-[0.16em] ${
+                      index === 0 ? "text-[color:var(--accent)]" : "text-[color:var(--muted)]"
+                    }`}
+                  >
+                    {String(index + 1).padStart(2, "0")}
                   </span>
-                </div>
-              </Link>
-            ))}
+                  <span className="font-display text-lg font-light tracking-tight">{post.category}</span>
+                </li>
+              ))}
+            </ol>
           </div>
         </div>
       </section>
+
+      <BlogDirectory posts={blogPosts} />
     </main>
   );
 }

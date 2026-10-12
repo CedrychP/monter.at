@@ -8,6 +8,14 @@ export type BlogPost = {
   date: string;
   /** Letzte inhaltliche Überarbeitung, ISO-Datum */
   dateModified: string;
+  /**
+   * Pflicht bei jedem neuen Beitrag.
+   * Querformat, Motiv in der Mitte: das Gerät oder das Fehlerbild. Kein
+   * Porträt, das am Rand angeschnitten wird. Das Verzeichnis schneidet jedes
+   * Bild auf 4:3, object-cover und object-center. Was am Rand liegt, fällt weg.
+   * Unsplash-URL wie die bestehenden Bilder, oder eine lokale Datei unter
+   * /assets als WebP. next/image liefert daraus WebP oder AVIF.
+   */
   image: string;
   intro: string;
   sections: {

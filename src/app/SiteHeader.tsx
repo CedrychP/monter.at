@@ -690,7 +690,7 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
               }`}
             >
             <nav
-              className="mx-auto flex w-full max-w-[88rem] flex-wrap items-center justify-center gap-x-10 gap-y-1.5 px-5 pb-3 pt-3 sm:gap-x-12 sm:px-8"
+              className="mx-auto flex w-full max-w-[88rem] flex-nowrap items-center justify-center gap-x-5 px-5 pb-3 pt-3 sm:gap-x-6 sm:px-8 xl:gap-x-10"
               aria-label="Hauptnavigation"
             >
               {primaryNavGroup.map((link) =>
