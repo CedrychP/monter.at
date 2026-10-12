@@ -119,42 +119,50 @@ const whyMonterStats = [
 const applianceCategories = [
   {
     title: "Waschmaschine",
-    image: "/assets/startseite-waschmaschine-wien.webp",
+    image: "/assets/startseite-waschmaschine-produkt-wien.webp",
+    alt: "Weiße Frontlader-Waschmaschine mit runder Glastür.",
     href: "/haushaltsgeraete/waschmaschine-reparatur-wien"
   },
   {
     title: "Trockner",
-    image: "/assets/startseite-trockner-wien.webp",
+    image: "/assets/startseite-trockner-produkt-wien.webp",
+    alt: "Weißer Trockner mit runder Tür und Lüftungsgitter unten.",
     href: "/haushaltsgeraete/trockner-reparatur-wien"
   },
   {
     title: "Geschirrspüler",
-    image: "/assets/startseite-geschirrspueler-wien.webp",
+    image: "/assets/startseite-geschirrspueler-produkt-wien.webp",
+    alt: "Freistehender Geschirrspüler aus Edelstahl.",
     href: "/haushaltsgeraete/geschirrspueler-reparatur-wien"
   },
   {
     title: "Kühlschrank",
-    image: "/assets/startseite-kuehlschrank-wien.webp",
+    image: "/assets/startseite-kuehlschrank-produkt-wien.webp",
+    alt: "Kühl-Gefrierkombination aus Edelstahl mit Gefrierfach unten.",
     href: "/haushaltsgeraete/kuehlschrank-reparatur-wien"
   },
   {
     title: "Gefrierschrank",
-    image: "/assets/startseite-gefrierschrank-wien.webp",
+    image: "/assets/startseite-gefrierschrank-produkt-wien.webp",
+    alt: "Weißer Gefrierschrank mit senkrechtem Griff.",
     href: "/haushaltsgeraete/tiefkuehl-reparatur-wien"
   },
   {
     title: "Backofen & Herd",
-    image: "/assets/startseite-backofen-wien.webp",
+    image: "/assets/startseite-backofen-produkt-wien.webp",
+    alt: "Standherd mit Glaskeramikfeld und fünf Drehknöpfen.",
     href: "/haushaltsgeraete/backofen-herd-reparatur-wien"
   },
   {
     title: "Dunstabzug",
-    image: "/assets/startseite-dunstabzug-wien.webp",
+    image: "/assets/startseite-dunstabzug-produkt-wien.webp",
+    alt: "Schwarze Schräghaube mit Edelstahlkamin.",
     href: "/haushaltsgeraete/dunstabzug-reparatur-wien"
   },
   {
     title: "Fernseher",
-    image: "/assets/startseite-fernseher-wien.webp",
+    image: "/assets/startseite-fernseher-produkt-wien.webp",
+    alt: "Schwarzer Flachbildfernseher auf einem Standfuß.",
     href: "/haushaltsgeraete/fernseher-reparatur-wien"
   }
 ];

@@ -8,6 +8,7 @@ type ApplianceItem = {
   title: string;
   image: string;
   href: string;
+  alt: string;
 };
 
 export default function ApplianceSlider({
@@ -51,7 +52,7 @@ export default function ApplianceSlider({
           >
             <Image
               src={item.image}
-              alt={`${item.title} Reparatur`}
+              alt={item.alt}
               fill
               sizes={sizes}
               className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
