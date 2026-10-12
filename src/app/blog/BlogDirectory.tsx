@@ -89,7 +89,7 @@ export default function BlogDirectory({ posts }: { posts: BlogPost[] }) {
           {visible.length > 0 ? (
             <ol className="mt-12 border-t border-[color:var(--border)]">
               {pagePosts.map((post, index) => (
-                <li key={post.slug} className="border-b border-[color:var(--border)]">
+                <li key={post.slug} className="border-b border-[color:var(--border)] last:border-b-0">
                   <Link
                     href={`/blog/${post.slug}`}
                     className="group grid grid-cols-[5.75rem_1fr] items-center gap-4 py-6 sm:grid-cols-[11rem_1fr_auto] sm:py-8 lg:grid-cols-[14rem_1fr_auto] lg:gap-8"
