@@ -24,12 +24,6 @@ const nextConfig: NextConfig = {
       {
         pathname: "/assets/**"
       }
-    ],
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "images.unsplash.com"
-      }
     ]
   },
   async headers() {

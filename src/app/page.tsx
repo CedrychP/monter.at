@@ -11,11 +11,10 @@ import { getFeaturedCities, homeRegions, servedAreasJsonLd } from "./einsatzgebi
 import { buildMetadata } from "./pageMetadata";
 import { GoogleRatingStat } from "./GoogleRatingLive";
 import { getFallbackGoogleReviews, toGoogleRatingSummary } from "../lib/googleReviews";
-import { heroCdnUrl, heroLcpImage, heroSrcSet } from "../lib/heroLcp";
+import { heroLcpImage, heroSrcSet, heroVariant } from "../lib/heroLcp";
 import { localBusinessId, siteConfig } from "./siteConfig";
 
-const businessImage =
-  "https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&w=1600&q=85";
+const businessImage = "/assets/startseite-firmenkunden-wohnraum.webp";
 
 const emergencyPhoneDisplay = "01 4171346";
 const emergencyPhoneHref = "+4314171346";
@@ -114,57 +113,48 @@ const whyMonter = [
 
 const whyMonterStats = [
   { value: "60+", label: "Marken im Service" },
-  { value: "bis 130 €", label: "Reparaturbonus zurück" }
+  { value: "bis 130 €", label: "Geräte-Retter-Prämie" }
 ];
 
-// Platzhalter-Bilder (verifiziert ladbar) — Fotos werden später feinjustiert
 const applianceCategories = [
   {
     title: "Waschmaschine",
-    image:
-      "https://images.unsplash.com/photo-1632923565835-6582b54f2105?auto=format&fit=crop&w=1200&q=85",
+    image: "/assets/startseite-waschmaschine-wien.webp",
     href: "/haushaltsgeraete/waschmaschine-reparatur-wien"
   },
   {
     title: "Trockner",
-    image:
-      "https://images.unsplash.com/photo-1775210727386-4c798dfae209?auto=format&fit=crop&w=1200&q=85",
+    image: "/assets/startseite-trockner-wien.webp",
     href: "/haushaltsgeraete/trockner-reparatur-wien"
   },
   {
     title: "Geschirrspüler",
-    image:
-      "https://images.unsplash.com/photo-1620568400263-6f1cf95b9e30?auto=format&fit=crop&w=1200&q=85",
+    image: "/assets/startseite-geschirrspueler-wien.webp",
     href: "/haushaltsgeraete/geschirrspueler-reparatur-wien"
   },
   {
     title: "Kühlschrank",
-    image:
-      "https://images.unsplash.com/photo-1667404202905-4335b5370d96?auto=format&fit=crop&w=1200&q=85",
+    image: "/assets/startseite-kuehlschrank-wien.webp",
     href: "/haushaltsgeraete/kuehlschrank-reparatur-wien"
   },
   {
     title: "Gefrierschrank",
-    image:
-      "https://images.unsplash.com/photo-1719642357460-d0f611ebc108?auto=format&fit=crop&w=1200&q=85",
+    image: "/assets/startseite-gefrierschrank-wien.webp",
     href: "/haushaltsgeraete/tiefkuehl-reparatur-wien"
   },
   {
     title: "Backofen & Herd",
-    image:
-      "https://images.unsplash.com/photo-1677727852911-74e9d5269003?auto=format&fit=crop&w=1200&q=85",
+    image: "/assets/startseite-backofen-wien.webp",
     href: "/haushaltsgeraete/backofen-herd-reparatur-wien"
   },
   {
     title: "Dunstabzug",
-    image:
-      "https://images.unsplash.com/photo-1556909212-d5b604d0c90d?auto=format&fit=crop&w=1200&q=85",
+    image: "/assets/startseite-dunstabzug-wien.webp",
     href: "/haushaltsgeraete/dunstabzug-reparatur-wien"
   },
   {
     title: "Fernseher",
-    image:
-      "https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&w=1200&q=85",
+    image: "/assets/startseite-fernseher-wien.webp",
     href: "/haushaltsgeraete/fernseher-reparatur-wien"
   }
 ];
@@ -296,7 +286,7 @@ const faqs = [
   {
     question: "Kann ich die Geräte-Retter-Prämie nutzen?",
     answer:
-      "Ja. Mit der Geräte-Retter-Prämie (Nachfolger des Reparaturbonus) werden 50 % der förderfähigen Reparaturkosten gefördert — bis zu 130 € pro Reparatur, plus bis zu 30 € für einen Kostenvoranschlag. Wir unterstützen Sie bei der Abwicklung."
+      "Ja. Die Geräte-Retter-Prämie ist der Nachfolger des Reparaturbonus. 50 % der Brutto-Reparaturkosten gehen ab, höchstens 130 €, solange die Förderperiode läuft. MONTER ist Partnerunternehmen. Den Bon lösen Sie bei uns ein, der Betrag geht von der Rechnung ab."
   }
 ];
 
@@ -325,7 +315,8 @@ export default function Home() {
       "@id": localBusinessId
     },
     areaServed: servedAreasJsonLd,
-    url: siteConfig.siteUrl
+    url: siteConfig.siteUrl,
+    image: `${siteConfig.siteUrl}${heroVariant(heroLcpImage, 1440)}`
   };
 
   return (
@@ -333,7 +324,7 @@ export default function Home() {
       <link
         rel="preload"
         as="image"
-        href={heroCdnUrl(heroLcpImage, 768)}
+        href={heroVariant(heroLcpImage, 768)}
         imageSrcSet={heroSrcSet(heroLcpImage)}
         imageSizes="100vw"
         fetchPriority="high"
@@ -397,7 +388,7 @@ export default function Home() {
                   <span className="block text-xs font-normal tracking-eyebrow text-[color:var(--muted)]">
                     Akuter Ausfall
                   </span>
-                  <span className="font-display block text-2xl font-normal tracking-tight text-[color:var(--ink)] sm:text-3xl">
+                  <span className="font-display block text-2xl font-normal tracking-tight text-[color:var(--ink)] sm:text-3xl" data-phone-number>
                     {emergencyPhoneDisplay}
                   </span>
                 </span>
@@ -836,9 +827,9 @@ export default function Home() {
           </div>
 
           <div className="reveal mt-14 flex flex-col gap-3 sm:flex-row">
-            <Link href={`tel:${emergencyPhoneHref}`} className="btn-primary">
+            <a href={`tel:${emergencyPhoneHref}`} className="btn-primary">
               Jetzt anrufen
-            </Link>
+            </a>
             <Link href="/#kontakt" className="btn-on-dark-ghost">
               Anfrage senden
             </Link>
@@ -856,8 +847,7 @@ export default function Home() {
         </div>
 
         <div className="relative mx-auto max-w-[88rem] px-5 sm:px-8">
-          <div className="reveal grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
-            {/* Copy + Nutzen + CTA */}
+          <div className="reveal grid items-start gap-12 lg:grid-cols-2 lg:gap-16">
             <div>
               <p className="cap-line tracking-eyebrow">Förderung · Geräte-Retter-Prämie</p>
               <h2 className="font-display mt-8 text-balance text-3xl font-normal leading-[1.05] tracking-tight sm:text-4xl md:text-5xl">
@@ -865,16 +855,16 @@ export default function Home() {
                 <span className="text-[color:var(--accent)]">bis zu 130&nbsp;€ zurück.</span>
               </h2>
               <p className="mt-6 text-[1.05rem] font-normal leading-relaxed text-[color:var(--muted)]">
-                Mit der Geräte-Retter-Prämie (Nachfolger des Reparaturbonus) bekommen Sie 50&nbsp;%
-                Ihrer Reparaturkosten gefördert. Wir übernehmen die Abwicklung — Sie sparen bares Geld
-                und schonen die Umwelt.
+                Die Geräte-Retter-Prämie folgt auf den Reparaturbonus. 50&nbsp;% der
+                Brutto-Reparaturkosten gehen ab, höchstens 130&nbsp;€, solange diese Förderperiode
+                läuft. MONTER ist Partnerunternehmen.
               </p>
 
               <ul className="mt-8 space-y-3.5">
                 {[
-                  "50 % der Kosten gefördert — bis zu 130 € pro Reparatur",
-                  "Zusätzlich bis zu 30 € für den Kostenvoranschlag",
-                  "Wir reichen die Förderung für Sie ein — kein Papierkram"
+                  "50 % der Brutto-Reparaturkosten, höchstens 130 €",
+                  "Den Bon beantragen Sie online und lösen ihn bei der Reparatur ein",
+                  "Der Förderbetrag geht von der Rechnung ab, Sie zahlen den Rest"
                 ].map((benefit) => (
                   <li key={benefit} className="flex items-start gap-3">
                     <span className="mt-0.5 grid h-6 w-6 flex-none place-items-center rounded-full bg-[color:var(--accent-soft)] text-[color:var(--accent)]">
@@ -893,22 +883,30 @@ export default function Home() {
                 <Link href="/#kontakt" className="btn-primary">
                   Jetzt Reparatur anfragen
                 </Link>
-                <a
-                  className="link-arrow whitespace-nowrap"
-                  href="https://www.xn--gerte-retter-prmie-ntbm.at/"
-                  rel="noreferrer"
-                  target="_blank"
-                >
-                  Offizielle Förderseite
+                <Link href="/geraete-retter-praemie" className="link-arrow whitespace-nowrap">
+                  Zur Prämie
                   <svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true">
                     <path d="M1 8h13M9 3l5 5-5 5" stroke="currentColor" strokeWidth="1.2" fill="none" />
                   </svg>
-                </a>
+                </Link>
               </div>
             </div>
 
-            {/* Ersparnis-Karte mit Rechenbeispiel */}
-            <div className="relative overflow-hidden rounded-sm bg-[color:var(--ink)] p-8 text-white sm:p-10">
+            <div>
+              <figure>
+                <Image
+                  src="/assets/geraete-retter-praemie.webp"
+                  alt="Geräte-Retter-Prämie: Waschmaschine mit Werkzeug und dem Satz Bring's wieder zum Laufen."
+                  width={898}
+                  height={607}
+                  sizes="(min-width: 1024px) 40rem, 100vw"
+                  className="h-auto w-full"
+                />
+                <figcaption className="mt-3 text-sm font-normal leading-relaxed text-[color:var(--muted)]">
+                  Bring&apos;s wieder zum Laufen. Das Motiv der Geräte-Retter-Prämie.
+                </figcaption>
+              </figure>
+              <div className="relative mt-6 overflow-hidden rounded-sm bg-[color:var(--ink)] p-8 text-white sm:p-10">
               <div
                 aria-hidden="true"
                 className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full blur-[90px]"
@@ -934,22 +932,23 @@ export default function Home() {
                   <dl className="mt-4 space-y-2.5 text-[0.98rem]">
                     <div className="flex items-center justify-between gap-4">
                       <dt className="text-white/70">Reparaturkosten</dt>
-                      <dd className="font-display tabular-nums text-white">220&nbsp;€</dd>
+                      <dd className="font-display tabular-nums text-white">200&nbsp;€</dd>
                     </div>
                     <div className="flex items-center justify-between gap-4">
                       <dt className="text-white/70">Förderung (50 %)</dt>
                       <dd className="font-display tabular-nums text-[color:var(--accent-on-dark)]">
-                        −110&nbsp;€
+                        −100&nbsp;€
                       </dd>
                     </div>
                     <div className="mt-3 flex items-center justify-between gap-4 border-t border-white/10 pt-3">
                       <dt className="font-medium text-white">Ihr Preis</dt>
-                      <dd className="font-display text-xl tabular-nums text-white">110&nbsp;€</dd>
+                      <dd className="font-display text-xl tabular-nums text-white">100&nbsp;€</dd>
                     </div>
                   </dl>
                 </div>
               </div>
             </div>
+          </div>
           </div>
 
           {/* So einfach geht's */}
@@ -966,8 +965,8 @@ export default function Home() {
                   text: "Förderbar sind Elektro- und Elektronikgeräte, die üblicherweise in privaten Haushalten verwendet werden."
                 },
                 {
-                  title: "Förderung einreichen",
-                  text: "Wir reichen die Förderunterlagen ein. Der Betrag wird direkt auf Ihr hinterlegtes Konto überwiesen."
+                  title: "Bon einlösen",
+                  text: "MONTER ist Partnerunternehmen. Der Förderbetrag geht von der Rechnung ab, Sie zahlen den Rest."
                 }
               ].map((step, index) => (
                 <div key={step.title} className="bg-white p-8 lg:p-10">
@@ -1267,7 +1266,7 @@ export default function Home() {
             <div className="relative aspect-[4/5] w-full sm:aspect-[16/9] lg:aspect-[21/9]">
               <Image
                 src={businessImage}
-                alt="Geräteservice für Firmenkunden"
+                alt="Heller Wohnraum mit Ledersofa, Holztisch und großer Fensterfront."
                 fill
                 sizes="100vw"
                 className="object-cover"
@@ -1332,7 +1331,7 @@ export default function Home() {
               </span>
               <span className="text-left">
                 <span className="block text-xs font-normal text-[color:var(--muted)]">Frage nicht dabei?</span>
-                <span className="block font-display text-lg font-normal tracking-tight text-[color:var(--ink)]">
+                <span className="block font-display text-lg font-normal tracking-tight text-[color:var(--ink)]" data-phone-number>
                   {emergencyPhoneDisplay}
                 </span>
               </span>
@@ -1365,6 +1364,29 @@ export default function Home() {
             ))}
           </div>
         </div>
+      </section>
+
+      <section aria-label="MONTER in Zahlen" className="border-t border-[color:var(--border)] bg-[color:var(--bg-muted)]">
+        <ul className="mx-auto grid max-w-[88rem] sm:grid-cols-2 lg:grid-cols-4">
+          <li className="border-b border-[color:var(--border)] px-5 py-10 sm:px-8 lg:border-b-0 lg:border-r">
+            <GoogleRatingStat initial={toGoogleRatingSummary(googleReviews)} href={siteConfig.googleReviewsUrl} />
+          </li>
+          {[
+            { value: "60+", label: "Marken, markenoffen" },
+            { value: "23", label: "Wiener Bezirke vom Standort" },
+            { value: "6", label: "Bundesländer mit Technikern" }
+          ].map((stat) => (
+            <li
+              key={stat.label}
+              className="border-b border-[color:var(--border)] px-5 py-10 last:border-b-0 sm:px-8 sm:[&:nth-child(2)]:border-r lg:border-b-0 lg:border-r lg:last:border-r-0"
+            >
+              <p className="font-display text-5xl font-light italic tracking-tight text-[color:var(--accent)] sm:text-6xl">
+                {stat.value}
+              </p>
+              <p className="mt-3 max-w-[12rem] text-sm font-normal leading-relaxed text-[color:var(--muted)]">{stat.label}</p>
+            </li>
+          ))}
+        </ul>
       </section>
 
       {/* CTA — verweist nach oben aufs Kontaktformular */}

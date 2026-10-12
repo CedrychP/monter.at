@@ -1,24 +1,19 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import NavNewsletterSignup from "./NavNewsletterSignup";
 import { useAdPhone } from "./AdPhone";
 import { siteConfig } from "./siteConfig";
-import { heroCdnUrl, heroLcpImage, heroSrcSet } from "../lib/heroLcp";
+import { heroLcpImage, heroSrcSet, heroVariant } from "../lib/heroLcp";
 
 const SLIDE_DURATION = 6500;
 
 const applianceImage = heroLcpImage;
-const garageImage =
-  "https://images.unsplash.com/photo-1696992812596-3c0d4d2d1299?auto=format&fit=crop&w=1280&q=60";
-const premiumImage =
-  "https://images.unsplash.com/photo-1604242693257-8c3348cd7fb1?auto=format&fit=crop&w=1280&q=60";
-const partsImage =
-  "https://images.unsplash.com/photo-1530124566582-a618bc2615dc?auto=format&fit=crop&w=1280&q=60";
-const newsletterImage =
-  "https://images.unsplash.com/photo-1634549709262-508c47d4c229?auto=format&fit=crop&w=1280&q=60";
+const garageImage = "/assets/hero-garagentor-wien.webp";
+const climateImage = "/assets/hero-klimageraet-oesterreich.webp";
+const partsImage = "/assets/hero-ersatzteile-waschmaschine-wien.webp";
+const newsletterImage = "/assets/hero-monter-gold.webp";
 
 type SlideAction = {
   label: string;
@@ -41,13 +36,13 @@ const slides: Slide[] = [
   {
     id: "haushalt",
     image: applianceImage,
-    alt: "Haushaltsgeräte-Reparatur in Wien",
+    alt: "Küche mit weißem Kühlschrank, Geschirrspüler und Herd.",
     eyebrow: "Haushaltsgeräte",
     title: (
       <>
-        Haushaltsgeräte
+        Haushaltsgeräte,{" "}
         <span className="mt-1 block font-bold text-white">
-          professionell <span className="hero-highlight">repariert.</span>
+          im Haus <span className="hero-highlight">repariert.</span>
         </span>
       </>
     ),
@@ -60,11 +55,11 @@ const slides: Slide[] = [
   {
     id: "garage",
     image: garageImage,
-    alt: "Garagentor-Reparatur und Wartung in Wien",
+    alt: "Geschlossenes Sektionaltor neben einer roten Ziegelwand, daneben eine Ampel.",
     eyebrow: "Garagentore",
     title: (
       <>
-        Garagentore,
+        Garagentore,{" "}
         <span className="mt-1 block font-bold text-white">
           sicher in <span className="hero-highlight">Bewegung.</span>
         </span>
@@ -77,38 +72,38 @@ const slides: Slide[] = [
     ]
   },
   {
-    id: "praemie",
-    image: premiumImage,
-    alt: "Geräte-Retter-Prämie von MONTER",
-    eyebrow: "Geräte-Retter-Prämie",
+    id: "klima",
+    image: climateImage,
+    alt: "Weißes Außengerät einer Split-Klimaanlage mit Lüftergitter.",
+    eyebrow: "Klimageräte",
     title: (
       <>
-        Reparieren,
+        Klimageräte,{" "}
         <span className="mt-1 block font-bold text-white">
-          bis&nbsp;zu <span className="hero-highlight">130&nbsp;€ zurück.</span>
+          geprüft im <span className="hero-highlight">Kreis.</span>
         </span>
       </>
     ),
-    text: "Mit der Geräte-Retter-Prämie sichern Sie sich 50 % Ihrer Reparaturkosten zurück — bis zu 130 € pro Reparatur. So lohnt sich Reparieren statt Neukauf, für Ihr Budget und die Umwelt.",
+    text: "Split, Multi-Split und Monoblock. Filter reinigen geht selbst. Am Kältemittelkreis arbeitet nur zertifiziertes Personal.",
     actions: [
-      { label: "Prämie sichern", href: "/kontakt", variant: "primary" },
-      { label: "Mehr erfahren", href: "/#kontakt", variant: "ghost" }
+      { label: siteConfig.phoneDisplay, href: `tel:${siteConfig.phoneHref}`, variant: "primary" },
+      { label: "Klimaservice ansehen", href: "/klimageraete", variant: "ghost" }
     ]
   },
   {
     id: "ersatzteile",
     image: partsImage,
-    alt: "Ersatzteile für Haushaltsgeräte",
+    alt: "Geöffnete Waschmaschine von hinten mit Riemenscheibe, davor ein Werkzeugkasten.",
     eyebrow: "Ersatzteile",
     title: (
       <>
-        Ersatzteile,
+        Ersatzteile,{" "}
         <span className="mt-1 block font-bold text-white">
           passend <span className="hero-highlight">verbaut.</span>
         </span>
       </>
     ),
-    text: "Pumpe, Heizstab, Dichtung, Laufrolle oder Elektronik — wir besorgen und verbauen das passende Originalteil für Ihr Gerät oder Garagentor.",
+    text: "Pumpe, Heizstab, Dichtung, Laufrolle oder Elektronik — wir besorgen und verbauen das passende Teil für Ihr Gerät oder Garagentor.",
     actions: [
       { label: "Zu den Ersatzteilen", href: "/ersatzteile", variant: "primary" },
       { label: "Teil anfragen", href: "/kontakt", variant: "ghost" }
@@ -117,11 +112,11 @@ const slides: Slide[] = [
   {
     id: "newsletter",
     image: newsletterImage,
-    alt: "MONTER GOLD Club — bald verfügbar",
+    alt: "Dunkle gebogene Flächen mit einem goldenen Lichtstreifen.",
     eyebrow: "Exklusiv · Demnächst",
     title: (
       <>
-        Bald exklusiv
+        Bald exklusiv{" "}
         <span className="mt-1 block font-bold text-gold-shimmer">
           MONTER GOLD Club
         </span>
@@ -245,28 +240,19 @@ export default function HeroSlider() {
               aria-label={`${slideIndex + 1} von ${count}`}
             >
               <div className="absolute inset-0 -z-10">
-                {slideIndex === 0 ? (
+                {slideIndex === 0 ||
+                (!deferSlides &&
+                  (isActive ||
+                    Math.min(Math.abs(slideIndex - index), count - Math.abs(slideIndex - index)) <=
+                      1)) ? (
                   <img
-                    src={heroCdnUrl(slide.image, 768)}
+                    src={heroVariant(slide.image, slideIndex === 0 ? 768 : 1440)}
                     srcSet={heroSrcSet(slide.image)}
                     sizes="100vw"
                     alt={slide.alt}
-                    fetchPriority="high"
+                    fetchPriority={slideIndex === 0 ? "high" : "low"}
                     decoding="async"
                     className="absolute inset-0 h-full w-full object-cover object-center"
-                  />
-                ) : !deferSlides &&
-                  (isActive ||
-                    Math.min(Math.abs(slideIndex - index), count - Math.abs(slideIndex - index)) <=
-                      1) ? (
-                  <Image
-                    src={slide.image}
-                    alt=""
-                    fill
-                    fetchPriority="low"
-                    quality={50}
-                    sizes="100vw"
-                    className="object-cover object-center"
                   />
                 ) : null}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/60" />
