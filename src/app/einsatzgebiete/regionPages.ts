@@ -94,8 +94,8 @@ export const regionPages: RegionPage[] = [
     h1: "Einsatzgebiet Wien.",
     short:
       "Alle 23 Bezirke mit eigenem Team, kurze Wege, Anfahrt ab 96 € inkl. MwSt. — unser Kerngebiet.",
-    image: "/assets/startseite-waschmaschine-produkt-wien.webp",
-    imageAlt: "Weiße Frontlader-Waschmaschine mit runder Glastür.",
+    image: "/assets/einsatzgebiet-wien-stephansdom.webp",
+    imageAlt: "Zickzackdach des Stephansdoms in Wien.",
     intro:
       "Wien ist unser Kerngebiet: Unser Standort liegt in Floridsdorf, unsere Techniker fahren von hier aus alle 23 Bezirke an. Weil die Wege kurz sind, sind Termine oft schon binnen ein bis zwei Tagen möglich — und bei einem Wasseraustritt oder einem ausgefallenen Tiefkühlgerät auch am selben Tag. Diese Seite erklärt, wie Anfahrt, Terminplanung und Zugang in Wien konkret ablaufen.",
     coverage: "kerngebiet",
@@ -159,8 +159,8 @@ export const regionPages: RegionPage[] = [
     h1: "Einsatzgebiet Niederösterreich.",
     short:
       "Wiener Umland mit eigenem Team, Anfahrt ab 120 € inkl. MwSt. — ab einer Stunde Fahrt gilt eine Pauschale.",
-    image: "/assets/ueber-uns-garagentor-wien.webp",
-    imageAlt: "Geschlossenes Sektionaltor neben einer roten Ziegelwand.",
+    image: "/assets/einsatzgebiet-niederoesterreich-wachau.webp",
+    imageAlt: "Ort an der Donau in der Wachau, Weingärten im Vordergrund.",
     intro:
       "Niederösterreich fahren wir mit dem eigenen Team an — am dichtesten im Umland von Wien, wo die Fahrzeiten kurz sind. Je weiter eine Adresse entfernt liegt, desto stärker bestimmt die Fahrzeit den Termin: Ab etwa einer Stunde Anfahrt gilt eine Pauschale von 240 € inkl. MwSt. Diese Seite zeigt, welche Orte im Kernbereich liegen und wie wir mit weiter entfernten Adressen umgehen.",
     coverage: "kerngebiet",
@@ -251,8 +251,8 @@ export const regionPages: RegionPage[] = [
     h1: "Reparatur in Linz.",
     short:
       "Techniker vor Ort in den 15 Stadtteilen. Schwerpunkt Haushaltsgeräte, Anfahrt wird vor dem Termin genannt.",
-    image: "/assets/startseite-kuehlschrank-produkt-wien.webp",
-    imageAlt: "Kühl-Gefrierkombination aus Edelstahl mit Gefrierfach unten.",
+    image: "/assets/einsatzgebiet-linz-donau.webp",
+    imageAlt: "Linz an der Donau, Neuer Dom und Linzer Schloss.",
     intro:
       "In Linz sind Techniker vor Ort im Einsatz. Die Reparatur fährt nicht aus Wien an, sie passiert in der Stadt. Der Schwerpunkt sind Haushaltsgeräte: Waschmaschine, Trockner, Geschirrspüler, Kühl- und Gefriergerät, Backofen und Herd. Wels, Steyr und das übrige Oberösterreich gehören nicht zum Einsatzgebiet.",
     coverage: "techniker-vor-ort",

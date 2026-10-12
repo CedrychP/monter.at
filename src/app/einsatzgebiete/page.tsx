@@ -104,7 +104,7 @@ export default function EinsatzgebieteHubPage() {
                     alt={region.imageAlt}
                     fill
                     sizes="(min-width: 1024px) 28rem, 100vw"
-                    className="object-contain"
+                    className="object-cover"
                   />
                 </span>
                 <span className="flex flex-1 flex-col border-t border-[color:var(--border)] p-6">

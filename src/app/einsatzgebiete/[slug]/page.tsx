@@ -91,11 +91,11 @@ function RegionFacts({ region }: { region: RegionPage }) {
                 alt={region.imageAlt}
                 fill
                 sizes="(min-width: 1024px) 28rem, 100vw"
-                className="object-contain"
+                className="object-cover"
               />
             </div>
             <figcaption className="border-t border-[color:var(--border)] px-4 py-3 text-sm font-light text-[color:var(--muted)]">
-              Beispielbild. Kein Foto eines Einsatzes in {region.name}.
+              {region.imageAlt} Beispielbild, kein Einsatzfoto.
             </figcaption>
           </figure>
         </div>

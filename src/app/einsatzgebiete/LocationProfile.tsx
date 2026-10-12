@@ -25,10 +25,10 @@ export default function LocationProfile({ location, parent, image, imageAlt }: L
             </p>
             <figure className="mt-8 overflow-hidden border border-[color:var(--border)] bg-white">
               <div className="relative aspect-[4/3]">
-                <Image src={image} alt={imageAlt} fill sizes="(min-width: 1024px) 24rem, 100vw" className="object-contain" />
+                <Image src={image} alt={imageAlt} fill sizes="(min-width: 1024px) 24rem, 100vw" className="object-cover" />
               </div>
               <figcaption className="border-t border-[color:var(--border)] px-4 py-3 text-sm font-light text-[color:var(--muted)]">
-                Beispielbild. Kein Foto eines Einsatzes in {location.name}.
+                {imageAlt} Beispielbild, kein Einsatzfoto.
               </figcaption>
             </figure>
             <div className="mt-8 flex flex-wrap gap-2">
