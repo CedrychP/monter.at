@@ -48,7 +48,7 @@ export const sitemapGroups: SitemapGroup[] = [
       },
       {
         label: "Haushaltsgeräte Linz",
-        href: "/einsatzgebiete/oberoesterreich/linz",
+        href: "/einsatzgebiete/linz",
         children: linzAppliancePages.map((page) => ({
           label: page.title,
           href: `/haushaltsgeraete/${page.slug}`
@@ -103,7 +103,7 @@ export const sitemapGroups: SitemapGroup[] = [
     id: "einsatzgebiete",
     label: "Einsatzgebiete",
     href: "/einsatzgebiete",
-    description: "Wo wir arbeiten — Kerngebiet und Techniker vor Ort.",
+    description: "Wien, Niederösterreich und Linz.",
     links: regionPages.map((region) => {
       const locations = getLocationsForRegion(region.slug);
       return {

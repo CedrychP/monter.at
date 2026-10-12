@@ -119,7 +119,7 @@ export function buildSearchIndex(): SearchEntry[] {
       description: "Wien, Niederösterreich und Nordburgenland mit eigenem Team, Rest über Partner.",
       href: "/einsatzgebiete",
       category: "Einsatzgebiet",
-      keywords: "einsatzgebiet einsatzgebiete region bundesland österreich anfahrt partner"
+      keywords: "einsatzgebiet einsatzgebiete wien niederösterreich linz anfahrt bezirk"
     },
     {
       title: "Preise & Pauschalen",

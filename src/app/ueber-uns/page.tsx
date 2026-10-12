@@ -23,10 +23,7 @@ const heroCaption = "Motor, Riemen, Kabel. Die Ursache sitzt oft hinter der Blen
 const states = [
   { name: "Wien", href: "/einsatzgebiete/wien" },
   { name: "Niederösterreich", href: "/einsatzgebiete/niederoesterreich" },
-  { name: "Burgenland", href: "/einsatzgebiete/burgenland" },
-  { name: "Oberösterreich", href: "/einsatzgebiete/oberoesterreich" },
-  { name: "Steiermark", href: "/einsatzgebiete/steiermark" },
-  { name: "Salzburg", href: "/einsatzgebiete/salzburg" }
+  { name: "Linz", href: "/einsatzgebiete/linz" }
 ];
 
 const scenes = [
@@ -44,7 +41,7 @@ const scenes = [
     alt: "Geschlossenes Sektionaltor neben einer roten Ziegelwand, daneben eine Ampel.",
     kicker: "Am Tor",
     title: "Garagentore",
-    text: "Feder, Laufrollen, Antrieb und Sicherheitsprüfung. In Wien, Niederösterreich und im Burgenland das volle Spektrum.",
+    text: "Feder, Laufrollen, Antrieb und Sicherheitsprüfung. Das volle Spektrum in Wien und Niederösterreich.",
     href: "/garagentore",
     label: "Zu den Toren"
   },
@@ -100,7 +97,7 @@ const steps = [
 
 const slipLines = [
   { label: "Anfang", value: "Wien" },
-  { label: "Heute", value: "Österreich" },
+  { label: "Heute", value: "Wien, NÖ, Linz" },
   { label: "Gerät", value: "Haushalt, Tor, Klima" }
 ];
 
@@ -123,12 +120,12 @@ const faqs: HubFaqItem[] = [
   {
     question: "Arbeitet ihr nur in Wien?",
     answer:
-      "Angefangen hat es in Wien. Heute sind Techniker in Wien, Niederösterreich, Burgenland, Oberösterreich, der Steiermark und Salzburg im Einsatz. Wien und Niederösterreich fahren wir vom Standort in Floridsdorf aus. In Kärnten, Tirol und Vorarlberg sind wir derzeit nicht tätig."
+      "Angefangen hat es in Wien. Heute fahren wir Wien und Niederösterreich vom Standort in Floridsdorf aus. In Linz sind Techniker vor Ort. Außerhalb dieser drei Gebiete nehmen wir keine Aufträge an."
   }
 ];
 
 const pageDescription =
-  "MONTER ist ein österreichischer Reparaturbetrieb. Angefangen in Wien, heute mit Technikern in mehreren Bundesländern. Haushaltsgeräte, Garagentore und Klima.";
+  "MONTER ist ein Reparaturbetrieb aus Wien. Einsatz in Wien, Niederösterreich und Linz. Haushaltsgeräte, Garagentore und Klima.";
 
 export const metadata: Metadata = buildMetadata({
   title: "Über uns | In Wien begonnen | MONTER",
@@ -257,7 +254,7 @@ export default async function UeberUnsPage() {
           <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
             <h2 className="font-display max-w-md text-4xl font-light leading-tight tracking-tight sm:text-5xl">
               Angefangen in Wien.
-              <span className="mt-1 block italic text-[color:var(--accent)]">Heute in Österreich.</span>
+              <span className="mt-1 block italic text-[color:var(--accent)]">Niederösterreich und Linz.</span>
             </h2>
             <ul className="flex flex-wrap gap-x-6 gap-y-2 lg:max-w-xl lg:justify-end">
               {states.map((state) => (
@@ -272,10 +269,10 @@ export default async function UeberUnsPage() {
             </ul>
           </div>
           <p className="mt-8 max-w-3xl text-sm font-light leading-relaxed text-[color:var(--muted)]">
-            {"Wien und Niederösterreich vom Standort in Floridsdorf. In Burgenland, Oberösterreich, der Steiermark und Salzburg Techniker vor Ort. Wo der Techniker fährt, steht bei den "}
+            {"Wien und Niederösterreich vom Standort in Floridsdorf. In Linz Techniker vor Ort. Wo der Techniker fährt, steht bei den "}
             <Link href="/einsatzgebiete" className="border-b border-current">
               <span className="text-[color:var(--ink)]">Einsatzgebieten</span>
-            </Link>{". In Kärnten, Tirol und Vorarlberg derzeit ohne Techniker."}
+            </Link>{"."}
           </p>
         </div>
       </section>

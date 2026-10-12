@@ -1086,16 +1086,14 @@ export default function Home() {
             </div>
             <div className="max-w-xl">
               <p className="text-[1.02rem] font-normal leading-relaxed text-[color:var(--muted)]">
-                Reparaturen in Wien und im Wiener Umland — schnell, planbar und mit transparenter
-                Anfahrt. Material wird nur bei tatsächlichem Bedarf verrechnet, bei längeren
-                Wegstrecken können Aufpreise anfallen. Im Burgenland, in Oberösterreich, der
-                Steiermark und Salzburg sind Techniker vor Ort im Einsatz.
+                Reparaturen in Wien, im niederösterreichischen Umland und in Linz. In Wien und
+                Niederösterreich mit festem Anfahrtssatz, in Linz mit Technikern vor Ort.
               </p>
               <Link
                 href="/einsatzgebiete"
                 className="mt-5 inline-flex text-[0.72rem] font-medium uppercase tracking-[0.16em] text-[color:var(--accent)]"
               >
-                Alle Einsatzgebiete in Österreich
+                Wien, Niederösterreich und Linz
                 <span className="ml-1">→</span>
               </Link>
             </div>
@@ -1204,14 +1202,14 @@ export default function Home() {
                 ))}
                 <div className="mt-6 rounded-sm bg-[color:var(--bg-muted)] p-5">
                   <p className="text-sm font-normal leading-relaxed text-[color:var(--muted)]">
-                    Ihre Region nicht dabei? Wir sind auch im{" "}
+                    Außerhalb von Wien und Niederösterreich fahren wir nach{" "}
                     <Link
-                      href="/einsatzgebiete"
+                      href="/einsatzgebiete/linz"
                       className="underline transition hover:text-[color:var(--accent)]"
                     >
-                      Burgenland, in Oberösterreich, der Steiermark und Salzburg
-                    </Link>{" "}
-                    tätig. Rufen Sie kurz an — wir prüfen Termine in der Nähe.
+                      Linz
+                    </Link>
+                    . Dort sind Techniker vor Ort.
                   </p>
                   <a
                     href={`tel:${emergencyPhoneHref}`}
@@ -1382,7 +1380,7 @@ export default function Home() {
           {[
             { value: "60+", label: "Marken, markenoffen" },
             { value: "23", label: "Wiener Bezirke vom Standort" },
-            { value: "6", label: "Bundesländer mit Technikern" }
+            { value: "3", label: "Einsatzgebiete: Wien, NÖ, Linz" }
           ].map((stat) => (
             <li
               key={stat.label}

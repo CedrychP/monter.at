@@ -54,7 +54,7 @@ export const linzAppliancePages: AppliancePage[] = [
       {
         question: "Kommt tatsächlich ein Techniker nach Linz?",
         answer:
-          "Ja. In Oberösterreich arbeiten Techniker vor Ort, am dichtesten im Zentralraum Linz, Wels und Steyr. Anfrage und Terminabstimmung laufen über uns, die Reparatur findet bei Ihnen zu Hause statt."
+          "Ja. In Linz arbeiten Techniker vor Ort. Anfrage und Terminabstimmung laufen über uns, die Reparatur findet bei Ihnen zu Hause statt. Wels und Steyr gehören nicht zum Einsatzgebiet."
       },
       {
         question: "Wer repariert Waschmaschinen in Linz in der Nähe?",

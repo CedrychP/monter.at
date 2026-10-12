@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { LocationPage } from "./locationPages";
 
@@ -5,9 +6,11 @@ type LocationProfileProps = {
   location: LocationPage;
   /** Rücksprung zur übergeordneten Seite — Region oder Stadt. */
   parent: { label: string; href: string };
+  image: string;
+  imageAlt: string;
 };
 
-export default function LocationProfile({ location, parent }: LocationProfileProps) {
+export default function LocationProfile({ location, parent, image, imageAlt }: LocationProfileProps) {
   return (
     <section className="border-t border-[color:var(--border)] bg-[color:var(--bg-muted)] py-20 sm:py-24">
       <div className="mx-auto max-w-[88rem] px-5 sm:px-8">
@@ -20,6 +23,14 @@ export default function LocationProfile({ location, parent }: LocationProfilePro
             <p className="mt-5 text-sm font-light leading-relaxed text-[color:var(--muted)]">
               {location.character}
             </p>
+            <figure className="mt-8 overflow-hidden border border-[color:var(--border)] bg-white">
+              <div className="relative aspect-[4/3]">
+                <Image src={image} alt={imageAlt} fill sizes="(min-width: 1024px) 24rem, 100vw" className="object-contain" />
+              </div>
+              <figcaption className="border-t border-[color:var(--border)] px-4 py-3 text-sm font-light text-[color:var(--muted)]">
+                Beispielbild. Kein Foto eines Einsatzes in {location.name}.
+              </figcaption>
+            </figure>
             <div className="mt-8 flex flex-wrap gap-2">
               {location.postalCodes.map((code) => (
                 <span

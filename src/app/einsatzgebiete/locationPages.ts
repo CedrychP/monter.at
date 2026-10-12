@@ -1,6 +1,5 @@
 import { wienDistricts } from "./locations/wien";
 import { niederoesterreichCities } from "./locations/niederoesterreich";
-import { weitereCities } from "./locations/weitere";
 import { linzDistricts } from "./locations/linz";
 
 /**
@@ -48,7 +47,6 @@ export type LocationPage = {
 export const locationPages: LocationPage[] = [
   ...wienDistricts,
   ...niederoesterreichCities,
-  ...weitereCities,
   ...linzDistricts
 ];
 

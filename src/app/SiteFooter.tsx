@@ -5,7 +5,7 @@ import { TrackedPhoneLink } from "./AdPhone";
 import NavNewsletterSignup from "./NavNewsletterSignup";
 import FooterBlogPreview from "./FooterBlogPreview";
 import { blogPosts } from "./blog/posts";
-import { coreRegions } from "./einsatzgebiete/regionPages";
+import { additionalRegions, coreRegions } from "./einsatzgebiete/regionPages";
 import { siteConfig } from "./siteConfig";
 
 const footerBlogPosts = blogPosts.map((post) => ({
@@ -56,11 +56,10 @@ const klimaLinks = [
 ];
 
 const regionLinks = [
-  ...coreRegions.map((region) => ({
+  ...[...coreRegions, ...additionalRegions].map((region) => ({
     label: region.name,
     href: `/einsatzgebiete/${region.slug}`
   })),
-  { label: "Oberösterreich", href: "/einsatzgebiete/oberoesterreich" },
   { label: "Alle Einsatzgebiete", href: "/einsatzgebiete" }
 ];
 

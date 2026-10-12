@@ -77,7 +77,7 @@ export default async function RootLayout({
       addressLocality: siteConfig.address.city,
       addressCountry: siteConfig.address.country
     },
-    areaServed: ["Wien", "Niederösterreich", "Österreich"],
+    areaServed: ["Wien", "Niederösterreich", "Linz"],
     geo: {
       "@type": "GeoCoordinates",
       latitude: siteConfig.geo.latitude,
@@ -89,7 +89,7 @@ export default async function RootLayout({
       "@type": "ContactPoint",
       telephone: siteConfig.phoneHref,
       contactType: "customer support",
-      areaServed: "AT",
+      areaServed: ["Wien", "Niederösterreich", "Linz"],
       availableLanguage: ["de"]
     }
   };

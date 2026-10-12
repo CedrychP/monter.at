@@ -37,9 +37,9 @@ const householdTravel: PriceItem[] = [
     highlight: true
   },
   {
-    service: "Anfahrt weitere Bundesländer",
+    service: "Anfahrt Linz",
     price: "auf Anfrage",
-    note: "Im Burgenland, in Oberösterreich, der Steiermark und Salzburg hängt die Anfahrt von der Adresse ab — wir nennen sie vor dem Termin."
+    note: "Haushaltsgeräte in Linz. Die Anfahrt hängt von der Adresse ab und steht vor dem Termin."
   }
 ];
 
@@ -96,11 +96,6 @@ const garageTravel: PriceItem[] = [
     price: "240 €",
     note: "Anfahrtspauschale bei einer Fahrzeit von mehr als einer Stunde (An- und Abfahrt)."
   },
-  {
-    service: "Anfahrt weitere Bundesländer",
-    price: "auf Anfrage",
-    note: "Torarbeiten bieten wir vor allem in Wien, Niederösterreich und im Burgenland an — Anfahrt und Verfügbarkeit klären wir bei der Anfrage."
-  }
 ];
 
 const garageLabor: PriceItem[] = [
@@ -279,7 +274,7 @@ export default function PreisePage() {
             <p className="mt-6 text-[1.02rem] font-light leading-relaxed text-[color:var(--muted)]">
               Material und Ersatzteile werden nur verrechnet, wenn sie gebraucht werden. Der Preis
               dafür wird vor dem Einbau abgestimmt. Die festen Anfahrtssätze gelten für Wien und
-              Niederösterreich. Anderswo nennen wir die Anfahrt vor dem Termin. Die Übersicht steht
+              Niederösterreich. In Linz nennen wir die Anfahrt vor dem Termin. Die Übersicht steht
               unter{" "}
               <Link href="/einsatzgebiete" className="underline transition hover:text-[color:var(--accent)]">
                 Einsatzgebiete

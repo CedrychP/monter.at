@@ -48,7 +48,21 @@ const nextConfig: NextConfig = {
       { source: "/leistungen", destination: "/haushaltsgeraete", statusCode: 301 },
       { source: "/leistungen/:slug", destination: "/haushaltsgeraete/:slug", statusCode: 301 },
       { source: "/garagentor-reparatur-wien", destination: "/garagentore", statusCode: 301 },
-      { source: "/klimageraete-reparatur-wien", destination: "/klimageraete", statusCode: 301 }
+      { source: "/klimageraete-reparatur-wien", destination: "/klimageraete", statusCode: 301 },
+      {
+        source: "/einsatzgebiete/oberoesterreich/linz/:stadtteil",
+        destination: "/einsatzgebiete/linz/:stadtteil",
+        statusCode: 301
+      },
+      { source: "/einsatzgebiete/oberoesterreich/linz", destination: "/einsatzgebiete/linz", statusCode: 301 },
+      { source: "/einsatzgebiete/oberoesterreich", destination: "/einsatzgebiete/linz", statusCode: 301 },
+      { source: "/einsatzgebiete/oberoesterreich/:ort", destination: "/einsatzgebiete", statusCode: 301 },
+      { source: "/einsatzgebiete/burgenland", destination: "/einsatzgebiete", statusCode: 301 },
+      { source: "/einsatzgebiete/burgenland/:ort", destination: "/einsatzgebiete", statusCode: 301 },
+      { source: "/einsatzgebiete/steiermark", destination: "/einsatzgebiete", statusCode: 301 },
+      { source: "/einsatzgebiete/steiermark/:ort", destination: "/einsatzgebiete", statusCode: 301 },
+      { source: "/einsatzgebiete/salzburg", destination: "/einsatzgebiete", statusCode: 301 },
+      { source: "/einsatzgebiete/salzburg/:ort", destination: "/einsatzgebiete", statusCode: 301 }
     ];
   }
 };

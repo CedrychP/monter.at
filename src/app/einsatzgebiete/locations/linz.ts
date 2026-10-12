@@ -3,13 +3,12 @@ import type { LocationPage } from "../locationPages";
 /**
  * Die 15 bewohnten statistischen Bezirke von Linz (Gliederung seit 2014, ohne
  * Industriegebiet-Hafen). Postleitzahlen: 4040 nördlich der Donau, 4030 südlich
- * der Salzburger Straße, sonst 4020. Schwerpunkt Haushaltsgeräte; Anfahrt wird
- * vor dem Termin genannt, weil es für Oberösterreich keinen festen Satz gibt.
+ * der Salzburger Straße, sonst 4020. Schwerpunkt Haushaltsgeräte. Für Linz gibt
+ * es keinen festen Anfahrtssatz, der Betrag steht vor dem Termin.
  */
 export const linzDistricts: LocationPage[] = [
   {
-    regionSlug: "oberoesterreich",
-    parentSlug: "linz",
+    regionSlug: "linz",
     slug: "innere-stadt",
     name: "Innere Stadt",
     postalCodes: ["4020"],
@@ -49,14 +48,13 @@ export const linzDistricts: LocationPage[] = [
       {
         question: "Was kostet die Anfahrt in die Innenstadt?",
         answer:
-          "Für Oberösterreich gibt es keinen pauschalen Satz. Sie erfahren die Anfahrtskosten am Telefon, bevor ein Termin vereinbart wird."
+          "Für Linz gibt es keinen festen Anfahrtssatz. Sie erfahren die Anfahrtskosten am Telefon, bevor ein Termin vereinbart wird."
       }
     ],
     enriched: true
   },
   {
-    regionSlug: "oberoesterreich",
-    parentSlug: "linz",
+    regionSlug: "linz",
     slug: "urfahr",
     name: "Urfahr",
     postalCodes: ["4040"],
@@ -102,8 +100,7 @@ export const linzDistricts: LocationPage[] = [
     enriched: true
   },
   {
-    regionSlug: "oberoesterreich",
-    parentSlug: "linz",
+    regionSlug: "linz",
     slug: "poestlingberg",
     name: "Pöstlingberg",
     postalCodes: ["4040"],
@@ -149,8 +146,7 @@ export const linzDistricts: LocationPage[] = [
     enriched: true
   },
   {
-    regionSlug: "oberoesterreich",
-    parentSlug: "linz",
+    regionSlug: "linz",
     slug: "st-magdalena",
     name: "St. Magdalena",
     postalCodes: ["4040"],
@@ -196,8 +192,7 @@ export const linzDistricts: LocationPage[] = [
     enriched: true
   },
   {
-    regionSlug: "oberoesterreich",
-    parentSlug: "linz",
+    regionSlug: "linz",
     slug: "dornach-auhof",
     name: "Dornach-Auhof",
     postalCodes: ["4040"],
@@ -243,8 +238,7 @@ export const linzDistricts: LocationPage[] = [
     enriched: true
   },
   {
-    regionSlug: "oberoesterreich",
-    parentSlug: "linz",
+    regionSlug: "linz",
     slug: "kaplanhof",
     name: "Kaplanhof",
     postalCodes: ["4020"],
@@ -290,8 +284,7 @@ export const linzDistricts: LocationPage[] = [
     enriched: true
   },
   {
-    regionSlug: "oberoesterreich",
-    parentSlug: "linz",
+    regionSlug: "linz",
     slug: "franckviertel",
     name: "Franckviertel",
     postalCodes: ["4020"],
@@ -331,14 +324,13 @@ export const linzDistricts: LocationPage[] = [
       {
         question: "Was kostet die Anfahrt ins Franckviertel?",
         answer:
-          "Für Oberösterreich gibt es keinen festen Satz. Die Anfahrtskosten erfahren Sie am Telefon, bevor ein Termin vereinbart wird."
+          "Für Linz gibt es keinen festen Anfahrtssatz. Die Anfahrtskosten erfahren Sie am Telefon, bevor ein Termin vereinbart wird."
       }
     ],
     enriched: true
   },
   {
-    regionSlug: "oberoesterreich",
-    parentSlug: "linz",
+    regionSlug: "linz",
     slug: "bulgariplatz",
     name: "Bulgariplatz",
     postalCodes: ["4020"],
@@ -384,8 +376,7 @@ export const linzDistricts: LocationPage[] = [
     enriched: true
   },
   {
-    regionSlug: "oberoesterreich",
-    parentSlug: "linz",
+    regionSlug: "linz",
     slug: "froschberg",
     name: "Froschberg",
     postalCodes: ["4020"],
@@ -425,14 +416,13 @@ export const linzDistricts: LocationPage[] = [
       {
         question: "Was kostet die Anfahrt auf den Froschberg?",
         answer:
-          "Für Oberösterreich gibt es keinen pauschalen Satz. Die Anfahrtskosten erfahren Sie am Telefon, bevor ein Termin vereinbart wird."
+          "Für Linz gibt es keinen festen Anfahrtssatz. Die Anfahrtskosten erfahren Sie am Telefon, bevor ein Termin vereinbart wird."
       }
     ],
     enriched: true
   },
   {
-    regionSlug: "oberoesterreich",
-    parentSlug: "linz",
+    regionSlug: "linz",
     slug: "bindermichl-keferfeld",
     name: "Bindermichl-Keferfeld",
     postalCodes: ["4020"],
@@ -478,8 +468,7 @@ export const linzDistricts: LocationPage[] = [
     enriched: true
   },
   {
-    regionSlug: "oberoesterreich",
-    parentSlug: "linz",
+    regionSlug: "linz",
     slug: "spallerhof",
     name: "Spallerhof",
     postalCodes: ["4020"],
@@ -525,8 +514,7 @@ export const linzDistricts: LocationPage[] = [
     enriched: true
   },
   {
-    regionSlug: "oberoesterreich",
-    parentSlug: "linz",
+    regionSlug: "linz",
     slug: "neue-heimat",
     name: "Neue Heimat",
     postalCodes: ["4030"],
@@ -572,8 +560,7 @@ export const linzDistricts: LocationPage[] = [
     enriched: true
   },
   {
-    regionSlug: "oberoesterreich",
-    parentSlug: "linz",
+    regionSlug: "linz",
     slug: "kleinmuenchen-auwiesen",
     name: "Kleinmünchen-Auwiesen",
     postalCodes: ["4030"],
@@ -613,14 +600,13 @@ export const linzDistricts: LocationPage[] = [
       {
         question: "Was kostet die Anfahrt nach Kleinmünchen oder Auwiesen?",
         answer:
-          "Für Oberösterreich gibt es keinen festen Satz. Sie erfahren die Anfahrtskosten am Telefon, bevor ein Termin vereinbart wird."
+          "Für Linz gibt es keinen festen Anfahrtssatz. Sie erfahren die Anfahrtskosten am Telefon, bevor ein Termin vereinbart wird."
       }
     ],
     enriched: true
   },
   {
-    regionSlug: "oberoesterreich",
-    parentSlug: "linz",
+    regionSlug: "linz",
     slug: "ebelsberg",
     name: "Ebelsberg",
     postalCodes: ["4030"],
@@ -666,8 +652,7 @@ export const linzDistricts: LocationPage[] = [
     enriched: true
   },
   {
-    regionSlug: "oberoesterreich",
-    parentSlug: "linz",
+    regionSlug: "linz",
     slug: "pichling",
     name: "Pichling",
     postalCodes: ["4030"],

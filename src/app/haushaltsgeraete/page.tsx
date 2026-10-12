@@ -19,7 +19,7 @@ const sections: InfoSection[] = [
   {
     title: "Einsatzgebiet Wien und Umgebung",
     body:
-      "Haushaltsgeräte Reparatur in Wien heißt bei uns alle 23 Bezirke plus das nähere Niederösterreich — Klosterneuburg, Vösendorf, Mödling und das übrige Umland gehören zum regelmäßigen Einsatz. Für Privathaushalte, Vermieter, Hausverwaltungen und Gewerbe. Bei Wasserschäden oder ausgefallenen Kühl- und Tiefkühlgeräten behandeln wir Anfragen vorrangig. Im Burgenland, in Oberösterreich, der Steiermark und Salzburg sind Techniker vor Ort im Einsatz.",
+      "Haushaltsgeräte Reparatur in Wien heißt bei uns alle 23 Bezirke plus das nähere Niederösterreich — Klosterneuburg, Vösendorf, Mödling und das übrige Umland gehören zum regelmäßigen Einsatz. Für Privathaushalte, Vermieter, Hausverwaltungen und Gewerbe. Bei Wasserschäden oder ausgefallenen Kühl- und Tiefkühlgeräten behandeln wir Anfragen vorrangig. In Linz sind Techniker vor Ort im Einsatz.",
     link: { label: "Klosterneuburg, Vösendorf & NÖ", href: "/einsatzgebiete/niederoesterreich" }
   },
   {

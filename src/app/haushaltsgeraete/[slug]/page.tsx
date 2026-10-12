@@ -56,7 +56,7 @@ function brandsForPage(slug: string) {
   ];
 }
 
-const LINZ_HREF = "/einsatzgebiete/oberoesterreich/linz";
+const LINZ_HREF = "/einsatzgebiete/linz";
 
 function relatedLinzEntries(page: AppliancePage) {
   const preferred = (relatedBySlug[page.slug.replace(/-linz$/, "-wien")] ?? []).map((slug) =>
@@ -77,8 +77,7 @@ function relatedLinzEntries(page: AppliancePage) {
 
   return [
     { category: "Einsatzgebiet", title: "Reparatur in Linz", href: LINZ_HREF },
-    ...appliances,
-    { category: "Oberösterreich", title: "Einsatzgebiet Oberösterreich", href: "/einsatzgebiete/oberoesterreich" }
+    ...appliances
   ];
 }
 
@@ -193,10 +192,7 @@ export default async function ApplianceDetailPage({ params }: AppliancePageProps
       }
       areaServed={
         isLinz
-          ? [
-              { type: "City", name: "Linz" },
-              { type: "State", name: "Oberösterreich" }
-            ]
+          ? [{ type: "City", name: "Linz" }]
           : undefined
       }
       checklist={page.checklist}

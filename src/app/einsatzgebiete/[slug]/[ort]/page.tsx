@@ -4,7 +4,6 @@ import DetailPageLayout from "../../../DetailPageLayout";
 import { HubDetailLinks, HubFaq } from "../../../HubBlocks";
 import { buildMetadata } from "../../../pageMetadata";
 import type { AppliancePage } from "../../../haushaltsgeraete/appliancePages";
-import { linzAppliancePages } from "../../../haushaltsgeraete/linzAppliancePages";
 import LocationProfile from "../../LocationProfile";
 import { getRegionPage } from "../../regionPages";
 import {
@@ -22,9 +21,7 @@ type LocationPageProps = {
   }>;
 };
 
-const cityAppliancePages: Record<string, AppliancePage[]> = {
-  "oberoesterreich/linz": linzAppliancePages
-};
+const cityAppliancePages: Record<string, AppliancePage[]> = {};
 
 const anfrageChecklist = [
   "Adresse & Stockwerk",
@@ -87,7 +84,13 @@ export default async function LocationDetailPage({ params }: LocationPageProps) 
       contactNote="Nennen Sie Adresse, Stockwerk und Fehlerbild — wir sagen Ihnen, wann ein Termin möglich ist."
       checklist={anfrageChecklist}
       sections={location.sections}
-      relatedEyebrow={region.slug === "wien" ? "Weitere Bezirke" : `Weitere Orte in ${region.name}`}
+      relatedEyebrow={
+        region.slug === "wien"
+          ? "Weitere Bezirke"
+          : region.slug === "linz"
+            ? "Weitere Stadtteile"
+            : `Weitere Orte in ${region.name}`
+      }
       relatedTitle="Wo wir außerdem unterwegs sind."
       related={related.map((item) => ({
         category: item.postalCodes[0],
@@ -101,12 +104,14 @@ export default async function LocationDetailPage({ params }: LocationPageProps) 
       }}
       areaServed={[
         { type: "City", name: location.name },
-        { type: region.slug === "wien" ? "City" : "State", name: region.name }
+        { type: region.slug === "niederoesterreich" ? "State" : "City", name: region.name }
       ]}
     >
       <LocationProfile
         location={location}
         parent={{ label: `Einsatzgebiet ${region.name}`, href: `/einsatzgebiete/${region.slug}` }}
+        image={region.image}
+        imageAlt={region.imageAlt}
       />
       {appliances.length > 0 ? (
         <HubDetailLinks

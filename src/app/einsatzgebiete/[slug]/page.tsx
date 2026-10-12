@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { linzAppliancePages } from "../../haushaltsgeraete/linzAppliancePages";
 import DetailPageLayout from "../../DetailPageLayout";
 import { HubDetailLinks, HubFaq } from "../../HubBlocks";
 import { buildMetadata } from "../../pageMetadata";
@@ -70,7 +72,8 @@ function RegionFacts({ region }: { region: RegionPage }) {
   return (
     <section className="border-t border-[color:var(--border)] bg-[color:var(--bg-muted)] py-20 sm:py-24">
       <div className="mx-auto max-w-[88rem] px-5 sm:px-8">
-        <div className="reveal max-w-2xl">
+        <div className="reveal grid items-end gap-10 lg:grid-cols-[1fr_0.8fr]">
+          <div>
           <p className="cap-line tracking-eyebrow text-[color:var(--accent)]">Betreuung & Anfahrt</p>
           <h2 className="font-display mt-6 text-balance text-3xl font-light tracking-tight sm:text-4xl">
             {isCore
@@ -80,9 +83,24 @@ function RegionFacts({ region }: { region: RegionPage }) {
           <p className="mt-4 text-sm font-light leading-relaxed text-[color:var(--muted)]">
             {region.coverageNote}
           </p>
+          </div>
+          <figure className="overflow-hidden border border-[color:var(--border)] bg-white">
+            <div className="relative aspect-[4/3]">
+              <Image
+                src={region.image}
+                alt={region.imageAlt}
+                fill
+                sizes="(min-width: 1024px) 28rem, 100vw"
+                className="object-contain"
+              />
+            </div>
+            <figcaption className="border-t border-[color:var(--border)] px-4 py-3 text-sm font-light text-[color:var(--muted)]">
+              Beispielbild. Kein Foto eines Einsatzes in {region.name}.
+            </figcaption>
+          </figure>
         </div>
 
-        <div className="mt-10 grid gap-px overflow-hidden rounded-sm border border-[color:var(--border)] bg-[color:var(--border)] sm:grid-cols-3">
+        <div className={`mt-10 grid gap-px overflow-hidden rounded-sm border border-[color:var(--border)] bg-[color:var(--border)] sm:grid-cols-2 ${region.services.includes("garagentore") ? "lg:grid-cols-3" : ""}`}>
           <div className="bg-white p-7">
             <p className="tracking-eyebrow text-[color:var(--muted)]">Anfahrt Haushaltsgeräte</p>
             <p className="font-display mt-4 text-3xl font-light tracking-tight text-[color:var(--accent)]">
@@ -92,6 +110,7 @@ function RegionFacts({ region }: { region: RegionPage }) {
               Pro Einsatz vor Ort, inkl. 20&nbsp;% MwSt.
             </p>
           </div>
+          {region.services.includes("garagentore") ? (
           <div className="bg-white p-7">
             <p className="tracking-eyebrow text-[color:var(--muted)]">Anfahrt Garagentore</p>
             <p className="font-display mt-4 text-3xl font-light tracking-tight text-[color:var(--accent)]">
@@ -101,6 +120,7 @@ function RegionFacts({ region }: { region: RegionPage }) {
               Pro Einsatz vor Ort, inkl. 20&nbsp;% MwSt.
             </p>
           </div>
+          ) : null}
           <div className="bg-white p-7">
             <p className="tracking-eyebrow text-[color:var(--muted)]">Termine</p>
             <p className="mt-4 text-sm font-light leading-relaxed text-[color:var(--ink)]">
@@ -147,8 +167,14 @@ function RegionFacts({ region }: { region: RegionPage }) {
   );
 }
 
+function placeNoun(slug: string) {
+  if (slug === "wien") return "Bezirke";
+  if (slug === "linz") return "Stadtteile";
+  return "Orte";
+}
+
 function RegionCities({ region }: { region: RegionPage }) {
-  const label = region.slug === "wien" ? "Bezirke" : "Orte";
+  const label = placeNoun(region.slug);
 
   return (
     <section className="border-t border-[color:var(--border)] bg-white py-20 sm:py-24">
@@ -159,12 +185,16 @@ function RegionCities({ region }: { region: RegionPage }) {
             <h2 className="font-display mt-7 text-balance text-3xl font-light leading-tight tracking-tight sm:text-4xl">
               {region.slug === "wien"
                 ? "Alle 23 Bezirke."
-                : `Wo wir in ${region.name} unterwegs sind.`}
+                : region.slug === "linz"
+                  ? "Alle 15 Stadtteile."
+                  : `Wo wir in ${region.name} unterwegs sind.`}
             </h2>
             <p className="mt-5 text-sm font-light leading-relaxed text-[color:var(--muted)]">
               {region.slug === "wien"
-                ? "Einheitlicher Anfahrtssatz im gesamten Stadtgebiet — von der Inneren Stadt bis Liesing. Jeder Bezirk hat eine eigene Seite mit Baubestand, Zugang und typischen Einsätzen."
-                : "Eine Auswahl, keine abschließende Liste. Steht Ihr Ort nicht dabei, rufen Sie kurz an — wir sagen Ihnen offen, ob ein Einsatz sinnvoll ist."}
+                ? "Einheitlicher Anfahrtssatz im gesamten Stadtgebiet, von der Inneren Stadt bis Liesing. Jeder Bezirk hat eine eigene Seite mit Baubestand, Zugang und typischen Einsätzen."
+                : region.slug === "linz"
+                  ? "Jeder Stadtteil hat eine eigene Seite. Die Postleitzahl sagt, ob die Adresse nördlich der Donau, in der Innenstadt oder südlich liegt."
+                  : "Eine Auswahl, keine abschließende Liste. Steht Ihr Ort nicht dabei, rufen Sie kurz an. Wir sagen Ihnen, ob ein Einsatz sinnvoll ist."}
             </p>
           </div>
 
@@ -254,19 +284,37 @@ export default async function RegionDetailPage({ params }: RegionPageProps) {
         description: region.description,
         path: `/einsatzgebiete/${region.slug}`
       }}
-      areaServed={{ type: region.slug === "wien" ? "City" : "State", name: region.name }}
+      areaServed={{ type: region.slug === "niederoesterreich" ? "State" : "City", name: region.name }}
     >
       <RegionFacts region={region} />
+      {region.slug === "linz" ? (
+        <HubDetailLinks
+          eyebrow="Geräte"
+          title="Haushaltsgeräte in Linz."
+          intro="Eigene Seiten je Gerät, mit dem harten Linzer Wasser und der Frage, wann sich die Reparatur noch rechnet."
+          links={linzAppliancePages.map((page) => ({
+            label: page.category,
+            href: `/haushaltsgeraete/${page.slug}`,
+            text: page.short
+          }))}
+        />
+      ) : null}
       {locations.length > 0 ? (
         <HubDetailLinks
-          eyebrow={region.slug === "wien" ? "Bezirke" : "Städte"}
+          eyebrow={placeNoun(region.slug)}
           title={
-            region.slug === "wien" ? "Wien im Detail." : `Städte in ${region.name} im Detail.`
+            region.slug === "wien"
+              ? "Wien im Detail."
+              : region.slug === "linz"
+                ? "Linz im Detail."
+                : `Orte in ${region.name} im Detail.`
           }
           intro={
             region.slug === "wien"
-              ? "Baubestand, Zugang und typische Einsätze unterscheiden sich zwischen den Bezirken deutlich. Diese Seiten sagen, worauf es an Ihrer Adresse ankommt."
-              : "Eigene Seiten mit Baubestand, typischen Einsätzen und der Terminlage vor Ort."
+              ? "Baubestand, Zugang und typische Einsätze unterscheiden sich zwischen den Bezirken. Diese Seiten sagen, worauf es an Ihrer Adresse ankommt."
+              : region.slug === "linz"
+                ? "Von der Fußgängerzone bis zur Siedlung am Stadtrand. Jeder Stadtteil beschreibt Zugang und typische Geräte."
+                : "Eigene Seiten mit Baubestand, typischen Einsätzen und der Terminlage vor Ort."
           }
           links={locations.map((item) => ({
             label: item.name,

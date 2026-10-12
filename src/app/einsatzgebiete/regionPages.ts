@@ -16,6 +16,9 @@ export type RegionPage = {
   h1: string;
   /** Teaser für Hub-Übersicht und Cross-Links. */
   short: string;
+  /** Beispielbild, kein Einsatzfoto. */
+  image: string;
+  imageAlt: string;
   intro: string;
   /**
    * kerngebiet: vom Wiener Standort aus mit festen Anfahrtssätzen.
@@ -91,6 +94,8 @@ export const regionPages: RegionPage[] = [
     h1: "Einsatzgebiet Wien.",
     short:
       "Alle 23 Bezirke mit eigenem Team, kurze Wege, Anfahrt ab 96 € inkl. MwSt. — unser Kerngebiet.",
+    image: "/assets/startseite-waschmaschine-produkt-wien.webp",
+    imageAlt: "Weiße Frontlader-Waschmaschine mit runder Glastür.",
     intro:
       "Wien ist unser Kerngebiet: Unser Standort liegt in Floridsdorf, unsere Techniker fahren von hier aus alle 23 Bezirke an. Weil die Wege kurz sind, sind Termine oft schon binnen ein bis zwei Tagen möglich — und bei einem Wasseraustritt oder einem ausgefallenen Tiefkühlgerät auch am selben Tag. Diese Seite erklärt, wie Anfahrt, Terminplanung und Zugang in Wien konkret ablaufen.",
     coverage: "kerngebiet",
@@ -154,6 +159,8 @@ export const regionPages: RegionPage[] = [
     h1: "Einsatzgebiet Niederösterreich.",
     short:
       "Wiener Umland mit eigenem Team, Anfahrt ab 120 € inkl. MwSt. — ab einer Stunde Fahrt gilt eine Pauschale.",
+    image: "/assets/ueber-uns-garagentor-wien.webp",
+    imageAlt: "Geschlossenes Sektionaltor neben einer roten Ziegelwand.",
     intro:
       "Niederösterreich fahren wir mit dem eigenen Team an — am dichtesten im Umland von Wien, wo die Fahrzeiten kurz sind. Je weiter eine Adresse entfernt liegt, desto stärker bestimmt die Fahrzeit den Termin: Ab etwa einer Stunde Anfahrt gilt eine Pauschale von 240 € inkl. MwSt. Diese Seite zeigt, welche Orte im Kernbereich liegen und wie wir mit weiter entfernten Adressen umgehen.",
     coverage: "kerngebiet",
@@ -236,287 +243,86 @@ export const regionPages: RegionPage[] = [
     enriched: true
   },
   {
-    slug: "burgenland",
-    name: "Burgenland",
-    metaTitle: "Reparatur Burgenland: Eisenstadt bis Güssing | MONTER",
+    slug: "linz",
+    name: "Linz",
+    metaTitle: "Haushaltsgeräte Reparatur Linz | MONTER Service",
     description:
-      "MONTER im Burgenland: Haushaltsgeräte-Reparatur in Eisenstadt, Neusiedl am See, Mattersburg, Oberwart und Güssing. Nordburgenland zusätzlich vom Wiener Standort aus.",
-    h1: "Reparatur im Burgenland.",
+      "Haushaltsgeräte-Reparatur in Linz: Innenstadt, Urfahr, Ebelsberg und die übrigen Stadtteile. Techniker vor Ort, Diagnose vor dem Teiletausch, Anfahrt vor dem Termin.",
+    h1: "Reparatur in Linz.",
     short:
-      "Von Eisenstadt bis Güssing mit Technikern vor Ort, im Norden zusätzlich ab Wien.",
+      "Techniker vor Ort in den 15 Stadtteilen. Schwerpunkt Haushaltsgeräte, Anfahrt wird vor dem Termin genannt.",
+    image: "/assets/startseite-kuehlschrank-produkt-wien.webp",
+    imageAlt: "Kühl-Gefrierkombination aus Edelstahl mit Gefrierfach unten.",
     intro:
-      "Im Burgenland arbeiten Techniker vor Ort — von Eisenstadt und dem Seewinkel über Mattersburg und Oberpullendorf bis Oberwart, Güssing und Jennersdorf. Der Norden rund um Eisenstadt, Neusiedl am See und Parndorf liegt zusätzlich im Ein-Stunden-Radius unseres Wiener Standorts, wodurch dort auch kurzfristige Termine gut planbar sind.",
+      "In Linz sind Techniker vor Ort im Einsatz. Die Reparatur fährt nicht aus Wien an, sie passiert in der Stadt. Der Schwerpunkt sind Haushaltsgeräte: Waschmaschine, Trockner, Geschirrspüler, Kühl- und Gefriergerät, Backofen und Herd. Wels, Steyr und das übrige Oberösterreich gehören nicht zum Einsatzgebiet.",
     coverage: "techniker-vor-ort",
     coverageNote:
-      "Im Burgenland sind Techniker vor Ort im Einsatz. Das nördliche Burgenland erreichen wir zusätzlich vom Wiener Standort aus, weil es im Ein-Stunden-Radius liegt.",
+      "In Linz arbeiten Techniker vor Ort. Der Firmensitz bleibt die Rappgasse 1/6 in 1210 Wien. Anfrage und Termin laufen über uns, die Reparatur macht der Techniker in Linz.",
     travelFee: {
       appliance: "auf Anfrage",
       garage: "auf Anfrage"
     },
     cities: [
-      { plz: "7000", name: "Eisenstadt" },
-      { plz: "7071", name: "Rust" },
-      { plz: "7100", name: "Neusiedl am See" },
-      { plz: "7111", name: "Parndorf" },
-      { plz: "7132", name: "Frauenkirchen" },
-      { plz: "7210", name: "Mattersburg" },
-      { plz: "7350", name: "Oberpullendorf" },
-      { plz: "7400", name: "Oberwart" },
-      { plz: "7540", name: "Güssing" },
-      { plz: "8380", name: "Jennersdorf" }
-    ],
-    services: ["haushaltsgeraete", "garagentore", "klimageraete"],
-    responseNote: "Im Nordburgenland gut planbar, im Süden nach Absprache mit dem Techniker.",
-    sections: [
-      {
-        title: "Nordburgenland: Seewinkel und Eisenstadt",
-        body:
-          "Eisenstadt, Rust, Neusiedl am See, Parndorf, Frauenkirchen und Mattersburg liegen von unserem Wiener Standort rund eine Stunde entfernt. Dadurch lassen sich Termine dort ähnlich planen wie im südlichen Niederösterreich: gebündelt mit Einsätzen in derselben Richtung, was kurzfristige Fenster ergibt. In vielen Gemeinden am Neusiedler See kommt eine hohe Dichte an Zweitwohnsitzen und Ferienwohnungen dazu — dort ist eine Kontaktperson vor Ort besonders wichtig, damit die Fahrt nicht ins Leere geht."
-      },
-      {
-        title: "Mittel- und Südburgenland: Oberwart bis Jennersdorf",
-        body:
-          "Oberpullendorf, Oberwart, Güssing und Jennersdorf betreuen Techniker aus der Region. Die Wege sind hier länger und die Ortschaften kleiner, deshalb planen wir Termine gezielter statt tageweise spontan. Für Sie zählt vor allem, dass die Gerätedaten vorab stimmen: Ein zweiter Anfahrtsweg wegen eines fehlenden Ersatzteils fällt auf dieser Distanz stärker ins Gewicht als im Wiener Umland."
-      },
-      {
-        title: "Anfahrt: warum hier keine feste Pauschale steht",
-        body:
-          "Für Wien und Niederösterreich nennen wir feste Anfahrtssätze. Im Burgenland hängt die Anfahrt zu stark von der Adresse ab — zwischen Parndorf und Jennersdorf liegen fast zwei Stunden Fahrzeit. Wir nennen Ihnen die Anfahrt deshalb am Telefon, sobald wir die Adresse kennen, und zwar vor dem Termin, nicht auf der Rechnung."
-      },
-      {
-        title: "Was Sie für die Anfrage bereithalten sollten",
-        body:
-          "Marke, vollständige Modellnummer vom Typenschild, angezeigter Fehlercode und eine kurze Beschreibung, wann der Fehler auftritt. Bei Garagentoren zusätzlich Torart, Antriebsmarke und ob sich das Tor noch von Hand bewegen lässt. Mit diesen Angaben bringt der Techniker die wahrscheinlich benötigten Teile gleich mit."
-      }
-    ],
-    faq: [
-      {
-        question: "Kommen Sie nach Eisenstadt?",
-        answer:
-          "Ja. Eisenstadt und das nördliche Burgenland betreuen wir regelmäßig — die Region liegt zusätzlich im Ein-Stunden-Radius unseres Wiener Standorts. Die Anfahrtskosten nennen wir am Telefon, sobald die Adresse feststeht."
-      },
-      {
-        question: "Und im Süden, etwa in Oberwart oder Güssing?",
-        answer:
-          "Auch dort sind wir tätig, mit Technikern aus der Region. Weil die Wege länger sind, planen wir diese Termine gezielter — nennen Sie am Telefon bitte gleich Gerätedaten und Fehlercode, damit der Techniker vorbereitet anreist."
-      },
-      {
-        question: "Warum steht bei der Anfahrt kein fester Betrag?",
-        answer:
-          "Weil die Fahrzeit im Burgenland stark von der Adresse abhängt. Sie bekommen die Anfahrtskosten am Telefon genannt, bevor ein Termin vereinbart wird."
-      }
-    ],
-    enriched: true
-  },
-  {
-    slug: "oberoesterreich",
-    name: "Oberösterreich",
-    metaTitle: "Reparatur Oberösterreich: Linz, Wels, Steyr | MONTER",
-    description:
-      "Haushaltsgeräte-Reparatur in Oberösterreich: Linz, Wels, Steyr, Vöcklabruck und Umgebung. Techniker vor Ort, Diagnose vor dem Teiletausch, klare Einschätzung am Telefon.",
-    h1: "Reparatur in Oberösterreich.",
-    short: "Zentralraum Linz, Wels und Steyr mit Technikern vor Ort.",
-    intro:
-      "In Oberösterreich sind Techniker vor Ort im Einsatz — am dichtesten im Zentralraum zwischen Linz, Wels und Steyr, dazu Vöcklabruck, Perg, Kirchdorf und das Inn- und Mühlviertel. Wie überall gilt: Erst die Diagnose, dann der Teiletausch. Am Telefon klären wir Fehlercode und Gerätedaten vorab, damit der Techniker die passenden Teile gleich mitbringt.",
-    coverage: "techniker-vor-ort",
-    coverageNote:
-      "In Oberösterreich arbeiten Techniker vor Ort. Unser Firmensitz bleibt Wien — Anfrage, technische Vorklärung und Terminabstimmung laufen über uns.",
-    travelFee: {
-      appliance: "auf Anfrage",
-      garage: "auf Anfrage"
-    },
-    cities: [
-      { plz: "4020", name: "Linz" },
-      { plz: "4320", name: "Perg" },
-      { plz: "4400", name: "Steyr" },
-      { plz: "4560", name: "Kirchdorf an der Krems" },
-      { plz: "4600", name: "Wels" },
-      { plz: "4780", name: "Schärding" },
-      { plz: "4840", name: "Vöcklabruck" },
-      { plz: "5280", name: "Braunau am Inn" }
+      { plz: "4020", name: "Innere Stadt" },
+      { plz: "4040", name: "Urfahr" },
+      { plz: "4040", name: "Pöstlingberg" },
+      { plz: "4040", name: "St. Magdalena" },
+      { plz: "4040", name: "Dornach-Auhof" },
+      { plz: "4020", name: "Kaplanhof" },
+      { plz: "4020", name: "Franckviertel" },
+      { plz: "4020", name: "Bulgariplatz" },
+      { plz: "4020", name: "Froschberg" },
+      { plz: "4020", name: "Bindermichl-Keferfeld" },
+      { plz: "4020", name: "Spallerhof" },
+      { plz: "4030", name: "Neue Heimat" },
+      { plz: "4030", name: "Kleinmünchen-Auwiesen" },
+      { plz: "4030", name: "Ebelsberg" },
+      { plz: "4030", name: "Pichling" }
     ],
     services: ["haushaltsgeraete"],
-    responseNote: "Im Zentralraum gut planbar, im Inn- und Mühlviertel nach Absprache.",
+    responseNote: "Im Stadtgebiet gut planbar. Die Anfahrt nennen wir am Telefon, bevor ein Termin steht.",
     sections: [
       {
-        title: "Zentralraum Linz, Wels und Steyr",
+        title: "Innenstadt, Urfahr und die Siedlungen",
         body:
-          "Zwischen Linz, Wels und Steyr liegen die Wege kurz und die Bebauung ist dicht — von Gründerzeithäusern in der Linzer Innenstadt über Wohnanlagen der 1970er-Jahre bis zu Neubauten am Stadtrand. Für die Reparatur macht das einen Unterschied: In Altbauten sind Wasseranschluss und Abfluss oft älter als das Gerät selbst, und ein Waschmaschinenschaden ist dann nicht immer ein Gerätefehler. Wir prüfen deshalb Zulauf und Ablauf mit, bevor Teile getauscht werden."
+          "Linz mischt Gründerzeit in der Innenstadt und in Urfahr mit Nachkriegssiedlungen im Franckviertel und in Ebelsberg sowie neueren Wohnungen am Hafen und in der Solar City. Im Altbau sind Zulauf und Abfluss oft älter als die Waschmaschine. Eine auslaufende Maschine ist dort nicht automatisch ein Gerätefehler. In den Siedlungen stehen die Geräte meist frei, der Zugang ist einfacher als im Stiegenhaus ohne Lift."
       },
       {
-        title: "Inn-, Mühl- und Hausruckviertel",
+        title: "Diagnose vor dem Teiletausch",
         body:
-          "Vöcklabruck, Braunau, Schärding, Perg und Kirchdorf sind flächige Bezirke mit vielen Einfamilienhäusern. Termine planen wir dort gezielter, weil zwischen zwei Adressen schnell eine halbe Stunde Fahrt liegt. Dafür ist der Zugang meist einfacher als in der Stadt: eigene Einfahrt, Gerät im Erdgeschoss oder Keller, kein Stiegenhaus."
+          "Auch in Linz gilt: erst messen, dann tauschen. Ein Code zur Ablaufpumpe sagt, dass kein Wasser wegkommt, nicht dass die Pumpe defekt ist. Oft sind Flusensieb, Schlauch oder Siphon verlegt. Das Linzer Leitungswasser ist hart, etwa 14 bis 21 °dH. Kalk am Heizstab ist deshalb ein häufiger Befund, wenn ein Programm lauwarm bleibt."
+      },
+      {
+        title: "Anfahrt ohne festen Satz",
+        body:
+          "Für Wien und Niederösterreich stehen die Anfahrtssätze auf der Preisseite. Für Linz gibt es keinen festen Betrag, weil der Techniker vor Ort ist und nicht aus Floridsdorf anfährt. Sie erfahren die Anfahrt am Telefon, sobald die Adresse feststeht, und zwar vor dem Termin."
       },
       {
         title: "Was den Termin verkürzt",
         body:
-          "Marke, vollständige Modellnummer vom Typenschild und der angezeigte Fehlercode. Damit lässt sich vorab einschätzen, welches Bauteil betroffen ist und ob das Teil verfügbar ist. Bei Geräten der BSH-Gruppe wie Bosch, Siemens und Neff oder der Electrolux-Gruppe wie AEG und Zanussi sind viele Bauteile markenübergreifend gleich, was die Teileversorgung auch bei älteren Geräten gut hält."
-      },
-      {
-        title: "Reparieren oder ersetzen",
-        body:
-          "Wir sagen offen, wenn sich eine Reparatur nicht mehr rechnet. Bei einem zwölf Jahre alten Gerät mit defekter Elektronik und einem Ersatzteilpreis nahe dem Neupreis ist der Austausch die vernünftigere Lösung — auch wenn wir daran nichts verdienen. Diese Einschätzung bekommen Sie möglichst schon am Telefon, nicht erst nach der Anfahrt."
+          "Marke, die vollständige Modellnummer vom Typenschild und der Fehlercode. Damit lässt sich vorab sagen, welches Teil wahrscheinlich gebraucht wird. Garagentor und Klimagerät sind in Linz nicht das reguläre Spektrum. Ob dafür ein Termin möglich ist, klären wir bei der Anfrage, versprechen ihn aber nicht."
       }
     ],
     faq: [
       {
         question: "Kommt ein Techniker nach Linz?",
         answer:
-          "Ja. In Oberösterreich sind Techniker vor Ort im Einsatz, am dichtesten im Zentralraum Linz, Wels und Steyr. Rufen Sie an oder schicken Sie eine Anfrage — wir klären Fehlerbild und Termin."
+          "Ja. In Linz sind Techniker vor Ort im Einsatz, in allen 15 Stadtteilen. Der Firmensitz bleibt Wien. Anfrage und Terminabstimmung laufen über uns."
       },
       {
-        question: "Was kostet die Anfahrt in Oberösterreich?",
-        answer:
-          "Das hängt von der Adresse ab, deshalb steht hier kein fester Betrag. Sie erfahren die Anfahrtskosten am Telefon, bevor ein Termin vereinbart wird — nicht erst auf der Rechnung."
-      },
-      {
-        question: "Werden auch Garagentore und Klimageräte betreut?",
-        answer:
-          "Der Schwerpunkt in Oberösterreich liegt bei Haushaltsgeräten. Ob für Ihr Anliegen an Garagentor oder Klimaanlage ein Termin möglich ist, klären wir bei der Anfrage."
-      }
-    ],
-    enriched: true
-  },
-  {
-    slug: "steiermark",
-    name: "Steiermark",
-    metaTitle: "Reparatur Steiermark: Graz, Leoben, Bruck | MONTER",
-    description:
-      "Haushaltsgeräte-Reparatur in der Steiermark: Graz, Bruck an der Mur, Leoben, Feldbach, Deutschlandsberg. Techniker vor Ort, Diagnose vor dem Teiletausch.",
-    h1: "Reparatur in der Steiermark.",
-    short: "Graz, Mürztal und Südsteiermark mit Technikern vor Ort.",
-    intro:
-      "In der Steiermark sind Techniker vor Ort im Einsatz — im Großraum Graz, im Mürztal rund um Bruck an der Mur und Leoben sowie in der Südsteiermark und dem Steirischen Vulkanland. Auch hier steht die Diagnose vor dem Teiletausch: Fehlercode auslesen, Bauteile messen, Wasser- und Stromweg prüfen, erst dann tauschen.",
-    coverage: "techniker-vor-ort",
-    coverageNote:
-      "In der Steiermark arbeiten Techniker vor Ort. Unser Firmensitz bleibt Wien — Anfrage, technische Vorklärung und Terminabstimmung laufen über uns.",
-    travelFee: {
-      appliance: "auf Anfrage",
-      garage: "auf Anfrage"
-    },
-    cities: [
-      { plz: "8010", name: "Graz" },
-      { plz: "8280", name: "Fürstenfeld" },
-      { plz: "8530", name: "Deutschlandsberg" },
-      { plz: "8330", name: "Feldbach" },
-      { plz: "8600", name: "Bruck an der Mur" },
-      { plz: "8700", name: "Leoben" },
-      { plz: "8850", name: "Murau" },
-      { plz: "8940", name: "Liezen" }
-    ],
-    services: ["haushaltsgeraete"],
-    responseNote: "Im Großraum Graz gut planbar, in den Bergbezirken nach Absprache.",
-    sections: [
-      {
-        title: "Großraum Graz",
-        body:
-          "Graz ist nach Wien die zweitgrößte Stadt Österreichs, und die Einsatzsituation ist ähnlich: viele Altbauwohnungen mit engen Stiegenhäusern, oft ohne Lift, dazu ein hoher Anteil an Studentenwohnungen mit älteren Geräten. Für den Termin ist deshalb wichtig, in welchem Stock das Gerät steht und ob ein Lift vorhanden ist — ein Kühlgerät im vierten Stock ohne Lift ist ein anderer Einsatz als eines im Erdgeschoss."
-      },
-      {
-        title: "Mürztal, Obersteiermark und Vulkanland",
-        body:
-          "Bruck an der Mur, Leoben, Liezen und Murau im Norden, Feldbach, Fürstenfeld und Deutschlandsberg im Süden: flächige Bezirke, längere Wege, dafür meist einfacher Zugang zum Gerät. Termine planen wir hier gezielter und bündeln sie mit Einsätzen in derselben Richtung, was die Vorlaufzeit etwas erhöht."
-      },
-      {
-        title: "Was den Termin verkürzt",
-        body:
-          "Marke, vollständige Modellnummer vom Typenschild und der angezeigte Fehlercode. Damit lässt sich vorab einschätzen, welches Bauteil betroffen ist und ob es verfügbar ist. Notieren Sie den Code auch dann, wenn das Gerät zwischendurch wieder läuft — intermittierende Fehler sind ohne diesen Hinweis deutlich schwerer zu finden."
-      },
-      {
-        title: "Reparieren oder ersetzen",
-        body:
-          "Bei älteren Geräten sagen wir offen, wenn Ersatzteilpreis und Restlebensdauer keine Reparatur mehr rechtfertigen. Diese Einschätzung bekommen Sie möglichst schon am Telefon — es hat für Sie keinen Wert, wenn ein Techniker anfährt, um dann vom Austausch abzuraten."
-      }
-    ],
-    faq: [
-      {
-        question: "Kommt ein Techniker nach Graz?",
-        answer:
-          "Ja. In der Steiermark sind Techniker vor Ort im Einsatz, am dichtesten im Großraum Graz. Rufen Sie an oder schicken Sie eine Anfrage — wir klären Fehlerbild und Termin."
-      },
-      {
-        question: "Was kostet die Anfahrt in der Steiermark?",
+        question: "Was kostet die Anfahrt in Linz?",
         answer:
           "Das hängt von der Adresse ab, deshalb steht hier kein fester Betrag. Sie erfahren die Anfahrtskosten am Telefon, bevor ein Termin vereinbart wird."
       },
       {
-        question: "Werden auch Garagentore und Klimageräte betreut?",
+        question: "Fahren Sie auch nach Wels oder Steyr?",
         answer:
-          "Der Schwerpunkt in der Steiermark liegt bei Haushaltsgeräten. Ob für Ihr Anliegen an Garagentor oder Klimaanlage ein Termin möglich ist, klären wir bei der Anfrage."
-      }
-    ],
-    enriched: true
-  },
-  {
-    slug: "salzburg",
-    name: "Salzburg",
-    metaTitle: "Reparatur Salzburg: Stadt, Flachgau, Pinzgau | MONTER",
-    description:
-      "Haushaltsgeräte-Reparatur in Salzburg: Stadt Salzburg, Hallein, Bischofshofen, Zell am See. Techniker vor Ort, Diagnose vor dem Teiletausch, klare Einschätzung.",
-    h1: "Reparatur in Salzburg.",
-    short: "Stadt Salzburg, Flachgau und Pinzgau mit Technikern vor Ort.",
-    intro:
-      "In Salzburg sind Techniker vor Ort im Einsatz — in der Stadt und im Flachgau am dichtesten, dazu Hallein, Bischofshofen, Zell am See und der Lungau. Ein Salzburg-Thema kommt hier dazu: In Regionen mit vielen Ferienwohnungen und Beherbergungsbetrieben hängen Termine stark an der Saison.",
-    coverage: "techniker-vor-ort",
-    coverageNote:
-      "In Salzburg arbeiten Techniker vor Ort. Unser Firmensitz bleibt Wien — Anfrage, technische Vorklärung und Terminabstimmung laufen über uns.",
-    travelFee: {
-      appliance: "auf Anfrage",
-      garage: "auf Anfrage"
-    },
-    cities: [
-      { plz: "5020", name: "Salzburg" },
-      { plz: "5202", name: "Neumarkt am Wallersee" },
-      { plz: "5300", name: "Hallwang" },
-      { plz: "5400", name: "Hallein" },
-      { plz: "5500", name: "Bischofshofen" },
-      { plz: "5580", name: "Tamsweg" },
-      { plz: "5700", name: "Zell am See" }
-    ],
-    services: ["haushaltsgeraete"],
-    responseNote: "In Stadt und Flachgau gut planbar, in den Gebirgsgauen saisonabhängig.",
-    sections: [
-      {
-        title: "Stadt Salzburg und Flachgau",
-        body:
-          "In der Stadt Salzburg prägen Altstadt und Gründerzeitviertel das Bild: enge Zufahrten, Innenhöfe, Stiegenhäuser ohne Lift. Wenn Sie bei der Anfrage sagen können, wo sich das Gerät befindet und wie der Zugang aussieht, planen wir den Einsatz passend — bei einem Kühl- oder Waschgerätetransport macht das den Unterschied zwischen einem und zwei Terminen. Im Flachgau rund um Neumarkt, Wallersee und Hallwang sind die Wege kürzer und die Zugänge einfacher."
-      },
-      {
-        title: "Pinzgau, Pongau und Lungau",
-        body:
-          "Bischofshofen, Zell am See und Tamsweg liegen weiter auseinander, und die Fahrzeiten sind wetterabhängig. In der Hochsaison kommt dazu, dass in Ferienwohnungen und Beherbergungsbetrieben Geräte stärker beansprucht werden und Termine knapper sind. Wenn ein Gerät in einem vermieteten Objekt steht, hilft eine Kontaktperson vor Ort, die aufschließt."
-      },
-      {
-        title: "Was den Termin verkürzt",
-        body:
-          "Marke, vollständige Modellnummer vom Typenschild und der angezeigte Fehlercode. In Beherbergungsbetrieben mit mehreren gleichen Geräten ist zusätzlich hilfreich, ob der Fehler nur eines oder mehrere Geräte betrifft — das deutet oft auf Wasserqualität, Anschlusssituation oder Nutzung hin und nicht auf einen Gerätedefekt."
-      },
-      {
-        title: "Reparieren oder ersetzen",
-        body:
-          "Bei Geräten in gewerblich genutzten Wohnungen zählt Ausfallzeit oft mehr als der Reparaturpreis. Wir sagen deshalb offen, wenn ein Gerät wiederholt ausfallen wird und ein Austausch die ruhigere Lösung ist — und ebenso, wenn sich eine Reparatur klar lohnt."
-      }
-    ],
-    faq: [
-      {
-        question: "Kommt ein Techniker in die Stadt Salzburg?",
-        answer:
-          "Ja. In Salzburg sind Techniker vor Ort im Einsatz, am dichtesten in der Stadt und im Flachgau. Rufen Sie an oder schicken Sie eine Anfrage — wir klären Fehlerbild und Termin."
-      },
-      {
-        question: "Was kostet die Anfahrt in Salzburg?",
-        answer:
-          "Das hängt von der Adresse ab, deshalb steht hier kein fester Betrag. Sie erfahren die Anfahrtskosten am Telefon, bevor ein Termin vereinbart wird."
-      },
-      {
-        question: "Sind Termine in der Hochsaison möglich?",
-        answer:
-          "Ja, aber mit mehr Vorlauf. In Regionen mit vielen Ferienwohnungen sind Termine zu Saisonbeginn und in den Ferienwochen knapper. Melden Sie sich in solchen Fällen früher — und bei einem ausgefallenen Kühlgerät sofort telefonisch."
+          "Nein. Das Einsatzgebiet in Oberösterreich ist Linz. Wels, Steyr und die Bezirke außerhalb der Stadt nehmen wir nicht an."
       }
     ],
     enriched: true
   }
+
 ];
 
 const regionBySlug = new Map(regionPages.map((region) => [region.slug, region]));
@@ -541,7 +347,7 @@ export function isRegionEnriched(slug: string): boolean {
 /** Wien und Niederösterreich — vom Standort aus, mit festen Anfahrtssätzen. */
 export const coreRegions = regionPages.filter((region) => region.coverage === "kerngebiet");
 
-/** Weitere Bundesländer mit Technikern vor Ort. */
+/** Linz: Techniker vor Ort, ohne festes Anfahrtsentgelt. */
 export const additionalRegions = regionPages.filter(
   (region) => region.coverage === "techniker-vor-ort"
 );
@@ -558,12 +364,11 @@ export type ServedArea = {
 };
 
 /**
- * Alle bedienten Gebiete für areaServed. Wien ist zusätzlich eine Stadt,
- * die übrigen sind Bundesländer. Der provider bleibt in jedem Fall die eine
- * LocalBusiness in Wien — keine erfundenen Adressen in anderen Bundesländern.
+ * Alle bedienten Gebiete für areaServed. Niederösterreich ist ein Bundesland,
+ * Wien und Linz sind Städte. Der provider bleibt die LocalBusiness in Wien.
  */
 export const servedAreas: ServedArea[] = regionPages.map((region) => ({
-  type: region.slug === "wien" ? "City" : "State",
+  type: region.slug === "niederoesterreich" ? "State" : "City",
   name: region.name
 }));
 

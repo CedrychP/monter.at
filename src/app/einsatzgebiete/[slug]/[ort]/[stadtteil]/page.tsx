@@ -107,6 +107,8 @@ export default async function DistrictDetailPage({ params }: DistrictPageProps) 
       <LocationProfile
         location={district}
         parent={{ label: `Übersicht ${city.name}`, href: locationHref(city) }}
+        image={region.image}
+        imageAlt={region.imageAlt}
       />
       <HubFaq
         eyebrow="Häufige Fragen"
