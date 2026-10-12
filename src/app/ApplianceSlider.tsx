@@ -48,7 +48,7 @@ export default function ApplianceSlider({
             key={item.title}
             href={item.href}
             data-card
-            className={`group relative ${cardAspect} ${cardWidth} flex-none snap-start overflow-hidden rounded-sm bg-[color:var(--ink)]`}
+            className={`group relative ${cardAspect} ${cardWidth} flex-none snap-start overflow-hidden rounded-sm border border-[color:var(--border)] bg-white`}
           >
             <Image
               src={item.image}
@@ -57,17 +57,16 @@ export default function ApplianceSlider({
               sizes={sizes}
               className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent" />
             {isLandscape && (
-              <span className="absolute left-5 top-4 font-display text-sm font-medium tracking-[0.18em] text-[color:var(--accent-on-dark)]">
+              <span className="absolute left-5 top-4 font-display text-sm font-medium tracking-[0.18em] text-[color:var(--accent)]">
                 0{index + 1}
               </span>
             )}
             <div className="absolute inset-x-0 bottom-0 flex items-center justify-between gap-3 p-5">
-              <h3 className="font-display text-lg font-medium tracking-tight text-white sm:text-xl">
+              <h3 className="font-display text-lg font-medium tracking-tight text-[color:var(--ink)] sm:text-xl">
                 {item.title}
               </h3>
-              <span className="grid h-9 w-9 flex-none place-items-center rounded-full border border-white/45 text-white transition-all duration-300 group-hover:border-white group-hover:bg-white group-hover:text-[color:var(--ink)]">
+              <span className="grid h-9 w-9 flex-none place-items-center rounded-full border border-[color:var(--ink)] text-[color:var(--ink)] transition-all duration-300 group-hover:bg-[color:var(--ink)] group-hover:text-white">
                 <svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true">
                   <path d="M6 3l5 5-5 5" stroke="currentColor" strokeWidth="1.6" fill="none" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
