@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { buildMetadata } from "../../pageMetadata";
@@ -37,7 +38,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     description: post.description,
     path: `/blog/${post.slug}`,
     type: "article",
-    images: [post.image],
+    images: [post.image.startsWith("http") ? post.image : `${siteConfig.siteUrl}${post.image}`],
     publishedTime: post.date,
     modifiedTime: post.dateModified
   });
@@ -53,6 +54,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   const relatedPosts = getRelatedPosts(post);
   const postUrl = `${siteConfig.siteUrl}/blog/${post.slug}`;
+  const imageUrl = post.image.startsWith("http") ? post.image : `${siteConfig.siteUrl}${post.image}`;
   const articleJsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -64,7 +66,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     },
     headline: post.title,
     description: post.description,
-    image: [post.image],
+    image: {
+      "@type": "ImageObject",
+      url: imageUrl,
+      caption: post.imageCaption,
+      description: post.imageAlt
+    },
     articleSection: post.category,
     inLanguage: "de-AT",
     datePublished: post.date,
@@ -94,21 +101,42 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       />
 
       <section className="border-b border-[color:var(--border)] bg-white">
-        <div className="mx-auto max-w-4xl px-5 pb-20 pt-12 sm:px-8 sm:pb-24 sm:pt-16 lg:pb-28 lg:pt-20">
-          <p className="cap-line tracking-eyebrow text-[color:var(--accent)]">
-            {post.category}
-          </p>
-          <h1 className="font-display mt-8 text-balance text-4xl font-light leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
-            {post.title}
-          </h1>
-          <p className="mt-8 text-[1.05rem] font-light leading-relaxed text-[color:var(--muted)]">
-            {post.intro}
-          </p>
-          <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-[color:var(--border)] pt-6 text-xs font-medium uppercase tracking-[0.16em] text-[color:var(--muted)]">
-            <span>Lesedauer · {post.readingTime}</span>
-            <span>Veröffentlicht · {formatDate(post.date)}</span>
-            <span>Aktualisiert · {formatDate(post.dateModified)}</span>
+        <div className="mx-auto grid max-w-[88rem] items-end gap-10 px-5 py-12 sm:px-8 sm:py-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 lg:py-20">
+          <div>
+            <p className="text-[0.72rem] font-medium uppercase tracking-[0.18em] text-[color:var(--muted)]">
+              <Link href="/blog" className="border-b border-transparent hover:border-current hover:text-[color:var(--ink)]">
+                Blog & News
+              </Link>
+              <span aria-hidden="true"> · </span>
+              <span className="text-[color:var(--accent)]">{post.category}</span>
+            </p>
+            <h1 className="font-display mt-6 text-balance text-4xl font-light leading-[1.02] tracking-tight sm:text-5xl lg:text-6xl">
+              {post.title}
+            </h1>
+            <p className="mt-6 max-w-xl text-[1.05rem] font-light leading-relaxed text-[color:var(--muted)]">
+              {post.intro}
+            </p>
+            <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3 text-xs font-medium uppercase tracking-[0.16em] text-[color:var(--muted)]">
+              <span>Lesedauer · {post.readingTime}</span>
+              <span>Veröffentlicht · {formatDate(post.date)}</span>
+              <span>Aktualisiert · {formatDate(post.dateModified)}</span>
+            </div>
           </div>
+          <figure>
+            <div className="relative aspect-[4/3] overflow-hidden bg-[color:var(--bg-muted)]">
+              <Image
+                src={post.image}
+                alt={post.imageAlt}
+                fill
+                priority
+                sizes="(min-width: 1024px) 42vw, 100vw"
+                className="object-cover object-center"
+              />
+            </div>
+            <figcaption className="mt-3 text-sm font-light leading-relaxed text-[color:var(--muted)]">
+              {post.imageCaption}
+            </figcaption>
+          </figure>
         </div>
       </section>
 
@@ -131,7 +159,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               ))}
             </div>
             <a href={`tel:${phoneHref}`} className="btn-primary mt-10 w-full">
-              {phoneDisplay}
+              <span data-phone-number>{phoneDisplay}</span>
             </a>
           </aside>
 
@@ -161,7 +189,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 Schritt meist schnell einschätzen.
               </p>
               <a href={`tel:${phoneHref}`} className="btn-on-dark mt-8">
-                {phoneDisplay}
+                <span data-phone-number>{phoneDisplay}</span>
               </a>
             </section>
           </div>
@@ -180,9 +208,19 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               <Link
                 key={relatedPost.slug}
                 href={`/blog/${relatedPost.slug}`}
-                className="group flex h-full flex-col justify-between bg-white p-8 transition hover:bg-[color:var(--bg-muted)] lg:p-10"
+                className="group flex h-full flex-col justify-between bg-white transition hover:bg-[color:var(--bg-muted)]"
               >
                 <div>
+                  <span className="relative block aspect-[4/3] overflow-hidden bg-[color:var(--bg-muted)]">
+                    <Image
+                      src={relatedPost.image}
+                      alt=""
+                      fill
+                      sizes="(min-width: 768px) 30vw, 100vw"
+                      className="object-cover object-center"
+                    />
+                  </span>
+                  <div className="p-8 lg:p-10">
                   <p className="tracking-eyebrow text-[color:var(--accent)]">
                     {relatedPost.category}
                   </p>
@@ -192,13 +230,14 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   <p className="mt-4 text-sm font-light leading-relaxed text-[color:var(--muted)]">
                     {relatedPost.description}
                   </p>
+                  <span className="link-arrow mt-8">
+                    Lesen
+                    <svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true">
+                      <path d="M1 8h13M9 3l5 5-5 5" stroke="currentColor" strokeWidth="1.2" fill="none" />
+                    </svg>
+                  </span>
+                  </div>
                 </div>
-                <span className="link-arrow mt-8">
-                  Lesen
-                  <svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true">
-                    <path d="M1 8h13M9 3l5 5-5 5" stroke="currentColor" strokeWidth="1.2" fill="none" />
-                  </svg>
-                </span>
               </Link>
             ))}
           </div>

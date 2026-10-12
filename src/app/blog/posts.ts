@@ -10,13 +10,17 @@ export type BlogPost = {
   dateModified: string;
   /**
    * Pflicht bei jedem neuen Beitrag.
-   * Querformat, Motiv in der Mitte: das Gerät oder das Fehlerbild. Kein
-   * Porträt, das am Rand angeschnitten wird. Das Verzeichnis schneidet jedes
-   * Bild auf 4:3, object-cover und object-center. Was am Rand liegt, fällt weg.
-   * Unsplash-URL wie die bestehenden Bilder, oder eine lokale Datei unter
-   * /assets als WebP. next/image liefert daraus WebP oder AVIF.
+   * Lokale WebP-Datei unter /assets, Dateiname mit Gerät und Fehlerbild.
+   * Querformat, Motiv in der Mitte. Das Verzeichnis und der Beitrag schneiden
+   * auf 4:3, object-cover und object-center. Was am Rand liegt, fällt weg.
+   * XMP auf Deutsch: dc:title, dc:description, dc:subject. Kein Personenname,
+   * keine Behauptung, das Foto zeige einen MONTER-Einsatz.
    */
   image: string;
+  /** Beschreibt das Foto, nicht den Suchbegriff. */
+  imageAlt: string;
+  /** Ein Satz zum Foto, der zum Fehlerbild des Beitrags passt. */
+  imageCaption: string;
   intro: string;
   sections: {
     title: string;
@@ -40,20 +44,14 @@ const categoryAffinity: Record<string, string[]> = {
   Ratgeber: ["Waschmaschine", "Kühlen", "Geschirrspüler"]
 };
 
-const washingMachineImage =
-  "https://images.unsplash.com/photo-1632923565835-6582b54f2105?auto=format&fit=crop&w=1600&q=85";
-const dishwasherImage =
-  "https://images.unsplash.com/photo-1620568400263-6f1cf95b9e30?auto=format&fit=crop&w=1600&q=85";
-const ovenImage =
-  "https://images.unsplash.com/photo-1677727852911-74e9d5269003?auto=format&fit=crop&w=1600&q=85";
-const fridgeImage =
-  "https://images.unsplash.com/photo-1667404202905-4335b5370d96?auto=format&fit=crop&w=1600&q=85";
-const dryerImage =
-  "https://images.unsplash.com/photo-1775210727386-4c798dfae209?auto=format&fit=crop&w=1600&q=85";
-const workshopImage =
-  "https://images.unsplash.com/photo-1530124566582-a618bc2615dc?auto=format&fit=crop&w=1600&q=85";
-const garageImage =
-  "https://images.unsplash.com/photo-1696992812596-3c0d4d2d1299?auto=format&fit=crop&w=1600&q=85";
+const washingMachineImage = "/assets/blog-waschmaschine-pumpt-nicht-ab-wien.webp";
+const dishwasherImage = "/assets/blog-geschirrspueler-reinigt-nicht-wien.webp";
+const ovenImage = "/assets/blog-backofen-heizt-nicht-wien.webp";
+const fridgeImage = "/assets/blog-kuehlschrank-kuehlt-nicht-wien.webp";
+const dryerImage = "/assets/blog-trockner-trocknet-nicht-wien.webp";
+const workshopImage = "/assets/blog-reparatur-oder-neukauf-wien.webp";
+const garageImage = "/assets/blog-garagentor-oeffnet-nicht-wien.webp";
+const climateImage = "/assets/blog-klimaanlage-kuehlt-nicht-wien.webp";
 
 export const blogPosts: BlogPost[] = [
   {
@@ -66,6 +64,8 @@ export const blogPosts: BlogPost[] = [
     date: "2025-09-16",
     dateModified: "2026-05-12",
     image: washingMachineImage,
+    imageAlt: "Zwei weiße Frontlader-Waschmaschinen nebeneinander in einem Hauswirtschaftsraum.",
+    imageCaption: "Steht Wasser in der Trommel, zuerst den Strom wegnehmen und das Flusensieb nur mit Wanne öffnen.",
     intro:
       "Wenn Wasser in der Trommel stehen bleibt, ist der Ärger sofort da: Die Wäsche ist nass, die Tür bleibt verriegelt und im schlimmsten Fall steht Wasser auf dem Boden. Die gute Nachricht ist, dass dieses Fehlerbild in den meisten Fällen keine teure Ursache hat. Wir zeigen, was Sie selbst gefahrlos prüfen können, wo Sie besser aufhören und was wir bei einem Einsatz in Wien der Reihe nach kontrollieren.",
     sections: [
@@ -119,6 +119,8 @@ export const blogPosts: BlogPost[] = [
     date: "2025-10-21",
     dateModified: "2026-04-08",
     image: dishwasherImage,
+    imageAlt: "Geöffneter Geschirrspüler mit Geschirrkorb und oberem Sprüharm.",
+    imageCaption: "Siebe und Sprüharme sind die erste Stelle, wenn das Geschirr schmutzig bleibt.",
     intro:
       "Ein Geschirrspüler soll Arbeit abnehmen. Bleiben Gläser milchig, Teller sandig oder Töpfe fettig, muss man nicht sofort an einen Defekt denken: Ein großer Teil dieser Fälle ist eine Frage von Wasserführung, Dosierung und Wasserhärte. Diese Anleitung folgt der Reihenfolge, in der wir bei einem Einsatz vorgehen — von den Punkten, die Sie selbst erledigen können, bis zu den technischen Ursachen.",
     sections: [
@@ -172,6 +174,8 @@ export const blogPosts: BlogPost[] = [
     date: "2025-11-18",
     dateModified: "2026-03-24",
     image: ovenImage,
+    imageAlt: "Herd mit Knebeln und Backofentür.",
+    imageCaption: "Ob nur eine Heizart ausfällt oder der ganze Ofen kalt bleibt, ändert die Ursache.",
     intro:
       "Ein Backofen, der kalt bleibt, ist selten ein Rätsel: Meist ist es ein Heizkörper, ein Temperaturfühler oder die Ansteuerung. Anders als bei Waschmaschine und Geschirrspüler gibt es hier aber wenig, das man selbst prüfen sollte — im Gerät liegen 230 Volt an heißen, gut zugänglichen Bauteilen. Dieser Beitrag hilft Ihnen, das Fehlerbild sauber zu beschreiben und einzuschätzen, wie eilig es ist.",
     sections: [
@@ -225,6 +229,8 @@ export const blogPosts: BlogPost[] = [
     date: "2026-01-13",
     dateModified: "2026-06-02",
     image: fridgeImage,
+    imageAlt: "Weißer Kühlschrank mit Gefrierfach oben in einer Küche.",
+    imageCaption: "Erst die Temperatur messen, dann die Aufstellung prüfen.",
     intro:
       "Bei einem zu warmen Kühlschrank geht es um zwei Dinge gleichzeitig: die Ursache und die Lebensmittel. Deshalb lohnt sich zuerst eine schnelle Einschätzung, wie kritisch die Lage ist, und erst danach die Fehlersuche. Ein großer Teil der Fälle, die wir sehen, ist überraschend günstig zu beheben — und einige sind gar kein Defekt, sondern eine Frage der Aufstellung.",
     sections: [
@@ -278,6 +284,8 @@ export const blogPosts: BlogPost[] = [
     date: "2026-02-10",
     dateModified: "2026-05-26",
     image: dryerImage,
+    imageAlt: "Trockner über einer Waschmaschine in einem Hauswirtschaftsraum.",
+    imageCaption: "Filter, Feuchtesensor und Kondensatbehälter entscheiden oft vor jedem Bauteil.",
     intro:
       "Wenn ein Trockner deutlich länger braucht oder die Wäsche feucht aus der Trommel kommt, ist das meist kein Defekt im klassischen Sinn, sondern ein Luftweg, der nicht mehr frei ist. Das ist eine gute Nachricht: Die häufigste Ursache lässt sich ohne Ersatzteil beheben. Gleichzeitig lohnt es sich, früh zu handeln, weil ein Wärmepumpentrockner mit belegtem Verdampfer spürbar mehr Strom zieht.",
     sections: [
@@ -331,6 +339,8 @@ export const blogPosts: BlogPost[] = [
     date: "2026-03-17",
     dateModified: "2026-06-15",
     image: workshopImage,
+    imageAlt: "Zangen und Schraubenschlüssel in einer Werkstatt.",
+    imageCaption: "Ob sich die Reparatur lohnt, hängt an Alter, Zustand und dem Ersatzteilpreis.",
     intro:
       "Die Frage ist selten, ob ein Gerät reparierbar ist — technisch geht fast immer etwas. Die Frage ist, ob es sich rechnet. Diese Entscheidung hängt an vier Größen: Reparaturkosten, Restlebensdauer, Energieverbrauch und Ihrem Nutzungsverhalten. Hier ist die Rechnung, die wir bei jedem Einsatz mit unseren Kund:innen aufmachen — bewusst mit den Fällen, in denen wir von einer Reparatur abraten.",
     sections: [
@@ -384,6 +394,8 @@ export const blogPosts: BlogPost[] = [
     date: "2026-04-14",
     dateModified: "2026-06-15",
     image: garageImage,
+    imageAlt: "Geschlossenes Sektionaltor an einer Ziegelwand, daneben eine Ampel.",
+    imageCaption: "Handsender, Lichtschranke und Feder sind getrennte Fehlerbilder. Bei einer Feder das Tor nicht bewegen.",
     intro:
       "Ein Garagentor fällt selten ohne Vorwarnung aus: Meist wird es vorher lauter, ruckelt oder braucht zwei Versuche. Wenn es dann gar nicht mehr reagiert, ist die Ursache oft harmlos — ein leerer Handsender, eine verschmutzte Lichtschranke, eine ausgelöste Sicherung. Bei Federn und Seilen hört die Selbsthilfe allerdings auf, und zwar aus einem guten Grund.",
     sections: [
@@ -436,7 +448,9 @@ export const blogPosts: BlogPost[] = [
     readingTime: "4 Min.",
     date: "2026-05-19",
     dateModified: "2026-06-15",
-    image: workshopImage,
+    image: climateImage,
+    imageAlt: "Außengerät einer Split-Klimaanlage an einer Wand unter einem Vordach.",
+    imageCaption: "Filter reinigen geht selbst. Am Kältemittelkreis arbeitet nur zertifiziertes Personal.",
     intro:
       "Klimaanlagen fallen fast immer im ungünstigsten Moment aus: in der ersten heißen Woche, wenn alle gleichzeitig anrufen. Dabei ist ein großer Teil der Fälle keine Störung, sondern die Folge einer ausgelassenen Wartung. Was Sie selbst tun können, ist überschaubar aber wirksam — und beim Kältemittel gibt es klare rechtliche Grenzen, die viele nicht kennen.",
     sections: [

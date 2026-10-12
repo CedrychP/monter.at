@@ -68,8 +68,8 @@ const sections: Section[] = [
     paragraphs: [
       "Geben Sie uns einen Auftrag, speichern wir die Daten, die wir dafür brauchen: Name, Telefonnummer, E-Mail-Adresse, Adresse des Einsatzorts, Kundentyp, bei Firmen den Firmennamen, Gerät, Marke oder Modell, Fehlerbild, Termin, durchgeführte Arbeiten, verbaute Ersatzteile, Rechnungsbetrag und Zahlungsart.",
       "Fotos, die Sie uns zum Gerät schicken, etwa vom Typenschild, gehören zur selben Akte.",
-      "Rechtsgrundlage ist der Vertrag beziehungsweise die Schritte vor dem Vertrag, Artikel 6 Absatz 1 Buchstabe b DSGVO. Rechnungen und die dazugehörigen Unterlagen bewahren wir zusätzlich auf, weil das Steuer- und Unternehmensrecht das verlangt, Artikel 6 Absatz 1 Buchstabe c DSGVO, insbesondere § 132 Bundesabgabenordnung. Diese Unterlagen bleiben sieben Jahre gespeichert.",
-      "Die übrige Kundenakte bewahren wir, solange der Auftrag läuft und danach, solange Ansprüche daraus noch offen sein können. Ist die gesetzliche Frist abgelaufen und besteht kein offener Vorgang mehr, löschen oder sperren wir die Daten.",
+      "Rechtsgrundlage ist der Vertrag beziehungsweise die Schritte vor dem Vertrag, Artikel 6 Absatz 1 Buchstabe b DSGVO. Rechnungen und die dazugehörigen Unterlagen bewahren wir zusätzlich auf, weil das Steuer- und Unternehmensrecht das verlangt, Artikel 6 Absatz 1 Buchstabe c DSGVO, insbesondere § 132 Bundesabgabenordnung und § 212 Unternehmensgesetzbuch. Diese Unterlagen bleiben sieben Jahre gespeichert. Die Frist läuft ab dem Schluss des Kalenderjahres der letzten Eintragung.",
+      "Die übrige Kundenakte bewahren wir für die Dauer des Auftrags und drei Jahre nach Abschluss auf. Läuft ein Verfahren, bleibt der dafür nötige Teil länger gespeichert. Die Fristen stehen in Abschnitt 13.",
       "Kartenzahlung läuft über das Kartenterminal vor Ort. Vollständige Kartennummern speichern wir auf dieser Website nicht."
     ]
   },
@@ -80,8 +80,8 @@ const sections: Section[] = [
     paragraphs: [
       "Formulare für Reparatur, Ersatzteile, Firmenkunden, allgemeine Anliegen und Bewerbungen fragen je nach Formular ab: Name, Telefonnummer, E-Mail, Kundentyp, Firma, Einsatzadresse, Gerät, Modell, Dringlichkeit, Wunschtermin und Ihre Nachricht.",
       "Die Angaben werden als E-Mail an das zuständige Postfach bei uns gesendet, über Microsoft 365. Eine eigene Kundendatenbank auf der Website gibt es nicht. Wird aus der Anfrage ein Auftrag, übernehmen wir die nötigen Angaben in die Kundenakte nach Abschnitt 03.",
-      "Rechtsgrundlage ist Artikel 6 Absatz 1 Buchstabe b DSGVO, weil wir die Anfrage bearbeiten und einen Termin vorbereiten. Kommt kein Auftrag zustande, löschen wir die Anfrage, sobald sie erledigt ist und keine Rückfrage mehr zu erwarten ist.",
-      "Zum Schutz der Formulare merken wir uns kurz die IP-Adresse der Anfrage, höchstens für einige Minuten und nur im Arbeitsspeicher des Servers. Damit begrenzen wir massenhafte automatische Absendungen. Rechtsgrundlage ist unser berechtigtes Interesse an einem funktionierenden Postfach, Artikel 6 Absatz 1 Buchstabe f DSGVO."
+      "Rechtsgrundlage ist Artikel 6 Absatz 1 Buchstabe b DSGVO, weil wir die Anfrage bearbeiten und einen Termin vorbereiten. Kommt kein Auftrag zustande, löschen wir die Anfrage, sobald sie beantwortet ist und keine Rückfrage mehr offen ist, spätestens sechs Monate nach der letzten Nachricht. Die Fristen stehen in Abschnitt 13.",
+      "Zum Schutz der Formulare merken wir uns die IP-Adresse der Anfrage höchstens zehn Minuten und nur im Arbeitsspeicher der jeweiligen Serverinstanz. Sie wird nicht in eine Datei geschrieben. Damit begrenzen wir massenhafte automatische Absendungen. Rechtsgrundlage ist unser berechtigtes Interesse an einem funktionierenden Postfach, Artikel 6 Absatz 1 Buchstabe f DSGVO."
     ]
   },
   {
@@ -99,7 +99,7 @@ const sections: Section[] = [
     title: "Newsletter",
     paragraphs: [
       "Für den Newsletter speichern wir die E-Mail-Adresse, die Sie eintragen. Rechtsgrundlage ist Ihre Einwilligung, Artikel 6 Absatz 1 Buchstabe a DSGVO und § 174 Telekommunikationsgesetz.",
-      "Die Anmeldung kommt als E-Mail in unser Postfach. Wir nutzen die Adresse nur, um Sie über Leistungen und Angebote von MONTER zu informieren. Die Einwilligung können Sie jederzeit widerrufen, ein Hinweis dazu steht in jeder Aussendung. Danach löschen wir die Adresse, soweit wir sie nicht noch für den Nachweis der früheren Einwilligung brauchen."
+      "Die Anmeldung kommt als E-Mail in unser Postfach. Wir nutzen die Adresse nur, um Sie über Leistungen und Angebote von MONTER zu informieren. Die Einwilligung können Sie jederzeit widerrufen, ein Hinweis dazu steht in jeder Aussendung. Danach löschen wir die Adresse. Den Nachweis, dass die Einwilligung vorgelegen hat, bewahren wir drei Jahre auf, Abschnitt 13."
     ]
   },
   {
@@ -108,7 +108,7 @@ const sections: Section[] = [
     title: "Bewerbungen",
     paragraphs: [
       "Über das Karriere-Formular erhalten wir Name, Telefonnummer, E-Mail, die gewünschte Stelle und Ihre Nachricht. Dateien können Sie dort nicht hochladen.",
-      "Wir verwenden diese Angaben nur für das Auswahlverfahren. Rechtsgrundlage ist Artikel 6 Absatz 1 Buchstabe b DSGVO. Nach Abschluss des Verfahrens löschen wir die Bewerbung, außer Sie willigen in eine längere Aufbewahrung ein oder wir müssen sie zur Abwehr von Ansprüchen behalten."
+      "Wir verwenden diese Angaben nur für das Auswahlverfahren. Rechtsgrundlage ist Artikel 6 Absatz 1 Buchstabe b DSGVO. Nach Abschluss des Verfahrens löschen wir die Bewerbung nach sechs Monaten, außer Sie willigen in eine längere Aufbewahrung ein oder ein Verfahren ist anhängig. Die Frist steht in Abschnitt 13."
     ]
   },
   {
@@ -147,7 +147,7 @@ const sections: Section[] = [
     number: "11",
     title: "Empfänger",
     paragraphs: [
-      "Intern sehen die Daten nur Personen, die sie für Termin, Reparatur, Rechnung oder die Bearbeitung Ihrer Anfrage brauchen.",
+      "Intern sehen die Daten nur Personen, die sie für Termin, Reparatur, Rechnung oder die Bearbeitung Ihrer Anfrage brauchen. Sie unterliegen dem Datengeheimnis, Abschnitt 17.",
       "Microsoft 365 übermittelt die Formular-E-Mails. Der Hoster der Website kann Verbindungsdaten in Protokollen sehen, etwa IP-Adresse, Zeitpunkt und aufgerufene Adresse, um den Betrieb und die Sicherheit der Seite zu gewährleisten.",
       "Nur nach der jeweiligen Zustimmung: Google (Analytics und Ads), Vercel (Web Analytics), Meta, Microsoft (Clarity) und OpenAI. Öffentliche Bewertungen, die wir auf der Website zeigen, stammen von Google. Dabei erhalten wir keine privaten Kontodaten der Bewertenden über das hinaus, was in der Bewertung öffentlich steht.",
       "Eine Behörde oder ein Gericht erhält Daten nur, wenn wir dazu verpflichtet sind."
@@ -167,13 +167,15 @@ const sections: Section[] = [
     number: "13",
     title: "Wie lange wir speichern",
     paragraphs: [
-      "Anfragen ohne Auftrag: bis der Vorgang erledigt ist.",
-      "Auftrag und Kundenakte: für die Dauer des Auftrags und danach, solange Ansprüche offen sein können.",
-      "Rechnungen und buchhaltungsrelevante Unterlagen: sieben Jahre.",
-      "Newsletter: bis zum Widerruf.",
-      "Bewerbungen: für das Auswahlverfahren.",
-      "Cookie für die Anzeigen-Telefonnummer und die ChatGPT-Klick-Kennung: 90 Tage. Die Cookie-Entscheidung bleibt gespeichert, bis Sie sie löschen oder ändern.",
-      "IP-Adresse zur Begrenzung der Formulare: nur wenige Minuten im Arbeitsspeicher."
+      "Anfragen ohne Auftrag löschen wir, sobald die Anfrage beantwortet ist und keine Rückfrage mehr offen ist, spätestens sechs Monate nach der letzten Nachricht zu diesem Vorgang.",
+      "Die Kundenakte zum Auftrag speichern wir für die Dauer des Auftrags und drei Jahre nach Abschluss. In dieser Zeit können die Gewährleistung noch laufen, zwei Jahre bei beweglichen Sachen und drei Jahre bei Arbeiten an einer unbeweglichen Sache, § 933 ABGB, sowie die dreijährige Verjährung von Entgeltforderungen und von Schadenersatzansprüchen ab Kenntnis, § 1486 Ziffer 1 und § 1489 ABGB. Ist ein Verfahren anhängig, bleibt der dafür nötige Teil der Akte bis zu dessen Abschluss gespeichert. Die dreißigjährige lange Frist des § 1489 ABGB ist kein Grund, die gesamte Akte so lange zu behalten.",
+      "Rechnungen und andere buchhaltungsrelevante Unterlagen bewahren wir sieben Jahre auf. Die Frist beginnt mit Ablauf des Kalenderjahres, für das die letzte Eintragung in die Bücher vorgenommen wurde, § 132 Bundesabgabenordnung und § 212 Unternehmensgesetzbuch. Solange ein Abgaben- oder Gerichtsverfahren anhängig ist, für das diese Unterlagen von Bedeutung sind, bleiben sie darüber hinaus gespeichert.",
+      "Die Newsletter-Adresse löschen wir nach dem Widerruf. Den Nachweis, dass die Einwilligung vorgelegen hat, bewahren wir drei Jahre auf. Das folgt aus der Pflicht, eine Einwilligung nachweisen zu können, Artikel 7 Absatz 1 DSGVO, und aus der dreijährigen Verjährung von Ansprüchen wegen einer Aussendung, § 1489 ABGB.",
+      "Bewerbungen speichern wir für das Auswahlverfahren und sechs Monate nach dessen Abschluss. In dieser Zeit können Ansprüche nach dem Gleichbehandlungsgesetz wegen einer Benachteiligung bei der Begründung eines Dienstverhältnisses noch geltend gemacht werden. Danach löschen wir die Bewerbung, außer es liegt eine Einwilligung für eine längere Aufbewahrung vor oder ein Verfahren ist anhängig.",
+      "Die Cookies monter_ad_source und monter_oppref laufen nach 90 Tagen ab. Die Cookie-Entscheidung im lokalen Speicher bleibt stehen, bis Sie sie über „Cookie Einstellungen“ ändern oder im Browser löschen.",
+      "Die IP-Adresse zur Begrenzung der Formulare bleibt höchstens zehn Minuten im Arbeitsspeicher der jeweiligen Serverinstanz und wird nicht in eine Datei geschrieben.",
+      "Verbindungsdaten, die der Hoster für Betrieb und Sicherheit protokolliert, etwa IP-Adresse, Zeitpunkt und aufgerufene Adresse, richten wir nicht als eigenes Nutzungsprofil ein. Wie lange der Hoster diese Protokolle behält, bestimmt er für diesen Zweck.",
+      "Daten, die Google, Vercel, Meta, Microsoft oder OpenAI nach Ihrer Einwilligung erhalten, unterliegen den Speicherfristen dieser Anbieter. Ein Widerruf beendet das weitere Laden der Tags. Bereits übermittelte Daten löschen wir bei diesen Anbietern nicht selbst."
     ]
   },
   {
@@ -217,6 +219,40 @@ const sections: Section[] = [
         . Wir bitten Sie, uns vorher zu schreiben, damit wir das Anliegen direkt klären können. Dazu
         sind Sie nicht verpflichtet.
       </>
+    ]
+  },
+  {
+    id: "datengeheimnis",
+    number: "17",
+    title: "Datengeheimnis",
+    paragraphs: [
+      "§ 6 Datenschutzgesetz verpflichtet uns und die Personen, die bei uns Kundendaten sehen, zum Datengeheimnis. Das sind Arbeitnehmer und Personen in einem arbeitnehmerähnlichen Verhältnis. Personenbezogene Daten, die ihnen nur wegen dieser Tätigkeit anvertraut wurden oder zugänglich geworden sind, haben sie geheim zu halten, soweit kein rechtlich zulässiger Grund für eine Weitergabe besteht.",
+      "Eine Weitergabe darf nur auf unsere ausdrückliche Anordnung erfolgen. Wir verpflichten diese Personen darauf, auch für die Zeit nach dem Ende der Tätigkeit, und belehren sie über die Anordnung und über die Folgen eines Verstoßes. Aus der Weigerung, eine unzulässige Weitergabe auszuführen, darf ihnen kein Nachteil entstehen."
+    ]
+  },
+  {
+    id: "gemeinsam",
+    number: "18",
+    title: "Gemeinsame Verantwortliche",
+    paragraphs: [
+      "Artikel 26 DSGVO gilt, wenn mehrere Stellen gemeinsam die Zwecke und die Mittel einer Verarbeitung festlegen. Für die Kundenakte, die Formulare, Bewerbungen, den Newsletter und den E-Mail-Versand sind wir allein verantwortlich. Microsoft 365 übermittelt diese E-Mails als Auftragsverarbeiter und ist dafür nicht gemeinsam mit uns verantwortlich.",
+      "Bei den Marketing-Tags, die nur nach Ihrer Zustimmung laden, legen wir mit dem Anbieter gemeinsam fest, dass auf dieser Website Ereignisdaten erhoben und an ihn übermittelt werden. Das betrifft das Meta-Pixel und die Werbe-Tags von Google. Wir bestimmen, dass das Tag eingebunden wird und ob eine Anzeige zu einer Anfrage geführt hat. Der Anbieter bestimmt die weitere Verarbeitung in seinen eigenen Systemen. Für diesen Erhebungsschritt sind wir und der jeweilige Anbieter gemeinsam Verantwortliche.",
+      <>
+        Das ist das Wesentliche dieser Rollenverteilung. Ihre Rechte können Sie bei jedem der gemeinsam
+        Verantwortlichen geltend machen, Artikel 26 Absatz 3 DSGVO. Anlaufstelle für uns bleibt{" "}
+        <a href={`mailto:${privacyEmail}`} className="border-b border-current">
+          {privacyEmail}
+        </a>{". Die anschließende Verarbeitung durch Meta oder Google ist allein deren Verantwortung. Google Analytics, Vercel Web Analytics und Microsoft Clarity sind nicht gemeinsam mit uns für die Kundenakte verantwortlich."}
+      </>
+    ]
+  },
+  {
+    id: "ki",
+    number: "19",
+    title: "KI auf dieser Website",
+    paragraphs: [
+      "Texte und die Gestaltung dieser Website sind mit Unterstützung eines KI-Systems entstanden und vor der Veröffentlichung geprüft worden. Ein Chatbot, der Ihre Eingaben an ein KI-Modell schickt, ist nicht eingebunden. Angaben aus Formularen, Telefonaten und der Kundenakte geben wir nicht in ein generatives KI-System ein.",
+      "Getrennt davon steht der Anzeigenpixel von OpenAI in Abschnitt 10. Er misst nach Ihrer Marketing-Zustimmung, ob eine ChatGPT-Anzeige zu einer Anfrage geführt hat. Er erzeugt keine Texte auf dieser Seite und beantwortet keine Fragen."
     ]
   }
 ];
