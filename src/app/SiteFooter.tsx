@@ -22,7 +22,6 @@ const brandQuickLinks = [
 
 const serviceLinks = [
   { label: "Wartungsservice", href: "/wartungsservice" },
-  { label: "Lieferung & Montage", href: "/lieferung-montage" },
   { label: "Kaufberatung", href: "/kaufberatung" },
   { label: "Altgeräteentsorgung", href: "/altgeraeteentsorgung" }
 ];

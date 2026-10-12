@@ -88,7 +88,6 @@ const additionalServiceLinks: NavLink[] = [
 
 const serviceNavLinks: NavLink[] = [
   { label: "Wartungsservice", href: "/wartungsservice" },
-  { label: "Lieferung & Montage", href: "/lieferung-montage" },
   { label: "Kaufberatung", href: "/kaufberatung" },
   { label: "Altgeräteentsorgung", href: "/altgeraeteentsorgung" }
 ];
