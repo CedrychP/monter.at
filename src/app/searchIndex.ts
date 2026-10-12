@@ -137,10 +137,10 @@ export function buildSearchIndex(): SearchEntry[] {
     },
     {
       title: "Über MONTER Reparatur & Service",
-      description: "MONTER Reparatur & Service in Wien: Haushaltsgeräte, Klima und Garagentore.",
+      description: "Österreichischer Reparaturbetrieb, angefangen in Wien: Haushaltsgeräte, Garagentore und Klima.",
       href: "/ueber-uns",
       category: "Unternehmen",
-      keywords: "über uns unternehmen monter reparatur wien"
+      keywords: "über uns unternehmen monter reparatur wien floridsdorf österreich begonnen"
     },
     {
       title: "Geräteretterprämie Österreich",
