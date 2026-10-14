@@ -22,6 +22,7 @@ type NavLink = {
   href: string;
   menuId?: string;
   gold?: boolean;
+  alert?: boolean;
   external?: boolean;
   soon?: boolean;
 };
@@ -156,7 +157,8 @@ const dropdownSpecialLinks: NavLink[] = [
   { label: "Ersatzteil bestellen", href: "/ersatzteile" },
   { label: "Anfrage senden", href: "/kontakt" },
   { label: "Für Firmenkunden", href: "/firmenkunden" },
-  { label: "MONTER GOLD", href: "/monter-gold", gold: true, soon: true }
+  { label: "MONTER GOLD", href: "/monter-gold", gold: true, soon: true },
+  { label: "NOTDIENST", href: "/notdienst", alert: true }
 ];
 
 function NavLinkText({ item }: { item: NavLink }) {
@@ -193,6 +195,7 @@ function getDropdownSpecialLinkClassName(item: NavLink, light = false): string {
   const classes = ["nav-dropdown-special-link"];
   if (light) classes.push("nav-dropdown-special-link--light");
   if (item.gold) classes.push("nav-dropdown-special-link--gold");
+  if (item.alert) classes.push("nav-dropdown-special-link--alert");
   return classes.join(" ");
 }
 
@@ -581,18 +584,32 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
             className="relative z-40 mx-auto flex w-full max-w-[88rem] items-center justify-between gap-3 px-5 py-2.5 sm:px-8 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:py-3"
             onMouseEnter={() => setHeaderHovered(true)}
           >
-            <a
-              href={`tel:${emergencyPhoneHref}`}
-              className="order-2 col-start-1 row-start-1 hidden min-w-0 flex-col justify-self-start self-center sm:flex sm:max-w-none lg:order-none"
-              aria-label={`Reparatur-Hotline ${emergencyPhoneDisplay}`}
-            >
-              <span className="text-[0.6rem] font-medium uppercase tracking-[0.14em] text-white/70 sm:text-[0.65rem] sm:tracking-[0.18em]">
-                Reparatur
-              </span>
-              <span className="mt-0.5 text-[0.85rem] font-bold tracking-tight text-white transition hover:text-[color:var(--accent)] sm:text-lg">
-                {emergencyPhoneDisplay}
-              </span>
-            </a>
+            <div className="order-2 col-start-1 row-start-1 hidden min-w-0 items-center gap-3 justify-self-start self-center sm:flex lg:order-none">
+              <a
+                href={`tel:${emergencyPhoneHref}`}
+                className="flex min-w-0 flex-col"
+                aria-label={`Reparatur-Hotline ${emergencyPhoneDisplay}`}
+              >
+                <span className="text-[0.6rem] font-medium uppercase tracking-[0.14em] text-white/70 sm:text-[0.65rem] sm:tracking-[0.18em]">
+                  Reparatur
+                </span>
+                <span className="mt-0.5 text-[0.85rem] font-bold tracking-tight text-white transition hover:text-[color:var(--accent)] sm:text-lg">
+                  {emergencyPhoneDisplay}
+                </span>
+              </a>
+              <Link
+                href="/notdienst"
+                className="border-l border-white/20 pl-3"
+                onClick={closeAllOverlays}
+              >
+                <span className="block text-[0.6rem] font-medium uppercase tracking-[0.14em] text-[color:var(--accent-on-dark)] sm:text-[0.65rem]">
+                  Notdienst
+                </span>
+                <span className="mt-0.5 block text-[0.85rem] font-semibold tracking-tight text-white sm:text-lg">
+                  18:00–08:00
+                </span>
+              </Link>
+            </div>
 
             <Link
               href="/"
@@ -965,6 +982,13 @@ export default function SiteHeader({ logoSrc }: SiteHeaderProps) {
                   >
                     {emergencyPhoneDisplay}
                   </a>
+                  <Link
+                    href="/notdienst"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="mt-1 block text-[0.72rem] font-medium uppercase tracking-[0.14em] text-[color:var(--accent-on-dark)]"
+                  >
+                    Notdienst 18:00–08:00
+                  </Link>
                 </div>
               </div>
 

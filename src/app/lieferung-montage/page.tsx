@@ -40,7 +40,7 @@ const faqs: HubFaqItem[] = [
   {
     question: "Was kostet Montage und Installation allein?",
     answer:
-      "90 € inklusive 20 % MwSt., ohne Lieferung. Im Komfortplus-Paket für 150 € sind Lieferung, Montage, Auspacken und Altgerätmitnahme zusammen enthalten."
+      "108 € brutto, ohne Lieferung. Im Komfortplus-Paket für 180 € sind Lieferung, Montage, Auspacken und Altgerätmitnahme zusammen enthalten."
   },
   {
     question: "Schließen Sie auch Einbaugeräte an?",
@@ -50,19 +50,19 @@ const faqs: HubFaqItem[] = [
   {
     question: "Liefern Sie auch, oder nur die Montage?",
     answer:
-      "Beides. Lieferung allein kostet 85 €, Montage allein 90 €. Komfortplus für 150 € verbindet Lieferung, Montage, Auspacken und Altgerätmitnahme. Die Lieferpreise stehen auf der eigenen Seite, dieselben Beträge auch bei den Preisen."
+      "Beides. Lieferung allein kostet 102 €, Montage allein 108 €, jeweils brutto. Komfortplus für 180 € verbindet Lieferung, Montage, Auspacken und Altgerätmitnahme. Die Lieferpreise stehen auf der eigenen Seite, dieselben Beträge auch bei den Preisen."
   },
   {
     question: "Was gilt ohne Lift?",
     answer:
-      "Wenn kein Lift vorhanden ist und das Gerät getragen werden muss, gilt eine Keine-Lift-Pauschale: 20 € bei normalen Geräten, 35 € bei größeren Geräten, jeweils inklusive 20 % MwSt. Welcher Satz gilt, sagen wir vor dem Termin."
+      "Wenn kein Lift vorhanden ist und das Gerät getragen werden muss, gilt eine Keine-Lift-Pauschale: 24 € bei normalen Geräten, 42 € bei größeren Geräten, jeweils brutto. Welcher Satz gilt, sagen wir vor dem Termin."
   }
 ];
 
 export const metadata: Metadata = buildMetadata({
   title: "Montage & Installation Wien | Großgeräte | MONTER",
   description:
-    "Montage und Installation von Großgeräten in Wien: Anschluss an Strom, Wasser und Abfluss. Allein 90 €, im Komfortplus-Paket 150 € inklusive Lieferung. Inkl. MwSt.",
+    "Montage und Installation von Großgeräten in Wien, brutto: Anschluss an Strom, Wasser und Abfluss. Allein 108 €, im Komfortplus-Paket 180 € inklusive Lieferung.",
   path: "/lieferung-montage"
 });
 
@@ -77,7 +77,7 @@ export default function LieferungMontagePage() {
               Vom Karton zum laufenden Gerät.
             </h1>
             <p className="max-w-sm text-[1.02rem] font-light leading-relaxed text-[color:var(--muted)] lg:pb-2">
-              Aufstellen, anschließen, prüfen. In Wien und im näheren Niederösterreich. Montage allein 90 €.{" "}
+              Aufstellen, anschließen, prüfen. In Wien und im näheren Niederösterreich. Montage allein 108 €.{" "}
               {lieferPricesVatNote}
             </p>
           </div>
@@ -103,17 +103,17 @@ export default function LieferungMontagePage() {
               Komfortplus
             </h2>
             <p className="font-display mt-4 text-6xl font-light leading-none tracking-tight tabular-nums sm:text-7xl">
-              150 €
+              180 €
             </p>
           </div>
           <div>
             <p className="max-w-xl text-[1.15rem] font-light leading-relaxed text-white/90">
-              Lieferung, Montage, Auspacken und Altgerätmitnahme in einem Termin. Die Montage allein wäre 90 €, die
-              Lieferung allein 85 €.
+              Lieferung, Montage, Auspacken und Altgerätmitnahme in einem Termin. Die Montage allein wäre 108 €, die
+              Lieferung allein 102 €.
             </p>
             <p className="mt-4 max-w-xl text-sm font-light leading-relaxed text-white/75">
-              Ab 50 km kommen 65 € dazu. Ohne Lift 20 € bei normalen Geräten, 35 € bei größeren. Auspacken allein 25 €,
-              Altgerätmitnahme allein 35 €. Beides ist im Paket enthalten.
+              Ab 50 km kommen 78 € dazu. Ohne Lift 24 € bei normalen Geräten, 42 € bei größeren. Auspacken allein 30 €,
+              Altgerätmitnahme allein 42 €. Beides ist im Paket enthalten.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <a href="#anfrage" className="btn-on-dark">

@@ -33,29 +33,29 @@ const faqs: HubFaqItem[] = [
   {
     question: "Was ist im Komfortplus-Paket enthalten?",
     answer:
-      "Für 150 € inklusive 20 % MwSt. liefern wir das Gerät, montieren und schließen es an, packen es aus und nehmen das Altgerät mit. Die Anfahrtserhöhung ab 50 km und die Keine-Lift-Pauschale sind nicht im Paketpreis enthalten. Sie kommen dazu, wenn die Adresse oder das Stiegenhaus sie auslöst."
+      "Für 180 € brutto liefern wir das Gerät, montieren und schließen es an, packen es aus und nehmen das Altgerät mit. Die Anfahrtserhöhung ab 50 km und die Keine-Lift-Pauschale sind nicht im Paketpreis enthalten. Sie kommen dazu, wenn die Adresse oder das Stiegenhaus sie auslöst."
   },
   {
     question: "Was kostet die Lieferung allein?",
     answer:
-      "85 € inklusive 20 % MwSt. Montage, Auspackservice und Altgerätmitnahme sind dann eigene Posten: Montage 90 €, Auspacken 25 €, Altgerätmitnahme 35 €."
+      "102 € brutto. Montage, Auspackservice und Altgerätmitnahme sind dann eigene Posten: Montage 108 €, Auspacken 30 €, Altgerätmitnahme 42 €."
   },
   {
-    question: "Wann kommt die Anfahrtserhöhung von 65 €?",
+    question: "Wann kommt die Anfahrtserhöhung von 78 €?",
     answer:
       "Ab einer Lieferentfernung von 50 km, einmal pro Auftrag, zusätzlich zur Lieferung. Ob die Adresse darüber liegt, sagen wir vor dem Termin."
   },
   {
     question: "Was ist die Keine-Lift-Pauschale?",
     answer:
-      "Wenn kein Lift vorhanden ist und das Gerät getragen werden muss: 20 € bei normalen Geräten, 35 € bei größeren Geräten, jeweils inklusive 20 % MwSt. Welcher Satz für Ihr Gerät gilt, sagen wir vor dem Termin."
+      "Wenn kein Lift vorhanden ist und das Gerät getragen werden muss: 24 € bei normalen Geräten, 42 € bei größeren Geräten, jeweils brutto. Welcher Satz für Ihr Gerät gilt, sagen wir vor dem Termin."
   }
 ];
 
 export const metadata: Metadata = buildMetadata({
-  title: "Lieferpreise Wien | Großgeräte ab 85 € | MONTER",
+  title: "Lieferpreise Wien | Großgeräte ab 102 € | MONTER",
   description:
-    "Lieferpreise für Großgeräte in Wien: Komfortplus 150 € mit Lieferung, Montage, Auspacken und Altgerätmitnahme. Lieferung allein 85 €, ab 50 km plus 65 €. Inkl. MwSt.",
+    "Lieferpreise für Großgeräte in Wien, brutto: Komfortplus 180 € mit Lieferung, Montage, Auspacken und Altgerätmitnahme. Lieferung allein 102 €, ab 50 km plus 78 €.",
   path: "/lieferpreise"
 });
 
@@ -88,7 +88,7 @@ export default function LieferpreisePage() {
               </div>
             </div>
             <p className="font-display text-7xl font-light leading-none tracking-tight text-[color:var(--gold-on-dark)] tabular-nums sm:text-8xl lg:text-9xl">
-              150 €
+              180 €
             </p>
           </div>
           <ul className="mt-14 grid grid-cols-2 border-t border-white/15 sm:grid-cols-4">
@@ -102,7 +102,7 @@ export default function LieferpreisePage() {
             ))}
           </ul>
           <p className="mt-6 max-w-2xl text-sm font-light leading-relaxed text-white/60">
-            Ab 50 km und ohne Lift kommen die Zuschläge dazu. Sie sind nicht in den 150 € enthalten.
+            Ab 50 km und ohne Lift kommen die Zuschläge dazu. Sie sind nicht in den 180 € enthalten.
           </p>
         </div>
       </section>
@@ -175,7 +175,7 @@ export default function LieferpreisePage() {
             ))}
           </ul>
           <p className="mt-10 max-w-2xl text-sm font-light leading-relaxed text-[color:var(--muted)]">
-            Montage und Anschluss allein kosten 90 € und sind im Komfortplus enthalten. Der Ablauf steht unter{" "}
+            Montage und Anschluss allein kosten 108 € und sind im Komfortplus enthalten. Der Ablauf steht unter{" "}
             <Link href="/lieferung-montage" className="border-b border-current">
               <span className="text-[color:var(--ink)]">Montage &amp; Installation</span>
             </Link>.
@@ -190,7 +190,7 @@ export default function LieferpreisePage() {
           <div className="max-w-xl">
             <p className="text-[0.72rem] font-medium uppercase tracking-[0.22em] text-white/80">Komfortplus</p>
             <h2 className="font-display mt-4 text-balance text-4xl font-light leading-tight tracking-tight sm:text-5xl">
-              150 €, ein Termin.
+              180 €, ein Termin.
             </h2>
             <p className="mt-4 text-[1.02rem] font-light leading-relaxed text-white/80">
               Gerät, Adresse, Stockwerk. Wir nennen Lieferung, Zuschläge und Termin. Die Anfrage ist noch kein Auftrag.

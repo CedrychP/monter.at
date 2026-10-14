@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import RepairBookingCta from "../RepairBookingCta";
 import { lieferPrices } from "../lieferPreise";
+import { notdienstJobs, notdienstTariffs } from "../notdienstPrices";
 import { buildMetadata } from "../pageMetadata";
 import { siteConfig } from "../siteConfig";
 
@@ -163,7 +164,7 @@ const priceFactors = [
 export const metadata: Metadata = buildMetadata({
   title: "Preise Reparatur Wien | Haushaltsgeräte & Garagentor | MONTER",
   description:
-    "Preise inkl. MwSt. für Reparatur, Lieferung und Montage in Wien und Niederösterreich: Anfahrt, Diagnose, Garagentor, Komfortplus und Altgerätmitnahme.",
+    "Preise brutto für Reparatur, Lieferung, Montage und Notdienst in Wien und Niederösterreich: Anfahrt, Diagnose, Garagentor und Komfortplus.",
   path: "/preise"
 });
 
@@ -288,6 +289,41 @@ export default function PreisePage() {
             {" und "}
             <Link href="/altgeraeteentsorgung" className="underline transition hover:text-[color:var(--accent)]">
               Altgeräteentsorgung
+            </Link>.
+          </p>
+        </div>
+      </section>
+
+      <section id="notdienst" className="scroll-mt-28 border-t border-[color:var(--border)] bg-[color:var(--bg-muted)] py-16 sm:py-20 lg:py-24">
+        <div className="mx-auto max-w-[88rem] px-5 sm:px-8">
+          <SectionIntro
+            eyebrow="Notdienst"
+            title="18:00 bis 08:00."
+            text="Abend, Wochenende und Nacht sind Anfahrt und Diagnose. Die Einsätze darunter kommen dazu. Ob in dem Fenster noch ein Techniker frei ist, sagen wir am Telefon."
+          />
+          <div className="mt-12 grid gap-14">
+            <PriceBlock
+              title="Zeitfenster"
+              items={notdienstTariffs.map((tariff) => ({
+                service: `${tariff.service}, ${tariff.window}`,
+                price: tariff.price,
+                note: tariff.note
+              }))}
+            />
+            <PriceBlock
+              title="Einsätze"
+              items={notdienstJobs.map((job) => ({
+                service: job.service,
+                price: job.price,
+                note: job.note,
+                highlight: job.highlight
+              }))}
+            />
+          </div>
+          <p className="mt-8 max-w-2xl text-sm font-light leading-relaxed text-[color:var(--muted)]">
+            {"Ausführlich unter "}
+            <Link href="/notdienst" className="underline transition hover:text-[color:var(--accent)]">
+              Notdienst
             </Link>.
           </p>
         </div>

@@ -385,6 +385,31 @@ a.nav-dropdown-special-link--gold.nav-dropdown-special-link--light:focus-visible
   filter: drop-shadow(0 0 10px rgba(176, 138, 62, 0.35));
 }
 
+.nav-dropdown-special-link--alert {
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  background: linear-gradient(
+    120deg,
+    #ffffff 0%,
+    #ffd0d6 28%,
+    #ff6073 52%,
+    #ffffff 78%,
+    #a8112a 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 10px rgba(255, 96, 115, 0.35));
+}
+
+a.nav-dropdown-special-link--alert:hover,
+a.nav-dropdown-special-link--alert:focus-visible {
+  background-position: right center;
+  filter: drop-shadow(0 0 14px rgba(255, 96, 115, 0.5));
+}
+
 .nav-newsletter-field {
   display: flex;
   flex-direction: column;

@@ -161,22 +161,29 @@ export function buildSearchIndex(): SearchEntry[] {
       keywords: "geräteretterprämie geräteretterprämie österreich geräte-retter-prämie reparaturbonus förderung"
     },
     {
+      title: "Notdienst Haushaltsgeräte Wien",
+      description: "18:00–08:00. Abend 180 €, Wochenende 216 €, Nacht 240 €, brutto.",
+      href: "/notdienst",
+      category: "Service",
+      keywords: "notdienst notfall wasserschaden abend nacht wochenende 18 uhr anfahrt diagnose"
+    },
+    {
       title: "Lieferpreise Großgeräte Wien",
-      description: "Komfortplus 150 €, Lieferung 85 €, ab 50 km plus 65 €.",
+      description: "Komfortplus 180 € brutto, Lieferung 102 €, ab 50 km plus 78 €.",
       href: "/lieferpreise",
       category: "Service",
       keywords: "lieferpreise lieferung komfortplus 85 150 anfahrt 50 km auspacken lift"
     },
     {
       title: "Montage & Installation Wien",
-      description: "Anschluss und Aufbau, allein 90 € oder im Komfortplus-Paket.",
+      description: "Anschluss und Aufbau, allein 108 € brutto oder im Komfortplus-Paket.",
       href: "/lieferung-montage",
       category: "Service",
       keywords: "montage installation anschluss aufbau lieferung komfortplus großgeräte altgerät trockner"
     },
     {
       title: "Altgeräteentsorgung Wien",
-      description: "Mitnahme allein 35 €, im Komfortplus-Paket enthalten.",
+      description: "Mitnahme allein 42 € brutto, im Komfortplus-Paket enthalten.",
       href: "/altgeraeteentsorgung",
       category: "Service",
       keywords: "altgeräteentsorgung altgerät mitnahme entsorgung elektro 35 euro"
