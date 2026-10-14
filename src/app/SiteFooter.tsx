@@ -50,9 +50,9 @@ const garageLinks = [
 
 const klimaLinks = [
   { label: "Klimagerät Reparatur", href: "/klimageraete" },
-  { label: "Split-Klimaanlage", href: "/klimageraete/split-klimaanlage" },
-  { label: "Wartung & Service", href: "/klimageraete/wartung-service" },
-  { label: "Montage & Installation", href: "/klimageraete/montage-installation" }
+  { label: "Kühlt nicht", href: "/klimageraete/kuehlt-nicht" },
+  { label: "Tropft Wasser", href: "/klimageraete/tropft-wasser" },
+  { label: "Fehlercodes", href: "/klimageraete/fehlercodes" }
 ];
 
 const regionLinks = [

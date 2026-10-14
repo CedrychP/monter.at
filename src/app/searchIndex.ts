@@ -4,7 +4,7 @@ import { appliancePages } from "./haushaltsgeraete/appliancePages";
 import { linzAppliancePages } from "./haushaltsgeraete/linzAppliancePages";
 import { applianceHref, brandHref, garageHref, klimaHref } from "./serviceHrefs";
 import { garagePages } from "./garagentore/garagePages";
-import { klimaPages } from "./klimageraete/klimaPages";
+import { allKlimaPages } from "./klimageraete/klimaPages";
 import { regionPages } from "./einsatzgebiete/regionPages";
 import { getLocationPage, locationPages, locationHref } from "./einsatzgebiete/locationPages";
 
@@ -49,7 +49,7 @@ export function buildSearchIndex(): SearchEntry[] {
     category: "Garagentore",
     keywords: `${page.title} ${page.description} ${page.category} garagentor reparatur`
   }));
-  const fromKlima: SearchEntry[] = klimaPages.map((page) => ({
+  const fromKlima: SearchEntry[] = allKlimaPages.map((page) => ({
     title: page.title,
     description: page.description,
     href: klimaHref(page.slug),

@@ -9,7 +9,7 @@ import {
 import { appliancePages } from "./haushaltsgeraete/appliancePages";
 import { linzAppliancePages } from "./haushaltsgeraete/linzAppliancePages";
 import { garagePages } from "./garagentore/garagePages";
-import { klimaPages } from "./klimageraete/klimaPages";
+import { allKlimaPages } from "./klimageraete/klimaPages";
 import { isBrandDeviceEnriched } from "./marken/brandDeviceContent";
 import { applianceHref, brandDeviceHref, brandHref, garageHref, klimaHref } from "./serviceHrefs";
 import { brandPages } from "./marken/brands";
@@ -72,7 +72,7 @@ export const sitemapGroups: SitemapGroup[] = [
     label: "Klimageräte",
     href: "/klimageraete",
     description: "Klimagerät-Reparatur, Wartung, Kältemittel & Montage.",
-    links: klimaPages.map((page) => ({
+    links: allKlimaPages.map((page) => ({
       label: page.title,
       href: klimaHref(page.slug)
     }))

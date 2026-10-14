@@ -3,7 +3,8 @@ import { notFound } from "next/navigation";
 import DetailPageLayout from "../../DetailPageLayout";
 import { HubFaq } from "../../HubBlocks";
 import { buildMetadata } from "../../pageMetadata";
-import { getKlimaPage, klimaPages } from "../klimaPages";
+import { FaultCodeSheets } from "../FaultCodeSheets";
+import { allKlimaPages, getKlimaPage, klimaPages } from "../klimaPages";
 
 type KlimaPageProps = {
   params: Promise<{
@@ -12,7 +13,7 @@ type KlimaPageProps = {
 };
 
 export function generateStaticParams() {
-  return klimaPages.map((page) => ({
+  return allKlimaPages.map((page) => ({
     slug: page.slug
   }));
 }
@@ -42,7 +43,12 @@ export default async function KlimaDetailPage({ params }: KlimaPageProps) {
     notFound();
   }
 
-  const related = klimaPages.filter((item) => item.slug !== page.slug).slice(0, 3);
+  const related = page.relatedSlugs
+    ? page.relatedSlugs.flatMap((relatedSlug) => {
+        const match = allKlimaPages.find((item) => item.slug === relatedSlug);
+        return match ? [match] : [];
+      })
+    : klimaPages.filter((item) => item.slug !== page.slug).slice(0, 3);
 
   return (
     <DetailPageLayout
@@ -65,7 +71,12 @@ export default async function KlimaDetailPage({ params }: KlimaPageProps) {
         description: page.description,
         path: `/klimageraete/${page.slug}`
       }}
+      areaServed={[
+        { type: "City", name: "Wien" },
+        { type: "State", name: "Niederösterreich" }
+      ]}
     >
+      {page.slug === "fehlercodes" ? <FaultCodeSheets /> : null}
       <HubFaq
         eyebrow="Häufige Fragen"
         title={`${page.category}: kurz beantwortet.`}

@@ -17,6 +17,8 @@ export type KlimaPage = {
   checklist: string[];
   /** Wird als FAQPage-JSON-LD und Akkordeon auf der Detailseite ausgegeben. */
   faq: HubFaqItem[];
+  /** Passende Weiterleitungen. Ohne Angabe bleiben die ersten Nachbarseiten. */
+  relatedSlugs?: string[];
 };
 
 export const klimaPages: KlimaPage[] = [
@@ -258,6 +260,7 @@ export const klimaPages: KlimaPage[] = [
   },
   {
     slug: "kaeltemittel-dichtheit",
+    relatedSlugs: ["kuehlt-nicht", "split-klimaanlage", "kompressor-reparatur"],
     title: "Kältemittel & Dichtheit Wien",
     metaTitle: "Kältemittel & Dichtheitsprüfung Klima Wien | MONTER",
     description:
@@ -317,6 +320,7 @@ export const klimaPages: KlimaPage[] = [
   },
   {
     slug: "kompressor-reparatur",
+    relatedSlugs: ["geruch-laut", "kuehlt-nicht", "steuerung-elektronik"],
     title: "Kompressor Reparatur Wien",
     metaTitle: "Klimagerät Kompressor Reparatur Wien | MONTER Service",
     description:
@@ -376,6 +380,7 @@ export const klimaPages: KlimaPage[] = [
   },
   {
     slug: "steuerung-elektronik",
+    relatedSlugs: ["fehlercodes", "split-klimaanlage", "kompressor-reparatur"],
     title: "Klimagerät Steuerung & Elektronik Wien",
     metaTitle: "Klimagerät Steuerung & Elektronik Reparatur Wien | MONTER",
     description:
@@ -435,6 +440,7 @@ export const klimaPages: KlimaPage[] = [
   },
   {
     slug: "reinigung-entlueftung",
+    relatedSlugs: ["kuehlt-nicht", "tropft-wasser", "geruch-laut"],
     title: "Klimagerät Reinigung & Entlüftung Wien",
     metaTitle: "Klimagerät Reinigung & Entlüftung Wien | MONTER Service",
     description:
@@ -553,8 +559,249 @@ export const klimaPages: KlimaPage[] = [
   }
 ];
 
+export const klimaProblemPages: KlimaPage[] = [
+  {
+    slug: "kuehlt-nicht",
+    title: "Klimaanlage kühlt nicht Wien",
+    metaTitle: "Klimaanlage kühlt nicht in Wien | MONTER",
+    description:
+      "Klimaanlage kühlt nicht in Wien: Wir prüfen Filter, Außengerät und Kältekreis in dieser Reihenfolge. Split, Multi-Split und Monoblock, markenoffen.",
+    h1: "Klimaanlage kühlt nicht in Wien",
+    category: "Kühlt nicht",
+    short: "Lauwarme Luft, kein Kältegefühl oder nur noch ein Raum. Zuerst Luftmenge, dann der Kreis.",
+    intro:
+      "Wenn die Klimaanlage läuft und die Luft nur noch lau ist, oder sie gar nicht mehr kühlt, ersetzen wir kein Bauteil auf Verdacht. Die Prüfung hat eine feste Reihenfolge: Filter und Verdampfer am Innengerät, Verflüssiger am Außengerät, erst danach der Kältekreis. Das gilt für Split, Multi-Split und Monoblock, markenoffen, in Wien und im näheren Niederösterreich.",
+    sections: [
+      {
+        title: "Sie läuft, kühlt aber schwach",
+        body:
+          "Das ist der häufigste Sommerbefund. Verschmutzte Filter und Lamellen am Innengerät nehmen den Luftdurchsatz, ein zugesetzter Verflüssiger am Außengerät führt die Wärme nicht ab. Beides fühlt sich an wie Kältemittelmangel und ist es meist nicht. Ein geschlossener Kreis verbraucht kein Kältemittel. Sinkt die Füllung, liegt eine Undichtheit vor, und die suchen wir, statt nur nachzufüllen."
+      },
+      {
+        title: "Sie kühlt gar nicht",
+        body:
+          "Dann trennen wir, ob die Anlage noch regelt oder schon stehen bleibt. Läuft der Lüfter im Innengerät, dreht das Außengerät, schaltet der Verdichter zu. Ein ausgeschalteter Außenautomat, ein falscher Betriebsmodus oder eine leere Fernbedienung sind die kurzen Wege. Bleibt der Verdichter still oder brummt er nur an, messen wir Elektrik und Kreis, bevor von einem Totalschaden die Rede ist."
+      },
+      {
+        title: "Nur ein Raum, oder alle",
+        body:
+          "Bei einer Multi-Split-Anlage entscheidet diese Beobachtung den Aufwand. Kühlt ein Innengerät nicht und die anderen tun es, liegt der Fehler meist an diesem Gerät: Filter, Expansionsventil, Fühler oder Datenleitung. Werden alle Räume gleichzeitig schwach, geht es um das gemeinsame Außengerät, die Füllmenge oder die Auslegung. Volle Zuschaltung aller Räume an einem Hitzetag ist oft gewollte Leistungsaufteilung, kein Defekt."
+      },
+      {
+        title: "Was wir vor dem Termin brauchen",
+        body:
+          "Marke, Modell, ob das Außengerät hörbar anläuft, und ob Eis am Innengerät oder an der Leitung sitzt. Ein Fehlercode oder eine Blinkfolge, notiert bevor die Sicherung fällt. Damit sagen wir, ob eine Reinigung reicht oder der Kreis gemessen werden muss. Die Anfrage ist noch kein Auftrag."
+      }
+    ],
+    checklist: [
+      "Marke und Modell notieren",
+      "Außengerät beobachten",
+      "Eis oder Wasser melden",
+      "Fehlercode aufschreiben",
+      "Telefonisch abklären"
+    ],
+    faq: [
+      {
+        question: "Kühlt die Klimaanlage schlecht, weil Kältemittel fehlt?",
+        answer:
+          "Meist nicht. Filter, Verdampfer und ein belegtes Außengerät nehmen die Leistung, bevor der Kreis undicht ist. Fehlt wirklich Kältemittel, suchen wir die Leckage und befüllen erst danach."
+      },
+      {
+        question: "Kann ein verschmutzter Filter die Kühlung fast ganz nehmen?",
+        answer:
+          "Ja. Der Filter ist nur die erste Stufe. Dahinter setzen sich die Lamellen zu, und der Luftdurchsatz bricht ein. Eine Haushaltsreinigung erreicht diesen Teil oft nicht. Wir messen die Lufttemperatur vor und nach der Reinigung und sagen, ob das genügt hat."
+      },
+      {
+        question: "Kühlt nur noch ein Raum, die anderen sind kalt. Was ist das?",
+        answer:
+          "Dann ist der Fehler mit hoher Wahrscheinlichkeit an diesem Innengerät oder seiner Leitung, nicht am gemeinsamen Außengerät. Dessen Störungen würden alle Räume treffen."
+      }
+    ],
+    relatedSlugs: ["reinigung-entlueftung", "kaeltemittel-dichtheit", "split-klimaanlage"]
+  },
+  {
+    slug: "tropft-wasser",
+    title: "Klimaanlage tropft Wasser Wien",
+    metaTitle: "Klimaanlage tropft Wasser in Wien | MONTER",
+    description:
+      "Klimaanlage tropft Wasser in Wien: Kondensatablauf, Pumpe oder vereister Verdampfer. Wir finden die Ursache, bevor Feuchtigkeit in die Wand zieht.",
+    h1: "Klimaanlage tropft Wasser in Wien",
+    category: "Tropft Wasser",
+    short: "Wasser aus dem Innengerät. Ablauf, Pumpe oder Eis. Für die Wand der dringendere Befund.",
+    intro:
+      "Wasser aus dem Innengerät ist im Sommer die häufigste Störungsmeldung. Für das Gerät selbst ist es meist kein Schaden, für Wand, Parkett und den Nachbarn darunter schon. Schalten Sie die Anlage aus und lassen Sie sie nicht weiterkühlen, bis der Ablauf wieder frei ist. Wir klären das in Wien und im näheren Niederösterreich, an Split-Anlagen wie an Monoblöcken.",
+    sections: [
+      {
+        title: "Der Ablauf ist zu",
+        body:
+          "Kondenswasser sammelt sich in der Wanne und soll über ein Gefälle oder eine Pumpe ablaufen. Staub und Biofilm verengen den Schlauch, ein Gegengefälle in der Leitung hält das Wasser zurück, eine müde Kondensatpumpe fördert nicht mehr nach oben. In Altbauten mit langem Weg zum Innenhof kommt eine Verlegung mit zu wenig Neigung dazu. Wir spülen Wanne und Leitung und prüfen das Gefälle, bevor irgendwo abgedichtet wird, wo das Wasser nur einen neuen Weg sucht."
+      },
+      {
+        title: "Es tropft, weil der Verdampfer vereist",
+        body:
+          "Eine vereiste Lamelle taut ab und gibt mehr Wasser ab, als die Wanne fasst. Dann ist der Ablauf nur der sichtbare Teil. Die Vereisung kommt von zu wenig Luft oder von einem Problem im Kältekreis. Wir behandeln diese Ursache mit, sonst tropft es nach der nächsten Hitze wieder."
+      },
+      {
+        title: "Monoblock und mobiles Gerät",
+        body:
+          "Hier steht das Wasser oft im Behälter, oder der Abluftschlauch führt Feuchtigkeit in den Raum zurück, weil er geknickt ist oder nicht nach außen dichtet. Ein voller Behälter schaltet manche Geräte ab, andere laufen weiter und laufen über. Wir prüfen Behälter, Schlauch und die Elektronik der Abschaltung getrennt vom Split-Ablauf."
+      },
+      {
+        title: "Bevor es in die Wand zieht",
+        body:
+          "Ein nasser Fleck unter dem Innengerät ist der Moment zum Abschalten, nicht zum Weiterlaufenlassen auf niedriger Stufe. Sagen Sie uns, ob es nur im Kühlbetrieb tropft, ob die Wanne schon einmal gereinigt wurde und ob das Gerät über eine Pumpe nach oben entwässert. Die Anfrage ist noch kein Auftrag."
+      }
+    ],
+    checklist: [
+      "Gerät ausschalten",
+      "Nassen Fleck beschreiben",
+      "Nur im Kühlbetrieb?",
+      "Pumpe oder Gefälle nennen",
+      "Termin anfragen"
+    ],
+    faq: [
+      {
+        question: "Ist tropfendes Wasser aus der Klimaanlage gefährlich?",
+        answer:
+          "Für das Gerät meist nicht, für Wand und Boden schon. Lassen Sie es nicht weiterlaufen. Ursache ist in der Regel der Kondensatablauf oder ein vereister Verdampfer."
+      },
+      {
+        question: "Reicht es, den Ablaufschlauch auszublasen?",
+        answer:
+          "Manchmal für den Moment. Sitzt der Belag in der Wanne oder ist das Gefälle falsch, kommt das Wasser zurück. Eine Pumpe, die nicht mehr fördert, wird durch Ausblasen nicht wieder dicht."
+      },
+      {
+        question: "Tropft es nur, während die Anlage kühlt?",
+        answer:
+          "Ja, das ist der Normalfall, weil nur dann Kondensat entsteht. Tropft es auch im Stillstand, steht Restwasser in einer verstopften Wanne oder die Vereisung taut gerade ab."
+      }
+    ],
+    relatedSlugs: ["reinigung-entlueftung", "split-klimaanlage", "monoblock-klimageraet"]
+  },
+  {
+    slug: "fehlercodes",
+    title: "Klimaanlage Fehlercode Wien",
+    metaTitle: "Klimaanlage Fehlercode in Wien | MONTER",
+    description:
+      "Klimaanlage Fehlercode in Wien: Daikin, Mitsubishi Electric und LG. Der Code nennt den Bereich, nicht das Bauteil. Blinkfolge vor dem Neustart notieren.",
+    h1: "Klimaanlage Fehlercode in Wien",
+    category: "Fehlercodes",
+    short: "Code oder Blinkfolge notieren. Dieselbe Zeichenfolge gilt nur innerhalb einer Marke.",
+    intro:
+      "Ein Fehlercode benennt einen Bereich: Fühler, Ablauf, Kommunikation, Lüfter oder Verdichter. Er benennt nicht das defekte Bauteil, und dieselbe Zeichenfolge bedeutet bei der nächsten Marke etwas anderes. Notieren Sie Code oder Blinkfolge, Marke und Modell, bevor Sie die Sicherung ausschalten. Ein Neustart löscht die Meldung oft. Wir ordnen das in Wien und im näheren Niederösterreich zu, markenoffen.",
+    sections: [
+      {
+        title: "Display, Fernbedienung oder nur eine LED",
+        body:
+          "Split-Anlagen melden den Fehler als Code im Display, über die Fernbedienung oder als Blinkgruppen der Betriebs-LED. Bei Daikin lässt sich der zweistellige Code oft über die Fernbedienung auslesen. Viele Wandgeräte von Mitsubishi Electric zeigen keinen Buchstaben, sondern eine Blinkfolge. Zählen Sie die Gruppen, bevor das Gerät vom Strom geht. Panasonic und Baumarktgeräte nutzen eigene Listen. Code und Typenschild reichen uns zur Einordnung."
+      },
+      {
+        title: "Daikin, die häufig gelesenen Codes",
+        body:
+          "U4 ist eine fehlende Übertragung zwischen Innen- und Außengerät. U0 steht für Kältemittelmangel, also eine Undichtheit, nicht für ein leer verbrauchtes Gas. A5 ist Hochdruck oder Vereisungsschutz, oft zuerst eine Frage der Luftmenge. C9 betrifft den Fühler der Ansaugluft am Innengerät, E7 den Lüftermotor am Außengerät. Die Zuordnung folgt den Betriebsunterlagen für gängige Split-Baureihen. Ältere Geräte und Multi-Split können abweichen."
+      },
+      {
+        title: "Mitsubishi Electric und LG",
+        body:
+          "Bei Mr. Slim mit Codeanzeige ist P1 der Ansaugfühler, P5 die Kondensatpumpe oder der Überlaufschutz, P6 der Vereisungsschutz im Kühlen und der Überhitzungsschutz im Heizen. E6, zusammen mit E7, ist die Kommunikation zwischen Innen- und Außengerät. Viele Wandgeräte dieser Marke blinken nur. Bei LG ist CH05 die Kommunikation, CH01 und CH02 sind Fühlerfehler je nach Baureihe, CH10 der Lüfter am Innengerät, CH21 der Verdichter oder der Steuerkreis am Außengerät."
+      },
+      {
+        title: "Was der Code nicht ersetzt",
+        body:
+          "Der Code grenzt ein, die Messung entscheidet. Ein Kommunikationsfehler kann eine korrodierte Klemme sein oder eine Platine. Ein Vereisungsschutz kann vom Filter kommen oder von der Füllmenge. Wir tauschen das genannte Bauteil nicht allein wegen der Anzeige. Die Anfrage mit Code, Marke und Modell ist noch kein Auftrag."
+      }
+    ],
+    checklist: [
+      "Code oder Blinkfolge notieren",
+      "Marke und Modell bereithalten",
+      "Nicht sofort stromlos machen",
+      "Foto vom Display",
+      "Telefonisch abklären"
+    ],
+    faq: [
+      {
+        question: "Darf ich die Klimaanlage stromlos machen, um den Code zu löschen?",
+        answer:
+          "Ein Neustart hilft manchmal und löscht dabei die Meldung. Notieren Sie Code oder Blinkfolge vorher. Kommt der Fehler wieder, ist der Reset nur ein Symptomwechsel."
+      },
+      {
+        question: "Bedeutet U4 bei jeder Marke dasselbe?",
+        answer:
+          "Nein. U4 ist bei Daikin die fehlende Übertragung zwischen Innen- und Außengerät. Andere Hersteller belegen dieselben Buchstaben anders. Nennen Sie immer die Marke dazu."
+      },
+      {
+        question: "Die Anlage blinkt nur. Wo steht der Code?",
+        answer:
+          "Viele Wandgeräte haben kein Display. Die Betriebs-LED blinkt in Gruppen. Zählen Sie die Folgen. Bei Daikin lässt sich der zweistellige Code oft über die Fernbedienung auslesen."
+      }
+    ],
+    relatedSlugs: ["steuerung-elektronik", "split-klimaanlage", "kuehlt-nicht"]
+  },
+  {
+    slug: "geruch-laut",
+    title: "Klimaanlage stinkt oder brummt Wien",
+    metaTitle: "Klimaanlage stinkt oder brummt in Wien | MONTER",
+    description:
+      "Klimaanlage stinkt oder brummt in Wien: Geruch aus dem Innengerät, Schall vom Außengerät. Wir trennen Biofilm, Lüfter und Verdichter, markenoffen.",
+    h1: "Klimaanlage stinkt oder brummt in Wien",
+    category: "Geruch & Laut",
+    short: "Muffige Luft aus dem Innengerät, Brummen vom Außengerät. Selten dieselbe Ursache.",
+    intro:
+      "Muffiger Geruch und ein neues Brummen haben selten dieselbe Ursache. Der Geruch sitzt fast immer im Innengerät, in Filter, Wanne und Lüfterrad. Der Schall kommt oft vom Außengerät: Schwingungsdämpfer, Lüfterrad oder Verdichter. In Wiener Innenhöfen und an Fassaden ist das auch ein Nachbarschaftsthema. Wir trennen das in Wien und im näheren Niederösterreich, bevor ein Teil getauscht wird.",
+    sections: [
+      {
+        title: "Es riecht muffig",
+        body:
+          "In der Kondensatwanne steht Wasser, und mit Staub entsteht ein Biofilm. Der zeigt sich nach der Winterpause oder sobald der Kühlbetrieb wieder anläuft. Den Filter zu waschen nimmt nur die erste Schicht. Wir reinigen Lamellen, Wanne und Lüfterrad und spülen den Ablauf. Riecht es verbrannt oder scharf nach Elektrik, lassen Sie die Anlage aus und melden sich. Das ist kein Fall für eine Reinigung."
+      },
+      {
+        title: "Das Außengerät brummt",
+        body:
+          "Gealterte Schwingungsdämpfer, lose Konsolen und ein unwuchtiges Lüfterrad sind die häufigen Befunde. Nachziehen, entkoppeln und das Lüfterrad reinigen senken den Schall oft deutlich. Brummt es, ohne dass der Verdichter anläuft, prüfen wir zuerst Anlaufkondensator, Schütz und Klemmen. Das ist deutlich kleiner als ein Verdichtertausch, und wir messen, bevor wir davon sprechen."
+      },
+      {
+        title: "Pfeifen und Klackern innen",
+        body:
+          "Am Innengerät kommt Pfeifen meist vom Querstromlüfter, Klackern von der Klappenmechanik. Ein Belag auf dem Lüfterrad macht dazu ein gleichmäßiges Schaben, das mit der Drehzahl lauter wird. Das ist eine Reinigung, keine Elektronikstörung."
+      },
+      {
+        title: "Wann das Geräusch kein Defekt ist",
+        body:
+          "Kurzes Anlaufen, das Umschalten der Klappen und das Abtauen im Heizbetrieb gehören zum Gerät. Neu und dauerhaft ist der Befund, den wir ansehen. Sagen Sie, ob es nur beim Start, nur im Kühlen oder rund um die Uhr auftritt, und ob der Geruch mit dem Luftstrom aus dem Innengerät kommt. Die Anfrage ist noch kein Auftrag."
+      }
+    ],
+    checklist: [
+      "Geruch oder Geräusch beschreiben",
+      "Innen oder außen",
+      "Nur beim Start?",
+      "Letzte Reinigung nennen",
+      "Termin anfragen"
+    ],
+    faq: [
+      {
+        question: "Warum stinkt die Klimaanlage nach der Winterpause?",
+        answer:
+          "In der Wanne ist über den Winter ein Biofilm gewachsen. Sobald der Lüfter wieder läuft, trägt er den Geruch in den Raum. Filterwaschen nimmt das nur zum Teil. Wanne, Lamellen und Lüfterrad gehören mit dazu."
+      },
+      {
+        question: "Ist ein brummendes Außengerät ein Verdichterschaden?",
+        answer:
+          "Nicht allein deshalb. Dämpfer, Konsole und Lüfterrad sind häufiger und günstiger. Brummt es ohne Anlauf, messen wir Kondensator, Schütz und Klemmen, bevor wir über den Verdichter sprechen."
+      },
+      {
+        question: "Hilft ein neuer Filter gegen den Geruch?",
+        answer:
+          "Er hilft an der ersten Stufe. Sitzt der Belag in der Wanne oder auf dem Lüfterrad, bleibt der Geruch. Dann reinigen wir diese Stellen und prüfen den Ablauf mit."
+      }
+    ],
+    relatedSlugs: ["reinigung-entlueftung", "kompressor-reparatur", "wartung-service"]
+  }
+];
+
+export const allKlimaPages = [...klimaPages, ...klimaProblemPages];
+
 export function getKlimaPage(slug: string) {
-  return klimaPages.find((page) => page.slug === slug);
+  return allKlimaPages.find((page) => page.slug === slug);
 }
 
 export const klimaDeviceNavLinks = klimaPages.slice(0, 4).map((page) => ({
@@ -563,6 +810,11 @@ export const klimaDeviceNavLinks = klimaPages.slice(0, 4).map((page) => ({
 }));
 
 export const klimaRepairNavLinks = klimaPages.slice(4).map((page) => ({
+  label: page.category,
+  href: `/klimageraete/${page.slug}`
+}));
+
+export const klimaProblemNavLinks = klimaProblemPages.map((page) => ({
   label: page.category,
   href: `/klimageraete/${page.slug}`
 }));

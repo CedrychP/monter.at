@@ -13,7 +13,7 @@ import {
 import { useAdPhone } from "./AdPhone";
 import NavNewsletterSignup from "./NavNewsletterSignup";
 import { garageDoorNavLinks, garageRepairNavLinks } from "./garagentore/garagePages";
-import { klimaDeviceNavLinks, klimaRepairNavLinks } from "./klimageraete/klimaPages";
+import { klimaDeviceNavLinks, klimaProblemNavLinks, klimaRepairNavLinks } from "./klimageraete/klimaPages";
 import { brandAlphabetGroups } from "./marken/brands";
 import { siteConfig } from "./siteConfig";
 
@@ -265,6 +265,7 @@ function getMegaMenus(phoneHref: string): MegaMenuConfig[] {
     id: "klima",
     label: "Klimageräte",
     columns: [
+      { eyebrow: "Probleme", items: klimaProblemNavLinks },
       { eyebrow: "Geräte & Wartung", items: klimaDeviceNavLinks },
       {
         eyebrow: "Reparatur & Diagnose",
