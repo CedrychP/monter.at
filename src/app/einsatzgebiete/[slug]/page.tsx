@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { linzAppliancePages } from "../../haushaltsgeraete/linzAppliancePages";
+import { applianceHref } from "../../serviceHrefs";
 import DetailPageLayout from "../../DetailPageLayout";
 import { HubDetailLinks, HubFaq } from "../../HubBlocks";
 import { buildMetadata } from "../../pageMetadata";
@@ -318,7 +319,7 @@ export default async function RegionDetailPage({ params }: RegionPageProps) {
           intro="Eigene Seiten je Gerät, mit dem harten Linzer Wasser und der Frage, wann sich die Reparatur noch rechnet."
           links={linzAppliancePages.map((page) => ({
             label: page.category,
-            href: `/haushaltsgeraete/${page.slug}`,
+            href: applianceHref(page.slug, "linz"),
             text: page.short
           }))}
         />

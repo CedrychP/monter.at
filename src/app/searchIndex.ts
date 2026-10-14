@@ -1,6 +1,8 @@
 import { blogPosts } from "./blog/posts";
 import { brandPages } from "./marken/brands";
-import { allAppliancePages } from "./haushaltsgeraete/appliancePages";
+import { appliancePages } from "./haushaltsgeraete/appliancePages";
+import { linzAppliancePages } from "./haushaltsgeraete/linzAppliancePages";
+import { applianceHref, brandHref, garageHref, klimaHref } from "./serviceHrefs";
 import { garagePages } from "./garagentore/garagePages";
 import { klimaPages } from "./klimageraete/klimaPages";
 import { regionPages } from "./einsatzgebiete/regionPages";
@@ -24,31 +26,40 @@ export const popularSearches = [
 ];
 
 export function buildSearchIndex(): SearchEntry[] {
-  const fromAppliances: SearchEntry[] = allAppliancePages.map((service) => ({
-    title: service.title,
-    description: service.description,
-    href: `/haushaltsgeraete/${service.slug}`,
-    category: "Haushaltsgeräte",
-    keywords: `${service.title} ${service.description} ${service.category} reparatur`
-  }));
+  const fromAppliances: SearchEntry[] = [
+    ...appliancePages.map((service) => ({
+      title: service.title,
+      description: service.description,
+      href: applianceHref(service.slug),
+      category: "Haushaltsgeräte",
+      keywords: `${service.title} ${service.description} ${service.category} reparatur`
+    })),
+    ...linzAppliancePages.map((service) => ({
+      title: service.title,
+      description: service.description,
+      href: applianceHref(service.slug, "linz"),
+      category: "Haushaltsgeräte",
+      keywords: `${service.title} ${service.description} ${service.category} reparatur linz`
+    }))
+  ];
   const fromGarage: SearchEntry[] = garagePages.map((page) => ({
     title: page.title,
     description: page.description,
-    href: `/garagentore/${page.slug}`,
+    href: garageHref(page.slug),
     category: "Garagentore",
     keywords: `${page.title} ${page.description} ${page.category} garagentor reparatur`
   }));
   const fromKlima: SearchEntry[] = klimaPages.map((page) => ({
     title: page.title,
     description: page.description,
-    href: `/klimageraete/${page.slug}`,
+    href: klimaHref(page.slug),
     category: "Klimageräte",
     keywords: `${page.title} ${page.description} ${page.category} klimaanlage reparatur`
   }));
   const fromBrands: SearchEntry[] = brandPages.map((brand) => ({
     title: `${brand.brand} Reparatur Wien`,
     description: brand.description,
-    href: `/marken/${brand.slug}`,
+    href: brandHref(brand.slug),
     category: "Marke",
     keywords: `${brand.brand} marke reparatur ${brand.description}`
   }));

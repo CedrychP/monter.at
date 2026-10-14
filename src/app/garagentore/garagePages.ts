@@ -21,7 +21,7 @@ export type GaragePage = {
 
 export const garagePages: GaragePage[] = [
   {
-    slug: "sektionaltor-reparatur-wien",
+    slug: "sektionaltor",
     title: "Sektionaltor Reparatur Wien",
     metaTitle: "Sektionaltor Reparatur Wien | MONTER Service",
     description:
@@ -80,7 +80,7 @@ export const garagePages: GaragePage[] = [
     ]
   },
   {
-    slug: "schwingtor-rolltor-reparatur-wien",
+    slug: "schwingtor-rolltor",
     title: "Schwingtor & Rolltor Reparatur Wien",
     metaTitle: "Schwingtor & Rolltor Reparatur Wien | MONTER Service",
     description:
@@ -139,7 +139,7 @@ export const garagePages: GaragePage[] = [
     ]
   },
   {
-    slug: "torantrieb-motor-reparatur-wien",
+    slug: "torantrieb-motor",
     title: "Garagentorantrieb & Motor Reparatur Wien",
     metaTitle: "Garagentorantrieb & Motor Reparatur Wien | MONTER",
     description:
@@ -198,7 +198,7 @@ export const garagePages: GaragePage[] = [
     ]
   },
   {
-    slug: "federwechsel-wien",
+    slug: "federwechsel",
     title: "Garagentor Federbruch & Federwechsel Wien",
     metaTitle: "Garagentor Federbruch & Federwechsel Wien | MONTER",
     description:
@@ -257,7 +257,7 @@ export const garagePages: GaragePage[] = [
     ]
   },
   {
-    slug: "laufrollen-schienen-wien",
+    slug: "laufrollen-schienen",
     title: "Garagentor Laufrollen & Schienen Wien",
     metaTitle: "Garagentor Laufrollen & Schienen Reparatur Wien | MONTER",
     description:
@@ -316,7 +316,7 @@ export const garagePages: GaragePage[] = [
     ]
   },
   {
-    slug: "wartung-sicherheitspruefung-wien",
+    slug: "wartung-sicherheitspruefung",
     title: "Garagentor Wartung & Sicherheitsprüfung Wien",
     metaTitle: "Garagentor Wartung & Sicherheitsprüfung Wien | MONTER",
     description:

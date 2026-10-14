@@ -53,10 +53,10 @@ const steps = [
 ];
 
 const devices = [
-  { label: "Waschmaschine", href: "/haushaltsgeraete/waschmaschine-reparatur-wien" },
-  { label: "Trockner", href: "/haushaltsgeraete/trockner-reparatur-wien" },
-  { label: "Geschirrspüler", href: "/haushaltsgeraete/geschirrspueler-reparatur-wien" },
-  { label: "Kühlschrank", href: "/haushaltsgeraete/kuehlschrank-reparatur-wien" }
+  { label: "Waschmaschine", href: "/haushaltsgeraete/waschmaschine" },
+  { label: "Trockner", href: "/haushaltsgeraete/trockner" },
+  { label: "Geschirrspüler", href: "/haushaltsgeraete/geschirrspueler" },
+  { label: "Kühlschrank", href: "/haushaltsgeraete/kuehlschrank" }
 ];
 
 const faqs: HubFaqItem[] = [

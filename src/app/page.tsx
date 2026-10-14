@@ -121,49 +121,49 @@ const applianceCategories = [
     title: "Waschmaschine",
     image: "/assets/startseite-waschmaschine-produkt-wien.webp",
     alt: "Weiße Frontlader-Waschmaschine mit runder Glastür.",
-    href: "/haushaltsgeraete/waschmaschine-reparatur-wien"
+    href: "/haushaltsgeraete/waschmaschine"
   },
   {
     title: "Trockner",
     image: "/assets/startseite-trockner-produkt-wien.webp",
     alt: "Weißer Trockner mit runder Tür und Lüftungsgitter unten.",
-    href: "/haushaltsgeraete/trockner-reparatur-wien"
+    href: "/haushaltsgeraete/trockner"
   },
   {
     title: "Geschirrspüler",
     image: "/assets/startseite-geschirrspueler-produkt-wien.webp",
     alt: "Freistehender Geschirrspüler aus Edelstahl.",
-    href: "/haushaltsgeraete/geschirrspueler-reparatur-wien"
+    href: "/haushaltsgeraete/geschirrspueler"
   },
   {
     title: "Kühlschrank",
     image: "/assets/startseite-kuehlschrank-produkt-wien.webp",
     alt: "Kühl-Gefrierkombination aus Edelstahl mit Gefrierfach unten.",
-    href: "/haushaltsgeraete/kuehlschrank-reparatur-wien"
+    href: "/haushaltsgeraete/kuehlschrank"
   },
   {
     title: "Gefrierschrank",
     image: "/assets/startseite-gefrierschrank-produkt-wien.webp",
     alt: "Weißer Gefrierschrank mit senkrechtem Griff.",
-    href: "/haushaltsgeraete/tiefkuehl-reparatur-wien"
+    href: "/haushaltsgeraete/tiefkuehl"
   },
   {
     title: "Backofen & Herd",
     image: "/assets/startseite-backofen-produkt-wien.webp",
     alt: "Standherd mit Glaskeramikfeld und fünf Drehknöpfen.",
-    href: "/haushaltsgeraete/backofen-herd-reparatur-wien"
+    href: "/haushaltsgeraete/backofen-herd"
   },
   {
     title: "Dunstabzug",
     image: "/assets/startseite-dunstabzug-produkt-wien.webp",
     alt: "Schwarze Schräghaube mit Edelstahlkamin.",
-    href: "/haushaltsgeraete/dunstabzug-reparatur-wien"
+    href: "/haushaltsgeraete/dunstabzug"
   },
   {
     title: "Fernseher",
     image: "/assets/startseite-fernseher-produkt-wien.webp",
     alt: "Schwarzer Flachbildfernseher auf einem Standfuß.",
-    href: "/haushaltsgeraete/fernseher-reparatur-wien"
+    href: "/haushaltsgeraete/fernseher"
   }
 ];
 
@@ -698,7 +698,7 @@ export default function Home() {
             {[
               {
                 title: "Sektionaltore",
-                href: "/garagentore/sektionaltor-reparatur-wien",
+                href: "/garagentore/sektionaltor",
                 icon: (
                   <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <path d="M3 21V8.5L12 4l9 4.5V21" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
@@ -708,7 +708,7 @@ export default function Home() {
               },
               {
                 title: "Schwing- & Rolltore",
-                href: "/garagentore/schwingtor-rolltor-reparatur-wien",
+                href: "/garagentore/schwingtor-rolltor",
                 icon: (
                   <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <rect x="3" y="3" width="18" height="3.4" rx="1.5" stroke="currentColor" strokeWidth="1.4" />
@@ -719,7 +719,7 @@ export default function Home() {
               },
               {
                 title: "Torantriebe & Motoren",
-                href: "/garagentore/torantrieb-motor-reparatur-wien",
+                href: "/garagentore/torantrieb-motor",
                 icon: (
                   <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <circle cx="12" cy="12" r="3.2" stroke="currentColor" strokeWidth="1.4" />
@@ -729,7 +729,7 @@ export default function Home() {
               },
               {
                 title: "Federn & Federbruch",
-                href: "/garagentore/federwechsel-wien",
+                href: "/garagentore/federwechsel",
                 icon: (
                   <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <path d="M7 5h10M7 17h10M7 5c0 1.5 10 1.5 10 3s-10 1.5-10 3 10 1.5 10 3" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
@@ -738,7 +738,7 @@ export default function Home() {
               },
               {
                 title: "Laufrollen & Schienen",
-                href: "/garagentore/laufrollen-schienen-wien",
+                href: "/garagentore/laufrollen-schienen",
                 icon: (
                   <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <circle cx="8" cy="11" r="3" stroke="currentColor" strokeWidth="1.4" />
@@ -749,7 +749,7 @@ export default function Home() {
               },
               {
                 title: "Wartung & Sicherheitsprüfung",
-                href: "/garagentore/wartung-sicherheitspruefung-wien",
+                href: "/garagentore/wartung-sicherheitspruefung",
                 icon: (
                   <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <path d="M12 3l7 3v5c0 4.4-3 7.5-7 9-4-1.5-7-4.6-7-9V6l7-3Z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />

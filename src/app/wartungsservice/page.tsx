@@ -14,9 +14,9 @@ const checks = [
 const inspected = ["Mechanik", "Elektronik", "Dichtungen", "Filter", "Schläuche", "Federn", "Rollen", "Sicherheit"];
 
 const devices = [
-  { label: "Waschmaschine", href: "/haushaltsgeraete/waschmaschine-reparatur-wien" },
-  { label: "Geschirrspüler", href: "/haushaltsgeraete/geschirrspueler-reparatur-wien" },
-  { label: "Trockner", href: "/haushaltsgeraete/trockner-reparatur-wien" }
+  { label: "Waschmaschine", href: "/haushaltsgeraete/waschmaschine" },
+  { label: "Geschirrspüler", href: "/haushaltsgeraete/geschirrspueler" },
+  { label: "Trockner", href: "/haushaltsgeraete/trockner" }
 ];
 
 const faqs: HubFaqItem[] = [
@@ -129,14 +129,14 @@ export default function WartungsservicePage() {
                 Prüfung von Federn, Seilen, Laufrollen, Antrieb und Sicherheitsfunktionen. Besonders wichtig bei stark
                 genutzten Toren.
               </p>
-              <Link href="/garagentore/wartung-sicherheitspruefung-wien" className="btn-on-dark mt-8">
+              <Link href="/garagentore/wartung-sicherheitspruefung" className="btn-on-dark mt-8">
                 <span>Wartung am Tor</span>
               </Link>
             </div>
           </div>
           <p className="mt-8 max-w-2xl text-sm font-light leading-relaxed text-[color:var(--muted)]">
             {"Klimageräte haben eine eigene "}
-            <Link href="/klimageraete/wartung-service-wien" className="border-b border-current">
+            <Link href="/klimageraete/wartung-service" className="border-b border-current">
               <span className="text-[color:var(--ink)]">Wartung</span>
             </Link>{", mit Filter, Wärmetauscher und Funktionsprüfung."}
           </p>

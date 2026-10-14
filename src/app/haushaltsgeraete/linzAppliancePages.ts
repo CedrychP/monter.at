@@ -7,7 +7,8 @@ import type { AppliancePage } from "./appliancePages";
  */
 export const linzAppliancePages: AppliancePage[] = [
   {
-    slug: "waschmaschine-reparatur-linz",
+    slug: "waschmaschine",
+    place: "linz",
     title: "Waschmaschine Reparatur Linz",
     metaTitle: "Waschmaschine Reparatur Linz | MONTER Service",
     description:
@@ -64,7 +65,8 @@ export const linzAppliancePages: AppliancePage[] = [
     ]
   },
   {
-    slug: "geschirrspueler-reparatur-linz",
+    slug: "geschirrspueler",
+    place: "linz",
     title: "Geschirrspüler Reparatur Linz",
     metaTitle: "Geschirrspüler Reparatur Linz | MONTER Service",
     description:
@@ -116,7 +118,8 @@ export const linzAppliancePages: AppliancePage[] = [
     ]
   },
   {
-    slug: "backofen-herd-reparatur-linz",
+    slug: "backofen-herd",
+    place: "linz",
     title: "Backofen & Herd Reparatur Linz",
     metaTitle: "Backofen Herd Reparatur Linz | MONTER Service",
     description:
@@ -168,7 +171,8 @@ export const linzAppliancePages: AppliancePage[] = [
     ]
   },
   {
-    slug: "trockner-reparatur-linz",
+    slug: "trockner",
+    place: "linz",
     title: "Trockner Reparatur Linz",
     metaTitle: "Trockner Reparatur Linz | MONTER Service",
     description:
@@ -215,7 +219,8 @@ export const linzAppliancePages: AppliancePage[] = [
     ]
   },
   {
-    slug: "kuehlschrank-reparatur-linz",
+    slug: "kuehlschrank",
+    place: "linz",
     title: "Kühlschrank Reparatur Linz",
     metaTitle: "Kühlschrank Reparatur Linz | MONTER Service",
     description:
@@ -267,7 +272,8 @@ export const linzAppliancePages: AppliancePage[] = [
     ]
   },
   {
-    slug: "tiefkuehl-reparatur-linz",
+    slug: "tiefkuehl",
+    place: "linz",
     title: "Gefrierschrank & Tiefkühl Reparatur Linz",
     metaTitle: "Gefrierschrank Reparatur Linz | Tiefkühl | MONTER",
     description:
@@ -314,7 +320,8 @@ export const linzAppliancePages: AppliancePage[] = [
     ]
   },
   {
-    slug: "waschtrockner-reparatur-linz",
+    slug: "waschtrockner",
+    place: "linz",
     title: "Waschtrockner Reparatur Linz",
     metaTitle: "Waschtrockner Reparatur Linz | MONTER Service",
     description:
@@ -361,7 +368,8 @@ export const linzAppliancePages: AppliancePage[] = [
     ]
   },
   {
-    slug: "dunstabzug-reparatur-linz",
+    slug: "dunstabzug",
+    place: "linz",
     title: "Dunstabzug Reparatur Linz",
     metaTitle: "Dunstabzug Reparatur Linz | MONTER Service",
     description:
@@ -408,7 +416,8 @@ export const linzAppliancePages: AppliancePage[] = [
     ]
   },
   {
-    slug: "fernseher-reparatur-linz",
+    slug: "fernseher",
+    place: "linz",
     title: "Fernseher Reparatur Linz",
     metaTitle: "Fernseher Reparatur Linz | MONTER Service",
     description:

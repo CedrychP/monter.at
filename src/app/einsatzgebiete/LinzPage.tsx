@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { linzAppliancePages } from "../haushaltsgeraete/linzAppliancePages";
+import { applianceHref } from "../serviceHrefs";
 import { HubFaq } from "../HubBlocks";
 import { localBusinessProviderRef, siteConfig } from "../siteConfig";
 import { getLocationsForRegion, locationHref } from "./locationPages";
@@ -146,7 +147,7 @@ export default function LinzPage({ region }: { region: RegionPage }) {
           <ul className="mt-10 grid gap-px bg-[color:var(--border)] sm:grid-cols-2 lg:grid-cols-3">
             {linzAppliancePages.map((page) => (
               <li key={page.slug} className="bg-white">
-                <Link href={`/haushaltsgeraete/${page.slug}`} className="group flex h-full flex-col p-6">
+                <Link href={applianceHref(page.slug, "linz")} className="group flex h-full flex-col p-6">
                   <span className="font-display text-2xl font-light tracking-tight text-[color:var(--ink)] group-hover:text-[color:var(--accent)]">
                     {page.category}
                   </span>

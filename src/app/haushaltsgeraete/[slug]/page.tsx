@@ -5,14 +5,14 @@ import { HubFaq } from "../../HubBlocks";
 import { isBrandDeviceEnriched } from "../../marken/brandDeviceContent";
 import { brandDeviceCategories } from "../../marken/devices";
 import { buildMetadata } from "../../pageMetadata";
+import { applianceHref, brandDeviceHref, brandHref } from "../../serviceHrefs";
 import {
-  allAppliancePages,
   appliancePages,
   getAppliancePage,
-  isLinzAppliancePage,
+  getLinzAppliancePage,
+  relatedApplianceSlugs,
   type AppliancePage
 } from "../appliancePages";
-import { linzAppliancePages } from "../linzAppliancePages";
 
 type AppliancePageProps = {
   params: Promise<{
@@ -20,79 +20,50 @@ type AppliancePageProps = {
   }>;
 };
 
-const relatedBySlug: Record<string, string[]> = {
-  "waschmaschine-reparatur-wien": ["trockner-reparatur-wien", "geschirrspueler-reparatur-wien"],
-  "geschirrspueler-reparatur-wien": ["waschmaschine-reparatur-wien", "backofen-herd-reparatur-wien"],
-  "kuehlschrank-reparatur-wien": ["tiefkuehl-reparatur-wien", "geschirrspueler-reparatur-wien"],
-  "tiefkuehl-reparatur-wien": ["kuehlschrank-reparatur-wien", "waschmaschine-reparatur-wien"],
-  "trockner-reparatur-wien": ["waschmaschine-reparatur-wien", "waschtrockner-reparatur-wien"],
-  "backofen-herd-reparatur-wien": ["geschirrspueler-reparatur-wien", "dunstabzug-reparatur-wien"],
-  "waschtrockner-reparatur-wien": ["waschmaschine-reparatur-wien", "trockner-reparatur-wien"]
-};
-
-function brandsForPage(slug: string) {
-  if (slug === "geschirrspueler-reparatur-wien") {
+function brandsForAppliance(slug: string) {
+  if (slug === "geschirrspueler") {
     return [
-      { brand: "AEG", slug: "aeg-reparatur-wien" },
-      { brand: "Bauknecht", slug: "bauknecht-reparatur-wien" },
-      { brand: "Bosch", slug: "bosch-reparatur-wien" }
+      { brand: "AEG", slug: "aeg" },
+      { brand: "Bauknecht", slug: "bauknecht" },
+      { brand: "Bosch", slug: "bosch" }
     ];
   }
   if (
-    slug === "waschmaschine-reparatur-wien" ||
-    slug === "kuehlschrank-reparatur-wien" ||
-    slug === "trockner-reparatur-wien"
+    slug === "waschmaschine" ||
+    slug === "kuehlschrank" ||
+    slug === "trockner"
   ) {
     return [
-      { brand: "AEG", slug: "aeg-reparatur-wien" },
-      { brand: "Bosch", slug: "bosch-reparatur-wien" },
-      { brand: "Miele", slug: "miele-reparatur-wien" }
+      { brand: "AEG", slug: "aeg" },
+      { brand: "Bosch", slug: "bosch" },
+      { brand: "Miele", slug: "miele" }
     ];
   }
   return [
-    { brand: "Bosch", slug: "bosch-reparatur-wien" },
-    { brand: "Miele", slug: "miele-reparatur-wien" },
-    { brand: "Siemens", slug: "siemens-reparatur-wien" }
-  ];
-}
-
-const LINZ_HREF = "/einsatzgebiete/linz";
-
-function relatedLinzEntries(page: AppliancePage) {
-  const preferred = (relatedBySlug[page.slug.replace(/-linz$/, "-wien")] ?? []).map((slug) =>
-    slug.replace(/-wien$/, "-linz")
-  );
-  const appliances = [
-    ...preferred
-      .map((slug) => linzAppliancePages.find((item) => item.slug === slug))
-      .filter((item): item is AppliancePage => Boolean(item)),
-    ...linzAppliancePages.filter((item) => item.slug !== page.slug && !preferred.includes(item.slug))
-  ]
-    .slice(0, 3)
-    .map((item) => ({
-      category: item.category,
-      title: item.title,
-      href: `/haushaltsgeraete/${item.slug}`
-    }));
-
-  return [
-    { category: "Einsatzgebiet", title: "Reparatur in Linz", href: LINZ_HREF },
-    ...appliances
+    { brand: "Bosch", slug: "bosch" },
+    { brand: "Miele", slug: "miele" },
+    { brand: "Siemens", slug: "siemens" }
   ];
 }
 
 function relatedEntries(page: AppliancePage) {
-  if (isLinzAppliancePage(page.slug)) {
-    return relatedLinzEntries(page);
-  }
-
   const hub = {
     category: "Übersicht",
     title: "Haushaltsgeräte Reparatur Wien",
     href: "/haushaltsgeraete"
   };
+  const linzPage = getLinzAppliancePage(page.slug);
+  const linzLink = linzPage
+    ? [
+        {
+          category: "Linz",
+          title: linzPage.title,
+          href: applianceHref(page.slug, "linz")
+        }
+      ]
+    : [];
 
-  const preferred = relatedBySlug[page.slug] ?? [];
+  const preferred = relatedApplianceSlugs[page.slug] ?? [];
   const relatedAppliances = [
     ...preferred
       .map((slug) => appliancePages.find((item) => item.slug === slug))
@@ -103,12 +74,12 @@ function relatedEntries(page: AppliancePage) {
     .map((item) => ({
       category: item.category,
       title: item.title,
-      href: `/haushaltsgeraete/${item.slug}`
+      href: applianceHref(item.slug)
     }));
 
   const device = brandDeviceCategories.find((item) => item.serviceSlug === page.slug);
   const extras =
-    page.slug === "trockner-reparatur-wien"
+    page.slug === "trockner"
       ? [
           {
             category: "Service",
@@ -118,30 +89,28 @@ function relatedEntries(page: AppliancePage) {
         ]
       : [];
 
-  const relatedBrands = brandsForPage(page.slug)
+  const relatedBrands = brandsForAppliance(page.slug)
     .slice(0, extras.length ? 2 : 3)
     .map((brand) => {
-      const comboReady = Boolean(
-        device && isBrandDeviceEnriched(brand.slug, device.slug)
-      );
+      const comboReady = Boolean(device && isBrandDeviceEnriched(brand.slug, device.slug));
       return comboReady && device
         ? {
             category: brand.brand,
             title: `${brand.brand} ${device.label} Reparatur`,
-            href: `/marken/${brand.slug}/${device.slug}`
+            href: brandDeviceHref(brand.slug, device.slug)
           }
         : {
             category: brand.brand,
             title: `${brand.brand} Reparatur Wien`,
-            href: `/marken/${brand.slug}`
+            href: brandHref(brand.slug)
           };
     });
 
-  return [hub, ...relatedAppliances, ...extras, ...relatedBrands];
+  return [hub, ...linzLink, ...relatedAppliances, ...extras, ...relatedBrands];
 }
 
 export function generateStaticParams() {
-  return allAppliancePages.map((page) => ({
+  return appliancePages.map((page) => ({
     slug: page.slug
   }));
 }
@@ -159,7 +128,7 @@ export async function generateMetadata({ params }: AppliancePageProps): Promise<
   return buildMetadata({
     title: page.metaTitle,
     description: page.description,
-    path: `/haushaltsgeraete/${page.slug}`
+    path: applianceHref(page.slug)
   });
 }
 
@@ -172,29 +141,14 @@ export default async function ApplianceDetailPage({ params }: AppliancePageProps
   }
 
   const related = relatedEntries(page);
-  const isLinz = isLinzAppliancePage(page.slug);
 
   return (
     <DetailPageLayout
-      ancestors={isLinz ? [{ label: "Haushaltsgeräte", href: "/haushaltsgeraete" }] : undefined}
-      hub={
-        isLinz
-          ? { label: "Linz", href: LINZ_HREF }
-          : { label: "Haushaltsgeräte", href: "/haushaltsgeraete" }
-      }
+      hub={{ label: "Haushaltsgeräte", href: "/haushaltsgeraete" }}
       category={page.category}
       h1={page.h1}
       intro={page.intro}
-      contactNote={
-        isLinz
-          ? "Nennen Sie Adresse, Gerät und Fehlerbild — wir sagen Ihnen Anfahrt und Termin in Linz."
-          : "Für schnelle Einschätzung, Terminabstimmung und Notdienst-Kontakt."
-      }
-      areaServed={
-        isLinz
-          ? [{ type: "City", name: "Linz" }]
-          : undefined
-      }
+      contactNote="Für schnelle Einschätzung, Terminabstimmung und Notdienst-Kontakt."
       checklist={page.checklist}
       sections={page.sections}
       relatedEyebrow="Verwandte Leistungen"
@@ -203,7 +157,7 @@ export default async function ApplianceDetailPage({ params }: AppliancePageProps
       jsonLd={{
         name: page.title,
         description: page.description,
-        path: `/haushaltsgeraete/${page.slug}`
+        path: applianceHref(page.slug)
       }}
     >
       <HubFaq

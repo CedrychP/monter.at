@@ -41,12 +41,12 @@ const steps = [
 ];
 
 const devices = [
-  { label: "Waschmaschine", href: "/haushaltsgeraete/waschmaschine-reparatur-wien" },
-  { label: "Geschirrspüler", href: "/haushaltsgeraete/geschirrspueler-reparatur-wien" },
-  { label: "Trockner", href: "/haushaltsgeraete/trockner-reparatur-wien" },
-  { label: "Kühlschrank", href: "/haushaltsgeraete/kuehlschrank-reparatur-wien" },
-  { label: "Backofen & Herd", href: "/haushaltsgeraete/backofen-herd-reparatur-wien" },
-  { label: "Fernseher", href: "/haushaltsgeraete/fernseher-reparatur-wien" },
+  { label: "Waschmaschine", href: "/haushaltsgeraete/waschmaschine" },
+  { label: "Geschirrspüler", href: "/haushaltsgeraete/geschirrspueler" },
+  { label: "Trockner", href: "/haushaltsgeraete/trockner" },
+  { label: "Kühlschrank", href: "/haushaltsgeraete/kuehlschrank" },
+  { label: "Backofen & Herd", href: "/haushaltsgeraete/backofen-herd" },
+  { label: "Fernseher", href: "/haushaltsgeraete/fernseher" },
   { label: "Garagentor", href: "/garagentore" },
   { label: "Klimagerät", href: "/klimageraete" }
 ];

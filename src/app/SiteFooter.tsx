@@ -43,16 +43,16 @@ const directLinks = [
 
 const garageLinks = [
   { label: "Garagentor Reparatur", href: "/garagentore" },
-  { label: "Antrieb & Motor", href: "/garagentore/torantrieb-motor-reparatur-wien" },
-  { label: "Federwechsel", href: "/garagentore/federwechsel-wien" },
-  { label: "Wartung & Service", href: "/garagentore/wartung-sicherheitspruefung-wien" }
+  { label: "Antrieb & Motor", href: "/garagentore/torantrieb-motor" },
+  { label: "Federwechsel", href: "/garagentore/federwechsel" },
+  { label: "Wartung & Service", href: "/garagentore/wartung-sicherheitspruefung" }
 ];
 
 const klimaLinks = [
   { label: "Klimagerät Reparatur", href: "/klimageraete" },
-  { label: "Split-Klimaanlage", href: "/klimageraete/split-klimaanlage-wien" },
-  { label: "Wartung & Service", href: "/klimageraete/wartung-service-wien" },
-  { label: "Montage & Installation", href: "/klimageraete/montage-installation-wien" }
+  { label: "Split-Klimaanlage", href: "/klimageraete/split-klimaanlage" },
+  { label: "Wartung & Service", href: "/klimageraete/wartung-service" },
+  { label: "Montage & Installation", href: "/klimageraete/montage-installation" }
 ];
 
 const regionLinks = [
@@ -64,22 +64,22 @@ const regionLinks = [
 ];
 
 const applianceLinks = [
-  { label: "Waschmaschine", href: "/haushaltsgeraete/waschmaschine-reparatur-wien" },
-  { label: "Geschirrspüler", href: "/haushaltsgeraete/geschirrspueler-reparatur-wien" },
-  { label: "Backofen & Herd", href: "/haushaltsgeraete/backofen-herd-reparatur-wien" },
-  { label: "Trockner", href: "/haushaltsgeraete/trockner-reparatur-wien" },
-  { label: "Kühlschrank", href: "/haushaltsgeraete/kuehlschrank-reparatur-wien" },
-  { label: "Fernseher", href: "/haushaltsgeraete/fernseher-reparatur-wien" },
+  { label: "Waschmaschine", href: "/haushaltsgeraete/waschmaschine" },
+  { label: "Geschirrspüler", href: "/haushaltsgeraete/geschirrspueler" },
+  { label: "Backofen & Herd", href: "/haushaltsgeraete/backofen-herd" },
+  { label: "Trockner", href: "/haushaltsgeraete/trockner" },
+  { label: "Kühlschrank", href: "/haushaltsgeraete/kuehlschrank" },
+  { label: "Fernseher", href: "/haushaltsgeraete/fernseher" },
   { label: "Alle Haushaltsgeräte", href: "/haushaltsgeraete" }
 ];
 
 const brandLinks = [
-  { label: "Bosch", href: "/marken/bosch-reparatur-wien" },
-  { label: "Miele", href: "/marken/miele-reparatur-wien" },
-  { label: "Siemens", href: "/marken/siemens-reparatur-wien" },
-  { label: "AEG", href: "/marken/aeg-reparatur-wien" },
-  { label: "Beko", href: "/marken/beko-reparatur-wien" },
-  { label: "Gorenje", href: "/marken/gorenje-reparatur-wien" },
+  { label: "Bosch", href: "/marken/bosch" },
+  { label: "Miele", href: "/marken/miele" },
+  { label: "Siemens", href: "/marken/siemens" },
+  { label: "AEG", href: "/marken/aeg" },
+  { label: "Beko", href: "/marken/beko" },
+  { label: "Gorenje", href: "/marken/gorenje" },
   { label: "Alle Marken", href: "/marken" }
 ];
 

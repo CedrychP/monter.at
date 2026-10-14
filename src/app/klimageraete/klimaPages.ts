@@ -21,7 +21,7 @@ export type KlimaPage = {
 
 export const klimaPages: KlimaPage[] = [
   {
-    slug: "split-klimaanlage-wien",
+    slug: "split-klimaanlage",
     title: "Split-Klimaanlage Reparatur Wien",
     metaTitle: "Split-Klimaanlage Reparatur Wien | MONTER Service",
     description:
@@ -80,7 +80,7 @@ export const klimaPages: KlimaPage[] = [
     ]
   },
   {
-    slug: "multi-split-anlage-wien",
+    slug: "multi-split-anlage",
     title: "Multi-Split-Anlage Reparatur Wien",
     metaTitle: "Multi-Split-Anlage Reparatur Wien | MONTER Service",
     description:
@@ -139,7 +139,7 @@ export const klimaPages: KlimaPage[] = [
     ]
   },
   {
-    slug: "monoblock-klimageraet-wien",
+    slug: "monoblock-klimageraet",
     title: "Monoblock-Klimagerät Reparatur Wien",
     metaTitle: "Monoblock-Klimagerät Reparatur Wien | MONTER Service",
     description:
@@ -198,7 +198,7 @@ export const klimaPages: KlimaPage[] = [
     ]
   },
   {
-    slug: "wartung-service-wien",
+    slug: "wartung-service",
     title: "Klimagerät Wartung Wien",
     metaTitle: "Klimagerät Wartung & Service Wien | MONTER",
     description:
@@ -257,7 +257,7 @@ export const klimaPages: KlimaPage[] = [
     ]
   },
   {
-    slug: "kaeltemittel-dichtheit-wien",
+    slug: "kaeltemittel-dichtheit",
     title: "Kältemittel & Dichtheit Wien",
     metaTitle: "Kältemittel & Dichtheitsprüfung Klima Wien | MONTER",
     description:
@@ -316,7 +316,7 @@ export const klimaPages: KlimaPage[] = [
     ]
   },
   {
-    slug: "kompressor-reparatur-wien",
+    slug: "kompressor-reparatur",
     title: "Kompressor Reparatur Wien",
     metaTitle: "Klimagerät Kompressor Reparatur Wien | MONTER Service",
     description:
@@ -375,7 +375,7 @@ export const klimaPages: KlimaPage[] = [
     ]
   },
   {
-    slug: "steuerung-elektronik-wien",
+    slug: "steuerung-elektronik",
     title: "Klimagerät Steuerung & Elektronik Wien",
     metaTitle: "Klimagerät Steuerung & Elektronik Reparatur Wien | MONTER",
     description:
@@ -434,7 +434,7 @@ export const klimaPages: KlimaPage[] = [
     ]
   },
   {
-    slug: "reinigung-entlueftung-wien",
+    slug: "reinigung-entlueftung",
     title: "Klimagerät Reinigung & Entlüftung Wien",
     metaTitle: "Klimagerät Reinigung & Entlüftung Wien | MONTER Service",
     description:
@@ -493,7 +493,7 @@ export const klimaPages: KlimaPage[] = [
     ]
   },
   {
-    slug: "montage-installation-wien",
+    slug: "montage-installation",
     title: "Klimagerät Montage & Installation Wien",
     metaTitle: "Klimagerät Montage & Installation Wien | MONTER Service",
     description:

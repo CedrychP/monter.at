@@ -1,8 +1,11 @@
 import type { HubFaqItem } from "../HubBlocks";
+import { applianceHref } from "../serviceHrefs";
 import { linzAppliancePages } from "./linzAppliancePages";
 
 export type AppliancePage = {
   slug: string;
+  /** Linz hängt unter /haushaltsgeraete/<slug>/linz. Ohne Angabe gilt die Hauptseite. */
+  place?: "linz";
   title: string;
   metaTitle: string;
   description: string;
@@ -22,7 +25,7 @@ export type AppliancePage = {
 
 export const appliancePages: AppliancePage[] = [
   {
-    slug: "waschmaschine-reparatur-wien",
+    slug: "waschmaschine",
     title: "Waschmaschine Reparatur Wien",
     metaTitle: "Waschmaschine Reparatur Wien | MONTER Service",
     description:
@@ -85,7 +88,7 @@ export const appliancePages: AppliancePage[] = [
     ]
   },
   {
-    slug: "geschirrspueler-reparatur-wien",
+    slug: "geschirrspueler",
     title: "Geschirrspüler Reparatur Wien",
     metaTitle: "Geschirrspüler Reparatur Wien | MONTER Service",
     description:
@@ -148,7 +151,7 @@ export const appliancePages: AppliancePage[] = [
     ]
   },
   {
-    slug: "backofen-herd-reparatur-wien",
+    slug: "backofen-herd",
     title: "Backofen & Herd Reparatur Wien",
     metaTitle: "Backofen Herd Reparatur Wien | MONTER Service",
     description:
@@ -206,7 +209,7 @@ export const appliancePages: AppliancePage[] = [
     ]
   },
   {
-    slug: "trockner-reparatur-wien",
+    slug: "trockner",
     title: "Trockner Reparatur Wien",
     metaTitle: "Trockner Reparatur Wien | MONTER Service",
     description:
@@ -264,7 +267,7 @@ export const appliancePages: AppliancePage[] = [
     ]
   },
   {
-    slug: "kuehlschrank-reparatur-wien",
+    slug: "kuehlschrank",
     title: "Kühlschrank Reparatur Wien",
     metaTitle: "Kühlschrank Reparatur Wien | MONTER Service",
     description:
@@ -327,7 +330,7 @@ export const appliancePages: AppliancePage[] = [
     ]
   },
   {
-    slug: "tiefkuehl-reparatur-wien",
+    slug: "tiefkuehl",
     title: "Gefrierschrank & Tiefkühl Reparatur Wien",
     metaTitle: "Gefrierschrank Reparatur Wien | Tiefkühl | MONTER",
     description:
@@ -385,7 +388,7 @@ export const appliancePages: AppliancePage[] = [
     ]
   },
   {
-    slug: "waschtrockner-reparatur-wien",
+    slug: "waschtrockner",
     title: "Waschtrockner Reparatur Wien",
     metaTitle: "Waschtrockner Reparatur Wien | MONTER Service",
     description:
@@ -438,7 +441,7 @@ export const appliancePages: AppliancePage[] = [
     ]
   },
   {
-    slug: "dunstabzug-reparatur-wien",
+    slug: "dunstabzug",
     title: "Dunstabzug Reparatur Wien",
     metaTitle: "Dunstabzug Reparatur Wien | MONTER Service",
     description:
@@ -491,7 +494,7 @@ export const appliancePages: AppliancePage[] = [
     ]
   },
   {
-    slug: "fernseher-reparatur-wien",
+    slug: "fernseher",
     title: "Fernseher Reparatur Wien",
     metaTitle: "Fernseher Reparatur Wien | TV Service | MONTER",
     description:
@@ -555,27 +558,36 @@ export const appliancePages: AppliancePage[] = [
 export const allAppliancePages: AppliancePage[] = [...appliancePages, ...linzAppliancePages];
 
 export function getAppliancePage(slug: string) {
-  return allAppliancePages.find((page) => page.slug === slug);
+  return appliancePages.find((page) => page.slug === slug);
 }
 
-export function isLinzAppliancePage(slug: string) {
-  return linzAppliancePages.some((page) => page.slug === slug);
+export function getLinzAppliancePage(slug: string) {
+  return linzAppliancePages.find((page) => page.slug === slug);
 }
 
 export const applianceWashingNavLinks = appliancePages
   .filter((page) =>
-    ["waschmaschine-reparatur-wien", "geschirrspueler-reparatur-wien", "trockner-reparatur-wien", "waschtrockner-reparatur-wien"].includes(
-      page.slug
-    )
+    ["waschmaschine", "geschirrspueler", "trockner", "waschtrockner"].includes(page.slug)
   )
-  .map((page) => ({ label: page.category, href: `/haushaltsgeraete/${page.slug}` }));
+  .map((page) => ({ label: page.category, href: applianceHref(page.slug) }));
 
 export const applianceKitchenNavLinks = appliancePages
-  .filter((page) => !applianceWashingNavLinks.some((link) => link.href.endsWith(page.slug)))
-  .map((page) => ({ label: page.category, href: `/haushaltsgeraete/${page.slug}` }));
+  .filter((page) => !applianceWashingNavLinks.some((link) => link.href === applianceHref(page.slug)))
+  .map((page) => ({ label: page.category, href: applianceHref(page.slug) }));
 
 export const applianceHubLinks = appliancePages.map((page) => ({
   label: page.category,
-  href: `/haushaltsgeraete/${page.slug}`,
+  href: applianceHref(page.slug),
   text: page.short
 }));
+
+/** Geschwister-Geräte für die Querverlinkung, Schlüssel ist der kurze Geräte-Slug. */
+export const relatedApplianceSlugs: Record<string, string[]> = {
+  waschmaschine: ["trockner", "geschirrspueler"],
+  geschirrspueler: ["waschmaschine", "backofen-herd"],
+  kuehlschrank: ["tiefkuehl", "geschirrspueler"],
+  tiefkuehl: ["kuehlschrank", "waschmaschine"],
+  trockner: ["waschmaschine", "waschtrockner"],
+  "backofen-herd": ["geschirrspueler", "dunstabzug"],
+  waschtrockner: ["waschmaschine", "trockner"]
+};

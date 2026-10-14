@@ -9,7 +9,7 @@ const sections: InfoSection[] = [
     title: "Was zur Haushaltsgeräte-Reparatur gehört",
     body:
       "Wir sind Reparaturdienst für Elektro- und Haushaltsgeräte in Wien: Waschmaschine, Waschtrockner, Trockner, Geschirrspüler, Backofen und Herd, Kühl- und Tiefkühlgerät, Dunstabzug und Fernseher — freistehend und als Einbaugerät. Typische Arbeiten sind Pumpen und Ventile, Heizelemente und Sensoren, Türverriegelungen und Dichtungen, Lager und Antriebe sowie Steuerelektronik. Markenoffen, auch bei älteren Altgeräten, solange Ersatzteile verfügbar sind.",
-    link: { label: "Waschmaschine Reparatur Wien", href: "/haushaltsgeraete/waschmaschine-reparatur-wien" }
+    link: { label: "Waschmaschine Reparatur Wien", href: "/haushaltsgeraete/waschmaschine" }
   },
   {
     title: "Erst Diagnose, dann Entscheidung",

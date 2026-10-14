@@ -3,7 +3,11 @@ import { notFound } from "next/navigation";
 import DetailPageLayout from "../../../DetailPageLayout";
 import { HubDetailLinks, HubFaq } from "../../../HubBlocks";
 import { buildMetadata } from "../../../pageMetadata";
+import { applianceHref } from "../../../serviceHrefs";
+import { siteConfig } from "../../../siteConfig";
 import type { AppliancePage } from "../../../haushaltsgeraete/appliancePages";
+import LinzDistrictPage from "../../LinzDistrictPage";
+import { AreaServiceLinks } from "../../AreaServiceLinks";
 import LocationProfile from "../../LocationProfile";
 import { getRegionPage } from "../../regionPages";
 import {
@@ -50,10 +54,16 @@ export async function generateMetadata({ params }: LocationPageProps): Promise<M
     };
   }
 
+  const region = getRegionPage(slug);
+
   return buildMetadata({
     title: location.metaTitle,
     description: location.description,
     path: locationHref(location),
+    images:
+      region?.slug === "linz"
+        ? [`${siteConfig.siteUrl}${region.image}`]
+        : undefined,
     // Orte ohne eigenen Inhalt bleiben aus dem Index, sind aber erreichbar.
     robots: location.enriched ? undefined : { index: false, follow: true }
   });
@@ -66,6 +76,10 @@ export default async function LocationDetailPage({ params }: LocationPageProps) 
 
   if (!location || !region) {
     notFound();
+  }
+
+  if (region.slug === "linz") {
+    return <LinzDistrictPage location={location} region={region} />;
   }
 
   const related = getLocationsForRegion(region.slug)
@@ -120,7 +134,7 @@ export default async function LocationDetailPage({ params }: LocationPageProps) 
           intro="Typische Fehlerbilder, Fehlercodes und die Frage Reparatur oder Austausch — je Gerät eine eigene Seite."
           links={appliances.map((page) => ({
             label: page.category,
-            href: `/haushaltsgeraete/${page.slug}`,
+            href: applianceHref(page.slug),
             text: page.short
           }))}
         />
@@ -136,6 +150,9 @@ export default async function LocationDetailPage({ params }: LocationPageProps) 
             text: item.short
           }))}
         />
+      ) : null}
+      {region.slug === "wien" || region.slug === "niederoesterreich" ? (
+        <AreaServiceLinks area="kern" />
       ) : null}
       <HubFaq
         eyebrow="Häufige Fragen"

@@ -51,7 +51,7 @@ const scenes = [
     kicker: "In der Küche",
     title: "Backofen und Herd",
     text: "Oberhitze, Umluft, Temperatur. Der Ofen bleibt in der Nische, der Techniker kommt zur Küche.",
-    href: "/haushaltsgeraete/backofen-herd-reparatur-wien",
+    href: "/haushaltsgeraete/backofen-herd",
     label: "Zum Backofen"
   },
   {

@@ -11,6 +11,7 @@ import { linzAppliancePages } from "./haushaltsgeraete/linzAppliancePages";
 import { garagePages } from "./garagentore/garagePages";
 import { klimaPages } from "./klimageraete/klimaPages";
 import { isBrandDeviceEnriched } from "./marken/brandDeviceContent";
+import { applianceHref, brandDeviceHref, brandHref, garageHref, klimaHref } from "./serviceHrefs";
 import { brandPages } from "./marken/brands";
 import { brandDeviceCategories } from "./marken/devices";
 
@@ -43,7 +44,7 @@ export const sitemapGroups: SitemapGroup[] = [
         href: "/haushaltsgeraete",
         children: appliancePages.map((page) => ({
           label: page.title,
-          href: `/haushaltsgeraete/${page.slug}`
+          href: applianceHref(page.slug)
         }))
       },
       {
@@ -51,7 +52,7 @@ export const sitemapGroups: SitemapGroup[] = [
         href: "/einsatzgebiete/linz",
         children: linzAppliancePages.map((page) => ({
           label: page.title,
-          href: `/haushaltsgeraete/${page.slug}`
+          href: applianceHref(page.slug, "linz")
         }))
       }
     ]
@@ -63,7 +64,7 @@ export const sitemapGroups: SitemapGroup[] = [
     description: "Tore, Antriebe, Federn, Laufwerk und Wartung.",
     links: garagePages.map((page) => ({
       label: page.title,
-      href: `/garagentore/${page.slug}`
+      href: garageHref(page.slug)
     }))
   },
   {
@@ -73,7 +74,7 @@ export const sitemapGroups: SitemapGroup[] = [
     description: "Klimagerät-Reparatur, Wartung, Kältemittel & Montage.",
     links: klimaPages.map((page) => ({
       label: page.title,
-      href: `/klimageraete/${page.slug}`
+      href: klimaHref(page.slug)
     }))
   },
   {
@@ -87,12 +88,12 @@ export const sitemapGroups: SitemapGroup[] = [
       );
       return {
         label: brand.brand,
-        href: `/marken/${brand.slug}`,
+        href: brandHref(brand.slug),
         ...(devices.length > 0
           ? {
               children: devices.map((device) => ({
                 label: device.label,
-                href: `/marken/${brand.slug}/${device.slug}`
+                href: brandDeviceHref(brand.slug, device.slug)
               }))
             }
           : {})
@@ -197,7 +198,7 @@ export const sitemapGroups: SitemapGroup[] = [
 const unenrichedBrandDeviceRoutes = brandPages.flatMap((brand) =>
   brandDeviceCategories
     .filter((device) => !isBrandDeviceEnriched(brand.slug, device.slug))
-    .map((device) => `/marken/${brand.slug}/${device.slug}`)
+    .map((device) => brandDeviceHref(brand.slug, device.slug))
 );
 
 /** Regionen ohne geprüfte Partnerdaten — erreichbar, aber noch nicht im Index. */

@@ -31,7 +31,7 @@ export type BrandDeviceContent = {
 
 export const brandDeviceContents: BrandDeviceContent[] = [
   {
-    brandSlug: "bosch-reparatur-wien",
+    brandSlug: "bosch",
     deviceSlug: "waschmaschine",
     enriched: true,
     intro:
@@ -71,7 +71,7 @@ export const brandDeviceContents: BrandDeviceContent[] = [
     ]
   },
   {
-    brandSlug: "bosch-reparatur-wien",
+    brandSlug: "bosch",
     deviceSlug: "geschirrspueler",
     enriched: true,
     intro:
@@ -112,7 +112,7 @@ export const brandDeviceContents: BrandDeviceContent[] = [
     ]
   },
   {
-    brandSlug: "bosch-reparatur-wien",
+    brandSlug: "bosch",
     deviceSlug: "trockner",
     enriched: true,
     intro:
@@ -165,7 +165,7 @@ export const brandDeviceContents: BrandDeviceContent[] = [
     ]
   },
   {
-    brandSlug: "bosch-reparatur-wien",
+    brandSlug: "bosch",
     deviceSlug: "backofen-herd",
     enriched: true,
     intro:
@@ -217,7 +217,7 @@ export const brandDeviceContents: BrandDeviceContent[] = [
     ]
   },
   {
-    brandSlug: "bosch-reparatur-wien",
+    brandSlug: "bosch",
     deviceSlug: "kuehlschrank",
     enriched: true,
     intro:
@@ -269,7 +269,7 @@ export const brandDeviceContents: BrandDeviceContent[] = [
     ]
   },
   {
-    brandSlug: "bosch-reparatur-wien",
+    brandSlug: "bosch",
     deviceSlug: "tiefkuehlgeraet",
     enriched: true,
     intro:
@@ -320,7 +320,7 @@ export const brandDeviceContents: BrandDeviceContent[] = [
     ]
   },
   {
-    brandSlug: "miele-reparatur-wien",
+    brandSlug: "miele",
     deviceSlug: "waschmaschine",
     enriched: true,
     intro:
@@ -359,7 +359,7 @@ export const brandDeviceContents: BrandDeviceContent[] = [
     ]
   },
   {
-    brandSlug: "miele-reparatur-wien",
+    brandSlug: "miele",
     deviceSlug: "geschirrspueler",
     enriched: true,
     intro:
@@ -398,7 +398,7 @@ export const brandDeviceContents: BrandDeviceContent[] = [
     ]
   },
   {
-    brandSlug: "miele-reparatur-wien",
+    brandSlug: "miele",
     deviceSlug: "trockner",
     enriched: true,
     intro:
@@ -450,7 +450,7 @@ export const brandDeviceContents: BrandDeviceContent[] = [
     ]
   },
   {
-    brandSlug: "miele-reparatur-wien",
+    brandSlug: "miele",
     deviceSlug: "backofen-herd",
     enriched: true,
     intro:
@@ -502,7 +502,7 @@ export const brandDeviceContents: BrandDeviceContent[] = [
     ]
   },
   {
-    brandSlug: "miele-reparatur-wien",
+    brandSlug: "miele",
     deviceSlug: "kuehlschrank",
     enriched: true,
     intro:
@@ -554,7 +554,7 @@ export const brandDeviceContents: BrandDeviceContent[] = [
     ]
   },
   {
-    brandSlug: "miele-reparatur-wien",
+    brandSlug: "miele",
     deviceSlug: "tiefkuehlgeraet",
     enriched: true,
     intro:
@@ -605,7 +605,7 @@ export const brandDeviceContents: BrandDeviceContent[] = [
     ]
   },
   {
-    brandSlug: "siemens-reparatur-wien",
+    brandSlug: "siemens",
     deviceSlug: "waschmaschine",
     enriched: true,
     intro:
@@ -645,7 +645,7 @@ export const brandDeviceContents: BrandDeviceContent[] = [
     ]
   },
   {
-    brandSlug: "siemens-reparatur-wien",
+    brandSlug: "siemens",
     deviceSlug: "geschirrspueler",
     enriched: true,
     intro:
@@ -685,7 +685,7 @@ export const brandDeviceContents: BrandDeviceContent[] = [
     ]
   },
   {
-    brandSlug: "siemens-reparatur-wien",
+    brandSlug: "siemens",
     deviceSlug: "trockner",
     enriched: true,
     intro:
@@ -736,7 +736,7 @@ export const brandDeviceContents: BrandDeviceContent[] = [
     ]
   },
   {
-    brandSlug: "siemens-reparatur-wien",
+    brandSlug: "siemens",
     deviceSlug: "backofen-herd",
     enriched: true,
     intro:
@@ -787,7 +787,7 @@ export const brandDeviceContents: BrandDeviceContent[] = [
     ]
   },
   {
-    brandSlug: "siemens-reparatur-wien",
+    brandSlug: "siemens",
     deviceSlug: "kuehlschrank",
     enriched: true,
     intro:
@@ -838,7 +838,7 @@ export const brandDeviceContents: BrandDeviceContent[] = [
     ]
   },
   {
-    brandSlug: "siemens-reparatur-wien",
+    brandSlug: "siemens",
     deviceSlug: "tiefkuehlgeraet",
     enriched: true,
     intro:
@@ -889,7 +889,7 @@ export const brandDeviceContents: BrandDeviceContent[] = [
     ]
   },
   {
-    brandSlug: "aeg-reparatur-wien",
+    brandSlug: "aeg",
     deviceSlug: "waschmaschine",
     enriched: true,
     intro:
@@ -929,7 +929,7 @@ export const brandDeviceContents: BrandDeviceContent[] = [
     ]
   },
   {
-    brandSlug: "aeg-reparatur-wien",
+    brandSlug: "aeg",
     deviceSlug: "geschirrspueler",
     enriched: true,
     intro:
@@ -969,7 +969,7 @@ export const brandDeviceContents: BrandDeviceContent[] = [
     ]
   },
   {
-    brandSlug: "aeg-reparatur-wien",
+    brandSlug: "aeg",
     deviceSlug: "trockner",
     enriched: true,
     intro:
@@ -1020,7 +1020,7 @@ export const brandDeviceContents: BrandDeviceContent[] = [
     ]
   },
   {
-    brandSlug: "aeg-reparatur-wien",
+    brandSlug: "aeg",
     deviceSlug: "backofen-herd",
     enriched: true,
     intro:
@@ -1071,7 +1071,7 @@ export const brandDeviceContents: BrandDeviceContent[] = [
     ]
   },
   {
-    brandSlug: "aeg-reparatur-wien",
+    brandSlug: "aeg",
     deviceSlug: "kuehlschrank",
     enriched: true,
     intro:
@@ -1122,7 +1122,7 @@ export const brandDeviceContents: BrandDeviceContent[] = [
     ]
   },
   {
-    brandSlug: "aeg-reparatur-wien",
+    brandSlug: "aeg",
     deviceSlug: "tiefkuehlgeraet",
     enriched: true,
     intro:
@@ -1173,7 +1173,7 @@ export const brandDeviceContents: BrandDeviceContent[] = [
     ]
   },
   {
-    brandSlug: "beko-reparatur-wien",
+    brandSlug: "beko",
     deviceSlug: "waschmaschine",
     enriched: true,
     intro:
@@ -1213,7 +1213,7 @@ export const brandDeviceContents: BrandDeviceContent[] = [
     ]
   },
   {
-    brandSlug: "beko-reparatur-wien",
+    brandSlug: "beko",
     deviceSlug: "geschirrspueler",
     enriched: true,
     intro:
@@ -1253,7 +1253,7 @@ export const brandDeviceContents: BrandDeviceContent[] = [
     ]
   },
   {
-    brandSlug: "beko-reparatur-wien",
+    brandSlug: "beko",
     deviceSlug: "trockner",
     enriched: true,
     intro:
@@ -1304,7 +1304,7 @@ export const brandDeviceContents: BrandDeviceContent[] = [
     ]
   },
   {
-    brandSlug: "beko-reparatur-wien",
+    brandSlug: "beko",
     deviceSlug: "backofen-herd",
     enriched: true,
     intro:
@@ -1355,7 +1355,7 @@ export const brandDeviceContents: BrandDeviceContent[] = [
     ]
   },
   {
-    brandSlug: "beko-reparatur-wien",
+    brandSlug: "beko",
     deviceSlug: "kuehlschrank",
     enriched: true,
     intro:
@@ -1406,7 +1406,7 @@ export const brandDeviceContents: BrandDeviceContent[] = [
     ]
   },
   {
-    brandSlug: "beko-reparatur-wien",
+    brandSlug: "beko",
     deviceSlug: "tiefkuehlgeraet",
     enriched: true,
     intro:
@@ -1457,7 +1457,7 @@ export const brandDeviceContents: BrandDeviceContent[] = [
     ]
   },
   {
-    brandSlug: "gorenje-reparatur-wien",
+    brandSlug: "gorenje",
     deviceSlug: "waschmaschine",
     enriched: true,
     intro:
@@ -1497,7 +1497,7 @@ export const brandDeviceContents: BrandDeviceContent[] = [
     ]
   },
   {
-    brandSlug: "gorenje-reparatur-wien",
+    brandSlug: "gorenje",
     deviceSlug: "geschirrspueler",
     enriched: true,
     intro:
@@ -1537,7 +1537,7 @@ export const brandDeviceContents: BrandDeviceContent[] = [
     ]
   },
   {
-    brandSlug: "gorenje-reparatur-wien",
+    brandSlug: "gorenje",
     deviceSlug: "trockner",
     enriched: true,
     intro:
@@ -1588,7 +1588,7 @@ export const brandDeviceContents: BrandDeviceContent[] = [
     ]
   },
   {
-    brandSlug: "gorenje-reparatur-wien",
+    brandSlug: "gorenje",
     deviceSlug: "backofen-herd",
     enriched: true,
     intro:
@@ -1639,7 +1639,7 @@ export const brandDeviceContents: BrandDeviceContent[] = [
     ]
   },
   {
-    brandSlug: "gorenje-reparatur-wien",
+    brandSlug: "gorenje",
     deviceSlug: "kuehlschrank",
     enriched: true,
     intro:
@@ -1690,7 +1690,7 @@ export const brandDeviceContents: BrandDeviceContent[] = [
     ]
   },
   {
-    brandSlug: "gorenje-reparatur-wien",
+    brandSlug: "gorenje",
     deviceSlug: "tiefkuehlgeraet",
     enriched: true,
     intro:

@@ -51,27 +51,27 @@ type MegaMenuConfig = {
 };
 
 const householdSanitaerLinks: NavLink[] = [
-  { label: "Waschmaschine", href: "/haushaltsgeraete/waschmaschine-reparatur-wien" },
-  { label: "Geschirrspüler", href: "/haushaltsgeraete/geschirrspueler-reparatur-wien" },
-  { label: "Trockner", href: "/haushaltsgeraete/trockner-reparatur-wien" },
-  { label: "Waschtrockner", href: "/haushaltsgeraete/waschtrockner-reparatur-wien" }
+  { label: "Waschmaschine", href: "/haushaltsgeraete/waschmaschine" },
+  { label: "Geschirrspüler", href: "/haushaltsgeraete/geschirrspueler" },
+  { label: "Trockner", href: "/haushaltsgeraete/trockner" },
+  { label: "Waschtrockner", href: "/haushaltsgeraete/waschtrockner" }
 ];
 
 const householdKuecheWohnenLinks: NavLink[] = [
-  { label: "Kühlschrank", href: "/haushaltsgeraete/kuehlschrank-reparatur-wien" },
-  { label: "Gefrierschrank", href: "/haushaltsgeraete/tiefkuehl-reparatur-wien" },
-  { label: "Backofen & Herd", href: "/haushaltsgeraete/backofen-herd-reparatur-wien" },
-  { label: "Dunstabzug", href: "/haushaltsgeraete/dunstabzug-reparatur-wien" },
-  { label: "Fernseher", href: "/haushaltsgeraete/fernseher-reparatur-wien" },
+  { label: "Kühlschrank", href: "/haushaltsgeraete/kuehlschrank" },
+  { label: "Gefrierschrank", href: "/haushaltsgeraete/tiefkuehl" },
+  { label: "Backofen & Herd", href: "/haushaltsgeraete/backofen-herd" },
+  { label: "Dunstabzug", href: "/haushaltsgeraete/dunstabzug" },
+  { label: "Fernseher", href: "/haushaltsgeraete/fernseher" },
   { label: "Alle Haushaltsgeräte", href: "/haushaltsgeraete" }
 ];
 
 const repairBrandsNav: NavLink[] = [
-  { label: "Bosch", href: "/marken/bosch-reparatur-wien" },
-  { label: "Miele", href: "/marken/miele-reparatur-wien" },
-  { label: "Siemens", href: "/marken/siemens-reparatur-wien" },
-  { label: "AEG", href: "/marken/aeg-reparatur-wien" },
-  { label: "Gorenje", href: "/marken/gorenje-reparatur-wien" }
+  { label: "Bosch", href: "/marken/bosch" },
+  { label: "Miele", href: "/marken/miele" },
+  { label: "Siemens", href: "/marken/siemens" },
+  { label: "AEG", href: "/marken/aeg" },
+  { label: "Gorenje", href: "/marken/gorenje" }
 ];
 
 const weitereMarkenAlphabetLinks: NavLink[] = brandAlphabetGroups.map((group) => ({

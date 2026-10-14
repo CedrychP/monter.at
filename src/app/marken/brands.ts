@@ -44,7 +44,7 @@ export type BrandPage = {
 
 export const brandPages: BrandPage[] = [
   {
-    slug: "bosch-reparatur-wien",
+    slug: "bosch",
     brand: "Bosch",
     metaTitle: "Bosch Reparatur Wien | Fehlercodes & Service | MONTER",
     description:
@@ -92,7 +92,7 @@ export const brandPages: BrandPage[] = [
     ]
   },
   {
-    slug: "miele-reparatur-wien",
+    slug: "miele",
     brand: "Miele",
     h1: "Miele Service in Wien.",
     metaTitle: "Miele Service Wien | Reparatur W1, T1 & G7000 | MONTER",
@@ -141,7 +141,7 @@ export const brandPages: BrandPage[] = [
     ]
   },
   {
-    slug: "siemens-reparatur-wien",
+    slug: "siemens",
     brand: "Siemens",
     metaTitle: "Siemens Reparatur Wien | iQ-Serie & Fehlercodes | MONTER",
     description:
@@ -188,7 +188,7 @@ export const brandPages: BrandPage[] = [
     ]
   },
   {
-    slug: "aeg-reparatur-wien",
+    slug: "aeg",
     brand: "AEG",
     metaTitle: "AEG Reparatur Wien | Trockner, Waschmaschine & Service | MONTER",
     description:
@@ -252,7 +252,7 @@ export const brandPages: BrandPage[] = [
     ]
   },
   {
-    slug: "beko-reparatur-wien",
+    slug: "beko",
     brand: "Beko",
     metaTitle: "Beko Reparatur Wien | Service & Ersatzteile | MONTER",
     description:
@@ -304,7 +304,7 @@ export const brandPages: BrandPage[] = [
     ]
   },
   {
-    slug: "gorenje-reparatur-wien",
+    slug: "gorenje",
     brand: "Gorenje",
     metaTitle: "Gorenje Reparatur Wien | Service & Ersatzteile | MONTER",
     description:
@@ -357,7 +357,7 @@ export const brandPages: BrandPage[] = [
     ]
   },
   {
-    slug: "bauknecht-reparatur-wien",
+    slug: "bauknecht",
     brand: "Bauknecht",
     metaTitle: "Bauknecht Reparaturservice Wien | Geschirrspüler & Hausgeräte | MONTER",
     description:

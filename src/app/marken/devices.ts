@@ -26,7 +26,7 @@ export const brandDeviceCategories: BrandDeviceCategory[] = [
     label: "Waschmaschine",
     plural: "Waschmaschinen",
     category: "Waschmaschine",
-    serviceSlug: "waschmaschine-reparatur-wien",
+    serviceSlug: "waschmaschine",
     short:
       "Reparatur bei Pumpenproblemen, Türverriegelung, Wasserzulauf, Schleudern und Fehlercodes.",
     sections: [
@@ -59,7 +59,7 @@ export const brandDeviceCategories: BrandDeviceCategory[] = [
     label: "Geschirrspüler",
     plural: "Geschirrspüler",
     category: "Geschirrspüler",
-    serviceSlug: "geschirrspueler-reparatur-wien",
+    serviceSlug: "geschirrspueler",
     short:
       "Hilfe bei Pumpenproblemen, Heiz­defekten, Undichtigkeiten und schlechter Reinigungsleistung.",
     sections: [
@@ -92,7 +92,7 @@ export const brandDeviceCategories: BrandDeviceCategory[] = [
     label: "Trockner",
     plural: "Trockner",
     category: "Trockner",
-    serviceSlug: "trockner-reparatur-wien",
+    serviceSlug: "trockner",
     short:
       "Hilfe bei feuchter Wäsche, Sensor­problemen, Wärmetauscher und Wärmepumpe.",
     sections: [
@@ -125,7 +125,7 @@ export const brandDeviceCategories: BrandDeviceCategory[] = [
     label: "Backofen & Herd",
     plural: "Backöfen und Herde",
     category: "Backofen & Herd",
-    serviceSlug: "backofen-herd-reparatur-wien",
+    serviceSlug: "backofen-herd",
     short:
       "Reparatur bei Heizdefekten, Elektronik­fehlern, Steuerung und sicherheits­relevanten Symptomen.",
     sections: [
@@ -158,7 +158,7 @@ export const brandDeviceCategories: BrandDeviceCategory[] = [
     label: "Kühlschrank",
     plural: "Kühlschränke",
     category: "Kühlschrank",
-    serviceSlug: "kuehlschrank-reparatur-wien",
+    serviceSlug: "kuehlschrank",
     short:
       "Einschätzung bei Temperatur­problemen, Vereisung, Dichtungen und Kompressor­geräuschen.",
     sections: [
@@ -191,7 +191,7 @@ export const brandDeviceCategories: BrandDeviceCategory[] = [
     label: "Tiefkühlgerät",
     plural: "Tiefkühlgeräte",
     category: "Tiefkühlgerät",
-    serviceSlug: "tiefkuehl-reparatur-wien",
+    serviceSlug: "tiefkuehl",
     short:
       "Schnelle Einschätzung bei Temperatur­verlust, Alarmen, Vereisung und Ausfällen.",
     sections: [
