@@ -100,7 +100,7 @@ const serviceInfoLinks: NavLink[] = [
 ];
 
 const geraetekaufExtraLinks: NavLink[] = [
-  { label: "Lieferpreise", href: "/preise" },
+  { label: "Lieferpreise", href: "/lieferpreise" },
   { label: "Montage & Installation", href: "/lieferung-montage" },
   { label: "Altgeräteentsorgung", href: "/altgeraeteentsorgung" }
 ];

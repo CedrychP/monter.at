@@ -192,7 +192,8 @@ export default function KaufberatungPage() {
           </ol>
           <p className="mt-10 max-w-2xl text-sm font-light leading-relaxed text-[color:var(--muted)]">
             {"Lieferung und Montage stehen unter "}
-            <Link href="/lieferung-montage" className="border-b border-current"><span className="text-[color:var(--ink)]">Lieferung &amp; Montage</span></Link>{", die Entsorgung unter "}
+            <Link href="/lieferung-montage" className="border-b border-current"><span className="text-[color:var(--ink)]">Montage &amp; Installation</span></Link>{", die Beträge unter "}
+            <Link href="/lieferpreise" className="border-b border-current"><span className="text-[color:var(--ink)]">Lieferpreise</span></Link>{", die Entsorgung unter "}
             <Link href="/altgeraeteentsorgung" className="border-b border-current"><span className="text-[color:var(--ink)]">Altgeräteentsorgung</span></Link>{". Was eine Reparatur kostet, steht bei den "}
             <Link href="/preise" className="border-b border-current"><span className="text-[color:var(--ink)]">Preisen</span></Link>.
           </p>

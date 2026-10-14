@@ -68,7 +68,12 @@ const faqs: HubFaqItem[] = [
   {
     question: "Nehmen Sie das Altgerät bei der Lieferung mit?",
     answer:
-      "Ja, auf Wunsch im selben Termin. Wenn wir das neue Gerät liefern und montieren, ist die Mitnahme der bequemste Weg — sagen Sie uns einfach vorher Bescheid. Auf Wunsch bauen wir das Altgerät am Aufstellort ab und transportieren es ab."
+      "Ja, auf Wunsch im selben Termin. Allein kostet die Altgerätmitnahme 35 € inklusive 20 % MwSt. Im Komfortplus-Paket für 150 € ist sie zusammen mit Lieferung, Montage und Auspacken enthalten. Sagen Sie uns vorher Bescheid. Auf Wunsch bauen wir das Altgerät am Aufstellort ab und transportieren es ab."
+  },
+  {
+    question: "Was kostet die Altgerätmitnahme?",
+    answer:
+      "35 € inklusive 20 % MwSt., wenn nur das Altgerät abgeholt wird. Liefern wir ein neues Gerät im Komfortplus-Paket, ist die Mitnahme im Paketpreis von 150 € enthalten."
   },
   {
     question: "Prüfen Sie vorher, ob sich die Reparatur noch lohnt?",
@@ -80,7 +85,7 @@ const faqs: HubFaqItem[] = [
 export const metadata: Metadata = buildMetadata({
   title: "Altgeräteentsorgung Wien | Elektrogeräte entsorgen | MONTER",
   description:
-    "Altgeräteentsorgung in Wien: fachgerechte Entsorgung und Verwertung von Elektroaltgeräten, Mitnahme bei Lieferung, Abbau und Abtransport. Umweltgerecht und unkompliziert.",
+    "Altgeräteentsorgung in Wien: Mitnahme allein 35 €, im Komfortplus-Paket enthalten. Abbau, Abtransport und fachgerechte Verwertung von Elektroaltgeräten.",
   path: "/altgeraeteentsorgung"
 });
 
@@ -176,6 +181,13 @@ export default function AltgeraeteentsorgungPage() {
             ))}
           </ol>
           <p className="mt-8 max-w-2xl text-sm font-light leading-relaxed text-[color:var(--muted)]">
+            Die Altgerätmitnahme allein kostet 35 € inklusive 20 % MwSt. Im Komfortplus-Paket für 150 € ist sie zusammen
+            mit Lieferung, Montage und Auspacken enthalten. Die Sätze stehen bei den{" "}
+            <Link href="/lieferpreise" className="border-b border-current">
+              <span className="text-[color:var(--ink)]">Lieferpreisen</span>
+            </Link>.
+          </p>
+          <p className="mt-4 max-w-2xl text-sm font-light leading-relaxed text-[color:var(--muted)]">
             {"Bei "}
             {devices.map((device, index) => (
               <span key={device.href}>
@@ -244,7 +256,7 @@ export default function AltgeraeteentsorgungPage() {
                 <span className="text-[color:var(--ink)]">Mit der Lieferung.</span>
               </p>
               <p className="mt-4 text-sm font-light leading-relaxed text-[color:var(--muted)]">
-                Kommt ein neues Gerät, bleibt die Mitnahme im selben Termin.
+                Im Komfortplus für 150 € ist die Mitnahme enthalten. Allein kostet sie 35 €.
               </p>
             </Link>
           </div>

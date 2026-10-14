@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import RepairBookingCta from "../RepairBookingCta";
+import { lieferPrices } from "../lieferPreise";
 import { buildMetadata } from "../pageMetadata";
 import { siteConfig } from "../siteConfig";
 
@@ -152,6 +153,7 @@ const priceFactors = [
   "Marke, bei Gaggenau eigene Anfahrt",
   "Torgröße und Antriebsmodell",
   "Anfahrt und Fahrzeit",
+  "Lieferentfernung und Lift",
   "Ersatzteilverfügbarkeit",
   "Sicherheitszustand",
   "Alter und Wirtschaftlichkeit",
@@ -161,7 +163,7 @@ const priceFactors = [
 export const metadata: Metadata = buildMetadata({
   title: "Preise Reparatur Wien | Haushaltsgeräte & Garagentor | MONTER",
   description:
-    "Preise inkl. MwSt. für Haushaltsgeräte- und Garagentor-Reparatur in Wien und Niederösterreich: Anfahrt, Diagnose, Reparatur, Federwechsel, Antrieb, Wartung und Inspektion — transparent und nachvollziehbar.",
+    "Preise inkl. MwSt. für Reparatur, Lieferung und Montage in Wien und Niederösterreich: Anfahrt, Diagnose, Garagentor, Komfortplus und Altgerätmitnahme.",
   path: "/preise"
 });
 
@@ -261,6 +263,33 @@ export default function PreisePage() {
             <PriceBlock title="Arbeitseinheit" items={garageLabor} />
             <PriceBlock title="Reparatur und Wartung" items={garageRepairs} />
           </div>
+        </div>
+      </section>
+
+      <section id="lieferung" className="scroll-mt-28 border-t border-[color:var(--border)] bg-white py-16 sm:py-20 lg:py-24">
+        <div className="mx-auto max-w-[88rem] px-5 sm:px-8">
+          <SectionIntro
+            eyebrow="Lieferung und Montage"
+            title="Komfortplus, Lieferung, Anschluss."
+            text="Das Komfortplus-Paket enthält Lieferung, Montage, Auspacken und Altgerätmitnahme. Lieferung und Montage gibt es auch einzeln. Ab 50 km und ohne Lift kommen die genannten Zuschläge dazu."
+          />
+          <div className="mt-12">
+            <PriceBlock title="Lieferpreise" items={lieferPrices} />
+          </div>
+          <p className="mt-8 max-w-2xl text-sm font-light leading-relaxed text-[color:var(--muted)]">
+            {"Die Seiten dazu: "}
+            <Link href="/lieferpreise" className="underline transition hover:text-[color:var(--accent)]">
+              Lieferpreise
+            </Link>
+            {", "}
+            <Link href="/lieferung-montage" className="underline transition hover:text-[color:var(--accent)]">
+              Montage &amp; Installation
+            </Link>
+            {" und "}
+            <Link href="/altgeraeteentsorgung" className="underline transition hover:text-[color:var(--accent)]">
+              Altgeräteentsorgung
+            </Link>.
+          </p>
         </div>
       </section>
 

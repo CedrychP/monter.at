@@ -140,6 +140,7 @@ export const sitemapGroups: SitemapGroup[] = [
     links: [
       { label: "Reparatur buchen", href: "/reparatur-buchen" },
       { label: "Preise & Pauschalen", href: "/preise" },
+      { label: "Lieferpreise", href: "/lieferpreise" },
       { label: "Ersatzteile", href: "/ersatzteile" },
       { label: "Wartungsservice", href: "/wartungsservice" },
       { label: "Lieferung & Montage", href: "/lieferung-montage" },

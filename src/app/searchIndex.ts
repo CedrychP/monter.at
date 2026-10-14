@@ -134,10 +134,10 @@ export function buildSearchIndex(): SearchEntry[] {
     },
     {
       title: "Preise & Pauschalen",
-      description: "Anfahrt, Diagnose, Reparatur und Material — transparent.",
+      description: "Anfahrt, Diagnose, Reparatur, Lieferung und Montage — transparent.",
       href: "/preise",
       category: "Service",
-      keywords: "preise pauschale anfahrt diagnose kosten"
+      keywords: "preise pauschale anfahrt diagnose kosten lieferung montage komfortplus"
     },
     {
       title: "Kontakt & Anfrage",
@@ -161,11 +161,25 @@ export function buildSearchIndex(): SearchEntry[] {
       keywords: "geräteretterprämie geräteretterprämie österreich geräte-retter-prämie reparaturbonus förderung"
     },
     {
-      title: "Lieferservice Großgeräte Wien",
-      description: "Lieferung, Anschluss, Aufbau und Altgeräte-Mitnahme.",
+      title: "Lieferpreise Großgeräte Wien",
+      description: "Komfortplus 150 €, Lieferung 85 €, ab 50 km plus 65 €.",
+      href: "/lieferpreise",
+      category: "Service",
+      keywords: "lieferpreise lieferung komfortplus 85 150 anfahrt 50 km auspacken lift"
+    },
+    {
+      title: "Montage & Installation Wien",
+      description: "Anschluss und Aufbau, allein 90 € oder im Komfortplus-Paket.",
       href: "/lieferung-montage",
       category: "Service",
-      keywords: "lieferservice großgeräte anschluss aufbau lieferung montage altgerät trockner"
+      keywords: "montage installation anschluss aufbau lieferung komfortplus großgeräte altgerät trockner"
+    },
+    {
+      title: "Altgeräteentsorgung Wien",
+      description: "Mitnahme allein 35 €, im Komfortplus-Paket enthalten.",
+      href: "/altgeraeteentsorgung",
+      category: "Service",
+      keywords: "altgeräteentsorgung altgerät mitnahme entsorgung elektro 35 euro"
     }
   ];
   return [
