@@ -66,13 +66,13 @@ export default function FooterBlogPreview({ posts }: { posts: FooterBlogPreviewP
               href={`/blog/${post.slug}`}
               className="group grid grid-cols-[4.25rem_1fr] items-center gap-3"
             >
-              <span className="relative block aspect-[4/3] overflow-hidden bg-white/10">
+              <span className="block aspect-[4/3] overflow-hidden bg-white/10">
                 <Image
                   src={post.image}
                   alt=""
-                  fill
-                  sizes="68px"
-                  className="object-cover object-center"
+                  width={136}
+                  height={102}
+                  className="aspect-[4/3] h-full w-full object-cover object-center"
                 />
               </span>
               <span className="min-w-0">
