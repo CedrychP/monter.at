@@ -367,7 +367,7 @@ export default function KlimageraeteHubPage() {
       <HubFaq eyebrow="Häufige Fragen" title="Kurz geklärt, bevor Sie anrufen." items={faqs} />
 
       <section className="bg-[color:var(--bg-muted)] text-[color:var(--ink)]">
-        <div className="mx-auto grid max-w-[88rem] gap-10 px-5 pb-16 pt-4 sm:px-8 sm:pb-20 sm:pt-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
+        <div className="mx-auto grid max-w-[88rem] gap-10 px-5 pb-20 pt-4 sm:px-8 sm:pb-28 sm:pt-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
           <div>
             <p className="text-[0.72rem] font-medium uppercase tracking-[0.22em] text-[color:var(--accent)]">Jetzt klären</p>
             <h2 className="font-display mt-4 text-balance text-4xl font-light leading-[0.95] tracking-tight sm:text-6xl">
@@ -389,7 +389,6 @@ export default function KlimageraeteHubPage() {
             </Link>
           </div>
         </div>
-        <div aria-hidden="true" className="h-28 bg-gradient-to-b from-[color:var(--bg-muted)] to-[color:var(--ink)] sm:h-40" />
       </section>
     </main>
   );

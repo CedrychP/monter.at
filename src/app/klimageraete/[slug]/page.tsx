@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import DetailPageLayout from "../../DetailPageLayout";
 import { HubFaq } from "../../HubBlocks";
 import { buildMetadata } from "../../pageMetadata";
-import { FaultCodeSheets } from "../FaultCodeSheets";
 import { allKlimaPages, getKlimaPage, klimaPages } from "../klimaPages";
 
 type KlimaPageProps = {
@@ -13,9 +12,28 @@ type KlimaPageProps = {
 };
 
 export function generateStaticParams() {
-  return allKlimaPages.map((page) => ({
-    slug: page.slug
-  }));
+  return allKlimaPages
+    .filter(
+      (page) =>
+        ![
+          "wartung-service",
+          "monoblock-klimageraet",
+          "split-klimaanlage",
+          "multi-split-anlage",
+          "kaeltemittel-dichtheit",
+          "kompressor-reparatur",
+          "steuerung-elektronik",
+          "reinigung-entlueftung",
+          "montage-installation",
+          "kuehlt-nicht",
+          "tropft-wasser",
+          "fehlercodes",
+          "geruch-laut"
+        ].includes(page.slug)
+    )
+    .map((page) => ({
+      slug: page.slug
+    }));
 }
 
 export async function generateMetadata({ params }: KlimaPageProps): Promise<Metadata> {
@@ -76,7 +94,6 @@ export default async function KlimaDetailPage({ params }: KlimaPageProps) {
         { type: "State", name: "Niederösterreich" }
       ]}
     >
-      {page.slug === "fehlercodes" ? <FaultCodeSheets /> : null}
       <HubFaq
         eyebrow="Häufige Fragen"
         title={`${page.category}: kurz beantwortet.`}

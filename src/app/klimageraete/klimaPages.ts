@@ -79,7 +79,8 @@ export const klimaPages: KlimaPage[] = [
         answer:
           "Bei normaler Nutzung im Haushalt einmal jährlich, am besten im Frühjahr vor der Saison. Bei gewerblicher Nutzung, Dauerbetrieb oder staubiger Umgebung häufiger. Die Wartung hält die Kühlleistung hoch und den Stromverbrauch niedrig — und sie deckt Undichtheiten auf, bevor der Verdichter Schaden nimmt."
       }
-    ]
+    ],
+    relatedSlugs: ["kuehlt-nicht", "tropft-wasser", "fehlercodes"]
   },
   {
     slug: "multi-split-anlage",
@@ -138,7 +139,8 @@ export const klimaPages: KlimaPage[] = [
         answer:
           "Nur, wenn das Außengerät einen freien Anschluss hat und die Leistungsreserve ausreicht. Wir prüfen Typenschild, vorhandene Anschlüsse und Leitungslängen und sagen, ob eine Ergänzung sinnvoll ist oder das Außengerät dabei überlastet würde."
       }
-    ]
+    ],
+    relatedSlugs: ["kuehlt-nicht", "steuerung-elektronik", "split-klimaanlage"]
   },
   {
     slug: "monoblock-klimageraet",
@@ -197,7 +199,8 @@ export const klimaPages: KlimaPage[] = [
         answer:
           "Bei Pumpe, Niveauschalter, Lüfter, Sensorik und Reinigung ja. Bei einem Verdichter- oder Kältekreisschaden nicht — dort liegt der Aufwand bei günstigen Geräten über dem Neupreis. Diese Einschätzung geben wir vorab am Telefon."
       }
-    ]
+    ],
+    relatedSlugs: ["kuehlt-nicht", "tropft-wasser", "split-klimaanlage"]
   },
   {
     slug: "wartung-service",
@@ -256,7 +259,8 @@ export const klimaPages: KlimaPage[] = [
         answer:
           "Nicht routinemäßig. Ein Kältekreis ist geschlossen und verbraucht kein Kältemittel. Sinkt der Füllstand, liegt eine Undichtheit vor — dann suchen wir die Leckage und beheben sie, bevor befüllt wird. Nachfüllen ohne Lecksuche verschiebt das Problem nur."
       }
-    ]
+    ],
+    relatedSlugs: ["reinigung-entlueftung", "kuehlt-nicht", "kaeltemittel-dichtheit"]
   },
   {
     slug: "kaeltemittel-dichtheit",
@@ -539,6 +543,7 @@ export const klimaPages: KlimaPage[] = [
       "Außenstellfläche sichern",
       "Beratung anfragen"
     ],
+    relatedSlugs: ["split-klimaanlage", "monoblock-klimageraet", "kaeltemittel-dichtheit"],
     faq: [
       {
         question: "Brauche ich in Wien eine Genehmigung für ein Außengerät?",
@@ -617,7 +622,7 @@ export const klimaProblemPages: KlimaPage[] = [
           "Dann ist der Fehler mit hoher Wahrscheinlichkeit an diesem Innengerät oder seiner Leitung, nicht am gemeinsamen Außengerät. Dessen Störungen würden alle Räume treffen."
       }
     ],
-    relatedSlugs: ["reinigung-entlueftung", "kaeltemittel-dichtheit", "split-klimaanlage"]
+    relatedSlugs: ["reinigung-entlueftung", "wartung-service", "kaeltemittel-dichtheit"]
   },
   {
     slug: "tropft-wasser",
