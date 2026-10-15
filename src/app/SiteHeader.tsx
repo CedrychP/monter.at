@@ -62,7 +62,8 @@ const householdSanitaerLinks: NavLink[] = [
 const householdKuecheWohnenLinks: NavLink[] = [
   { label: "Kühlschrank", href: "/haushaltsgeraete/kuehlschrank" },
   { label: "Gefrierschrank", href: "/haushaltsgeraete/tiefkuehl" },
-  { label: "Backofen & Herd", href: "/haushaltsgeraete/backofen-herd" },
+  { label: "Backofen", href: "/haushaltsgeraete/backofen" },
+  { label: "Herd", href: "/haushaltsgeraete/herd" },
   { label: "Dunstabzug", href: "/haushaltsgeraete/dunstabzug" },
   { label: "Fernseher", href: "/haushaltsgeraete/fernseher" },
   { label: "Alle Haushaltsgeräte", href: "/haushaltsgeraete" }

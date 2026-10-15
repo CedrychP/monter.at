@@ -1,7 +1,7 @@
-/** Baut die kanonischen Pfade der Themenhäuser. Linz ist ein Kind der Geräteseite, kein eigener Slug. */
+/** Baut die kanonischen Pfade der Themenhäuser. */
 
-export function applianceHref(slug: string, place?: "linz") {
-  return place === "linz" ? `/haushaltsgeraete/${slug}/linz` : `/haushaltsgeraete/${slug}`;
+export function applianceHref(slug: string) {
+  return `/haushaltsgeraete/${slug}`;
 }
 
 export function brandHref(slug: string) {

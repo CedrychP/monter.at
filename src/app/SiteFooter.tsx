@@ -66,7 +66,8 @@ const regionLinks = [
 const applianceLinks = [
   { label: "Waschmaschine", href: "/haushaltsgeraete/waschmaschine" },
   { label: "Geschirrspüler", href: "/haushaltsgeraete/geschirrspueler" },
-  { label: "Backofen & Herd", href: "/haushaltsgeraete/backofen-herd" },
+  { label: "Backofen", href: "/haushaltsgeraete/backofen" },
+  { label: "Herd", href: "/haushaltsgeraete/herd" },
   { label: "Trockner", href: "/haushaltsgeraete/trockner" },
   { label: "Kühlschrank", href: "/haushaltsgeraete/kuehlschrank" },
   { label: "Fernseher", href: "/haushaltsgeraete/fernseher" },

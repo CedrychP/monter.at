@@ -20,9 +20,13 @@ const devicePhotos: Record<string, { src: string; alt: string }> = {
     src: "/assets/haushalt-foto-geschirrspueler.webp",
     alt: "Einbaugeschirrspüler mit Holzfront in einer Küchenzeile, Tür geschlossen."
   },
-  "backofen-herd": {
+  backofen: {
     src: "/assets/haushalt-foto-backofen.webp",
     alt: "Einbaubackofen unter einem schwarzen Glaskeramikfeld, Ofentür geschlossen."
+  },
+  herd: {
+    src: "/assets/haushalt-foto-herd.webp",
+    alt: "Schwarzes Glaskeramikkochfeld mit vier Zonen in einer Arbeitsplatte."
   },
   trockner: {
     src: "/assets/haushalt-foto-trockner.webp",
@@ -79,7 +83,7 @@ const faqs: HubFaqItem[] = [
   {
     question: "Kommen Sie auch nach Klosterneuburg, Vösendorf oder Linz?",
     answer:
-      "Ja. Klosterneuburg, Vösendorf und das nähere Wiener Umland fahren wir regelmäßig an. In Linz sind Techniker vor Ort im Einsatz. Die Linzer Geräteseiten bleiben unter dem jeweiligen Gerät erreichbar."
+      "Ja. Klosterneuburg, Vösendorf und das nähere Wiener Umland fahren wir regelmäßig an. In Linz sind Techniker vor Ort im Einsatz."
   }
 ];
 
@@ -142,7 +146,7 @@ export default function HaushaltsgeraeteHubPage() {
               Haushaltsgeräte, nach dem Fehlerbild.
             </h1>
             <p className="mt-6 text-lg font-light leading-8 text-[color:var(--muted)]">
-              Pumpt das Gerät nicht ab, kühlt es nicht, oder steht eine Zahl im Display? Wir prüfen zuerst das Fehlerbild, dann das Gerät. Markenoffen an Waschmaschine, Geschirrspüler, Backofen, Kühl- und Tiefkühlgerät, Trockner, Dunstabzug und Fernseher, in Wien, im näheren Niederösterreich und in Linz.
+              Pumpt das Gerät nicht ab, kühlt es nicht, oder steht eine Zahl im Display? Wir prüfen zuerst das Fehlerbild, dann das Gerät. Markenoffen an Waschmaschine, Geschirrspüler, Backofen, Herd, Kühl- und Tiefkühlgerät, Trockner, Dunstabzug und Fernseher, in Wien, im näheren Niederösterreich und in Linz.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a className="btn-primary" href={`tel:${siteConfig.phoneHref}`}>

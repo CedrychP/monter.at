@@ -163,9 +163,9 @@ export const applianceProblemPages: ApplianceProblemPage[] = [
       }
     ],
     related: [
-      { category: "Backofen & Herd", title: "Backofen und Herd", href: "/haushaltsgeraete/backofen-herd" },
-      { category: "Fehlercodes", title: "Fehlercodes nach Marke", href: "/haushaltsgeraete/fehlercodes" },
-      { category: "Küche", title: "Dunstabzug", href: "/haushaltsgeraete/dunstabzug" }
+      { category: "Backofen", title: "Backofen Reparatur", href: "/haushaltsgeraete/backofen" },
+      { category: "Herd", title: "Herd Reparatur", href: "/haushaltsgeraete/herd" },
+      { category: "Fehlercodes", title: "Fehlercodes nach Marke", href: "/haushaltsgeraete/fehlercodes" }
     ]
   },
   {

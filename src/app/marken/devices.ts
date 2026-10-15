@@ -125,7 +125,7 @@ export const brandDeviceCategories: BrandDeviceCategory[] = [
     label: "Backofen & Herd",
     plural: "Backöfen und Herde",
     category: "Backofen & Herd",
-    serviceSlug: "backofen-herd",
+    serviceSlug: "backofen",
     short:
       "Reparatur bei Heizdefekten, Elektronik­fehlern, Steuerung und sicherheits­relevanten Symptomen.",
     sections: [

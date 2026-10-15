@@ -148,10 +148,16 @@ const applianceCategories = [
     href: "/haushaltsgeraete/tiefkuehl"
   },
   {
-    title: "Backofen & Herd",
-    image: "/assets/startseite-backofen-produkt-wien.webp",
-    alt: "Standherd mit Glaskeramikfeld und fünf Drehknöpfen.",
-    href: "/haushaltsgeraete/backofen-herd"
+    title: "Backofen",
+    image: "/assets/haushalt-foto-backofen.webp",
+    alt: "Einbaubackofen unter einem schwarzen Glaskeramikfeld, Ofentür geschlossen.",
+    href: "/haushaltsgeraete/backofen"
+  },
+  {
+    title: "Herd",
+    image: "/assets/haushalt-foto-herd.webp",
+    alt: "Schwarzes Glaskeramikkochfeld mit vier Zonen in einer Arbeitsplatte.",
+    href: "/haushaltsgeraete/herd"
   },
   {
     title: "Dunstabzug",

@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { appliancePages } from "../haushaltsgeraete/appliancePages";
-import { linzAppliancePages } from "../haushaltsgeraete/linzAppliancePages";
 import { applianceHref } from "../serviceHrefs";
 
 type AreaServiceLinksProps = {
@@ -9,8 +8,7 @@ type AreaServiceLinksProps = {
 
 /** Geräte- und Leistungsseiten, die zu diesem Einsatzgebiet gehören. */
 export function AreaServiceLinks({ area }: AreaServiceLinksProps) {
-  const pages = area === "linz" ? linzAppliancePages : appliancePages;
-  const place = area === "linz" ? "linz" : undefined;
+  const pages = appliancePages;
 
   return (
     <section
@@ -25,7 +23,7 @@ export function AreaServiceLinks({ area }: AreaServiceLinksProps) {
         <ul className="mt-10 grid gap-px bg-[color:var(--border)] sm:grid-cols-2 lg:grid-cols-3">
           {pages.map((page) => (
             <li key={page.slug} className="bg-white">
-              <Link href={applianceHref(page.slug, place)} className="group flex h-full flex-col p-6">
+              <Link href={applianceHref(page.slug)} className="group flex h-full flex-col p-6">
                 <span className="font-display text-2xl font-light tracking-tight text-[color:var(--ink)] group-hover:text-[color:var(--accent)]">
                   {page.category}
                 </span>

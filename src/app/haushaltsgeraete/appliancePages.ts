@@ -1,11 +1,8 @@
 import type { HubFaqItem } from "../HubBlocks";
 import { applianceHref } from "../serviceHrefs";
-import { linzAppliancePages } from "./linzAppliancePages";
 
 export type AppliancePage = {
   slug: string;
-  /** Linz hängt unter /haushaltsgeraete/<slug>/linz. Ohne Angabe gilt die Hauptseite. */
-  place?: "linz";
   title: string;
   metaTitle: string;
   description: string;
@@ -151,60 +148,116 @@ export const appliancePages: AppliancePage[] = [
     ]
   },
   {
-    slug: "backofen-herd",
-    title: "Backofen & Herd Reparatur Wien",
-    metaTitle: "Backofen Herd Reparatur Wien | MONTER Service",
+    slug: "backofen",
+    title: "Backofen Reparatur Wien",
+    metaTitle: "Backofen Reparatur Wien | MONTER Service",
     description:
-      "Backofen oder Herd bleibt kalt, heizt ungleichmäßig oder löst die Sicherung? Reparatur in Wien. Jetzt anrufen.",
-    h1: "Backofen und Herd Reparatur in Wien",
-    category: "Backofen & Herd",
-    short:
-      "Keine Heizleistung, ausgefallene Funktionen oder ausgelöste Sicherung.",
+      "Backofen Reparatur Wien: Oberhitze fehlt, die Temperatur stimmt nicht, oder die Sicherung fällt. Der Einbauofen bleibt in der Nische, vor dem Teiletausch.",
+    h1: "Backofen Reparatur in Wien",
+    category: "Backofen",
+    short: "Oberhitze fehlt, die Temperatur stimmt nicht, oder die Sicherung fällt.",
     intro:
-      "Backöfen und Herde fallen selten komplett aus — häufiger arbeitet eine einzelne Funktion nicht mehr: Oberhitze fehlt, die Temperatur stimmt nicht, das Bedienfeld reagiert nicht oder die Sicherung löst aus. Genau diese Teilausfälle lassen sich gezielt reparieren, ohne die Einbauküche anzutasten. Bei elektrischen Symptomen steht dabei die Sicherheit vor allem anderen.",
+      "Ein Backofen fällt selten komplett aus. Häufiger fehlt eine Funktion: Oberhitze, Unterhitze, Heißluft oder die Temperatur stimmt nicht. Das lässt sich im eingebauten Gerät prüfen. Bei Geruch, Funken oder einer Sicherung, die wiederholt fällt, bleibt das Gerät aus.",
     sections: [
       {
-        title: "Heizt nicht oder Temperatur stimmt nicht",
+        title: "Heizt nicht oder die Temperatur stimmt nicht",
         body:
-          "Bäckt das Gerät oben oder unten nicht mehr, prüfen wir zuerst die Heizkörper auf Durchgang, dann Thermostat, Temperaturfühler und Ansteuerung. Ein häufiges Bild: Der Ofen heizt, aber deutlich zu heiß oder zu kalt — dann ist meist der Fühler verstellt oder gealtert, nicht die Heizung. Wir messen die Temperatur nach dem Tausch mit einem eigenen Fühler nach, statt sich auf die Anzeige zu verlassen. Bei Heißluftgeräten kommt der Umluftmotor als eigene Ursache dazu.",
+          "Bäckt der Ofen oben oder unten nicht mehr, prüfen wir zuerst die Heizkörper auf Durchgang, dann Thermostat, Temperaturfühler und Ansteuerung. Heizt er, aber deutlich zu heiß oder zu kalt, ist meist der Fühler verstellt oder gealtert, nicht die Heizung. Nach einem Tausch messen wir die Temperatur mit einem eigenen Fühler nach. Bei Heißluftgeräten kommt der Umluftmotor als eigene Ursache dazu."
       },
       {
-        title: "Sicherung löst aus — bitte nicht weiter betreiben",
+        title: "Sicherung fällt — bitte nicht weiter einschalten",
         body:
-          "Ein Heizkörper mit Masseschluss, verschmorte Klemmen an der Anschlussdose oder Feuchtigkeit im Bedienmodul lösen den FI oder die Sicherung aus. Geruch, Funken, geschmolzene Isolierung oder eine wiederholt fallende Sicherung sind ein klares Stopp-Signal: Gerät vom Netz nehmen und prüfen lassen. Im Wiener Altbau kommt dazu, dass Herde häufig noch an alten Anschlussdosen und teils an 230-Volt-Provisorien hängen — wir prüfen deshalb den Anschluss mit, nicht nur das Gerät.",
+          "Ein Heizkörper mit Masseschluss, verschmorte Klemmen oder Feuchtigkeit im Bedienmodul lösen den FI oder die Sicherung aus. Geruch, Funken, geschmolzene Isolierung oder eine Sicherung, die sofort wieder fällt, sind ein Stopp: Gerät vom Netz nehmen und nicht weiter einschalten. Die Sicherung nicht wiederholt zurücksetzen. Den Anschluss prüfen wir mit, nicht nur den Ofen."
       },
       {
         title: "Bedienfeld, Pyrolyse und Türdichtung",
         body:
-          "Reagieren Sensortasten nicht oder springt die Anzeige, ist häufig Feuchtigkeit oder Fett im Bedienfeld die Ursache; BSH-Geräte melden das teils als E011. Bei Pyrolysegeräten arbeitet die Tür bei sehr hohen Temperaturen: Eine spröde Dichtung oder ausgeschlagene Scharniere führen dazu, dass Hitze austritt und das Reinigungsprogramm abbricht oder das Gerät sperrt. Dichtung und Scharniere sind Verschleißteile, gut verfügbar und deutlich günstiger als jede Elektronikarbeit.",
+          "Reagieren Sensortasten nicht oder springt die Anzeige, ist häufig Feuchtigkeit oder Fett im Bedienfeld die Ursache. BSH-Geräte melden das teils als E011. Dieselbe Zeichenfolge gilt nicht für jede Marke. Bei Pyrolysegeräten arbeitet die Tür bei sehr hohen Temperaturen: Eine spröde Dichtung oder ausgeschlagene Scharniere lassen Hitze austreten, das Reinigungsprogramm bricht ab oder das Gerät sperrt. Dichtung und Scharniere sind Verschleißteile und deutlich günstiger als ein Elektroniktausch."
       },
       {
-        title: "Kochfeld und Wirtschaftlichkeit",
+        title: "Einbau und Aufwand",
         body:
-          "Bei Induktionsfeldern sind einzelne Spulen, Sensortasten und Lüfter oft gezielt tauschbar, während die komplette Leistungselektronik ein echter Preisfaktor ist. Ein gesprungenes Glaskeramikfeld bleibt dagegen fast immer unwirtschaftlich. Bei Einbaugeräten fällt die Rechnung häufiger für die Reparatur aus, weil ein Austausch Anpassungen am Möbel nach sich zieht. Wir nennen den Aufwand vor der Teilebestellung.",
+          "Der Backofen bleibt in der Küche. Wir arbeiten in der Nische oder bauen ihn fachgerecht aus, wenn der Zugang es verlangt. Ein Austausch zieht oft Anpassungen am Möbel nach sich, deshalb fällt die Rechnung bei Einbaugeräten häufiger für die Reparatur aus. Den Aufwand nennen wir vor der Teilebestellung. Die Anfrage ist noch kein Auftrag."
       }
     ],
-    checklist: ["Sicherung prüfen", "Betriebsart notieren", "Fehlerbild beschreiben", "Gerät nicht öffnen", "Telefonisch abklären"],
+    checklist: ["Sicherung nicht wiederholt einschalten", "Betriebsart notieren", "Anzeige fotografieren", "Gerät nicht öffnen", "Telefonisch abklären"],
     faq: [
       {
-        question: "Mein Backofen löst die Sicherung aus — was soll ich tun?",
+        question: "Mein Backofen löst die Sicherung aus. Was soll ich tun?",
         answer:
-          "Gerät nicht weiter einschalten und die Sicherung nicht wiederholt zurücksetzen. Meist liegt ein Masseschluss am Heizkörper oder ein Problem an der Anschlussdose vor. Beides ist reparierbar, gehört aber gemessen — bitte rufen Sie an und beschreiben Sie, ob die Sicherung sofort oder erst im Betrieb fällt."
+          "Gerät nicht weiter einschalten und die Sicherung nicht wiederholt zurücksetzen. Meist liegt ein Masseschluss am Heizkörper oder ein Problem an der Anschlussdose vor. Beides gehört gemessen. Sagen Sie am Telefon, ob die Sicherung sofort oder erst im Betrieb fällt."
       },
       {
-        question: "Der Ofen backt ungleichmäßig — ist die Elektronik defekt?",
+        question: "Der Ofen backt ungleichmäßig. Ist die Elektronik defekt?",
         answer:
-          "Selten. Ungleichmäßiges Backen kommt meist von einem gealterten Temperaturfühler, einem ausgefallenen Heizkreis oder einem schwachen Umluftmotor. Wir messen die tatsächliche Temperatur und vergleichen sie mit der Anzeige — das grenzt die Ursache in wenigen Minuten ein."
+          "Selten. Ungleichmäßiges Backen kommt meist von einem gealterten Temperaturfühler, einem ausgefallenen Heizkreis oder einem schwachen Umluftmotor. Wir messen die tatsächliche Temperatur und vergleichen sie mit der Anzeige."
       },
       {
-        question: "Reparieren Sie auch Glaskeramik- und Induktionskochfelder?",
+        question: "Bedeutet E011 an jedem Backofen dasselbe?",
         answer:
-          "Ja, wenn die Ursache in Elektronik, Sensortasten, Spulen oder Lüfter liegt. Ein gesprungenes oder gebrochenes Glaskeramikfeld ist dagegen fast immer unwirtschaftlich, weil das Glas als komplette Baugruppe geliefert wird."
+          "Nein. Bei BSH-Geräten, also Bosch, Siemens und den verwandten Plattformen, steht E011 oft für das Bedienfeld. Andere Marken nutzen eigene Anzeigen. Notieren Sie die Zeichenfolge mit Marke und Modell."
       },
       {
-        question: "Gibt es eine Backofen-Reparatur in der Nähe?",
+        question: "Muss der Einbaubackofen aus der Küche?",
         answer:
-          "Ja — wir kommen zu Ihnen nach Hause in ganz Wien und ins nähere Niederösterreich. Einbaubacköfen bleiben in der Küche; wir arbeiten in der Nische oder bauen das Gerät fachgerecht aus, wenn der Zugang es verlangt. Rufen Sie an, dann legen wir den Termin in Ihrem Bezirk."
+          "In der Regel nicht. Wir arbeiten in der Nische oder bauen das Gerät aus, wenn der Zugang es verlangt, und setzen es wieder ein. Rufen Sie an, dann legen wir den Termin."
+      }
+    ]
+  },
+  {
+    slug: "herd",
+    title: "Herd Reparatur Wien",
+    metaTitle: "Herd Reparatur Wien | MONTER Service",
+    description:
+      "Herd Reparatur Wien: eine Kochzone bleibt kalt, Induktion reagiert nicht, oder das Glaskeramikfeld ist gesprungen. Den Anschluss prüfen wir mit.",
+    h1: "Herd Reparatur in Wien",
+    category: "Herd",
+    short: "Eine Zone bleibt kalt, Induktion reagiert nicht, oder die Sicherung fällt.",
+    intro:
+      "Am Herd fällt oft nur eine Zone aus, das Induktionsfeld erkennt den Topf nicht, oder die Sicherung löst aus, sobald eine Platte eingeschaltet wird. Kochfeld und Backofen sind getrennte Geräte, auch wenn sie in einer Küche stehen. Bei Geruch, Funken oder einer wiederholt fallenden Sicherung bleibt der Herd aus.",
+    sections: [
+      {
+        title: "Eine Zone bleibt kalt",
+        body:
+          "Bleibt eine Kochzone kalt und die anderen arbeiten, liegt die Ursache meist an dieser Zone: Heizkörper, Spule oder deren Ansteuerung. Wir messen den Kreis, bevor ein Modul getauscht wird. Reagiert das ganze Feld nicht, kommen Bedienung, Sicherung und Anschluss dazu."
+      },
+      {
+        title: "Induktion, Sensortasten und Lüfter",
+        body:
+          "Bei Induktionsfeldern sind einzelne Spulen, Sensortasten und der Lüfter oft gezielt tauschbar. Die komplette Leistungselektronik ist ein eigener Kostenpunkt. Erkennt das Feld den Topf nicht, prüfen wir zuerst, ob der Topf für Induktion geeignet ist, und dann die Spule. Den Aufwand nennen wir vor der Teilebestellung."
+      },
+      {
+        title: "Sicherung und alter Anschluss",
+        body:
+          "Ein Masseschluss an einer Zone, verschmorte Klemmen oder Feuchtigkeit im Bedienfeld lösen den FI oder die Sicherung aus. Gerät nicht weiter einschalten und die Sicherung nicht wiederholt zurücksetzen. Im Altbau hängen Herde häufig noch an alten Anschlussdosen. Wir prüfen den Anschluss mit, nicht nur das Kochfeld."
+      },
+      {
+        title: "Gesprungenes Glaskeramikfeld",
+        body:
+          "Elektronik, Sensortasten, Spulen und Lüfter sind oft reparierbar. Ein gesprungenes oder gebrochenes Glaskeramikfeld bleibt dagegen fast immer unwirtschaftlich, weil das Glas als komplette Baugruppe geliefert wird. Das sagen wir, bevor etwas bestellt wird. Die Anfrage ist noch kein Auftrag."
+      }
+    ],
+    checklist: ["Welche Zone ausfällt", "Induktion oder Glaskeramik", "Sicherung nicht wiederholt einschalten", "Marke und Modell", "Telefonisch abklären"],
+    faq: [
+      {
+        question: "Eine Platte geht nicht. Ist das ganze Feld defekt?",
+        answer:
+          "Nicht zwingend. Fällt nur eine Zone aus, messen wir diesen Kreis zuerst. Erst wenn mehrere Zonen oder die Bedienung mit ausfallen, kommt die Steuerung in Frage."
+      },
+      {
+        question: "Reparieren Sie ein gesprungenes Glaskeramikfeld?",
+        answer:
+          "Elektronik, Sensortasten, Spulen und Lüfter oft ja. Ein gesprungenes Glas ist dagegen fast immer unwirtschaftlich, weil es als komplette Baugruppe geliefert wird."
+      },
+      {
+        question: "Der Herd wirft die Sicherung. Darf ich sie wieder einschalten?",
+        answer:
+          "Bitte nicht wiederholt. Gerät auslassen. Meist liegt ein Masseschluss an einer Zone oder ein Problem an der Anschlussdose vor. Beides gehört gemessen. Sagen Sie am Telefon, ob die Sicherung sofort oder erst beim Einschalten einer Platte fällt."
+      },
+      {
+        question: "Ist der Herd dasselbe wie der Backofen?",
+        answer:
+          "Nein. Das Kochfeld und der Backofen sind getrennte Geräte, auch in einer Einbauküche. Eine kalte Zone und ein Ofen, der nicht heizt, sind zwei verschiedene Prüfungen."
       }
     ]
   },
@@ -554,15 +607,8 @@ export const appliancePages: AppliancePage[] = [
   }
 ];
 
-/** Inklusive Linz — die Linzer Seiten bleiben aus Menü und Wiener Hub, sind aber eigene Routen. */
-export const allAppliancePages: AppliancePage[] = [...appliancePages, ...linzAppliancePages];
-
 export function getAppliancePage(slug: string) {
   return appliancePages.find((page) => page.slug === slug);
-}
-
-export function getLinzAppliancePage(slug: string) {
-  return linzAppliancePages.find((page) => page.slug === slug);
 }
 
 export const applianceWashingNavLinks = appliancePages
@@ -584,10 +630,11 @@ export const applianceHubLinks = appliancePages.map((page) => ({
 /** Geschwister-Geräte für die Querverlinkung, Schlüssel ist der kurze Geräte-Slug. */
 export const relatedApplianceSlugs: Record<string, string[]> = {
   waschmaschine: ["trockner", "geschirrspueler"],
-  geschirrspueler: ["waschmaschine", "backofen-herd"],
+  geschirrspueler: ["waschmaschine", "backofen"],
   kuehlschrank: ["tiefkuehl", "geschirrspueler"],
   tiefkuehl: ["kuehlschrank", "waschmaschine"],
   trockner: ["waschmaschine", "waschtrockner"],
-  "backofen-herd": ["geschirrspueler", "dunstabzug"],
+  backofen: ["herd", "dunstabzug"],
+  herd: ["backofen", "dunstabzug"],
   waschtrockner: ["waschmaschine", "trockner"]
 };

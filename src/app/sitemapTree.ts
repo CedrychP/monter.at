@@ -8,7 +8,6 @@ import {
 } from "./einsatzgebiete/locationPages";
 import { appliancePages } from "./haushaltsgeraete/appliancePages";
 import { applianceProblemPages } from "./haushaltsgeraete/applianceProblems";
-import { linzAppliancePages } from "./haushaltsgeraete/linzAppliancePages";
 import { allGaragePages } from "./garagentore/garagePages";
 import { allKlimaPages } from "./klimageraete/klimaPages";
 import { isBrandDeviceEnriched } from "./marken/brandDeviceContent";
@@ -50,14 +49,6 @@ export const sitemapGroups: SitemapGroup[] = [
         children: appliancePages.map((page) => ({
           label: page.title,
           href: applianceHref(page.slug)
-        }))
-      },
-      {
-        label: "Haushaltsgeräte Linz",
-        href: "/einsatzgebiete/linz",
-        children: linzAppliancePages.map((page) => ({
-          label: page.title,
-          href: applianceHref(page.slug, "linz")
         }))
       }
     ]

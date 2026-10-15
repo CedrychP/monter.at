@@ -49,7 +49,8 @@ const devices = [
   { label: "Geschirrspüler", href: "/haushaltsgeraete/geschirrspueler" },
   { label: "Trockner", href: "/haushaltsgeraete/trockner" },
   { label: "Kühlschrank", href: "/haushaltsgeraete/kuehlschrank" },
-  { label: "Backofen & Herd", href: "/haushaltsgeraete/backofen-herd" }
+  { label: "Backofen", href: "/haushaltsgeraete/backofen" },
+  { label: "Herd", href: "/haushaltsgeraete/herd" }
 ];
 
 const faqs: HubFaqItem[] = [

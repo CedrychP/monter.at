@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { linzAppliancePages } from "../../haushaltsgeraete/linzAppliancePages";
+import { appliancePages } from "../../haushaltsgeraete/appliancePages";
 import { applianceHref } from "../../serviceHrefs";
 import DetailPageLayout from "../../DetailPageLayout";
 import { HubDetailLinks, HubFaq } from "../../HubBlocks";
@@ -316,10 +316,10 @@ export default async function RegionDetailPage({ params }: RegionPageProps) {
         <HubDetailLinks
           eyebrow="Geräte"
           title="Haushaltsgeräte in Linz."
-          intro="Eigene Seiten je Gerät, mit dem harten Linzer Wasser und der Frage, wann sich die Reparatur noch rechnet."
-          links={linzAppliancePages.map((page) => ({
+          intro="Dieselben Geräteseiten gelten in Linz. Die Reparatur findet vor Ort statt."
+          links={appliancePages.map((page) => ({
             label: page.category,
-            href: applianceHref(page.slug, "linz"),
+            href: applianceHref(page.slug),
             text: page.short
           }))}
         />

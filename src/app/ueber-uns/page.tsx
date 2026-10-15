@@ -49,9 +49,9 @@ const scenes = [
     image: ovenImage,
     alt: "Herd mit Knebeln und geschlossener Backofentür.",
     kicker: "In der Küche",
-    title: "Backofen und Herd",
+    title: "Backofen",
     text: "Oberhitze, Umluft, Temperatur. Der Ofen bleibt in der Nische, der Techniker kommt zur Küche.",
-    href: "/haushaltsgeraete/backofen-herd",
+    href: "/haushaltsgeraete/backofen",
     label: "Zum Backofen"
   },
   {
