@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { HubFaq, type HubFaqItem } from "../HubBlocks";
+import { GarageSchemaImage } from "./GarageFrame";
 import { buildMetadata } from "../pageMetadata";
 import { localBusinessProviderRef, siteConfig } from "../siteConfig";
 import { garagePages } from "./garagePages";
@@ -162,20 +164,41 @@ export default function GaragentoreHubPage() {
 
       <section>
         <div className="mx-auto max-w-[88rem] px-5 py-16 sm:px-8 sm:py-20">
-          <p className="cap-line tracking-eyebrow text-[color:var(--muted)]">Danach die Bauart</p>
-          <h2 className="font-display mt-6 max-w-2xl text-4xl font-light tracking-tight sm:text-5xl">Nach der Bauart.</h2>
-          <p className="mt-6 max-w-3xl text-lg font-light leading-8 text-[color:var(--muted)]">
-            Häufige Antriebe sind Hörmann, Sommer, Marantec, Novoferm und Chamberlain. Anfahrt und Erstprüfung sind pauschaliert, Arbeitszeit und Material werden ausgewiesen.{" "}
-            <Link href="/preise"><span className="text-[color:var(--accent)]">Preise und Pauschalen</span></Link>.
-          </p>
+          <div className="grid items-start gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+            <div>
+              <p className="cap-line tracking-eyebrow text-[color:var(--muted)]">Danach die Bauart</p>
+              <h2 className="font-display mt-6 max-w-2xl text-4xl font-light tracking-tight sm:text-5xl">Nach der Bauart.</h2>
+              <p className="mt-6 max-w-3xl text-lg font-light leading-8 text-[color:var(--muted)]">
+                Häufige Antriebe sind Hörmann, Sommer, Marantec, Novoferm und Chamberlain. Anfahrt und Erstprüfung sind pauschaliert, Arbeitszeit und Material werden ausgewiesen.{" "}
+                <Link href="/preise"><span className="text-[color:var(--accent)]">Preise und Pauschalen</span></Link>.
+              </p>
+            </div>
+            <figure>
+              <div className="relative aspect-[4/3] overflow-hidden">
+                <Image
+                  src="/assets/ueber-uns-garagentor-wien.webp"
+                  alt="Geschlossenes Sektionaltor neben einer roten Ziegelwand, daneben eine Ampel."
+                  fill
+                  sizes="(min-width: 1024px) 40rem, 100vw"
+                  className="object-cover"
+                />
+              </div>
+              <figcaption className="mt-3 text-sm font-light text-[color:var(--muted)]">Beispielbild, kein Einsatzfoto.</figcaption>
+            </figure>
+          </div>
 
           <h3 className="mt-14 text-[0.72rem] font-medium uppercase tracking-[0.18em] text-[color:var(--muted)]">Tore</h3>
           <ul className="mt-4 grid gap-px border border-[color:var(--border)] bg-[color:var(--border)] sm:grid-cols-2">
             {doors.map((page) => (
               <li key={page.slug} className="bg-white">
-                <Link href={`/garagentore/${page.slug}`} className="block h-full px-6 py-8">
-                  <h3 className="font-display text-2xl font-light tracking-tight text-[color:var(--ink)]">{page.category}</h3>
-                  <span className="mt-4 block text-base font-light leading-7 text-[color:var(--muted)]">{page.short}</span>
+                <Link href={`/garagentore/${page.slug}`} className="block h-full">
+                  <div className="relative aspect-[4/3] border-b border-[color:var(--border)] bg-[color:var(--bg-muted)]">
+                    <GarageSchemaImage slug={page.slug} sizes="(min-width: 640px) 40rem, 100vw" />
+                  </div>
+                  <div className="px-6 py-8">
+                    <h3 className="font-display text-2xl font-light tracking-tight text-[color:var(--ink)]">{page.category}</h3>
+                    <span className="mt-4 block text-base font-light leading-7 text-[color:var(--muted)]">{page.short}</span>
+                  </div>
                 </Link>
               </li>
             ))}
@@ -185,9 +208,14 @@ export default function GaragentoreHubPage() {
           <ul className="mt-4 grid gap-px border border-[color:var(--border)] bg-[color:var(--border)] sm:grid-cols-2 lg:grid-cols-4">
             {drive.map((page) => (
               <li key={page.slug} className="bg-white">
-                <Link href={`/garagentore/${page.slug}`} className="block h-full px-6 py-8">
-                  <h3 className="font-display text-2xl font-light tracking-tight text-[color:var(--ink)]">{page.category}</h3>
-                  <span className="mt-4 block text-base font-light leading-7 text-[color:var(--muted)]">{page.short}</span>
+                <Link href={`/garagentore/${page.slug}`} className="block h-full">
+                  <div className="relative aspect-[4/3] border-b border-[color:var(--border)] bg-[color:var(--bg-muted)]">
+                    <GarageSchemaImage slug={page.slug} sizes="(min-width: 1024px) 20rem, 100vw" />
+                  </div>
+                  <div className="px-6 py-8">
+                    <h3 className="font-display text-2xl font-light tracking-tight text-[color:var(--ink)]">{page.category}</h3>
+                    <span className="mt-4 block text-base font-light leading-7 text-[color:var(--muted)]">{page.short}</span>
+                  </div>
                 </Link>
               </li>
             ))}

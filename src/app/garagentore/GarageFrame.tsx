@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { HubFaq } from "../HubBlocks";
 import { localBusinessProviderRef, siteConfig } from "../siteConfig";
@@ -67,125 +67,76 @@ const voice: Record<string, { kicker: string; ctaTitle: string; ctaText: string 
   }
 };
 
-function DoorDrawing({ slug }: { slug: string }) {
-  const ink = "currentColor";
-  const accent = "var(--accent)";
-  const frame = <rect x="86" y="46" width="148" height="150" fill="none" stroke={ink} strokeWidth="1.5" />;
-  const panels = <path d="M86 84h148M86 122h148M86 160h148" fill="none" stroke={ink} strokeWidth="1.5" />;
+const sectionalPhoto = {
+  src: "/assets/ueber-uns-garagentor-wien.webp",
+  alt: "Geschlossenes Sektionaltor neben einer roten Ziegelwand, daneben eine Ampel."
+};
 
-  let drawing: ReactNode = (
-    <>
-      {frame}
-      {panels}
-      <path d="M98 168h124" fill="none" stroke={accent} strokeWidth="1.5" />
-    </>
-  );
-
-  if (slug === "federwechsel") {
-    drawing = (
-      <>
-        {frame}
-        {panels}
-        <path d="M36 58h78" fill="none" stroke={ink} strokeWidth="1.5" />
-        <path d="M206 58h78" fill="none" stroke={accent} strokeWidth="1.5" />
-        <path d="M48 58c6-14 18-14 24 0s18 14 24 0 18-14 24 0" fill="none" stroke={ink} strokeWidth="1.5" />
-        <path d="M214 58c6-14 18-14 24 0s18 14 24 0" fill="none" stroke={accent} strokeWidth="1.5" />
-      </>
-    );
-  } else if (slug === "oeffnet-nicht" || slug === "torantrieb-motor") {
-    drawing = (
-      <>
-        <path d="M86 28h148" fill="none" stroke={ink} strokeWidth="1.5" />
-        <rect x="168" y="16" width="40" height="18" fill="none" stroke={ink} strokeWidth="1.5" />
-        <circle cx="188" cy="25" r="3" fill={accent} />
-        {frame}
-        {panels}
-      </>
-    );
-  } else if (slug === "schliesst-nicht") {
-    drawing = (
-      <>
-        {frame}
-        {panels}
-        <path d="M150 196v18" fill="none" stroke={ink} strokeWidth="1.5" />
-        <path d="M150 214l-8-8M150 214l8-8" fill="none" stroke={accent} strokeWidth="1.5" />
-      </>
-    );
-  } else if (slug === "klemmt" || slug === "laufrollen-schienen") {
-    drawing = (
-      <>
-        <path d="M70 36v176M250 36v176" fill="none" stroke={ink} strokeWidth="1.5" />
-        {frame}
-        {panels}
-        <circle cx="70" cy="96" r="7" fill="none" stroke={ink} strokeWidth="1.5" />
-        <circle cx="250" cy="96" r="7" fill="none" stroke={ink} strokeWidth="1.5" />
-        <circle cx="58" cy="150" r="7" fill="none" stroke={accent} strokeWidth="1.5" />
-      </>
-    );
-  } else if (slug === "schwingtor-rolltor") {
-    drawing = (
-      <>
-        <path d="M96 46h128l18 150H78z" fill="none" stroke={ink} strokeWidth="1.5" />
-        <path d="M104 196h112" fill="none" stroke={accent} strokeWidth="1.5" />
-      </>
-    );
-  } else if (slug === "fehlercodes") {
-    drawing = (
-      <>
-        <text x="28" y="78" fill={ink} fontSize="32">
-          5
-        </text>
-        <text x="92" y="72" fill={ink} fontSize="13" letterSpacing="1.6">
-          SUPRAMATIC
-        </text>
-        <text x="28" y="132" fill={ink} fontSize="32">
-          15
-        </text>
-        <text x="100" y="126" fill={ink} fontSize="13" letterSpacing="1.6">
-          MARANTEC
-        </text>
-        <text x="28" y="186" fill={accent} fontSize="32">
-          2×
-        </text>
-        <text x="100" y="180" fill={ink} fontSize="13" letterSpacing="1.6">
-          ROLLMATIC
-        </text>
-      </>
-    );
-  } else if (slug === "wartung-sicherheitspruefung") {
-    drawing = (
-      <>
-        {frame}
-        {panels}
-        <path d="M248 78l10 10 20-24" fill="none" stroke={accent} strokeWidth="1.5" />
-      </>
-    );
+export const garageSchemas: Record<string, { src: string; alt: string }> = {
+  sektionaltor: {
+    src: "/assets/garagentor-sektionaltor.webp",
+    alt: "Schema eines Sektionaltors: waagrechte Paneele, seitliche Laufschienen, rote Bodendichtung."
+  },
+  "schwingtor-rolltor": {
+    src: "/assets/garagentor-schwingtor-rolltor.webp",
+    alt: "Schema eines Schwingtors mit Hebelarmen und eines Rolltors mit Lamellen."
+  },
+  "torantrieb-motor": {
+    src: "/assets/garagentor-antrieb.webp",
+    alt: "Schema eines Torantriebs: Laufschiene an der Decke, Motor und Gestänge zum Torblatt."
+  },
+  federwechsel: {
+    src: "/assets/garagentor-feder.webp",
+    alt: "Schema einer Torsionswelle: eine Feder durchgehend, die andere mit Lücke."
+  },
+  "laufrollen-schienen": {
+    src: "/assets/garagentor-laufrollen.webp",
+    alt: "Schema von Laufschienen. Eine Rolle liegt außerhalb der Führung."
+  },
+  "wartung-sicherheitspruefung": {
+    src: "/assets/garagentor-wartung.webp",
+    alt: "Schema einer Wartung: Torblatt, Lichtschranke und Prüfzeichen."
+  },
+  "oeffnet-nicht": {
+    src: "/assets/garagentor-oeffnet-nicht.webp",
+    alt: "Schema eines geschlossenen Tors. Der Antrieb an der Schiene bleibt stehen."
+  },
+  "schliesst-nicht": {
+    src: "/assets/garagentor-schliesst-nicht.webp",
+    alt: "Schema einer unterbrochenen Lichtschranke. Der Pfeil zeigt, dass das Tor zurückfährt."
+  },
+  klemmt: {
+    src: "/assets/garagentor-klemmt.webp",
+    alt: "Schema eines schiefen Torblatts. Eine Laufrolle liegt außerhalb der Schiene."
+  },
+  fehlercodes: {
+    src: "/assets/garagentor-fehlercodes.webp",
+    alt: "Anzeige 5 bei SupraMatic, 15 bei Marantec, zweimal blinken bei RollMatic. Dieselbe Zahl gilt nur in einer Baureihe."
   }
+};
 
-  return (
-      <svg
-        viewBox="0 0 320 240"
-        role="img"
-        aria-label={
-          slug === "fehlercodes"
-            ? "Anzeige 5 bei SupraMatic, 15 bei Marantec, zweimal blinken bei RollMatic. Dieselbe Zahl gilt nur in einer Baureihe."
-            : "Schema eines Garagentors"
-        }
-        className="h-auto w-full text-[color:var(--ink)]"
-      >
-      {drawing}
-    </svg>
-  );
+export function GarageSchemaImage({ slug, sizes }: { slug: string; sizes: string }) {
+  const media = garageSchemas[slug] ?? garageSchemas.sektionaltor;
+  return <Image src={media.src} alt={media.alt} fill sizes={sizes} className="object-contain" />;
 }
 
 export function GarageDoorMark({ slug }: { slug: string }) {
+  const photo = slug === "sektionaltor";
+  const media = photo ? sectionalPhoto : (garageSchemas[slug] ?? garageSchemas.sektionaltor);
+
   return (
     <figure className="border border-[color:var(--border)] bg-[color:var(--bg-muted)]">
-      <div className="px-6 py-8 sm:px-10 sm:py-10">
-        <DoorDrawing slug={slug} />
+      <div className="relative aspect-[4/3] overflow-hidden">
+        <Image
+          src={media.src}
+          alt={media.alt}
+          fill
+          sizes="(min-width: 1024px) 34rem, 100vw"
+          className={photo ? "object-cover" : "object-contain"}
+        />
       </div>
       <figcaption className="border-t border-[color:var(--border)] px-5 py-3 text-sm font-light text-[color:var(--muted)]">
-        Schema, kein Einsatzfoto.
+        {photo ? "Beispielbild, kein Einsatzfoto." : "Schema, kein Einsatzfoto."}
       </figcaption>
     </figure>
   );
