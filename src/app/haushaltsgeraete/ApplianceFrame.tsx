@@ -179,7 +179,7 @@ export function ApplianceFrame({ page }: { page: ApplianceProblemPage }) {
       {rest.length > 0 ? (
         <section className="bg-[color:var(--bg-muted)]">
           <div className="mx-auto max-w-[88rem] px-5 py-16 sm:px-8 sm:py-20">
-            <ul className="grid gap-px bg-[color:var(--border)] sm:grid-cols-2">
+            <ul className={`grid gap-px bg-[color:var(--border)] ${rest.length > 1 ? "sm:grid-cols-2" : ""}`}>
               {rest.map((section) => (
                 <li key={section.title} className="bg-white px-6 py-8 sm:px-8 sm:py-10">
                   <h2 className="font-display text-2xl font-light tracking-tight">{section.title}</h2>

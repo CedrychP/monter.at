@@ -179,6 +179,8 @@ export default function GaragentoreHubPage() {
                   src="/assets/garagentor-foto-uebersicht.webp"
                   alt="Geschlossenes anthrazitfarbenes Sektionaltor in einer hellen Putzfassade, davor Betonplatten."
                   fill
+                  priority
+                  loading="eager"
                   sizes="(min-width: 1024px) 40rem, 100vw"
                   className="object-cover"
                 />

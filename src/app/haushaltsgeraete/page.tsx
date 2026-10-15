@@ -5,7 +5,7 @@ import { HubFaq, type HubFaqItem } from "../HubBlocks";
 import { servedAreas } from "../einsatzgebiete/regionPages";
 import { buildMetadata } from "../pageMetadata";
 import { localBusinessProviderRef, siteConfig } from "../siteConfig";
-import { appliancePages } from "./appliancePages";
+import { appliancePages, type AppliancePage } from "./appliancePages";
 import { applianceProblemPages } from "./applianceProblems";
 
 const description =
@@ -118,11 +118,38 @@ export const metadata: Metadata = buildMetadata({
   path: "/haushaltsgeraete"
 });
 
-export default function HaushaltsgeraeteHubPage() {
-  const washing = appliancePages.filter((page) =>
-    ["waschmaschine", "geschirrspueler", "trockner", "waschtrockner"].includes(page.slug)
+const sanitaerOrder = ["waschmaschine", "geschirrspueler", "trockner", "waschtrockner"];
+const kuecheOrder = ["kuehlschrank", "tiefkuehl", "backofen", "herd", "dunstabzug", "fernseher"];
+
+function pagesInOrder(order: string[]) {
+  return order
+    .map((slug) => appliancePages.find((page) => page.slug === slug))
+    .filter((page): page is AppliancePage => Boolean(page));
+}
+
+function DeviceCard({ page }: { page: AppliancePage }) {
+  const photo = devicePhotos[page.slug];
+
+  return (
+    <li className="bg-white">
+      <Link href={`/haushaltsgeraete/${page.slug}`} className="block h-full">
+        {photo ? (
+          <div className="relative aspect-[4/3] border-b border-[color:var(--border)] bg-[color:var(--bg-muted)]">
+            <Image src={photo.src} alt={photo.alt} fill sizes="(min-width: 1024px) 22rem, 100vw" className="object-cover" />
+          </div>
+        ) : null}
+        <div className="px-6 py-8">
+          <h3 className="font-display text-2xl font-light tracking-tight text-[color:var(--ink)]">{page.category}</h3>
+          <span className="mt-4 block text-base font-light leading-7 text-[color:var(--muted)]">{page.short}</span>
+        </div>
+      </Link>
+    </li>
   );
-  const living = appliancePages.filter((page) => !washing.some((item) => item.slug === page.slug));
+}
+
+export default function HaushaltsgeraeteHubPage() {
+  const sanitaer = pagesInOrder(sanitaerOrder);
+  const kueche = pagesInOrder(kuecheOrder);
 
   return (
     <main className="min-h-screen bg-white text-[color:var(--ink)]">
@@ -181,10 +208,10 @@ export default function HaushaltsgeraeteHubPage() {
         <div className="mx-auto max-w-[88rem] px-5 py-16 sm:px-8 sm:py-20">
           <div className="grid items-start gap-12 lg:grid-cols-[1.05fr_0.95fr]">
             <div>
-              <p className="cap-line tracking-eyebrow text-[color:var(--muted)]">Danach das Gerät</p>
-              <h2 className="font-display mt-6 max-w-2xl text-4xl font-light tracking-tight sm:text-5xl">Nach dem Gerät.</h2>
+              <p className="cap-line tracking-eyebrow text-[color:var(--muted)]">Nach dem Gerät</p>
+              <h2 className="font-display mt-6 max-w-2xl text-4xl font-light tracking-tight sm:text-5xl">Sanitärgeräte.</h2>
               <p className="mt-6 max-w-3xl text-lg font-light leading-8 text-[color:var(--muted)]">
-                Anfahrt und Diagnose sind pauschaliert, Arbeitszeit und Material werden ausgewiesen.{" "}
+                Waschmaschine und Geschirrspüler hängen am Zulauf, am Ablauf und oft am selben Siphon. Trockner und Waschtrockner prüfen wir zuerst am Luftweg. Anfahrt und Diagnose sind pauschaliert.{" "}
                 <Link href="/preise">
                   <span className="text-[color:var(--accent)]">Preise und Pauschalen</span>
                 </Link>.
@@ -203,49 +230,24 @@ export default function HaushaltsgeraeteHubPage() {
               <figcaption className="mt-3 text-sm font-light text-[color:var(--muted)]">Beispielbild, kein Einsatzfoto.</figcaption>
             </figure>
           </div>
-
-          <h3 className="mt-14 text-[0.72rem] font-medium uppercase tracking-[0.18em] text-[color:var(--muted)]">Waschen und Spülen</h3>
-          <ul className="mt-4 grid gap-px border border-[color:var(--border)] bg-[color:var(--border)] sm:grid-cols-2 lg:grid-cols-4">
-            {washing.map((page) => {
-              const photo = devicePhotos[page.slug];
-              return (
-                <li key={page.slug} className="bg-white">
-                  <Link href={`/haushaltsgeraete/${page.slug}`} className="block h-full">
-                    {photo ? (
-                      <div className="relative aspect-[4/3] border-b border-[color:var(--border)] bg-[color:var(--bg-muted)]">
-                        <Image src={photo.src} alt={photo.alt} fill sizes="(min-width: 1024px) 20rem, 100vw" className="object-cover" />
-                      </div>
-                    ) : null}
-                    <div className="px-6 py-8">
-                      <h3 className="font-display text-2xl font-light tracking-tight text-[color:var(--ink)]">{page.category}</h3>
-                      <span className="mt-4 block text-base font-light leading-7 text-[color:var(--muted)]">{page.short}</span>
-                    </div>
-                  </Link>
-                </li>
-              );
-            })}
+          <ul className="mt-14 grid gap-px border border-[color:var(--border)] bg-[color:var(--border)] sm:grid-cols-2 lg:grid-cols-4">
+            {sanitaer.map((page) => (
+              <DeviceCard key={page.slug} page={page} />
+            ))}
           </ul>
+        </div>
+      </section>
 
-          <h3 className="mt-14 text-[0.72rem] font-medium uppercase tracking-[0.18em] text-[color:var(--muted)]">Küche und Wohnen</h3>
-          <ul className="mt-4 grid gap-px border border-[color:var(--border)] bg-[color:var(--border)] sm:grid-cols-2 lg:grid-cols-3">
-            {living.map((page) => {
-              const photo = devicePhotos[page.slug];
-              return (
-                <li key={page.slug} className="bg-white">
-                  <Link href={`/haushaltsgeraete/${page.slug}`} className="block h-full">
-                    {photo ? (
-                      <div className="relative aspect-[4/3] border-b border-[color:var(--border)] bg-[color:var(--bg-muted)]">
-                        <Image src={photo.src} alt={photo.alt} fill sizes="(min-width: 1024px) 28rem, 100vw" className="object-cover" />
-                      </div>
-                    ) : null}
-                    <div className="px-6 py-8">
-                      <h3 className="font-display text-2xl font-light tracking-tight text-[color:var(--ink)]">{page.category}</h3>
-                      <span className="mt-4 block text-base font-light leading-7 text-[color:var(--muted)]">{page.short}</span>
-                    </div>
-                  </Link>
-                </li>
-              );
-            })}
+      <section className="border-t border-[color:var(--border)] bg-[color:var(--bg-muted)]">
+        <div className="mx-auto max-w-[88rem] px-5 py-16 sm:px-8 sm:py-20">
+          <h2 className="font-display max-w-2xl text-4xl font-light tracking-tight sm:text-5xl">Küche & Wohnen.</h2>
+          <p className="mt-6 max-w-3xl text-lg font-light leading-8 text-[color:var(--muted)]">
+            Kühlschrank, Gefriergerät, Backofen, Herd und Dunstabzug bleiben eingebaut. Der Fernseher kommt dazu, wenn Bild oder Ton ausfallen. Eine kalte Kochzone und ein Ofen, der nicht heizt, sind zwei Geräte.
+          </p>
+          <ul className="mt-14 grid gap-px border border-[color:var(--border)] bg-[color:var(--border)] sm:grid-cols-2 lg:grid-cols-3">
+            {kueche.map((page) => (
+              <DeviceCard key={page.slug} page={page} />
+            ))}
           </ul>
         </div>
       </section>
