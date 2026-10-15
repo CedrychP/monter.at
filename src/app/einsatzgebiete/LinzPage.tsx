@@ -1,9 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import { appliancePages } from "../haushaltsgeraete/appliancePages";
-import { applianceHref } from "../serviceHrefs";
 import { HubFaq } from "../HubBlocks";
 import { localBusinessProviderRef, siteConfig } from "../siteConfig";
+import { AreaClose, AreaSectionRows, AreaServiceLinks } from "./AreaParts";
 import { getLocationsForRegion, locationHref } from "./locationPages";
 import type { RegionPage } from "./regionPages";
 
@@ -33,7 +32,7 @@ export default function LinzPage({ region }: { region: RegionPage }) {
         {
           "@type": "ListItem",
           position: 3,
-          name: "Linz",
+          name: region.metaTitle,
           item: `${siteConfig.siteUrl}/einsatzgebiete/linz`
         }
       ]
@@ -49,7 +48,7 @@ export default function LinzPage({ region }: { region: RegionPage }) {
       />
 
       <section className="border-b border-[color:var(--border)]">
-        <div className="mx-auto grid max-w-[88rem] items-end gap-12 px-5 py-16 sm:px-8 sm:py-20 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+        <div className="mx-auto grid max-w-[88rem] items-start gap-12 px-5 py-16 sm:px-8 sm:py-20 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
           <div>
             <nav aria-label="Breadcrumb">
               <ol className="flex flex-wrap items-center gap-2 text-[0.72rem] font-medium uppercase tracking-[0.16em] text-[color:var(--muted)]">
@@ -78,13 +77,13 @@ export default function LinzPage({ region }: { region: RegionPage }) {
               Haushaltsgeräte. Wels, Steyr und das übrige Oberösterreich nehmen wir nicht an. Die
               Anfahrt nennen wir am Telefon, bevor ein Termin steht.
             </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link href="/reparatur-buchen" className="btn-primary">
-                Reparatur anfragen
-              </Link>
-              <a href={`tel:${siteConfig.phoneHref}`} className="btn-ghost">
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a className="btn-primary" href={`tel:${siteConfig.phoneHref}`}>
                 <span data-phone-number>{siteConfig.phoneDisplay}</span>
               </a>
+              <Link className="btn-ghost" href="/reparatur-buchen">
+                Termin anfragen
+              </Link>
             </div>
           </div>
           <figure className="overflow-hidden border border-[color:var(--border)]">
@@ -94,12 +93,13 @@ export default function LinzPage({ region }: { region: RegionPage }) {
                 alt={region.imageAlt}
                 fill
                 priority
+                loading="eager"
                 sizes="(min-width: 1024px) 40rem, 100vw"
                 className="object-cover"
               />
             </div>
             <figcaption className="border-t border-[color:var(--border)] px-4 py-3 text-sm font-light text-[color:var(--muted)]">
-              {region.imageAlt} Beispielbild, kein Einsatzfoto.
+              Beispielbild, kein Einsatzfoto.
             </figcaption>
           </figure>
         </div>
@@ -134,32 +134,19 @@ export default function LinzPage({ region }: { region: RegionPage }) {
         </ul>
       </section>
 
-      <section className="border-b border-[color:var(--border)] bg-white py-16 sm:py-20" aria-label="Haushaltsgeräte in Linz">
+      <section className="border-b border-[color:var(--border)] bg-white py-16 sm:py-20" aria-label="Wasser in Linz">
         <div className="mx-auto max-w-[88rem] px-5 sm:px-8">
-          <p className="cap-line tracking-eyebrow">Haushaltsgeräte</p>
+          <p className="cap-line tracking-eyebrow text-[color:var(--muted)]">Vor Ort</p>
           <h2 className="font-display mt-6 max-w-3xl text-balance text-3xl font-light tracking-tight sm:text-4xl">
-            Was in Linz regelmäßig drankommt.
+            Hartes Wasser, Kalk am Heizstab.
           </h2>
-          <p className="mt-4 max-w-2xl text-sm font-light leading-relaxed text-[color:var(--muted)]">
-            Das Linzer Leitungswasser ist hart, etwa 14 bis 21 °dH. Kalk am Heizstab ist deshalb
-            ein häufiger Befund. Garagentore und Klimageräte sind hier nicht das reguläre Spektrum.
+          <p className="mt-4 max-w-2xl text-lg font-light leading-8 text-[color:var(--muted)]">
+            Das Linzer Leitungswasser ist hart, etwa 14 bis 21 °dH. Kalk am Heizstab ist deshalb ein häufiger Befund, wenn ein Programm lauwarm bleibt.
           </p>
-          <ul className="mt-10 grid gap-px bg-[color:var(--border)] sm:grid-cols-2 lg:grid-cols-3">
-            {appliancePages.map((page) => (
-              <li key={page.slug} className="bg-white">
-                <Link href={applianceHref(page.slug)} className="group flex h-full flex-col p-6">
-                  <span className="font-display text-2xl font-light tracking-tight text-[color:var(--ink)] group-hover:text-[color:var(--accent)]">
-                    {page.category}
-                  </span>
-                  <span className="mt-3 text-sm font-light leading-relaxed text-[color:var(--muted)]">
-                    {page.short}
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ul>
         </div>
       </section>
+
+      <AreaServiceLinks area="linz" />
 
       <section className="bg-white py-16 sm:py-20" aria-label="Linzer Stadtteile">
         <div className="mx-auto max-w-[88rem] px-5 sm:px-8">
@@ -193,29 +180,10 @@ export default function LinzPage({ region }: { region: RegionPage }) {
         </div>
       </section>
 
-      <section className="border-t border-[color:var(--border)] bg-[color:var(--bg-muted)] py-16 sm:py-20">
-        <div className="mx-auto grid max-w-[88rem] gap-12 px-5 sm:px-8 lg:grid-cols-2">
-          {region.sections.map((section, index) => (
-            <article key={section.title}>
-              <p className="font-display text-sm text-[color:var(--accent)]">
-                {String(index + 1).padStart(2, "0")}
-              </p>
-              <h2 className="font-display mt-4 text-3xl font-light tracking-tight">{section.title}</h2>
-              <p className="mt-4 text-sm font-light leading-relaxed text-[color:var(--muted)]">{section.body}</p>
-            </article>
-          ))}
-        </div>
-        <div className="mx-auto mt-12 flex max-w-[88rem] flex-col gap-3 px-5 sm:flex-row sm:px-8">
-          <Link href="/preise" className="btn-primary">
-            Alle Preise
-          </Link>
-          <Link href="/einsatzgebiete" className="btn-ghost">
-            Alle Einsatzgebiete
-          </Link>
-        </div>
-      </section>
+      <AreaSectionRows sections={region.sections} />
 
-      <HubFaq eyebrow="Häufige Fragen" title="Kurz geklärt: Linz." items={region.faq} />
+      <HubFaq eyebrow="Häufige Fragen" title="Linz: kurz beantwortet." items={region.faq} />
+      <AreaClose linz />
     </main>
   );
 }

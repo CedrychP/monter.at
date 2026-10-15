@@ -24,7 +24,7 @@ const serviceLinks: Record<RegionService, { label: string; href: string; text: s
   haushaltsgeraete: {
     label: "Haushaltsgeräte",
     href: "/haushaltsgeraete",
-    text: "Waschmaschine, Geschirrspüler, Backofen, Kühlgerät, Trockner, Dunstabzug und Fernseher."
+    text: "Waschmaschine, Geschirrspüler, Trockner, Kühlschrank, Backofen und Herd, dazu Dunstabzug und Fernseher."
   },
   garagentore: {
     label: "Garagentore",

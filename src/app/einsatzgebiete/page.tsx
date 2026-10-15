@@ -3,9 +3,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { HubFaq, type HubFaqItem } from "../HubBlocks";
 import { buildMetadata } from "../pageMetadata";
-import { siteConfig } from "../siteConfig";
+import { localBusinessProviderRef, siteConfig } from "../siteConfig";
+import { AreaClose } from "./AreaParts";
 import { getLocationsForRegion, locationHref } from "./locationPages";
-import { regionPages } from "./regionPages";
+import { regionPages, servedAreasJsonLd } from "./regionPages";
 
 const areas = [
   {
@@ -53,18 +54,45 @@ const faqs: HubFaqItem[] = [
   }
 ];
 
+const description =
+  "MONTER repariert Haushaltsgeräte in Wien, Niederösterreich und Linz. Alle 23 Bezirke, Anfahrt ab 96 € inkl. MwSt., in Linz Techniker vor Ort.";
+
 export const metadata: Metadata = buildMetadata({
   title: "Reparatur in Wien, Niederösterreich und Linz | MONTER",
-  description:
-    "MONTER repariert Haushaltsgeräte in Wien, Niederösterreich und Linz. Alle 23 Bezirke, Anfahrt ab 96 € inkl. MwSt., in Linz Techniker vor Ort.",
+  description,
   path: "/einsatzgebiete"
 });
 
 export default function EinsatzgebieteHubPage() {
   const bySlug = new Map(regionPages.map((region) => [region.slug, region]));
+  const structuredData = [
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      name: "Reparatur in Wien, Niederösterreich und Linz",
+      description,
+      url: `${siteConfig.siteUrl}/einsatzgebiete`,
+      areaServed: servedAreasJsonLd,
+      provider: localBusinessProviderRef
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Startseite", item: siteConfig.siteUrl },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Reparatur in Wien, Niederösterreich und Linz | MONTER",
+          item: `${siteConfig.siteUrl}/einsatzgebiete`
+        }
+      ]
+    }
+  ];
 
   return (
     <main className="bg-white text-[color:var(--ink)]">
+      <script type="application/ld+json" suppressHydrationWarning dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
       <section className="border-b border-[color:var(--border)]">
         <div className="mx-auto max-w-[88rem] px-5 py-16 sm:px-8 sm:py-20">
           <p className="cap-line tracking-eyebrow text-[color:var(--accent)]">Einsatzgebiete</p>
@@ -76,13 +104,13 @@ export default function EinsatzgebieteHubPage() {
             mit festem Anfahrtssatz, in Linz Techniker vor Ort. Der Sitz ist die Rappgasse 1/6
             in 1210 Wien.
           </p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Link href="/reparatur-buchen" className="btn-primary">
-              Reparatur anfragen
-            </Link>
-            <a href={`tel:${siteConfig.phoneHref}`} className="btn-ghost">
+          <div className="mt-8 flex flex-wrap gap-3">
+            <a className="btn-primary" href={`tel:${siteConfig.phoneHref}`}>
               <span data-phone-number>{siteConfig.phoneDisplay}</span>
             </a>
+            <Link className="btn-ghost" href="/reparatur-buchen">
+              Termin anfragen
+            </Link>
           </div>
         </div>
       </section>
@@ -202,7 +230,8 @@ export default function EinsatzgebieteHubPage() {
         </div>
       </section>
 
-      <HubFaq eyebrow="Häufige Fragen" title="Kurz geklärt: wo wir fahren." items={faqs} />
+      <HubFaq eyebrow="Häufige Fragen" title="Einsatzgebiete: kurz beantwortet." items={faqs} />
+      <AreaClose />
     </main>
   );
 }

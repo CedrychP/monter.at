@@ -1,17 +1,10 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import DetailPageLayout from "../../../DetailPageLayout";
-import { HubDetailLinks, HubFaq } from "../../../HubBlocks";
 import { buildMetadata } from "../../../pageMetadata";
-import { applianceHref } from "../../../serviceHrefs";
 import { siteConfig } from "../../../siteConfig";
-import type { AppliancePage } from "../../../haushaltsgeraete/appliancePages";
-import LinzDistrictPage from "../../LinzDistrictPage";
-import { AreaServiceLinks } from "../../AreaServiceLinks";
-import LocationProfile from "../../LocationProfile";
+import { LocationFrame } from "../../LocationFrame";
 import { getRegionPage } from "../../regionPages";
 import {
-  getDistrictsFor,
   getLocationPage,
   getLocationsForRegion,
   locationPages,
@@ -24,16 +17,6 @@ type LocationPageProps = {
     ort: string;
   }>;
 };
-
-const cityAppliancePages: Record<string, AppliancePage[]> = {};
-
-const anfrageChecklist = [
-  "Adresse & Stockwerk",
-  "Marke & Modellnummer",
-  "Fehlercode",
-  "Fehlerbild",
-  "Erreichbarkeit"
-];
 
 export function generateStaticParams() {
   return locationPages
@@ -78,87 +61,28 @@ export default async function LocationDetailPage({ params }: LocationPageProps) 
     notFound();
   }
 
-  if (region.slug === "linz") {
-    return <LinzDistrictPage location={location} region={region} />;
-  }
-
-  const related = getLocationsForRegion(region.slug)
-    .filter((item) => item.slug !== location.slug)
-    .slice(0, 3);
-  const districts = getDistrictsFor(location);
-  const appliances = cityAppliancePages[`${region.slug}/${location.slug}`] ?? [];
+  const siblings = getLocationsForRegion(region.slug);
+  const index = siblings.findIndex((item) => item.slug === location.slug);
+  const nearby =
+    region.slug === "linz"
+      ? siblings
+      : [1, 2, 3]
+          .map((offset) => siblings[(index + offset) % siblings.length])
+          .filter((item) => item && item.slug !== location.slug);
 
   return (
-    <DetailPageLayout
-      ancestors={[{ label: "Einsatzgebiete", href: "/einsatzgebiete" }]}
-      hub={{ label: region.name, href: `/einsatzgebiete/${region.slug}` }}
-      category={location.name}
-      h1={location.h1}
-      intro={location.intro}
-      contactNote="Nennen Sie Adresse, Stockwerk und Fehlerbild — wir sagen Ihnen, wann ein Termin möglich ist."
-      checklist={anfrageChecklist}
-      sections={location.sections}
-      relatedEyebrow={
-        region.slug === "wien"
-          ? "Weitere Bezirke"
-          : region.slug === "linz"
-            ? "Weitere Stadtteile"
-            : `Weitere Orte in ${region.name}`
-      }
-      relatedTitle="Wo wir außerdem unterwegs sind."
-      related={related.map((item) => ({
-        category: item.postalCodes[0],
-        title: item.name,
-        href: locationHref(item)
-      }))}
-      jsonLd={{
-        name: `Reparatur und Service ${location.name}`,
-        description: location.description,
-        path: locationHref(location)
-      }}
-      areaServed={[
-        { type: "City", name: location.name },
-        { type: region.slug === "niederoesterreich" ? "State" : "City", name: region.name }
+    <LocationFrame
+      location={location}
+      region={region}
+      crumbs={[
+        { label: "Einsatzgebiete", href: "/einsatzgebiete" },
+        { label: region.name, href: `/einsatzgebiete/${region.slug}` }
       ]}
-    >
-      <LocationProfile
-        location={location}
-        parent={{ label: `Einsatzgebiet ${region.name}`, href: `/einsatzgebiete/${region.slug}` }}
-        image={region.image}
-        imageAlt={region.imageAlt}
-      />
-      {appliances.length > 0 ? (
-        <HubDetailLinks
-          eyebrow="Reparatur nach Gerät"
-          title={`Haushaltsgeräte in ${location.name}.`}
-          intro="Typische Fehlerbilder, Fehlercodes und die Frage Reparatur oder Austausch — je Gerät eine eigene Seite."
-          links={appliances.map((page) => ({
-            label: page.category,
-            href: applianceHref(page.slug),
-            text: page.short
-          }))}
-        />
-      ) : null}
-      {districts.length > 0 ? (
-        <HubDetailLinks
-          eyebrow="Stadtteile"
-          title={`${location.name} im Detail.`}
-          intro={`Vom Gründerzeitblock bis zur Siedlung am Stadtrand: Baubestand und Zugang unterscheiden sich zwischen den Stadtteilen von ${location.name} deutlich. Diese Seiten sagen, worauf es an Ihrer Adresse ankommt.`}
-          links={districts.map((item) => ({
-            label: item.name,
-            href: locationHref(item),
-            text: item.short
-          }))}
-        />
-      ) : null}
-      {region.slug === "wien" || region.slug === "niederoesterreich" ? (
-        <AreaServiceLinks area="kern" />
-      ) : null}
-      <HubFaq
-        eyebrow="Häufige Fragen"
-        title={`Kurz geklärt: ${location.name}.`}
-        items={location.faq}
-      />
-    </DetailPageLayout>
+      places={nearby}
+      placesLabel={
+        region.slug === "wien" ? "Weitere Bezirke" : region.slug === "linz" ? "Stadtteile" : "Weitere Orte"
+      }
+      placesTitle={region.slug === "linz" ? "Alle 15 Stadtteile." : undefined}
+    />
   );
 }
