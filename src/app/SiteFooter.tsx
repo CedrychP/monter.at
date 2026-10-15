@@ -43,8 +43,8 @@ const directLinks = [
 
 const garageLinks = [
   { label: "Garagentor Reparatur", href: "/garagentore" },
-  { label: "Antrieb & Motor", href: "/garagentore/torantrieb-motor" },
-  { label: "Federwechsel", href: "/garagentore/federwechsel" },
+  { label: "Öffnet nicht", href: "/garagentore/oeffnet-nicht" },
+  { label: "Federbruch", href: "/garagentore/federwechsel" },
   { label: "Wartung & Service", href: "/garagentore/wartung-sicherheitspruefung" }
 ];
 

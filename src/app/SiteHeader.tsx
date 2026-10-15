@@ -12,7 +12,7 @@ import {
 } from "react";
 import { useAdPhone } from "./AdPhone";
 import NavNewsletterSignup from "./NavNewsletterSignup";
-import { garageDoorNavLinks, garageRepairNavLinks } from "./garagentore/garagePages";
+import { garageDoorNavLinks, garageProblemNavLinks, garageRepairNavLinks } from "./garagentore/garagePages";
 import { klimaDeviceNavLinks, klimaProblemNavLinks, klimaRepairNavLinks } from "./klimageraete/klimaPages";
 import { brandAlphabetGroups } from "./marken/brands";
 import { siteConfig } from "./siteConfig";
@@ -246,7 +246,8 @@ function getMegaMenus(phoneHref: string): MegaMenuConfig[] {
     id: "garage",
     label: "Garagentore",
     columns: [
-      { eyebrow: "Tore & Wartung", items: garageDoorAndServiceLinks },
+      { eyebrow: "Probleme", items: garageProblemNavLinks },
+      { eyebrow: "Tore", items: garageDoorAndServiceLinks },
       { eyebrow: "Antrieb & Reparatur", items: garageDriveLinks },
       { eyebrow: "Informationen", items: additionalServiceLinks }
     ],
@@ -254,7 +255,7 @@ function getMegaMenus(phoneHref: string): MegaMenuConfig[] {
       eyebrow: "Garagentor Reparaturdienst",
       title: "Garagentor klemmt in Wien?",
       text:
-        "Telefon ist der schnellste Weg zu einer Einschätzung. Wir prüfen Fehlerbild, Termin und Aufwand direkt im Gespräch.",
+        "Telefon ist der schnellste Weg. Ein Tor, das ein Fahrzeug einschließt, klären wir vorrangig.",
       primaryLabel: "Jetzt anrufen",
       primaryHref: `tel:${phoneHref}`,
       secondaryLabel: "Termin buchen",

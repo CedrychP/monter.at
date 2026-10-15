@@ -8,7 +8,7 @@ import {
 } from "./einsatzgebiete/locationPages";
 import { appliancePages } from "./haushaltsgeraete/appliancePages";
 import { linzAppliancePages } from "./haushaltsgeraete/linzAppliancePages";
-import { garagePages } from "./garagentore/garagePages";
+import { allGaragePages } from "./garagentore/garagePages";
 import { allKlimaPages } from "./klimageraete/klimaPages";
 import { isBrandDeviceEnriched } from "./marken/brandDeviceContent";
 import { applianceHref, brandDeviceHref, brandHref, garageHref, klimaHref } from "./serviceHrefs";
@@ -61,8 +61,8 @@ export const sitemapGroups: SitemapGroup[] = [
     id: "garagentore",
     label: "Garagentore",
     href: "/garagentore",
-    description: "Tore, Antriebe, Federn, Laufwerk und Wartung.",
-    links: garagePages.map((page) => ({
+    description: "Probleme, Tore, Antriebe, Federn und Wartung.",
+    links: allGaragePages.map((page) => ({
       label: page.title,
       href: garageHref(page.slug)
     }))

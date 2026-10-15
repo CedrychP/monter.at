@@ -17,6 +17,7 @@ export type GaragePage = {
   checklist: string[];
   /** Wird als FAQPage-JSON-LD und Akkordeon auf der Detailseite ausgegeben. */
   faq: HubFaqItem[];
+  relatedSlugs?: string[];
 };
 
 export const garagePages: GaragePage[] = [
@@ -77,7 +78,8 @@ export const garagePages: GaragePage[] = [
         answer:
           "Die Anfahrt inklusive Prüfung ist ein fester Betrag, danach kommen Arbeitszeit und Teile dazu. Dichtungen, Laufrollen und Scharniere liegen im überschaubaren Rahmen, ein Paneeltausch deutlich darüber. Sie erfahren den Aufwand vor Ort, bevor wir etwas bestellen."
       }
-    ]
+    ],
+    relatedSlugs: ["klemmt", "federwechsel", "laufrollen-schienen"]
   },
   {
     slug: "schwingtor-rolltor",
@@ -136,7 +138,8 @@ export const garagePages: GaragePage[] = [
         answer:
           "Originalteile oft nicht mehr, passende Alternativbauteile in der Regel schon. Wir arbeiten mit Standardprofilen, angepassten Lagern und gefertigten Ersatzteilen — damit halten bestehende Tore häufig noch viele Jahre, ohne dass die ganze Anlage getauscht werden muss."
       }
-    ]
+    ],
+    relatedSlugs: ["klemmt", "federwechsel", "oeffnet-nicht"]
   },
   {
     slug: "torantrieb-motor",
@@ -195,7 +198,8 @@ export const garagePages: GaragePage[] = [
         answer:
           "Nicht zwangsläufig. Handsender, Empfänger, Lichtschranke und Kondensator sind meist einzeln lieferbar. Erst wenn Steuerplatine oder Funkteile nicht mehr verfügbar sind — bei Anlagen ab etwa 15 Jahren häufig der Fall — ist ein neuer Antrieb wirtschaftlich sinnvoller. Wir nennen beide Wege mit Kosten."
       }
-    ]
+    ],
+    relatedSlugs: ["fehlercodes", "oeffnet-nicht", "federwechsel"]
   },
   {
     slug: "federwechsel",
@@ -254,7 +258,8 @@ export const garagePages: GaragePage[] = [
         answer:
           "Federbrüche behandeln wir vorrangig, weil das Tor bis dahin nicht sicher nutzbar ist — häufig am selben oder nächsten Werktag. Hilfreich für die Vorbereitung sind Torbreite, Torhöhe, Torart und ein Foto der Bruchstelle mitsamt Federaufnahme."
       }
-    ]
+    ],
+    relatedSlugs: ["oeffnet-nicht", "sektionaltor", "schwingtor-rolltor"]
   },
   {
     slug: "laufrollen-schienen",
@@ -313,7 +318,8 @@ export const garagePages: GaragePage[] = [
         answer:
           "Schwergängige Mechanik lässt den Antrieb dauerhaft gegen Widerstand arbeiten und belastet zusätzlich die Federn. Aus einem Satz Laufrollen wird dann schnell ein Antriebs- oder Federschaden — deshalb ist der frühe Tausch fast immer die günstigste Variante."
       }
-    ]
+    ],
+    relatedSlugs: ["klemmt", "sektionaltor", "torantrieb-motor"]
   },
   {
     slug: "wartung-sicherheitspruefung",
@@ -372,13 +378,254 @@ export const garagePages: GaragePage[] = [
         answer:
           "Bei privater Nutzung jährlich. Bei Sammelgaragen, Mehrparteienhäusern und Betrieben mit vielen Torfahrten pro Tag empfehlen wir halbjährlich, weil dort Federn, Seile und Laufrollen entsprechend schneller verschleißen."
       }
-    ]
+    ],
+    relatedSlugs: ["federwechsel", "laufrollen-schienen", "torantrieb-motor"]
   }
 ];
 
+export const garageProblemPages: GaragePage[] = [
+  {
+    slug: "oeffnet-nicht",
+    title: "Garagentor öffnet nicht Wien",
+    metaTitle: "Garagentor öffnet nicht in Wien | MONTER",
+    description:
+      "Garagentor öffnet nicht in Wien: Handsender, Lichtschranke, Feder oder Motor. Wir prüfen in dieser Reihenfolge, markenoffen in Wien und näherem NÖ.",
+    h1: "Garagentor öffnet nicht in Wien",
+    category: "Öffnet nicht",
+    short: "Still, ein Summen, oder auch von Hand nicht zu heben.",
+    intro:
+      "Ein Antrieb ohne Reaktion ist selten der Motor. Strom, Handsender, Endlage und Lichtschranke kommen vor Platine und Kondensator. Hebt sich das Tor auch von Hand nicht, trägt die Feder das Gewicht nicht mehr. Wir prüfen das in Wien und im näheren Niederösterreich, markenoffen.",
+    sections: [
+      {
+        title: "Zuerst nicht der Motor",
+        body:
+          "Kein Summen, kein Licht, Handsender ohne Reaktion: oft Strom, Sicherung oder eine Funkstörung. Summt der Antrieb und bewegt sich nichts, sitzt die Ursache häufiger am Anlaufkondensator, im Getriebe oder an einer schwergängigen Mechanik. Die Platine tauschen wir, wenn sie die Ursache ist. Bei Antrieben ab etwa 15 Jahren sind Platinen und Funkteile oft nicht mehr lieferbar; dann ist ein neuer Antrieb die wirtschaftliche Lösung."
+      },
+      {
+        title: "Die Feder hebt das Tor",
+        body:
+          "Ein lauter Knall und ein Tor, das plötzlich bleischwer ist, sind der Federbruch. Torsionsfedern stehen auch gebrochen unter Spannung. Bitte nicht selbst nachspannen und das Tor nicht weiter mit dem Antrieb fahren lassen. Der Antrieb ist nicht für das volle Torgewicht gebaut. Ohne funktionierende Feder das Tor geschlossen und den Antrieb entriegelt lassen."
+      },
+      {
+        title: "Handsender und Funk",
+        body:
+          "Zuerst die Batterie, dann ob der Handsender noch eingelernt ist. Nach einem Stromausfall oder einem Tausch der Steuerung muss er oft neu angelernt werden. Reichweite und ein defekter Empfänger lassen sich meist ohne Antriebstausch lösen. Wir lesen den Fehlerspeicher aus, soweit die Steuerung das hergibt."
+      },
+      {
+        title: "Was wir vorher wissen wollen",
+        body:
+          "Torart, Hersteller von Tor und Antrieb, ob es summt oder still bleibt, und ob sich das Tor von Hand entriegeln und heben lässt. Ein Foto der Typenschilder reicht. Häufige Marken wie Hörmann, Sommer, Marantec, Novoferm und Chamberlain sind Alltag. Den Aufwand nennen wir vor Ort, bevor ein Teil bestellt wird."
+      }
+    ],
+    checklist: [
+      "Torart und Antrieb",
+      "Summt er oder bleibt er still?",
+      "Geht die Notentriegelung?",
+      "Foto der Typenschilder"
+    ],
+    faq: [
+      {
+        question: "Reagiert der Antrieb nicht, ist dann der Motor kaputt?",
+        answer:
+          "Meist nicht. In vielen Fällen liegt die Ursache bei Handsender, Funkempfänger, Endlagen, Lichtschranke oder Steuerplatine. Wir prüfen in dieser Reihenfolge, damit kein intakter Motor unnötig getauscht wird."
+      },
+      {
+        question: "Der Antrieb brummt, das Tor bewegt sich nicht. Ist das der Motor?",
+        answer:
+          "Meist nicht. Brummen ohne Bewegung deutet häufig auf den Anlaufkondensator, ein blockiertes Getriebe oder eine schwergängige Mechanik hin. Wir prüfen in dieser Reihenfolge, weil ein Kondensator der kleinere Eingriff ist."
+      },
+      {
+        question: "Das Tor ist auch von Hand bleischwer. Ist das die Feder?",
+        answer:
+          "Ja, das ist das typische Bild eines Federbruchs. Torsionsfedern stehen auch gebrochen unter Spannung. Bitte nicht selbst tauschen, das Tor nicht weiter benutzen und den Antrieb nicht gegen das volle Torgewicht arbeiten lassen."
+      }
+    ],
+    relatedSlugs: ["torantrieb-motor", "federwechsel", "sektionaltor"]
+  },
+  {
+    slug: "schliesst-nicht",
+    title: "Garagentor schließt nicht Wien",
+    metaTitle: "Garagentor schließt nicht in Wien | MONTER",
+    description:
+      "Garagentor schließt nicht in Wien: Es fährt wieder auf, die Lichtschranke oder die Kraftbegrenzung greift. Markenoffen in Wien und näherem NÖ.",
+    h1: "Garagentor schließt nicht in Wien",
+    category: "Schließt nicht",
+    short: "Kurz vor dem Boden fährt es wieder auf.",
+    intro:
+      "Fährt das Tor kurz vor dem Boden wieder auf, arbeitet meist die Kraftbegrenzung. Sie soll das. Schwergängige Mechanik, eine Feder, eine verschmutzte Lichtschranke oder eine falsch gesetzte Endlage sind die häufigen Gründe. Wir prüfen das in Wien und im näheren Niederösterreich.",
+    sections: [
+      {
+        title: "Fährt wieder auf",
+        body:
+          "Die Kraftbegrenzung stoppt und fährt zurück, wenn das Tor zu viel Widerstand meldet. Das ist die Schutzfunktion, nicht ein defekter Motor. Ursache ist oft eine schwergängige Mechanik, eine Feder, die das Gewicht nicht mehr trägt, eine verschmutzte Lichtschranke oder eine falsch gesetzte Endlage. Wir beheben die Ursache und stellen die Kraft danach ein."
+      },
+      {
+        title: "Lichtschranke",
+        body:
+          "Die Lichtschranke sitzt im Schließweg. Staub, ein verschobener Sender oder ein Hindernis halten das Tor offen. Wir prüfen, ob sie frei ist und ob sie dem Sicherheitsstand der Anlage entspricht, bevor eine Platine getauscht wird."
+      },
+      {
+        title: "Feder und Laufwerk",
+        body:
+          "Trägt die Feder das Gewicht nicht mehr, wird der Schließweg schwer und die Kraftbegrenzung greift früher. Dieselbe Folge haben ausgeschlagene Laufrollen und verschmutzte Schienen. Schienen werden gereinigt, nicht gefettet, weil Fett den Staub bindet. Rollenlager, Scharniere und Federwellenlager werden geschmiert."
+      },
+      {
+        title: "Endlage",
+        body:
+          "Eine falsch gesetzte Endlage lässt das Tor zu früh stoppen oder zu weit in den Anschlag fahren. Wir stellen sie nach der Prüfung von Feder und Laufwerk neu ein, nicht davor. Den Aufwand nennen wir vor Ort, bevor ein Teil bestellt wird."
+      }
+    ],
+    checklist: [
+      "Wo stoppt das Tor?",
+      "Lichtschranke frei?",
+      "Fährt es von allein zurück?",
+      "Torart und Antrieb"
+    ],
+    faq: [
+      {
+        question: "Warum fährt das Tor kurz vor Schluss wieder auf?",
+        answer:
+          "Das ist die Kraftbegrenzung, und sie arbeitet richtig: Sie erkennt einen Widerstand. Ursache ist meist schwergängige Mechanik, ein nachlassendes Federpaket, eine verschmutzte Lichtschranke oder eine verstellte Endlage. Wir beheben die Ursache und stellen die Kraft danach korrekt ein."
+      },
+      {
+        question: "Soll ich die Kraftbegrenzung höher stellen?",
+        answer:
+          "Bitte nicht. Höher stellen überfährt die Ursache und schwächt den Schutz vor Quetschen. Wir suchen zuerst, was schwer geht, und stellen die Kraft danach ein."
+      },
+      {
+        question: "Die Lichtschranke ist frei und das Tor fährt trotzdem zurück. Was dann?",
+        answer:
+          "Dann liegt der Widerstand meist in der Mechanik, an der Feder oder an der Endlage. Eine freie Lichtschranke schließt diese drei Punkte nicht aus. Wir prüfen sie, bevor eine Steuerung getauscht wird."
+      }
+    ],
+    relatedSlugs: ["fehlercodes", "torantrieb-motor", "federwechsel"]
+  },
+  {
+    slug: "klemmt",
+    title: "Garagentor klemmt Wien",
+    metaTitle: "Garagentor klemmt in Wien | MONTER",
+    description:
+      "Garagentor klemmt in Wien: Schleifen, Ruckeln und eine verkantete Führung. Laufrollen, Schienen und Paneele, markenoffen in Wien und näherem NÖ.",
+    h1: "Garagentor klemmt in Wien",
+    category: "Klemmt",
+    short: "Schleift, ruckelt oder hängt in der Führung.",
+    intro:
+      "Schleifen, Ruckeln und ein Tor, das in der Führung hängt, kommen von Laufrollen, Schienen oder einem Paneel. Der Antrieb ist dann oft nur laut, weil er gegen den Widerstand arbeitet. Wir prüfen das in Wien und im näheren Niederösterreich.",
+    sections: [
+      {
+        title: "In der Führung",
+        body:
+          "Ausgeschlagene Rollen und verbogene oder verschmutzte Schienen lassen das Tor schleifen. Wir tauschen den ganzen Satz Rollen, nicht eine einzelne, weil die restlichen sonst ungleich tragen. Schienen werden gereinigt, nicht gefettet. Fett in der Schiene bindet Staub und macht das Tor mittelfristig schwerer."
+      },
+      {
+        title: "Paneel und Seil",
+        body:
+          "Ein einzelnes Paneel lässt sich oft tauschen, wenn es in Farbe und Sicke noch gefertigt wird. Steht das Tor schief, sind Seil oder Sicherheit betroffen: Im Extremfall kann das Torblatt unkontrolliert absinken. Bitte nicht weiterfahren und den Antrieb entriegeln, bis es geprüft ist."
+      },
+      {
+        title: "Schwingtor und Rolltor",
+        body:
+          "Ein Schwingtor, das in den Anschlag schleift oder von selbst zufällt, hat oft Federn, die das Gewicht nicht mehr tragen. Es nicht weiter benutzen. Ein Rolltor mit aus der Führung gesprungenem Panzer nicht selbst einhängen: die Feder steht unter Spannung, die Wickelrichtung zählt."
+      },
+      {
+        title: "Früher ist der kleinere Eingriff",
+        body:
+          "Neue Rollen und gereinigte Schienen sind der kleinere Eingriff. Läuft das Tor weiter gegen den Widerstand, leiden Antrieb und Federn. Den Aufwand nennen wir vor Ort, bevor ein Teil bestellt wird."
+      }
+    ],
+    checklist: [
+      "Schleift es oder steht es schief?",
+      "Seit wann ist es laut?",
+      "Torart",
+      "Foto der Schadstelle"
+    ],
+    faq: [
+      {
+        question: "Reicht es, eine einzelne Laufrolle zu tauschen?",
+        answer:
+          "Nein. Eine neue Rolle zwischen abgenutzten läuft wieder ungleichmäßig und das Tor schwankt weiter. Ein kompletter Satz hält den Lauf gleichmäßig und schont Antrieb und Federn."
+      },
+      {
+        question: "Soll ich die Schienen fetten, wenn das Tor laut ist?",
+        answer:
+          "Nein. Rollenlager, Scharniere und Federwellenlager werden geschmiert, die Laufschienen nur gereinigt. Fett in der Schiene bindet Staub und verschlimmert das Problem."
+      },
+      {
+        question: "Das Tor steht schief. Kann ich es noch benutzen?",
+        answer:
+          "Bitte nicht. Ein schief laufendes Tor deutet auf ein ausgehängtes oder gelängtes Tragseil hin. Im Extremfall kann das Torblatt unkontrolliert absinken. Antrieb entriegeln und das Tor bis zur Prüfung nicht weiter benutzen."
+      }
+    ],
+    relatedSlugs: ["laufrollen-schienen", "sektionaltor", "schwingtor-rolltor"]
+  },
+  {
+    slug: "fehlercodes",
+    title: "Garagentor Fehlercode Wien",
+    metaTitle: "Garagentor Fehlercode in Wien | MONTER",
+    description:
+      "Garagentor Fehlercode in Wien: Hörmann, Marantec und Sommer. Die Zahl gilt nur in einer Baureihe. Anzeige notieren, bevor der Strom aus ist.",
+    h1: "Garagentor Fehlercode in Wien",
+    category: "Fehlercodes",
+    short: "Anzeige oder Blinkzahl notieren. Dieselbe Zahl gilt nur innerhalb einer Baureihe.",
+    intro:
+      "Ein Garagentor-Antrieb meldet Störungen als Ziffer, als Blinkzahl der Diagnose-LED oder als Lichtfolge der Antriebsbeleuchtung. Dieselbe Zahl bedeutet bei der nächsten Baureihe etwas anderes. Notieren Sie die Anzeige, die Marke und das Modell, bevor der Strom aus ist. Wir ordnen das in Wien und im näheren Niederösterreich zu, markenoffen.",
+    sections: [
+      {
+        title: "Zuerst die Baureihe",
+        body:
+          "Hörmann SupraMatic E/P zeigt eine Ziffer im Display. Die RollMatic-Steuerung blinkt an der roten Diagnose-LED im Taster. ProMatic meldet den Zustand über die Antriebsbeleuchtung. Marantec Comfort 260, 270 und 280 zeigt eine Fehlernummer, die Taste P holt die letzte. Sommer base und base+ der Serie S3 arbeiten mit Lichtfolgen, nicht mit einer gemeinsamen Ziffernliste. Novoferm und Chamberlain haben eigene Anzeigen. Wir veröffentlichen keine zweite Liste dafür. Code und Typenschild reichen zur Einordnung."
+      },
+      {
+        title: "Hörmann",
+        body:
+          "SupraMatic E/P, Anzeige im Display: 5 ist die Kraftbegrenzung, das Tor läuft schwer oder ein Hindernis liegt im Weg. 6 ist der Ruhestromkreis, offen. 7 ist die Drehzahl. Die Unterlage nennt dafür die Federspannung oder eine gebrochene Feder. Bitte nicht selbst nachspannen. 8 ist die Lichtschranke, 9 die Schließkantensicherung. RollMatic, Diagnose-LED: 2× Lichtschranke, 3× Kraftbegrenzung zu, 4× Ruhestromkreis, 5× Kraftbegrenzung auf, 6× Antriebsfehler, 7× noch nicht eingelernt, 8× Referenzfahrt nach Stromausfall oder Entriegelung, 13× Not-Akku, 14× Verbindung zur Motorplatine. Beim ProMatic blinkt die Beleuchtung nach dem Einstecken zweimal, wenn keine Tordaten vorliegen, dreimal, wenn eine Referenzfahrt auf fehlt, und viermal, wenn die Position bekannt ist."
+      },
+      {
+        title: "Marantec Comfort 260, 270 und 280",
+        body:
+          "7 heißt, der Programmiermodus ist nach 120 Sekunden ohne Taste abgelaufen. 9: keine Impulse vom Drehzahlsensor, der Antrieb ist blockiert. 10, 28 und 48: das Tor läuft schwer, unregelmäßig oder ist blockiert. Bei 10 kann die eingestellte Kraft zu gering sein, bei 48 die Endlage zu. 11 ist die Laufzeitbegrenzung, 15 die Lichtschranke, 16 der Stromsensor der Abschaltung, 26 Unterspannung, 30 der Bus, 33 Überhitzung, 35 die Elektronik. 36 erwartet eine Halt-Taste, die nicht angeschlossen ist. 38 ist die Aufschubsicherung, 44 der Schlupftürkreis. Die Kraft stellen wir nicht höher, nur um die Zahl zu löschen."
+      },
+      {
+        title: "Sommer base+ S3, und was die Anzeige nicht ersetzt",
+        body:
+          "Bei S 9050 bis S 9110 base und base+ unterscheidet die Beleuchtung Normalbetrieb, Anforderung, Alarm, Service und Fehler. Alarm vor der Fahrt ist oft die Lichtschranke oder eine andere Sicherheitseinrichtung. Service nennt das Wartungsintervall oder eine zu hohe Motortemperatur. Fehler nennt den Selbsttest, Hallsensor oder Getriebe, den Endschalter, die Laufzeit und den Schlupftürkontakt. Blinken alle vier Funk-LEDs etwa drei Sekunden zyklisch, ist der Speicher voll. Die Anzeige grenzt ein, die Prüfung entscheidet. Die Anfrage mit Zahl, Marke und Modell ist noch kein Auftrag."
+      }
+    ],
+    checklist: ["Zahl oder Blinkgruppen", "Marke und Modell", "Was das Tor dabei tut", "Foto der Anzeige"],
+    faq: [
+      {
+        question: "Bedeutet die 5 bei jedem Hörmann dasselbe?",
+        answer:
+          "Nein. Am Display des SupraMatic E/P ist 5 die Kraftbegrenzung. An der Diagnose-LED der RollMatic-Steuerung ist 5× die Kraftbegrenzung in Richtung auf, 3× die in Richtung zu. ProMatic meldet den Zustand über die Antriebsbeleuchtung, nicht über dieselbe Ziffer."
+      },
+      {
+        question: "Wie sehe ich die letzte Zahl bei Marantec?",
+        answer:
+          "Bei Comfort 260, 270 und 280 zeigt die Steuerung die Fehlernummer im Meldungsmodus. Im Betrieb holt die Taste P die letzte Zahl. Notieren Sie sie, bevor ein Neustart die Anzeige löscht."
+      },
+      {
+        question: "Soll ich die Kraft höher stellen, damit der Code weg ist?",
+        answer:
+          "Bitte nicht. Eine Kraftbegrenzung oder eine Fehlernummer für schwergängigen Lauf schützt vor Quetschen. Höher stellen überfährt die Ursache. Wir prüfen zuerst Lichtschranke, Laufwerk und Feder."
+      }
+    ],
+    relatedSlugs: ["torantrieb-motor", "schliesst-nicht", "oeffnet-nicht"]
+  }
+];
+
+export const allGaragePages: GaragePage[] = [...garageProblemPages, ...garagePages];
+
 export function getGaragePage(slug: string) {
-  return garagePages.find((page) => page.slug === slug);
+  return allGaragePages.find((page) => page.slug === slug);
 }
+
+export const garageProblemNavLinks = [
+  { label: "Feder gebrochen", href: "/garagentore/federwechsel" },
+  { label: "Öffnet nicht", href: "/garagentore/oeffnet-nicht" },
+  { label: "Schließt nicht", href: "/garagentore/schliesst-nicht" },
+  { label: "Klemmt", href: "/garagentore/klemmt" },
+  { label: "Fehlercode", href: "/garagentore/fehlercodes" }
+];
 
 export const garageDoorNavLinks = garagePages.slice(0, 2).map((page) => ({
   label: page.category,

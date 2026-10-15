@@ -1,30 +1,38 @@
 import type { Metadata } from "next";
-import InfoPageLayout, { type InfoSection } from "../InfoPageLayout";
-import { HubDetailLinks, HubFaq, type HubFaqItem } from "../HubBlocks";
-import { garageHubLinks } from "./garagePages";
+import Link from "next/link";
+import { HubFaq, type HubFaqItem } from "../HubBlocks";
 import { buildMetadata } from "../pageMetadata";
+import { localBusinessProviderRef, siteConfig } from "../siteConfig";
+import { garagePages } from "./garagePages";
 
-const sections: InfoSection[] = [
+const description =
+  "Garagentor Reparatur in Wien: öffnet nicht, schließt nicht, klemmt, Feder und Antrieb. Sektionaltor, Schwingtor, Rolltor, markenoffen in Wien und NÖ.";
+
+const problems = [
   {
-    title: "Was zur Garagentor-Reparatur gehört",
-    body:
-      "Wir arbeiten markenoffen an Sektional-, Schwing- und Rolltoren sowie an Holz- und Designtoren: Federpakete und Tragseile, Laufrollen, Scharniere und Lager, Laufschienen und Zargen, Dichtungen, Torantriebe mit Steuerung und Funk sowie Sicherheitseinrichtungen wie Lichtschranke und Kraftbegrenzung. Häufige Antriebsmarken wie Hörmann, Sommer, Marantec, Novoferm und Chamberlain sind Alltag für uns."
+    href: "/garagentore/federwechsel",
+    title: "Feder gebrochen",
+    text: "Lauter Knall, das Tor ist plötzlich bleischwer."
   },
   {
-    title: "Einsatzgebiet Wien und Umgebung",
-    body:
-      "Wir fahren alle Wiener Bezirke sowie das nähere Niederösterreich an — von Einzelgaragen im Reihenhaus über Innenhof-Garagen im Altbau bis zu Sammelgaragen von Hausverwaltungen und gewerblichen Anlagen mit hoher Torfrequenz. Für Verwaltungen und Betriebe koordinieren wir Termine gebündelt, damit möglichst wenige Anfahrten nötig sind.",
-    link: { label: "Alle Einsatzgebiete", href: "/einsatzgebiete" }
+    href: "/garagentore/oeffnet-nicht",
+    title: "Öffnet nicht",
+    text: "Still, ein Summen, oder auch von Hand nicht zu heben."
   },
   {
-    title: "So läuft eine Reparatur ab",
-    body:
-      "Im Telefonat klären wir Torart, Antriebsmarke und Fehlerbild vorab — das entscheidet, welche Teile wir gleich mitbringen. Vor Ort prüfen wir Mechanik und Elektronik, nennen den Aufwand und führen die Arbeit nach Ihrer Freigabe durch. Häufige Verschleißteile wie Laufrollen, Seile und gängige Federgrößen sind meist direkt am Fahrzeug."
+    href: "/garagentore/schliesst-nicht",
+    title: "Schließt nicht",
+    text: "Kurz vor dem Boden fährt es wieder auf."
   },
   {
-    title: "Preise und Anfahrt",
-    body:
-      "Für Garagentore gelten dieselben transparenten Sätze wie im übrigen Service: Anfahrt und Erstprüfung sind pauschaliert, Arbeitszeit und Material werden nachvollziehbar ausgewiesen. Eine Übersicht finden Sie auf der Seite Preise & Pauschalen — größere Arbeiten wie ein Antriebstausch bekommen vorab eine Einschätzung."
+    href: "/garagentore/klemmt",
+    title: "Klemmt",
+    text: "Schleift, ruckelt oder hängt in der Führung."
+  },
+  {
+    href: "/garagentore/fehlercodes",
+    title: "Fehlercode",
+    text: "Anzeige oder Blinkzahl notieren. Dieselbe Zahl gilt nur in einer Baureihe."
   }
 ];
 
@@ -61,36 +69,151 @@ const faqs: HubFaqItem[] = [
   }
 ];
 
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "Garagentore Wien | Reparatur & Service | MONTER",
+    description,
+    url: `${siteConfig.siteUrl}/garagentore`,
+    areaServed: [
+      { "@type": "City", name: "Wien" },
+      { "@type": "State", name: "Niederösterreich" }
+    ],
+    provider: localBusinessProviderRef
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Startseite", item: siteConfig.siteUrl },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Garagentore Wien | Reparatur & Service | MONTER",
+        item: `${siteConfig.siteUrl}/garagentore`
+      }
+    ]
+  }
+];
+
 export const metadata: Metadata = buildMetadata({
   title: "Garagentore Wien | Reparatur & Service | MONTER",
-  description:
-    "Garagentore Wien: Reparatur für Sektionaltor, Schwingtor und Rolltor. Feder, Antrieb, Laufrollen, Wartung — markenoffen in Wien und NÖ.",
+  description,
   path: "/garagentore"
 });
 
 export default function GaragentoreHubPage() {
+  const doors = garagePages.slice(0, 2);
+  const drive = garagePages.slice(2);
+
   return (
-    <InfoPageLayout
-      eyebrow="Garagentore"
-      title="Garagentore in Wien."
-      intro="Garagentore in Wien: klemmender Antrieb, gebrochene Feder, lautes Laufverhalten oder ein Tor, das nicht mehr schließt? Wir prüfen Mechanik und Elektronik, justieren und tauschen Verschleißteile — Sektionaltor, Schwingtor, Rolltor, markenoffen in Wien und Niederösterreich. Unten die einzelnen Bereiche im Detail."
-      heroNote="Beschreiben Sie Torart, Antrieb und Fehlerbild — wir kommen schnell vor Ort."
-      primaryCta={{ label: "Garagentor-Reparatur anfragen", href: "/reparatur-buchen" }}
-      afterHero={
-        <HubDetailLinks
-          eyebrow={`${garageHubLinks.length} Bereiche`}
-          title="Wobei wir am Garagentor helfen."
-          intro="Jeder Bereich mit typischen Fehlerbildern, Vorgehen und den Daten, die wir für eine schnelle Einschätzung brauchen."
-          links={garageHubLinks}
-        />
-      }
-      sectionsEyebrow="Leistungsumfang & Ablauf"
-      sectionsTitle="Markenoffen, von der Feder bis zur Steuerung."
-      sections={sections}
-      closingTitle="Garagentor klemmt in Wien?"
-      closingText="Telefon ist der schnellste Weg zu einer Einschätzung. Wir klären Fehlerbild, Termin und Aufwand direkt im Gespräch."
-    >
-      <HubFaq eyebrow="Häufige Fragen" title="Kurz geklärt: Garagentore." items={faqs} />
-    </InfoPageLayout>
+    <main className="min-h-screen bg-white text-[color:var(--ink)]">
+      <script type="application/ld+json" suppressHydrationWarning dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
+
+      <section id="probleme" className="border-b border-[color:var(--border)]">
+        <div className="mx-auto max-w-[88rem] px-5 pb-6 pt-12 sm:px-8 sm:pt-16">
+          <nav aria-label="Breadcrumb">
+            <ol className="flex flex-wrap items-center gap-2 text-[0.72rem] font-medium uppercase tracking-[0.18em] text-[color:var(--muted)]">
+              <li>
+                <Link href="/" className="hover:text-[color:var(--ink)]">
+                  Start
+                </Link>
+              </li>
+              <li aria-hidden="true">/</li>
+              <li className="text-[color:var(--ink)]">Garagentore</li>
+            </ol>
+          </nav>
+          <div className="mt-10 max-w-3xl">
+            <h1 className="font-display text-balance text-5xl font-light leading-[0.95] tracking-tight sm:text-6xl">
+              Garagentore in Wien.
+            </h1>
+            <p className="mt-6 text-lg font-light leading-8 text-[color:var(--muted)]">
+              Öffnet das Tor nicht, fährt es vor dem Boden wieder auf, oder war da ein Knall und es ist bleischwer? Wir prüfen Mechanik und Elektronik in dieser Reihenfolge, markenoffen an Sektional-, Schwing- und Rolltoren sowie an Holz- und Designtoren, in Wien und im näheren Niederösterreich.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a className="btn-primary" href={`tel:${siteConfig.phoneHref}`}>
+                <span data-phone-number>{siteConfig.phoneDisplay}</span>
+              </a>
+              <Link className="btn-ghost" href="/reparatur-buchen">
+                Termin anfragen
+              </Link>
+            </div>
+          </div>
+
+          <h2 className="mt-16 font-display text-lg font-light text-[color:var(--muted)]">Was das Tor gerade tut.</h2>
+          <ul className="mt-4 border-t border-[color:var(--border)]">
+            {problems.map((problem) => (
+              <li key={problem.href} className="border-b border-[color:var(--border)]">
+                <Link
+                  href={problem.href}
+                  className="group grid gap-x-10 gap-y-1 py-6 sm:grid-cols-[16rem_1fr] sm:items-baseline sm:py-7"
+                >
+                  <h3 className="font-display text-2xl font-light tracking-tight text-[color:var(--ink)] group-hover:text-[color:var(--accent)] sm:text-3xl">
+                    {problem.title}
+                  </h3>
+                  <span className="text-base font-light leading-7 text-[color:var(--muted)]">{problem.text}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <div className="mx-auto max-w-[88rem] px-5 py-16 sm:px-8 sm:py-20">
+          <p className="cap-line tracking-eyebrow text-[color:var(--muted)]">Danach die Bauart</p>
+          <h2 className="font-display mt-6 max-w-2xl text-4xl font-light tracking-tight sm:text-5xl">Nach der Bauart.</h2>
+          <p className="mt-6 max-w-3xl text-lg font-light leading-8 text-[color:var(--muted)]">
+            Häufige Antriebe sind Hörmann, Sommer, Marantec, Novoferm und Chamberlain. Anfahrt und Erstprüfung sind pauschaliert, Arbeitszeit und Material werden ausgewiesen.{" "}
+            <Link href="/preise"><span className="text-[color:var(--accent)]">Preise und Pauschalen</span></Link>.
+          </p>
+
+          <h3 className="mt-14 text-[0.72rem] font-medium uppercase tracking-[0.18em] text-[color:var(--muted)]">Tore</h3>
+          <ul className="mt-4 grid gap-px border border-[color:var(--border)] bg-[color:var(--border)] sm:grid-cols-2">
+            {doors.map((page) => (
+              <li key={page.slug} className="bg-white">
+                <Link href={`/garagentore/${page.slug}`} className="block h-full px-6 py-8">
+                  <h3 className="font-display text-2xl font-light tracking-tight text-[color:var(--ink)]">{page.category}</h3>
+                  <span className="mt-4 block text-base font-light leading-7 text-[color:var(--muted)]">{page.short}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          <h3 className="mt-14 text-[0.72rem] font-medium uppercase tracking-[0.18em] text-[color:var(--muted)]">Antrieb und Reparatur</h3>
+          <ul className="mt-4 grid gap-px border border-[color:var(--border)] bg-[color:var(--border)] sm:grid-cols-2 lg:grid-cols-4">
+            {drive.map((page) => (
+              <li key={page.slug} className="bg-white">
+                <Link href={`/garagentore/${page.slug}`} className="block h-full px-6 py-8">
+                  <h3 className="font-display text-2xl font-light tracking-tight text-[color:var(--ink)]">{page.category}</h3>
+                  <span className="mt-4 block text-base font-light leading-7 text-[color:var(--muted)]">{page.short}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <HubFaq eyebrow="Häufige Fragen" title="Garagentore: kurz beantwortet." items={faqs} />
+
+      <section className="border-t border-[color:var(--border)] bg-[color:var(--bg-muted)] pb-20 pt-16 sm:pb-28 sm:pt-20">
+        <div className="mx-auto max-w-[88rem] px-5 sm:px-8">
+          <p className="cap-line tracking-eyebrow text-[color:var(--muted)]">Bevor Sie anrufen</p>
+          <h2 className="font-display mt-6 max-w-3xl text-4xl font-light tracking-tight sm:text-5xl">Torart, Antrieb, was es gerade tut.</h2>
+          <p className="mt-6 max-w-2xl text-lg font-light leading-8 text-[color:var(--muted)]">
+            Daran erkennen wir, ob Feder, Laufwerk oder Steuerung zuerst dran ist, und welche Teile mitkommen. Ein Tor, das ein Fahrzeug einschließt, klären wir am Telefon vorrangig. Den Aufwand nennen wir vor Ort, bevor ein Teil bestellt wird. Die Anfrage ist noch kein Auftrag.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <a className="btn-primary" href={`tel:${siteConfig.phoneHref}`}>
+              <span data-phone-number>{siteConfig.phoneDisplay}</span>
+            </a>
+            <Link className="btn-ghost" href="/reparatur-buchen">
+              Termin anfragen
+            </Link>
+          </div>
+        </div>
+      </section>
+    </main>
   );
 }

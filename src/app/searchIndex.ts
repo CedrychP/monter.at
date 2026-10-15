@@ -3,7 +3,7 @@ import { brandPages } from "./marken/brands";
 import { appliancePages } from "./haushaltsgeraete/appliancePages";
 import { linzAppliancePages } from "./haushaltsgeraete/linzAppliancePages";
 import { applianceHref, brandHref, garageHref, klimaHref } from "./serviceHrefs";
-import { garagePages } from "./garagentore/garagePages";
+import { allGaragePages } from "./garagentore/garagePages";
 import { allKlimaPages } from "./klimageraete/klimaPages";
 import { regionPages } from "./einsatzgebiete/regionPages";
 import { getLocationPage, locationPages, locationHref } from "./einsatzgebiete/locationPages";
@@ -42,7 +42,7 @@ export function buildSearchIndex(): SearchEntry[] {
       keywords: `${service.title} ${service.description} ${service.category} reparatur linz`
     }))
   ];
-  const fromGarage: SearchEntry[] = garagePages.map((page) => ({
+  const fromGarage: SearchEntry[] = allGaragePages.map((page) => ({
     title: page.title,
     description: page.description,
     href: garageHref(page.slug),
