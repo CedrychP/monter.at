@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import DetailPageLayout from "../../DetailPageLayout";
-import { HubFaq } from "../../HubBlocks";
 import { isBrandDeviceEnriched } from "../../marken/brandDeviceContent";
 import { brandDeviceCategories } from "../../marken/devices";
 import { buildMetadata } from "../../pageMetadata";
@@ -12,6 +10,7 @@ import {
   relatedApplianceSlugs,
   type AppliancePage
 } from "../appliancePages";
+import { ApplianceDeviceFrame } from "../ApplianceDeviceFrame";
 import { ApplianceFrame } from "../ApplianceFrame";
 import { applianceProblemPages, getApplianceProblem } from "../applianceProblems";
 
@@ -96,7 +95,7 @@ function relatedEntries(page: AppliancePage) {
         ]
       : [];
 
-  const relatedBrands = brandsForAppliance(page.slug)
+  const brands = brandsForAppliance(page.slug)
     .slice(0, extras.length ? 2 : 3)
     .map((brand) => {
       const comboReady = Boolean(device && isBrandDeviceEnriched(brand.slug, device.slug));
@@ -113,7 +112,10 @@ function relatedEntries(page: AppliancePage) {
           };
     });
 
-  return [hub, ...problemLink, ...relatedAppliances, ...extras, ...relatedBrands];
+  return {
+    nearby: [hub, ...problemLink, ...relatedAppliances, ...extras],
+    brands
+  };
 }
 
 export function generateStaticParams() {
@@ -161,29 +163,5 @@ export default async function ApplianceDetailPage({ params }: AppliancePageProps
 
   const related = relatedEntries(page);
 
-  return (
-    <DetailPageLayout
-      hub={{ label: "Haushaltsgeräte", href: "/haushaltsgeraete" }}
-      category={page.category}
-      h1={page.h1}
-      intro={page.intro}
-      contactNote="Für schnelle Einschätzung, Terminabstimmung und Notdienst-Kontakt."
-      checklist={page.checklist}
-      sections={page.sections}
-      relatedEyebrow="Verwandte Leistungen"
-      relatedTitle="Weitere Reparaturen im Service."
-      related={related}
-      jsonLd={{
-        name: page.title,
-        description: page.description,
-        path: applianceHref(page.slug)
-      }}
-    >
-      <HubFaq
-        eyebrow="Häufige Fragen"
-        title={`${page.category}: kurz beantwortet.`}
-        items={page.faq}
-      />
-    </DetailPageLayout>
-  );
+  return <ApplianceDeviceFrame page={page} nearby={related.nearby} brands={related.brands} />;
 }
