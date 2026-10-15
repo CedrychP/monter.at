@@ -9,10 +9,11 @@ import { applianceHref, brandDeviceHref, brandHref } from "../../serviceHrefs";
 import {
   appliancePages,
   getAppliancePage,
-  getLinzAppliancePage,
   relatedApplianceSlugs,
   type AppliancePage
 } from "../appliancePages";
+import { ApplianceFrame } from "../ApplianceFrame";
+import { applianceProblemPages, getApplianceProblem } from "../applianceProblems";
 
 type AppliancePageProps = {
   params: Promise<{
@@ -46,22 +47,25 @@ function brandsForAppliance(slug: string) {
   ];
 }
 
+const problemForDevice: Record<string, { category: string; title: string; href: string }> = {
+  waschmaschine: { category: "Problem", title: "Pumpt nicht ab", href: "/haushaltsgeraete/pumpt-nicht-ab" },
+  geschirrspueler: { category: "Problem", title: "Pumpt nicht ab", href: "/haushaltsgeraete/pumpt-nicht-ab" },
+  "backofen-herd": { category: "Problem", title: "Heizt nicht", href: "/haushaltsgeraete/heizt-nicht" },
+  trockner: { category: "Problem", title: "Trocknet nicht", href: "/haushaltsgeraete/trocknet-nicht" },
+  waschtrockner: { category: "Problem", title: "Trocknet nicht", href: "/haushaltsgeraete/trocknet-nicht" },
+  kuehlschrank: { category: "Problem", title: "Kühlt nicht", href: "/haushaltsgeraete/kuehlt-nicht" },
+  tiefkuehl: { category: "Problem", title: "Kühlt nicht", href: "/haushaltsgeraete/kuehlt-nicht" },
+  dunstabzug: { category: "Fehlercodes", title: "Fehlercodes nach Marke", href: "/haushaltsgeraete/fehlercodes" },
+  fernseher: { category: "Fehlercodes", title: "Fehlercodes nach Marke", href: "/haushaltsgeraete/fehlercodes" }
+};
+
 function relatedEntries(page: AppliancePage) {
   const hub = {
     category: "Übersicht",
     title: "Haushaltsgeräte Reparatur Wien",
     href: "/haushaltsgeraete"
   };
-  const linzPage = getLinzAppliancePage(page.slug);
-  const linzLink = linzPage
-    ? [
-        {
-          category: "Linz",
-          title: linzPage.title,
-          href: applianceHref(page.slug, "linz")
-        }
-      ]
-    : [];
+  const problemLink = problemForDevice[page.slug] ? [problemForDevice[page.slug]] : [];
 
   const preferred = relatedApplianceSlugs[page.slug] ?? [];
   const relatedAppliances = [
@@ -106,17 +110,25 @@ function relatedEntries(page: AppliancePage) {
           };
     });
 
-  return [hub, ...linzLink, ...relatedAppliances, ...extras, ...relatedBrands];
+  return [hub, ...problemLink, ...relatedAppliances, ...extras, ...relatedBrands];
 }
 
 export function generateStaticParams() {
-  return appliancePages.map((page) => ({
+  return [...applianceProblemPages, ...appliancePages].map((page) => ({
     slug: page.slug
   }));
 }
 
 export async function generateMetadata({ params }: AppliancePageProps): Promise<Metadata> {
   const { slug } = await params;
+  const problem = getApplianceProblem(slug);
+  if (problem) {
+    return buildMetadata({
+      title: problem.metaTitle,
+      description: problem.description,
+      path: `/haushaltsgeraete/${problem.slug}`
+    });
+  }
   const page = getAppliancePage(slug);
 
   if (!page) {
@@ -134,6 +146,10 @@ export async function generateMetadata({ params }: AppliancePageProps): Promise<
 
 export default async function ApplianceDetailPage({ params }: AppliancePageProps) {
   const { slug } = await params;
+  const problem = getApplianceProblem(slug);
+  if (problem) {
+    return <ApplianceFrame page={problem} />;
+  }
   const page = getAppliancePage(slug);
 
   if (!page) {

@@ -7,6 +7,7 @@ import {
   unenrichedLocationRoutes
 } from "./einsatzgebiete/locationPages";
 import { appliancePages } from "./haushaltsgeraete/appliancePages";
+import { applianceProblemPages } from "./haushaltsgeraete/applianceProblems";
 import { linzAppliancePages } from "./haushaltsgeraete/linzAppliancePages";
 import { allGaragePages } from "./garagentore/garagePages";
 import { allKlimaPages } from "./klimageraete/klimaPages";
@@ -37,8 +38,12 @@ export const sitemapGroups: SitemapGroup[] = [
     id: "haushaltsgeraete",
     label: "Haushaltsgeräte",
     href: "/haushaltsgeraete",
-    description: "Reparatur nach Gerät — Waschmaschine bis Fernseher.",
+    description: "Probleme, Fehlercodes und Geräte.",
     links: [
+      ...applianceProblemPages.map((page) => ({
+        label: page.title,
+        href: applianceHref(page.slug)
+      })),
       {
         label: "Haushaltsgeräte Wien",
         href: "/haushaltsgeraete",

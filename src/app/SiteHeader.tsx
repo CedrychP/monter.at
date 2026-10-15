@@ -13,6 +13,7 @@ import {
 import { useAdPhone } from "./AdPhone";
 import NavNewsletterSignup from "./NavNewsletterSignup";
 import { garageDoorNavLinks, garageProblemNavLinks, garageRepairNavLinks } from "./garagentore/garagePages";
+import { applianceProblemNavLinks } from "./haushaltsgeraete/applianceProblems";
 import { klimaDeviceNavLinks, klimaProblemNavLinks, klimaRepairNavLinks } from "./klimageraete/klimaPages";
 import { brandAlphabetGroups } from "./marken/brands";
 import { siteConfig } from "./siteConfig";
@@ -289,15 +290,16 @@ function getMegaMenus(phoneHref: string): MegaMenuConfig[] {
     id: "service",
     label: "Geräte",
     columns: [
+      { eyebrow: "Probleme", items: applianceProblemNavLinks },
       { eyebrow: "Sanitärgeräte", items: householdSanitaerLinks },
       { eyebrow: "Küche & Wohnen", items: householdKuecheWohnenLinks },
       { eyebrow: "Informationen", items: additionalServiceLinks }
     ],
     feature: {
       eyebrow: "Haushaltsgeräte Reparaturdienst",
-      title: "Geräteausfall in Wien?",
+      title: "Gerät ausgefallen?",
       text:
-        "Telefon ist der schnellste Weg zu einer Einschätzung. Wir prüfen Fehlerbild, Termin und Aufwand direkt im Gespräch.",
+        "Telefon ist der schnellste Weg. Wasseraustritt und ein ausgefallenes Tiefkühlgerät klären wir vorrangig.",
       primaryLabel: "Jetzt anrufen",
       primaryHref: `tel:${phoneHref}`,
       secondaryLabel: "Termin buchen",

@@ -70,6 +70,7 @@ const applianceLinks = [
   { label: "Trockner", href: "/haushaltsgeraete/trockner" },
   { label: "Kühlschrank", href: "/haushaltsgeraete/kuehlschrank" },
   { label: "Fernseher", href: "/haushaltsgeraete/fernseher" },
+  { label: "Fehlercodes", href: "/haushaltsgeraete/fehlercodes" },
   { label: "Alle Haushaltsgeräte", href: "/haushaltsgeraete" }
 ];
 

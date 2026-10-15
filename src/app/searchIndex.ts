@@ -1,6 +1,7 @@
 import { blogPosts } from "./blog/posts";
 import { brandPages } from "./marken/brands";
 import { appliancePages } from "./haushaltsgeraete/appliancePages";
+import { applianceProblemPages } from "./haushaltsgeraete/applianceProblems";
 import { linzAppliancePages } from "./haushaltsgeraete/linzAppliancePages";
 import { applianceHref, brandHref, garageHref, klimaHref } from "./serviceHrefs";
 import { allGaragePages } from "./garagentore/garagePages";
@@ -27,6 +28,13 @@ export const popularSearches = [
 
 export function buildSearchIndex(): SearchEntry[] {
   const fromAppliances: SearchEntry[] = [
+    ...applianceProblemPages.map((service) => ({
+      title: service.title,
+      description: service.description,
+      href: applianceHref(service.slug),
+      category: "Haushaltsgeräte",
+      keywords: `${service.title} ${service.description} ${service.category} fehlercode reparatur`
+    })),
     ...appliancePages.map((service) => ({
       title: service.title,
       description: service.description,
