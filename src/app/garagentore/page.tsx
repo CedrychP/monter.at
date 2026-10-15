@@ -176,8 +176,8 @@ export default function GaragentoreHubPage() {
             <figure>
               <div className="relative aspect-[4/3] overflow-hidden">
                 <Image
-                  src="/assets/ueber-uns-garagentor-wien.webp"
-                  alt="Geschlossenes Sektionaltor neben einer roten Ziegelwand, daneben eine Ampel."
+                  src="/assets/garagentor-foto-uebersicht.webp"
+                  alt="Geschlossenes anthrazitfarbenes Sektionaltor in einer hellen Putzfassade, davor Betonplatten."
                   fill
                   sizes="(min-width: 1024px) 40rem, 100vw"
                   className="object-cover"

@@ -67,9 +67,47 @@ const voice: Record<string, { kicker: string; ctaTitle: string; ctaText: string 
   }
 };
 
-const sectionalPhoto = {
-  src: "/assets/ueber-uns-garagentor-wien.webp",
-  alt: "Geschlossenes Sektionaltor neben einer roten Ziegelwand, daneben eine Ampel."
+const garagePhotos: Record<string, { src: string; alt: string }> = {
+  sektionaltor: {
+    src: "/assets/garagentor-foto-sektionaltor.webp",
+    alt: "Laufschienen an der Decke und die Innenseite eines Sektionaltors."
+  },
+  "schwingtor-rolltor": {
+    src: "/assets/garagentor-foto-schwingtor.webp",
+    alt: "Geschlossenes Rolltor mit schmalen Lamellen und Kasten, in einer beigen Putzfassade."
+  },
+  "torantrieb-motor": {
+    src: "/assets/garagentor-foto-antrieb.webp",
+    alt: "Weißer Torantrieb an der Decke, die Schiene läuft zum Torblatt."
+  },
+  federwechsel: {
+    src: "/assets/garagentor-foto-feder.webp",
+    alt: "Torsionsfedern auf der Welle über einem Sektionaltor."
+  },
+  "laufrollen-schienen": {
+    src: "/assets/garagentor-foto-laufrollen.webp",
+    alt: "Schwarze Laufrolle in einer senkrechten Stahlschiene."
+  },
+  "wartung-sicherheitspruefung": {
+    src: "/assets/garagentor-foto-wartung.webp",
+    alt: "Zwei Lichtschranken links und rechts am geschlossenen Tor, knapp über dem Boden."
+  },
+  "oeffnet-nicht": {
+    src: "/assets/garagentor-foto-oeffnet-nicht.webp",
+    alt: "Geschlossenes Tor von innen, Wandtaster an der Wand und Handsender auf einem Bord."
+  },
+  "schliesst-nicht": {
+    src: "/assets/garagentor-foto-schliesst-nicht.webp",
+    alt: "Sektionaltor, das über dem Boden stehen bleibt, mit einem Lichtstreifen darunter."
+  },
+  klemmt: {
+    src: "/assets/garagentor-foto-klemmt.webp",
+    alt: "Torblatt an der senkrechten Schiene, die Rolle sitzt nicht sauber in der Führung."
+  },
+  fehlercodes: {
+    src: "/assets/garagentor-foto-fehlercode.webp",
+    alt: "Steuergerät an der Wand, dunkles Display ohne Ziffer, rote Leuchte darunter."
+  }
 };
 
 export const garageSchemas: Record<string, { src: string; alt: string }> = {
@@ -120,24 +158,16 @@ export function GarageSchemaImage({ slug, sizes }: { slug: string; sizes: string
   return <Image src={media.src} alt={media.alt} fill sizes={sizes} className="object-contain" />;
 }
 
-export function GarageDoorMark({ slug }: { slug: string }) {
-  const photo = slug === "sektionaltor";
-  const media = photo ? sectionalPhoto : (garageSchemas[slug] ?? garageSchemas.sektionaltor);
+function GaragePhoto({ slug }: { slug: string }) {
+  const photo = garagePhotos[slug];
+  if (!photo) return null;
 
   return (
-    <figure className="border border-[color:var(--border)] bg-[color:var(--bg-muted)]">
-      <div className="relative aspect-[4/3] overflow-hidden">
-        <Image
-          src={media.src}
-          alt={media.alt}
-          fill
-          sizes="(min-width: 1024px) 34rem, 100vw"
-          className={photo ? "object-cover" : "object-contain"}
-        />
+    <figure>
+      <div className="relative aspect-[4/3] overflow-hidden bg-[color:var(--bg-muted)]">
+        <Image src={photo.src} alt={photo.alt} fill sizes="(min-width: 1024px) 36rem, 100vw" className="object-cover" />
       </div>
-      <figcaption className="border-t border-[color:var(--border)] px-5 py-3 text-sm font-light text-[color:var(--muted)]">
-        {photo ? "Beispielbild, kein Einsatzfoto." : "Schema, kein Einsatzfoto."}
-      </figcaption>
+      <figcaption className="mt-3 text-sm font-light text-[color:var(--muted)]">Beispielbild, kein Einsatzfoto.</figcaption>
     </figure>
   );
 }
@@ -145,6 +175,7 @@ export function GarageDoorMark({ slug }: { slug: string }) {
 export function GarageFrame({ page }: { page: GaragePage }) {
   const path = `/garagentore/${page.slug}`;
   const closing = voice[page.slug] ?? voice["sektionaltor"];
+  const [lead, ...rest] = page.sections;
   const related = (page.relatedSlugs ?? []).flatMap((slug) => {
     const match = allGaragePages.find((item) => item.slug === slug);
     return match ? [match] : [];
@@ -178,8 +209,8 @@ export function GarageFrame({ page }: { page: GaragePage }) {
       <script type="application/ld+json" suppressHydrationWarning dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
 
       <section className="border-b border-[color:var(--border)]">
-        <div className="mx-auto grid max-w-[88rem] items-end gap-12 px-5 py-14 sm:px-8 sm:py-20 lg:grid-cols-[1.15fr_0.85fr]">
-          <div className="max-w-xl">
+        <div className="mx-auto max-w-[88rem] px-5 py-14 sm:px-8 sm:py-20">
+          <div className="max-w-3xl">
             <nav aria-label="Breadcrumb">
               <ol className="flex flex-wrap items-center gap-2 text-[0.72rem] font-medium uppercase tracking-[0.18em] text-[color:var(--muted)]">
                 <li>
@@ -209,14 +240,25 @@ export function GarageFrame({ page }: { page: GaragePage }) {
               </Link>
             </div>
           </div>
-          <GarageDoorMark slug={page.slug} />
         </div>
       </section>
 
+      {lead ? (
+        <section className="border-b border-[color:var(--border)]">
+          <div className="mx-auto grid max-w-[88rem] items-start gap-10 px-5 py-16 sm:px-8 sm:py-20 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+            <GaragePhoto slug={page.slug} />
+            <div>
+              <h2 className="font-display text-4xl font-light tracking-tight sm:text-5xl">{lead.title}</h2>
+              <p className="mt-6 text-lg font-light leading-8 text-[color:var(--muted)]">{lead.body}</p>
+            </div>
+          </div>
+        </section>
+      ) : null}
+
       <section className="bg-[color:var(--bg-muted)]">
         <div className="mx-auto max-w-[88rem] px-5 py-16 sm:px-8 sm:py-20">
-          <ul className="grid gap-px bg-[color:var(--border)] sm:grid-cols-2">
-            {page.sections.map((section) => (
+          <ul className={`grid gap-px bg-[color:var(--border)] sm:grid-cols-2 ${rest.length === 3 ? "lg:grid-cols-3" : ""}`}>
+            {rest.map((section) => (
               <li key={section.title} className="bg-white px-6 py-8 sm:px-8 sm:py-10">
                 <h2 className="font-display text-2xl font-light tracking-tight">{section.title}</h2>
                 <p className="mt-4 text-base font-light leading-7 text-[color:var(--muted)]">{section.body}</p>
