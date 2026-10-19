@@ -81,9 +81,7 @@ function relatedEntries(page: AppliancePage) {
       href: applianceHref(item.slug)
     }));
 
-  const device =
-    brandDeviceCategories.find((item) => item.serviceSlug === page.slug) ??
-    (page.slug === "herd" ? brandDeviceCategories.find((item) => item.slug === "backofen-herd") : undefined);
+  const device = brandDeviceCategories.find((item) => item.serviceSlug === page.slug);
   const extras =
     page.slug === "trockner"
       ? [
@@ -102,7 +100,7 @@ function relatedEntries(page: AppliancePage) {
       return comboReady && device
         ? {
             category: brand.brand,
-            title: `${brand.brand} ${page.slug === "backofen" || page.slug === "herd" ? page.category : device.label} Reparatur`,
+            title: `${brand.brand} ${device.label} Reparatur`,
             href: brandDeviceHref(brand.slug, device.slug)
           }
         : {

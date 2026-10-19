@@ -74,7 +74,9 @@ const repairBrandsNav: NavLink[] = [
   { label: "Miele", href: "/marken/miele" },
   { label: "Siemens", href: "/marken/siemens" },
   { label: "AEG", href: "/marken/aeg" },
-  { label: "Gorenje", href: "/marken/gorenje" }
+  { label: "Beko", href: "/marken/beko" },
+  { label: "Gorenje", href: "/marken/gorenje" },
+  { label: "Bauknecht", href: "/marken/bauknecht" }
 ];
 
 const weitereMarkenAlphabetLinks: NavLink[] = brandAlphabetGroups.map((group) => ({
@@ -328,7 +330,7 @@ function getMegaMenus(phoneHref: string): MegaMenuConfig[] {
       eyebrow: "Markenoffene Reparatur",
       title: "Wir reparieren über 60 Marken.",
       text:
-        "Bosch, Siemens, Miele, AEG, Gorenje, Elektra Bregenz und viele mehr — markenoffen, mit ehrlicher Diagnose.",
+        "Bosch, Miele, Siemens, AEG, Beko, Gorenje und Bauknecht — markenoffen, mit ehrlicher Diagnose.",
       primaryLabel: "Jetzt anrufen",
       primaryHref: `tel:${phoneHref}`,
       secondaryLabel: "Termin buchen",

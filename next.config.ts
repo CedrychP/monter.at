@@ -99,6 +99,7 @@ const nextConfig: NextConfig = {
       { source: "/marken/beko-reparatur-wien", destination: "/marken/beko", statusCode: 301 },
       { source: "/marken/gorenje-reparatur-wien", destination: "/marken/gorenje", statusCode: 301 },
       { source: "/marken/bauknecht-reparatur-wien", destination: "/marken/bauknecht", statusCode: 301 },
+      { source: "/marken/:slug/backofen-herd", destination: "/marken/:slug/backofen", statusCode: 301 },
       { source: "/garagentore/sektionaltor-reparatur-wien", destination: "/garagentore/sektionaltor", statusCode: 301 },
       { source: "/garagentore/schwingtor-rolltor-reparatur-wien", destination: "/garagentore/schwingtor-rolltor", statusCode: 301 },
       { source: "/garagentore/torantrieb-motor-reparatur-wien", destination: "/garagentore/torantrieb-motor", statusCode: 301 },

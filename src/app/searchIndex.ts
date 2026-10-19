@@ -1,8 +1,10 @@
 import { blogPosts } from "./blog/posts";
+import { isBrandDeviceEnriched } from "./marken/brandDeviceContent";
 import { brandPages } from "./marken/brands";
+import { brandDeviceCategories } from "./marken/devices";
 import { appliancePages } from "./haushaltsgeraete/appliancePages";
 import { applianceProblemPages } from "./haushaltsgeraete/applianceProblems";
-import { applianceHref, brandHref, garageHref, klimaHref } from "./serviceHrefs";
+import { applianceHref, brandDeviceHref, brandHref, garageHref, klimaHref } from "./serviceHrefs";
 import { allGaragePages } from "./garagentore/garagePages";
 import { allKlimaPages } from "./klimageraete/klimaPages";
 import { regionPages } from "./einsatzgebiete/regionPages";
@@ -56,13 +58,26 @@ export function buildSearchIndex(): SearchEntry[] {
     category: "Klimageräte",
     keywords: `${page.title} ${page.description} ${page.category} klimaanlage reparatur`
   }));
-  const fromBrands: SearchEntry[] = brandPages.map((brand) => ({
-    title: `${brand.brand} Reparatur Wien`,
-    description: brand.description,
-    href: brandHref(brand.slug),
-    category: "Marke",
-    keywords: `${brand.brand} marke reparatur ${brand.description}`
-  }));
+  const fromBrands: SearchEntry[] = [
+    ...brandPages.map((brand) => ({
+      title: `${brand.brand} Reparatur Wien`,
+      description: brand.description,
+      href: brandHref(brand.slug),
+      category: "Marke",
+      keywords: `${brand.brand} marke reparatur ${brand.description}`
+    })),
+    ...brandPages.flatMap((brand) =>
+      brandDeviceCategories
+        .filter((device) => isBrandDeviceEnriched(brand.slug, device.slug))
+        .map((device) => ({
+          title: `${brand.brand} ${device.label} Reparatur Wien`,
+          description: device.short,
+          href: brandDeviceHref(brand.slug, device.slug),
+          category: "Marke",
+          keywords: `${brand.brand} ${device.label} ${device.plural} reparatur`
+        }))
+    )
+  ];
   const fromRegions: SearchEntry[] = regionPages.map((region) => ({
     title: `Einsatzgebiet ${region.name}`,
     description: region.short,

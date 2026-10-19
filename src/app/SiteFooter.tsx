@@ -82,6 +82,7 @@ const brandLinks = [
   { label: "AEG", href: "/marken/aeg" },
   { label: "Beko", href: "/marken/beko" },
   { label: "Gorenje", href: "/marken/gorenje" },
+  { label: "Bauknecht", href: "/marken/bauknecht" },
   { label: "Alle Marken", href: "/marken" }
 ];
 

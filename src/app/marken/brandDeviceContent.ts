@@ -166,23 +166,18 @@ export const brandDeviceContents: BrandDeviceContent[] = [
   },
   {
     brandSlug: "bosch",
-    deviceSlug: "backofen-herd",
+    deviceSlug: "backofen",
     enriched: true,
     intro:
-      "Bosch Backöfen und Herde fallen selten komplett aus — häufiger sind einzelne Funktionen betroffen: Oberhitze arbeitet nicht, die Temperatur stimmt nicht mehr, das Bedienfeld reagiert nicht oder die Tür schließt nicht dicht. Genau diese Teilausfälle lassen sich gezielt reparieren, ohne die Einbauküche anzutasten.",
+      "Bosch Backöfen fallen selten komplett aus. Häufiger sind einzelne Funktionen betroffen: Oberhitze arbeitet nicht, die Temperatur stimmt nicht mehr oder die Tür schließt nicht dicht. Genau diese Teilausfälle lassen sich gezielt reparieren, ohne die Einbauküche anzutasten. Das Kochfeld daneben ist ein eigenes Gerät.",
     modelSeries: [
       "HBA / HBG — Einbaubacköfen, Serie 2 bis Serie 8",
-      "HND — Herd-Sets aus Backofen und Kochfeld",
-      "PKE / PUE — Elektro-Kochfelder, PIE / PXE — Induktion",
+      "HND — Herd-Sets, der Ofen darin bleibt ein eigenes Gerät",
       "Reinigungssysteme: EcoClean Direct (Katalyse) und Pyrolyse"
     ],
     partsNote:
-      "Heizkörper für Ober-, Unter- und Heißluft, Temperaturfühler, Türdichtungen, Türscharniere, Backofenlampen, Lüftermotoren und Thermostate sind für Bosch gut verfügbar. Bedienmodule und Displays sind der teuerste Posten und bei älteren Geräten gelegentlich nicht mehr lieferbar. Bei Induktionskochfeldern ist die Leistungselektronik ein Preisfaktor — einzelne Spulen und Sensortasten lassen sich dagegen oft gezielt tauschen.",
+      "Heizkörper für Ober-, Unter- und Heißluft, Temperaturfühler, Türdichtungen, Türscharniere, Backofenlampen, Lüftermotoren und Thermostate sind für Bosch gut verfügbar. Bedienmodule und Displays sind der teuerste Posten und bei älteren Geräten gelegentlich nicht mehr lieferbar.",
     errorCodes: [
-      {
-        code: "E011",
-        meaning: "Taste bzw. Sensorfeld dauerhaft betätigt — meist Feuchtigkeit, Fett oder ein abgelegter Gegenstand auf dem Bedienfeld"
-      },
       {
         code: "Anzeige blinkt, Gerät sperrt",
         meaning: "Übertemperatur erkannt oder Kindersicherung aktiv; nach dem Abkühlen prüfen wir Fühler und Kühlgebläse"
@@ -213,6 +208,39 @@ export const brandDeviceContents: BrandDeviceContent[] = [
         title: "Pyrolyse und Türdichtung",
         body:
           "Bei Pyrolysegeräten arbeitet die Tür während des Reinigungsprogramms bei sehr hohen Temperaturen. Eine spröde Türdichtung oder ausgeschlagene Scharniere führen dazu, dass Hitze austritt und das Programm abbricht oder das Gerät sperrt. Dichtung und Scharniere sind Verschleißteile und gut verfügbar — ein Austausch ist hier deutlich günstiger als jede Elektronikarbeit."
+      }
+    ]
+  },
+  {
+    brandSlug: "bosch",
+    deviceSlug: "herd",
+    enriched: true,
+    intro:
+      "Bosch Kochfelder — Elektro und Induktion — fallen selten komplett aus. Häufiger reagiert eine Zone nicht, das Sensorfeld meldet eine dauerhaft betätigte Taste oder eine einzelne Spule ist betroffen. Das Feld ist ein eigenes Gerät, auch im Set mit dem Backofen.",
+    modelSeries: [
+      "PKE / PUE — Elektro-Kochfelder",
+      "PIE / PXE — Induktion",
+      "HND — Herd-Sets, das Feld darin bleibt ein eigenes Gerät"
+    ],
+    partsNote:
+      "Bei Induktionskochfeldern ist die Leistungselektronik ein Preisfaktor. Einzelne Spulen und Sensortasten lassen sich dagegen oft gezielt tauschen. Die Modellnummer steht auf dem Feld.",
+    errorCodes: [
+      {
+        code: "E011",
+        meaning: "Taste bzw. Sensorfeld dauerhaft betätigt — meist Feuchtigkeit, Fett oder ein abgelegter Gegenstand auf dem Bedienfeld"
+      }
+    ],
+    errorCodesReviewed: true,
+    sections: [
+      {
+        title: "Sensorfeld und eine tote Zone",
+        body:
+          "E011 beschreibt ein Sensorfeld, das eine Taste als dauernd betätigt sieht. Meist liegen Feuchtigkeit, Fett oder ein Gegenstand auf dem Feld. Wir prüfen das, bevor ein Modul getauscht wird."
+      },
+      {
+        title: "Spule und Leistungselektronik",
+        body:
+          "Einzelne Spulen und Sensortasten sind oft gezielt tauschbar. Die Leistungselektronik ist der teure Posten. Was davon betroffen ist, sagt die Modellnummer, nicht der Set-Name des Ofens daneben."
       }
     ]
   },
@@ -451,15 +479,15 @@ export const brandDeviceContents: BrandDeviceContent[] = [
   },
   {
     brandSlug: "miele",
-    deviceSlug: "backofen-herd",
+    deviceSlug: "backofen",
     enriched: true,
     intro:
-      "Miele Backöfen sind auf lange Nutzung ausgelegt und in Wien häufig in hochwertigen Einbauküchen verbaut. Genau deshalb ist eine Reparatur hier fast immer sinnvoller als ein Austausch: Ein Gerätewechsel bedeutet in einer geplanten Küche oft Anpassungen an Nische und Front.",
+      "Miele Backöfen sind auf lange Nutzung ausgelegt und in Wien häufig in hochwertigen Einbauküchen verbaut. Genau deshalb ist eine Reparatur hier fast immer sinnvoller als ein Austausch: Ein Gerätewechsel bedeutet in einer geplanten Küche oft Anpassungen an Nische und Front. Das Kochfeld KM daneben ist ein eigenes Gerät.",
     modelSeries: [
       "H 2000 / H 7000 — Einbaubacköfen mehrerer Generationen",
       "PerfectClean — veredelte Emailoberflächen, alternativ Pyrolyse",
       "Moisture Plus — Backen mit Feuchtigkeitszugabe",
-      "DGC — Dampfgarer mit Backofenfunktion, KM — Kochfelder"
+      "DGC — Dampfgarer mit Backofenfunktion"
     ],
     partsNote:
       "Heizkörper, Temperaturfühler, Türdichtungen, Türscharniere, Lüftermotoren, Backofenlampen und Thermostate sind für Miele Backöfen lange verfügbar. Bedienmodule und Displays sind der teuerste Posten, bleiben aber meist beschaffbar. Bei Dampfgargeräten kommen Wassertank, Ventile und Dampferzeuger als eigene Baugruppen dazu — auch dort ist Verkalkung die häufigste Ursache und keine Elektronikfrage.",
@@ -498,6 +526,30 @@ export const brandDeviceContents: BrandDeviceContent[] = [
         title: "Dampfgarer und Verkalkung",
         body:
           "Bei Miele Geräten mit Dampffunktion ist Verkalkung das Hauptthema — Wiener Leitungswasser ist entsprechend hart. Ausbleibende Dampfentwicklung, lange Aufheizzeiten oder Fehlermeldungen im Dampfbetrieb gehen meist auf verkalkte Dampferzeuger und Ventile zurück. Regelmäßiges Entkalken nach Geräteaufforderung verhindert genau diese Reparatur."
+      }
+    ]
+  },
+  {
+    brandSlug: "miele",
+    deviceSlug: "herd",
+    enriched: true,
+    intro:
+      "Miele Kochfelder laufen unter dem Kürzel KM und stehen in Wien oft neben dem Einbaubackofen in derselben Küche. Wir reparieren das Feld getrennt vom Ofen. Die Modellnummer steht auf dem Feld.",
+    modelSeries: ["KM — Kochfelder, getrennt von den Backofenreihen H und DGC"],
+    partsNote:
+      "Ein Backofen der Reihe H und ein Kochfeld KM sind zwei Geräte. Welches Teil zum Feld passt, entscheidet die Modellnummer auf dem Feld, nicht die des Ofens daneben.",
+    errorCodes: [],
+    errorCodesReviewed: false,
+    sections: [
+      {
+        title: "Eigenes Gerät neben dem Ofen",
+        body:
+          "Eine kalte Zone und ein Ofen, der nicht heizt, sind zwei Befunde. Wir öffnen nicht den Backofen, um eine Zone am KM-Feld zu klären."
+      },
+      {
+        title: "Modellnummer auf dem Feld",
+        body:
+          "Für die Teilefrage brauchen wir das Typenschild des Kochfelds. Die Nummer des Ofens in derselben Nische sagt nicht, welche Spule oder welches Bedienmodul im Feld sitzt."
       }
     ]
   },
@@ -737,23 +789,18 @@ export const brandDeviceContents: BrandDeviceContent[] = [
   },
   {
     brandSlug: "siemens",
-    deviceSlug: "backofen-herd",
+    deviceSlug: "backofen",
     enriched: true,
     intro:
-      "Siemens Backöfen und Kochfelder fallen selten komplett aus. Häufiger arbeitet eine einzelne Funktion nicht mehr: Oberhitze fehlt, die Temperatur weicht ab, das Touch-Bedienfeld reagiert nicht oder die Pyrolyse bricht ab. Diese Teilausfälle lassen sich gezielt reparieren, ohne die Einbauküche anzutasten.",
+      "Siemens Backöfen fallen selten komplett aus. Häufiger arbeitet eine einzelne Funktion nicht mehr: Oberhitze fehlt, die Temperatur weicht ab oder die Pyrolyse bricht ab. Diese Teilausfälle lassen sich gezielt reparieren, ohne die Einbauküche anzutasten. Das Kochfeld daneben ist ein eigenes Gerät.",
     modelSeries: [
       "HB / HR — Einbaubacköfen iQ300 bis iQ700",
       "HM / CM — Backöfen mit Mikrowelle bzw. Dampfunterstützung",
-      "EH / ED — Induktionskochfelder, ET — Elektrokochfelder",
       "Reinigungssysteme: activeClean Pyrolyse und Hydrolyse-Reinigung"
     ],
     partsNote:
-      "Heizkörper für Ober-, Unter- und Heißluft, Temperaturfühler, Türdichtungen, Scharniere, Lampen, Lüftermotoren und Thermostate sind gut verfügbar und häufig mit Bosch baugleich. Teuer sind Bedienmodule und Touch-Displays der iQ700-Klasse, bei sehr alten Geräten gelegentlich auch nicht mehr lieferbar. Bei Induktionsfeldern sind einzelne Spulen und Sensortasten oft gezielt tauschbar, während die komplette Leistungselektronik ein echter Preisfaktor ist.",
+      "Heizkörper für Ober-, Unter- und Heißluft, Temperaturfühler, Türdichtungen, Scharniere, Lampen, Lüftermotoren und Thermostate sind gut verfügbar und häufig mit Bosch baugleich. Teuer sind Bedienmodule und Touch-Displays der iQ700-Klasse, bei sehr alten Geräten gelegentlich auch nicht mehr lieferbar.",
     errorCodes: [
-      {
-        code: "E011",
-        meaning: "Taste oder Sensorfeld dauerhaft betätigt — meist Feuchtigkeit, Fett oder ein abgelegter Gegenstand"
-      },
       {
         code: "Anzeige blinkt, Gerät sperrt",
         meaning: "Übertemperatur erkannt oder Kindersicherung aktiv; nach dem Abkühlen prüfen wir Fühler und Kühlgebläse"
@@ -780,9 +827,38 @@ export const brandDeviceContents: BrandDeviceContent[] = [
           "Siemens setzt in den höheren Serien fast durchgehend auf Sensortasten und Displays. Reagieren sie nicht oder springt die Anzeige, ist häufig Feuchtigkeit oder Fett im Bedienbereich die Ursache — nicht das Modul selbst. Wir reinigen die Kontaktbereiche, prüfen Flachbandleitungen und Steckverbinder und tauschen erst danach Bauteile. Das ist der Unterschied zwischen einer günstigen Reparatur und dem teuersten Ersatzteil des Geräts."
       },
       {
-        title: "Pyrolyse, Türdichtung und Kochfeld",
+        title: "Pyrolyse und Türdichtung",
         body:
-          "Bei activeClean arbeitet die Tür bei sehr hoher Temperatur. Eine spröde Dichtung oder ausgeschlagene Scharniere führen zu Hitzeaustritt, Programmabbruch oder Sperre — beides sind gut verfügbare Verschleißteile. Bei Induktionsfeldern prüfen wir Spulen, Sensortasten und Kühllüfter einzeln, bevor die Leistungselektronik in Frage kommt. Ein gesprungenes Glaskeramikfeld bleibt dagegen unwirtschaftlich, weil das Glas als komplette Baugruppe kommt."
+          "Bei activeClean arbeitet die Tür bei sehr hoher Temperatur. Eine spröde Dichtung oder ausgeschlagene Scharniere führen zu Hitzeaustritt, Programmabbruch oder Sperre. Beides sind gut verfügbare Verschleißteile."
+      }
+    ]
+  },
+  {
+    brandSlug: "siemens",
+    deviceSlug: "herd",
+    enriched: true,
+    intro:
+      "Siemens Kochfelder fallen selten komplett aus. Häufiger reagiert eine Zone nicht oder das Touch-Feld meldet eine dauerhaft betätigte Taste. Das Feld ist ein eigenes Gerät, auch wenn es neben einem iQ-Backofen sitzt.",
+    modelSeries: ["EH / ED — Induktionskochfelder", "ET — Elektrokochfelder"],
+    partsNote:
+      "Bei Induktionsfeldern sind einzelne Spulen und Sensortasten oft gezielt tauschbar, während die komplette Leistungselektronik ein echter Preisfaktor ist. Ein gesprungenes Glaskeramikfeld bleibt unwirtschaftlich, weil das Glas als komplette Baugruppe kommt.",
+    errorCodes: [
+      {
+        code: "E011",
+        meaning: "Taste oder Sensorfeld dauerhaft betätigt — meist Feuchtigkeit, Fett oder ein abgelegter Gegenstand"
+      }
+    ],
+    errorCodesReviewed: true,
+    sections: [
+      {
+        title: "Touch-Feld und Feuchtigkeit",
+        body:
+          "Reagiert das Feld nicht oder springt die Anzeige, ist häufig Feuchtigkeit oder Fett im Bedienbereich die Ursache, nicht gleich das Modul. Wir prüfen das, bevor die Leistungselektronik in Frage kommt."
+      },
+      {
+        title: "Spule, Lüfter und Glas",
+        body:
+          "Spulen, Sensortasten und Kühllüfter prüfen wir einzeln. Ein gesprungenes Glaskeramikfeld kommt als komplette Baugruppe und bleibt deshalb unwirtschaftlich."
       }
     ]
   },
@@ -1021,15 +1097,14 @@ export const brandDeviceContents: BrandDeviceContent[] = [
   },
   {
     brandSlug: "aeg",
-    deviceSlug: "backofen-herd",
+    deviceSlug: "backofen",
     enriched: true,
     intro:
-      "AEG Backöfen und Kochfelder sind in Wien oft als Einbaugerät in Küchen der 2000er- und 2010er-Jahre verbaut. Fällt eine Heizart aus, weicht die Temperatur ab oder reagiert das Bedienfeld nicht, lässt sich das in der Regel gezielt reparieren, ohne die Küche anzutasten.",
+      "AEG Backöfen sind in Wien oft als Einbaugerät in Küchen der 2000er- und 2010er-Jahre verbaut. Fällt eine Heizart aus oder weicht die Temperatur ab, lässt sich das in der Regel gezielt reparieren, ohne die Küche anzutasten. Das Kochfeld daneben ist ein eigenes Gerät.",
     modelSeries: [
       "SenseCook — Backöfen mit Kerntemperaturfühler",
       "SteamBake und SteamPro — Dampfunterstützung bzw. Volldampfgeräte",
-      "Pyrolyse- und Katalyse-Reinigungssysteme",
-      "MaxiSense und SenseBoil Induktionskochfelder"
+      "Pyrolyse- und Katalyse-Reinigungssysteme"
     ],
     partsNote:
       "Heizkörper, Temperaturfühler, Türdichtungen, Scharniere, Lampen, Lüftermotoren und Thermostate sind über die Electrolux-Gruppe gut verfügbar. Bei SteamBake- und SteamPro-Geräten kommen Wassertank, Dosierventil und Dampferzeuger als eigene Baugruppen dazu — dort ist Verkalkung die häufigste Ursache, nicht Elektronik. Bedienmodule und Displays sind der teuerste Posten und bei älteren Baureihen gelegentlich nicht mehr lieferbar.",
@@ -1064,9 +1139,33 @@ export const brandDeviceContents: BrandDeviceContent[] = [
           "Bei Geräten mit Dampfunterstützung ist Verkalkung die Hauptursache für Störungen: Der Dampferzeuger setzt zu, das Dosierventil klemmt oder das Gerät fordert dauernd zum Entkalken auf. In Wien tritt das früher auf als in weichen Wassergebieten. Entkalkung, Ventilreinigung und ein Tausch der Dichtungen lösen das in den meisten Fällen — eine Elektronikreparatur ist dafür selten nötig."
       },
       {
-        title: "Kochfeld und Sicherheit",
+        title: "Sicherung und Anschluss",
         body:
-          "Bei MaxiSense-Induktionsfeldern sind Spulen, Sensortasten und Kühllüfter oft gezielt tauschbar, während die komplette Leistungselektronik teuer ist. Ein gesprungenes Glaskeramikfeld bleibt unwirtschaftlich. Löst die Sicherung aus, riecht es verschmort oder sind Klemmen sichtbar erhitzt, bitte das Gerät nicht weiter betreiben — im Altbau prüfen wir dabei auch die Anschlussdose, nicht nur das Gerät selbst."
+          "Löst die Sicherung aus, riecht es verschmort oder sind Klemmen sichtbar erhitzt, bitte den Ofen nicht weiter betreiben. Im Altbau prüfen wir dabei auch die Anschlussdose, nicht nur das Gerät selbst."
+      }
+    ]
+  },
+  {
+    brandSlug: "aeg",
+    deviceSlug: "herd",
+    enriched: true,
+    intro:
+      "AEG Kochfelder der Reihen MaxiSense und SenseBoil stehen in Wien oft neben dem Einbaubackofen. Eine tote Zone und ein Ofen, der nicht heizt, sind zwei Geräte. Die Modellnummer steht auf dem Feld.",
+    modelSeries: ["MaxiSense — Induktionskochfelder", "SenseBoil — Induktionskochfelder"],
+    partsNote:
+      "Spulen, Sensortasten und Kühllüfter sind oft gezielt tauschbar, die komplette Leistungselektronik ist teuer. Ein gesprungenes Glaskeramikfeld bleibt unwirtschaftlich, weil das Glas als Baugruppe kommt.",
+    errorCodes: [],
+    errorCodesReviewed: false,
+    sections: [
+      {
+        title: "Spule, Taste und Lüfter",
+        body:
+          "Bei MaxiSense-Induktionsfeldern prüfen wir Spulen, Sensortasten und Kühllüfter einzeln, bevor die Leistungselektronik in Frage kommt."
+      },
+      {
+        title: "Glas und Anschluss",
+        body:
+          "Ein gesprungenes Glaskeramikfeld bleibt unwirtschaftlich. Löst die Sicherung aus oder riechen Klemmen verschmort, das Feld nicht weiter betreiben. Im Altbau prüfen wir die Anschlussdose mit."
       }
     ]
   },
@@ -1305,18 +1404,17 @@ export const brandDeviceContents: BrandDeviceContent[] = [
   },
   {
     brandSlug: "beko",
-    deviceSlug: "backofen-herd",
+    deviceSlug: "backofen",
     enriched: true,
     intro:
-      "Beko Backöfen und Herde sind in Wien häufig in Mietwohnungen und Erstausstattungen verbaut, oft als Einbaugerät mit Kochfeld. Fällt eine Heizart aus, weicht die Temperatur ab oder löst die Sicherung aus, lässt sich das in der Regel gezielt beheben — mit einem Blick auf die Wirtschaftlichkeit.",
+      "Beko Backöfen sind in Wien häufig in Mietwohnungen und Erstausstattungen verbaut, oft im Set mit einem Kochfeld. Fällt eine Heizart aus, weicht die Temperatur ab oder löst die Sicherung aus, lässt sich das in der Regel gezielt beheben. Das Feld daneben bleibt ein eigenes Gerät.",
     modelSeries: [
       "Einbaubacköfen 60 cm als verbreitetste Bauform",
-      "Herd-Sets aus Backofen und Kochfeld, häufig als Paket verbaut",
       "Steam- und AeroPerfect-Programme in gehobenen Baureihen",
-      "Standherde mit Glaskeramik- oder Gusskochfeld"
+      "Herd-Sets: der Ofen darin bleibt ein eigenes Gerät"
     ],
     partsNote:
-      "Heizkörper, Temperaturfühler, Türdichtungen, Scharniere, Lampen, Lüftermotoren und Thermostate sind für aktuelle Baureihen beschaffbar, teils über die Schwestermarken der Arçelik-Gruppe. Bedienmodule und Displays sind im Verhältnis zum Gerätewert teuer und bei älteren Modellen nicht immer lieferbar. Türdichtungen und Scharniere sind dagegen günstige Verschleißteile — genau die Teile, die bei diesen Geräten am häufigsten gebraucht werden.",
+      "Heizkörper, Temperaturfühler, Türdichtungen, Scharniere, Lampen, Lüftermotoren und Thermostate sind für aktuelle Baureihen beschaffbar, teils über die Schwestermarken der Arçelik-Gruppe. Bedienmodule und Displays sind im Verhältnis zum Gerätewert teuer und bei älteren Modellen nicht immer lieferbar. Türdichtungen und Scharniere sind dagegen günstige Verschleißteile.",
     errorCodes: [
       {
         code: "F plus Nummer",
@@ -1329,10 +1427,6 @@ export const brandDeviceContents: BrandDeviceContent[] = [
       {
         code: "Sicherung löst aus",
         meaning: "Kein Displaycode, sondern ein Warnsignal: Masseschluss am Heizkörper oder Problem an der Anschlussdose"
-      },
-      {
-        code: "Bedienfeld reagiert nicht",
-        meaning: "Feuchtigkeit oder Fett im Bedienbereich, klemmende Taste oder defektes Modul"
       }
     ],
     errorCodesReviewed: true,
@@ -1348,9 +1442,41 @@ export const brandDeviceContents: BrandDeviceContent[] = [
           "Löst der FI oder die Sicherung aus, riecht es verschmort oder sind Klemmen erhitzt, bitte das Gerät nicht weiter betreiben und die Sicherung nicht wiederholt zurücksetzen. Ursache ist meist ein Masseschluss am Heizkörper oder ein Problem an der Anschlussdose. Im Wiener Altbau prüfen wir den Anschluss mit — dort hängen Herde häufig noch an alten Dosen und teils an Provisorien aus früheren Umbauten."
       },
       {
-        title: "Wirtschaftlichkeit und Kochfeld",
+        title: "Wirtschaftlichkeit",
         body:
-          "Heizkörper, Fühler, Dichtung, Scharniere und Lampen lohnen sich bei Beko klar. Ein Bedienmodul kann bei einem günstigen Gerät dagegen die Hälfte des Neupreises erreichen — dann rechnen wir offen gegen ein Neugerät. Bei Glaskeramikfeldern sind Kochplatten, Schalter und Anschlussleitungen tauschbar, ein gesprungenes Glas dagegen nicht wirtschaftlich, weil es als komplette Baugruppe kommt."
+          "Heizkörper, Fühler, Dichtung, Scharniere und Lampen lohnen sich bei Beko klar. Ein Bedienmodul kann bei einem günstigen Gerät dagegen die Hälfte des Neupreises erreichen. Dann rechnen wir offen gegen ein Neugerät."
+      }
+    ]
+  },
+  {
+    brandSlug: "beko",
+    deviceSlug: "herd",
+    enriched: true,
+    intro:
+      "Beko Kochfelder stehen in Wien oft als Set zum Einbaubackofen oder als Glaskeramik- bzw. Gussfeld am Standherd. Eine kalte Zone und ein Ofen, der nicht heizt, sind zwei Geräte.",
+    modelSeries: [
+      "Glaskeramik- und Gusskochfelder an Standherden",
+      "Kochfelder in Herd-Sets, getrennt vom Backofen zu betrachten"
+    ],
+    partsNote:
+      "Bei Glaskeramikfeldern sind Kochplatten, Schalter und Anschlussleitungen tauschbar. Ein gesprungenes Glas ist nicht wirtschaftlich, weil es als komplette Baugruppe kommt.",
+    errorCodes: [
+      {
+        code: "Bedienfeld reagiert nicht",
+        meaning: "Feuchtigkeit oder Fett im Bedienbereich, klemmende Taste oder defektes Modul"
+      }
+    ],
+    errorCodesReviewed: true,
+    sections: [
+      {
+        title: "Platte, Schalter und Glas",
+        body:
+          "Kochplatten, Schalter und Anschlussleitungen sind tauschbar. Ein gesprungenes Glaskeramikfeld kommt als komplette Baugruppe und bleibt deshalb unwirtschaftlich."
+      },
+      {
+        title: "Anschluss im Altbau",
+        body:
+          "Im Wiener Altbau hängen Herde häufig noch an alten Dosen und teils an Provisorien aus früheren Umbauten. Löst die Sicherung aus oder sind Klemmen erhitzt, das Feld nicht weiter betreiben und die Sicherung nicht wiederholt zurücksetzen."
       }
     ]
   },
@@ -1589,15 +1715,14 @@ export const brandDeviceContents: BrandDeviceContent[] = [
   },
   {
     brandSlug: "gorenje",
-    deviceSlug: "backofen-herd",
+    deviceSlug: "backofen",
     enriched: true,
     intro:
-      "Gorenje Backöfen und Herde sind in Wien häufig als Einbaugerät in Küchenzeilen verbaut, teils mit passendem Kochfeld als Set. Fällt eine Heizart aus, weicht die Temperatur ab oder löst die Sicherung aus, lässt sich das mit gezielter Messung eingrenzen.",
+      "Gorenje Backöfen sind in Wien häufig als Einbaugerät in Küchenzeilen verbaut, teils im Set mit einem Kochfeld. Fällt eine Heizart aus, weicht die Temperatur ab oder löst die Sicherung aus, lässt sich das mit gezielter Messung eingrenzen. Das Feld daneben ist ein eigenes Gerät.",
     modelSeries: [
       "Einbaubacköfen 60 cm als verbreitetste Bauform",
       "SuperSize und Steam-Baureihen mit größerem Garraum bzw. Dampfunterstützung",
-      "Herd-Sets aus Backofen und Kochfeld",
-      "Standherde mit Glaskeramikkochfeld"
+      "Herd-Sets: der Ofen darin bleibt ein eigenes Gerät"
     ],
     partsNote:
       "Heizkörper, Temperaturfühler, Türdichtungen, Scharniere, Lampen, Lüftermotoren und Thermostate sind für aktuelle Baureihen beschaffbar. Bedienmodule und Displays sind teurer und bei älteren Modellen aus der Zeit vor der Hisense-Übernahme nicht immer lieferbar. Türglas und Scharniere prüfen wir bei jedem Einsatz mit, weil ein ausgeschlagenes Scharnier die Dichtung mechanisch belastet und so einen scheinbaren Heizfehler erzeugt.",
@@ -1635,6 +1760,33 @@ export const brandDeviceContents: BrandDeviceContent[] = [
         title: "Sicherheit und Wirtschaftlichkeit",
         body:
           "Löst der FI aus, riecht es verschmort oder sind Klemmen erhitzt, bitte das Gerät nicht weiter betreiben. Im Wiener Altbau prüfen wir die Anschlussdose mit, weil dort noch alte Klemmstellen und Umbauprovisorien vorkommen. Heizkörper, Fühler, Dichtung, Scharniere und Lampen lohnen sich klar; bei einem teuren Bedienmodul an einem älteren Gerät rechnen wir offen gegen ein Neugerät."
+      }
+    ]
+  },
+  {
+    brandSlug: "gorenje",
+    deviceSlug: "herd",
+    enriched: true,
+    intro:
+      "Gorenje Kochfelder stehen in Wien oft als Set zum Einbaubackofen oder als Glaskeramikfeld am Standherd. Wir behandeln das Feld als eigenes Gerät. Eine kalte Zone und ein Ofen, der nicht heizt, sind zwei Baugruppen.",
+    modelSeries: [
+      "Kochfelder in Herd-Sets, getrennt vom Backofen",
+      "Standherde mit Glaskeramikkochfeld"
+    ],
+    partsNote:
+      "Ob das Feld oder der Ofen betroffen ist, klärt die Modellnummer auf dem jeweiligen Gerät. Ein Set teilt nicht automatisch die Teile.",
+    errorCodes: [],
+    errorCodesReviewed: false,
+    sections: [
+      {
+        title: "Set und Standherd",
+        body:
+          "Herd-Sets und Standherde mit Glaskeramikfeld kommen bei Gorenje zusammen vor. Die Reparatur am Feld läuft über die Nummer auf dem Feld, nicht über die des Ofens in derselben Zeile."
+      },
+      {
+        title: "Anschluss im Altbau",
+        body:
+          "Löst der FI aus oder sind Klemmen erhitzt, das Feld nicht weiter betreiben. Im Wiener Altbau prüfen wir die Anschlussdose mit, weil dort noch alte Klemmstellen und Umbauprovisorien vorkommen."
       }
     ]
   },
@@ -1737,6 +1889,182 @@ export const brandDeviceContents: BrandDeviceContent[] = [
         title: "Vor Ort statt Werkstatt",
         body:
           "Abtauheizung, Fühler, Lüfter, Dichtungen und Thermostate lohnen sich klar. Weil der Transport eines gefüllten Geräts aufwendig ist, erledigen wir Reparaturen möglichst vor Ort und lassen die Ware im Gerät. Bei einem Kältekreisschaden nennen wir den Aufwand offen und vergleichen ihn mit einem Neugerät, statt eine Reparatur zu beginnen, die sich nicht mehr rechnet."
+      }
+    ]
+  },
+  {
+    brandSlug: "bauknecht",
+    deviceSlug: "waschmaschine",
+    enriched: true,
+    intro:
+      "Bauknecht Waschmaschinen stehen in Wien oft als Einbau aus dem Möbelhandel. Ablauf, Türschloss und Heizung sind die häufigsten Befunde. Die Marke teilt Plattformen mit Whirlpool, Ignis und Privileg, deshalb lässt sich oft ein baugleiches Teil verwenden.",
+    modelSeries: ["Waschmaschinen mit 6th Sense bzw. Sensorprogrammen", "Einbaugeräte aus Küchenzeilen des Möbelhandels"],
+    partsNote:
+      "Pumpen, Ventile, Heizungen, Türdichtungen und Schlösser sind in der Regel zügig lieferbar, oft als baugleiches Whirlpool-Teil. Enger wird es bei älteren Elektronikmodulen. Elektronik mit markenspezifischer Software tauschen wir nur gegen das passende Originalteil.",
+    errorCodes: [
+      { code: "F06", meaning: "Türverriegelung meldet die Tür nicht als geschlossen" },
+      { code: "F08", meaning: "Heizkreis gestört — Programm bleibt kalt" },
+      { code: "F11", meaning: "Wasser wird nicht abgepumpt — Laugenpumpe oder Sieb" },
+      { code: "F13", meaning: "Temperaturfühler fehlt oder unplausibel" }
+    ],
+    errorCodesReviewed: true,
+    sections: [
+      {
+        title: "Ablauf, Schloss und Heizung",
+        body:
+          "F11 beschreibt den Ablaufweg, F06 die Türverriegelung, F08 und F13 den Heizkreis. Der Code benennt den Bereich. Welches Teil es ist, klären wir an der Maschine, nicht am Telefon allein."
+      },
+      {
+        title: "Whirlpool-Teilewelt",
+        body:
+          "Wenn ein Bauknecht-Teil nicht mehr unter der Originalnummer läuft, passt oft ein baugleiches Whirlpool-Teil. Das halten wir vor der Bestellung fest. Die Modellnummer vom Typenschild entscheidet."
+      }
+    ]
+  },
+  {
+    brandSlug: "bauknecht",
+    deviceSlug: "geschirrspueler",
+    enriched: true,
+    intro:
+      "Bauknecht Geschirrspüler sind in Wiener Einbauküchen häufig, oft in Nischen, in denen das Gerät selten gewartet wurde. Ablauf, Umwälzpumpe, Heizung und Türdichtung sind die typischen Befunde. Viele Bauteile teilt die Marke mit Whirlpool.",
+    modelSeries: ["Einbaugeschirrspüler aus Küchenzeilen des Möbelhandels"],
+    partsNote:
+      "Pumpen, Ventile, Heizungen und Türdichtungen sind über die Whirlpool-Gruppe meist zügig lieferbar. Sichtteile aus alten Einbauküchen können länger dauern oder unwirtschaftlich sein. Vor der Anfahrt brauchen wir Modell- und Seriennummer.",
+    errorCodes: [
+      { code: "F6", meaning: "Ablaufweg blockiert — Pumpe, Sieb oder Schlauch" },
+      { code: "F8", meaning: "Wasserzulauf gestört — Hahn, Sieb oder Ventil" }
+    ],
+    errorCodesReviewed: true,
+    sections: [
+      {
+        title: "Ablauf und Zulauf",
+        body:
+          "F6 beschreibt den Ablaufweg, F8 den Zulauf. Sieb, Sprüharme und Ablaufpumpe erreichen wir oft von vorne. Für Bodenwanne und Heizung ziehen wir das Gerät aus der Nische."
+      },
+      {
+        title: "Einbau aus dem Möbelhandel",
+        body:
+          "Ein Austausch bedeutet Front, Nische und Sockel. Deshalb bleibt die Reparatur hier oft die bessere Wahl. Wir bauen fachgerecht aus und wieder ein, inklusive Wasser, Abwasser und Strom."
+      }
+    ]
+  },
+  {
+    brandSlug: "bauknecht",
+    deviceSlug: "trockner",
+    enriched: true,
+    intro:
+      "Bauknecht Trockner brauchen länger, wenn Filter und Wärmetauscher zugesetzt sind. Wärmepumpen- und Kondenstrockner kommen beide vor. Eine verstopfte Luftführung ist der erste Befund, nicht gleich ein Elektronikteil.",
+    modelSeries: ["Wärmepumpen- und Kondenstrockner"],
+    partsNote:
+      "Filter, Wärmetauscher und die üblichen Verschleißteile laufen über die Whirlpool-Teilewelt. Für die Vorabklärung brauchen wir die Modellnummer. Ältere Elektronikmodule sind enger.",
+    errorCodes: [],
+    errorCodesReviewed: false,
+    sections: [
+      {
+        title: "Filter und Wärmetauscher",
+        body:
+          "Setzt sich der Luftweg zu, läuft das Programm länger und die Wäsche bleibt feucht, oft ohne einen klaren Code. Wir reinigen Filter und Wärmetauscher, bevor ein Teil bestellt wird."
+      },
+      {
+        title: "Zwei Bauarten",
+        body:
+          "Wärmepumpe und Kondenstrockner sind nicht dasselbe Gerät. Die Modellnummer sagt, welcher Weg verbaut ist. Den Aufwand nennen wir, bevor etwas bestellt wird."
+      }
+    ]
+  },
+  {
+    brandSlug: "bauknecht",
+    deviceSlug: "backofen",
+    enriched: true,
+    intro:
+      "Einen Bauknecht Backofen behandeln wir als eigenes Gerät, auch wenn er mit einem Kochfeld in derselben Küchenzeile steht. Die Modellnummer klärt, welches Teil aus der Whirlpool-Teilewelt passt. Eine kalte Zone am Feld ist damit nicht erklärt.",
+    modelSeries: ["Einbauöfen in Küchenzeilen, getrennt vom Kochfeld zu betrachten"],
+    partsNote:
+      "Heizungen und die üblichen Verschleißteile sind über die Whirlpool-Gruppe oft beschaffbar. Elektronik mit markenspezifischer Software nur als passendes Originalteil. Vor der Anfahrt brauchen wir die Modellnummer am Ofen.",
+    errorCodes: [],
+    errorCodesReviewed: false,
+    sections: [
+      {
+        title: "Heizart und Temperatur",
+        body:
+          "Fällt eine Heizart aus oder stimmt die Temperatur nicht, messen wir Heizkörper und Fühler, bevor ein Modul bestellt wird. Der Code, falls einer steht, benennt den Bereich und nicht schon das Teil."
+      },
+      {
+        title: "Nicht das Kochfeld",
+        body:
+          "Das Feld in derselben Zeile hat eine eigene Modellnummer. Wir öffnen nicht den Ofen, um eine Zone zu klären, und bestellen kein Ofenteil für das Feld."
+      }
+    ]
+  },
+  {
+    brandSlug: "bauknecht",
+    deviceSlug: "herd",
+    enriched: true,
+    intro:
+      "Ein Bauknecht Kochfeld ist ein eigenes Gerät, auch neben einem Backofen aus derselben Küchenzeile. Die Modellnummer steht auf dem Feld. Baugleiche Teile kommen oft aus der Whirlpool-Welt, Elektronik nur als passendes Original.",
+    modelSeries: ["Kochfelder in Einbauküchen, getrennt vom Backofen"],
+    partsNote:
+      "Ob Spule, Schalter oder das Glas betroffen ist, sagt die Modellnummer auf dem Feld. Ein gesprungenes Glas kommt als Baugruppe. Ältere Elektronikmodule sind enger lieferbar.",
+    errorCodes: [],
+    errorCodesReviewed: false,
+    sections: [
+      {
+        title: "Zone und Feld",
+        body:
+          "Eine tote Zone klären wir am Feld. Die Nummer des Ofens daneben sagt nicht, welches Teil im Kochfeld sitzt."
+      },
+      {
+        title: "Anschluss und Glas",
+        body:
+          "Löst die Sicherung aus oder riechen Klemmen verschmort, das Feld nicht weiter betreiben. Ein gesprungenes Glas bleibt unwirtschaftlich, weil es als Baugruppe kommt."
+      }
+    ]
+  },
+  {
+    brandSlug: "bauknecht",
+    deviceSlug: "kuehlschrank",
+    enriched: true,
+    intro:
+      "Bauknecht Kühlgeräte fallen über Abtauung, Dichtung und Lüfter auf, oft als Einbau-Kühl-Gefrier-Kombination. Die Teilelage folgt der Whirlpool-Gruppe. Vor der Anfahrt brauchen wir die Modellnummer.",
+    modelSeries: ["Einbau-Kühl-Gefrier-Kombinationen"],
+    partsNote:
+      "Dichtungen, Lüfter und die üblichen Verschleißteile sind in der Regel zügig lieferbar. Enger wird es bei älteren Elektronikmodulen und bei Sichtteilen aus Einbauküchen.",
+    errorCodes: [],
+    errorCodesReviewed: false,
+    sections: [
+      {
+        title: "Abtauung, Dichtung, Lüfter",
+        body:
+          "Kühlt das Gerät zu schwach oder vereist es, prüfen wir zuerst Abtauung, Türdichtung und Lüfter. Das sind die Befunde, die an diesen Geräten wiederkehren."
+      },
+      {
+        title: "Einbau",
+        body:
+          "Steht die Kombination in einer Nische, bauen wir für die Reparatur fachgerecht aus und wieder ein. Die Front bleibt, wenn das Gerät bleibt."
+      }
+    ]
+  },
+  {
+    brandSlug: "bauknecht",
+    deviceSlug: "tiefkuehlgeraet",
+    enriched: true,
+    intro:
+      "Am Bauknecht Gefrierteil zählt die Temperatur. Abtauung, Dichtung und Lüfter sind dieselben Befunde wie am Kühlgerät, nur mit weniger Zeit, weil die Ware auftaut. Die Tür bleibt zu, bis wir da sind.",
+    modelSeries: ["Gefrierteil in den Einbau-Kühl-Gefrier-Kombinationen"],
+    partsNote:
+      "Dichtungen und Lüfter laufen über die Whirlpool-Teilewelt. Die Modellnummer sagt, welches Teil zum Gefrierteil gehört. Den Aufwand nennen wir, bevor etwas bestellt wird.",
+    errorCodes: [],
+    errorCodesReviewed: false,
+    sections: [
+      {
+        title: "Tür zu lassen",
+        body:
+          "Steigt die Temperatur, die Tür nicht zum Nachsehen öffnen. Temperatur und seit wann der Alarm steht, genügen am Telefon."
+      },
+      {
+        title: "Abtauung und Dichtung",
+        body:
+          "Vereisung und eine müde Dichtung sind die häufigen Ursachen, der Lüfter die nächste. Den Aufwand nennen wir, bevor ein Teil bestellt wird."
       }
     ]
   }

@@ -121,36 +121,67 @@ export const brandDeviceCategories: BrandDeviceCategory[] = [
     ]
   },
   {
-    slug: "backofen-herd",
-    label: "Backofen & Herd",
-    plural: "Backöfen und Herde",
-    category: "Backofen & Herd",
+    slug: "backofen",
+    label: "Backofen",
+    plural: "Backöfen",
+    category: "Backofen",
     serviceSlug: "backofen",
     short:
-      "Reparatur bei Heizdefekten, Elektronik­fehlern, Steuerung und sicherheits­relevanten Symptomen.",
+      "Oberhitze, Unterhitze, Temperaturfühler, Tür und Steuerung. Der Ofen ist ein eigenes Gerät.",
     sections: [
       {
-        title: "Heizleistung und Elektronik",
+        title: "Heizart und Temperatur",
         body:
-          "Wenn Backofen oder Herd nicht mehr richtig heizen, einzelne Funktionen ausfallen oder Bedien­elemente nicht reagieren, sind oft Heizkörper, Temperatur­fühler, Schalter oder Steuerelektronik betroffen. Ohne Messung ist selten klar erkennbar, welches Bauteil das Problem ist."
+          "Wenn eine Heizart ausfällt oder die Temperatur nicht mehr zur Anzeige passt, sind oft Heizkörper, Temperaturfühler oder die Ansteuerung betroffen. Ohne Messung ist selten klar, welches Bauteil das ist."
       },
       {
-        title: "Sicherheitsrelevante Symptome",
+        title: "Tür, Dichtung und Sicherung",
         body:
-          "Geruch, Funken, wiederholt ausgelöste Sicherungen oder sichtbare Schäden sind ein klares Stopp-Signal. In solchen Fällen das Gerät nicht weiter nutzen und telefonisch in Wien oder Umgebung Kontakt aufnehmen."
+          "Geruch, Funken oder eine Sicherung, die auslöst, sind ein Stopp-Signal. Das Gerät nicht weiter betreiben und die Sicherung nicht wiederholt zurücksetzen."
       },
       {
-        title: "Wirtschaftlichkeit prüfen",
+        title: "Getrennt vom Kochfeld",
         body:
-          "Bei älteren Geräten zählen Gerätezustand, Ersatzteilpreis und Sicherheits­anforderungen. Wir erklären transparent, wann eine Reparatur sinnvoll ist und wann ein Austausch die bessere Wahl wäre."
+          "Ein Set aus Backofen und Kochfeld sind zwei Geräte. Eine kalte Zone am Feld reparieren wir nicht über den Ofen, und umgekehrt."
       }
     ],
     checklist: [
-      "Sicherung prüfen",
-      "Betriebsart notieren",
-      "Fehlerbild beschreiben",
-      "Gerät nicht öffnen",
-      "Telefonisch abklären"
+      "Modellnummer vom Typenschild",
+      "Heizart, die ausfällt",
+      "Fehlercode oder Anzeige",
+      "Ob die Sicherung ausgelöst hat"
+    ]
+  },
+  {
+    slug: "herd",
+    label: "Herd",
+    plural: "Kochfelder",
+    category: "Herd",
+    serviceSlug: "herd",
+    short:
+      "Kochzonen, Sensorfeld, Induktion und Glaskeramik. Das Feld ist nicht der Backofen.",
+    sections: [
+      {
+        title: "Zone, Sensor und Elektronik",
+        body:
+          "Eine tote Zone, ein Sensorfeld, das dauernd eine Taste meldet, oder eine Induktionsspule sind Befunde am Kochfeld. Die Leistungselektronik ist der teure Posten, einzelne Spulen und Tasten oft nicht."
+      },
+      {
+        title: "Glas und Anschluss",
+        body:
+          "Ein gesprungenes Glaskeramikfeld kommt als Baugruppe. Löst die Sicherung aus oder riechen Klemmen verschmort, das Feld nicht weiter betreiben."
+      },
+      {
+        title: "Eigenes Gerät neben dem Ofen",
+        body:
+          "Steht das Feld im Set mit einem Backofen, bleiben es zwei Reparaturen. Die Modellnummer steht auf dem Feld, nicht nur am Ofen."
+      }
+    ],
+    checklist: [
+      "Modellnummer auf dem Feld",
+      "Welche Zone ausfällt",
+      "Fehlercode oder Anzeige",
+      "Ob das Feld zu einem Set gehört"
     ]
   },
   {
