@@ -2,13 +2,9 @@ import type { Metadata } from "next";
 import { buildMetadata } from "../../pageMetadata";
 import { FaultCodeSheets } from "../FaultCodeSheets";
 import { KlimaServiceFrame } from "../KlimaServiceFrame";
-import { getKlimaPage } from "../klimaPages";
+import { requireKlimaPage } from "../klimaPages";
 
-const page = getKlimaPage("fehlercodes");
-
-if (!page) {
-  throw new Error("Seite Fehlercodes fehlt in den Klimainhalten.");
-}
+const page = requireKlimaPage("fehlercodes");
 
 function CodeMarks() {
   return (

@@ -1,13 +1,9 @@
 import type { Metadata } from "next";
 import { buildMetadata } from "../../pageMetadata";
 import { KlimaServiceFrame } from "../KlimaServiceFrame";
-import { getKlimaPage } from "../klimaPages";
+import { requireKlimaPage } from "../klimaPages";
 
-const page = getKlimaPage("kaeltemittel-dichtheit");
-
-if (!page) {
-  throw new Error("Kältemittel-Seite fehlt in den Klimainhalten.");
-}
+const page = requireKlimaPage("kaeltemittel-dichtheit");
 
 const signs = [
   { title: "Schleichend", text: "Über Wochen schwächer, obwohl Filter und Wärmetauscher sauber sind." },

@@ -809,6 +809,14 @@ export function getKlimaPage(slug: string) {
   return allKlimaPages.find((page) => page.slug === slug);
 }
 
+export function requireKlimaPage(slug: string): KlimaPage {
+  const page = getKlimaPage(slug);
+  if (!page) {
+    throw new Error(`Klimaseite ${slug} fehlt in den Klimainhalten.`);
+  }
+  return page;
+}
+
 export const klimaDeviceNavLinks = klimaPages.slice(0, 4).map((page) => ({
   label: page.category,
   href: `/klimageraete/${page.slug}`

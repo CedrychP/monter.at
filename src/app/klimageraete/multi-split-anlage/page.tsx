@@ -4,13 +4,9 @@ import { HubFaq } from "../../HubBlocks";
 import { buildMetadata } from "../../pageMetadata";
 import { klimaHref } from "../../serviceHrefs";
 import { localBusinessProviderRef, siteConfig } from "../../siteConfig";
-import { allKlimaPages, getKlimaPage } from "../klimaPages";
+import { allKlimaPages, requireKlimaPage } from "../klimaPages";
 
-const page = getKlimaPage("multi-split-anlage");
-
-if (!page) {
-  throw new Error("Multi-Split-Seite fehlt in den Klimainhalten.");
-}
+const page = requireKlimaPage("multi-split-anlage");
 
 const path = "/klimageraete/multi-split-anlage";
 

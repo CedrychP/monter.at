@@ -1,13 +1,9 @@
 import type { Metadata } from "next";
 import { buildMetadata } from "../../pageMetadata";
 import { KlimaPhoto, KlimaServiceFrame } from "../KlimaServiceFrame";
-import { getKlimaPage } from "../klimaPages";
+import { requireKlimaPage } from "../klimaPages";
 
-const page = getKlimaPage("montage-installation");
-
-if (!page) {
-  throw new Error("Montageseite fehlt in den Klimainhalten.");
-}
+const page = requireKlimaPage("montage-installation");
 
 function WallSection() {
   return (

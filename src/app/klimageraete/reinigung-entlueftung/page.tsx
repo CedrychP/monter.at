@@ -1,13 +1,9 @@
 import type { Metadata } from "next";
 import { buildMetadata } from "../../pageMetadata";
 import { KlimaPhoto, KlimaServiceFrame } from "../KlimaServiceFrame";
-import { getKlimaPage } from "../klimaPages";
+import { requireKlimaPage } from "../klimaPages";
 
-const page = getKlimaPage("reinigung-entlueftung");
-
-if (!page) {
-  throw new Error("Reinigungsseite fehlt in den Klimainhalten.");
-}
+const page = requireKlimaPage("reinigung-entlueftung");
 
 function Layers() {
   return (

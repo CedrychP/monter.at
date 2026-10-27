@@ -4,13 +4,9 @@ import { HubFaq } from "../../HubBlocks";
 import { buildMetadata } from "../../pageMetadata";
 import { klimaHref } from "../../serviceHrefs";
 import { localBusinessProviderRef, siteConfig } from "../../siteConfig";
-import { allKlimaPages, getKlimaPage } from "../klimaPages";
+import { allKlimaPages, requireKlimaPage } from "../klimaPages";
 
-const page = getKlimaPage("monoblock-klimageraet");
-
-if (!page) {
-  throw new Error("Monoblock-Seite fehlt in den Klimainhalten.");
-}
+const page = requireKlimaPage("monoblock-klimageraet");
 
 const path = "/klimageraete/monoblock-klimageraet";
 

@@ -1,13 +1,9 @@
 import type { Metadata } from "next";
 import { buildMetadata } from "../../pageMetadata";
 import { KlimaServiceFrame } from "../KlimaServiceFrame";
-import { getKlimaPage } from "../klimaPages";
+import { requireKlimaPage } from "../klimaPages";
 
-const page = getKlimaPage("steuerung-elektronik");
-
-if (!page) {
-  throw new Error("Steuerungsseite fehlt in den Klimainhalten.");
-}
+const page = requireKlimaPage("steuerung-elektronik");
 
 function RemoteAndLeds() {
   return (

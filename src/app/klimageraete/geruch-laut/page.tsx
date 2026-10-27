@@ -1,13 +1,9 @@
 import type { Metadata } from "next";
 import { buildMetadata } from "../../pageMetadata";
 import { KlimaPhoto, KlimaServiceFrame } from "../KlimaServiceFrame";
-import { getKlimaPage } from "../klimaPages";
+import { requireKlimaPage } from "../klimaPages";
 
-const page = getKlimaPage("geruch-laut");
-
-if (!page) {
-  throw new Error("Seite Geruch und Laut fehlt in den Klimainhalten.");
-}
+const page = requireKlimaPage("geruch-laut");
 
 function TwoPlaces() {
   return (

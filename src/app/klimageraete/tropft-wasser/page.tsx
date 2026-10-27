@@ -1,13 +1,9 @@
 import type { Metadata } from "next";
 import { buildMetadata } from "../../pageMetadata";
 import { KlimaServiceFrame } from "../KlimaServiceFrame";
-import { getKlimaPage } from "../klimaPages";
+import { requireKlimaPage } from "../klimaPages";
 
-const page = getKlimaPage("tropft-wasser");
-
-if (!page) {
-  throw new Error("Seite Tropft Wasser fehlt in den Klimainhalten.");
-}
+const page = requireKlimaPage("tropft-wasser");
 
 function Drip() {
   return (

@@ -1,13 +1,9 @@
 import type { Metadata } from "next";
 import { buildMetadata } from "../../pageMetadata";
 import { KlimaPhoto, KlimaServiceFrame } from "../KlimaServiceFrame";
-import { getKlimaPage } from "../klimaPages";
+import { requireKlimaPage } from "../klimaPages";
 
-const page = getKlimaPage("kuehlt-nicht");
-
-if (!page) {
-  throw new Error("Seite Kühlt nicht fehlt in den Klimainhalten.");
-}
+const page = requireKlimaPage("kuehlt-nicht");
 
 const order = [
   { number: "01", title: "Innengerät", text: "Filter und Verdampfer. Dort sitzt der häufigste Verlust an Luftmenge." },
