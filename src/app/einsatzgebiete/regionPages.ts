@@ -88,7 +88,7 @@ export const regionPages: RegionPage[] = [
   {
     slug: "wien",
     name: "Wien",
-    metaTitle: "Haushaltsgeräte Reparatur Wien | MONTER",
+    metaTitle: "Reparatur in Wien | MONTER",
     description:
       "In allen 23 Bezirken: Haushaltsgeräte, Garagentore und Klima. Anfahrt 96 € inkl. MwSt., Sitz Rappgasse in 1210 Floridsdorf. Termine meist in 1–2 Tagen.",
     h1: "Reparatur in Wien.",
