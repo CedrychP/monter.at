@@ -59,7 +59,7 @@ const householdWork: PriceItem[] = [
   {
     service: "Reparatur & Diagnose, freistehend",
     price: "180 €",
-    note: "Diagnose und Reparatur vor Ort am freistehenden Gerät. Die erste Arbeitseinheit (30 Minuten) ist inklusive."
+    note: "Diagnose und Reparatur vor Ort am freistehenden Gerät. Die erste Arbeitseinheit (15 Minuten) ist inklusive."
   },
   {
     service: "Reparatur & Diagnose, Einbau",
