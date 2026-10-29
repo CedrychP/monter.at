@@ -216,17 +216,19 @@ export function buildSearchIndex(): SearchEntry[] {
   ];
 }
 
-export function filterSearchResults(index: SearchEntry[], query: string, limit = 8): SearchEntry[] {
+export function filterSearchResults(index: SearchEntry[], query: string, limit = 12): SearchEntry[] {
   const normalized = query.trim().toLowerCase();
   if (!normalized) return [];
   const tokens = normalized.split(/\s+/).filter(Boolean);
   return index
     .map((entry) => {
       const haystack = `${entry.title} ${entry.keywords}`.toLowerCase();
+      const title = entry.title.toLowerCase();
       let score = 0;
       tokens.forEach((token) => {
         if (haystack.includes(token)) score += 1;
-        if (entry.title.toLowerCase().includes(token)) score += 2;
+        if (title.includes(token)) score += 2;
+        if (title.startsWith(token)) score += 3;
       });
       return { entry, score };
     })

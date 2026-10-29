@@ -56,6 +56,8 @@ const sanitize = (value: unknown) => {
   return value.trim().slice(0, 2000);
 };
 
+const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
 const resolveRequestType = (value: unknown): RequestType => {
   const normalized = sanitize(value).toLowerCase();
   if (
@@ -123,6 +125,13 @@ export async function POST(request: Request) {
   if (!name || !phone || !email) {
     return NextResponse.json(
       { message: "Bitte Name, Telefonnummer und E-Mail-Adresse ausfüllen." },
+      { status: 400 }
+    );
+  }
+
+  if (!isValidEmail(email)) {
+    return NextResponse.json(
+      { message: "Bitte geben Sie eine gültige E-Mail-Adresse ein." },
       { status: 400 }
     );
   }
