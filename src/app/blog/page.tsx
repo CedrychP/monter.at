@@ -23,8 +23,8 @@ export default function BlogPage() {
               <span className="mt-2 block italic text-[color:var(--accent)]">Dann der Beitrag.</span>
             </h1>
             <p className="mt-6 max-w-xl text-[1.05rem] font-light leading-relaxed text-[color:var(--muted)]">
-              Zehn Ratgeber zu Waschmaschine, Geschirrspüler, Trockner, Kühlschrank, Backofen,
-              Garagentor und Klimagerät. Zum Orientieren in Wien, bevor der Termin steht.
+              Zwölf Ratgeber zu Waschmaschine, Geschirrspüler, Trockner, Kühlschrank, Backofen,
+              Kochfeld, Garagentor und Klimagerät. Zum Orientieren in Wien, bevor der Termin steht.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <a href="#beitraege" className="btn-primary">

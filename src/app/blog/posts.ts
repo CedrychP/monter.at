@@ -54,8 +54,108 @@ const garageImage = "/assets/blog-garagentor-oeffnet-nicht-wien.webp";
 const climateImage = "/assets/blog-klimaanlage-kuehlt-nicht-wien.webp";
 const mieleWasherImage = "/assets/blog-miele-waschmaschine-reparieren-wien.webp";
 const boschWasherImage = "/assets/blog-bosch-waschmaschine-reparieren-wien.webp";
+const cooktopImage = "/assets/blog-kochfeld-heizt-nicht-wien.webp";
+const spinImage = "/assets/blog-waschmaschine-schleudert-nicht-wien.webp";
 
 export const blogPosts: BlogPost[] = [
+  {
+    slug: "waschmaschine-schleudert-nicht",
+    title: "Waschmaschine schleudert nicht: woran es liegt",
+    description:
+      "Die Trommel wäscht, schleudert aber nicht. Oft steht noch Wasser drin. Danach Beladung oder, an alten Motoren, die Bürsten. Preise inkl. MwSt.",
+    category: "Waschmaschine",
+    readingTime: "5 Min.",
+    date: "2026-10-29",
+    dateModified: "2026-10-29",
+    image: spinImage,
+    imageAlt: "Weiße Frontlader-Waschmaschine in einer schmalen Waschküche, Tür geschlossen.",
+    imageCaption: "Beispielbild, kein Einsatzfoto. Ob die Maschine schleudert, sieht man der geschlossenen Tür nicht an.",
+    intro:
+      "Schleudert die Maschine nicht, ist der Motor selten das erste Teil. Wäscht die Trommel noch und bleibt danach nass, sperrt die Steuerung den Schleudergang oft nur, weil noch Wasser im Bottich steht. Erst wenn das Wasser weg ist und die Trommel trotzdem nicht hochdreht, kommt der Antrieb in Frage.",
+    sections: [
+      {
+        title: "Zuerst das Wasser, nicht der Motor",
+        body:
+          "Ziehen Sie den Stecker und stellen Sie eine Wanne unter das Flusensieb, bevor Sie es öffnen. Münzen, Bügel und Haarnadeln sitzen oft im Pumpengehäuse. Knickt der Schlauch oder ist der Siphon dicht, ist die Maschine in Ordnung. Bei Bosch und Siemens heißt E18, dass das Abpumpen zu lange dauert. Die Maschine schleudert dann nicht, weil noch zu viel Wasser im Bottich steht. Das ist derselbe Ablaufweg, kein eigener Motorschaden. F21 an Bosch betrifft den Antrieb. Dieselbe Nummer an einer anderen Marke bedeutet etwas anderes. Fotografieren Sie den Code mit dem Typenschild. Die Rückwand bleibt zu."
+      },
+      {
+        title: "Volle Trommel oder ein einzelnes Stück",
+        body:
+          "Eine schiefe Beladung bricht den Schleudergang genauso ab wie ein Defekt. Ein Bademantel allein in der Trommel oder eine übervolle Maschine reicht. Verteilen Sie die Wäsche und starten Sie nur den Schleudergang. Dreht sie dann hoch, war es die Unwucht. Bricht der Gang trotzdem ab, obwohl die Wäsche gleichmäßig liegt und kein Wasser mehr steht, messen wir weiter. Im Altbau machen schwingende Holzdielen einen unruhigen Lauf früher hörbar. Das allein ist noch kein Lagerschaden."
+      },
+      {
+        title: "Bürsten nur an der alten Bauart",
+        body:
+          "Dreht die Trommel beim Waschen noch, schleudert aber nicht oder schleift laut, sind an einem klassischen Motor oft die Kohlebürsten hin. An älteren Miele-Maschinen und an älteren AEG-Motoren ist das ein planmäßiges Verschleißteil. Den Kollektor prüfen wir mit, bevor wir tauschen. Neuere Miele W1, die Linien WCI, WCD und WSD, haben bürstenlose Antriebe. Dort gibt es dieses Bild nicht. Bosch Serie 6 mit EcoSilence-Drive ebenfalls. Eine Bürstenanleitung an diesen Geräten sucht ein Teil, das nicht verbaut ist. Welche Bauart es ist, steht an der Modellnummer, nicht am Alter allein."
+      },
+      {
+        title: "Reparieren, solange die Rechnung aufgeht",
+        body:
+          "Bürsten, Stoßdämpfer und Federn lohnen sich an einem gepflegten Gerät. Dämpfer und Federn tauschen wir paarweise. Ein einzelnes neues Teil lässt den Lauf sonst wieder unruhig werden. Ein Lagerschaden ist die andere Rechnung: Der Bottich muss demontiert werden, je nach Bauart kommt er komplett. Dann können wir das Teil trotzdem tauschen, raten aber zum Neugerät, wenn der Aufwand am Neupreis liegt. Wer die Reparatur in dem Fall trotzdem durchzieht und den Preis nicht danebenlegt, berät nicht. Die Empfehlung zum Neugerät klingt zuerst, als wollten wir den Auftrag nicht. Das Misstrauen kommt daher. Die Zahlen nennen wir, bevor etwas bestellt wird. Die Anfrage ist noch kein Auftrag."
+      },
+      {
+        title: "Was der Einsatz kostet",
+        body:
+          "Am freistehenden Gerät kostet die Diagnose 144 €. Darin ist die erste Arbeitseinheit von 30 Minuten enthalten. Reparatur und Diagnose zusammen kosten 180 €, mit den ersten 15 Minuten darin. Am Einbaugerät sind es 158 € bzw. 198 €, jeweils mit den ersten 30 Minuten. Jede weitere Einheit beim ersten Besuch kostet 60 €. Muss ein Teil bestellt werden, kostet der zweite Termin 60 € plus das Teil, ohne eine zweite Diagnose. Die Anfahrt beträgt 96 € in Wien und 120 € in Niederösterreich. Alle Beträge inklusive 20 % MwSt."
+      }
+    ],
+    checklist: [
+      "Steht noch Wasser in der Trommel",
+      "Schleudert sie gar nicht oder bricht der Gang ab",
+      "Wäsche neu verteilen und nur Schleudern starten",
+      "Fehlercode und Typenschild fotografieren",
+      "Rückwand nicht öffnen"
+    ]
+  },
+  {
+    slug: "kochfeld-heizt-nicht",
+    title: "Kochfeld heizt nicht: eine Zone bleibt kalt",
+    description:
+      "Eine Kochzone bleibt kalt, die anderen heizen. Das Feld ist nicht der Backofen. Wann die Reparatur sich rechnet, hier mit Preisen inkl. MwSt.",
+    category: "Backofen & Herd",
+    readingTime: "5 Min.",
+    date: "2026-10-29",
+    dateModified: "2026-10-29",
+    image: cooktopImage,
+    imageAlt: "Schwarzes Glaskeramikkochfeld mit vier Zonen in einer Arbeitsplatte.",
+    imageCaption: "Beispielbild eines Felds, kein Einsatzfoto. Welche Zone kalt bleibt, steht nicht im Glas.",
+    intro:
+      "Eine kalte Kochzone heißt nicht, dass das ganze Feld hin ist. Heizen die anderen Zonen, liegt die Ursache meist an dieser einen: Heizkörper, Spule oder deren Ansteuerung. Das Kochfeld ist ein eigenes Gerät, auch wenn der Backofen direkt darunter sitzt.",
+    sections: [
+      {
+        title: "Eine Zone kalt, der Rest arbeitet",
+        body:
+          "Schalten Sie die Zonen nacheinander ein und merken Sie sich, welche kalt bleibt. Das geht von oben, ohne das Feld zu öffnen. Bleibt nur eine Zone aus, messen wir diesen Kreis, bevor ein Modul getauscht wird. Reagiert keine Zone mehr, kommen Bedienung, Sicherung und Anschluss dazu. Erkennt ein Induktionsfeld den Topf nicht, prüfen wir zuerst den Topf. Ein Boden ohne magnetischen Kern ist kein Defekt. Erst danach kommt die Spule. Einzelne Spulen, Sensortasten und der Lüfter sind oft gezielt tauschbar. Die komplette Leistungselektronik ist ein eigener Kostenpunkt. Den Aufwand nennen wir vor der Teilebestellung."
+      },
+      {
+        title: "E011 gilt bei Bosch und Siemens",
+        body:
+          "Fotografieren Sie die Anzeige zusammen mit dem Typenschild auf dem Feld. Das Schild des Ofens daneben nennt eine andere Modellnummer und hilft bei der Spule nicht. Bei Bosch und Siemens beschreibt E011 ein Sensorfeld, das eine Taste als dauernd betätigt sieht. Oft liegen Fett, Feuchtigkeit oder ein Gegenstand auf dem Glas. Wir prüfen das, bevor ein Modul getauscht wird. Dieselbe Zeichenfolge an einer anderen Marke bedeutet etwas anderes. Miele-Felder laufen unter KM, AEG unter MaxiSense und SenseBoil. Dort gibt es diese Zuordnung auf der Seite nicht, also raten wir sie nicht. Die Nummer benennt den Bereich, nicht das Bauteil."
+      },
+      {
+        title: "Die Sicherung bleibt aus",
+        body:
+          "Fällt der FI oder die Sicherung, sobald eine Platte eingeschaltet wird, bleibt das Feld aus. Setzen Sie die Sicherung nicht wiederholt zurück. Ein Masseschluss an einer Zone, verschmorte Klemmen oder Feuchtigkeit im Bedienfeld sind die typischen Ursachen. Im Altbau hängen Herde oft noch an alten Anschlussdosen. Wir prüfen den Anschluss mit, nicht nur das Glas. Riecht es verschmort oder gibt es Funken, schalten Sie das Feld nicht wieder ein."
+      },
+      {
+        title: "In der geplanten Küche reparieren",
+        body:
+          "Ein Miele- oder Gaggenau-Feld in einer Küche mit maßgefertigter Front reparieren wir, solange Spule, Sensortasten oder Lüfter das Teil sind. Der Tausch des ganzen Feldes zieht Nische und Front mit. Genau dort rechnet sich die Reparatur, auch wenn das Teil nicht das billigste ist. Die Anfahrt für Gaggenau beträgt 200 €, statt 96 € in Wien oder 120 € in Niederösterreich. Am Einbaugerät kostet die Diagnose 158 €, Reparatur und Diagnose zusammen 198 €. Die erste Arbeitseinheit von 30 Minuten ist darin enthalten. Jede weitere Einheit beim ersten Besuch kostet 60 €. Alle Beträge inklusive 20 % MwSt. Den Preis des Teils nennen wir vor der Bestellung. Muss das Teil bestellt werden, kostet der zweite Termin 60 € plus das Teil, ohne eine zweite Diagnose."
+      },
+      {
+        title: "Nicht jedes Feld rechnet sich",
+        body:
+          "Ein gesprungenes Glaskeramikfeld bleibt fast immer unwirtschaftlich. Das Glas kommt als komplette Baugruppe. An einem günstigen Einbaukochfeld kann die Leistungselektronik den Neupreis einholen. Dann sagen wir das, bevor etwas bestellt wird. Viele Angebote versprechen, jedes Feld zu reparieren. Die Rechnung geht nur auf, wenn das Teil günstiger bleibt als ein neues Feld samt der Front, die darum herum gebaut ist. Die Anfrage ist noch kein Auftrag."
+      }
+    ],
+    checklist: [
+      "Welche Zone kalt bleibt",
+      "Induktion oder Glaskeramik",
+      "Typenschild auf dem Feld fotografieren",
+      "Sicherung nicht wiederholt einschalten",
+      "Marke notieren, bei Gaggenau eigene Anfahrt"
+    ]
+  },
   {
     slug: "bosch-waschmaschine-reparieren",
     title: "Bosch Waschmaschine reparieren: wann es sich lohnt",
