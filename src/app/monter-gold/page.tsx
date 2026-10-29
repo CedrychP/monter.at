@@ -8,14 +8,14 @@ import { goldExtra, goldPlans, goldShared } from "./goldPlans";
 
 const goldHero = "/assets/hero-monter-gold.webp";
 
-const bill = [
-  ["Anfahrt Haushaltsgerät, Wien", "96 €", "0 €, bis drei Einsätze"],
-  ["Anfahrt Haushaltsgerät, Niederösterreich", "120 €", "0 €, bis drei Einsätze"],
-  ["Diagnose, freistehend", "144 €", "in Gold einmal, in Platinum zweimal inklusive"],
-  ["Reparatur und Diagnose, freistehend", "180 €", "180 €"],
-  ["Zweiter Termin, Arbeit", "60 €", "0 €, nur das Ersatzteil"],
-  ["Weitere Arbeitseinheit", "60 €", "60 € in Silber, 45 € in Gold und Platinum"],
-  ["Garagentor-Anfahrt Wien", "132 €", "132 €"]
+const bill: { label: string; open: string; member: string; win: boolean }[] = [
+  { label: "Anfahrt Haushaltsgerät, Wien", open: "96 €", member: "0 €", win: true },
+  { label: "Anfahrt Haushaltsgerät, Niederösterreich", open: "120 €", member: "0 €", win: true },
+  { label: "Diagnose, freistehend", open: "144 €", member: "Gold 1×, Platinum 2×", win: true },
+  { label: "Reparatur und Diagnose, freistehend", open: "180 €", member: "180 €", win: false },
+  { label: "Zweiter Termin, Arbeit", open: "60 €", member: "0 €", win: true },
+  { label: "Weitere Arbeitseinheit", open: "60 €", member: "45 € ab Gold", win: true },
+  { label: "Garagentor-Anfahrt Wien", open: "132 €", member: "132 €", win: false }
 ];
 
 export const metadata: Metadata = buildMetadata({
@@ -83,119 +83,169 @@ export default function MonterGoldPage() {
         </div>
       </section>
 
-      <section className="bg-[#f7f4ee] py-16 sm:py-20 lg:py-24">
+      <section className="bg-black py-16 text-white sm:py-20 lg:py-24">
         <div className="mx-auto max-w-[88rem] px-5 sm:px-8">
-          <h2 className="font-display max-w-3xl text-balance text-4xl font-light leading-[0.95] tracking-tight sm:text-5xl">
-            Drei Beiträge. Dieselbe Rechnung, verschieden weit.
+          <p className="text-[0.72rem] font-medium uppercase tracking-[0.22em] text-[color:var(--gold-on-dark)]">
+            Drei Tarife
+          </p>
+          <h2 className="font-display mt-4 max-w-4xl text-balance text-4xl font-light leading-[0.95] tracking-tight sm:text-6xl">
+            Dieselbe Akte. Drei Stufen auf der Rechnung.
           </h2>
-          <div className="mt-10 grid items-stretch gap-4 sm:mt-12 lg:grid-cols-3 lg:gap-6">
-            {goldPlans.map((plan, index) => (
-              <article
-                id={plan.id}
-                key={plan.id}
-                className={`gold-rise flex scroll-mt-28 flex-col border px-6 py-7 sm:px-7 ${
-                  plan.id === "gold"
-                    ? "border-[#6e5320] bg-[#f3ead7]"
-                    : "border-[color:var(--border)] bg-white"
-                }`}
-                style={{ animationDelay: `${index * 90}ms` }}
-              >
-                <p className="text-[0.72rem] font-medium uppercase tracking-[0.18em] text-[#6e5320]">
-                  {plan.name}
-                </p>
-                <p className="font-display mt-4 text-5xl font-light tracking-tight">{plan.price} €</p>
-                <p className="mt-2 text-sm font-light text-[color:var(--muted)]">
-                  im Monat, {plan.year} € im Jahr
-                </p>
-                <p className="mt-5 text-[1.02rem] font-medium text-[color:var(--ink)]">{plan.line}</p>
-                <ul className="mt-6 border-t border-[color:var(--border)]">
-                  {plan.points.map((point) => (
-                    <li
-                      key={point}
-                      className="border-b border-[color:var(--border)] py-3 text-sm font-light leading-relaxed text-[color:var(--muted)]"
-                    >
-                      {point}
-                    </li>
-                  ))}
-                </ul>
-                <Link href={`/monter-gold?tarif=${plan.id}#liste`} className="btn-primary mt-6 w-full">
-                  <span>Liste für {plan.name}</span>
-                </Link>
-              </article>
-            ))}
+          <p className="mt-5 max-w-2xl text-base font-light leading-relaxed text-white/75 sm:text-lg">
+            Silber nimmt die Anfahrt weg. Gold legt einen Check ins Jahr. Platinum legt den zweiten
+            dazu. Mindestens 12 Monate, eine Wohnadresse.
+          </p>
+          <div className="mt-12 grid items-stretch gap-4 lg:grid-cols-3 lg:gap-5">
+            {goldPlans.map((plan, index) => {
+              const featured = plan.id === "gold";
+              return (
+                <article
+                  id={plan.id}
+                  key={plan.id}
+                  className={`gold-rise flex scroll-mt-28 flex-col px-6 py-8 sm:px-7 ${
+                    featured
+                      ? "bg-[color:var(--gold-on-dark)] text-[color:var(--ink)]"
+                      : "border border-white/15 bg-[#111111] text-white"
+                  }`}
+                  style={{ animationDelay: `${index * 90}ms` }}
+                >
+                  <p
+                    className={`text-[0.72rem] font-medium uppercase tracking-[0.2em] ${
+                      featured ? "text-[color:var(--ink)]" : "text-[color:var(--gold-on-dark)]"
+                    }`}
+                  >
+                    {plan.name}
+                  </p>
+                  <p className="font-display mt-5 text-6xl font-light leading-none tracking-tight sm:text-7xl">
+                    {plan.price}
+                    <span className="ml-2 align-top text-[0.42em]">€</span>
+                  </p>
+                  <p className={`mt-3 text-sm ${featured ? "text-[color:var(--ink)]/70" : "text-white/60"}`}>
+                    im Monat · {plan.year} € im Jahr
+                  </p>
+                  <p className="mt-6 text-xl font-medium leading-snug sm:text-2xl">{plan.line}</p>
+                  <ul className={`mt-6 flex-1 border-t ${featured ? "border-black/15" : "border-white/15"}`}>
+                    {plan.points.map((point) => (
+                      <li
+                        key={point}
+                        className={`border-b py-3.5 text-[0.95rem] font-normal leading-relaxed ${
+                          featured
+                            ? "border-black/15 text-[color:var(--ink)]"
+                            : "border-white/15 text-white/80"
+                        }`}
+                      >
+                        {point}
+                      </li>
+                    ))}
+                  </ul>
+                  <Link
+                    href={`/monter-gold?tarif=${plan.id}#liste`}
+                    className={`${featured ? "btn-primary" : "btn-on-dark"} mt-6 w-full`}
+                  >
+                    <span>{plan.name} vormerken</span>
+                  </Link>
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      <section className="bg-white py-16 sm:py-20">
+      <section className="bg-[#f4efe4] py-16 sm:py-20 lg:py-24">
         <div className="mx-auto max-w-[88rem] px-5 sm:px-8">
-          <h2 className="font-display max-w-3xl text-balance text-3xl font-light tracking-tight sm:text-4xl">
-            Was auf der Mitgliedsrechnung steht.
-          </h2>
-          <p className="mt-4 max-w-2xl text-sm font-light leading-relaxed text-[color:var(--muted)]">
-            Alle Beträge inklusive 20 % MwSt. Der Check ist eine Diagnose, freistehend oder eingebaut:
-            in Gold einmal im Jahr, in Platinum zweimal. Die Reparaturpauschale bleibt, das Teil auch.
+          <p className="text-[0.72rem] font-medium uppercase tracking-[0.22em] text-[#6e5320]">
+            Die Rechnung
           </p>
-          <div className="mt-8 hidden grid-cols-[1.3fr_0.8fr_1.3fr] gap-6 border-b border-[color:var(--ink)] pb-3 text-[0.72rem] font-medium uppercase tracking-[0.14em] sm:grid">
-            <p>Position</p>
-            <p>Ohne Mitgliedschaft</p>
-            <p>MONTER GOLD</p>
-          </div>
-          <ul className="border-t border-[color:var(--ink)] sm:border-t-0">
+          <h2 className="font-display mt-4 max-w-3xl text-balance text-4xl font-light leading-[0.95] tracking-tight sm:text-6xl">
+            Was Mitglieder anders sehen.
+          </h2>
+          <p className="mt-5 max-w-2xl text-base font-light leading-relaxed text-[color:var(--ink)]/75 sm:text-lg">
+            Alle Beträge inklusive 20 % MwSt. Der Check ist eine Diagnose, freistehend oder eingebaut.
+            Die Reparaturpauschale und das Ersatzteil bleiben.
+          </p>
+          <ul className="mt-10 border-t border-[color:var(--ink)]">
             {bill.map((row) => (
               <li
-                key={row[0]}
-                className="grid gap-1 border-b border-[color:var(--border)] py-4 sm:grid-cols-[1.3fr_0.8fr_1.3fr] sm:items-baseline sm:gap-6"
+                key={row.label}
+                className="grid gap-3 border-b border-[color:var(--ink)]/15 py-6 sm:grid-cols-[1.15fr_0.7fr_0.9fr] sm:items-end sm:gap-8"
               >
-                <p className="font-medium">{row[0]}</p>
-                <p className="text-sm font-light text-[color:var(--muted)]">
-                  <span className="sm:hidden">Ohne Mitgliedschaft: </span>
-                  {row[1]}
+                <p className="text-base font-medium sm:text-lg">{row.label}</p>
+                <p>
+                  <span className="block text-[0.68rem] font-medium uppercase tracking-[0.16em] text-[color:var(--muted)]">
+                    Ohne
+                  </span>
+                  <span
+                    className={`font-display mt-1 block text-3xl font-light tracking-tight sm:text-4xl ${
+                      row.member.startsWith("0")
+                        ? "text-[color:var(--muted)] line-through decoration-[color:var(--ink)]/25"
+                        : "text-[color:var(--ink)]"
+                    }`}
+                  >
+                    {row.open}
+                  </span>
                 </p>
-                <p className="text-sm font-light text-[color:var(--ink)]">
-                  <span className="sm:hidden">MONTER GOLD: </span>
-                  {row[2]}
+                <p>
+                  <span className="block text-[0.68rem] font-medium uppercase tracking-[0.16em] text-[#6e5320]">
+                    Mitglied
+                  </span>
+                  <span
+                    className={`font-display mt-1 block text-3xl font-light tracking-tight sm:text-4xl ${
+                      row.win ? "text-[#6e5320]" : "text-[color:var(--ink)]"
+                    }`}
+                  >
+                    {row.member}
+                  </span>
                 </p>
               </li>
             ))}
           </ul>
+          <p className="mt-6 max-w-2xl text-sm font-light leading-relaxed text-[color:var(--muted)]">
+            Anfahrt 0 € gilt für bis zu drei Einsätze in Wien und Niederösterreich. Der zweite Termin
+            desselben Falls kostet nur das Ersatzteil. 45 € gilt ab Gold für die weitere Arbeitseinheit.
+          </p>
         </div>
       </section>
 
-      <section className="border-t border-[color:var(--border)] bg-[#f7f4ee] py-16 sm:py-20">
-        <div className="mx-auto grid max-w-[88rem] gap-12 px-5 sm:px-8 lg:grid-cols-2 lg:gap-20">
-          <div>
-            <h2 className="font-display text-3xl font-light tracking-tight sm:text-4xl">Für alle drei.</h2>
-            <ul className="mt-6 border-t border-[color:var(--ink)]">
+      <section className="bg-white py-16 sm:py-20 lg:py-24">
+        <div className="mx-auto grid max-w-[88rem] gap-5 px-5 sm:px-8 lg:grid-cols-2">
+          <div className="flex h-full flex-col bg-[color:var(--ink)] px-6 py-8 text-white sm:px-8 sm:py-10">
+            <p className="text-[0.72rem] font-medium uppercase tracking-[0.22em] text-[color:var(--gold-on-dark)]">
+              In jedem Tarif
+            </p>
+            <h2 className="font-display mt-4 text-4xl font-light leading-[0.95] tracking-tight sm:text-5xl">
+              Das steht fest, bevor Sie wählen.
+            </h2>
+            <ul className="mt-8">
               {goldShared.map((item) => (
-                <li
-                  key={item}
-                  className="border-b border-[color:var(--border)] py-4 text-sm font-light leading-relaxed text-[color:var(--muted)]"
-                >
+                <li key={item} className="border-t border-white/15 py-4 text-base font-light leading-relaxed text-white/85">
                   {item}
                 </li>
               ))}
             </ul>
           </div>
-          <div>
-            <h2 className="font-display text-3xl font-light tracking-tight sm:text-4xl">
-              Was extra feststeht.
+          <div className="flex h-full flex-col border border-[color:var(--ink)] px-6 py-8 sm:px-8 sm:py-10">
+            <p className="text-[0.72rem] font-medium uppercase tracking-[0.22em] text-[#6e5320]">
+              Vor dem Termin genannt
+            </p>
+            <h2 className="font-display mt-4 text-4xl font-light leading-[0.95] tracking-tight sm:text-5xl">
+              Das kommt extra auf die Rechnung.
             </h2>
-            <ul className="mt-6 border-t border-[color:var(--ink)]">
+            <ul className="mt-8">
               {goldExtra.map((item) => (
                 <li
                   key={item}
-                  className="border-b border-[color:var(--border)] py-4 text-sm font-light leading-relaxed text-[color:var(--muted)]"
+                  className="border-t border-[color:var(--border)] py-4 text-base font-medium leading-relaxed text-[color:var(--ink)]"
                 >
                   {item}
                 </li>
               ))}
             </ul>
-            <p className="mt-6 text-sm font-light leading-relaxed text-[color:var(--muted)]">
+            <p className="mt-auto pt-6 text-sm font-light leading-relaxed text-[color:var(--muted)]">
               Die öffentliche Liste steht auf{" "}
               <Link href="/preise" className="text-[color:var(--accent)]">
                 <span>Preise</span>
-              </Link>. Haushaltsgeräte,{" "}
+              </Link>
+              . Haushaltsgeräte,{" "}
               <Link href="/garagentore" className="text-[color:var(--accent)]">
                 <span>Garagentor</span>
               </Link>{" "}
@@ -209,17 +259,31 @@ export default function MonterGoldPage() {
         </div>
       </section>
 
-      <section className="bg-[color:var(--ink)] py-16 text-white sm:py-20">
-        <div className="mx-auto grid max-w-[88rem] items-start gap-10 px-5 sm:px-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
+      <section className="relative overflow-hidden bg-black py-16 text-white sm:py-20 lg:py-24">
+        <div className="mx-auto grid max-w-[88rem] items-start gap-12 px-5 sm:px-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
           <div>
-            <h2 className="font-display text-4xl font-light leading-[0.95] tracking-tight sm:text-5xl">
-              Erst die Liste. Dann der Vertrag.
-            </h2>
-            <p className="mt-5 max-w-md text-sm font-light leading-relaxed text-white/75">
-              Die E-Mail merkt den Tarif vor. Es geht kein Beitrag ab, und die 12 Monate beginnen
-              nicht. Beides steht im Vertrag, den Sie schriftlich bestätigen, bevor etwas abgebucht
-              wird.
+            <p className="text-[0.72rem] font-medium uppercase tracking-[0.22em] text-[color:var(--gold-on-dark)]">
+              Die Liste
             </p>
+            <h2 className="font-display mt-4 text-balance text-4xl font-light leading-[0.95] tracking-tight sm:text-6xl">
+              Vormerken. Noch nicht zahlen.
+            </h2>
+            <p className="mt-5 max-w-md text-base font-light leading-relaxed text-white/80 sm:text-lg">
+              Wählen Sie Silber, Gold oder Platinum. Die E-Mail hält den Tarif fest. Abgebucht wird
+              nichts. Die 12 Monate beginnen erst, wenn Sie den Vertrag schriftlich bestätigen.
+            </p>
+            <ul className="mt-8 grid grid-cols-3 gap-px bg-white/15">
+              {goldPlans.map((plan) => (
+                <li key={plan.id} className="bg-black px-3 py-4">
+                  <span className="block text-[0.65rem] font-medium uppercase tracking-[0.14em] text-[color:var(--gold-on-dark)]">
+                    {plan.name}
+                  </span>
+                  <span className="mt-2 block font-display text-2xl font-light tracking-tight sm:text-3xl">
+                    {plan.price} €
+                  </span>
+                </li>
+              ))}
+            </ul>
           </div>
           <Suspense fallback={null}>
             <GoldSignup />

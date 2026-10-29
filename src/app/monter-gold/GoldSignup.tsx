@@ -78,8 +78,8 @@ export default function GoldSignup() {
       <input className="hidden" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" />
       <input type="hidden" name="source" value="monter-gold" />
 
-      <h2 className="font-display text-3xl font-light tracking-tight text-white sm:text-4xl">
-        Tarif wählen.
+      <h2 className="font-display text-3xl font-light tracking-tight text-white sm:text-5xl">
+        Welchen Tarif sollen wir vormerken?
       </h2>
       <p className="mt-3 text-sm font-light leading-relaxed text-white/75">
         Die Liste ist noch kein Vertrag. Die 12 Monate und die erste Lastschrift beginnen erst nach
