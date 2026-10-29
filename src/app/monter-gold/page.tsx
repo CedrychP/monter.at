@@ -1,315 +1,229 @@
-import type { Metadata } from "next";
 import Link from "next/link";
+import { Suspense } from "react";
+import { heroSrcSet, heroVariant } from "../../lib/heroLcp";
 import { buildMetadata, comingSoonRobots } from "../pageMetadata";
+import { siteConfig } from "../siteConfig";
 import GoldSignup from "./GoldSignup";
+import { goldExtra, goldPlans, goldShared } from "./goldPlans";
 
-const firstRound = [
-  {
-    title: "Vor allen späteren Anmeldungen",
-    text: "Die Reihenfolge ist die Liste. Wer sich jetzt einträgt, steht vor denen, die erst zum Start kommen."
-  },
-  {
-    title: "Konditionen, die danach wegfallen",
-    text: "Beitrag und Umfang der ersten Runde werden später nicht mehr zu diesen Bedingungen angeboten."
-  },
-  {
-    title: "Nachricht vor dem offenen Start",
-    text: "Sie erfahren von MONTER GOLD, bevor die Mitgliedschaft allgemein zugänglich ist."
-  }
-];
+const goldHero = "/assets/hero-monter-gold.webp";
 
-const pillars = [
-  {
-    title: "Vorrang",
-    text: "Termine für Haushaltsgeräte, Garagentor und Klimagerät liegen vor der offenen Vergabe."
-  },
-  {
-    title: "Planung",
-    text: "Wartung setzen wir an, bevor etwas ausfällt: Gerät, Tor, Klima vor der Saison."
-  },
-  {
-    title: "Eine Stelle",
-    text: "Derselbe Betrieb kennt den Haushalt, von der Reparatur bis zum nächsten Gerät."
-  }
-];
-
-const areas = [
-  {
-    number: "01",
-    href: "/haushaltsgeraete",
-    label: "Zu den Haushaltsgeräten",
-    title: "Haushaltsgeräte",
-    text: "Waschmaschine, Geschirrspüler, Kühlgerät, Backofen, Trockner, Fernseher. Fällt etwas aus, liegt der Termin vor der offenen Liste. Die Diagnose bleibt dieselbe: reparieren, wenn es sich rechnet, und das vorher sagen."
-  },
-  {
-    number: "02",
-    href: "/garagentore",
-    label: "Zu den Garagentoren",
-    title: "Garagentor",
-    text: "Ein Tor, das klemmt, sperrt das Auto ein. Mitglieder werden vorgezogen. Feder, Lauf und Antrieb sehen wir in einem gesetzten Fenster an, nicht erst am Morgen, an dem nichts mehr geht."
-  },
-  {
-    number: "03",
-    href: "/klimageraete",
-    label: "Zu den Klimageräten",
-    title: "Klimagerät",
-    text: "Vor der Saison ein festes Fenster, nicht der Anruf am ersten heißen Tag. Kühlleistung, Ablauf und Filter in einem Gang, Innen- und Außengerät als ein System."
-  },
-  {
-    number: "04",
-    href: "/geraetekauf",
-    label: "Zum Gerätekauf",
-    title: "Gerätekauf",
-    text: "Der Verkauf ist noch in Vorbereitung. Mitglieder hören zuerst, wenn ein Gerät in die Auswahl kommt. Beraten wird der Haushalt, dessen altes Gerät wir kennen. Kaufpreis, Lieferung und Montage stehen fest, bevor etwas bestellt wird."
-  }
-];
-
-const inContribution = [
-  "Vorrang bei Terminen über Geräte, Tor und Klima",
-  "Wartung, die wir vorschlagen und in den Kalender setzen",
-  "Eine Stelle für den ganzen Haushalt",
-  "Die Nachricht, bevor ein Gerät in den Verkauf kommt"
-];
-
-const namedBefore = [
-  "Ersatzteile",
-  "Arbeit über den gesetzten Termin hinaus",
-  "Kaufpreis, Lieferung und Montage eines neuen Geräts",
-  "Jede Position, die vor dem Weiterarbeiten nicht genannt wurde"
-];
-
-const steps = [
-  {
-    number: "01",
-    title: "Eintragen",
-    text: "Die Liste ist die Anmeldung. Es geht noch kein Beitrag ab."
-  },
-  {
-    number: "02",
-    title: "Schriftlich zum Start",
-    text: "Beitrag, Umfang und Laufzeit stehen fest, bevor die erste Zahlung ansteht. Die erste Runde enger als der spätere offene Kreis."
-  },
-  {
-    number: "03",
-    title: "Danach monatlich",
-    text: "Ein Haushalt, ein Betrag im Monat. Erst nach Ihrer Zustimmung."
-  }
+const bill = [
+  ["Anfahrt Haushaltsgerät, Wien", "96 €", "0 €, bis drei Einsätze"],
+  ["Anfahrt Haushaltsgerät, Niederösterreich", "120 €", "0 €, bis drei Einsätze"],
+  ["Diagnose, freistehend", "144 €", "in Gold einmal, in Platinum zweimal inklusive"],
+  ["Reparatur und Diagnose, freistehend", "180 €", "180 €"],
+  ["Zweiter Termin, Arbeit", "60 €", "0 €, nur das Ersatzteil"],
+  ["Weitere Arbeitseinheit", "60 €", "60 € in Silber, 45 € in Gold und Platinum"],
+  ["Garagentor-Anfahrt Wien", "132 €", "132 €"]
 ];
 
 export const metadata: Metadata = buildMetadata({
-  title: "MONTER GOLD | Mitgliedschaft für den Haushalt",
+  title: "MONTER GOLD | Silber, Gold, Platinum",
   description:
-    "MONTER GOLD ist eine noch geschlossene Mitgliedschaft: ein monatlicher Beitrag für Vorrang und geplante Betreuung bei Haushaltsgeräten, Garagentor, Klimagerät und Gerätekauf. Die erste Liste behält Konditionen, die später entfallen.",
+    "MONTER GOLD für eine Wohnadresse: Silber 19,90 €, Gold 29,90 €, Platinum 39,90 € im Monat, mindestens 12 Monate. Anfahrt 0 €, Geräteakte inklusive.",
   path: "/monter-gold",
-  robots: comingSoonRobots
+  robots: comingSoonRobots,
+  images: [`${siteConfig.siteUrl}/assets/hero-monter-gold-1440.webp`]
 });
-
-function GoldRule({ children, light = false }: { children: string; light?: boolean }) {
-  return (
-    <p
-      className={`relative pt-5 text-[0.72rem] font-medium uppercase tracking-[0.28em] ${
-        light ? "text-[color:var(--gold-on-dark)]" : "text-[#6e5320]"
-      }`}
-    >
-      <span
-        aria-hidden="true"
-        className={`absolute left-0 top-0 h-px w-10 ${light ? "bg-[color:var(--gold-on-dark)]" : "bg-[#6e5320]"}`}
-      />
-      {children}
-    </p>
-  );
-}
 
 export default function MonterGoldPage() {
   return (
-    <main className="bg-white text-[color:var(--ink)]">
-      <section className="relative isolate overflow-hidden bg-[color:var(--ink)] text-white">
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-          <div
-            className="absolute -right-24 -top-28 h-[34rem] w-[34rem] rounded-full blur-[140px]"
-            style={{ backgroundColor: "rgba(227, 192, 113, 0.16)" }}
-          />
-        </div>
+    <main className="overflow-x-clip bg-white text-[color:var(--ink)]">
+      <section className="relative isolate overflow-hidden bg-black text-white">
+        <img
+          src={heroVariant(goldHero, 768)}
+          srcSet={heroSrcSet(goldHero)}
+          sizes="100vw"
+          alt="Dunkle gebogene Flächen mit einem goldenen Lichtstreifen."
+          fetchPriority="high"
+          loading="eager"
+          decoding="async"
+          className="gold-hero-photo absolute inset-0 h-full w-full object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/55" />
+        <div className="absolute inset-0 hidden bg-gradient-to-r from-black/50 via-black/10 to-transparent sm:block" />
 
-        <div className="relative mx-auto max-w-[88rem] px-5 pb-16 pt-8 sm:px-8 sm:pb-24 sm:pt-20 lg:pb-28 lg:pt-24">
-          <div className="grid gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(20rem,0.85fr)] lg:grid-rows-[auto_auto] lg:items-start lg:gap-x-20 lg:gap-y-16">
-            <div className="reveal lg:col-start-1 lg:row-start-1">
-              <div className="flex flex-wrap items-end gap-x-6 gap-y-3">
-                <p className="cap-line-gold tracking-eyebrow text-[color:var(--gold-on-dark)]">MONTER GOLD</p>
-                <p className="text-[0.72rem] font-medium uppercase tracking-[0.2em] text-white/70">
-                  Noch geschlossen
-                </p>
-              </div>
-              <h1 className="font-display mt-4 text-balance text-[2.4rem] font-light leading-[0.95] tracking-tight sm:mt-5 sm:text-6xl lg:text-[5.4rem]">
-                Für die
-                <span className="mt-1 block text-[color:var(--gold-on-dark)]">Ersten.</span>
-              </h1>
-              <p className="mt-5 max-w-xl text-[1.02rem] font-light leading-relaxed text-white/75 sm:mt-8 sm:text-[1.05rem]">
-                Eine Mitgliedschaft für den Haushalt. Ein Beitrag im Monat. Die ersten, die sich
-                eintragen, bekommen beim Start Konditionen, die danach nicht mehr verfügbar sind.
-              </p>
-            </div>
-
-            <div className="reveal lg:col-start-2 lg:row-span-2 lg:row-start-1">
-              <GoldSignup />
-            </div>
-
-            <ul className="reveal border-t border-white/15 lg:col-start-1 lg:row-start-2">
-              {firstRound.map((item) => (
-                <li key={item.title} className="border-b border-white/15 py-5">
-                  <p className="text-[0.95rem] font-medium text-[color:var(--gold-on-dark)]">{item.title}</p>
-                  <p className="mt-1.5 max-w-xl text-sm font-light leading-relaxed text-white/70">{item.text}</p>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-[#14120e] text-white">
-        <div className="mx-auto max-w-[88rem] px-5 py-20 sm:px-8 sm:py-24 lg:py-28">
-          <div className="reveal grid gap-14 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-20">
-            <div>
-              <GoldRule light>Der Beitrag</GoldRule>
-              <h2 className="font-display mt-6 text-balance text-4xl font-light leading-[1.02] tracking-tight sm:text-5xl lg:text-6xl">
-                Ein Haushalt.
-                <span className="mt-1 block text-[color:var(--gold-on-dark)]">Ein Betrag im Monat.</span>
-              </h2>
-            </div>
-            <div className="lg:pt-10">
-              <p className="max-w-xl text-[1.05rem] font-light leading-relaxed text-white/75">
-                MONTER GOLD bündelt, was an einem Haus anfällt: Haushaltsgeräte, Garagentor,
-                Klimagerät und, sobald er offen ist, den Gerätekauf. Der Beitrag hält den Vorrang
-                und die geplante Betreuung. Die Höhe nennen wir schriftlich, bevor die erste
-                Zahlung ansteht — zuerst dieser Liste.
-              </p>
-              <ul className="mt-10 border-t border-white/15">
-                {pillars.map((item) => (
-                  <li key={item.title} className="border-b border-white/15 py-5">
-                    <p className="text-[0.95rem] font-medium text-[color:var(--gold-on-dark)]">{item.title}</p>
-                    <p className="mt-1.5 text-sm font-light leading-relaxed text-white/70">{item.text}</p>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-white py-20 sm:py-24 lg:py-28">
-        <div className="mx-auto max-w-[88rem] px-5 sm:px-8">
-          <div className="reveal max-w-2xl">
-            <GoldRule>Vier Bereiche</GoldRule>
-            <h2 className="font-display mt-6 text-balance text-3xl font-light tracking-tight sm:text-4xl lg:text-5xl">
-              Was die Mitgliedschaft am Haus hält.
-            </h2>
-            <p className="mt-5 max-w-xl text-sm font-light leading-relaxed text-[color:var(--muted)]">
-              Ein Kreis, vier Leistungen. Reparatur, die vorgezogen wird. Wartung, die im Kalender
-              steht. Und der Gerätekauf, sobald wir ihn öffnen, zuerst für diese Mitglieder.
-            </p>
+        <div className="relative mx-auto flex min-h-[36rem] max-w-[88rem] flex-col justify-end px-5 pb-8 pt-16 sm:min-h-[44rem] sm:px-8 sm:pb-12 sm:pt-20 lg:min-h-[52rem] lg:pb-14">
+          <p className="gold-rise cap-line-gold tracking-eyebrow text-[color:var(--gold-on-dark)]">MONTER GOLD</p>
+          <h1 className="gold-rise gold-rise-2 font-display mt-5 max-w-4xl text-balance text-[2.6rem] font-light leading-[0.95] tracking-tight sm:text-6xl lg:text-7xl">
+            Der Haushalt bleibt.
+          </h1>
+          <p className="gold-rise gold-rise-3 mt-5 max-w-xl text-[1.02rem] font-light leading-relaxed text-white/80 sm:text-[1.08rem]">
+            Drei Mitgliedschaften, eine Akte. Die Anfahrt für Haushaltsgeräte in Wien und
+            Niederösterreich steht bei Mitgliedern auf 0 €. Mindestens 12 Monate.
+          </p>
+          <div className="gold-rise gold-rise-3 mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <a href="#liste" className="gold-btn">
+              Tarif wählen
+            </a>
+            <a href={`tel:${siteConfig.phoneHref}`} className="btn-on-dark-ghost">
+              <span data-phone-number>{siteConfig.phoneDisplay}</span>
+            </a>
           </div>
 
-          <div className="mt-14 border-t border-[color:var(--border)]">
-            {areas.map((area) => (
-              <article
-                key={area.number}
-                className="grid gap-6 border-b border-[color:var(--border)] py-10 sm:py-12 lg:grid-cols-[8rem_minmax(0,0.7fr)_minmax(0,1.1fr)] lg:items-start lg:gap-10"
+          <div className="gold-rise gold-rise-4 mt-10 grid border-t border-white/25 sm:grid-cols-3">
+            {goldPlans.map((plan) => (
+              <a
+                key={plan.id}
+                href={`#${plan.id}`}
+                className="border-b border-white/25 py-5 sm:border-b-0 sm:px-5 sm:py-6 sm:first:pl-0"
               >
-                <span className="font-display text-3xl font-light tracking-tight text-[#6e5320]">{area.number}</span>
-                <h3 className="font-display text-3xl font-light tracking-tight sm:text-4xl">{area.title}</h3>
-                <div>
-                  <p className="text-sm font-light leading-relaxed text-[color:var(--muted)]">{area.text}</p>
-                  <Link
-                    href={area.href}
-                    className="mt-5 inline-flex text-[0.72rem] font-medium uppercase tracking-[0.16em] text-[#6e5320]"
-                  >
-                    {area.label}
-                    <span className="ml-1">→</span>
-                  </Link>
-                </div>
+                <span className="gold-rule block h-px w-10 bg-[color:var(--gold-on-dark)]" />
+                <span className="mt-4 block text-[0.72rem] font-medium uppercase tracking-[0.18em] text-[color:var(--gold-on-dark)]">
+                  {plan.name}
+                </span>
+                <span className="mt-2 block font-display text-4xl font-light tracking-tight text-white sm:text-5xl">
+                  {plan.price} €
+                </span>
+                <span className="mt-1 block text-sm font-light text-white/70">im Monat, 12 Monate</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[#f7f4ee] py-16 sm:py-20 lg:py-24">
+        <div className="mx-auto max-w-[88rem] px-5 sm:px-8">
+          <h2 className="font-display max-w-3xl text-balance text-4xl font-light leading-[0.95] tracking-tight sm:text-5xl">
+            Drei Beiträge. Dieselbe Rechnung, verschieden weit.
+          </h2>
+          <div className="mt-10 grid items-stretch gap-4 sm:mt-12 lg:grid-cols-3 lg:gap-6">
+            {goldPlans.map((plan, index) => (
+              <article
+                id={plan.id}
+                key={plan.id}
+                className={`gold-rise flex scroll-mt-28 flex-col border px-6 py-7 sm:px-7 ${
+                  plan.id === "gold"
+                    ? "border-[#6e5320] bg-[#f3ead7]"
+                    : "border-[color:var(--border)] bg-white"
+                }`}
+                style={{ animationDelay: `${index * 90}ms` }}
+              >
+                <p className="text-[0.72rem] font-medium uppercase tracking-[0.18em] text-[#6e5320]">
+                  {plan.name}
+                </p>
+                <p className="font-display mt-4 text-5xl font-light tracking-tight">{plan.price} €</p>
+                <p className="mt-2 text-sm font-light text-[color:var(--muted)]">
+                  im Monat, {plan.year} € im Jahr
+                </p>
+                <p className="mt-5 text-[1.02rem] font-medium text-[color:var(--ink)]">{plan.line}</p>
+                <ul className="mt-6 border-t border-[color:var(--border)]">
+                  {plan.points.map((point) => (
+                    <li
+                      key={point}
+                      className="border-b border-[color:var(--border)] py-3 text-sm font-light leading-relaxed text-[color:var(--muted)]"
+                    >
+                      {point}
+                    </li>
+                  ))}
+                </ul>
+                <Link href={`/monter-gold?tarif=${plan.id}#liste`} className="btn-primary mt-6 w-full">
+                  <span>Liste für {plan.name}</span>
+                </Link>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="border-t border-[color:var(--border)] bg-[color:var(--bg-muted)]">
-        <div className="mx-auto grid max-w-[88rem] lg:grid-cols-2">
-          <div className="bg-[color:var(--ink)] px-5 py-16 text-white sm:px-10 sm:py-20 lg:px-14 lg:py-24">
-            <GoldRule light>Im Beitrag</GoldRule>
-            <h2 className="font-display mt-6 text-3xl font-light tracking-tight sm:text-4xl">
-              Wofür der Monat da ist.
-            </h2>
-            <ul className="mt-10">
-              {inContribution.map((item) => (
-                <li key={item} className="border-t border-white/15 py-4 text-sm font-light leading-relaxed text-white/80">
-                  {item}
-                </li>
-              ))}
-            </ul>
+      <section className="bg-white py-16 sm:py-20">
+        <div className="mx-auto max-w-[88rem] px-5 sm:px-8">
+          <h2 className="font-display max-w-3xl text-balance text-3xl font-light tracking-tight sm:text-4xl">
+            Was auf der Mitgliedsrechnung steht.
+          </h2>
+          <p className="mt-4 max-w-2xl text-sm font-light leading-relaxed text-[color:var(--muted)]">
+            Alle Beträge inklusive 20 % MwSt. Der Check ist eine Diagnose, freistehend oder eingebaut:
+            in Gold einmal im Jahr, in Platinum zweimal. Die Reparaturpauschale bleibt, das Teil auch.
+          </p>
+          <div className="mt-8 hidden grid-cols-[1.3fr_0.8fr_1.3fr] gap-6 border-b border-[color:var(--ink)] pb-3 text-[0.72rem] font-medium uppercase tracking-[0.14em] sm:grid">
+            <p>Position</p>
+            <p>Ohne Mitgliedschaft</p>
+            <p>MONTER GOLD</p>
           </div>
-          <div className="px-5 py-16 sm:px-10 sm:py-20 lg:px-14 lg:py-24">
-            <GoldRule>Vorher genannt</GoldRule>
-            <h2 className="font-display mt-6 text-3xl font-light tracking-tight sm:text-4xl">
-              Was extra feststeht, bevor wir arbeiten.
-            </h2>
-            <ul className="mt-10">
-              {namedBefore.map((item) => (
+          <ul className="border-t border-[color:var(--ink)] sm:border-t-0">
+            {bill.map((row) => (
+              <li
+                key={row[0]}
+                className="grid gap-1 border-b border-[color:var(--border)] py-4 sm:grid-cols-[1.3fr_0.8fr_1.3fr] sm:items-baseline sm:gap-6"
+              >
+                <p className="font-medium">{row[0]}</p>
+                <p className="text-sm font-light text-[color:var(--muted)]">
+                  <span className="sm:hidden">Ohne Mitgliedschaft: </span>
+                  {row[1]}
+                </p>
+                <p className="text-sm font-light text-[color:var(--ink)]">
+                  <span className="sm:hidden">MONTER GOLD: </span>
+                  {row[2]}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section className="border-t border-[color:var(--border)] bg-[#f7f4ee] py-16 sm:py-20">
+        <div className="mx-auto grid max-w-[88rem] gap-12 px-5 sm:px-8 lg:grid-cols-2 lg:gap-20">
+          <div>
+            <h2 className="font-display text-3xl font-light tracking-tight sm:text-4xl">Für alle drei.</h2>
+            <ul className="mt-6 border-t border-[color:var(--ink)]">
+              {goldShared.map((item) => (
                 <li
                   key={item}
-                  className="border-t border-[color:var(--border)] py-4 text-sm font-light leading-relaxed text-[color:var(--muted)]"
+                  className="border-b border-[color:var(--border)] py-4 text-sm font-light leading-relaxed text-[color:var(--muted)]"
                 >
                   {item}
                 </li>
               ))}
             </ul>
           </div>
-        </div>
-      </section>
-
-      <section className="bg-white py-20 sm:py-24 lg:py-28">
-        <div className="mx-auto max-w-[88rem] px-5 sm:px-8">
-          <div className="reveal grid gap-12 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-20">
-            <div>
-              <GoldRule>Der Weg hinein</GoldRule>
-              <h2 className="font-display mt-6 text-balance text-3xl font-light tracking-tight sm:text-4xl lg:text-5xl">
-                Erst die Liste. Dann der Beitrag.
-              </h2>
-              <p className="mt-5 text-sm font-light leading-relaxed text-[color:var(--muted)]">
-                Für Haushalte in Wien und Niederösterreich. Die Mitgliedschaft ist noch geschlossen.
-              </p>
-              <Link href="#liste" className="btn-primary mt-8">
-                Auf die erste Liste
-              </Link>
-            </div>
-            <ol className="border-t border-[color:var(--border)]">
-              {steps.map((step) => (
-                <li key={step.number} className="grid gap-3 border-b border-[color:var(--border)] py-7 sm:grid-cols-[4.5rem_1fr] sm:gap-8">
-                  <span className="numeral text-[#6e5320]">{step.number}</span>
-                  <div>
-                    <h3 className="font-display text-2xl font-normal tracking-tight">{step.title}</h3>
-                    <p className="mt-2 text-sm font-light leading-relaxed text-[color:var(--muted)]">{step.text}</p>
-                  </div>
+          <div>
+            <h2 className="font-display text-3xl font-light tracking-tight sm:text-4xl">
+              Was extra feststeht.
+            </h2>
+            <ul className="mt-6 border-t border-[color:var(--ink)]">
+              {goldExtra.map((item) => (
+                <li
+                  key={item}
+                  className="border-b border-[color:var(--border)] py-4 text-sm font-light leading-relaxed text-[color:var(--muted)]"
+                >
+                  {item}
                 </li>
               ))}
-            </ol>
+            </ul>
+            <p className="mt-6 text-sm font-light leading-relaxed text-[color:var(--muted)]">
+              Die öffentliche Liste steht auf{" "}
+              <Link href="/preise" className="text-[color:var(--accent)]">
+                <span>Preise</span>
+              </Link>. Haushaltsgeräte,{" "}
+              <Link href="/garagentore" className="text-[color:var(--accent)]">
+                <span>Garagentor</span>
+              </Link>{" "}
+              und der{" "}
+              <Link href="/geraetekauf" className="text-[color:var(--accent)]">
+                <span>Gerätekauf</span>
+              </Link>{" "}
+              bleiben eigene Seiten. Der Gerätekauf ist noch nicht offen.
+            </p>
           </div>
         </div>
       </section>
 
-      <section className="border-t border-[color:var(--border)] bg-[color:var(--bg-muted)] py-16 sm:py-20">
-        <div className="mx-auto flex max-w-[88rem] flex-col gap-6 px-5 sm:px-8 lg:flex-row lg:items-end lg:justify-between">
-          <div className="max-w-xl">
-            <h2 className="font-display text-2xl font-light tracking-tight sm:text-3xl">
-              Reparaturen laufen wie bisher.
+      <section className="bg-[color:var(--ink)] py-16 text-white sm:py-20">
+        <div className="mx-auto grid max-w-[88rem] items-start gap-10 px-5 sm:px-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
+          <div>
+            <h2 className="font-display text-4xl font-light leading-[0.95] tracking-tight sm:text-5xl">
+              Erst die Liste. Dann der Vertrag.
             </h2>
-            <p className="mt-3 text-sm font-light leading-relaxed text-[color:var(--muted)]">
-              Bis die Mitgliedschaft offen ist, gelten Termine und die Preisliste unverändert.
+            <p className="mt-5 max-w-md text-sm font-light leading-relaxed text-white/75">
+              Die E-Mail merkt den Tarif vor. Es geht kein Beitrag ab, und die 12 Monate beginnen
+              nicht. Beides steht im Vertrag, den Sie schriftlich bestätigen, bevor etwas abgebucht
+              wird.
             </p>
           </div>
-          <Link href="/reparatur-buchen" className="btn-ghost w-full sm:w-auto">
-            Reparatur buchen
-          </Link>
+          <Suspense fallback={null}>
+            <GoldSignup />
+          </Suspense>
         </div>
       </section>
     </main>

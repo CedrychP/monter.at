@@ -6,6 +6,7 @@ type NewsletterPayload = {
   email?: unknown;
   website?: unknown;
   source?: unknown;
+  tarif?: unknown;
 };
 
 const requiredEnvVars = graphRequiredEnvVars;
@@ -53,6 +54,8 @@ export async function POST(request: Request) {
   const email = sanitize(payload.email);
   const sourceRaw = sanitize(payload.source);
   const source = /^[a-z0-9-]{1,32}$/.test(sourceRaw) ? sourceRaw : "";
+  const tarifRaw = sanitize(payload.tarif);
+  const tarif = /^(silber|gold|platinum)$/.test(tarifRaw) ? tarifRaw : "";
   const fromGold = source === "monter-gold";
 
   if (!email || !isValidEmail(email)) {
@@ -81,6 +84,7 @@ export async function POST(request: Request) {
       : "Neue Newsletter-Anmeldung über die Website:",
     "",
     `E-Mail: ${email}`,
+    ...(tarif ? [`Tarif: ${tarif}`] : []),
     ...(source ? [`Quelle: ${source}`] : [])
   ].join("\n");
 
@@ -94,7 +98,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json({
       message: fromGold
-        ? "Sie stehen auf der ersten Liste. Wir schreiben Ihnen, bevor der Club offen ist."
+        ? "Sie stehen auf der Liste. Es geht noch kein Beitrag ab. Die 12 Monate beginnen erst nach schriftlicher Zustimmung."
         : "Danke — wir halten Sie über Neuigkeiten und Aktionen auf dem Laufenden."
     });
   } catch (error) {
