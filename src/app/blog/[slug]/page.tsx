@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { notFound } from "next/navigation";
 import { buildMetadata } from "../../pageMetadata";
 import { siteConfig } from "../../siteConfig";
+import GrowthArticle from "../GrowthArticle";
+import { getGrowthArticle, listGrowthArticles } from "../growth";
 import { blogPosts, getBlogPost, getRelatedPosts } from "../posts";
 
 type BlogPostPageProps = {
@@ -17,8 +18,9 @@ const phoneHref = siteConfig.phoneHref;
 
 const formatDate = (isoDate: string) => isoDate.split("-").reverse().join(".");
 
-export function generateStaticParams() {
-  return blogPosts.map((post) => ({
+export async function generateStaticParams() {
+  const growth = await listGrowthArticles();
+  return [...blogPosts, ...growth].map((post) => ({
     slug: post.slug
   }));
 }
@@ -28,9 +30,22 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   const post = getBlogPost(slug);
 
   if (!post) {
-    return {
-      title: "Blogartikel nicht gefunden"
-    };
+    const article = await getGrowthArticle(slug);
+    if (!article) {
+      return {
+        title: "Blogartikel nicht gefunden"
+      };
+    }
+
+    return buildMetadata({
+      title: article.title,
+      description: article.meta_description || article.excerpt,
+      path: `/blog/${article.slug}`,
+      type: "article",
+      images: article.hero_image_url ? [article.hero_image_url] : undefined,
+      publishedTime: article.published_at,
+      modifiedTime: article.updated_at
+    });
   }
 
   return buildMetadata({
@@ -49,7 +64,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const post = getBlogPost(slug);
 
   if (!post) {
-    notFound();
+    return <GrowthArticle slug={slug} />;
   }
 
   const relatedPosts = getRelatedPosts(post);

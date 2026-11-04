@@ -7,14 +7,15 @@ import { TrackedPhoneLink } from "../AdPhone";
 import {
   buildSearchIndex,
   filterSearchResults,
-  popularSearches
+  popularSearches,
+  type SearchEntry
 } from "../searchIndex";
 
-export default function SearchPage() {
+export default function SearchPage({ extraEntries = [] }: { extraEntries?: SearchEntry[] }) {
   const searchParams = useSearchParams();
   const searchInputRef = useRef<HTMLInputElement | null>(null);
   const [searchQuery, setSearchQuery] = useState(() => searchParams.get("q") ?? "");
-  const searchIndex = useMemo(() => buildSearchIndex(), []);
+  const searchIndex = useMemo(() => [...buildSearchIndex(), ...extraEntries], [extraEntries]);
   const searchResults = useMemo(
     () => filterSearchResults(searchIndex, searchQuery),
     [searchIndex, searchQuery]

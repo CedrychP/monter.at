@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
+import { listGrowthArticles } from "../blog/growth";
 import SearchPage from "./SearchPage";
 import { buildMetadata } from "../pageMetadata";
 
@@ -14,10 +15,20 @@ export const metadata: Metadata = buildMetadata({
   }
 });
 
-export default function SuchePage() {
+export default async function SuchePage() {
+  const growth = await listGrowthArticles();
+
   return (
     <Suspense>
-      <SearchPage />
+      <SearchPage
+        extraEntries={growth.map((article) => ({
+          title: article.title,
+          description: article.meta_description || article.excerpt,
+          href: `/blog/${article.slug}`,
+          category: "Blog",
+          keywords: `${article.title} ${article.excerpt} ratgeber`
+        }))}
+      />
     </Suspense>
   );
 }

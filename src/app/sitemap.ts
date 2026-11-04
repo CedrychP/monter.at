@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { listGrowthArticles } from "./blog/growth";
 import { blogPosts } from "./blog/posts";
 import { siteConfig } from "./siteConfig";
 import { getSitemapRoutes } from "./sitemapTree";
@@ -62,14 +63,26 @@ function getChangeFrequency(route: string): ChangeFrequency {
   return "monthly";
 }
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Routen kommen aus dem zentralen Seitenbaum (sitemapTree.ts) — dadurch bleiben
   // die visuelle Sitemap (/sitemap) und die XML-Sitemap immer synchron.
-  const routes = getSitemapRoutes().map((route) => (route === "/" ? "" : route));
+  const growthArticles = await listGrowthArticles();
+  const routes = [
+    ...new Set([
+      ...getSitemapRoutes(),
+      ...growthArticles.map((article) => `/blog/${article.slug}`)
+    ])
+  ].map((route) => (route === "/" ? "" : route));
   const buildDate = new Date();
-  const blogLastModified = new Map(
+  const blogLastModified = new Map<string, Date>(
     blogPosts.map((post) => [`/blog/${post.slug}`, new Date(post.dateModified)])
   );
+  for (const article of growthArticles) {
+    const stamp = article.updated_at || article.published_at;
+    if (stamp) {
+      blogLastModified.set(`/blog/${article.slug}`, new Date(stamp));
+    }
+  }
 
   return routes.map((route) => ({
     url: `${siteConfig.siteUrl}${route}`,

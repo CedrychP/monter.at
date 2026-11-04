@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 
 import RepairBookingCta from "../RepairBookingCta";
 import SitemapWeb from "../SitemapWeb";
+import { listGrowthArticles } from "../blog/growth";
 import { sitemapGroups, sitemapHome, type SitemapLink } from "../sitemapTree";
 import { buildMetadata } from "../pageMetadata";
 import { siteConfig } from "../siteConfig";
@@ -81,7 +82,22 @@ function SitemapLinks({ links, muted = false }: { links: SitemapLink[]; muted?: 
   );
 }
 
-export default function SitemapPage() {
+export default async function SitemapPage() {
+  const growth = await listGrowthArticles();
+  const groups = sitemapGroups.map((group) =>
+    group.id === "wissen"
+      ? {
+          ...group,
+          links: [
+            ...group.links,
+            ...growth.map((article) => ({
+              label: article.title,
+              href: `/blog/${article.slug}`
+            }))
+          ]
+        }
+      : group
+  );
   return (
     <main className="min-h-screen bg-white text-[color:var(--ink)]">
       <section className="border-b border-[color:var(--border)] bg-white">
@@ -101,7 +117,7 @@ export default function SitemapPage() {
 
       <section className="bg-[color:var(--ink)] py-16 text-white sm:py-20 lg:py-24">
         <div className="mx-auto max-w-[88rem] px-5 sm:px-8">
-          <SitemapWeb groups={sitemapGroups} home={sitemapHome} />
+          <SitemapWeb groups={groups} home={sitemapHome} />
         </div>
       </section>
 
@@ -123,7 +139,7 @@ export default function SitemapPage() {
           </div>
 
           <div className="mt-12 divide-y divide-[color:var(--border)] border-y border-[color:var(--border)]">
-            {sitemapGroups.map((group) => (
+            {groups.map((group) => (
               <div key={group.id} className="grid gap-6 py-10 lg:grid-cols-[16rem_minmax(0,1fr)] lg:gap-16 lg:py-12">
                 <div>
                   <h3 className="font-display text-2xl font-light tracking-tight sm:text-3xl">

@@ -1,8 +1,24 @@
 import type { Metadata } from "next";
+import type { BlogArticleSummary } from "babylovegrowth-next-js-blog";
 import { buildMetadata } from "../pageMetadata";
 import { siteConfig } from "../siteConfig";
-import BlogDirectory from "./BlogDirectory";
+import BlogDirectory, { type BlogCard } from "./BlogDirectory";
+import { listGrowthArticles } from "./growth";
 import { blogPosts } from "./posts";
+
+const fallbackImage = "/assets/blog-reparatur-oder-neukauf-wien.webp";
+
+function growthCard(article: BlogArticleSummary): BlogCard {
+  return {
+    slug: article.slug,
+    title: article.title,
+    description: article.meta_description || article.excerpt,
+    category: "Ratgeber",
+    image: article.hero_image_url || fallbackImage,
+    readingTime: "",
+    dateModified: (article.published_at || article.created_at || "").slice(0, 10)
+  };
+}
 
 export const metadata: Metadata = buildMetadata({
   title: "Haushaltsgeräte Reparatur Blog Wien | MONTER",
@@ -11,7 +27,16 @@ export const metadata: Metadata = buildMetadata({
   path: "/blog"
 });
 
-export default function BlogPage() {
+export default async function BlogPage() {
+  const growth = await listGrowthArticles();
+  const posts: BlogCard[] = [
+    ...blogPosts,
+    ...growth
+      .slice()
+      .sort((a, b) => (b.published_at || "").localeCompare(a.published_at || ""))
+      .map(growthCard)
+  ];
+
   return (
     <main className="min-h-screen bg-white text-[color:var(--ink)]">
       <section className="border-b border-[color:var(--border)] bg-white">
@@ -23,7 +48,7 @@ export default function BlogPage() {
               <span className="mt-2 block italic text-[color:var(--accent)]">Dann der Beitrag.</span>
             </h1>
             <p className="mt-6 max-w-xl text-[1.05rem] font-light leading-relaxed text-[color:var(--muted)]">
-              Zwölf Ratgeber zu Waschmaschine, Geschirrspüler, Trockner, Kühlschrank, Backofen,
+              Ratgeber zu Waschmaschine, Geschirrspüler, Trockner, Kühlschrank, Backofen,
               Kochfeld, Garagentor und Klimagerät. Zum Orientieren in Wien, bevor der Termin steht.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -42,7 +67,7 @@ export default function BlogPage() {
             <div className="flex items-baseline justify-between gap-4">
               <p className="text-[0.72rem] font-medium uppercase tracking-[0.22em] text-[color:var(--accent)]">Inhalt</p>
               <p className="font-display text-sm font-light text-[color:var(--muted)]">
-                {String(blogPosts.length).padStart(2, "0")}
+                {String(posts.length).padStart(2, "0")}
               </p>
             </div>
             <ol className="mt-6 border-t border-[color:var(--border)]">
@@ -66,7 +91,7 @@ export default function BlogPage() {
         </div>
       </section>
 
-      <BlogDirectory posts={blogPosts} />
+      <BlogDirectory posts={posts} />
     </main>
   );
 }

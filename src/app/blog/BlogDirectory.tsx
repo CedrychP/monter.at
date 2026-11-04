@@ -4,7 +4,16 @@ import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { siteConfig } from "../siteConfig";
-import type { BlogPost } from "./posts";
+
+export type BlogCard = {
+  slug: string;
+  title: string;
+  description: string;
+  category: string;
+  image: string;
+  readingTime: string;
+  dateModified: string;
+};
 
 const pageSize = 10;
 
@@ -12,7 +21,7 @@ const formatDate = (isoDate: string) => isoDate.split("-").reverse().join(".");
 
 const countLabel = (count: number) => (count === 1 ? "1 Beitrag" : `${count} Beiträge`);
 
-export default function BlogDirectory({ posts }: { posts: BlogPost[] }) {
+export default function BlogDirectory({ posts }: { posts: BlogCard[] }) {
   const categories = useMemo(
     () => [...new Set(posts.map((post) => post.category))],
     [posts]
@@ -120,7 +129,7 @@ export default function BlogDirectory({ posts }: { posts: BlogPost[] }) {
                       </p>
                     </span>
                     <span className="hidden text-sm font-light text-[color:var(--muted)] sm:block sm:text-right">
-                      <span className="block">{post.readingTime}</span>
+                      {post.readingTime ? <span className="block">{post.readingTime}</span> : null}
                       <time className="mt-1 block" dateTime={post.dateModified}>
                         {formatDate(post.dateModified)}
                       </time>
