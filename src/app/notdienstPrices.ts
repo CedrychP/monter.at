@@ -43,10 +43,10 @@ export const notdienstJobs: NotdienstPrice[] = [
     note: "Tausch der Ablaufpumpe an der Waschmaschine. Der genaue Betrag steht vor dem Einbau."
   },
   {
-    service: "Türversiegelung wechseln",
+    service: "Türverriegelung wechseln",
     window: "Waschmaschine",
     price: "ab 154,80 €",
-    note: "Tausch der Türversiegelung an der Waschmaschine."
+    note: "Tausch der Türverriegelung an der Waschmaschine."
   },
   {
     service: "Wasserzulauf prüfen",

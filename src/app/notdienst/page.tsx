@@ -28,7 +28,7 @@ const faqs: HubFaqItem[] = [
   {
     question: "Kommen die Arbeitspreise zur Anfahrt dazu?",
     answer:
-      "Ja. Ablaufpumpe, Türversiegelung, Wasserzulauf, Geschirrspüler und Heizsystem sind eigene Posten und beginnen bei den genannten Bruttosätzen. Den genauen Betrag nennen wir vor dem Einbau."
+      "Ja. Ablaufpumpe, Türverriegelung, Wasserzulauf, Geschirrspüler und Heizsystem sind eigene Posten und beginnen bei den genannten Bruttosätzen. Den genauen Betrag nennen wir vor dem Einbau."
   }
 ];
 
@@ -41,7 +41,7 @@ const jobMedia: Record<string, { src: string; alt: string; width: number; height
     width: 1600,
     height: 1200
   },
-  "Türversiegelung wechseln": {
+  "Türverriegelung wechseln": {
     src: "/assets/blog-bosch-waschmaschine-reparieren-wien.webp",
     alt: "Weiße Waschmaschinentür mit Wäsche in der Trommel, daneben ein Regal mit Körben.",
     width: 1600,
