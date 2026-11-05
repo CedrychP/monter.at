@@ -32,7 +32,7 @@ const bookingReassurance = [
 ];
 
 export const metadata: Metadata = buildMetadata({
-  title: "MONTER Reparatur & Service | Wien",
+  title: "Haushaltsgeräte Reparatur in Wien | MONTER Service",
   description:
     "Waschmaschine, Geschirrspüler, Kühlschrank und Garagentor in Wien reparieren. Preise inkl. MwSt. Jetzt anrufen oder Termin anfragen.",
   path: "/",
