@@ -34,7 +34,7 @@ const bookingReassurance = [
 export const metadata: Metadata = buildMetadata({
   title: "Haushaltsgeräte Reparatur in Wien | MONTER Service",
   description:
-    "Waschmaschine, Geschirrspüler, Kühlschrank und Garagentor in Wien reparieren. Preise inkl. MwSt. Jetzt anrufen oder Termin anfragen.",
+    "Waschmaschine, Geschirrspüler, Trockner, Kühlgerät oder Herd in Wien reparieren lassen. Transparente Pauschalen, klare Diagnose – jetzt Termin anfragen.",
   path: "/",
   keywords: [
     "Haushaltsgeräte Reparatur Wien",
