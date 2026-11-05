@@ -7,6 +7,32 @@ import "./blog-content.css";
 
 const formatDate = (isoDate: string) => isoDate.slice(0, 10).split("-").reverse().join(".");
 
+const imagePath = (value: string) => {
+  const decoded = value.replaceAll("&amp;", "&").trim();
+
+  try {
+    return decodeURIComponent(new URL(decoded).pathname);
+  } catch {
+    return decoded.split("?")[0];
+  }
+};
+
+// Der Artikelkopf zeigt das Hero bereits. BabyLoveGrowth setzt dasselbe Bild noch einmal an den Anfang des HTML.
+const withoutDuplicateHero = (html: string, heroUrl: string) => {
+  if (!html || !heroUrl) return html;
+
+  const heroPath = imagePath(heroUrl);
+  const match = html.match(/<p>\s*<img\b([^>]*?)>\s*<\/p>/i);
+
+  if (!match || match.index === undefined) return html;
+
+  const src = match[1].match(/\bsrc=["']([^"']+)["']/i)?.[1] ?? "";
+
+  if (imagePath(src) !== heroPath) return html;
+
+  return `${html.slice(0, match.index)}${html.slice(match.index + match[0].length)}`;
+};
+
 export default async function GrowthArticle({ slug }: { slug: string }) {
   const article = await getGrowthArticle(slug);
 
@@ -82,7 +108,10 @@ export default async function GrowthArticle({ slug }: { slug: string }) {
               <span data-phone-number>{siteConfig.phoneDisplay}</span>
             </a>
           </aside>
-          <div className="blog-content" dangerouslySetInnerHTML={{ __html: article.content_html }} />
+          <div
+            className="blog-content"
+            dangerouslySetInnerHTML={{ __html: withoutDuplicateHero(article.content_html, article.hero_image_url) }}
+          />
         </div>
       </article>
     </main>
