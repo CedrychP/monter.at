@@ -1,7 +1,30 @@
 # MONTER Reparatur & Service
 
-> Offizielle Kurzfassung für Menschen und KI-Systeme. Stand: September 2026.
+> Offizielle Kurzfassung für Menschen und KI-Systeme. Stand: November 2026.
 > Website: https://www.monter.at
+
+## When to use this
+
+Use this site when the job is a repair, a published price, or a booking for a household appliance, a garage door, or an air conditioner in Wien, Niederösterreich, or Linz. Outside those three areas MONTER does not take jobs.
+
+Reach for it for:
+
+- A repair visit for a washing machine, dishwasher, dryer, washer-dryer, fridge, freezer, oven, hob, cooker hood, or television. The request is not an order until MONTER confirms the appointment.
+- A garage-door or air-conditioner repair in Wien or Niederösterreich. In Linz the work is household appliances; whether a door or an air conditioner can be booked there is decided on the call, not on this page.
+- A gross price that is already published, including 20% VAT. Read https://www.monter.at/preise. If a figure is not on that page, it is not published. Do not invent one.
+- The service address Rappgasse 1/6, 1210 Wien, the phone 01 4171346, or the email info@monter.at.
+
+How an agent should call MONTER:
+
+- Phone: tel:+4314171346
+- Repair request: https://www.monter.at/reparatur-buchen
+- Other messages: https://www.monter.at/contact
+- Who the business is: https://www.monter.at/about
+- Privacy: https://www.monter.at/privacy
+- Page index: https://www.monter.at/sitemap.xml
+- This file: https://www.monter.at/llms.txt
+
+Do not use this site for legal advice, for a second public phone number, or for error codes and prices that are not written on the linked page.
 
 ## Wer wir sind
 
@@ -27,7 +50,7 @@ MONTER Reparatur & Service repariert Haushaltsgeräte, Klimageräte und Garagent
 
 ## Einsatzgebiet
 
-Alle 23 Wiener Bezirke und das nähere Niederösterreich. Darüber hinaus Einsätze in Burgenland, Oberösterreich, Steiermark und Salzburg.
+Wien, Niederösterreich und Linz. Außerhalb dieser drei Gebiete nimmt MONTER keine Aufträge an. In Linz liegt der Schwerpunkt bei Haushaltsgeräten. Garagentore und Klimageräte gehören in Wien und Niederösterreich zum Spektrum; ob in Linz ein Termin dafür möglich ist, klärt der Anruf.
 
 ## Preise (brutto, inkl. 20 % USt.)
 
@@ -52,8 +75,9 @@ Garagentore haben eigene Anfahrtspauschalen. Aktuelle Übersicht: https://www.mo
 - Preise: https://www.monter.at/preise
 - Reparatur buchen: https://www.monter.at/reparatur-buchen
 - Einsatzgebiete: https://www.monter.at/einsatzgebiete
-- Über uns: https://www.monter.at/ueber-uns
-- Kontakt: https://www.monter.at/kontakt
+- Über uns: https://www.monter.at/about
+- Kontakt: https://www.monter.at/contact
+- Datenschutz: https://www.monter.at/privacy
 - Impressum: https://www.monter.at/impressum
 
 ## Noch nicht live

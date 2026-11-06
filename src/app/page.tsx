@@ -12,6 +12,7 @@ import { buildMetadata } from "./pageMetadata";
 import { GoogleRatingStat } from "./GoogleRatingLive";
 import { getFallbackGoogleReviews, toGoogleRatingSummary } from "../lib/googleReviews";
 import { heroLcpImage, heroSrcSet, heroVariant } from "../lib/heroLcp";
+import { homeDescription, homeTitle } from "../lib/homeMeta";
 import { localBusinessId, siteConfig } from "./siteConfig";
 
 const businessImage = "/assets/startseite-firmenkunden-wohnraum.webp";
@@ -32,9 +33,8 @@ const bookingReassurance = [
 ];
 
 export const metadata: Metadata = buildMetadata({
-  title: "Haushaltsgeräte Reparatur in Wien | MONTER Service",
-  description:
-    "Waschmaschine, Geschirrspüler, Trockner, Kühlgerät oder Herd in Wien reparieren lassen. Transparente Pauschalen, klare Diagnose – jetzt Termin anfragen.",
+  title: homeTitle,
+  description: homeDescription,
   path: "/",
   keywords: [
     "Haushaltsgeräte Reparatur Wien",

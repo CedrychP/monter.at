@@ -7,6 +7,8 @@ import {
   type AdPhoneSource
 } from "./app/adPhone";
 import { OPPREF_COOKIE } from "./app/openaiAds";
+import { markdownHeaders } from "./lib/contentNegotiation";
+import { negotiateAgentRequest } from "./lib/negotiateAgentRequest";
 
 function persistSource(response: NextResponse, source: AdPhoneSource) {
   response.cookies.set({
@@ -28,6 +30,18 @@ function persistOppref(response: NextResponse, oppref: string) {
   });
 }
 
+function withTracking(
+  response: NextResponse,
+  source: AdPhoneSource | null,
+  oppref: string,
+  shouldSetSource: boolean,
+  shouldSetOppref: boolean
+) {
+  if (shouldSetSource && source) persistSource(response, source);
+  if (shouldSetOppref) persistOppref(response, oppref);
+  return response;
+}
+
 export function proxy(request: NextRequest) {
   const oppref = request.nextUrl.searchParams.get("oppref")?.trim() ?? "";
   const detected = detectAdSource({
@@ -39,14 +53,30 @@ export function proxy(request: NextRequest) {
   const shouldSetSource = Boolean(detected && detected !== existing);
   const shouldSetOppref = Boolean(oppref && oppref !== existingOppref);
 
+  const decision = negotiateAgentRequest({
+    pathname: request.nextUrl.pathname,
+    method: request.method,
+    accept: request.headers.get("accept")
+  });
+
+  if (decision.action === "markdown") {
+    return withTracking(
+      new NextResponse(request.method === "HEAD" ? null : decision.body, {
+        status: decision.status,
+        headers: markdownHeaders(decision.status)
+      }),
+      detected,
+      oppref,
+      shouldSetSource,
+      shouldSetOppref
+    );
+  }
+
   if (!shouldSetSource && !shouldSetOppref) {
     return NextResponse.next();
   }
 
-  const response = NextResponse.next();
-  if (shouldSetSource && detected) persistSource(response, detected);
-  if (shouldSetOppref) persistOppref(response, oppref);
-  return response;
+  return withTracking(NextResponse.next(), detected, oppref, shouldSetSource, shouldSetOppref);
 }
 
 export const config = {

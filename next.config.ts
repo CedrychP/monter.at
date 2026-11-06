@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { trustAnchorRewrites } from "./src/lib/trustAnchors";
 
 const securityHeaders = [
   { key: "X-Content-Type-Options", value: "nosniff" },
@@ -44,6 +45,12 @@ const nextConfig: NextConfig = {
         headers: securityHeaders
       }
     ];
+  },
+  async rewrites() {
+    return trustAnchorRewrites.map((rewrite) => ({
+      source: rewrite.source,
+      destination: rewrite.destination
+    }));
   },
   async redirects() {
     return [

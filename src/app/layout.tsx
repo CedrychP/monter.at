@@ -10,6 +10,7 @@ import MobileActionBar from "./MobileActionBar";
 import SiteFooter from "./SiteFooter";
 import SiteHeader from "./SiteHeader";
 import { localBusinessId, siteConfig } from "./siteConfig";
+import { homeDescription } from "../lib/homeMeta";
 import TelClickTracker from "./TelClickTracker";
 import DeferredTags from "./DeferredTags";
 import OpenAiPageView from "./OpenAiPageView";
@@ -64,6 +65,7 @@ export default async function RootLayout({
     "@type": ["LocalBusiness", "Organization"],
     "@id": localBusinessId,
     name: siteConfig.serviceName,
+    description: homeDescription,
     url: siteConfig.siteUrl,
     email: siteConfig.email,
     telephone: siteConfig.phoneHref,
