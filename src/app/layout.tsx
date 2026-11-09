@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { cookies } from "next/headers";
+import { cookies, headers } from "next/headers";
 import { AdPhoneProvider } from "./AdPhone";
 import { AD_PHONE_COOKIE, parseAdSource } from "./adPhone";
 import CookieBanner from "./CookieBanner";
@@ -9,8 +9,10 @@ import { getLogoSrc } from "./logoAsset";
 import MobileActionBar from "./MobileActionBar";
 import SiteFooter from "./SiteFooter";
 import SiteHeader from "./SiteHeader";
-import { localBusinessId, siteConfig } from "./siteConfig";
+import { EnglishFooter, EnglishHeader, EnglishMobileBar } from "./en/EnglishChrome";
+import { isEnglishPath, PATH_HEADER } from "../lib/englishPages";
 import { homeDescription } from "../lib/homeMeta";
+import { localBusinessId, siteConfig } from "./siteConfig";
 import TelClickTracker from "./TelClickTracker";
 import DeferredTags from "./DeferredTags";
 import OpenAiPageView from "./OpenAiPageView";
@@ -59,6 +61,9 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const cookieStore = await cookies();
+  const headerStore = await headers();
+  const requestPath = headerStore.get(PATH_HEADER) ?? "/";
+  const english = isEnglishPath(requestPath);
   const initialAdSource = parseAdSource(cookieStore.get(AD_PHONE_COOKIE)?.value);
   const organizationJsonLd = {
     "@context": "https://schema.org",
@@ -118,7 +123,7 @@ export default async function RootLayout({
   const logoSrc = getLogoSrc();
 
   return (
-    <html lang="de-AT" data-scroll-behavior="smooth">
+    <html lang={english ? "en" : "de-AT"} data-scroll-behavior="smooth">
       <head>
         <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
         {/* Muss vor GTM und gtag laufen, sonst greifen die Consent-Defaults zu spät. */}
@@ -147,12 +152,12 @@ export default async function RootLayout({
         />
         <AdPhoneProvider initialSource={initialAdSource}>
           <a href="#inhalt" className="skip-link">
-            Zum Inhalt springen
+            {english ? "Skip to content" : "Zum Inhalt springen"}
           </a>
-          <SiteHeader logoSrc={logoSrc} />
+          {english ? <EnglishHeader logoSrc={logoSrc} path={requestPath} /> : <SiteHeader logoSrc={logoSrc} />}
           <div id="inhalt">{children}</div>
-          <SiteFooter logoSrc={logoSrc} />
-          <MobileActionBar />
+          {english ? <EnglishFooter path={requestPath} /> : <SiteFooter logoSrc={logoSrc} />}
+          {english ? <EnglishMobileBar /> : <MobileActionBar />}
           <CookieBanner />
           <TelClickTracker />
           <OpenAiPageView />

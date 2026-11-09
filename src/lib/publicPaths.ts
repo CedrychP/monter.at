@@ -8,6 +8,7 @@ const LEGACY_EXACT = ["/leistungen", "/garagentor-reparatur-wien", "/klimageraet
 const HTML_PREFIXES = [
   "/api/",
   "/blog/",
+  "/en/",
   "/haushaltsgeraete/",
   "/garagentore/",
   "/klimageraete/",

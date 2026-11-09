@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pairedLanguages } from "../lib/englishPages";
 import { siteConfig } from "./siteConfig";
 
 type BuildMetadataInput = {
@@ -15,6 +16,8 @@ type BuildMetadataInput = {
   /** Nur für type "article": ISO-Daten für og:article. */
   publishedTime?: string;
   modifiedTime?: string;
+  /** Open-Graph-Locale. Englische Seiten setzen en_GB. */
+  locale?: "de_AT" | "en_GB";
 };
 
 /**
@@ -31,10 +34,12 @@ export function buildMetadata({
   type = "website",
   keywords,
   publishedTime,
-  modifiedTime
+  modifiedTime,
+  locale = "de_AT"
 }: BuildMetadataInput): Metadata {
   const canonical = path === "/" ? "/" : path.replace(/\/$/, "");
   const url = `${siteConfig.siteUrl}${canonical === "/" ? "" : canonical}`;
+  const languages = pairedLanguages(canonical);
   // Das opengraph-image im App-Root wird nur an die Startseite vererbt, deshalb
   // referenzieren alle anderen Seiten es hier ausdruecklich.
   const previewImages = images ?? [`${siteConfig.siteUrl}/opengraph-image`];
@@ -43,7 +48,7 @@ export function buildMetadata({
     description,
     url,
     siteName: siteConfig.serviceName,
-    locale: "de_AT",
+    locale,
     images: previewImages
   };
 
@@ -52,7 +57,8 @@ export function buildMetadata({
     description,
     ...(keywords ? { keywords } : {}),
     alternates: {
-      canonical
+      canonical,
+      ...(languages ? { languages } : {})
     },
     openGraph:
       type === "article"
@@ -66,6 +72,11 @@ export function buildMetadata({
     },
     ...(robots ? { robots } : {})
   };
+}
+
+/** Dieselben Felder wie buildMetadata, mit englischer Open-Graph-Locale. */
+export function buildEnglishMetadata(input: Omit<BuildMetadataInput, "locale">): Metadata {
+  return buildMetadata({ ...input, locale: "en_GB" });
 }
 
 /** Platzhalterseiten: sichtbar und verlinkt, aber nicht im Index. */

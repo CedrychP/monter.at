@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "node --import ./scripts/register-ts.mjs --test src/lib/contentNegotiation.test.ts src/lib/agentDocuments.test.ts src/lib/negotiateAgentRequest.test.ts src/lib/trustAnchors.test.ts"
+    "test": "node --import ./scripts/register-ts.mjs --test src/lib/contentNegotiation.test.ts src/lib/agentDocuments.test.ts src/lib/negotiateAgentRequest.test.ts src/lib/trustAnchors.test.ts src/lib/englishPages.test.ts"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",

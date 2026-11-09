@@ -3,6 +3,7 @@ import { listGrowthArticles } from "./blog/growth";
 import { blogPosts } from "./blog/posts";
 import { siteConfig } from "./siteConfig";
 import { getSitemapRoutes } from "./sitemapTree";
+import { pairedLanguages } from "../lib/englishPages";
 
 type ChangeFrequency = NonNullable<MetadataRoute.Sitemap[number]["changeFrequency"]>;
 
@@ -47,6 +48,9 @@ function getSitemapPriority(route: string): number {
     return 0.3;
   }
 
+  if (route === "/en") return 0.8;
+  if (route.startsWith("/en/")) return 0.7;
+
   return 0.7;
 }
 
@@ -84,10 +88,27 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
   }
 
-  return routes.map((route) => ({
-    url: `${siteConfig.siteUrl}${route}`,
-    lastModified: blogLastModified.get(route) ?? buildDate,
-    changeFrequency: getChangeFrequency(route),
-    priority: getSitemapPriority(route)
-  }));
+  return routes.map((route) => {
+    const path = route === "" ? "/" : route;
+    const languages = pairedLanguages(path);
+    const absolute = (value: string) => `${siteConfig.siteUrl}${value === "/" ? "" : value}`;
+
+    return {
+      url: `${siteConfig.siteUrl}${route}`,
+      lastModified: blogLastModified.get(route) ?? buildDate,
+      changeFrequency: getChangeFrequency(route),
+      priority: getSitemapPriority(route),
+      ...(languages
+        ? {
+            alternates: {
+              languages: {
+                "de-AT": absolute(languages["de-AT"]),
+                en: absolute(languages.en),
+                "x-default": absolute(languages["x-default"])
+              }
+            }
+          }
+        : {})
+    };
+  });
 }

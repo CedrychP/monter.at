@@ -89,7 +89,8 @@ const brandLinks = [
 const bottomBarLinks = [
   { label: "Impressum", href: "/impressum" },
   { label: "AGB", href: "/agb" },
-  { label: "Datenschutz", href: "/dsgvo" }
+  { label: "Datenschutz", href: "/dsgvo" },
+  { label: "English", href: "/en" }
 ];
 
 const socialLinks = [
@@ -310,6 +311,8 @@ export default function SiteFooter({ logoSrc }: SiteFooterProps) {
                   key={link.href}
                   className="transition hover:text-white"
                   href={link.href}
+                  hrefLang={link.href === "/en" ? "en" : undefined}
+                  lang={link.href === "/en" ? "en" : undefined}
                 >
                   {link.label}
                 </Link>

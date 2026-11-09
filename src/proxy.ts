@@ -8,6 +8,7 @@ import {
 } from "./app/adPhone";
 import { OPPREF_COOKIE } from "./app/openaiAds";
 import { markdownHeaders } from "./lib/contentNegotiation";
+import { PATH_HEADER } from "./lib/englishPages";
 import { negotiateAgentRequest } from "./lib/negotiateAgentRequest";
 
 function persistSource(response: NextResponse, source: AdPhoneSource) {
@@ -28,6 +29,12 @@ function persistOppref(response: NextResponse, oppref: string) {
     maxAge: AD_PHONE_COOKIE_MAX_AGE,
     sameSite: "lax"
   });
+}
+
+function nextHtml(request: NextRequest) {
+  const requestHeaders = new Headers(request.headers);
+  requestHeaders.set(PATH_HEADER, request.nextUrl.pathname);
+  return NextResponse.next({ request: { headers: requestHeaders } });
 }
 
 function withTracking(
@@ -73,10 +80,10 @@ export function proxy(request: NextRequest) {
   }
 
   if (!shouldSetSource && !shouldSetOppref) {
-    return NextResponse.next();
+    return nextHtml(request);
   }
 
-  return withTracking(NextResponse.next(), detected, oppref, shouldSetSource, shouldSetOppref);
+  return withTracking(nextHtml(request), detected, oppref, shouldSetSource, shouldSetOppref);
 }
 
 export const config = {
