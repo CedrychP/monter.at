@@ -66,7 +66,7 @@ Garagentore haben eigene Anfahrtspauschalen. Aktuelle Übersicht: https://www.mo
 
 ## Kern-URLs
 
-- English: https://www.monter.at/en
+- Startseite: https://www.monter.at
 - Haushaltsgeräte: https://www.monter.at/haushaltsgeraete
 - Garagentore: https://www.monter.at/garagentore
 - Klimageräte / Klimaanlage Service: https://www.monter.at/klimageraete

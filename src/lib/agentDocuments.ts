@@ -22,7 +22,6 @@ ${siteConfig.serviceName} repariert Haushaltsgeräte, Klimageräte und Garagento
 - [Kontakt](${absolute("/contact")})
 - [Über uns](${absolute("/about")})
 - [Datenschutz](${absolute("/privacy")})
-- [English](${absolute("/en")}): appliance repair in Vienna, in English.
 - [Sitemap](${absolute("/sitemap.xml")})
 - [llms.txt](${absolute("/llms.txt")})
 `;
@@ -36,6 +35,5 @@ Diese Adresse gibt es auf ${siteConfig.siteUrl} nicht. Der Link ist veraltet ode
 - [llms.txt](${absolute("/llms.txt")})
 - [Sitemap](${absolute("/sitemap.xml")})
 - [Startseite](${absolute("/")})
-- [English](${absolute("/en")})
 `;
 }

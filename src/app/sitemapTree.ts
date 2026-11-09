@@ -1,5 +1,4 @@
 import { blogPosts } from "./blog/posts";
-import { englishIndex } from "../lib/englishPages";
 import { regionPages } from "./einsatzgebiete/regionPages";
 import {
   getDistrictsFor,
@@ -190,13 +189,6 @@ export const sitemapGroups: SitemapGroup[] = [
       { label: "AGB", href: "/agb" },
       { label: "Datenschutz", href: "/dsgvo" }
     ]
-  },
-  {
-    id: "english",
-    label: "English",
-    href: "/en",
-    description: "Appliance repair in Vienna, in English.",
-    links: englishIndex.map((item) => ({ label: item.label, href: item.href }))
   }
 ];
 
