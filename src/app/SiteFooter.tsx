@@ -7,6 +7,7 @@ import FooterBlogPreview from "./FooterBlogPreview";
 import { blogPosts } from "./blog/posts";
 import { additionalRegions, coreRegions } from "./einsatzgebiete/regionPages";
 import { siteConfig } from "./siteConfig";
+import { WhatsAppLink } from "./WhatsAppLink";
 
 const footerBlogPosts = blogPosts.map((post) => ({
   slug: post.slug,
@@ -283,6 +284,9 @@ export default function SiteFooter({ logoSrc }: SiteFooterProps) {
               <div>
                 <p className={footerHeadingClass}>Direkt klären</p>
                 <TrackedPhoneLink className="mt-7 block text-xl font-medium tracking-tight text-white transition hover:text-[color:var(--accent)]" />
+                <WhatsAppLink className="mt-3 block w-fit text-xl font-medium tracking-tight text-white transition hover:text-[color:var(--accent)]">
+                  Live Chat
+                </WhatsAppLink>
                 <p className="mt-3.5 text-sm font-normal leading-relaxed text-white/65">
                   Bei dringenden Ausfällen ist der Anruf der schnellste Weg.
                 </p>

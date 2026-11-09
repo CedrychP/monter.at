@@ -3,6 +3,7 @@ import ContactForm from "../ContactForm";
 import RepairBookingCta from "../RepairBookingCta";
 import { buildMetadata } from "../pageMetadata";
 import { siteConfig } from "../siteConfig";
+import { WhatsAppLink } from "../WhatsAppLink";
 
 const address = `${siteConfig.address.street}, ${siteConfig.address.postalCode} ${siteConfig.address.city}`;
 const mapsQuery = encodeURIComponent(address);
@@ -16,6 +17,14 @@ const channels = [
     href: `tel:${siteConfig.phoneHref}`,
     cta: "Jetzt anrufen",
     phone: true
+  },
+  {
+    eyebrow: "Live Chat",
+    title: "Live Chat",
+    text: "Schreiben Sie uns direkt im Chat.",
+    cta: "Chat öffnen",
+    phone: false,
+    whatsapp: true
   },
   {
     eyebrow: "E-Mail",
@@ -56,7 +65,7 @@ const socials = [
 export const metadata: Metadata = buildMetadata({
   title: "Kontakt & Anliegen | MONTER Reparatur & Service Wien",
   description:
-    "Kontakt zu MONTER Reparatur & Service in Wien: Fragen, Anliegen, Beschwerden oder Feedback telefonisch, per E-Mail an info@monter.at oder über das Kontaktformular.",
+    "Kontakt zu MONTER Reparatur & Service in Wien: Fragen, Anliegen, Beschwerden oder Feedback telefonisch, per Live Chat, per E-Mail an info@monter.at oder über das Kontaktformular.",
   path: "/kontakt"
 });
 
@@ -104,24 +113,36 @@ export default function KontaktPage() {
       </section>
 
       <section className="border-b border-[color:var(--border)] bg-[color:var(--bg-muted)]">
-        <div className="mx-auto grid max-w-[88rem] gap-px bg-[color:var(--border)] px-5 sm:px-8 lg:grid-cols-3">
+        <div className="mx-auto grid max-w-[88rem] gap-px bg-[color:var(--border)] px-5 sm:px-8 sm:grid-cols-2">
           {channels.map((channel) => (
             <article key={channel.eyebrow} className="bg-white p-8 sm:p-10">
               <p className="cap-line tracking-eyebrow text-[color:var(--accent)]">{channel.eyebrow}</p>
-              <a href={channel.href} className="mt-6 block">
-                <span
-                  {...(channel.phone ? { "data-phone-number": true } : {})}
-                  className="font-display block break-words text-3xl font-light leading-tight tracking-tight text-[color:var(--ink)] sm:text-4xl"
-                >
-                  {channel.title}
-                </span>
-              </a>
+              {"whatsapp" in channel && channel.whatsapp ? (
+                <WhatsAppLink className="mt-6 block">
+                  <span className="font-display block break-words text-3xl font-light leading-tight tracking-tight text-[color:var(--ink)] sm:text-4xl">
+                    {channel.title}
+                  </span>
+                </WhatsAppLink>
+              ) : (
+                <a href={channel.href} className="mt-6 block">
+                  <span
+                    {...(channel.phone ? { "data-phone-number": true } : {})}
+                    className="font-display block break-words text-3xl font-light leading-tight tracking-tight text-[color:var(--ink)] sm:text-4xl"
+                  >
+                    {channel.title}
+                  </span>
+                </a>
+              )}
               <p className="mt-4 max-w-sm text-sm font-light leading-relaxed text-[color:var(--muted)]">
                 {channel.text}
               </p>
-              <a href={channel.href} className="link-arrow mt-6">
-                {channel.cta}
-              </a>
+              {"whatsapp" in channel && channel.whatsapp ? (
+                <WhatsAppLink className="link-arrow mt-6">{channel.cta}</WhatsAppLink>
+              ) : (
+                <a href={channel.href} className="link-arrow mt-6">
+                  {channel.cta}
+                </a>
+              )}
             </article>
           ))}
           <article className="bg-white p-8 sm:p-10">

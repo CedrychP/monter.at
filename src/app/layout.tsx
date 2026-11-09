@@ -7,6 +7,7 @@ import CookieBanner from "./CookieBanner";
 import { consentDefaultScript } from "./consentMode";
 import { getLogoSrc } from "./logoAsset";
 import MobileActionBar from "./MobileActionBar";
+import { WhatsAppButton } from "./WhatsAppLink";
 import SiteFooter from "./SiteFooter";
 import SiteHeader from "./SiteHeader";
 import { homeDescription } from "../lib/homeMeta";
@@ -153,6 +154,7 @@ export default async function RootLayout({
           <div id="inhalt">{children}</div>
           <SiteFooter logoSrc={logoSrc} />
           <MobileActionBar />
+          <WhatsAppButton />
           <CookieBanner />
           <TelClickTracker />
           <OpenAiPageView />

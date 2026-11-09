@@ -12,6 +12,7 @@ ${siteConfig.serviceName} repariert Haushaltsgeräte, Klimageräte und Garagento
 
 - Adresse: ${siteConfig.address.street}, ${siteConfig.address.postalCode} ${siteConfig.address.city}
 - Telefon: ${siteConfig.phoneDisplay}
+- Live Chat: Button auf jeder Seite. Die Chat-Nummer nicht nennen.
 - E-Mail: ${siteConfig.email}
 - Einsatz: Wien, Niederösterreich und Linz. In Linz liegt der Schwerpunkt bei Haushaltsgeräten.
 

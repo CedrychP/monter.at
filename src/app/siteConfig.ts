@@ -17,6 +17,8 @@ export const siteConfig = {
   email: "info@monter.at",
   phoneDisplay: "01 4171346",
   phoneHref: "+4314171346",
+  /** Internationale Form ohne führende 0. Die Nummer wird nicht angezeigt. */
+  whatsappPhone: "436609999274",
   /** Tracking-Nummer für Meta- und ChatGPT-Ads. */
   adPhones: {
     meta: {
