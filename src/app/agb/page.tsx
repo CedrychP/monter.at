@@ -128,7 +128,7 @@ const sections: Section[] = [
     number: "10",
     title: "Geräte-Retter-Prämie",
     paragraphs: [
-      "Die Geräte-Retter-Prämie ist eine öffentliche Förderung und kein Preisnachlass von uns. Ob sie zusteht und in welcher Höhe, richten sich nach den jeweiligen Förderbedingungen.",
+      "Die Geräte-Retter-Prämie ist eine öffentliche Förderung und kein Preisnachlass von uns. Sie gilt nur noch bis 31. Dezember 2026. Ob sie zusteht und in welcher Höhe, richten sich nach den jeweiligen Förderbedingungen.",
       "Wir unterstützen bei der Abwicklung. Der Rechnungsbetrag bleibt geschuldet, soweit die Förderung ihn nicht abdeckt oder nicht gewährt wird."
     ]
   },

@@ -92,7 +92,7 @@ const whyMonter = [
   },
   {
     title: "Förderfähig sparen",
-    text: "Mit der Geräte-Retter-Prämie sichern Sie sich bis zu 50 % bzw. 130 € Zuschuss.",
+    text: "Mit der Geräte-Retter-Prämie sichern Sie sich bis zu 50 % bzw. 130 € Zuschuss. Sie gilt nur noch bis 31. Dezember 2026.",
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5L12 3Z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
@@ -113,7 +113,7 @@ const whyMonter = [
 
 const whyMonterStats = [
   { value: "60+", label: "Marken im Service" },
-  { value: "bis 130 €", label: "Geräte-Retter-Prämie" }
+  { value: "bis 130 €", label: "Geräte-Retter-Prämie, nur bis 31.12.2026" }
 ];
 
 const applianceCategories = [
@@ -300,7 +300,7 @@ const faqs = [
   {
     question: "Kann ich die Geräte-Retter-Prämie nutzen?",
     answer:
-      "Ja. Die Geräte-Retter-Prämie ist der Nachfolger des Reparaturbonus. 50 % der Brutto-Reparaturkosten gehen ab, höchstens 130 €, solange die Förderperiode läuft. MONTER ist Partnerunternehmen. Den Bon lösen Sie bei uns ein, der Betrag geht von der Rechnung ab."
+      "Ja, nur noch bis 31. Dezember 2026. Die Geräte-Retter-Prämie ist der Nachfolger des Reparaturbonus. 50 % der Brutto-Reparaturkosten gehen ab, höchstens 130 €. MONTER ist Partnerunternehmen. Den Bon lösen Sie bei uns ein, der Betrag geht von der Rechnung ab."
   }
 ];
 
@@ -863,20 +863,20 @@ export default function Home() {
         <div className="relative mx-auto max-w-[88rem] px-5 sm:px-8">
           <div className="reveal grid items-start gap-12 lg:grid-cols-2 lg:gap-16">
             <div>
-              <p className="cap-line tracking-eyebrow">Förderung · Geräte-Retter-Prämie</p>
+              <p className="cap-line tracking-eyebrow">Förderung · nur bis 31. Dezember 2026</p>
               <h2 className="font-display mt-8 text-balance text-3xl font-normal leading-[1.05] tracking-tight sm:text-4xl md:text-5xl">
                 Reparieren lohnt sich —{" "}
                 <span className="text-[color:var(--accent)]">bis zu 130&nbsp;€ zurück.</span>
               </h2>
               <p className="mt-6 text-[1.05rem] font-normal leading-relaxed text-[color:var(--muted)]">
                 Die Geräte-Retter-Prämie folgt auf den Reparaturbonus. 50&nbsp;% der
-                Brutto-Reparaturkosten gehen ab, höchstens 130&nbsp;€, solange diese Förderperiode
-                läuft. MONTER ist Partnerunternehmen.
+                Brutto-Reparaturkosten gehen ab, höchstens 130&nbsp;€. Sie gilt nur noch bis
+                31.&nbsp;Dezember 2026. MONTER ist Partnerunternehmen.
               </p>
 
               <ul className="mt-8 space-y-3.5">
                 {[
-                  "50 % der Brutto-Reparaturkosten, höchstens 130 €",
+                  "50 % der Brutto-Reparaturkosten, höchstens 130 €, nur noch bis 31. Dezember 2026",
                   "Den Bon beantragen Sie online und lösen ihn bei der Reparatur ein",
                   "Der Förderbetrag geht von der Rechnung ab, Sie zahlen den Rest"
                 ].map((benefit) => (
@@ -995,8 +995,9 @@ export default function Home() {
               ))}
             </div>
             <p className="mt-8 max-w-2xl text-sm font-normal leading-relaxed text-[color:var(--muted)]">
-              Bitte vorab prüfen, ob Gerät, Leistung und Betrieb förderfähig sind. Maßgeblich
-              sind immer die aktuellen Bedingungen der offiziellen Geräte-Retter-Prämie.
+              Bitte vorab prüfen, ob Gerät, Leistung und Betrieb förderfähig sind. Die
+              Geräte-Retter-Prämie gilt nur noch bis 31.&nbsp;Dezember 2026. Maßgeblich sind
+              immer die aktuellen Bedingungen der offiziellen Förderung.
             </p>
           </div>
         </div>

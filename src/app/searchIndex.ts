@@ -24,7 +24,7 @@ export const popularSearches = [
   "Bosch Reparatur",
   "Notdienst",
   "Preise",
-  "Geräte-Retter-Prämie"
+  "Geräte-Retter-Prämie bis 31.12.2026"
 ];
 
 export function buildSearchIndex(): SearchEntry[] {
@@ -170,7 +170,7 @@ export function buildSearchIndex(): SearchEntry[] {
     },
     {
       title: "Geräteretterprämie Österreich",
-      description: "50 % und max. 130 € auf die Reparatur — Ablauf und Einlösen.",
+      description: "50 % und max. 130 € auf die Reparatur, nur noch bis 31. Dezember 2026.",
       href: "/geraete-retter-praemie",
       category: "Förderung",
       keywords: "geräteretterprämie geräteretterprämie österreich geräte-retter-prämie reparaturbonus förderung"

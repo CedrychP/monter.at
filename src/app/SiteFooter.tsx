@@ -24,7 +24,7 @@ const brandQuickLinks = [
   { label: "Unsere Arbeitsweise", href: "/ueber-uns#arbeitsweise" },
   { label: "Preise & Pauschalen", href: "/preise" },
   { label: "Häufige Fragen", href: "/#faq" },
-  { label: "Geräte-Retter-Prämie", href: "/geraete-retter-praemie" },
+  { label: "Geräte-Retter-Prämie bis 31.12.2026", href: "/geraete-retter-praemie" },
   { label: "Karriere", href: "/karriere" },
   { label: "Bewertungen", href: "/#bewertungen" }
 ];

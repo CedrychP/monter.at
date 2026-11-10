@@ -126,7 +126,7 @@ const customerVoiceLinks: NavLink[] = [
 
 const customerNewsLinks: NavLink[] = [
   { label: "Blog & News", href: "/blog" },
-  { label: "Geräte-Retter-Prämie", href: "/geraete-retter-praemie" },
+  { label: "Geräte-Retter-Prämie bis 31.12.2026", href: "/geraete-retter-praemie" },
   { label: "Karriere", href: "/karriere" }
 ];
 

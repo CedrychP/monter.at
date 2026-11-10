@@ -11,7 +11,7 @@ const imageCaption =
   "Geräte-Retter-Prämie: Waschmaschine mit Werkzeug und dem Satz Bring's wieder zum Laufen.";
 
 const pageDescription =
-  "Geräte-Retter-Prämie: 50 % und höchstens 130 € auf die Reparatur, nur in der laufenden Förderperiode. MONTER ist Partnerunternehmen und löst den Bon ein.";
+  "Geräte-Retter-Prämie: 50 % und höchstens 130 € auf die Reparatur, nur noch bis 31. Dezember 2026. MONTER ist Partnerunternehmen und löst den Bon ein.";
 
 const figures = [
   { value: "50 %", label: "der Brutto-Reparaturkosten", note: "für förderfähige Elektro- und Elektronikgeräte" },
@@ -23,7 +23,7 @@ const steps = [
   {
     number: "01",
     title: "Bon holen",
-    text: "Sie beantragen den Bon online. Die Schritte der laufenden Periode nennen wir bei der Anfrage."
+    text: "Sie beantragen den Bon online. Das geht nur noch bis 31. Dezember 2026. Die Schritte nennen wir bei der Anfrage."
   },
   {
     number: "02",
@@ -41,17 +41,17 @@ const faqs: HubFaqItem[] = [
   {
     question: "Was ist die Geräteretterprämie?",
     answer:
-      "Die Geräte-Retter-Prämie — oft Geräteretterprämie geschrieben — ist das Nachfolgemodell des österreichischen Reparaturbonus. Sie fördert die Reparatur von Elektro- und Elektronikgeräten mit 50 % der Brutto-Reparaturkosten, maximal 130 € pro Reparatur."
+      "Die Geräte-Retter-Prämie — oft Geräteretterprämie geschrieben — ist das Nachfolgemodell des österreichischen Reparaturbonus. Sie fördert die Reparatur von Elektro- und Elektronikgeräten mit 50 % der Brutto-Reparaturkosten, maximal 130 € pro Reparatur. Sie gilt nur noch bis 31. Dezember 2026."
   },
   {
     question: "Wie hoch ist die Geräteretterprämie in Österreich?",
     answer:
-      "50 % der Bruttoreparatur, gedeckelt bei 130 €. Beispiel: Kostet die Reparatur 200 €, werden 100 € gefördert. Liegt die Rechnung über 260 €, bleiben 130 € der Höchstbetrag."
+      "50 % der Bruttoreparatur, gedeckelt bei 130 €, nur noch bis 31. Dezember 2026. Beispiel: Kostet die Reparatur 200 €, werden 100 € gefördert. Liegt die Rechnung über 260 €, bleiben 130 € der Höchstbetrag."
   },
   {
     question: "Gilt die Prämie nur für begrenzte Zeit?",
     answer:
-      "Ja. Sie hängt an der laufenden Förderperiode. Ist die Periode zu oder der Rahmen ausgeschöpft, gibt es den Abzug nicht. Den aktuellen Stand nennen wir bei der Anfrage, bevor ein Termin feststeht."
+      "Ja. Sie gilt nur noch bis 31. Dezember 2026. Danach, oder wenn der Rahmen vorher ausgeschöpft ist, gibt es den Abzug nicht. Den aktuellen Stand nennen wir bei der Anfrage, bevor ein Termin feststeht."
   },
   {
     question: "Ist MONTER Partnerunternehmen?",
@@ -61,12 +61,12 @@ const faqs: HubFaqItem[] = [
   {
     question: "Wie läuft der Antrag ab?",
     answer:
-      "Sie beantragen den Bon online und bringen ihn zum Termin mit oder lösen ihn über uns ein. Der Förderbetrag geht von der Rechnung ab. Die genauen Schritte der laufenden Periode nennen wir bei der Anfrage."
+      "Sie beantragen den Bon online und bringen ihn zum Termin mit oder lösen ihn über uns ein. Der Förderbetrag geht von der Rechnung ab. Das funktioniert nur noch bis 31. Dezember 2026. Die genauen Schritte nennen wir bei der Anfrage."
   },
   {
     question: "Für welche Geräte gilt die Prämie?",
     answer:
-      "Für förderfähige Elektro- und Elektronikgeräte von Privatpersonen — typisch Waschmaschine, Geschirrspüler, Kühlschrank, Trockner, Backofen. Ob Ihr Gerät in der aktuellen Periode dabei ist, klären wir vor der Reparatur."
+      "Für förderfähige Elektro- und Elektronikgeräte von Privatpersonen — typisch Waschmaschine, Geschirrspüler, Kühlschrank, Trockner, Backofen. Das gilt nur noch bis 31. Dezember 2026. Ob Ihr Gerät dabei ist, klären wir vor der Reparatur."
   }
 ];
 
@@ -109,7 +109,7 @@ export default function GeraeteRetterPraemiePage() {
       <section className="overflow-hidden bg-[#eef4ec]">
         <div className="mx-auto grid max-w-[88rem] items-center gap-10 px-5 py-14 sm:px-8 sm:py-16 lg:grid-cols-[0.92fr_1.08fr] lg:gap-8 lg:py-20">
           <div className="reveal">
-            <p className="cap-line tracking-eyebrow text-[color:var(--accent)]">Nur diese Förderperiode</p>
+            <p className="cap-line tracking-eyebrow text-[color:var(--accent)]">Nur noch bis 31. Dezember 2026</p>
             <h1 className="font-display mt-6 text-balance text-5xl font-light leading-[0.98] tracking-tight sm:text-6xl lg:text-[4.4rem]">
               Die Hälfte
               <span className="mt-1 block font-display-italic text-[color:var(--accent)]">bleibt bei Ihnen.</span>
@@ -117,8 +117,8 @@ export default function GeraeteRetterPraemiePage() {
             <p className="mt-8 max-w-xl text-[1.05rem] font-light leading-relaxed text-[color:var(--muted)]">
               Die Geräte-Retter-Prämie folgt auf den Reparaturbonus. 50&nbsp;% der
               Brutto-Reparaturkosten gehen ab, höchstens 130&nbsp;€. MONTER ist
-              Partnerunternehmen. Den Bon lösen Sie bei der Reparatur ein — solange diese
-              Periode läuft.
+              Partnerunternehmen. Den Bon lösen Sie bei der Reparatur ein. Das funktioniert
+              nur noch bis 31.&nbsp;Dezember 2026.
             </p>
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
               <a href="#ablauf" className="btn-primary">
@@ -183,7 +183,7 @@ export default function GeraeteRetterPraemiePage() {
               Vom Bon zur Rechnung.
             </h2>
             <p className="mt-5 text-[1.02rem] font-light leading-relaxed text-[color:var(--muted)]">
-              Die Prämie gilt nur für die laufende Förderperiode. Ist sie zu oder der Rahmen
+              Die Prämie gilt nur noch bis 31.&nbsp;Dezember 2026. Ist der Rahmen vorher
               ausgeschöpft, entfällt der Abzug. Ob Ihr Gerät jetzt dabei ist, sagen wir vor dem
               Termin.
             </p>
@@ -206,11 +206,11 @@ export default function GeraeteRetterPraemiePage() {
         <div className="mx-auto max-w-[88rem] px-5 py-14 sm:px-8 sm:py-16">
           <p className="cap-line tracking-eyebrow text-[color:var(--accent)]">Reparaturtermin</p>
           <h2 className="font-display mt-5 max-w-2xl text-balance text-4xl font-light leading-tight tracking-tight sm:text-5xl">
-            Passt die Periode, folgt der Termin.
+            Bis 31. Dezember 2026, dann der Termin.
           </h2>
           <p className="mt-5 max-w-xl text-[1.02rem] font-light leading-relaxed text-[color:var(--muted)]">
-            Gerät und Fehlerbild reichen. Wir sagen, ob die Prämie jetzt greift, und stimmen den
-            Besuch ab. Noch kein Auftrag.
+            Gerät und Fehlerbild reichen. Wir sagen, ob die Prämie bis 31.&nbsp;Dezember 2026
+            noch greift, und stimmen den Besuch ab. Noch kein Auftrag.
           </p>
         </div>
       </section>

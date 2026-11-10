@@ -259,8 +259,8 @@ export default function ReparaturBuchenPage() {
             <p className="mt-8 border-l-2 border-[color:var(--accent)] pl-4 text-sm font-light leading-relaxed text-[color:var(--muted)]">
               Noch kein Auftrag. Für förderfähige Geräte zieht die{" "}
               <Link href="/geraete-retter-praemie" className="border-b border-current"><span className="text-[color:var(--ink)]">Geräte-Retter-Prämie</span></Link>{" "}
-              50&nbsp;% ab, höchstens 130&nbsp;€. MONTER ist Partnerunternehmen, solange diese
-              Förderperiode läuft.
+              50&nbsp;% ab, höchstens 130&nbsp;€. Das funktioniert nur noch bis 31.&nbsp;Dezember 2026.
+              MONTER ist Partnerunternehmen.
             </p>
           </div>
           <div className="border border-[color:var(--border)] bg-white p-6 sm:p-10">

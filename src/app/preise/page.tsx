@@ -370,16 +370,16 @@ export default function PreisePage() {
             className="h-auto w-full"
           />
           <div>
-            <p className="cap-line tracking-eyebrow text-[color:var(--accent)]">Geräte-Retter-Prämie</p>
+            <p className="cap-line tracking-eyebrow text-[color:var(--accent)]">Geräte-Retter-Prämie bis 31.12.2026</p>
             <h2 className="font-display mt-5 text-balance text-3xl font-light leading-tight tracking-tight sm:text-4xl">
               50&nbsp;% auf die Reparatur, höchstens 130&nbsp;€.
             </h2>
             <p className="mt-5 max-w-xl text-[1.02rem] font-light leading-relaxed text-[color:var(--muted)]">
-              Die Geräte-Retter-Prämie ist der Nachfolger des Reparaturbonus. Für förderfähige
-              Elektro- und Elektronikgeräte von Privatpersonen werden 50&nbsp;% der
-              Brutto-Reparaturkosten gefördert, gedeckelt bei 130&nbsp;€. Den Bon beantragen Sie
-              online und lösen ihn bei einem teilnehmenden Betrieb ein. Ob Ihr Gerät in der
-              aktuellen Periode dabei ist, klären wir vor der Reparatur.
+              Die Geräte-Retter-Prämie ist der Nachfolger des Reparaturbonus und gilt nur noch
+              bis 31.&nbsp;Dezember 2026. Für förderfähige Elektro- und Elektronikgeräte von
+              Privatpersonen werden 50&nbsp;% der Brutto-Reparaturkosten gefördert, gedeckelt bei
+              130&nbsp;€. Den Bon beantragen Sie online und lösen ihn bei einem teilnehmenden
+              Betrieb ein. Ob Ihr Gerät noch dabei ist, klären wir vor der Reparatur.
             </p>
             <Link href="/geraete-retter-praemie" className="link-arrow mt-6">
               Mehr zur Prämie

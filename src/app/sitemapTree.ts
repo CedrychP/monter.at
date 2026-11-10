@@ -152,7 +152,7 @@ export const sitemapGroups: SitemapGroup[] = [
     links: [
       { label: "Kaufberatung", href: "/kaufberatung" },
       { label: "Altgeräteentsorgung", href: "/altgeraeteentsorgung" },
-      { label: "Geräte-Retter-Prämie", href: "/geraete-retter-praemie" }
+      { label: "Geräte-Retter-Prämie bis 31.12.2026", href: "/geraete-retter-praemie" }
     ]
   },
   {
