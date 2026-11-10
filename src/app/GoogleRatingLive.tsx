@@ -21,7 +21,7 @@ let inflight: Promise<GoogleRatingSummary | null> | null = null;
 
 function fetchLiveRating(): Promise<GoogleRatingSummary | null> {
   if (!inflight) {
-    inflight = fetch("/api/google-reviews")
+    inflight = fetch("/api/google-reviews", { cache: "no-store" })
       .then((response) => (response.ok ? response.json() : null))
       .then((json) => (isRatingSummary(json) ? json : null))
       .catch(() => null)
